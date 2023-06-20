@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.TestMapper">
+    
+    <insert id="insertList" parameterType="TestDto" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO PINK_FLOYD(
+            album_name
+            , release_date
+            , special_char
+            , what_num
+        ) VALUES (
+            #{albumName}
+            , NOW()
+            , #{specialChar}
+            , #{whatNum}
+        );
+    </insert>
+
+    <select id="getList" parameterType="TestDto" resultType="TestDto">
+        SELECT 
+            id
+            , album_name as albumName
+            , release_date as releaseDate
+            , special_char as specialChar
+            , what_num as whatNum
+        FROM 
+            PINK_FLOYD
+        WHERE
+            id = CAST(#{id} AS UUID)    
+    </select>
+</mapper>
