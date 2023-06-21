@@ -3,7 +3,7 @@
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.TestMapper">
     
     <insert id="insertList" parameterType="TestDto" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        INSERT INTO PINK_FLOYD(
+        INSERT INTO landing.PINK_FLOYD(
             album_name
             , release_date
             , special_char
@@ -24,7 +24,7 @@
             , special_char as specialChar
             , what_num as whatNum
         FROM 
-            PINK_FLOYD
+            landing.PINK_FLOYD
         WHERE
             id = CAST(#{id} AS UUID)    
     </select>
