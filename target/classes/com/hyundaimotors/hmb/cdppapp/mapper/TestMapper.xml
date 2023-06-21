@@ -10,7 +10,7 @@
             , what_num
         ) VALUES (
             #{albumName}
-            , NOW()
+            , to_date(#{releaseDate},'YYYY-MM-DD')
             , #{specialChar}
             , #{whatNum}
         );
