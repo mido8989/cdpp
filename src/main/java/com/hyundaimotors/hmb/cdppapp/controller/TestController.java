@@ -1,6 +1,8 @@
 package com.hyundaimotors.hmb.cdppapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,4 +34,11 @@ public class TestController {
         return responDto;
     }
 
+    @GetMapping("/get/{id}")
+    public TestDto getRecord(@PathVariable("id") String recordId) throws Exception {
+        TestDto param = new TestDto();
+        param.setId(recordId);
+        TestDto responDto = testService.getList(param);
+        return responDto;
+    }
 }
