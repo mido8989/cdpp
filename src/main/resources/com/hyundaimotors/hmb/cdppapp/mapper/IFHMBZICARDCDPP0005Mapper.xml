@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBZICARDCDPP0005Mapper">
+    
+    <insert id="insertSoe" parameterType="IFHMBZICARDCDPP0005Dto">
+        insert into landing.S_ORG_EXT
+            (
+                row_id
+                , created
+                , created_by
+                , last_upd
+                , last_upd_by
+                , INTEGRATION_ID
+                , X_CNPJ
+                , NAME
+                , X_NICKNAME
+                , NAME_1
+                , ORI_CD
+                , X_CONTRACTED_SINCE
+                , SOURCE_CD
+                , MAIN_PH_NUM
+                , MAIN_FAX_PH_NUM
+                , MAIN_EMAIL_ADDR
+                , URL
+            )
+        values
+            (
+                '1-90ABC'
+                , now()
+                , '1-1GPM'
+                , now()
+                , '1-1GPM'
+                , #{integrationId}
+                , #{cnpjNumber}
+                , #{name}
+                , #{nickname}
+                , #{parentAccountName}
+                , #{agencyCode}
+                , to_date(#{contractedSince},'YYYY-MM-DD')
+                , #{source}
+                , #{mainPhoneNumber}
+                , #{mainFaxNumber}
+                , #{mainEmailAddress}
+                , #{homepage}
+            );
+    </insert>
+
+    <insert id="insertSoex" parameterType="IFHMBZICARDCDPP0005Dto">
+        insert into landing.S_ORG_EXT_X
+            (
+                row_id
+                , created
+                , created_by
+                , last_upd
+                , last_upd_by
+                , par_row_id
+                , X_FLT_ACCT_TYPE
+                , X_FLT_IND_TYPE
+                , ATTRIB_07
+                , X_TOT_FLT_SIZE
+                , X_FLT_ORG_TYPE
+            )
+        values
+            (
+                '1-90ABC'
+                , now()
+                , '1-1GPM'
+                , now()
+                , '1-1GPM'
+                , '1-90ABC'
+                , #{fleetAccontType}
+                , #{industryTrend}
+                , #{numberOfEmployee}
+                , #{totalFleetSize}
+                , #{organizationType}
+            )
+            ;
+    </insert>
+
+    <insert id="insertSapr" parameterType="IFHMBZICARDCDPP0005Dto">
+        insert into landing.S_ADDR_PER
+            (
+                row_id
+                , created
+                , created_by
+                , last_upd
+                , last_upd_by
+                , ADDR
+                , ADDR_LINE_2
+                , ADDR_LINE_3
+                , COUNTY
+                , CITY
+                , STATE
+                , ZIPCODE
+            )
+        values
+            (
+                '1-90ABC'
+                , now()
+                , '1-1GPM'
+                , now()
+                , '1-1GPM'
+                , #{streetAddress}
+                , #{streetAddress2}
+                , #{streetAddress3}
+                , #{county}
+                , #{city}
+                , #{state}
+                , #{postalCode}
+            )
+        ;
+    </insert>
+
+    <update id="updateSoe" parameterType="IFHMBZICARDCDPP0005Dto">
+        update landing.S_ORG_EXT set 
+            last_upd = now()
+            , last_upd_by = '1-1GPM'
+            , X_CNPJ = #{cnpjNumber}
+            , NAME = #{name}
+            , X_NICKNAME = #{nickname}
+            , NAME_1 = #{parentAccountName}
+            , ORI_CD = #{agencyCode}
+            , X_CONTRACTED_SINCE = to_date(#{contractedSince},'YYYY-MM-DD')
+            , SOURCE_CD = #{source}
+            , MAIN_PH_NUM = #{mainPhoneNumber}
+            , MAIN_FAX_PH_NUM = #{mainFaxNumber}
+            , MAIN_EMAIL_ADDR = #{mainEmailAddress}
+            , URL = #{homepage}
+        where
+            INTEGRATION_ID = #{integrationId}
+    </update>
+</mapper>

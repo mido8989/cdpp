@@ -30,7 +30,7 @@ public class IFHMBZICARDCDPP0001Controller {
 
 
 
-    @Operation(summary = "Account 저장", description = "Account 저장 메서드입니다.")
+    @Operation(summary = "Account 조회", description = "Account 조회 메서드입니다.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBZICARDCDPP0001Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBGetContactWF")
     public Object getObject(@RequestBody IFHMBZICARDCDPP0001Payload.Request request)throws Exception{
