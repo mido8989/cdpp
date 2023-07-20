@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBZICARDCDPP0001Mapper">
+    
+    <select id="getObject" parameterType="IFHMBZICARDCDPP0001Dto" resultType="IFHMBZICARDCDPP0001Dto">
+        select 
+            sc.X_CPF as cpf
+            , sc.ROW_ID as contactId
+            , concat(sc.FST_NAME || sc.LAST_NAME) as name
+            , sc.CELL_PH_NUM as personCell
+            <!--, SR_NUM as protocolNumber
+            , LOGIN as protocolOwnerLogin
+            , concat(FST_NAME || LAST_NAME) as ProtocolOwnerName
+            , SR_STAT_ID as protocolStatus-->
+        from 
+            landing.S_CONTACT sc
+        <!--join
+        	S_SRV_REQ ss
+        on
+        	sc.ROW_ID = ss.ROW_ID-->
+        where
+            sc.cell_ph_num = #{phoneNumber}
+            
+        <if test="cpf != null and cpf != ''">
+            and
+                sc.X_CPF = #{cpf}
+        </if>    
+    </select>
+</mapper>
