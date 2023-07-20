@@ -42,6 +42,5 @@ public class IFHMBZICARDCDPP0001Controller {
 
 
         return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBZICARDCDPP0001Payload.Response.class) : null;
-        //return defaultMapper.map(resultDto, IFHMBZICARDCDPP0001Payload.Response.class);
     }
 }
