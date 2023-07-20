@@ -1,7 +1,10 @@
 package com.hyundaimotors.hmb.cdppapp.controller;
 
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.AccountDto;
+import com.hyundaimotors.hmb.cdppapp.dto.s_contactDto;
 import com.hyundaimotors.hmb.cdppapp.dto.TestDto;
 import com.hyundaimotors.hmb.cdppapp.payload.AccountPayLoad;
+import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowPayLoad;
 import com.hyundaimotors.hmb.cdppapp.service.TestService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,12 +39,24 @@ public class TestController {
 
     private final ModelMapper defaultMapper;
 
+    private static final Logger log = LoggerFactory.getLogger(JdbcTemplate.class);
+
     @PostMapping(value = "/insert")
     public TestDto insertList(@RequestBody TestDto dto) throws Exception {
 
         TestDto responDto = testService.insertList(dto);
 
         return responDto;
+    }
+
+    @PostMapping(value = "/IF_Inbound_Contact_Workflow")
+    public InboundContactWorkflowPayLoad.Response insertInboundContactWorkflow(@RequestBody InboundContactWorkflowPayLoad.Request dto) throws Exception {
+
+        log.info(dto.getFirstName());
+
+        InboundContactWorkflowPayLoad.Response responsePayload = testService.upsertInboundContactWorkflow(dto);
+
+        return responsePayload;
     }
 
     @GetMapping(value = "/list")

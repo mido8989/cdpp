@@ -16,6 +16,30 @@
         );
     </insert>
 
+    <insert id="InsertInboundContactWorkflow" parameterType="s_contactDto" useGeneratedKeys="true" keyProperty="row_id" keyColumn="row_id">
+        INSERT INTO landing.s_contact(
+            integration_id
+            , row_id
+            , x_cpf
+            , fst_name
+            , last_name
+            , created_by
+            , created
+            , last_upd_by
+            , last_upd
+        ) VALUES (
+            #{integration_id}
+            , #{row_id}
+            , #{x_cpf}
+            , #{fst_name}
+            , #{last_name}
+            , #{created_by}
+            , to_date(#{created},'YYYY-MM-DD')
+            , #{last_upd_by}
+            , to_date(#{last_upd},'YYYY-MM-DD')
+        );
+    </insert>
+
     <select id="getList" parameterType="TestDto" resultType="TestDto">
         SELECT 
             id
