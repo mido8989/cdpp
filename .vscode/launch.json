@@ -28,7 +28,10 @@
                 "PORT": 8080,
                 "DATASOURCE_URL": "jdbc:postgresql://localhost:5432/postgres",
                 "DATASOURCE_USERNAME": "postgres",
-                "DATASOURCE_PASSWORD": "1234a"
+                "DATASOURCE_PASSWORD": "1234a",
+                "REDIS_URL": "localhost",
+                "REDIS_PORT": 6379,
+                "RESOURCESERVER_URL": "http://localhost:9000"
             }
         }
     ]

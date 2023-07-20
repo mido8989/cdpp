@@ -5,23 +5,18 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9000
-
-
+          issuer-uri: ${RESOURCESERVER_URL}
+---
+spring.security.oauth2.resourceserver.jwt.jwk-set-uri=${RESOURCESERVER_URL}
 ---
 
 spring:
   redis:
-    host: localhost
-    port: 6379
+    host: ${REDIS_URL}
+    port: ${REDIS_PORT}
   cache:
     type: redis
 
-
----
-spring.redis.host="localhost"
-spring.redis.port="6379"
-spring.security.oauth2.resourceserver.jwt.jwk-set-uri="http://localhost:9000"
 
 ---
 
