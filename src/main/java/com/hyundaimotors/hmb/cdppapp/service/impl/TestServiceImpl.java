@@ -28,7 +28,7 @@ public class TestServiceImpl implements TestService {
         return dto;
     }
     
-    @Cacheable(cacheNames = "getList", key = "{#dto.id}")
+    //@Cacheable(cacheNames = "getList", key = "{#dto.id}")
     public TestDto getList(TestDto dto) throws Exception{
 
         return testMapper.getList(dto);
