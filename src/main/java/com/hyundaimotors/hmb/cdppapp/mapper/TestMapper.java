@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.hyundaimotors.hmb.cdppapp.dto.AccountDto;
 import com.hyundaimotors.hmb.cdppapp.dto.TestDto;
+import com.hyundaimotors.hmb.cdppapp.dto.s_contactDto;
+import com.hyundaimotors.hmb.cdppapp.dto.s_contact_xDto;
+import com.hyundaimotors.hmb.cdppapp.dto.s_contact_xmDto;
 import com.hyundaimotors.hmb.cdppapp.payload.App;
 import com.hyundaimotors.hmb.cdppapp.payload.Car;
 
@@ -18,4 +21,10 @@ public interface TestMapper {
     public int getCarList(List<Car> cars)throws Exception;
 
     public int getAppsList(List<App> apps)throws Exception;
+
+    public int InsertInboundContactWorkflow(s_contactDto sContactDto) throws Exception;
+
+    public int InsertSContactXDto(s_contact_xDto sContactXDto) throws Exception;
+
+    public int InsertSContactXMDtoList(List<s_contact_xmDto> sContactXmDtoList) throws Exception;
 }
