@@ -41,11 +41,11 @@
         join 
         	landing.S_CONTACT_X scx
         on
-        	sc.row_id = sc.row_id
+        	sc.par_row_id = scx.par_row_id
         join
         	landing.S_ADDR_PER sap
         on
-        	sc.row_id = sap.row_id
+        	sc.PR_PER_ADDR_ID = sap.per_id 
         where 
             sc.ROW_ID = #{contactId}
         and

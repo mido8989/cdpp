@@ -13,9 +13,9 @@ public class IFHMBZICARDCDPP0032Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(description = "cpfNumber", example = "36422039816")
+        @Schema(description = "cpfNumber", example = "44980710182")
         private String cpf;
-        @Schema(description = "ContactId", example = "1-18G0N")
+        @Schema(description = "ContactId", example = "1-100OOU3")
         private String contactId;
     }
 
