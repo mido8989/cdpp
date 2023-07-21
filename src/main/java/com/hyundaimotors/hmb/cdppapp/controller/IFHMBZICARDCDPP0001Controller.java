@@ -34,13 +34,14 @@ public class IFHMBZICARDCDPP0001Controller {
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBZICARDCDPP0001Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBGetContactWF")
     public Object getObject(@RequestBody IFHMBZICARDCDPP0001Payload.Request request)throws Exception{
+        ModelMapper modelMapper = new ModelMapper();
         
-        IFHMBZICARDCDPP0001Dto dto = defaultMapper.map(request, IFHMBZICARDCDPP0001Dto.class);
+        IFHMBZICARDCDPP0001Dto resultDto = new IFHMBZICARDCDPP0001Dto();
 
-        IFHMBZICARDCDPP0001Dto resultDto = service.getObject(dto);
+        IFHMBZICARDCDPP0001Dto dto = modelMapper.map(request, IFHMBZICARDCDPP0001Dto.class);
 
+        resultDto = service.getObject(dto);
 
-
-        return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBZICARDCDPP0001Payload.Response.class) : null;
+        return ObjectUtils.isNotEmpty(resultDto) ? modelMapper.map(resultDto, IFHMBZICARDCDPP0001Payload.Response.class) : null;       
     }
 }
