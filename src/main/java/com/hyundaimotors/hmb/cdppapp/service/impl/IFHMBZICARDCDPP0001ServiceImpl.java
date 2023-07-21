@@ -17,11 +17,11 @@ public class IFHMBZICARDCDPP0001ServiceImpl implements IFHMBZICARDCDPP0001Servic
     private final IFHMBZICARDCDPP0001Mapper mapper;
 
     public IFHMBZICARDCDPP0001Dto getObject(IFHMBZICARDCDPP0001Dto dto)throws Exception{
-        
-        IFHMBZICARDCDPP0001Dto resulDto = mapper.getObject(dto);
-        if(resulDto == null || "".equals(resulDto.getCpf()) || "".equals(resulDto.getContactId()) ){
-            resulDto.setErrorSpcCode("500");
-            resulDto.setErrorSpcMessage("empty data");
+        IFHMBZICARDCDPP0001Dto resulDto = new IFHMBZICARDCDPP0001Dto();
+        resulDto = mapper.getObject(dto);
+        if(resulDto == null){
+            //resulDto.setErrorSpcCode("500");
+            //resulDto.setErrorSpcMessage("empty data");
 
         }else{
             resulDto.setErrorSpcCode("200");
