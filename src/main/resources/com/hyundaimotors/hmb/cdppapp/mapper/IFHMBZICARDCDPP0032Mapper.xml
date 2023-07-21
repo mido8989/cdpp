@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBZICARDCDPP0032Mapper">
+    
+    <select id="getSearchContact" parameterType="IFHMBZICARDCDPP0032Dto" resultType="IFHMBZICARDCDPP0032Dto">
+        select 
+            sc.ROW_ID as contactId
+            , sc.FST_NAME as firstName
+            , sc.LAST_NAME as lastName
+            , sc.X_CPF as cpf
+            , sc.SEX_MF as genre
+            , sc.BIRTH_DT as birthDate
+            , sc.CELL_PH_NUM as cellularPhone
+            , sc.HOME_PH_NUM as homePhone
+            , sc.EMAIL_ADDR as emailAddress
+            , sc.WORK_PH_NUM as workPhone
+            , sc.ROW_ID as rowId
+            , sc.X_PRINTED_CARD as hmbPrintedCard
+            , sc.SUPPRESS_EMAIL_FLG as suppressAllEmails
+            , scx.X_AMOUNT_FRIENDS as amountFriends
+            , scx.X_AMOUNT_CHILDREN as amountChildren
+            , scx.X_CNH_EXP_DATE as cnhexpirationDate
+            , scx.X_LOYALTY_ACT_DT as loyaltyActivationDate
+            , scx.X_LOYALTY_EXP_DT as loyaltyExpirationDate
+            , scx.X_LOYALTY_ENGAGEMENT as loyaltyEngagementIndex
+            , scx.X_LOYALTY_SATISFACTION as loyaltySatisfactionLevel
+            , scx.X_LOYALTY_CRM_INDEX as loyaltyCRMIndex
+            , scx.X_SEG_LIFE_CYCLE as loyaltyLifeCycle
+            , scx.X_LOYALTY_SATISFACTION as loyaltyTierLevel
+            , scx.X_LOYALTY_STATUS as loyaltyStatus
+            , scx.X_LOYALTY_OPTIN_FLG as loyaltyOPTINFla
+            , sap.ZIPCODE as postalCode
+            , sap.ADDR as street
+            , sap.ADDR_LINE_2 as number
+            , sap.ADDR_LINE_3 as complement
+            , sap.COUNTY as county
+            , sap.CITY as city
+            , sap.STATE as state
+        from
+            landing.S_CONTACT sc
+        join 
+        	landing.S_CONTACT_X scx
+        on
+        	sc.row_id = sc.row_id
+        join
+        	landing.S_ADDR_PER sap
+        on
+        	sc.row_id = sap.row_id
+        where 
+            sc.ROW_ID = #{contactId}
+        and
+            sc.X_CPF = #{cpf}
+    </select>
+
+    <select id="getlistOfServiceRequest" parameterType="IFHMBZICARDCDPP0032Dto" resultType="IFHMBZICARDCDPP0032Dto">
+        select 
+            ssr.SR_NUM as protocol
+            , ssr.SR_STAT_ID as status
+            , ssr.X_TESTDRV_DT as testDriveDate
+            , ssr.X_TEST_DRV_TM as testDriveTime
+            , ssr.SR_AREA as area
+            , soe.OU_NUM as dealer
+            , sc.FST_NAME as SalesRepFirstName
+            , sc.LAST_NAME as SalesRepLastName
+            , ATTRIB_11
+        from 
+            landing.S_CONTACT sc
+        join
+            landing.S_ORG_EXT soe
+        on
+        	sc.ROW_ID = soe.ROW_ID
+        join 
+            landing.S_SRV_REQ ssr
+        on
+        	sc.ROW_ID = ssr.ROW_ID
+        join
+            landing.S_SRV_REQ_X ssrx
+        on
+        	sc.ROW_ID = ssrx.ROW_ID
+        where 
+            ssr.ROW_ID = #{contactId}
+    </select>
+    
+</mapper>
