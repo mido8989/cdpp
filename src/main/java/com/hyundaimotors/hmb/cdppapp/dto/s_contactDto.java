@@ -1,6 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -65,7 +66,7 @@ public class s_contactDto {
     private String asgn_excld_flg2;
     private String asgn_required_flg2;
     private String asgn_usr_excld_flg;
-    private String birth_dt;
+    private Date birth_dt;
     private String call_flg;
     private String consumer_flg;
     private String con_created_dt;

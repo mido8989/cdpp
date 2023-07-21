@@ -49,12 +49,12 @@ public class TestController {
         return responDto;
     }
 
-    @PostMapping(value = "/IF_Inbound_Contact_Workflow")
+    @PostMapping(value = "/api/v1/HMBZICARDCDPP0002/insert")
     public InboundContactWorkflowPayLoad.Response insertInboundContactWorkflow(@RequestBody InboundContactWorkflowPayLoad.Request dto) throws Exception {
 
         log.info(dto.getFirstName());
 
-        InboundContactWorkflowPayLoad.Response responsePayload = testService.upsertInboundContactWorkflow(dto);
+        InboundContactWorkflowPayLoad.Response responsePayload = testService.insertInboundContactWorkflow(dto);
 
         return responsePayload;
     }
