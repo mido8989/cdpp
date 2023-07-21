@@ -28,4 +28,124 @@
         WHERE
             id = CAST(#{id} AS UUID)    
     </select>
+
+    <insert id="getAccountList" parameterType="AccountDto">
+        INSERT INTO landing.hmb_contact(
+            integrationid
+            , cpf
+            , firstname
+            , lastname
+            , birthdate
+            , gender
+            , source
+            , homephone
+            , workphone
+            , cellphone
+            , emailaddress
+            , wayofcontact
+            , occupation
+            , maritalstatus
+            , income
+            , carofinterest
+            , calledby
+            , literacy
+            , behavioralsegment
+            , valuesegment
+            , googlesegment
+            , facebooksegment
+            , lifecyclesegment
+            , interestsegment
+            , contactoptin
+            , streetaddress
+            , streetaddress2
+            , streetaddress3
+            , county
+            , city
+            , state
+            , postalcode
+            , suppressallcalls
+            , suppressallmailings
+            , suppressallemails
+            , suppressallsms
+            , printedcard
+            , already_customer
+        ) VALUES (
+            #{integrationId}
+            , #{cpf}
+            , #{firstName}
+            , #{lastName}
+            , #{birthDate}
+            , #{gender}
+            , #{source}
+            , #{homePhone}
+            , #{workPhone}
+            , #{cellPhone}
+            , #{emailAddress}
+            , #{wayOfContact}
+            , #{occupation}
+            , #{maritalStatus}
+            , #{income}
+            , #{carOfInterest}
+            , #{calledBy}
+            , #{literacy}
+            , #{behavioralSegment}
+            , #{valueSegment}
+            , #{googleSegment}
+            , #{facebookSegment}
+            , #{lifeCycleSegment}
+            , #{interestSegment}
+            , #{contactOptIn}
+            , #{streetAddress}
+            , #{streetAddress2}
+            , #{streetAddress3}
+            , #{county}
+            , #{city}
+            , #{state}
+            , #{postalCode}
+            , #{suppressAllCalls}
+            , #{suppressAllMailings}
+            , #{suppressAllEmails}
+            , #{suppressAllSMS}
+            , #{printedCard}
+            , #{already_customer}
+        );
+    </insert>
+
+    <insert id="getCarList" parameterType="java.util.List">
+        INSERT INTO landing.car(
+            name
+            , yearmodel
+            , intentiontochange
+            , iscurrent
+            , carmodel
+            , mileage
+            , clientexpectedvalue
+        ) VALUES 
+        <foreach collection="list" item="item" separator=",">
+            (
+                #{item.name}
+                , #{item.yearModel}
+                , #{item.intentionToChange}
+                , #{item.isCurrent}
+                , #{item.carModel}
+                , #{item.mileage}
+                , #{item.clientExpectedValue}
+            )
+        </foreach>    
+    </insert>
+
+    <insert id="getAppsList" parameterType="java.util.List">
+        INSERT INTO landing.app(
+            name
+            , startdate
+            , status
+        ) VALUES 
+        <foreach collection="list" item="item" separator=",">
+            (
+                #{item.name}
+                , #{item.startDate}
+                , #{item.status}
+            )
+        </foreach>    
+    </insert>
 </mapper>

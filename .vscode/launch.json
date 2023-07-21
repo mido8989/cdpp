@@ -1,0 +1,38 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "java",
+            "name": "CdppAppApplication",
+            "request": "launch",
+            "mainClass": "CdppAppApplication",
+            "projectName": "cdpp-app"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "CdppAppApplication",
+            "request": "launch",
+            "mainClass": "com.hyundaimotors.hmb.cdppapp.CdppAppApplication",
+            "projectName": "cdpp-app",
+            "env": {
+                "PORT": 8080,
+                "DATASOURCE_URL": "jdbc:postgresql://localhost:5432/postgres",
+                "DATASOURCE_USERNAME": "postgres",
+                "DATASOURCE_PASSWORD": "1234a",
+                "REDIS_URL": "localhost",
+                "REDIS_PORT": 6379,
+                "RESOURCESERVER_URL": "http://localhost:9000"
+            }
+        }
+    ]
+}
