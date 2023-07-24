@@ -23,7 +23,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
-@Tag(name = "HMB Search TD Webservice WF", description = "ZICARD, SAP EAI 조회 Interface")
+@Tag(name = "HMB Search TD Webservice WF", description = "ZICARD, SAP EAI list Interface")
 @RestController
 @RequiredArgsConstructor
 public class IFHMBZICARDCDPP0032Controller {
@@ -35,7 +35,7 @@ public class IFHMBZICARDCDPP0032Controller {
 
 
 
-    @Operation(summary = "Account 조회", description = "Account 조회 메서드입니다.")
+    @Operation(summary = "Account list", description = "Account imformation list")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBZICARDCDPP0032Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBSearchTDWebserviceWF")
     public Object getObject(@RequestBody IFHMBZICARDCDPP0032Payload.Request request)throws Exception{
