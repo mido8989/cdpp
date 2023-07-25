@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-public class IFHMBZICARDCDPP0001Payload {
+public class IFHMBINNOCEANCDPP0001Payload {
     
     @Schema(name = "IFHMBZICARDCDPP0001Payload.Request")
     @Getter

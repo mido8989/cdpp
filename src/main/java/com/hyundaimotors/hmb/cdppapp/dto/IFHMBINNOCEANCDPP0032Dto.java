@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class IFHMBZICARDCDPP0032Dto {
+public class IFHMBINNOCEANCDPP0032Dto {
     private String cpf;
     private String contactId;
 

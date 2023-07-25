@@ -19,8 +19,8 @@ public class OpenApiConfig {
 
         Info info = new Info()
                 .version("v1.0.0")
-                .title("API 타이틀")
-                .description("API Description");
+                .title("HMB Swagger")
+                .description("HMB Dev API Swagger");
         
         SecurityScheme securityScheme = new SecurityScheme()
                         .type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")
