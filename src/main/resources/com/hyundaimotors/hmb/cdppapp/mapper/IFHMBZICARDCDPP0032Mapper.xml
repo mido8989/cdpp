@@ -45,7 +45,7 @@
         join
         	landing.S_ADDR_PER sap
         on
-        	sc.PR_PER_ADDR_ID = sap.per_id 
+            sc.PR_PER_ADDR_ID = sap.row_id 
         where 
             sc.ROW_ID = #{contactId}
         and

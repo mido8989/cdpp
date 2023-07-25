@@ -28,7 +28,7 @@ public class IFHMBZICARDCDPP0005Controller {
 
     private final ModelMapper defaultMapper;
     
-    @Operation(summary = "Account insert", description = "Account insert 메서드입니다.")
+    @Operation(summary = "Account insert", description = "Account insert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBZICARDCDPP0005Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBAccountWebserviceWF/insert")
     public Object insertObject(@RequestBody IFHMBZICARDCDPP0005Payload.Request request)throws Exception{
@@ -40,7 +40,7 @@ public class IFHMBZICARDCDPP0005Controller {
         return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBZICARDCDPP0005Payload.Response.class) : null;
     }
 
-    @Operation(summary = "Account update", description = "Account update 메서드입니다.")
+    @Operation(summary = "Account update", description = "Account update")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBZICARDCDPP0005Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBAccountWebserviceWF/update")
     public Object updateObject(@RequestBody IFHMBZICARDCDPP0005Payload.Request request)throws Exception{

@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
-@Tag(name = "HMB Get Contact WF", description = "Zicard, EAI 조회 Interface")
+@Tag(name = "HMB Get Contact WF", description = "Zicard, EAI list Interface")
 @RestController
 @RequiredArgsConstructor
 public class IFHMBZICARDCDPP0001Controller {
@@ -30,7 +30,7 @@ public class IFHMBZICARDCDPP0001Controller {
 
 
 
-    @Operation(summary = "Account 조회", description = "Account 조회 메서드입니다.")
+    @Operation(summary = "Account list", description = "Account list.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBZICARDCDPP0001Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBGetContactWF")
     public Object getObject(@RequestBody IFHMBZICARDCDPP0001Payload.Request request)throws Exception{
