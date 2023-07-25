@@ -1,24 +1,21 @@
 package com.hyundaimotors.hmb.cdppapp.controller.accesstocken;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.hyundaimotors.hmb.cdppapp.payload.AccessTokenPayload;
 
-import java.util.Arrays;
-
-import org.springframework.beans.factory.annotation.Value;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -28,8 +25,8 @@ public class AccessTockenController {
     @Value("${spring.auth.host}")
     public String url;
 
-    @Tag(name = "토큰 발급")
-    @Operation(summary = "AccessToken 발급")
+    @Tag(name = "Issuing tokens")
+    @Operation(summary = "Issuing AccessToken")
     @PostMapping(value = "/v3/auth/token")
     public Object token(@RequestBody AccessTokenPayload.Request request) throws Exception{
         

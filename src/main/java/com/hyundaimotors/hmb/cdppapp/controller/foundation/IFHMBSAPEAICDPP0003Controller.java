@@ -1,4 +1,4 @@
-package com.hyundaimotors.hmb.cdppapp.controller;
+package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0003Dto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBZICARDCDPP0005Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0003Payload;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBZICARDCDPP0005Payload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0003Service;
 
 import io.swagger.v3.oas.annotations.Operation;
