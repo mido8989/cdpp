@@ -15,5 +15,4 @@ public interface TestService {
 
     public AccountDto getAccountList(AccountDto dto) throws Exception;
 
-    public InboundContactWorkflowPayLoad.Response insertInboundContactWorkflow(InboundContactWorkflowPayLoad.Request dto) throws Exception;
 }

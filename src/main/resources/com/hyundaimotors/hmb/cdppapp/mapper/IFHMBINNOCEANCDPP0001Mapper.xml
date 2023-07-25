@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBZICARDCDPP0001Mapper">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0001Mapper">
     
-    <select id="getObject" parameterType="IFHMBZICARDCDPP0001Dto" resultType="IFHMBZICARDCDPP0001Dto">
+    <select id="getObject" parameterType="IFHMBINNOCEANCDPP0001Dto" resultType="IFHMBINNOCEANCDPP0001Dto">
         select 
             sc.X_CPF as cpf
             , sc.ROW_ID as contactId

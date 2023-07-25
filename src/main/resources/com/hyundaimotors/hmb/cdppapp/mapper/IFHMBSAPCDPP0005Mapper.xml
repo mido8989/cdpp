@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBZICARDCDPP0005Mapper">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0005Mapper">
     
-    <insert id="insertSoe" parameterType="IFHMBZICARDCDPP0005Dto">
+    <insert id="insertSoe" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.S_ORG_EXT
             (
-                row_id
-                , created
+                created
                 , created_by
                 , last_upd
                 , last_upd_by
@@ -25,11 +24,10 @@
             )
         values
             (
-                '1-90ABC'
+                now()
+                , 'interface'
                 , now()
-                , '1-1GPM'
-                , now()
-                , '1-1GPM'
+                , 'interface'
                 , #{integrationId}
                 , #{cnpjNumber}
                 , #{name}
@@ -45,11 +43,10 @@
             );
     </insert>
 
-    <insert id="insertSoex" parameterType="IFHMBZICARDCDPP0005Dto">
+    <insert id="insertSoex" parameterType="IFHMBSAPCDPP0005Dto">
         insert into landing.S_ORG_EXT_X
             (
-                row_id
-                , created
+                created
                 , created_by
                 , last_upd
                 , last_upd_by
@@ -62,12 +59,11 @@
             )
         values
             (
-                '1-90ABC'
+                now()
+                , 'interface'
                 , now()
-                , '1-1GPM'
-                , now()
-                , '1-1GPM'
-                , '1-90ABC'
+                , 'interface'
+                , #{rowId}
                 , #{fleetAccontType}
                 , #{industryTrend}
                 , #{numberOfEmployee}
@@ -77,11 +73,10 @@
             ;
     </insert>
 
-    <insert id="insertSapr" parameterType="IFHMBZICARDCDPP0005Dto">
+    <insert id="insertSapr" parameterType="IFHMBSAPCDPP0005Dto">
         insert into landing.S_ADDR_PER
             (
-                row_id
-                , created
+                created
                 , created_by
                 , last_upd
                 , last_upd_by
@@ -95,11 +90,10 @@
             )
         values
             (
-                '1-90ABC'
+                now()
+                , 'interface'
                 , now()
-                , '1-1GPM'
-                , now()
-                , '1-1GPM'
+                , 'interface'
                 , #{streetAddress}
                 , #{streetAddress2}
                 , #{streetAddress3}
@@ -111,10 +105,10 @@
         ;
     </insert>
 
-    <update id="updateSoe" parameterType="IFHMBZICARDCDPP0005Dto">
+    <update id="updateSoe" parameterType="IFHMBSAPCDPP0005Dto">
         update landing.S_ORG_EXT set 
             last_upd = now()
-            , last_upd_by = '1-1GPM'
+            , last_upd_by = 'interface'
             , X_CNPJ = #{cnpjNumber}
             , NAME = #{name}
             , X_NICKNAME = #{nickname}

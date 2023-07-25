@@ -33,7 +33,18 @@ springdoc:
     
   show-actuator: true
   group-configs:
-  - group: stores
-    paths-to-match: /**
-  - group: users
-    packages-to-scan: com.hyundaimotors.hmb
+  - group: Lead
+    packages-to-scan: 
+      - com.hyundaimotors.hmb.cdppapp.controller.lead
+      - com.hyundaimotors.hmb.cdppapp.controller.accesstocken
+    
+  - group: VOC
+    packages-to-scan: 
+      - com.hyundaimotors.hmb.cdppapp.controller.voc
+      - com.hyundaimotors.hmb.cdppapp.controller.accesstocken
+    
+  - group: Foundation
+    packages-to-scan: 
+      - com.hyundaimotors.hmb.cdppapp.controller.foundation
+      - com.hyundaimotors.hmb.cdppapp.controller.accesstocken
+    

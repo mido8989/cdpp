@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-public class IFHMBZICARDCDPP0032Payload {
+public class IFHMBINNOCEANCDPP0032Payload {
     
     @Schema(name = "IFHMBZICARDCDPP0032Payload.Request")
     @Getter
