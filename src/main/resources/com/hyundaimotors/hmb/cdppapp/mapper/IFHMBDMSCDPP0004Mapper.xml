@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBDMSCDPP0004Mapper">
+    
+    <select id="getContact" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
+        select 
+            sc.row_id as rowId
+        from 
+            landing.s_contact sc 
+        where
+            sc.created = to_date(#{date},'YYYY-MM-DD')
+        and
+            sc.status_cd = #{statusLead}
+    </select>
+
+    <select id="contactInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
+        select 
+            sc.row_id as rowId
+            , sc.FST_NAME as nome
+            , sc.LAST_NAME as sobrenome
+            , sc.SEX_MF as genero
+            , sc.BIRTH_DT as dataNascimento
+            , sc.CELL_PH_NUM as telefone
+            , sc.EMAIL_ADDR as email
+            , sc.X_CPF as cpf
+            , sap.ZIPCODE as cep
+            , sap.ADDR as endereco
+            , sap.ROW_ID as idconnex
+            , ssrx.X_CAR_REPL_INTENT as dataPrevistaCarroNovo
+            
+        from 
+            landing.s_contact sc 
+        left join
+            landing.s_addr_per sap
+        on
+            sc.pr_per_addr_id = sap.row_id 
+        join
+            landing.s_srv_req ssr 
+        on
+            sc.row_id = ssr.cst_con_id
+        join 
+            landing.s_srv_req_x ssrx 
+        on
+            ssr.row_id = ssrx.par_row_id 
+        where
+            sc.row_id = #{rowId}
+    </select>
+    
+    <select id="veiculoInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
+        select
+            scx.x_model as modelo
+            , scx.attrib_34 as motor
+            , scx.attrib_14 as transmissao
+            , scx.x_license_plate as versao
+            , scx.x_vehicle_color as cor
+        from 
+            landing.s_contact sc
+        join
+            landing.s_contact_xm scx 
+        on
+            sc.row_id = scx.par_row_id 
+        where 
+            sc.row_id = #{rowId}
+
+    </select>
+
+    <select id="opvInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
+        select 
+            ssr.row_id as rowId
+            , ssr.SR_NUM as protocolo
+            , soe.OU_NUM as codigoConcessionaria
+            , ssrx.ATTRIB_43 as origem
+            , ssr.SR_SUBTYPE_CD as metodo
+            , ssr.ACT_OPEN_DT as dataAbertura
+            , ssr.SR_STAT_ID as status
+            , ssr.SR_SEV_CD as prioridade
+            , ssr.X_PNE_FLG as identificacaoPCD
+            , sc.CON_CD as tipoContato
+            , scx.X_ALREADY_CUSTOMER as clienteHyundai
+            , ssrx.X_OPV_USEDCAR_PAYMNT as usadoNaTroca
+            , ssrx.ATTRIB_13 as optInCotacao
+            , ssrx.ATTRIB_09 as optInContato
+            , soe.X_NICKNAME as nomeConcessionaria
+            , soe.CUST_STAT_CD as statusConcessionaria
+            , ssrx.X_SR_COMMENT as comentario
+            , ssr.SR_SUBTYPE_CD as metodoContato
+            , ssr.DESC_TEXT as observacoesContato
+            , ssr.X_CAMP_ID as dadosCampanha
+        from 
+            landing.S_CONTACT sc
+        left join
+            landing.S_CONTACT_X scx
+        on
+            sc.row_id = scx.par_row_id 
+        join
+            landing.S_SRV_REQ ssr
+        on
+            ssr.CST_CON_ID = sc.row_id 
+        join
+            landing.S_ORG_EXT soe
+        on
+            ssr.RTNG_DLR_ID = soe.ROW_ID
+        join
+            landing.S_SRV_REQ_X ssrx
+        on
+            ssr.row_id  = ssrx.par_row_id 
+        where 
+            sc.row_id = #{rowId}
+    </select>
+    <select id="financiamentoopvList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
+        select 
+            X_OPV_WANTS_LOAN as querFinanciar
+            , X_OPV_LOAN_TYPE as tipoFinanciamento
+            , X_OPV_DOWN_PAYMNT as valorEntradaFinanciamento
+            , X_OPV_INSTALLMENTS_AMT as qtdParcelaFinanciamento
+        from 
+            landing.S_SRV_REQ ssr
+        join
+            landing.S_SRV_REQ_X ssrx
+        on
+            ssr.row_id  = ssrx.par_row_id 
+        where 
+            ssr.row_id = #{rowId}
+    </select>
+    
+</mapper>
