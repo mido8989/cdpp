@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0046Mapper">
+    
+    <select id="getList" parameterType="IFHMBINNOCEANCDPP0046Dto" resultType="IFHMBINNOCEANCDPP0046Dto">
+        select 
+            soe.ou_num as dealerCode
+        from 
+            landing.s_org_ext soe 
+        join
+            landing.s_org_ext_xm soex 
+        on
+            soe.row_id = soex.par_row_id
+        where 
+            soe.ou_num = #{dealerCode}
+        and
+            soex.x_dlr_srvc_type in
+            <foreach collection="listOfServices" index="index" item='item' open="(" close=")" separator=",">
+                #{item.serviceType}
+            </foreach>
+        and
+            soex.ATTRIB_14 in
+            <foreach collection="listOfServices" index="index" item='item' open="(" close=")" separator=",">
+                #{item.serviceLength}
+            </foreach>
+    </select>
+</mapper>
