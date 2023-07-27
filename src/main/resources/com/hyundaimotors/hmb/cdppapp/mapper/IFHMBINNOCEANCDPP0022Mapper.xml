@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0022Mapper">
+    
+    <select id="getRowId" parameterType="IFHMBINNOCEANCDPP0022Dto" resultType="IFHMBINNOCEANCDPP0022Dto">
+        select
+	        soe.row_id as rowId
+            , soe.name as name
+            , soe.ou_type_cd as ouTypeCd
+        from
+            landing.S_ORG_EXT soe
+        where    
+            soe.OU_NUM = #{dealerCode}
+        order by soe.created desc
+    </select>
+
+    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0022Dto">
+        insert into landing.S_ORG_EXT_XM
+        (
+            created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , par_row_id
+            , NAME
+            , type
+            , ATTRIB_02
+            , ATTRIB_12
+        )
+        VALUES 
+        (	
+            now()
+            , 'interface'
+            , now()
+            , 'interface'
+            , #{rowId}
+            , #{name}
+            , 'Dealer Local Holiday'
+            , #{holidayDescription}
+            , to_date(#{holidayDate},'YYYY-MM-DD')
+        );
+    </insert>
+    
+    <delete id="deleteObject" parameterType="IFHMBINNOCEANCDPP0022Dto">
+        delete from 
+            landing.S_ORG_EXT_XM
+        where 
+            par_row_id = #{rowId}
+        and 
+            name = #{name} 
+        and
+            type = 'Dealer Local Holiday'
+        and
+            ATTRIB_12 = to_date(#{holidayDate},'YYYY-MM-DD')
+    </delete>
+</mapper>
