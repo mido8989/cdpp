@@ -51,7 +51,7 @@ public class IFHMBINNOCEANCDPP0022Controller {
         return defaultMapper.map(dto, IFHMBINNOCEANCDPP0022Payload.Response.class);
     }
 
-    @Operation(summary = "Account insert", description = "Account insert")
+    @Operation(summary = "dealer holiday delete", description = "dealer holiday delete")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0022Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBMNTSRVCManageDealerHoliday/delete")
     public Object deleteObject(@RequestBody IFHMBINNOCEANCDPP0022Payload.Request request)throws Exception{
