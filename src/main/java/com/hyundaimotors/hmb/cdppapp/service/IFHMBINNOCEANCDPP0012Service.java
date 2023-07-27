@@ -9,5 +9,5 @@ public interface IFHMBINNOCEANCDPP0012Service {
     
     public IFHMBINNOCEANCDPP0012Dto getChannelPartner(IFHMBINNOCEANCDPP0012Dto dto)throws Exception;
 
-    public List<IFHMBINNOCEANCDPP0012Dto> getChannelPartnerContactListList(IFHMBINNOCEANCDPP0012Dto dto)throws Exception;
+    public List<IFHMBINNOCEANCDPP0012Dto> getChannelPartnerContactList(IFHMBINNOCEANCDPP0012Dto dto)throws Exception;
 }
