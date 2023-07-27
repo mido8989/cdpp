@@ -24,8 +24,8 @@ public class IFHMBINNOCEANCDPP0012ServiceImpl implements IFHMBINNOCEANCDPP0012Se
         return mapper.getChannelPartner(dto);
     }
 
-    public List<IFHMBINNOCEANCDPP0012Dto> getChannelPartnerContactListList(IFHMBINNOCEANCDPP0012Dto dto)throws Exception{
+    public List<IFHMBINNOCEANCDPP0012Dto> getChannelPartnerContactList(IFHMBINNOCEANCDPP0012Dto dto)throws Exception{
 
-        return mapper.getChannelPartnerContactListList(dto);
+        return mapper.getChannelPartnerContactList(dto);
     }
 }

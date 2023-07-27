@@ -22,7 +22,6 @@ public class IFHMBINNOCEANCDPP0012Payload {
     @Schema(name = "IFHMBINNOCEANCDPP0012Payload.Response")
     @Getter
     @Setter
-    @SuperBuilder
     public static class Response{
         private ChannelPartner channelPartner;
         List<ChannelPartnerContact> channelPartnerContact;

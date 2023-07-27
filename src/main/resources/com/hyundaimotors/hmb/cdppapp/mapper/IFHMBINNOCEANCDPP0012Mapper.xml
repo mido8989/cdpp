@@ -39,7 +39,7 @@
             landing.s_org_ext_x soex 
         on
             soe.row_id = soex.par_row_id 
-        join
+        left join
             landing.s_org_prtnr sop 
         on
             soe.row_id = sop.par_row_id
@@ -51,7 +51,7 @@
             soe.pr_con_id = #{source}
     </select>
 
-    <select id="getChannelPartnerContactListList" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="IFHMBINNOCEANCDPP0012Dto">
+    <select id="getChannelPartnerContactList" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="IFHMBINNOCEANCDPP0012Dto">
         select
             sc.INTEGRATION_ID as integrationId
             , sc.X_CPF as cpf
