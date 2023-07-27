@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0012Mapper">
+    
+    <select id="getChannelPartner" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="IFHMBINNOCEANCDPP0012Dto">
+        select 
+            soe.INTEGRATION_ID as integrationId
+            , soe.X_CNPJ as cnpj
+            , soe.NAME as name
+            , soe.X_NICKNAME as nickname
+            , soe.CUST_STAT_CD as accountStatus
+            , soe.X_REASON_STATUS as reasonStatus
+            , soex.ATTRIB_39 as dealerType
+            , soe.OU_NUM as dealerCode
+            , soe.MAIN_PH_NUM as mainPhone
+            , soe.MAIN_FAX_PH_NUM as fax
+            , soe.MAIN_EMAIL_ADDR as mainEmailAddress
+            , soex.ATTRIB_51 as workEmailAddress
+            , soex.ATTRIB_10 as salesDealerFlag
+            , soex.ATTRIB_11 as serviceDealerFlag
+            , soe.PRTNRSHP_START_DT as partnerStartDate
+            , sop.PTSHP_END_DT as partnerEndDate
+            , soe.REGION as region
+            , soex.X_WORKING_HOURS as workingHour
+            , soex.X_SOCIAL_URL as facebookPage
+            , soe.URL as homepage
+            , sap.ADDR as streetAddress
+            , sap.ADDR_LINE_2 as streetAddress2
+            , sap.ADDR_LINE_3 as streetAddress3
+            , sap.CITY as city
+            , sap.STATE as state
+            , sap.COUNTY as neighborhood
+            , sap.LATITUDE as latitude
+            , sap.LONGITUDE as longitude
+            , sap.ZIPCODE as zipCode
+        from
+            landing.s_org_ext soe 
+        join
+            landing.s_org_ext_x soex 
+        on
+            soe.row_id = soex.par_row_id 
+        join
+            landing.s_org_prtnr sop 
+        on
+            soe.row_id = sop.par_row_id
+        join
+            landing.s_addr_per sap 
+        on
+            soe.pr_addr_id = sap.row_id
+        where
+            soe.pr_con_id = #{source}
+    </select>
+
+    <select id="getChannelPartnerContactListList" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="IFHMBINNOCEANCDPP0012Dto">
+        select
+            sc.INTEGRATION_ID as integrationId
+            , sc.X_CPF as cpf
+            , sc.FST_NAME as firstName
+            , sc.LAST_NAME as lastName
+            , sc.EMAIL_ADDR as emailAddress
+            , sc.HOME_PH_NUM as homePhone
+            , sc.WORK_PH_NUM as workPhone
+            , sc.CELL_PH_NUM as cellPhone
+            , sc.JOB_TITLE as jobTitle
+            <!--, spp.X_STATUS as status
+            , spp.X_NOTES as notes-->
+        from
+            landing.s_contact sc 
+        <!--join
+            landing.s_party_per spp 
+        on
+            sc.row_id = sap.row_id-->
+        where
+            sc.row_id = #{source}
+    </select>
+    
+</mapper>
