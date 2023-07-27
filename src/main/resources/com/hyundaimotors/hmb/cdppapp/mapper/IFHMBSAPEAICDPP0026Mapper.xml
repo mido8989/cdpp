@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0026Mapper">
+    
+    <insert id="insertList" parameterType="java.util.List">
+        insert into landing.S_PROD_INT(created, created_by, last_upd, last_upd_by, name, data_src, type<!--, campo_calculado-->)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (now(), 'interface', now(), 'interface', #{item.name}, #{item.source}, #{item.type}<!--,, #{item.suggestedPrice}-->)
+        </foreach>
+        
+    </insert>
+
+    <update id="updateList" parameterType="java.util.List">
+        <foreach collection="list" item="item" separator=";">
+            update
+                landing.S_PROD_INT
+            set
+                last_upd = now()
+                , last_upd_by = 'interface'
+                , data_src = #{item.source}
+                , type = #{item.type}
+            where
+                name = #{item.name}
+        </foreach>
+    </update>
+
+</mapper>
