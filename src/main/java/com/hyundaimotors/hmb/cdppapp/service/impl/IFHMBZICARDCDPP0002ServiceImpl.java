@@ -2,6 +2,9 @@ package com.hyundaimotors.hmb.cdppapp.service.impl;
 
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,12 +20,13 @@ import lombok.RequiredArgsConstructor;
 public class IFHMBZICARDCDPP0002ServiceImpl implements IFHMBZICARDCDPP0002Service{
     
     private final IFHMBZICARDCDPP0002Mapper mapper;
+    private static final Logger log = LoggerFactory.getLogger(JdbcTemplate.class);
 
     public IFHMBZICARDCDPP0002Dto insertObject(IFHMBZICARDCDPP0002Dto dto)throws Exception{
 
         IFHMBZICARDCDPP0002Dto resultDto = new IFHMBZICARDCDPP0002Dto();
 
-
+        try{
         int resultNum01 = mapper.insertContact(dto);
 
         System.out.println("row id is = " + dto.getRow_id());
@@ -36,6 +40,9 @@ public class IFHMBZICARDCDPP0002ServiceImpl implements IFHMBZICARDCDPP0002Servic
         parMap.put("PARAM_ID", dto.getRow_id());
 
         mapper.transferContact(parMap);
+        }catch(Exception e){
+            log.error("Fail :", e);
+        }
 
         return resultDto;
     }
