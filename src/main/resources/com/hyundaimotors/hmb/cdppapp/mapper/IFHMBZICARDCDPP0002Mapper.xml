@@ -51,6 +51,6 @@
 
 
     <insert id="transferAccount" statementType="CALLABLE" parameterType="hashMap">
-        call process.process_account(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call process.interface_proc_acc(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
