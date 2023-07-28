@@ -42,7 +42,7 @@ public class IFHMBINNOCEANCDPP0012Controller {
 
         ModelMapper modelMapper = new ModelMapper();
 
-        Map<String, Object> response = new HashMap<String, Object>();
+        Map<String, Object> response = new HashMap<>();
         
         
         List<IFHMBINNOCEANCDPP0012Payload.ChannelPartnerContact> channelPartnerContact = new ArrayList<>();
@@ -72,9 +72,11 @@ public class IFHMBINNOCEANCDPP0012Controller {
                 channelPartnerContact.add(i, channelPartnerContactDto);
             
             }
+            
         }else{
             channelPartnerContact.add(0, null);
         }
+        
         response.put("channelPartnerContact", channelPartnerContact);
 
         return response;

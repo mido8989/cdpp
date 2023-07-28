@@ -35,7 +35,7 @@
             , sap.ZIPCODE as zipCode
         from
             landing.s_org_ext soe 
-        join
+        left join
             landing.s_org_ext_x soex 
         on
             soe.row_id = soex.par_row_id 
@@ -43,12 +43,12 @@
             landing.s_org_prtnr sop 
         on
             soe.row_id = sop.par_row_id
-        join
+        left join
             landing.s_addr_per sap 
         on
             soe.pr_addr_id = sap.row_id
         where
-            soe.pr_con_id = #{source}
+            soe.INTEGRATION_ID = #{source}
     </select>
 
     <select id="getChannelPartnerContactList" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="IFHMBINNOCEANCDPP0012Dto">
@@ -71,7 +71,7 @@
         on
             sc.row_id = sap.row_id-->
         where
-            sc.row_id = #{source}
+            sc.INTEGRATION_ID = #{source}
     </select>
     
 </mapper>
