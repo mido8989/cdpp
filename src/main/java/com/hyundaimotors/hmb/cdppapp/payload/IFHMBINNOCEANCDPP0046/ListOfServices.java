@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ListOfServices {
-    @Schema(description = "Dealer Code", example = "60")
-    private String serviceType;
     @Schema(description = "Dealer Code", example = "1st maintenance")
+    private String serviceType;
+    @Schema(description = "Dealer Code", example = "90")
     private int serviceLength;
 }

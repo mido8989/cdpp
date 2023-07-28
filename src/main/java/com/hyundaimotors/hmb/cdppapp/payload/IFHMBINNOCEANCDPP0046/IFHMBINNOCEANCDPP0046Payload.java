@@ -12,7 +12,7 @@ public class IFHMBINNOCEANCDPP0046Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(description = "Dealer Code", example = "B05AM99999")
+        @Schema(description = "Dealer Code", example = "B05AM16004")
         private String dealerCode;
         @Schema(description = "Name of requester system.", example = "Source")
         private String Source;
