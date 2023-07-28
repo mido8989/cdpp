@@ -14,8 +14,12 @@ public class IFHMBINNOCEANCDPP0012Payload {
     @Getter
     @Setter
     public static class Request{
+        
+        @Schema(description = "Name of requester system.", example = "0000063997")
         private String source;
+        @Schema(description = "Connex error code. Code 0 means success.", example = "0")
         private String errorSpcCode;
+        @Schema(description = "Connex error message.", example = "OK")
         private String errorSpcMessage;
     }
 
@@ -91,6 +95,9 @@ public class IFHMBINNOCEANCDPP0012Payload {
         private String zipCode;
     }
 
+    @Schema(name = "IFHMBINNOCEANCDPP0012Payload.ChannelPartnerContact")
+    @Getter
+    @Setter
     public static class ChannelPartnerContact{
         @Schema(description = "External system unique identifier.", example = "1-7890WX")
         private String integrationId;
