@@ -9,8 +9,10 @@
             landing.s_contact sc 
         where
             sc.created = to_date(#{date},'YYYY-MM-DD')
-        and
-            sc.status_cd = #{statusLead}
+        <if test="statusLead != null and statusLead != ''">
+            and
+                sc.status_cd = #{statusLead}
+        </if>    
     </select>
 
     <select id="contactInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
