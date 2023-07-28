@@ -50,7 +50,7 @@
     </insert>
 
 
-    <insert id="transferAccount" statementType="CALLABLE" parameterType="hashMap">
-        call process.interface_proc_acc(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    <insert id="transferContact" statementType="CALLABLE" parameterType="hashMap">
+        call process.interface_proc_con(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
