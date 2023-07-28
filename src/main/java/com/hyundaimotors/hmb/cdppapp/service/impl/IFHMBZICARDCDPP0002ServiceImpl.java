@@ -32,10 +32,10 @@ public class IFHMBZICARDCDPP0002ServiceImpl implements IFHMBZICARDCDPP0002Servic
             resultDto.setError_spcMessage("success");
         }
         
-        // HashMap<String, String> parMap = new HashMap<String, String>();
-        // parMap.put("PARAM_ID", dto.getRow_id());
+        HashMap<String, String> parMap = new HashMap<String, String>();
+        parMap.put("PARAM_ID", dto.getRow_id());
 
-        // mapper.transferContact(parMap);
+        mapper.transferContact(parMap);
 
         return resultDto;
     }
