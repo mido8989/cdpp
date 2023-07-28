@@ -4,26 +4,17 @@
     
     <select id="getObject" parameterType="IFHMBINNOCEANCDPP0001Dto" resultType="IFHMBINNOCEANCDPP0001Dto">
         select 
-            sc.X_CPF as cpf
-            , sc.ROW_ID as contactId
-            , concat(sc.FST_NAME || sc.LAST_NAME) as name
-            , sc.CELL_PH_NUM as personCell
-            <!--, SR_NUM as protocolNumber
-            , LOGIN as protocolOwnerLogin
-            , concat(FST_NAME || LAST_NAME) as ProtocolOwnerName
-            , SR_STAT_ID as protocolStatus-->
+            c.cpf__c as cpf
+            , c.ROW_ID as contactId
+            , concat(c.firstname || c.lastname) as name
+            , c.mobilephone as personCell
         from 
-            landing.S_CONTACT sc
-        <!--join
-        	S_SRV_REQ ss
-        on
-        	sc.ROW_ID = ss.ROW_ID-->
+            process.contact c
         where
-            sc.cell_ph_num = #{phoneNumber}
-            
+            c.mobilephone = #{phoneNumber}
         <if test="cpf != null and cpf != ''">
             and
-                sc.X_CPF = #{cpf}
+                c.cpf__c = #{cpf}
         </if>    
     </select>
 </mapper>
