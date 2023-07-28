@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBZICARDCDPP0002Mapper">
+    
+
+    <insert id="insertContact" parameterType="IFHMBZICARDCDPP0002Dto" useGeneratedKeys="true" keyProperty="row_id" keyColumn="row_id">
+        INSERT INTO landing.s_contact(
+            integration_id
+            , x_cpf
+            , fst_name
+            , last_name
+            , birth_dt
+            , sex_mf
+            , home_ph_num
+            , work_ph_num
+            , cell_ph_num
+            , email_addr
+            , pref_comm_meth_cd
+            , marital_stat_cd
+            , suppress_call_flg
+            , suppress_mail_flg
+            , suppress_email_flg
+            , x_printed_card
+            , created
+            , created_by
+            , last_upd
+            , last_upd_by
+        ) VALUES (
+            #{integrationid}
+            , #{cpf}
+            , #{firstname}
+            , #{lastname}
+            , #{birthdate}
+            , #{gender}
+            , #{homephone}
+            , #{workphone}
+            , #{cellphone}
+            , #{emailaddress}
+            , #{wayofcontact}
+            , #{maritalstatus}
+            , #{suppressallcalls}
+            , #{suppressallmailings}
+            , #{suppressallemails}
+            , #{printedcard}
+            , now()
+            , 'interface'
+            , now()
+            , 'interface'
+        );
+    </insert>
+
+
+    <insert id="transferAccount" statementType="CALLABLE" parameterType="hashMap">
+        call process.process_account(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
+</mapper>
