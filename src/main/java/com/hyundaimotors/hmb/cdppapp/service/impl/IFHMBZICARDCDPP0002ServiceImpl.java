@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,11 +25,17 @@ public class IFHMBZICARDCDPP0002ServiceImpl implements IFHMBZICARDCDPP0002Servic
 
         int resultNum01 = mapper.insertContact(dto);
 
+        System.out.println("row id is = " + dto.getRow_id());
+
         if(resultNum01 > 0){
             resultDto.setError_spcCode("200");
             resultDto.setError_spcMessage("success");
         }
         
+        HashMap<String, String> parMap = new HashMap<String, String>();
+        parMap.put("PARAM_ID", dto.getRow_id());
+
+        mapper.transferAccount(parMap);
 
         return resultDto;
     }
