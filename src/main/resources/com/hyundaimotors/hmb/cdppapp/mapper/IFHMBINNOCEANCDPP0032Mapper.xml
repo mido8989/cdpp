@@ -4,81 +4,65 @@
     
     <select id="getSearchContact" parameterType="IFHMBINNOCEANCDPP0032Dto" resultType="IFHMBINNOCEANCDPP0032Dto">
         select 
-            sc.ROW_ID as contactId
-            , sc.FST_NAME as firstName
-            , sc.LAST_NAME as lastName
-            , sc.X_CPF as cpf
-            , sc.SEX_MF as genre
-            , sc.BIRTH_DT as birthDate
-            , sc.CELL_PH_NUM as cellularPhone
-            , sc.HOME_PH_NUM as homePhone
-            , sc.EMAIL_ADDR as emailAddress
-            , sc.WORK_PH_NUM as workPhone
-            , sc.ROW_ID as rowId
-            , sc.X_PRINTED_CARD as hmbPrintedCard
-            , sc.SUPPRESS_EMAIL_FLG as suppressAllEmails
-            , scx.X_AMOUNT_FRIENDS as amountFriends
-            , scx.X_AMOUNT_CHILDREN as amountChildren
-            , scx.X_CNH_EXP_DATE as cnhexpirationDate
-            , scx.X_LOYALTY_ACT_DT as loyaltyActivationDate
-            , scx.X_LOYALTY_EXP_DT as loyaltyExpirationDate
-            , scx.X_LOYALTY_ENGAGEMENT as loyaltyEngagementIndex
-            , scx.X_LOYALTY_SATISFACTION as loyaltySatisfactionLevel
-            , scx.X_LOYALTY_CRM_INDEX as loyaltyCRMIndex
-            , scx.X_SEG_LIFE_CYCLE as loyaltyLifeCycle
-            , scx.X_LOYALTY_SATISFACTION as loyaltyTierLevel
-            , scx.X_LOYALTY_STATUS as loyaltyStatus
-            , scx.X_LOYALTY_OPTIN_FLG as loyaltyOPTINFla
-            , sap.ZIPCODE as postalCode
-            , sap.ADDR as street
-            , sap.ADDR_LINE_2 as number
-            , sap.ADDR_LINE_3 as complement
-            , sap.COUNTY as county
-            , sap.CITY as city
-            , sap.STATE as state
+            c.row_id as contactId
+            , c.firstname as firstName
+            , c.lastname as lastName
+            , c.cpf__c as cpf
+            , c.gender__c as genre
+            , c.birthdate as birthDate
+            , c.mobilephone as cellularPhone
+            , c.homephone as homePhone
+            , c.email__c as emailAddress
+            , c.companyphone__c as workPhone
+            , c.external_id__c as rowId
+            , c.x_printed_card__c as hmbPrintedCard
+            , c.emailoptyn__c as suppressAllEmails
+            , c.x_amount_friends__c as amountFriends
+            , c.x_amount_children__c as amountChildren
+            , c.x_cnh_exp_date__c as cnhexpirationDate
+            , c.x_loyalty_act_dt__c as loyaltyActivationDate
+            , c.x_loyalty_exp_dt__c as loyaltyExpirationDate
+            , c.x_loyalty_engagement__c as loyaltyEngagementIndex
+            , c.x_loyalty_satisfaction__c as loyaltySatisfactionLevel
+            , c.x_loyalty_crm_index__c as loyaltyCRMIndex
+            , c.x_seg_life_cycle__c as loyaltyLifeCycle
+            , c.x_loyalty_satisfaction__c as loyaltyTierLevel
+            , c.x_loyalty__status__c as loyaltyStatus
+            , c.x_loyalty_optin_flg__c as loyaltyOPTINFla
+            , c.mailingpostalcode as postalCode
+            , c.mailingstreet as street
+            , c.mailingstreet_2__c as number
+            , c.mailingstreet_3__c as complement
+            , c.mailingcountry__c as county
+            , c.mailingcity__c as city
+            , c.mailingstate as state
         from
-            landing.S_CONTACT sc
-        join 
-        	landing.S_CONTACT_X scx
-        on
-        	sc.par_row_id = scx.par_row_id
-        join
-        	landing.S_ADDR_PER sap
-        on
-            sc.PR_PER_ADDR_ID = sap.row_id 
+            process.contact c
         where 
-            sc.ROW_ID = #{contactId}
+            c.row_id = #{contactId}
         and
-            sc.X_CPF = #{cpf}
+            c.cpf__c = #{cpf}
     </select>
 
     <select id="getlistOfServiceRequest" parameterType="IFHMBINNOCEANCDPP0032Dto" resultType="IFHMBINNOCEANCDPP0032Dto">
         select 
-            ssr.SR_NUM as protocol
-            , ssr.SR_STAT_ID as status
-            , ssr.X_TESTDRV_DT as testDriveDate
-            , ssr.X_TEST_DRV_TM as testDriveTime
-            , ssr.SR_AREA as area
-            , soe.OU_NUM as dealer
-            , sc.FST_NAME as SalesRepFirstName
-            , sc.LAST_NAME as SalesRepLastName
-            , ATTRIB_11
-        from 
-            landing.S_CONTACT sc
-        join
-            landing.S_ORG_EXT soe
+            l.partneraccountId as protocol
+            , l.state as status
+            , l.testdrv_dt as testDriveDate
+            , l.test_drv_tm as testDriveTime
+            , l.test_drv_confirmed as testDriveConfirmed
+            , l.sr_area as area
+            , a.dealercode__c as dealer
+            , a.firstname as SalesRepFirstName
+            , a.lastname as SalesRepLastName
+        from
+            process.account a
+        left join 
+            process.lead l
         on
-        	sc.ROW_ID = soe.ROW_ID
-        join 
-            landing.S_SRV_REQ ssr
-        on
-        	sc.ROW_ID = ssr.ROW_ID
-        join
-            landing.S_SRV_REQ_X ssrx
-        on
-        	sc.ROW_ID = ssrx.ROW_ID
+        	a.row_id = l.partneraccountId
         where 
-            ssr.ROW_ID = #{contactId}
+            a.row_id = #{contactId};
     </select>
     
 </mapper>
