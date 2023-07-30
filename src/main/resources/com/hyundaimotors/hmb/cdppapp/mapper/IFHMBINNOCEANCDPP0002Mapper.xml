@@ -6,7 +6,6 @@
     <insert id="InsertInboundContactWorkflow" parameterType="s_contactDto" useGeneratedKeys="true" keyProperty="row_id" keyColumn="row_id">
         INSERT INTO landing.s_contact(
             integration_id
-            , row_id
             , x_cpf
             , fst_name
             , last_name
@@ -22,38 +21,36 @@
             , suppress_mail_flg
             , suppress_email_flg
             , x_printed_card
-            , created_by
             , created
-            , last_upd_by
+            , created_by
             , last_upd
+            , last_upd_by
         ) VALUES (
-            #{integration_id}
-            , #{row_id}
-            , #{x_cpf}
-            , #{fst_name}
-            , #{last_name}
-            , #{birth_dt}
-            , #{sex_mf}
-            , #{home_ph_num}
-            , #{work_ph_num}
-            , #{cell_ph_num}
-            , #{email_addr}
-            , #{pref_comm_meth_cd}
-            , #{marital_stat_cd}
-            , #{suppress_call_flg}
-            , #{suppress_mail_flg}
-            , #{suppress_email_flg}
-            , #{x_printed_card}
-            , #{created_by}
-            , to_date(#{created},'YYYY-MM-DD')
-            , #{last_upd_by}
-            , to_date(#{last_upd},'YYYY-MM-DD')
+            #{integrationid}
+            , #{cpf}
+            , #{firstname}
+            , #{lastname}
+            , #{birthdate}
+            , #{gender}
+            , #{homephone}
+            , #{workphone}
+            , #{cellphone}
+            , #{emailaddress}
+            , #{wayofcontact}
+            , #{maritalstatus}
+            , #{suppressallcalls}
+            , #{suppressallmailings}
+            , #{suppressallemails}
+            , #{printedcard}
+            , now()
+            , 'interface'
+            , now()
+            , 'interface'
         );
     </insert>
         <insert id="InsertSContactXDto" parameterType="s_contact_xDto" useGeneratedKeys="true" keyProperty="row_id" keyColumn="row_id">
         INSERT INTO landing.s_contact_x(
-            row_id
-            , par_row_id
+            par_row_id
             , attrib_50
             , attrib_34
             , attrib_36
@@ -72,8 +69,7 @@
             , last_upd_by
             , last_upd
         ) VALUES (
-            #{row_id}
-            , #{par_row_id}
+            , #{row_id}
             , #{attrib_50}
             , #{attrib_34}
             , #{attrib_36}
