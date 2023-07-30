@@ -128,6 +128,6 @@
     </insert>
 
     <insert id="transferContact" statementType="CALLABLE" parameterType="hashMap">
-        call process.interface_proc_con(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call process.HMB_Inbound_Contact_Interface_Workflow(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
