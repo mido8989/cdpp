@@ -13,7 +13,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class s_contact_xmDto {    
+public class IFHMBINNOCEANCDPP0002Car {    
     public String Name;
     public String YearModel;
     public String IntentionToChange;

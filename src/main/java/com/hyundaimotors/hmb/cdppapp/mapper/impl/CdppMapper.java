@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Random;
 
 import com.hyundaimotors.hmb.cdppapp.dto.s_contactDto;
-import com.hyundaimotors.hmb.cdppapp.dto.s_contact_xDto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002Car;
 import com.hyundaimotors.hmb.cdppapp.dto.s_contact_xmDto;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowCarPayLoad;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowPayLoad;
 
 public class CdppMapper {
-    public int InboundContactWorkflowRequestMap(InboundContactWorkflowPayLoad.Request req, s_contactDto sContactDto, s_contact_xDto sContactXDto, List<s_contact_xmDto> sContactXmDtoList) throws Exception{
+    /*public int InboundContactWorkflowRequestMap(InboundContactWorkflowPayLoad.Request req, s_contactDto sContactDto, IFHMBINNOCEANCDPP0002Car sContactXDto, List<s_contact_xmDto> sContactXmDtoList) throws Exception{
         SimpleDateFormat stringformatter = new SimpleDateFormat("yyyy-MM-dd");
 
         sContactDto.setIntegration_id(req.getIntegrationId());
@@ -102,5 +102,5 @@ public class CdppMapper {
         }
 
         return rowId;
-    }
+    }*/
 }

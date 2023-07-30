@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBZICARDCDPP0002Dto;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBZICARDCDPP0002Payload;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002Dto;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0002Payload;
+import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0002Service;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBZICARDCDPP0002Service;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,14 +20,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
-@Tag(name = "HMB Inbound Contact Interface Workflow", description = "Receive Contact info")
-@RestController
-@RequiredArgsConstructor
-@RequestMapping("/api/v1/HMBInboundContactInterfaceWF")
+
+
 public class IFHMBZICARDCDPP0002Controller {
     
-    @Autowired
-    private final IFHMBZICARDCDPP0002Service service;
+    /*@Autowired
+    private final IFHMBINNOCEANCDPP0002Service service;
 
     private final ModelMapper defaultMapper;
     
@@ -39,11 +38,11 @@ public class IFHMBZICARDCDPP0002Controller {
             request.setSuppressallemails("Y");
         }
 
-        IFHMBZICARDCDPP0002Dto dto = defaultMapper.map(request, IFHMBZICARDCDPP0002Dto.class);
+        IFHMBINNOCEANCDPP0002Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0002Dto.class);
 
-        IFHMBZICARDCDPP0002Dto resultDto = service.insertObject(dto);
+        IFHMBINNOCEANCDPP0002Dto resultDto = service.insertObject(dto);
 
         return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBZICARDCDPP0002Payload.Response.class) : null;
         
-    }
+    }*/
 }
