@@ -32,9 +32,9 @@ public class IFHMBINNOCEANCDPP0002Controller {
 
     private final ModelMapper defaultMapper;
     
-    @Operation(summary = "Account list", description = "Account list.")
+    @Operation(summary = "Person Account Insert", description = "Person Account Insert.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0002Payload.Request.class)))
-    @PostMapping(value = "/api/v1/HMBInboundContactInterfaceWorkflow/insert")
+    @PostMapping(value = "/api/v1/HMBInboundContactInterfaceWorkflow")
     public Object insertInboundContactWorkflow(@RequestBody IFHMBINNOCEANCDPP0002Payload.Request request) throws Exception {
 
         IFHMBINNOCEANCDPP0002Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0002Dto.class);
