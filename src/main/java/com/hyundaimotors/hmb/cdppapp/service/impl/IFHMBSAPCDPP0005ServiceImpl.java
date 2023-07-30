@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,11 +20,17 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
 
     public IFHMBSAPCDPP0005Dto insertObject(IFHMBSAPCDPP0005Dto dto)throws Exception{
 
+        int resNum03 = mapper.insertSapr(dto);
         int resNum01 = mapper.insertSoe(dto);
         int resNum02 = mapper.insertSoex(dto);
-        int resNum03 = mapper.insertSapr(dto);
-
+        
+        
         int totalNum = resNum01 + resNum02 + resNum03;
+
+        HashMap<String, String> parMap = new HashMap<String, String>();
+        parMap.put("PARAM_ID", dto.getRowId());
+
+        mapper.insertAccount(parMap);
 
         IFHMBSAPCDPP0005Dto resulDto = new IFHMBSAPCDPP0005Dto();
         
@@ -39,14 +47,19 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
 
     public IFHMBSAPCDPP0005Dto updateObject(IFHMBSAPCDPP0005Dto dto)throws Exception{
         int resNum01 = mapper.updateSoe(dto);
-        //int resNum02 = mapper.updateSoex(dto);
-        //int resNum03 = mapper.updateSapr(dto);
+        int resNum02 = mapper.updateSoex(dto);
+        int resNum03 = mapper.updateSapr(dto);
 
-        int totalNum = resNum01 /*+ resNum02 + resNum03*/;
+        int totalNum = resNum01 + resNum02 + resNum03;
+
+        HashMap<String, String> parMap = new HashMap<String, String>();
+        parMap.put("PARAM_ID", dto.getRowId());
+
+        mapper.updateAccount(parMap);
 
         IFHMBSAPCDPP0005Dto resulDto = new IFHMBSAPCDPP0005Dto();
 
-        if(totalNum == /*3*/1){
+        if(totalNum == 3){
             resulDto.setContactId(dto.getIntegrationId());
             resulDto.setErrorSpcCode("200");
             resulDto.setErrorSpcMessage("update success");

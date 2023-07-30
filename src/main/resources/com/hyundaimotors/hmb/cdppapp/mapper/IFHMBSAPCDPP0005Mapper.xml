@@ -13,7 +13,6 @@
                 , X_CNPJ
                 , NAME
                 , X_NICKNAME
-                , NAME_1
                 , ORI_CD
                 , X_CONTRACTED_SINCE
                 , SOURCE_CD
@@ -21,6 +20,7 @@
                 , MAIN_FAX_PH_NUM
                 , MAIN_EMAIL_ADDR
                 , URL
+                , pr_addr_id
             )
         values
             (
@@ -32,7 +32,6 @@
                 , #{cnpjNumber}
                 , #{name}
                 , #{nickname}
-                , #{parentAccountName}
                 , #{agencyCode}
                 , to_date(#{contractedSince},'YYYY-MM-DD')
                 , #{source}
@@ -40,6 +39,7 @@
                 , #{mainFaxNumber}
                 , #{mainEmailAddress}
                 , #{homepage}
+                , #{prAddrId}
             );
     </insert>
 
@@ -73,7 +73,7 @@
             ;
     </insert>
 
-    <insert id="insertSapr" parameterType="IFHMBSAPCDPP0005Dto">
+    <insert id="insertSapr" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="prAddrId" keyColumn="row_id">
         insert into landing.S_ADDR_PER
             (
                 created
@@ -112,7 +112,6 @@
             , X_CNPJ = #{cnpjNumber}
             , NAME = #{name}
             , X_NICKNAME = #{nickname}
-            , NAME_1 = #{parentAccountName}
             , ORI_CD = #{agencyCode}
             , X_CONTRACTED_SINCE = to_date(#{contractedSince},'YYYY-MM-DD')
             , SOURCE_CD = #{source}
@@ -121,6 +120,43 @@
             , MAIN_EMAIL_ADDR = #{mainEmailAddress}
             , URL = #{homepage}
         where
-            INTEGRATION_ID = #{integrationId}
+            row_id = #{integrationId}
+    </update>
+
+    <update id="updateSoex" parameterType="IFHMBSAPCDPP0005Dto">
+        update landing.S_ORG_EXT_X set
+            last_upd = now()
+            , last_upd_by = 'interface'
+            , X_FLT_ACCT_TYPE = #{fleetAccontType}
+            , X_FLT_IND_TYPE = #{industryTrend}
+            , ATTRIB_07 = #{numberOfEmployee}
+            , X_TOT_FLT_SIZE = #{totalFleetSize}
+            , X_FLT_ORG_TYPE = #{organizationType}
+        where
+            row_id = #{integrationId}    
+    </update>
+
+    <update id="updateSapr" parameterType="IFHMBSAPCDPP0005Dto">
+        update landing.S_ADDR_PER set
+            last_upd = now()
+            , last_upd_by = 'interface'
+            , ADDR = #{streetAddress}
+            , ADDR_LINE_2 = #{streetAddress2}
+            , ADDR_LINE_3 = #{streetAddress3}
+            , COUNTY = #{county}
+            , CITY = #{city}
+            , STATE = #{state}
+            , ZIPCODE = #{postalCode}
+        where
+            row_id = #{integrationId}
+            
+    </update>
+    
+    <insert id="insertAccount" statementType="CALLABLE" parameterType="hashMap">
+        call process.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, 'insert');
+    </insert>
+
+    <update id="updateAccount" statementType="CALLABLE" parameterType="hashMap">
+        call process.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, 'insert');
     </update>
 </mapper>
