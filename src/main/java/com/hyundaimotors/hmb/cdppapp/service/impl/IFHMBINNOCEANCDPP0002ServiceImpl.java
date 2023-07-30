@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hyundaimotors.hmb.cdppapp.dto.s_contactDto;
 import com.hyundaimotors.hmb.cdppapp.dto.s_contact_xDto;
 import com.hyundaimotors.hmb.cdppapp.dto.s_contact_xmDto;
+import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0002Mapper;
 import com.hyundaimotors.hmb.cdppapp.mapper.TestMapper;
 import com.hyundaimotors.hmb.cdppapp.mapper.impl.CdppMapper;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowPayLoad;
@@ -21,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Service{
     
-    private final TestMapper testMapper;
+    private final IFHMBINNOCEANCDPP0002Mapper mapper;
 
     private final CdppMapper cdppMapper = new CdppMapper();
 
@@ -33,9 +34,9 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         InboundContactWorkflowPayLoad.Response res = new InboundContactWorkflowPayLoad.Response();
         try{
             cdppMapper.InboundContactWorkflowRequestMap(dto, sContactDto, sContactXDto, sContactXmDtoList);
-            testMapper.InsertInboundContactWorkflow(sContactDto);
-            testMapper.InsertSContactXDto(sContactXDto);
-            testMapper.InsertSContactXMDtoList(sContactXmDtoList);
+            int resNum01 = mapper.InsertInboundContactWorkflow(sContactDto);
+            int resNum02 = mapper.InsertSContactXDto(sContactXDto);
+            int resNum03 = mapper.InsertSContactXMDtoList(sContactXmDtoList);
             
             res.setContactId(dto.getIntegrationId());
             res.setError_spcCode("0");

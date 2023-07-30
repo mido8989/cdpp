@@ -29,7 +29,7 @@ public class IFHMBZICARDCDPP0002ServiceImpl implements IFHMBZICARDCDPP0002Servic
         try{
         int resultNum01 = mapper.insertContact(dto);
 
-        System.out.println("row id is = " + dto.getRow_id());
+        
 
         if(resultNum01 > 0){
             resultDto.setError_spcCode("200");

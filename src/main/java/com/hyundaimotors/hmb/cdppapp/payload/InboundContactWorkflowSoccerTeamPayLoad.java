@@ -10,5 +10,6 @@ import lombok.Setter;
 
 @Data
 public class InboundContactWorkflowSoccerTeamPayLoad {
-    public String Name;
+    @Schema(description = "Soccer team name. Valid values:Ponte Preta", example = "Ponte Preta")
+    public String Name; 
 }
