@@ -128,10 +128,10 @@
     </insert>
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.HMB_Inbound_Contact_Interface_Workflow(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call process.hmb_inbound_contact_interface_workflow(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
-        call Replica.HMB_Inbound_Contact_Interface_Workflow(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call Replica.hmb_inbound_contact_interface_workflow(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
