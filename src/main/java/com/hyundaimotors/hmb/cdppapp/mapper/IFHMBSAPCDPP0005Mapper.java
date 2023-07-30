@@ -12,7 +12,8 @@ public interface IFHMBSAPCDPP0005Mapper {
 
     public int insertSapr(IFHMBSAPCDPP0005Dto dto)throws Exception;
 
-    public void insertAccount(HashMap<String, String> parMap)throws Exception;
+    public void insertProcessAccount(HashMap<String, String> parMap)throws Exception;
+    public void insertReplicaAccount(HashMap<String, String> parMap)throws Exception;
 
     public int updateSoe(IFHMBSAPCDPP0005Dto dto)throws Exception;
 
@@ -20,6 +21,7 @@ public interface IFHMBSAPCDPP0005Mapper {
 
     public int updateSapr(IFHMBSAPCDPP0005Dto dto)throws Exception;
 
-    public void updateAccount(HashMap<String, String> parMap)throws Exception;
+    public void updateProcessAccount(HashMap<String, String> parMap)throws Exception;
+    public void updateReplicaAccount(HashMap<String, String> parMap)throws Exception;
 
 }

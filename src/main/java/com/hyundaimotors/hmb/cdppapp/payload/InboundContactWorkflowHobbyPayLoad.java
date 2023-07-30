@@ -10,5 +10,6 @@ import lombok.Setter;
 
 @Data
 public class InboundContactWorkflowHobbyPayLoad {
+    @Schema(description = "Hobby name.", example = "Dance")
     public String Description;
 }

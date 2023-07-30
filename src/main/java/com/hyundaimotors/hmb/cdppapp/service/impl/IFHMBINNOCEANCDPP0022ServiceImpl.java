@@ -26,7 +26,7 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
         if(1 <= rowIdList.size()){
             dto.setRowId(rowIdList.get(0).getRowId());
             dto.setName(rowIdList.get(0).getName());
-            System.out.println("rowId::::::::::::::::::::::" + rowIdList.get(0).getRowId());
+            
             res = mapper.insertObject(dto);
         }
         
