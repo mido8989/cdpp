@@ -3,7 +3,7 @@
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBZICARDCDPP0002Mapper">
     
 
-    <insert id="insertContact" parameterType="IFHMBZICARDCDPP0002Dto" useGeneratedKeys="true" keyProperty="row_id" keyColumn="row_id">
+    <!--<insert id="insertContact" parameterType="IFHMBZICARDCDPP0002Dto" useGeneratedKeys="true" keyProperty="row_id" keyColumn="row_id">
         INSERT INTO landing.s_contact(
             integration_id
             , x_cpf
@@ -52,5 +52,5 @@
 
     <insert id="transferContact" statementType="CALLABLE" parameterType="hashMap">
         call process.interface_proc_con(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
-    </insert>
+    </insert>-->
 </mapper>

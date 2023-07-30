@@ -8,23 +8,21 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBZICARDCDPP0002Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002Dto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBZICARDCDPP0002Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBZICARDCDPP0002Service;
 
 import lombok.RequiredArgsConstructor;
 
-@Service
-@Transactional
-@RequiredArgsConstructor
-public class IFHMBZICARDCDPP0002ServiceImpl implements IFHMBZICARDCDPP0002Service{
-    
+
+public class IFHMBZICARDCDPP0002ServiceImpl{
+    /*
     private final IFHMBZICARDCDPP0002Mapper mapper;
     private static final Logger log = LoggerFactory.getLogger(JdbcTemplate.class);
 
-    public IFHMBZICARDCDPP0002Dto insertObject(IFHMBZICARDCDPP0002Dto dto)throws Exception{
+    public IFHMBINNOCEANCDPP0002Dto insertObject(IFHMBINNOCEANCDPP0002Dto dto)throws Exception{
 
-        IFHMBZICARDCDPP0002Dto resultDto = new IFHMBZICARDCDPP0002Dto();
+        IFHMBINNOCEANCDPP0002Dto resultDto = new IFHMBINNOCEANCDPP0002Dto();
 
         try{
         int resultNum01 = mapper.insertContact(dto);
@@ -37,7 +35,7 @@ public class IFHMBZICARDCDPP0002ServiceImpl implements IFHMBZICARDCDPP0002Servic
         }
         
         HashMap<String, String> parMap = new HashMap<String, String>();
-        parMap.put("PARAM_ID", dto.getRow_id());
+        parMap.put("PARAM_ID", dto.getRowId());
 
         mapper.transferContact(parMap);
         }catch(Exception e){
@@ -45,5 +43,5 @@ public class IFHMBZICARDCDPP0002ServiceImpl implements IFHMBZICARDCDPP0002Servic
         }
 
         return resultDto;
-    }
+    } */
 }

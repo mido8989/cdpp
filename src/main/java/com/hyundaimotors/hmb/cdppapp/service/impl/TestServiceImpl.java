@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.hyundaimotors.hmb.cdppapp.dto.AccountDto;
 import com.hyundaimotors.hmb.cdppapp.dto.TestDto;
 import com.hyundaimotors.hmb.cdppapp.dto.s_contactDto;
-import com.hyundaimotors.hmb.cdppapp.dto.s_contact_xDto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002Car;
 import com.hyundaimotors.hmb.cdppapp.dto.s_contact_xmDto;
 import com.hyundaimotors.hmb.cdppapp.mapper.TestMapper;
 import com.hyundaimotors.hmb.cdppapp.mapper.impl.CdppMapper;

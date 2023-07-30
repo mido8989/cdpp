@@ -142,7 +142,7 @@ public class s_contactDto {
     private String height_uom_cd;
     private String home_ph_num;
     private String indust_id;
-    private String integration_id;
+    private String integrationid;
     private String job_title;
     private String left_eye_clr_cd;
     private String login;

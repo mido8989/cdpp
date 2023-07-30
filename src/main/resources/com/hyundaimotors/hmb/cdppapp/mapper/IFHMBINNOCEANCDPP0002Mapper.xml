@@ -3,7 +3,7 @@
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0002Mapper">
     
 
-    <insert id="InsertInboundContactWorkflow" parameterType="s_contactDto" useGeneratedKeys="true" keyProperty="row_id" keyColumn="row_id">
+    <insert id="InsertInboundContactWorkflow" parameterType="IFHMBINNOCEANCDPP0002Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         INSERT INTO landing.s_contact(
             integration_id
             , x_cpf
@@ -26,29 +26,29 @@
             , last_upd
             , last_upd_by
         ) VALUES (
-            #{integrationid}
+            #{integrationId}
             , #{cpf}
-            , #{firstname}
-            , #{lastname}
-            , #{birthdate}
+            , #{firstName}
+            , #{lastName}
+            , to_date(#{birthDate},'YYYY-MM-DD')
             , #{gender}
-            , #{homephone}
-            , #{workphone}
-            , #{cellphone}
-            , #{emailaddress}
-            , #{wayofcontact}
-            , #{maritalstatus}
-            , #{suppressallcalls}
-            , #{suppressallmailings}
-            , #{suppressallemails}
-            , #{printedcard}
+            , #{homePhone}
+            , #{workPhone}
+            , #{cellPhone}
+            , #{emailAddress}
+            , #{wayOfContact}
+            , #{maritalStatus}
+            , #{suppressAllCalls}
+            , #{suppressAllMailings}
+            , #{suppressAllEmails}
+            , #{printedCard}
             , now()
             , 'interface'
             , now()
             , 'interface'
         );
     </insert>
-        <insert id="InsertSContactXDto" parameterType="s_contact_xDto" useGeneratedKeys="true" keyProperty="row_id" keyColumn="row_id">
+        <insert id="InsertSContactXDto" parameterType="IFHMBINNOCEANCDPP0002Dto">
         INSERT INTO landing.s_contact_x(
             par_row_id
             , attrib_50
@@ -69,31 +69,30 @@
             , last_upd_by
             , last_upd
         ) VALUES (
-            , #{row_id}
-            , #{attrib_50}
-            , #{attrib_34}
-            , #{attrib_36}
-            , #{attrib_49}
-            , #{x_called_by}
-            , #{x_literacy}
-            , #{x_seg_behavioral}
-            , #{x_seg_value}
-            , #{x_seg_google}
-            , #{x_seg_facebook}
-            , #{x_seg_life_cycle}
-            , #{x_seg_interest}
-            , #{x_loyalty_optin_flg}
-            , 'admin_user'
+            #{rowId}
+            , #{source}
+            , #{occupation}
+            , #{income}
+            , #{carOfInterest}
+            , #{calledBy}
+            , #{literacy}
+            , #{behavioralSegment}
+            , #{valueSegment}
+            , #{googleSegment}
+            , #{facebookSegment}
+            , #{lifeCycleSegment}
+            , #{interestSegment}
+            , #{contactOptIn}
+            , 'interface'
             , now()
-            , 'admin_user'
+            , 'interface'
             , now()
         );
     </insert>
 
     <insert id="InsertSContactXMDtoList" parameterType="java.util.List">
         INSERT INTO landing.s_contact_xm(
-            row_id
-            , par_row_id
+            par_row_id
             , type
             , x_name
             , name
@@ -110,22 +109,25 @@
         ) VALUES 
         <foreach collection="list" item="item" separator=",">
         (
-            #{item.row_id}
-            , #{item.par_row_id}
+            #{item.parRowId}
             , 'N'
-            , #{item.x_name}
-            , #{item.x_name}
-            , #{item.x_vehicle_year_model}
-            , #{item.x_vehicle_intent_change}
-            , #{item.x_is_current_flg}
-            , #{item.x_model}
-            , #{item.attrib_14}
-            , #{item.x_vehicle_cli_expec_val}
-            , 'admin_user'
+            , #{item.name}
+            , #{item.name}
+            , #{item.yearModel}
+            , #{item.intentionToChange}
+            , #{item.isCurrent}
+            , #{item.carModel}
+            , #{item.mileage}
+            , #{item.clientExpectedValue}
+            , 'interface'
             , now()
-            , 'admin_user'
+            , 'interface'
             , now()
         )
         </foreach>
+    </insert>
+
+    <insert id="transferContact" statementType="CALLABLE" parameterType="hashMap">
+        call process.interface_proc_con(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
