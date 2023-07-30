@@ -17,5 +17,7 @@ public interface IFHMBINNOCEANCDPP0002Mapper {
 
     public int InsertSContactXMDtoList(List<InboundContactWorkflowCarPayLoad> car) throws Exception;
 
-    public void transferContact(HashMap<String, String> parMap)throws Exception;
+    public void transferProcess(HashMap<String, String> parMap)throws Exception;
+
+    public void transferReplica(HashMap<String, String> parMap)throws Exception;
 }
