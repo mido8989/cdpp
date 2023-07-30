@@ -8,6 +8,7 @@ import lombok.Setter;
 public class IFHMBSAPCDPP0005Dto {
     
     private String rowId;
+    private String prAddrId;
     private String integrationId;
     private String cnpjNumber;
     private String name;
