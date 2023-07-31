@@ -12,7 +12,7 @@
             , c.birthdate as birthDate
             , c.mobilephone as cellularPhone
             , c.homephone as homePhone
-            , c.email__c as emailAddress
+            , c.email as emailAddress
             , c.companyphone__c as workPhone
             , c.external_id__c as rowId
             , c.x_printed_card__c as hmbPrintedCard
@@ -33,8 +33,8 @@
             , c.mailingstreet as street
             , c.mailingstreet_2__c as number
             , c.mailingstreet_3__c as complement
-            , c.mailingcountry__c as county
-            , c.mailingcity__c as city
+            , c.mailingcountry as county
+            , c.mailingcity as city
             , c.mailingstate as state
         from
             process.contact c
