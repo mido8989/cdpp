@@ -36,7 +36,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
         IFHMBSAPCDPP0005Dto resulDto = new IFHMBSAPCDPP0005Dto();
         
         if(totalNum == 3){
-            resulDto.setContactId(dto.getIntegrationId());
+            resulDto.setContactId(dto.getRowId());
             resulDto.setErrorSpcCode("200");
             resulDto.setErrorSpcMessage("insert success");
         }
