@@ -25,7 +25,7 @@
     </update>
 
     <update id="updateContactHobby" parameterType="IFHMBINNOCEANCDPP0037Dto">
-        <foreach collection="listOfContactHobby" item="item" separator=";">
+        <foreach collection="list" item="item" separator=";">
             update 
                 landing.s_contact_xm 
             set
@@ -40,7 +40,7 @@
     </update>
 
     <update id="updateSoccerTeam" parameterType="IFHMBINNOCEANCDPP0037Dto">
-        <foreach collection="listOfContactSoccerTeam" item="item" separator=";">
+        <foreach collection="list" item="item" separator=";">
             update 
                 landing.s_contact_xm 
             set
@@ -55,7 +55,7 @@
     </update>
 
     <update id="updateContactSocialMedia" parameterType="IFHMBINNOCEANCDPP0037Dto">
-        <foreach collection="listOfContactSocialMedia" item="item" separator=";">
+        <foreach collection="list" item="item" separator=";">
             update 
                 landing.s_contact_xm 
             set
@@ -72,42 +72,32 @@
     </update>
 
     <select id="getUpdateContactOutput" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.UpdateContactOutput">
-        select
-            scx.X_CNH_EXP_DATE as cnheXpirationDate
-            , sc.FST_NAME as firstName
-            , sc.LAST_NAME as lastName
-            , sc.BIRTH_DT as BirthDate
-            , sc.SEX_MF as gender
-            , sc.HOME_PH_NUM as homePhone
-            , sc.WORK_PH_NUM as workPhone
-            , sc.CELL_PH_NUM as cellPhone
-            , sc.EMAIL_ADDR as emailAddress
-            , sc.SUPPRESS_EMAIL_FLG as suppressAllEmails
-            <!--, sc.SUPPRESS_SMS_FLG as suppressAllSMS-->
-            , sc.X_PRINTED_CARD as printedCard
-            , scx.X_CNH_EXP_DATE as cnheXpirationDate
-            , scx.X_AMOUNT_FRIENDS as amountFriends
-            , scx.X_AMOUNT_CHILDREN as amountChildren
-            , scx.X_LOYALTY_OPTIN_FLG as loyaltyOPTINFla
-            , sap.ADDR as streetAddress
-            , sap.ADDR_LINE_2 as streetAddress2
-            , sap.ADDR_LINE_3 as streetAddress3
-            , sap.COUNTY as county
-            , sap.CITY as city
-            , sap.STATE as state
-            , sap.ZIPCODE as postalCode
-        from 
-            landing.S_CONTACT sc
-        left join
-            landing.S_CONTACT_X scx
-        on
-            sc.row_id = scx.par_row_id 
-        left join 
-            landing.s_addr_per sap 
-        on
-            sc.pr_per_addr_id = sap.row_id 
-        where
-            sc.row_id = #{contactId}
+        select 
+            c.x_cnh_exp_date__c as cnheXpirationDate
+            , c.firstname as firstName
+            , c.lastname as lastName
+            , c.birthdate as birthDate
+            , c.gender__c as gender
+            , c.homephone as homePhone
+            , c.companyphone__c as workPhone
+            , c.mobilephone as cellPhone
+            , c.email as emailAddress
+            , c.emailoptyn__c as suppressAllEmails
+            , c.x_printed_card__c as printedCard
+            , c.x_amount_friends__c as amountFriends
+            , c.x_amount_children__c as amountChildren
+            , c.x_loyalty_optin_flg__cas loyaltyOPTINFla
+            , c.mailingstreet as streetAddress
+            , c.mailingstreet_2__c as streetAddress2
+            , c.mailingstreet_3__c as streetAddress3
+            , c.mailingcountry as county
+            , c.mailingcity as city
+            , c.mailingstate as state
+            , c.mailingpostalcode as postalCode
+        from
+            process.contact c
+        where 
+            c.external_id__c = #{contactId}
     </select>
 
     <select id="getListHobby" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactHobby">
@@ -144,4 +134,26 @@
         and
             scx.type = 'Social Media'
     </select>
+
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.hmb_update_contact_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
+    <select id="getAcountAndContactId" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="IFHMBINNOCEANCDPP0037Dto">
+        select
+            a.row_id as replicaAccountRowId
+            , c.row_id as replicaContactRowId
+        from 
+            process.account a 
+        join
+            process.contact c 
+        on
+            a.row_id = c.account_row_id 
+        where 
+            a.external_id__c = #{contactId}
+    </select>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call Replica.hmb_update_contact_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
 </mapper>
