@@ -4,74 +4,62 @@
     
     <select id="getChannelPartner" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="IFHMBINNOCEANCDPP0012Dto">
         select 
-            soe.INTEGRATION_ID as integrationId
-            , soe.X_CNPJ as cnpj
-            , soe.NAME as name
-            , soe.X_NICKNAME as nickname
-            , soe.CUST_STAT_CD as accountStatus
-            , soe.X_REASON_STATUS as reasonStatus
-            , soex.ATTRIB_39 as dealerType
-            , soe.OU_NUM as dealerCode
-            , soe.MAIN_PH_NUM as mainPhone
-            , soe.MAIN_FAX_PH_NUM as fax
-            , soe.MAIN_EMAIL_ADDR as mainEmailAddress
-            , soex.ATTRIB_51 as workEmailAddress
-            , soex.ATTRIB_10 as salesDealerFlag
-            , soex.ATTRIB_11 as serviceDealerFlag
-            , soe.PRTNRSHP_START_DT as partnerStartDate
-            , sop.PTSHP_END_DT as partnerEndDate
-            , soe.REGION as region
-            , soex.X_WORKING_HOURS as workingHour
-            , soex.X_SOCIAL_URL as facebookPage
-            , soe.URL as homepage
-            , sap.ADDR as streetAddress
-            , sap.ADDR_LINE_2 as streetAddress2
-            , sap.ADDR_LINE_3 as streetAddress3
-            , sap.CITY as city
-            , sap.STATE as state
-            , sap.COUNTY as neighborhood
-            , sap.LATITUDE as latitude
-            , sap.LONGITUDE as longitude
-            , sap.ZIPCODE as zipCode
+            pca.row_id as integrationId
+            , pca.corporateregistrationnumber__c as cnpj
+            , pca.name as name
+            , pca.corporaterepresentativename__c as nickname
+            , pca.cust_stat_cd__c as accountStatus
+            , pca.x_reason_status__c as reasonStatus
+            , pca.dealershoptype__c as dealerType
+            , pca.dealercode__c as dealerCode
+            , pca.phone as mainPhone
+            , pca.fax as fax
+            , pca.emailaddress__c as mainEmailAddress
+            , pca.personemail as workEmailAddress
+            , pca.salesflag__c as salesDealerFlag
+            , pca.serviceflag__c as serviceDealerFlag
+            , pca.prtnrshp_start_dt__c as partnerStartDate
+            , pca.prtnrshp_end_dt__c as partnerEndDate
+            , pca.region__c as region
+            , pca.x_working_hours__c as workingHour
+            , pca.s_social_url__c as facebookPage
+            , pca.website as homepage
+            , pca.billingstreet as streetAddress
+            , pca.billingstreet_2__c as streetAddress2
+            , pca.billingstreet_3__c as streetAddress3
+            , pca.billingcity as city
+            , pca.billingstate as state
+            , pca.billingcountry as neighborhood
+            , pca.billinglatitude as latitude
+            , pca.billinglongitude as longitude
+            , pca.billingpostalcode as zipCode
         from
-            landing.s_org_ext soe 
-        left join
-            landing.s_org_ext_x soex 
-        on
-            soe.row_id = soex.par_row_id 
-        left join
-            landing.s_org_prtnr sop 
-        on
-            soe.row_id = sop.par_row_id
-        left join
-            landing.s_addr_per sap 
-        on
-            soe.pr_addr_id = sap.row_id
+            process.account pca 
         where
-            soe.INTEGRATION_ID = #{source}
+            pca.row_id = #{source}
     </select>
 
     <select id="getChannelPartnerContactList" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="IFHMBINNOCEANCDPP0012Dto">
         select
-            sc.INTEGRATION_ID as integrationId
-            , sc.X_CPF as cpf
-            , sc.FST_NAME as firstName
-            , sc.LAST_NAME as lastName
-            , sc.EMAIL_ADDR as emailAddress
-            , sc.HOME_PH_NUM as homePhone
-            , sc.WORK_PH_NUM as workPhone
-            , sc.CELL_PH_NUM as cellPhone
-            , sc.JOB_TITLE as jobTitle
+            pcc.external_id__c as integrationId
+            , pcc.cpf__c as cpf
+            , pcc.firstname as firstName
+            , pcc.lastname as lastName
+            , pcc.email as emailAddress
+            , pcc.homephone as homePhone
+            , pcc.companyphone__c as workPhone
+            , pcc.mobilephone as cellPhone
+            , pcc.title as jobTitle
             <!--, spp.X_STATUS as status
-            , spp.X_NOTES as notes-->
+            , spp.X_NOTES as notes -->
         from
-            landing.s_contact sc 
+            process.contact pcc 
         <!--join
             landing.s_party_per spp 
         on
-            sc.row_id = sap.row_id-->
+            sc.row_id = sap.row_id -->
         where
-            sc.INTEGRATION_ID = #{source}
+            pcc.account_row_id = #{source}
     </select>
     
 </mapper>
