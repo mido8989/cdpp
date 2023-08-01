@@ -40,6 +40,7 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
         List<ListOfContactHobby> listHobby = new ArrayList<>();
         List<ListOfContactSoccerTeam> listSoccerTeam = new ArrayList<>();
         List<ListOfContactSocialMedia> listSocialMedia = new ArrayList<>();
+        HashMap<String, String> processMap = new HashMap<>();
 
         for(int i =0; i <listOfContactHobby.size(); i++){
             listOfContactHobby.get(i).setHobbyContactId(dto.getContactId());
@@ -57,9 +58,18 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
 
         int resultNum01 = mapper.updateContact(dto);
         int resultNum02 = mapper.updateContactx(dto);
-        int resultNum03 = mapper.updateContactHobby(dto);
-        int resultNum04 = mapper.updateSoccerTeam(dto);
-        int resultNum05 = mapper.updateContactSocialMedia(dto);
+        int resultNum03 = mapper.updateContactHobby(listOfContactHobby);
+        int resultNum04 = mapper.updateSoccerTeam(listOfContactSoccerTeam);
+        int resultNum05 = mapper.updateContactSocialMedia(listOfContactSocialMedia);
+
+        
+        processMap.put("PARAM_ID", dto.getContactId());
+        
+        mapper.transferProcess(processMap);
+
+        IFHMBINNOCEANCDPP0037Dto replicaIdDto = mapper.getAcountAndContactId(dto);
+
+        mapper.transferReplica(processMap);
 
         updateContactOutputResult.setContactId(dto.getContactId());
         updateContactOutputResult.setErrorSpcCode("1");

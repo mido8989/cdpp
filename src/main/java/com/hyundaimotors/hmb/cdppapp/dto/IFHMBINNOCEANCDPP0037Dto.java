@@ -20,6 +20,8 @@ public class IFHMBINNOCEANCDPP0037Dto {
     private String suppressAllEmails;
     private String suppressAllSMS;
     private String printedCard;
+    private String replicaAccountRowId;
+    private String replicaContactRowId;
 
     List<ListOfAutoVehicle> listOfAutoVehicle;
     List<ListOfContactHobby> listOfContactHobby;
