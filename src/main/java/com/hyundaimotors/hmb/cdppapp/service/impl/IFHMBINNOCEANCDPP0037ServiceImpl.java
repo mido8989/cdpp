@@ -69,6 +69,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
 
         IFHMBINNOCEANCDPP0037Dto replicaIdDto = mapper.getAcountAndContactId(dto);
 
+        processMap.put("PARAM_ID_01", dto.getReplicaContactRowId());
+        processMap.put("PARAM_ID_02", dto.getReplicaAccountRowId());
+
         mapper.transferReplica(processMap);
 
         updateContactOutputResult.setContactId(dto.getContactId());
