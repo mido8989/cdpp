@@ -86,7 +86,7 @@
             , c.x_printed_card__c as printedCard
             , c.x_amount_friends__c as amountFriends
             , c.x_amount_children__c as amountChildren
-            , c.x_loyalty_optin_flg__cas loyaltyOPTINFla
+            , c.x_loyalty_optin_flg__c as loyaltyOPTINFla
             , c.mailingstreet as streetAddress
             , c.mailingstreet_2__c as streetAddress2
             , c.mailingstreet_3__c as streetAddress3
