@@ -154,6 +154,6 @@
     </select>
 
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
-        call Replica.hmb_update_contact_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call Replica.hmb_update_contact_in_wf(#{PARAM_ID_01,jdbcType=VARCHAR,mode=IN},#{PARAM_ID_02,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
