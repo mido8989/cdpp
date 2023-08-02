@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +28,11 @@ public class IFHMBSAPEAICDPP0003ServiceImpl implements IFHMBSAPEAICDPP0003Servic
 
         if(resulDto != null){
             resultNum02 = mapper.insertProdx(dto);
+            HashMap<String, String> map = new HashMap<>();
+            map.put("PARAM_ID", dto.getRowId());
+            map.put("checkcu", "insert");
+            
+            mapper.transferProcess(map);
         }
         
         if(resultNum02 > 0){
@@ -45,6 +52,12 @@ public class IFHMBSAPEAICDPP0003ServiceImpl implements IFHMBSAPEAICDPP0003Servic
 
         if(resultNum01 > 0){
             dto.setRowId(mapper.getRowIdProdx(dto));
+
+            HashMap<String, String> map = new HashMap<>();
+            map.put("PARAM_ID", dto.getRowId());
+            map.put("checkcu", "update");
+
+            mapper.transferProcess(map);
         }
 
         int resultNum02 = mapper.updateProdx(dto);
