@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0013Mapper">
+
+    <select id="getRowId" parameterType="IFHMBINNOCEANCDPP0013Dto" resultType="Integer">
+        select 
+            count(integration_id) as checkRowNum
+        from 
+            landing.s_org_ext soe 
+        where 
+            integration_id = #{integrationId} 
+    </select>
+
+    <insert id="insertAccount" parameterType="IFHMBINNOCEANCDPP0013Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into 
+            landing.S_ORG_EXT
+                (
+                    INTEGRATION_ID
+                    , X_CNPJ
+                    , NAME
+                    , X_NICKNAME
+                    , PRTNR_FLG
+                    , X_REASON_STATUS
+                    , OU_NUM
+                    , MAIN_PH_NUM
+                    , MAIN_FAX_PH_NUM
+                    , MAIN_EMAIL_ADDR
+                    , PRTNRSHP_START_DT
+                    , REGION
+                    , URL
+                    , created
+                    , created_by
+                    , last_upd
+                    , last_upd_by
+        )values(
+                    #{integrationId}
+                    , #{cnpj}
+                    , #{name}
+                    , #{nickname}
+                    , #{partnerFlag}
+                    , #{reasonStatus}
+                    , #{dealerCode}
+                    , #{mainPhone}
+                    , #{fax}
+                    , #{mainEmailAddress}
+                    , to_date(#{partnerStartDate},'YYYY-MM-DD')
+                    , #{region}
+                    , #{homepage}
+                    , now()
+                    , 'interface'
+                    , now()
+                    , 'interface'
+                );
+    </insert>
+
+    <insert id="insertAccountSub" parameterType="IFHMBINNOCEANCDPP0013Dto">
+        insert into 
+        landing.S_ORG_EXT_X
+            (
+                par_row_id
+                , ATTRIB_39
+                <!--, LOC-->
+                , ATTRIB_51
+                , ATTRIB_10
+                , ATTRIB_11
+                , X_WORKING_HOURS
+                , X_SOCIAL_URL
+                , created
+                , created_by
+                , last_upd
+                , last_upd_by
+        )values(
+                #{rowId}
+                , #{dealerType}
+                <!--, #{location}-->
+                , #{workEmailAddress}
+                , #{salesDealerFlag}
+                , #{serviceDealerFlag}
+                , #{workingHour}
+                , #{facebookPage}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+            );
+    </insert>
+
+    <insert id="insertAccountPrtnr" parameterType="IFHMBINNOCEANCDPP0013Dto">
+        insert into 
+            landing.S_ORG_PRTNR
+            (
+                par_row_id
+                , PTSHP_END_DT
+                , created
+                , created_by
+                , last_upd
+                , last_upd_by
+        )values(
+                #{rowId}
+                , to_date(#{partnerEndDate},'YYYY-MM-DD')
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+            );
+    </insert>
+
+    <insert id="insertAddress" parameterType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Adress"  useGeneratedKeys="true" keyProperty="addressRowId" keyColumn="row_id">
+        INSERT INTO landing.S_ADDR_PER(
+            ADDR_NAME
+            , ADDR
+            , ADDR_LINE_2
+            , ADDR_LINE_3
+            , COUNTY
+            , CITY
+            , STATE
+            , LATITUDE
+            , LONGITUDE
+            , ZIPCODE
+            , created
+            , created_by
+            , last_upd
+            , last_upd_by
+        )values(
+            #{addressName}
+            , #{streetAddress}
+            , #{streetAddress2}
+            , #{streetAddress3}
+            , #{county}
+            , #{city}
+            , #{state}
+            , #{latitude}
+            , #{longitude}
+            , #{zipCode}
+            , now()
+            , 'interface'
+            , now()
+            , 'interface'
+        );
+    </insert>
+
+    <insert id="insertContact" parameterType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Contact">
+        INSERT INTO landing.S_CONTACT(
+            INTEGRATION_ID
+            , X_CPF
+            , FST_NAME
+            , LAST_NAME
+            , EMAIL_ADDR
+            , HOME_PH_NUM
+            , WORK_PH_NUM
+            , JOB_TITLE
+            , X_SANITIZED_FLG
+            , CON_CD
+            , pr_per_addr_id
+            , created
+            , created_by
+            , last_upd
+            , last_upd_by
+        )values(
+            #{integrationId}
+            , #{cpf}
+            , #{firstName}
+            , #{lastName}
+            , #{emailAddress}
+            , #{homePhone}
+            , #{workPhone}
+            , #{jobTitle}
+            , #{sanitizedFlag}
+            , #{contactType}
+            , #{addressRowId}
+            , now()
+            , 'interface'
+            , now()
+            , 'interface'
+        );
+    </insert>
+
+    <update id="updateAccount" parameterType="IFHMBINNOCEANCDPP0013Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        update landing.S_ORG_EXT set 
+            X_CNPJ = #{cnpj}
+            , NAME = #{name}
+            , X_NICKNAME = #{nickname}
+            , PRTNR_FLG = #{partnerFlag}
+            , X_REASON_STATUS = #{reasonStatus}
+            , OU_NUM = #{dealerCode}
+            , MAIN_PH_NUM = #{mainPhone}
+            , MAIN_FAX_PH_NUM = #{fax}
+            , MAIN_EMAIL_ADDR = #{mainEmailAddress}
+            , PRTNRSHP_START_DT = to_date(#{partnerStartDate},'YYYY-MM-DD')
+            , REGION = #{region}
+            , URL = #{homepage}
+            , last_upd = now()
+            , last_upd_by = 'interface'
+        where 
+            INTEGRATION_ID = #{integrationId}
+    </update>
+
+    <update id="updateAccountSub" parameterType="IFHMBINNOCEANCDPP0013Dto">
+        update landing.S_ORG_EXT_X set
+            ATTRIB_39 = #{dealerType}
+            <!--, LOC = #{location}-->
+            , ATTRIB_51 = #{workEmailAddress}
+            , ATTRIB_10 = #{salesDealerFlag}
+            , ATTRIB_11 = #{serviceDealerFlag}
+            , X_WORKING_HOURS = #{workingHour}
+            , X_SOCIAL_URL = #{facebookPage}
+            , last_upd = now()
+            , last_upd_by = 'interface'
+        where 
+            par_row_id = #{rowId}
+    </update>
+
+    <update id="updateAccountPrtnr" parameterType="IFHMBINNOCEANCDPP0013Dto">
+        update  landing.S_ORG_PRTNR set
+            PTSHP_END_DT = to_date(#{partnerEndDate},'YYYY-MM-DD')
+            , last_upd = now()
+            , last_upd_by = 'interface'
+        where
+            par_row_id = #{rowId}
+    </update>
+
+    <update id="updateContact" parameterType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Contact" useGeneratedKeys="true" keyProperty="addressRowId" keyColumn="pr_per_addr_id">
+        update landing.S_CONTACT set 
+            X_CPF = #{cpf}
+            , FST_NAME = #{firstName}
+            , LAST_NAME = #{lastName}
+            , EMAIL_ADDR = #{emailAddress}
+            , HOME_PH_NUM = #{homePhone}
+            , WORK_PH_NUM = #{workPhone}
+            , JOB_TITLE = #{jobTitle}
+            , X_SANITIZED_FLG = #{sanitizedFlag}
+            , CON_CD = #{contactType}
+            , last_upd = now()
+            , last_upd_by = 'interface'
+        where 
+            INTEGRATION_ID = #{integrationId}
+    </update>
+
+    <update id="updateAddress" parameterType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Adress">
+        update landing.S_ADDR_PER set
+            ADDR_NAME = #{addressName}
+            , ADDR = #{streetAddress}
+            , ADDR_LINE_2 = #{streetAddress2}
+            , ADDR_LINE_3 = #{streetAddress3}
+            , COUNTY = #{county}
+            , CITY = #{city}
+            , STATE = #{state}
+            , LATITUDE = #{latitude}
+            , LONGITUDE = #{longitude}
+            , ZIPCODE = #{zipCode}
+            , last_upd = now()
+            , last_upd_by = 'interface'
+        where
+            row_id = #{addressRowId}
+    </update>
+</mapper>
