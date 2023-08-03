@@ -33,6 +33,13 @@ public class IFHMBSAPEAICDPP0003ServiceImpl implements IFHMBSAPEAICDPP0003Servic
             map.put("checkcu", "insert");
             
             mapper.transferProcess(map);
+
+            String externalId = mapper.processPoductId(dto);
+            HashMap<String, String> replicaMap = new HashMap<>();
+            replicaMap.put("PARAM_ID", externalId);
+            replicaMap.put("checkcu", "insert");
+
+            mapper.transferReplica(replicaMap);
         }
         
         if(resultNum02 > 0){
