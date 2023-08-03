@@ -1,5 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,7 +38,7 @@ public class IFHMBINNOCEANCDPP0028Controller {
         
         IFHMBINNOCEANCDPP0028Dto resultDto = service.upsertObject(dto);
 
-        return defaultMapper.map(dto, IFHMBINNOCEANCDPP0028Payload.Response.class);
+        return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(dto, IFHMBINNOCEANCDPP0028Payload.Response.class) : null;
     }
 
 
