@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0026Mapper">
     
-    <insert id="insertList" parameterType="java.util.List">
+    <insert id="insertList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.S_PROD_INT(created, created_by, last_upd, last_upd_by, name, data_src, type<!--, campo_calculado-->)
         values
         <foreach collection="list" item="item" separator=",">
@@ -11,7 +11,7 @@
         
     </insert>
 
-    <update id="updateList" parameterType="java.util.List">
+    <update id="updateList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         <foreach collection="list" item="item" separator=";">
             update
                 landing.S_PROD_INT
@@ -25,4 +25,20 @@
         </foreach>
     </update>
 
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.HMB_Product_List_Inbound_WF(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
+    
+    <select id="processPoductId" parameterType="String" resultType="String">
+        select 
+            row_id as externalId
+        from
+            process.product
+        where 
+            external_id = #{externalId};
+    </select>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.HMB_Product_List_Inbound_WF(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
 </mapper>

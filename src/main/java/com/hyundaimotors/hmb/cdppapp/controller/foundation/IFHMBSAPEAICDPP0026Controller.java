@@ -28,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 @Tag(name = "HMB Product List Inbound WF", description = "SAP EAI Product Create/Update Interface")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/HMBProductListInboundWF")
 public class IFHMBSAPEAICDPP0026Controller {
     
     @Autowired
@@ -38,7 +37,7 @@ public class IFHMBSAPEAICDPP0026Controller {
 
     @Operation(summary = "Poduct insert", description = "Poduct insert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0026Payload.Response.class)))
-    @PostMapping(value = "/insert")
+    @PostMapping(value = "/api/v1/HMBProductListInboundWF/insert")
     public Object insertList(@RequestBody List<ListOfProduct> request)throws Exception{
         List<IFHMBSAPEAICDPP0026Dto> list = new ArrayList<>();
         for(int i=0; i < request.size(); i++){
@@ -69,7 +68,7 @@ public class IFHMBSAPEAICDPP0026Controller {
 
     @Operation(summary = "Poduct update", description = "Poduct update")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0026Payload.Response.class)))
-    @PostMapping(value = "/update")
+    @PostMapping(value = "/api/v1/HMBProductListInboundWF/update")
     public Object updateList(@RequestBody List<ListOfProduct> request)throws Exception{
         List<IFHMBSAPEAICDPP0026Dto> list = new ArrayList<>();
         for(int i=0; i < request.size(); i++){

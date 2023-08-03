@@ -1,5 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,8 +21,23 @@ public class IFHMBSAPEAICDPP0026ServiceImpl implements IFHMBSAPEAICDPP0026Servic
     private final IFHMBSAPEAICDPP0026Mapper mapper;
 
     public int insertList(List<IFHMBSAPEAICDPP0026Dto> list)throws Exception{
+            int res = mapper.insertList(list);
 
-        return mapper.insertList(list);
+            for(int i=0; i < list.size(); i++){
+                list.get(i).getRowId();
+                HashMap<String, String> map = new HashMap<>();
+                map.put("PARAM_ID", list.get(i).getRowId());
+                map.put("checkcu", "insert");
+                mapper.transferProcess(map);
+
+                HashMap<String, String> replicaMap = new HashMap<>();
+                String externalId = mapper.processPoductId(list.get(i).getRowId());
+                replicaMap.put("PARAM_ID", externalId);
+                replicaMap.put("checkcu", "insert");
+
+                mapper.transferReplica(replicaMap);
+            }
+        return res;
     }
 
     public int updateList(List<IFHMBSAPEAICDPP0026Dto> list)throws Exception{
