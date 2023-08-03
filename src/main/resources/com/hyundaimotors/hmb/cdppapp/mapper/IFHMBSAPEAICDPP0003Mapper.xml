@@ -115,8 +115,21 @@
         where
             par_row_id = #{rowId}
     </update>
+
+    <select id="processPoductId" parameterType="IFHMBSAPEAICDPP0003Dto" resultType="string">
+        select 
+            row_id as externalId
+        from
+            process.product
+        where 
+            external_id = #{rowId}
+    </select>
     
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.hmbproductinboundwf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.hmbproductinboundwf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
