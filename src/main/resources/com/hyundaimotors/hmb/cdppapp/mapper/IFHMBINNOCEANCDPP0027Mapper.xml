@@ -6,13 +6,13 @@
         select
             count(par_row_id)
         from
-            landing.S_CONTACT_XM
+            landing.CX_CNT_BNF_XM
         where
             par_row_id = #{contactId}
     </select>
     
-    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0027Dto">
-        insert into landing.S_CONTACT_XM
+    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0027Dto"  useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into landing.CX_CNT_BNF_XM
         (
             created
             , created_by
@@ -21,7 +21,7 @@
             , par_row_id
             , name
             , type
-            , x_app_status
+            , x_src_app
         )
         values
         (
@@ -31,20 +31,32 @@
             , 'interface'
             , #{contactId}
             , 'interface'
-            , 'Hobby'
-            , 'Active'
+            , 'Type'
+            , #{appSource}
         );
     </insert>
 
-    <update id="updateObject" parameterType="IFHMBINNOCEANCDPP0027Dto">
-        update landing.S_CONTACT_XM
+    <update id="updateObject" parameterType="IFHMBINNOCEANCDPP0027Dto"  useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        update landing.cx_cnt_bnf_xm
         set last_upd = now()
             , last_upd_by = 'interface'
-            , x_app_status = 'Active'
+            , x_src_app = #{appSource}
         where
             par_row_id = #{contactId}
-
-
     </update>
+
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.hmb_register_in_application_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
+    <select id="getObject" parameterType="IFHMBINNOCEANCDPP0027Dto" resultType="IFHMBINNOCEANCDPP0027Dto"> 
+        select 
+            par_row_id as contactId
+            , x_app_status as loyaltyStatus
+        from 
+            landing.s_contact_xm
+        where 
+            par_row_id = #{contactId}
+    </select>
     
 </mapper>

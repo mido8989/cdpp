@@ -41,7 +41,23 @@ public class IFHMBSAPEAICDPP0026ServiceImpl implements IFHMBSAPEAICDPP0026Servic
     }
 
     public int updateList(List<IFHMBSAPEAICDPP0026Dto> list)throws Exception{
+            int res = mapper.updateList(list);
 
-        return mapper.updateList(list);
+            for(int i=0; i < list.size(); i++){
+                list.get(i).getRowId();
+                HashMap<String, String> map = new HashMap<>();
+                map.put("PARAM_ID", list.get(i).getRowId());
+                map.put("checkcu", "insert");
+                mapper.transferProcess(map);
+
+                HashMap<String, String> replicaMap = new HashMap<>();
+                String externalId = mapper.processPoductId(list.get(i).getRowId());
+                replicaMap.put("PARAM_ID", externalId);
+                replicaMap.put("checkcu", "insert");
+
+                mapper.transferReplica(replicaMap);
+            }
+
+        return res;
     }
 }
