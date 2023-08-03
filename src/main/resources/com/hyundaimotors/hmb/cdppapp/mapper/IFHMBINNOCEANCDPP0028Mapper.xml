@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0028Mapper">
     
-    <select id="checkRowId" parameterType="IFHMBINNOCEANCDPP0027Dto" resultType="Integer">
+    <select id="checkRowId" parameterType="IFHMBINNOCEANCDPP0028Dto" resultType="Integer">
         select
             count(row_id) as checkRowNum
         from
@@ -13,7 +13,7 @@
             ccbx.row_id = #{partnerExternalId}
     </select>
 
-    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0027Dto">
+    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0028Dto">
         insert into landing.CX_CNT_BNF_XM
             (
                 PAR_ROW_ID
@@ -42,7 +42,7 @@
         );
     </insert>
 
-    <update id="updateObject" parameterType="IFHMBINNOCEANCDPP0027Dto">
+    <update id="updateObject" parameterType="IFHMBINNOCEANCDPP0028Dto">
         update landing.CX_CNT_BNF_XM set
                 NAME = #{partnerName}
                 , X_BENEFIT_NAME = #{benefitName}
