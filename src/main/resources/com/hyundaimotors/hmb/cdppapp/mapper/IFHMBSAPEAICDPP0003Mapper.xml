@@ -72,7 +72,7 @@
         ;
     </insert>
 
-    <update id="updateProd" parameterType="IFHMBSAPEAICDPP0003Dto">
+    <update id="updateProd" parameterType="IFHMBSAPEAICDPP0003Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         update 
             landing.S_PROD_INT 
         set
@@ -116,4 +116,7 @@
             par_row_id = #{rowId}
     </update>
     
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.hmbproductinboundwf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
 </mapper>
