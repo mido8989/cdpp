@@ -41,7 +41,7 @@ public class IFHMBINNOCEANCDPP0027Controller {
         
         IFHMBINNOCEANCDPP0027Dto resultDto = service.upsertObject(dto);
 
-        if(resultDto != null){
+        if(resultDto.getRowId() != null){
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");
 
