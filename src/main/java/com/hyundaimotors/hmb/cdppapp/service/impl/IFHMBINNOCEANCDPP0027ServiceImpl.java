@@ -27,14 +27,14 @@ public class IFHMBINNOCEANCDPP0027ServiceImpl implements IFHMBINNOCEANCDPP0027Se
             resultNum = mapper.updateObject(dto); 
             HashMap<String, String> map = new HashMap<>();
             map.put("PARAM_ID", dto.getRowId());
-            map.put("checkcu", "insert");
+            map.put("checkcu", "update");
             
             mapper.transferProcess(map);
         }else{
             resultNum = mapper.insertObject(dto);
             HashMap<String, String> map = new HashMap<>();
             map.put("PARAM_ID", dto.getRowId());
-            map.put("checkcu", "update");
+            map.put("checkcu", "insert");
             
             mapper.transferProcess(map);
         }
