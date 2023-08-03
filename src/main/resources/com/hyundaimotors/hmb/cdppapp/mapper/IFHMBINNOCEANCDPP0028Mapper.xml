@@ -13,7 +13,7 @@
             ccbx.row_id = #{partnerExternalId}
     </select>
 
-    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0028Dto">
+    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0028Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.CX_CNT_BNF_XM
             (
                 PAR_ROW_ID
@@ -42,7 +42,7 @@
         );
     </insert>
 
-    <update id="updateObject" parameterType="IFHMBINNOCEANCDPP0028Dto">
+    <update id="updateObject" parameterType="IFHMBINNOCEANCDPP0028Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         update landing.CX_CNT_BNF_XM set
                 NAME = #{partnerName}
                 , X_BENEFIT_NAME = #{benefitName}
@@ -55,5 +55,9 @@
         and
             ROW_ID = #{partnerExternalId}
     </update>
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.hmb_register_in_application_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
+    
 
 </mapper>

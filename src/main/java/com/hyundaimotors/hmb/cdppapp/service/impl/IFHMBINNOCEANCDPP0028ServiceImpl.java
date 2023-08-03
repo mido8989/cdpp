@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,13 +28,27 @@ public class IFHMBINNOCEANCDPP0028ServiceImpl implements IFHMBINNOCEANCDPP0028Se
 
         if(checkRowNum == 0){
             mapper.insertObject(dto);
+
+            HashMap<String, String> map = new HashMap<>();
+
+            map.put("PARAM_ID", dto.getRowId());
+            map.put("checkcu", "insert");
+
+            mapper.transferProcess(map);
         }else{
             mapper.updateObject(dto);
+
+            HashMap<String, String> map = new HashMap<>();
+
+            map.put("PARAM_ID", dto.getRowId());
+            map.put("checkcu", "update");
+
+            mapper.transferProcess(map);
         }
         
-        dto.setErrorSpcCode("0");
-        dto.setErrorSpcMessage("OK");
-        
+        resulDto.setErrorSpcCode("0");
+        resulDto.setErrorSpcMessage("OK");
+
         return resulDto;
     }
 }
