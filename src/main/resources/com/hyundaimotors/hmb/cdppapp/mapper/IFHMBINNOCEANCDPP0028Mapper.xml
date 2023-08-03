@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0028Mapper">
+    
+    <select id="checkRowId" parameterType="IFHMBINNOCEANCDPP0028Dto" resultType="Integer">
+        select
+            count(row_id) as checkRowNum
+        from
+            landing.CX_CNT_BNF_XM ccbx
+        where
+            ccbx.par_row_id = #{contactId}
+        and
+            ccbx.row_id = #{partnerExternalId}
+    </select>
+
+    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0028Dto">
+        insert into landing.CX_CNT_BNF_XM
+            (
+                PAR_ROW_ID
+                , X_ACCOUNT_ID
+                , NAME
+                , X_BENEFIT_NAME
+                , X_BENEFIT_URL
+                , X_SRC_APP
+                , created_by
+                , created
+                , last_upd_by
+                , last_upd
+                , type
+        )values(
+                #{contactId}
+                , #{contactId}
+				, #{partnerName}
+				, #{benefitName}
+				, #{benefitURL}
+				, #{appSource}
+                , 'interface'
+                , now()
+                , 'interface'
+                , now()
+                , 'type'
+        );
+    </insert>
+
+    <update id="updateObject" parameterType="IFHMBINNOCEANCDPP0028Dto">
+        update landing.CX_CNT_BNF_XM set
+                NAME = #{partnerName}
+                , X_BENEFIT_NAME = #{benefitName}
+                , X_BENEFIT_URL = #{benefitURL}
+                , X_SRC_APP = #{appSource}
+                , last_upd_by = 'interface'
+                , last_upd = now()
+        where
+            PAR_ROW_ID = #{contactId}
+        and
+            ROW_ID = #{partnerExternalId}
+    </update>
+
+</mapper>
