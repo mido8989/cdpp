@@ -34,10 +34,11 @@ public class IFHMBINNOCEANCDPP0022Controller {
     
     @Operation(summary = "dealer holiday insert", description = "dealer holiday insert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0022Payload.Response.class)))
-    @PostMapping(value = "/api/v1/HMBMNTSRVCManageDealerHoliday/insert")
-    public Object insertObject(@RequestBody IFHMBINNOCEANCDPP0022Payload.Request request)throws Exception{
+    @PostMapping(value = "/api/v1/HMBMNTSRVCManageDealerHoliday")
+    public Object manageObject(@RequestBody IFHMBINNOCEANCDPP0022Payload.Request request)throws Exception{
         IFHMBINNOCEANCDPP0022Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0022Dto.class);
-        int resultNum = service.insertObject(dto);
+        
+        int resultNum = service.manageObject(dto);
 
         if(0 < resultNum){
             dto.setErrorSpcCode("0");
@@ -51,22 +52,4 @@ public class IFHMBINNOCEANCDPP0022Controller {
         return defaultMapper.map(dto, IFHMBINNOCEANCDPP0022Payload.Response.class);
     }
 
-    @Operation(summary = "dealer holiday delete", description = "dealer holiday delete")
-    @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0022Payload.Response.class)))
-    @PostMapping(value = "/api/v1/HMBMNTSRVCManageDealerHoliday/delete")
-    public Object deleteObject(@RequestBody IFHMBINNOCEANCDPP0022Payload.Request request)throws Exception{
-        IFHMBINNOCEANCDPP0022Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0022Dto.class);
-        int resultNum = service.deleteObject(dto);
-
-        if(0 < resultNum){
-            dto.setErrorSpcCode("0");
-            dto.setErrorSpcMessage("OK");
-        }else{
-            dto.setErrorSpcCode("1");
-            dto.setErrorSpcMessage("fail");
-        }
-
-        
-        return defaultMapper.map(dto, IFHMBINNOCEANCDPP0022Payload.Response.class);
-    }
 }
