@@ -16,4 +16,6 @@ public interface IFHMBINNOCEANCDPP0022Mapper {
     public int deleteObject(IFHMBINNOCEANCDPP0022Dto dto)throws Exception;
 
     public void transferProcess(HashMap<String, String> parMap)throws Exception;
+
+    public int updateObject(IFHMBINNOCEANCDPP0022Dto dto)throws Exception;
 }

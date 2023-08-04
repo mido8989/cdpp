@@ -7,6 +7,7 @@
                 soe.row_id as rowId
                 , soe.name as name
                 , soe.ou_type_cd as ouTypeCd
+                , soex.row_id as holyRowId
             from
                 landing.S_ORG_EXT soe
             join
@@ -25,7 +26,6 @@
     <select id="getRowId" parameterType="IFHMBINNOCEANCDPP0022Dto" resultType="IFHMBINNOCEANCDPP0022Dto">
         select
             soe.row_id as rowId
-            , soe.name as name
         from
             landing.S_ORG_EXT soe
         where    
@@ -43,6 +43,7 @@
             , NAME
             , type
             , ATTRIB_02
+            , ATTRIB_03
             , ATTRIB_12
         )
         VALUES 
@@ -52,12 +53,25 @@
             , now()
             , 'interface'
             , #{rowId}
-            , #{holidayDate}
+            , to_char(to_date(#{holidayDate}, 'YYYY-MM-DD'), 'MM/DD/YYYY')
             , 'Dealer Local Holiday'
             , #{holidayDescription}
+            , public.get_dayofweek(to_date(#{holidayDate},'YYYY-MM-DD'))
             , to_date(#{holidayDate},'YYYY-MM-DD')
         );
     </insert>
+
+    <update id="updateObject" parameterType="IFHMBINNOCEANCDPP0022Dto">
+                update landing.S_ORG_EXT_XM set
+                last_upd = now()
+                , last_upd_by = 'interface'
+                , NAME = to_char(to_date(#{holidayDate}, 'YYYY-MM-DD'), 'MM/DD/YYYY')
+                , ATTRIB_02 = #{holidayDescription}
+                , ATTRIB_03 = public.get_dayofweek(to_date(#{holidayDate},'YYYY-MM-DD'))
+                , ATTRIB_12 = to_date(#{holidayDate},'YYYY-MM-DD')
+            where
+                row_id = #{holyRowId};
+    </update>
     
     <delete id="deleteObject" parameterType="IFHMBINNOCEANCDPP0022Dto">
         delete from 
