@@ -73,6 +73,6 @@
     </delete>
     
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_mnystrvc_manage_dealer_holiday(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+        call process.hmb_mntsrvc_manage_dealer_holiday(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
