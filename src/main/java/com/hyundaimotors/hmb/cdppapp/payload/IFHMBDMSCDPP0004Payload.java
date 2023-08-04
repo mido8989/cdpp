@@ -15,7 +15,7 @@ public class IFHMBDMSCDPP0004Payload {
     public static class Request{
         @Schema(description = "MM/DD/YYYY", example = "2019-09-10")
         private String date;
-        @Schema(description = "It should be a pre-existing Dealer Code in CRM.", example = "B05AM26057")
+        @Schema(description = "It should be a pre-existing Dealer Code in CRM.", example = "proc00035047103")
         private String dealerCode;
         @Schema(description = "It should be an existing Api Key in CRM.", example = "4455")
         private String apiKey;
