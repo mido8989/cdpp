@@ -1,5 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Dto;
@@ -15,6 +16,10 @@ public interface IFHMBINNOCEANCDPP0013Mapper {
     public void insertAccountSub(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
 
     public void insertAccountPrtnr(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
+
+    public void transferProcess(HashMap<String, String> parMap)throws Exception;
+
+    public void transferProcessContact(HashMap<String, String> parMap)throws Exception;
 
     public void insertAddress(IFHMBINNOCEANCDPP0013Adress address)throws Exception;
 

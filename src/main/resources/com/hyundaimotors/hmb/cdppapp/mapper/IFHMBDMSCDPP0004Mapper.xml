@@ -4,14 +4,14 @@
     
     <select id="getContact" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
         select 
-            sc.row_id as rowId
+            le.partneraccountid as rowId
         from 
-            landing.s_contact sc 
+            process.lead le 
         where
-            sc.created = to_date(#{date},'YYYY-MM-DD')
+            le.created = to_date(#{date},'YYYY-MM-DD')
         <if test="statusLead != null and statusLead != ''">
             and
-                sc.status_cd = #{statusLead}
+                le.state = #{statusLead}
         </if>    
     </select>
 

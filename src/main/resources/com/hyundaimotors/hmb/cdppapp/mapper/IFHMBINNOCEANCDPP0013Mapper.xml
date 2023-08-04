@@ -105,7 +105,7 @@
             );
     </insert>
 
-    <insert id="insertAddress" parameterType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Adress"  useGeneratedKeys="true" keyProperty="addressRowId" keyColumn="row_id">
+    <insert id="insertAddress" parameterType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Adress" useGeneratedKeys="true" keyProperty="addressRowId" keyColumn="row_id">
         INSERT INTO landing.S_ADDR_PER(
             ADDR_NAME
             , ADDR
@@ -139,7 +139,7 @@
         );
     </insert>
 
-    <insert id="insertContact" parameterType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Contact">
+    <insert id="insertContact" parameterType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Contact" useGeneratedKeys="true" keyProperty="contactRowId" keyColumn="row_id">
         INSERT INTO landing.S_CONTACT(
             INTEGRATION_ID
             , X_CPF
@@ -253,4 +253,12 @@
         where
             row_id = #{addressRowId}
     </update>
+
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.hmb_inbound_channel_partner_interface_workflow(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
+    <insert id="transferProcessContact" statementType="CALLABLE" parameterType="hashMap">
+        call process.hmb_inbound_channel_partner_interface_workflow_contact(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
 </mapper>
