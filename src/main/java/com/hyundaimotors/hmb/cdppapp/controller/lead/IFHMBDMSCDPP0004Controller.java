@@ -57,7 +57,8 @@ public class IFHMBDMSCDPP0004Controller {
 
             IFHMBDMSCDPP0004Dto resultContactDto = service.contactInfoList(rowIdList.get(i));
 
-            contact = ObjectUtils.isNotEmpty(resultContactDto) ? modelMapper.map(resultContactDto, IFHMBDMSCDPP0004Payload.Contact.class) : null;
+            //contact = ObjectUtils.isNotEmpty(resultContactDto) ? modelMapper.map(resultContactDto, IFHMBDMSCDPP0004Payload.Contact.class) : null;
+            contact = modelMapper.map(resultContactDto, IFHMBDMSCDPP0004Payload.Contact.class);
 
             result.put("contact", contact);
 
