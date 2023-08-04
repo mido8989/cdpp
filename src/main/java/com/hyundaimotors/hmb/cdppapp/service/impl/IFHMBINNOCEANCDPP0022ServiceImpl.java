@@ -36,7 +36,7 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
                 map.put("PARAM_ID", rowIdDto.getHolyRowId());
                 map.put("checkcu", "update");
             
-            //mapper.transferProcess(map);
+            mapper.transferProcess(map);
             
         }else{
             IFHMBINNOCEANCDPP0022Dto rowIdDto = mapper.getRowId(dto);
