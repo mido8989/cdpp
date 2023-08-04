@@ -20,7 +20,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
-@Tag(name = "HMB Inbound Channel Partner Interface Workflow", description = "delear Account Insert Interface")
+@Tag(name = "HMB MNTSRVC Maintenance Service", description = "This web service can be used to query availability of maintenance services in the dealers.")
 @RestController
 @RequiredArgsConstructor
 public class IFHMBINNOCEANCDPP0021Controller {
@@ -29,16 +29,16 @@ public class IFHMBINNOCEANCDPP0021Controller {
 
     private final ModelMapper defaultMapper;
 
-    @Operation(summary = "dealer Manage list", description = "dealer Manage list.")
+    @Operation(summary = "HMB MNTSRVC Maintenance Service", description = "This web service can be used to query availability of maintenance services in the dealers.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0021Payload.Response.class)))
-    @PostMapping(value = "/api/v1/getHMBInboundChannelPartnerInterfaceWorkflow")
+    @PostMapping(value = "/api/v1/getHMBMNTSRVCMaintenanceService")
     public Object getList(@RequestBody IFHMBINNOCEANCDPP0021Payload.Request request)throws Exception{
         IFHMBINNOCEANCDPP0021Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0021Dto.class);
 
         IFHMBINNOCEANCDPP0021Dto resultdto = service.getObject(dto);
         dto.setErrorSpcCode("0");
         dto.setErrorSpcMessage("OK");
-        
+
         return defaultMapper.map(resultdto, IFHMBINNOCEANCDPP0021Payload.Response.class);
     }
 }
