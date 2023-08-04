@@ -21,31 +21,34 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
 
     public int insertObject(IFHMBINNOCEANCDPP0022Dto dto)throws Exception{
 
-        List<IFHMBINNOCEANCDPP0022Dto> rowIdList = mapper.getRowId(dto);
+        List<IFHMBINNOCEANCDPP0022Dto> rowIdList = mapper.getCheckHolyDay(dto);
         
         int res = 0;
-        if(0 == rowIdList.size()){
+        if(rowIdList.size()!=0) {
             
-            dto.setRowId(rowIdList.get(0).getRowId());
-            dto.setName(rowIdList.get(0).getName());
+            IFHMBINNOCEANCDPP0022Dto rowIdDto = mapper.getRowId(dto);
+            dto.setRowId(rowIdDto.getRowId());
+            dto.setName(rowIdDto.getName());
+            res = mapper.deleteObject(dto);
+
+            HashMap<String, String> map = new HashMap<>();
+                map.put("PARAM_ID", rowIdDto.getHolyRowId());
+                map.put("checkcu", "update");
             
+            //mapper.transferProcess(map);
+            
+        }else{
+            IFHMBINNOCEANCDPP0022Dto rowIdDto = mapper.getRowId(dto);
+            dto.setRowId(rowIdDto.getRowId());
+            dto.setName(rowIdDto.getName());
             res = mapper.insertObject(dto);
             
             HashMap<String, String> map = new HashMap<>();
             map.put("PARAM_ID", dto.getHolyRowId());
             map.put("checkcu", "insert");
             
-            mapper.transferProcess(map);
-        }else{
-            dto.setRowId(rowIdList.get(0).getRowId());
-            dto.setName(rowIdList.get(0).getName());
-            res = mapper.deleteObject(dto);
-
-            HashMap<String, String> map = new HashMap<>();
-                map.put("PARAM_ID", dto.getHolyRowId());
-                map.put("checkcu", "update");
+            //mapper.transferProcess(map);
             
-            mapper.transferProcess(map);
         }
         
 
@@ -53,7 +56,7 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
     }
 
     public int deleteObject(IFHMBINNOCEANCDPP0022Dto dto)throws Exception{
-        List<IFHMBINNOCEANCDPP0022Dto> rowIdList = mapper.getRowId(dto);
+        List<IFHMBINNOCEANCDPP0022Dto> rowIdList = mapper.getCheckHolyDay(dto);
 
         dto.setRowId(rowIdList.get(0).getRowId());
         dto.setName(rowIdList.get(0).getName());
@@ -63,7 +66,7 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
             map.put("PARAM_ID", dto.getHolyRowId());
             map.put("checkcu", "update");
             
-        mapper.transferProcess(map);
+        //mapper.transferProcess(map);
         return res;
     }
 }
