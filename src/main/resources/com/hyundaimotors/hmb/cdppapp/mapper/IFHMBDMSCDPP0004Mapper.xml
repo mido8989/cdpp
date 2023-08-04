@@ -78,7 +78,7 @@
         from 
             process.lead le
         where 
-            le.convertedaccountid = #{rowId}
+            le.partneraccountid = #{rowId}
     </select>
     <select id="financiamentoopvList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
         select 
@@ -89,7 +89,7 @@
         from 
             process.lead le
         where 
-            le.convertedaccountid = #{rowId}
+            le.partneraccountid = #{rowId}
     </select>
     
 </mapper>
