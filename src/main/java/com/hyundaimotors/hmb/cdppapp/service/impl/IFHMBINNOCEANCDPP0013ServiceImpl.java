@@ -1,6 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -36,6 +37,13 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
             mapper.insertAccount(dto);
             mapper.insertAccountSub(dto);
             mapper.insertAccountPrtnr(dto);
+            
+            HashMap<String, String> map = new HashMap<>();
+            map.put("PARAM_ID", dto.getRowId());
+            map.put("checkcu", "insert");
+
+            mapper.transferProcess(map);
+
             for(int i=0; i < addressList.size(); i++){
                 IFHMBINNOCEANCDPP0013Adress adress = new IFHMBINNOCEANCDPP0013Adress();
                 adress = addressList.get(i);
@@ -44,7 +52,14 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                 contact = contactList.get(i);
                 contact.setAddressRowId(adress.getAddressRowId());
                 mapper.insertContact(contact);
+
+                HashMap<String, String> contactMap = new HashMap<>();
+                contactMap.put("PARAM_ID", dto.getContactRowId());
+                contactMap.put("checkcu", "insert");
+                mapper.transferProcessContact(map);                
             }
+
+           
         }else{
             mapper.updateAccount(dto);
             mapper.updateAccountSub(dto);

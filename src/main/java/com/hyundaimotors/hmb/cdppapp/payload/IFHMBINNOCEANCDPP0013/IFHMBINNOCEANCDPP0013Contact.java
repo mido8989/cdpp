@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class IFHMBINNOCEANCDPP0013Contact {
+    private String contactRowId;
     private String addressRowId;
     @Schema(description = "External system unique identifier. HMBDealerContactIntegrationId", example = "73522541960")
     private String integrationId;
