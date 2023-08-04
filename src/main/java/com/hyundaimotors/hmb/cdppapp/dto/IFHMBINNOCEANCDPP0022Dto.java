@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class IFHMBINNOCEANCDPP0022Dto {
-    
+    private String holyRowId;
     private String rowId;
     private String name;
     private String ouTypeCd;
