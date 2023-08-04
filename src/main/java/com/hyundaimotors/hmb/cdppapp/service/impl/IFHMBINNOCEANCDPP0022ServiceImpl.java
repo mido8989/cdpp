@@ -1,5 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -28,6 +29,12 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
             dto.setName(rowIdList.get(0).getName());
             
             res = mapper.insertObject(dto);
+            
+            HashMap<String, String> map = new HashMap<>();
+            map.put("PARAM_ID", dto.getHolyRowId());
+            map.put("checkcu", "insert");
+            
+            mapper.transferProcess(map);
         }
         
 
@@ -40,6 +47,12 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
         dto.setRowId(rowIdList.get(0).getRowId());
         dto.setName(rowIdList.get(0).getName());
         int res = mapper.deleteObject(dto);
+
+        HashMap<String, String> map = new HashMap<>();
+            map.put("PARAM_ID", dto.getHolyRowId());
+            map.put("checkcu", "update");
+            
+        mapper.transferProcess(map);
         return res;
     }
 }
