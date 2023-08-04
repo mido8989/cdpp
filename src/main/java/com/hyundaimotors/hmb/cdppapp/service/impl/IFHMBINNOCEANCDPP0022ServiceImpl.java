@@ -24,7 +24,8 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
         List<IFHMBINNOCEANCDPP0022Dto> rowIdList = mapper.getRowId(dto);
         
         int res = 0;
-        if(1 <= rowIdList.size()){
+        if(0 == rowIdList.size()){
+            
             dto.setRowId(rowIdList.get(0).getRowId());
             dto.setName(rowIdList.get(0).getName());
             
@@ -33,6 +34,16 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
             HashMap<String, String> map = new HashMap<>();
             map.put("PARAM_ID", dto.getHolyRowId());
             map.put("checkcu", "insert");
+            
+            mapper.transferProcess(map);
+        }else{
+            dto.setRowId(rowIdList.get(0).getRowId());
+            dto.setName(rowIdList.get(0).getName());
+            res = mapper.deleteObject(dto);
+
+            HashMap<String, String> map = new HashMap<>();
+                map.put("PARAM_ID", dto.getHolyRowId());
+                map.put("checkcu", "update");
             
             mapper.transferProcess(map);
         }
