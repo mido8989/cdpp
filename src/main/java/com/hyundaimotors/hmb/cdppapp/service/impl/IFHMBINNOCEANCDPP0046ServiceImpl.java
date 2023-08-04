@@ -1,5 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -18,16 +19,22 @@ public class IFHMBINNOCEANCDPP0046ServiceImpl implements IFHMBINNOCEANCDPP0046Se
     
     private final IFHMBINNOCEANCDPP0046Mapper mapper;
 
-    public List<IFHMBINNOCEANCDPP0046Dto> getList(IFHMBINNOCEANCDPP0046Dto dto)throws Exception{
-        List<IFHMBINNOCEANCDPP0046Dto> list = mapper.getList(dto);
+    public IFHMBINNOCEANCDPP0046Dto insertList(IFHMBINNOCEANCDPP0046Dto dto)throws Exception{
+        String parRowId = mapper.getParRowId(dto);
+        dto.setParRowId(parRowId);
+        int resDeleteNum = mapper.deleteList(dto);
 
-        if(list.size() > 0){
-            for(int i=0; i < list.size();i++){
-                list.get(i).setErrorSpcCode("0");
-                list.get(i).setErrorSpcMessage("OK");
-            }
-        }
+        int resInsertNum = mapper.insertList(dto);
 
-        return list;
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        map.put("PARAM_ID", dto.getParRowId());
+        
+        mapper.transferProcess(map);
+
+        dto.setErrorSpcCode("0");
+        dto.setErrorSpcMessage("OK");        
+
+        return dto;
     }
 }

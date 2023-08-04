@@ -13,6 +13,7 @@ import lombok.Setter;
 public class IFHMBINNOCEANCDPP0046Dto {
     private String dealerCode;
     private String Source;
+    private String parRowId;
     private List<ListOfServices> listOfServices;
     private String errorSpcCode;
     private String errorSpcMessage;
