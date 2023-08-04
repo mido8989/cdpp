@@ -54,7 +54,7 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                 mapper.insertContact(contact);
 
                 HashMap<String, String> contactMap = new HashMap<>();
-                contactMap.put("PARAM_ID", dto.getContactRowId());
+                contactMap.put("PARAM_ID", contact.getContactRowId());
                 contactMap.put("checkcu", "insert");
                 mapper.transferProcessContact(map);                
             }
