@@ -2,26 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0046Mapper">
     
-    <select id="getList" parameterType="IFHMBINNOCEANCDPP0046Dto" resultType="IFHMBINNOCEANCDPP0046Dto">
+    <select id="getParRowId" parameterType="IFHMBINNOCEANCDPP0046Dto" resultType="string">
         select 
-            soe.ou_num as dealerCode
+            row_id as parRowId
         from 
-            landing.s_org_ext soe 
-        join
-            landing.s_org_ext_xm soex 
-        on
-            soe.row_id = soex.par_row_id
+            landing.s_org_ext
         where 
-            soe.ou_num = #{dealerCode}
-        and
-            soex.x_dlr_srvc_type in
-            <foreach collection="listOfServices" index="index" item='item' open="(" close=")" separator=",">
-                #{item.serviceType}
-            </foreach>
-        and
-            soex.ATTRIB_14 in
-            <foreach collection="listOfServices" index="index" item='item' open="(" close=")" separator=",">
-                #{item.serviceLength}
-            </foreach>
+            ou_num = #{dealerCode}
     </select>
+
+    <delete id="deleteList" parameterType="IFHMBINNOCEANCDPP0046Dto">
+        delete from 
+            landing.s_org_ext_xm 
+        where 
+            par_row_id = #{parRowId}
+    </delete>
+    
+    <insert id="insertList" parameterType="IFHMBINNOCEANCDPP0046Dto">
+        insert into landing.s_org_ext_xm
+        (
+            par_row_id
+            , x_dlr_srvc_type
+            , ATTRIB_14
+            , "type"
+            , "name"
+            , created_by
+            , created
+            , last_upd_by
+            , last_upd
+        )values 
+        <foreach collection="listOfServices" item="item" separator=",">
+            (
+                #{parRowId}
+                , #{item.serviceType}
+                , #{item.serviceLength}
+                , 'Dealer Maintenance Service'
+                , #{item.serviceType}
+                , 'interface'
+                , now()
+                , 'interface'
+                , now()
+            )
+        </foreach>
+    </insert>
+
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.hmb_mntsrvc_manage_dealer_service(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
+    
 </mapper>
