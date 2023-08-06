@@ -12,7 +12,9 @@ public class IFHMBINNOCEANCDPP0021Payload {
     @Getter
     @Setter
     public static class Request{
+        @Schema(description = "Service Name. Possible values are:", example = "1st maintenance")
         private String serviceName;
+        @Schema(description = "Name of requester system.", example = "Source")
         private String Source;
     }
 

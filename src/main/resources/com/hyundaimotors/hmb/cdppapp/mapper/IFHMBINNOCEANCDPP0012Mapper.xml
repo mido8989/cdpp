@@ -9,7 +9,7 @@
             , pca.name as name
             , pca.corporaterepresentativename__c as nickname
             , pca.cust_stat_cd__c as accountStatus
-            , pca.x_reason_status__c as reasonStatus
+            , pca.situationstatusreason__c as reasonStatus
             , pca.dealershoptype__c as dealerType
             , pca.dealercode__c as dealerCode
             , pca.phone as mainPhone
@@ -21,8 +21,8 @@
             , pca.prtnrshp_start_dt__c as partnerStartDate
             , pca.prtnrshp_end_dt__c as partnerEndDate
             , pca.region__c as region
-            , pca.x_working_hours__c as workingHour
-            , pca.s_social_url__c as facebookPage
+            , pca.businesshours__c as workingHour
+            , pca.facebook__c as facebookPage
             , pca.website as homepage
             , pca.billingstreet as streetAddress
             , pca.billingstreet_2__c as streetAddress2
@@ -34,7 +34,7 @@
             , pca.billinglongitude as longitude
             , pca.billingpostalcode as zipCode
         from
-            process.account pca 
+            process.account pca
         where
             pca.row_id = #{source}
     </select>

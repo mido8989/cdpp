@@ -73,7 +73,7 @@
 
     <select id="getUpdateContactOutput" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.UpdateContactOutput">
         select 
-            c.x_cnh_exp_date__c as cnheXpirationDate
+            c.loyaltyexpirationdate__c as cnheXpirationDate
             , c.firstname as firstName
             , c.lastname as lastName
             , c.birthdate as birthDate
