@@ -46,8 +46,21 @@
         </foreach>
     </insert>
 
+    <select id="getReplicaRowId" parameterType="IFHMBINNOCEANCDPP0046Dto" resultType="string">
+        select 
+            row_id as replicaRowId
+        from 
+            process.account 
+        where 
+            external_id__c = #{parRowId}
+    </select>
+
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.hmb_mntsrvc_manage_dealer_service(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.hmb_mntsrvc_manage_dealer_service(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
     
 </mapper>

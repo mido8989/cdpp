@@ -32,6 +32,14 @@ public class IFHMBINNOCEANCDPP0046ServiceImpl implements IFHMBINNOCEANCDPP0046Se
         
         mapper.transferProcess(map);
 
+        String replicaRowId = mapper.getReplicaRowId(dto);
+
+        HashMap<String, String> replicaMap = new HashMap<String, String>();
+
+        replicaMap.put("PARAM_ID", replicaRowId);
+
+        mapper.transferReplica(replicaMap);
+
         dto.setErrorSpcCode("0");
         dto.setErrorSpcMessage("OK");        
 
