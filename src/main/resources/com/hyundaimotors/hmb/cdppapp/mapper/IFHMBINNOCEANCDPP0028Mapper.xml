@@ -56,7 +56,7 @@
             ROW_ID = #{partnerExternalId}
     </update>
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_register_in_application_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+        call process.hmb_register_loyalty_benefit_used_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>
     
 
