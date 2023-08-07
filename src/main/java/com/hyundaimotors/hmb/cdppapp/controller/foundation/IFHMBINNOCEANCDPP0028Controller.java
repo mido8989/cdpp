@@ -38,7 +38,7 @@ public class IFHMBINNOCEANCDPP0028Controller {
         
         IFHMBINNOCEANCDPP0028Dto resultDto = service.upsertObject(dto);
 
-        return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(dto, IFHMBINNOCEANCDPP0028Payload.Response.class) : null;
+        return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBINNOCEANCDPP0028Payload.Response.class) : null;
     }
 
 
