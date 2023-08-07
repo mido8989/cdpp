@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBMAPFRECDPP0009Mapper">
+    
+    <select id="getCheckoutRowId" parameterType="IFHMBMAPFRECDPP0009Dto" resultType="IFHMBMAPFRECDPP0009Dto">
+        select 
+            count(csrx.row_id)
+        from
+            landing.CX_SR_RSA_X csrx
+        where
+            csrx.integration_id = #{claimId}
+    </select>
+
+    <insert id="insertObject" parameterType="IFHMBMAPFRECDPP0009Dto">
+        
+    </insert>
+
+    <update id="updateObject" parameterType="IFHMBMAPFRECDPP0009Dto">
+
+    </update>
+</mapper>
