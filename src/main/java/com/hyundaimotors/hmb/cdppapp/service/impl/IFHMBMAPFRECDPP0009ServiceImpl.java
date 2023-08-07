@@ -23,11 +23,11 @@ public class IFHMBMAPFRECDPP0009ServiceImpl implements IFHMBMAPFRECDPP0009Servic
 
         int rowIdCount = mapper.getCheckoutRowId(dto);
 
-        if(0 < rowIdCount){
+        /*if(0 < rowIdCount){
             int resultNum = mapper.updateObject(dto);
         }else{
             int resultNum = mapper.insertObject(dto);
-        }
+        }*/
         return resultDto;
     }
 }

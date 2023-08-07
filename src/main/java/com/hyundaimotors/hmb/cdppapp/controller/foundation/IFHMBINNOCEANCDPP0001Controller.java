@@ -43,10 +43,11 @@ public class IFHMBINNOCEANCDPP0001Controller {
         resultDto = service.getObject(dto);
 
         if(resultDto == null){
-            resultDto.setErrorSpcCode("1");
-            resultDto.setErrorSpcCode("no data");
+            IFHMBINNOCEANCDPP0001Dto failResultDto = new IFHMBINNOCEANCDPP0001Dto();
+            failResultDto.setErrorSpcCode("1");
+            failResultDto.setErrorSpcCode("no data");
 
-            return modelMapper.map(resultDto, IFHMBINNOCEANCDPP0001Payload.Response.class);
+            return modelMapper.map(failResultDto, IFHMBINNOCEANCDPP0001Payload.Response.class);
         }else{
             return ObjectUtils.isNotEmpty(resultDto) ? modelMapper.map(resultDto, IFHMBINNOCEANCDPP0001Payload.Response.class) : null;
         }

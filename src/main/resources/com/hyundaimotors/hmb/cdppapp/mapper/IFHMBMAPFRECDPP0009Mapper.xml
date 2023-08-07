@@ -14,4 +14,8 @@
     <insert id="insertObject" parameterType="IFHMBMAPFRECDPP0009Dto">
         
     </insert>
+
+    <update id="updateObject" parameterType="IFHMBMAPFRECDPP0009Dto">
+
+    </update>
 </mapper>
