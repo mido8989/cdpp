@@ -37,6 +37,8 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
                 map.put("checkcu", "update");
             
             mapper.transferProcess(map);
+
+            mapper.transferReplica(map);
             
             }else{
                 IFHMBINNOCEANCDPP0022Dto rowIdDto = mapper.getRowId(dto);
@@ -48,6 +50,8 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
                 map.put("checkcu", "insert");
                 
                 mapper.transferProcess(map);
+
+                mapper.transferReplica(map);
                 
             }
         }else if("delete".equalsIgnoreCase(dto.getOperation())){
@@ -60,6 +64,8 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
                 map.put("checkcu", "delete");
 
                 mapper.transferProcess(map);
+
+                mapper.transferReplica(map);
                 
                 res = mapper.deleteObject(dto);
 
