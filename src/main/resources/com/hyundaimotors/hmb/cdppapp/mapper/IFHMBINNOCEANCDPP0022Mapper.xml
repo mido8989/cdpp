@@ -83,4 +83,8 @@
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.hmb_mntsrvc_manage_dealer_holiday(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call Replica.hmb_mntsrvc_manage_dealer_holiday(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
 </mapper>
