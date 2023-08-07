@@ -19,15 +19,15 @@
             , c.emailoptyn__c as suppressAllEmails
             , c.x_amount_friends__c as amountFriends
             , c.x_amount_children__c as amountChildren
-            , c.x_cnh_exp_date__c as cnhexpirationDate
-            , c.x_loyalty_act_dt__c as loyaltyActivationDate
+            , c.loyaltyexpirationdate__c as cnhexpirationDate
+            , c.loyaltyactivationdate__c as loyaltyActivationDate
             , c.x_loyalty_exp_dt__c as loyaltyExpirationDate
             , c.x_loyalty_engagement__c as loyaltyEngagementIndex
             , c.x_loyalty_satisfaction__c as loyaltySatisfactionLevel
             , c.x_loyalty_crm_index__c as loyaltyCRMIndex
             , c.x_seg_life_cycle__c as loyaltyLifeCycle
             , c.x_loyalty_satisfaction__c as loyaltyTierLevel
-            , c.x_loyalty__status__c as loyaltyStatus
+            , c.loyaltystatus__c as loyaltyStatus
             , c.x_loyalty_optin_flg__c as loyaltyOPTINFla
             , c.mailingpostalcode as postalCode
             , c.mailingstreet as street
