@@ -45,18 +45,7 @@ public class IFHMBINNOCEANCDPP0027Controller {
         resultDto.setErrorSpcCode("0");
         resultDto.setErrorSpcMessage("OK");
 
-        if(ObjectUtils.isNotEmpty(resultDto)){
-            resultDto.setErrorSpcCode("0");
-            resultDto.setErrorSpcMessage("OK");
-
-            return modelMapper.map(resultDto, IFHMBINNOCEANCDPP0027Payload.Response.class);
-        }else{
-            dto.setErrorSpcCode("1");
-            dto.setErrorSpcMessage("fail");
-
-            return modelMapper.map(dto, IFHMBINNOCEANCDPP0027Payload.Response.class);
-        }
-        
+        return modelMapper.map(resultDto, IFHMBINNOCEANCDPP0027Payload.Response.class);
     }
 
 }
