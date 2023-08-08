@@ -13,9 +13,9 @@ public class IFHMBINNOCEANCDPP0032Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(description = "cpfNumber", example = "44980710182")
+        @Schema(description = "cpfNumber", example = "21955839832")
         private String cpf;
-        @Schema(description = "ContactId", example = "1-100OOU3")
+        @Schema(description = "ContactId", example = "proc00236829361")
         private String contactId;
     }
 

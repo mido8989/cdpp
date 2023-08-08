@@ -13,10 +13,10 @@ public class IFHMBINNOCEANCDPP0001Payload {
     public static class Request{
         
         @NotNull
-        @Schema(description = "phone Number", example = "+5511965411001")
+        @Schema(description = "phone Number", example = "+5515997501064")
         private String phoneNumber;
         
-        @Schema(description = "cpfNumber", example = "33927510300")
+        @Schema(description = "cpfNumber", example = "21955839832")
         private String cpf;
         
     }
