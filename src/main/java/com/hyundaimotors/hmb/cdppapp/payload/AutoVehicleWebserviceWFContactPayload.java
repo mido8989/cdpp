@@ -15,5 +15,6 @@ public class AutoVehicleWebserviceWFContactPayload {
     public String status;
     @Schema(description = "Is Buyer Employee Flag? Valid values: Y, N.", example = "Y")
     public String employee;
+    public String assetRowId; // Dto역할 할 때만 임시로 쓰이는 필드
     
 }

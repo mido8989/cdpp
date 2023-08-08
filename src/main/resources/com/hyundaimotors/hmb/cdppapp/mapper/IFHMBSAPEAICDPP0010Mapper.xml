@@ -3,7 +3,7 @@
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0010Mapper">
     <select id="getRowCheck" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="IFHMBSAPEAICDPP0010Dto">
         select 
-            count(sasst.serial_num)
+            sasst.row_id
         from
             landing.s_asset sasst
         where

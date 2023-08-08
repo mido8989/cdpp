@@ -13,5 +13,5 @@ public class AutoVehicleWebserviceWFAccountPayload {
     public String type;
     @Schema(description = "Status of the relationship between asset and account. Valid values: Active, Inactive.", example = "Active")
     public String status;
-    
+    public String assetRowId; // Dto역할 할 때만 임시로 쓰이는 필드
 }

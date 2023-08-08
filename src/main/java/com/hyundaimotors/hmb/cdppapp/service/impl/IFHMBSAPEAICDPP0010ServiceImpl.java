@@ -29,23 +29,49 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
         contact = dto.getContact();
         account = dto.getAccount();
 
-        int rowCheckNum = mapper.getRowCheck(dto);
+        List<IFHMBSAPEAICDPP0010Dto> dtoList = mapper.getRowCheck(dto);
         
-        if( rowCheckNum > 0 ){
+        if( dtoList.size() > 0 ){
 
             mapper.UpdateAutoVehicle(dto);
             mapper.UpdateSAssetXDto(dto);
             mapper.UpdateSAssetAtxDto(dto);
-            mapper.UpdateSAssetConDtoList(contact);
-            mapper.UpdateSAssetAccntDtoList(account);   
+
+            if (contact != null && contact.size() > 0) {
+                for (AutoVehicleWebserviceWFContactPayload cont : contact) {
+                    cont.setAssetRowId(dtoList.get(0).getRowId());
+                }       
+                mapper.UpdateSAssetConDtoList(contact);     
+            }
+
+            if (account != null && account.size() > 0){
+                for (AutoVehicleWebserviceWFAccountPayload acct : account) {
+                    acct.setAssetRowId(dtoList.get(0).getRowId());
+                }       
+                mapper.UpdateSAssetAccntDtoList(account);   
+            }
 
         } else {
+            
             mapper.InsertAutoVehicle(dto);
             mapper.InsertSAssetXDto(dto);
-            mapper.InsertSAssetAtxDto(dto);           
-            mapper.InsertSAssetConDtoList(contact);
-            mapper.UpdateSAssetConDtoList(contact);
-            mapper.InsertSAssetAccDtoList(account);
+            mapper.InsertSAssetAtxDto(dto);
+
+            if (contact != null && contact.size() > 0) {
+                for (AutoVehicleWebserviceWFContactPayload cont : contact) {
+                    cont.setAssetRowId(dto.getRowId());
+                }       
+                mapper.InsertSAssetConDtoList(contact);
+                mapper.UpdateSConDtoList(contact);
+                
+            }
+
+            if (account != null && account.size() > 0){
+                for (AutoVehicleWebserviceWFAccountPayload acct : account) {
+                    acct.setAssetRowId(dto.getRowId());
+                }       
+                mapper.InsertSAssetAccDtoList(account);
+            }
         }
 
         dto.setErrorSpcCode("0");
