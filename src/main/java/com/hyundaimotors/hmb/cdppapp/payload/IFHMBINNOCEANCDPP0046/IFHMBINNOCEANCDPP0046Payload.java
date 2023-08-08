@@ -24,7 +24,7 @@ public class IFHMBINNOCEANCDPP0046Payload {
     @Getter
     @Setter
     public static class Response{
-        @Schema(description = "Return the same dealer-code passed as input parameter for this web service, for redundancy verification purposes in the other end.", example = "B05AM99999")
+        @Schema(description = "Return the same dealer-code passed as input parameter for this web service, for redundancy verification purposes in the other end.", example = "INT_COMPANY_ID")
         private String dealerCode;
         @Schema(description = "Returns 0 when success.", example = "0")
         private String errorSpcCode;
