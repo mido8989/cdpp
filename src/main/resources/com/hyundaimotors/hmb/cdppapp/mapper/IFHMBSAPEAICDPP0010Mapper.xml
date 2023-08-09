@@ -3,11 +3,11 @@
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0010Mapper">
     <select id="getRowCheck" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="IFHMBSAPEAICDPP0010Dto">
         select 
-            sasst.row_id
+            row_id
         from
-            landing.s_asset sasst
+            landing.s_asset
         where
-            sasst.serial_num = #{serialNumber}
+            serial_num = #{serialNumber}
     </select>
 
     <insert id="InsertAutoVehicle" parameterType="IFHMBSAPEAICDPP0010Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
@@ -21,7 +21,7 @@
             , ownr_type_cd
             , dlr_con_int_id
             , created
-            , create_by
+            , created_by
             , last_upd
             , last_upd_by
         ) values (
@@ -46,7 +46,7 @@
             , attrib_05
             , attrib_06
             , created
-            , create_by
+            , created_by
             , last_upd
             , last_upd_by
         ) values (
@@ -71,7 +71,7 @@
             , dealer_rcpt_dt
             , first_sale_dt
             , created
-            , create_by
+            , created_by
             , last_upd
             , last_upd_by
         ) values (
@@ -95,7 +95,7 @@
             , relation_type_cd
             , status_cd
             , created
-            , create_by
+            , created_by
             , last_upd
             , last_upd_by
             , asset_id
@@ -109,8 +109,7 @@
             , 'interface'
             , now()
             , 'interface'
-            , #{rowId} 
-            <!-- rowId는 dto타입에 들어있는데........... 어떻게 가져와야할까요? -->
+            , #{item.assetRowId} 
         )
         </foreach>
     </insert>
@@ -121,16 +120,16 @@
             set
                 emp_flg = #{item.employee}
             where
-                pr_asset_id = #{rowId}
+                pr_asset_id = #{item.assetRowId}
         </foreach>
     </update>
     <insert id="InsertSAssetAccDtoList" parameterType="java.util.List">
-        inser into landing.s_asset_accnt(
+        insert into landing.s_asset_accnt(
             accnt_id
             , rel_type_cd
             , status_cd
             , created
-            , create_by
+            , created_by
             , last_upd
             , last_upd_by
             , asset_id
@@ -144,7 +143,7 @@
             , 'interface'
             , now()
             , 'interface'
-            , #{rowId}
+            , #{item.assetRowId}
         )
         </foreach>
     </insert>
@@ -193,11 +192,11 @@
             update 
                 landing.s_asset_con 
             set 
-                accnt_id = #{item.connexContactId}
-                , rel_type_cd = #{item.contactType}
+                contact_id = #{item.connexContactId}
+                , relation_type_cd = #{item.contactType}
                 , status_cd = #{item.contactStatus}
             where
-                asset_id = #{rowId}
+                asset_id = #{item.assetRowId}
         </foreach>
     </update>
     <update id="UpdateSAssetAccntDtoList" parameterType="java.util.List">
@@ -209,7 +208,7 @@
                 , rel_type_cd = #{item.accountType}
                 , status_cd = #{item.accountStatus}
             where
-                asset_id = #{rowId}
+                asset_id = #{item.assetRowId}
         </foreach>
     </update>
 

@@ -7,13 +7,12 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-
 public class IFHMBSAPEAICDPP0010Payload {
     
     @Schema(name = "IFHMBSAPEAICDPP0010Payload.Request")
     @Getter
     @Setter
-    public static class request{
+    public static class Request{
         @Schema(description = "This tag was deactivated. serialNumber should be used instead.", example = "9BHBG51DADP011617")
         @NotNull
         private String intergrationId;
@@ -40,11 +39,11 @@ public class IFHMBSAPEAICDPP0010Payload {
         @Schema(description = "SAP fuel type.", example = "F")
         private String fuel;
         @Schema(description = "Purchase price.", example = "50000")
-        private String purchasePrice;
+        private int purchasePrice;
         @Schema(description = "Manufacture year.", example = "2012")
         private String manufactureYear;
         @Schema(description = "Mileage.", example = "1000")
-        private String mileage;
+        private int mileage;
         @Schema(description = "Sale to dealer date. Format: MM/DD/YYYY", example = "2012.10.25")
         private String saleToDealerDate;
         @Schema(description = "Warranty's start date. Format: MM/DD/YYYY", example = "2012.10.16")
@@ -76,8 +75,8 @@ public class IFHMBSAPEAICDPP0010Payload {
     @Setter
     public static class Response{
         @Schema(description = "Connex error code. Code 0 means success.", example = "0")
-        private String Error_spcCode;
+        private String errorSpcCode;
         @Schema(description = "Connex error message.", example = "OK")
-        private String Error_spcMessage;
+        private String errorSpcMessage;
     }
 }

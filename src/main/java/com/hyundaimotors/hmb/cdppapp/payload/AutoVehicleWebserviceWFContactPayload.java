@@ -10,9 +10,9 @@ public class AutoVehicleWebserviceWFContactPayload {
     @NotNull
     public String connexContactId;
     @Schema(description = "Relationship type between asset and contact. Valid values: Assignee, Driver, Family, First owner, Mechanic, Other, Owner, Unspecified.", example = "Driver")
-    public String type;
-    @Schema(description = "Status of the relationship between asset and contact. Valid values: Active, Inactive.", example = "Ianctive")
-    public String status;
+    public String contactType;
+    @Schema(description = "Status of the relationship between asset and contact. Valid values: Active, Inactive.", example = "Inactive")
+    public String contactStatus;
     @Schema(description = "Is Buyer Employee Flag? Valid values: Y, N.", example = "Y")
     public String employee;
     public String assetRowId; // Dto역할 할 때만 임시로 쓰이는 필드

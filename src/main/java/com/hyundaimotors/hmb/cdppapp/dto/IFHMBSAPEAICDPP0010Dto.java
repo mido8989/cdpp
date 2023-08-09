@@ -12,8 +12,6 @@ import lombok.Setter;
 @Setter
 public class IFHMBSAPEAICDPP0010Dto {
         private String rowId;
-        private String parConId;
-        private String parAccId;
         private String intergrationId;
         private String status;
         private String serialNumber;
@@ -25,9 +23,9 @@ public class IFHMBSAPEAICDPP0010Dto {
         private String internalColorCode;
         private String externalColorCode;
         private String fuel;
-        private String purchasePrice;
+        private int purchasePrice;
         private String manufactureYear;
-        private String mileage;
+        private int mileage;
         private String saleToDealerDate;
         private String warrantyStartDate;
         private String billingDate;
