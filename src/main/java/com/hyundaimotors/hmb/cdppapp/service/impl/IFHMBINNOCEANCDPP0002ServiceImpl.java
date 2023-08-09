@@ -26,6 +26,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
     private final IFHMBINNOCEANCDPP0002Mapper mapper;
 
     public IFHMBINNOCEANCDPP0002Dto insertObject(IFHMBINNOCEANCDPP0002Dto dto)throws Exception{
+        //To_Do : Return ContactId를 Process Id로 변경, Exception Runtime 으로 변경
         List<InboundContactWorkflowCarPayLoad> car = new ArrayList<>();
         List<InboundContactWorkflowAppPayLoad> app = new ArrayList<>();
         List<InboundContactWorkflowSnsPayLoad> socialMedia = new ArrayList<>();
