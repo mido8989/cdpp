@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class IFHMBZICARDCDPP0007Dto {
+    private String rowId;
     private String assetId;
     private String contactId;
     private String relationShip;
