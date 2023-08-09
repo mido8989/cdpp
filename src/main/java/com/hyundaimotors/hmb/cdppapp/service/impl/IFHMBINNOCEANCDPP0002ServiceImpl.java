@@ -50,8 +50,8 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             HashMap<String, String> map = new HashMap<>();
             map.put("PARAM_ID", dto.getRowId());
             
-            //mapper.transferProcess(map);
-            //mapper.transferReplica(map);
+            mapper.transferProcess(map);
+            mapper.transferReplica(map);
             
             dto.setContactId(dto.getRowId());
             dto.setError_spcCode("0");
