@@ -35,7 +35,7 @@ public class IFHMBZICARDCDPP0007Controller {
         
         int resultNum = service.upsertObject(dto);
 
-        if( resultNum > 0) {
+        if( resultNum == 2) {
             dto.setErrorSpcCode("0");
             dto.setErrorSpcMessage("OK");
             dto.setNumAffRow("100");

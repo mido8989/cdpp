@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,14 +19,36 @@ public class IFHMBZICARDCDPP0007ServiceImpl implements IFHMBZICARDCDPP0007Servic
     private final IFHMBZICARDCDPP0007Mapper mapper;
 
     public int upsertObject(IFHMBZICARDCDPP0007Dto dto)throws Exception{
-        int parRowCheckNum = mapper.getParRowCheck(dto);
+        int assetExistNum = mapper.getAssetExistNum(dto);
+        int contactExistNum = mapper.getContactExistNum(dto);
+        int assetConNum = mapper.getAssetConNum(dto);
         int resultNum = 0;
-        if(parRowCheckNum > 0 ){
-            resultNum = mapper.updateObject(dto);
-        }else{
-            resultNum = mapper.insertObject(dto);
+
+        resultNum = assetExistNum + contactExistNum;
+        if(assetExistNum + contactExistNum == 2 ){
+           if(assetConNum > 0){
+                mapper.updateObject(dto);
+                
+                HashMap<String, String> map = new HashMap<String, String>();
+
+                map.put("PARAM_ID", dto.getRowId());
+
+                map.put("checkcu",  "update");
+                
+                mapper.transferProcess(map);
+
+           }else{
+                mapper.insertObject(dto);
+
+                HashMap<String, String> map = new HashMap<String, String>();
+
+                map.put("PARAM_ID", dto.getRowId());
+
+                map.put("checkcu",  "insert");
+                
+                mapper.transferProcess(map);
+           }
         }
         return resultNum;
     }
-    
 }
