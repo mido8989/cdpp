@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002Dto;
-import com.hyundaimotors.hmb.cdppapp.dto.s_contactDto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002Car;
-import com.hyundaimotors.hmb.cdppapp.dto.s_contact_xmDto;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowCarPayLoad;
 
 public interface IFHMBINNOCEANCDPP0002Mapper {

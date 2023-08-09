@@ -22,6 +22,7 @@ public class IFHMBINNOCEANCDPP0046ServiceImpl implements IFHMBINNOCEANCDPP0046Se
     public IFHMBINNOCEANCDPP0046Dto insertList(IFHMBINNOCEANCDPP0046Dto dto)throws Exception{
         String parRowId = mapper.getParRowId(dto);
         dto.setParRowId(parRowId);
+        
         int resDeleteNum = mapper.deleteList(dto);
 
         int resInsertNum = mapper.insertList(dto);

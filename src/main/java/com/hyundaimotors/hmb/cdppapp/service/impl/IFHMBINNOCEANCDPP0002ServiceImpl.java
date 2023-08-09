@@ -8,13 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002Dto;
-import com.hyundaimotors.hmb.cdppapp.dto.s_contact_xmDto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0002Mapper;
-import com.hyundaimotors.hmb.cdppapp.mapper.impl.CdppMapper;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowAppPayLoad;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowCarPayLoad;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowHobbyPayLoad;
-import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowPayLoad;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowSnsPayLoad;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowSoccerTeamPayLoad;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0002Service;
@@ -53,8 +50,8 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             HashMap<String, String> map = new HashMap<>();
             map.put("PARAM_ID", dto.getRowId());
             
-            mapper.transferProcess(map);
-            mapper.transferReplica(map);
+            //mapper.transferProcess(map);
+            //mapper.transferReplica(map);
             
             dto.setContactId(dto.getRowId());
             dto.setError_spcCode("0");
