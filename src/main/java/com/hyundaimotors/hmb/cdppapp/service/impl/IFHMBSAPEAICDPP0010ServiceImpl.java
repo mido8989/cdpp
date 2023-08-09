@@ -24,8 +24,6 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
     
     public IFHMBSAPEAICDPP0010Dto UpsertAutoVehicle(IFHMBSAPEAICDPP0010Dto dto)throws Exception{
 
-        System.out.println("IFHMBSAPEAICDPP0010Dto ===== > " + Json.pretty(dto));
-
         List<AutoVehicleWebserviceWFContactPayload> contact = new ArrayList<>();
         List<AutoVehicleWebserviceWFAccountPayload> account = new ArrayList<>();
 
@@ -39,18 +37,14 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             dto.setRowId(dtoList.get(0).getRowId());
 
             mapper.UpdateAutoVehicle(dto);
-            System.out.println("=== UpdateAutoVehicle OK ===");
             mapper.UpdateSAssetXDto(dto);
-            System.out.println("=== UpdateSAssetXDto OK ===");
             mapper.UpdateSAssetAtxDto(dto);
-            System.out.println("=== UpdateSAssetAtxDto OK ===");
             
             if (contact != null && contact.size() > 0) {
                 for (AutoVehicleWebserviceWFContactPayload cont : contact) {
                     cont.setAssetRowId(dto.getRowId());
                 }       
                 mapper.UpdateSAssetConDtoList(contact);     
-                System.out.println("=== UpdateSAssetConDtoList OK ===");
             }
             
             if (account != null && account.size() > 0){
@@ -58,28 +52,21 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
                     acct.setAssetRowId(dto.getRowId());
                 }       
                 mapper.UpdateSAssetAccntDtoList(account);   
-                System.out.println("=== UpdateSAssetAccntDtoList OK ===");
             }
             
         } else {
             
             
             mapper.InsertAutoVehicle(dto);
-            System.out.println("=== InsertAutoVehicle OK === rowId ==== > " + dto.getRowId());
             mapper.InsertSAssetXDto(dto);
-            System.out.println("=== InsertSAssetXDto OK ===");
             mapper.InsertSAssetAtxDto(dto);
-            System.out.println("=== InsertSAssetAtxDto OK ===");
             
-            System.out.println("contact size ==== > " + contact.size());
             if (contact != null && contact.size() > 0) {                
                 for (AutoVehicleWebserviceWFContactPayload cont : contact) {
                     cont.setAssetRowId(dto.getRowId());
                 }       
                 mapper.InsertSAssetConDtoList(contact);
-                System.out.println("=== InsertSAssetConDtoList OK ===");
                 mapper.UpdateSConDtoList(contact);
-                System.out.println("=== UpdateSConDtoList OK ===");
                 
             }
             
@@ -88,7 +75,6 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
                     acct.setAssetRowId(dto.getRowId());
                 }       
                 mapper.InsertSAssetAccDtoList(account);
-                System.out.println("=== InsertSAssetAccDtoList OK ===");
             }
         }
 

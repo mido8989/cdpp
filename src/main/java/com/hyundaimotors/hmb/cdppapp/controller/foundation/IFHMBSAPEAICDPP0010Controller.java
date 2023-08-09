@@ -34,8 +34,6 @@ public class IFHMBSAPEAICDPP0010Controller {
         
         ModelMapper modelMapper = new ModelMapper();
 
-        System.out.println("request ==== > " + Json.pretty(request));
-
         IFHMBSAPEAICDPP0010Dto dto = modelMapper.map(request, IFHMBSAPEAICDPP0010Dto.class);
 
         IFHMBSAPEAICDPP0010Dto resultDto = service.UpsertAutoVehicle(dto);
