@@ -31,7 +31,7 @@
             contact_id = #{contactId}
     </select>
 
-    <insert id="insertObject" parameterType="IFHMBZICARDCDPP0007Dto"  useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+    <insert id="insertObject" parameterType="IFHMBZICARDCDPP0007Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.s_asset_con 
             (
                 asset_id
@@ -56,7 +56,7 @@
             );
     </insert>
 
-    <update id="updateObject" parameterType="IFHMBZICARDCDPP0007Dto">
+    <update id="updateObject" parameterType="IFHMBZICARDCDPP0007Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         update landing.s_asset_con
         set 
         relation_type_cd = #{relationShip}
