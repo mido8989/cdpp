@@ -2,7 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBMAPFRECDPP0009Mapper">
     
-    <select id="getCheckoutRowId" parameterType="IFHMBMAPFRECDPP0009Dto" resultType="IFHMBMAPFRECDPP0009Dto">
+    <select id="getAssetCount" parameterType="IFHMBMAPFRECDPP0009Dto" resultType="Integer">
+        select
+            count(row_id)
+        from
+            landing.s_asset
+        where 
+            serial_num = #{serialNumber}
+    </select>
+    
+    <select id="getCheckoutRowId" parameterType="IFHMBMAPFRECDPP0009Dto" resultType="Integer">
         select 
             count(csrx.row_id)
         from
@@ -11,11 +20,182 @@
             csrx.integration_id = #{claimId}
     </select>
 
-    <insert id="insertObject" parameterType="IFHMBMAPFRECDPP0009Dto">
-        
+    <insert id="insertObject" parameterType="IFHMBMAPFRECDPP0009Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into landing.CX_SR_RSA_X
+        (
+            par_row_id
+            , INTEGRATION_ID
+            , REQ_FIRST_NAME
+            , REQ_LAST_NAME
+            , REQ_DOCUMENT
+            , REQ_VEHICLE_REL
+            , CLAIM_DATE
+            , CLAIM_REASON
+            , BRKDWN_DESC
+            , BRKDWN_CD
+            , BRKDWN_NATURE
+            , STATUS_CD
+            , EFF_START_DATE
+            , EFF_END_DATE
+            , EXCHANGE_DATE
+            , MILEAGE
+            , created_by
+            , created
+            , last_upd_by
+            , last_upd
+        )values(
+            'interface'
+            , #{claimId}
+            , #{requesterFirstName}
+            , #{requesterLastName}
+            , #{requesterDocument}
+            , #{requesterRelationship}
+            , to_date(#{createDate},'YYYY-MM-DD')
+            , #{reason}
+            , #{breakdownDescription}
+            , #{breakdownCode}
+            , #{breakdownNature}
+            , #{claimStatus}
+            , to_date(#{effectiveStartDate},'YYYY-MM-DD')
+            , to_date(#{effectiveEndDate},'YYYY-MM-DD')
+            , to_date(#{exchangeDate},'YYYY-MM-DD')
+            , #{vehicleMileage}
+            , 'interface'
+            , now()
+            , 'interface'
+            , now()
+        )
+        ;
     </insert>
 
-    <update id="updateObject" parameterType="IFHMBMAPFRECDPP0009Dto">
+    <update id="updateObject" parameterType="IFHMBMAPFRECDPP0009Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        update landing.CX_SR_RSA_X set 
+            REQ_FIRST_NAME = #{requesterFirstName}
+            , REQ_LAST_NAME = #{requesterLastName}
+            , REQ_DOCUMENT = #{requesterDocument}
+            , REQ_VEHICLE_REL = #{requesterRelationship}
+            , CLAIM_DATE = to_date(#{createDate},'YYYY-MM-DD')
+            , CLAIM_REASON = #{reason}
+            , BRKDWN_DESC = #{breakdownDescription}
+            , BRKDWN_CD = #{breakdownCode}
+            , BRKDWN_NATURE = #{breakdownNature}
+            , STATUS_CD = #{claimStatus}
+            , EFF_START_DATE = to_date(#{effectiveStartDate},'YYYY-MM-DD')
+            , EFF_END_DATE = to_date(#{effectiveEndDate},'YYYY-MM-DD')
+            , EXCHANGE_DATE = to_date(#{exchangeDate},'YYYY-MM-DD')
+            , MILEAGE = #{vehicleMileage}
+            , last_upd_by = 'interface'
+            , last_upd = now()
+        where 
+            INTEGRATION_ID = #{claimId}
+    </update>
 
+    <select id="rasServiceCheck" parameterType="IFHMBMAPFRECDPP0009RSAServicePayload" resultType="Integer">
+        select 
+            count(row_id)
+        from 
+            landing.S_SRV_REQ_XM
+        where 
+            "type" = 'RSA'
+        and 
+            name = #{serviceId}
+    </select>
+
+    <insert id="insertResSetvice" parameterType="IFHMBMAPFRECDPP0009RSAServicePayload">
+        insert into landing.s_srv_req_xm
+            (
+                par_row_id
+                , type
+                , NAME
+                , ATTRIB_26
+                , ATTRIB_35
+                , ATTRIB_36
+                , ATTRIB_01
+                , ATTRIB_37
+                , X_ATTRIB_50
+                , ATTRIB_14
+                , X_ATTRIB_51
+                , ATTRIB_38
+                , ATTRIB_39
+                , ATTRIB_47
+                , ATTRIB_05
+                , ATTRIB_02
+                , ATTRIB_44
+                , ATTRIB_45
+                , ATTRIB_40
+                , ATTRIB_15
+                , ATTRIB_16
+                , X_ATTRIB_48
+                , ATTRIB_06
+                , ATTRIB_46
+                , X_ATTRIB_49
+                , ATTRIB_07
+                , created_by
+                , created
+                , last_upd_by
+                , last_upd
+            )values(
+                'interface'
+                , 'RSA'
+                , #{serviceId}
+                , to_date(#{createDate},'YYYY-MM-DD')
+                , #{serviceCode}
+                , #{specialty}
+                , #{provider}
+                , #{vehicleProblem}
+                , #{problemDescription}
+                , #{tmcPredicted}
+                , #{important}
+                , #{requestStatus}
+                , #{actuationStatus}
+                , #{addressName}
+                , #{addressNumber}
+                , #{addressComplement}
+                , #{county}
+                , #{city}
+                , #{state}
+                , #{latitude}
+                , #{longitude}
+                , #{reference}
+                , #{zipCode}
+                , #{dealerName}
+                , #{dealerNickname}
+                , #{expense}
+                , 'interface'
+                , now()
+                , 'interface'
+                , now()
+            )
+    </insert>
+
+    <update id="updateResSetvice" parameterType="IFHMBMAPFRECDPP0009RSAServicePayload">
+        update landing.s_srv_req_xm set
+            ATTRIB_26 = to_date(#{createDate},'YYYY-MM-DD')
+            , ATTRIB_35 = #{serviceCode}
+            , ATTRIB_36 = #{specialty}
+            , ATTRIB_01 = #{provider}
+            , ATTRIB_37 = #{vehicleProblem}
+            , X_ATTRIB_50 = #{problemDescription}
+            , ATTRIB_14 = #{tmcPredicted}
+            , X_ATTRIB_51 = #{important}
+            , ATTRIB_38 = #{requestStatus}
+            , ATTRIB_39 = #{actuationStatus}
+            , ATTRIB_47 = #{addressName}
+            , ATTRIB_05 = #{addressNumber}
+            , ATTRIB_02 = #{addressComplement}
+            , ATTRIB_44 = #{county}
+            , ATTRIB_45 = #{city}
+            , ATTRIB_40 = #{state}
+            , ATTRIB_15 = #{latitude}
+            , ATTRIB_16 = #{longitude}
+            , X_ATTRIB_48 = #{reference}
+            , ATTRIB_06 = #{zipCode}
+            , ATTRIB_46 = #{dealerName}
+            , X_ATTRIB_49 = #{dealerNickname}
+            , ATTRIB_07 = #{expense}
+            , last_upd_by = 'interface'
+            , last_upd = now()
+        where 
+            name = #{serviceId}
     </update>
 </mapper>

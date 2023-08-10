@@ -26,7 +26,7 @@ public class IFHMBZICARDCDPP0007ServiceImpl implements IFHMBZICARDCDPP0007Servic
 
         resultNum = assetExistNum + contactExistNum;
         if(assetExistNum + contactExistNum == 2 ){
-           if(assetConNum > 0){
+           if(0 < assetConNum){
                 mapper.updateObject(dto);
                 
                 HashMap<String, String> map = new HashMap<String, String>();

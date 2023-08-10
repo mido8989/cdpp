@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
-@Schema(name = "IFHMBMAPFRECDPP0009Payload.Request")
+@Schema(name = "IFHMBMAPFRECDPP0009RSAServicePayload")
 @Getter
 @Setter
 public class IFHMBMAPFRECDPP0009RSAServicePayload {
@@ -23,7 +23,7 @@ public class IFHMBMAPFRECDPP0009RSAServicePayload {
     @Schema(description = "Problem Description", example = "VCL N00C3O LIGA")
     private String problemDescription;
     @Schema(description = "Expected Arrival", example = "1230000")
-    private String tmcPredicted;
+    private int tmcPredicted;
     @Schema(description = "Important Description", example = "VCL EM GARANTIA // SOMENTE RECARGA DE BATERIA // VCL NO 2\u00BA SUBSOLO // AGILIDADE CLT ATRASADO")
     private String important;
     @Schema(description = "Request Status", example = "1")
@@ -43,9 +43,9 @@ public class IFHMBMAPFRECDPP0009RSAServicePayload {
     @Schema(description = "Address state.", example = "S00E3o Paulo ")
     private String state;
     @Schema(description = "Address latitude", example = "1230000")
-    private String latitude;
+    private int latitude;
     @Schema(description = "Address longitude", example = "1230000")
-    private String longitude;
+    private int longitude;
     @Schema(description = "Address reference", example = "G2 // PROX AO MERCADO PRINCESA // PROX A RENAULT")
     private String reference;
     @Schema(description = "Address zip code.", example = "4007001")
