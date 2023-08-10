@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
-@Tag(name = "HMB Auto Vehicle WS", description = "UpsertAutoVehicle")
+@Tag(name = "HMB Auto Vehicle Webservice WF", description = "UpsertAutoVehicle")
 @RestController
 @RequiredArgsConstructor
 public class IFHMBSAPEAICDPP0010Controller {

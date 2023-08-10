@@ -68,6 +68,13 @@
         ;
     </insert>
 
+    <update id="updateParRowId" parameterType="IFHMBMAPFRECDPP0009Dto">
+        update landing.CX_SR_RSA_X set
+            par_row_id = #{rowId}
+        where
+            row_id = #{rowId}    
+    </update>
+
     <update id="updateObject" parameterType="IFHMBMAPFRECDPP0009Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         update landing.CX_SR_RSA_X set 
             REQ_FIRST_NAME = #{requesterFirstName}
@@ -90,18 +97,22 @@
             INTEGRATION_ID = #{claimId}
     </update>
 
-    <select id="rasServiceCheck" parameterType="IFHMBMAPFRECDPP0009RSAServicePayload" resultType="Integer">
+    <select id="rasServiceCheck" parameterType="IFHMBMAPFRECDPP0009RSAServicePayDto" resultType="Integer">
         select 
             count(row_id)
         from 
             landing.S_SRV_REQ_XM
         where 
             "type" = 'RSA'
+        and
+            par_row_id = #{rowId}
         and 
             name = #{serviceId}
+        and
+            ATTRIB_26 = to_date(#{createDate},'YYYY-MM-DD')
     </select>
 
-    <insert id="insertResSetvice" parameterType="IFHMBMAPFRECDPP0009RSAServicePayload">
+    <insert id="insertResSetvice" parameterType="IFHMBMAPFRECDPP0009RSAServicePayDto">
         insert into landing.s_srv_req_xm
             (
                 par_row_id
@@ -135,7 +146,7 @@
                 , last_upd_by
                 , last_upd
             )values(
-                'interface'
+                #{rowId}
                 , 'RSA'
                 , #{serviceId}
                 , to_date(#{createDate},'YYYY-MM-DD')
@@ -168,7 +179,7 @@
             )
     </insert>
 
-    <update id="updateResSetvice" parameterType="IFHMBMAPFRECDPP0009RSAServicePayload">
+    <update id="updateResSetvice" parameterType="IFHMBMAPFRECDPP0009RSAServicePayDto">
         update landing.s_srv_req_xm set
             ATTRIB_26 = to_date(#{createDate},'YYYY-MM-DD')
             , ATTRIB_35 = #{serviceCode}
@@ -196,6 +207,8 @@
             , last_upd_by = 'interface'
             , last_upd = now()
         where 
+            par_row_id = #{rowId}
+        and
             name = #{serviceId}
     </update>
 </mapper>

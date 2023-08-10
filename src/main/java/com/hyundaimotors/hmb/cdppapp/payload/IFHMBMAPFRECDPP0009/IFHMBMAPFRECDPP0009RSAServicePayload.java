@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class IFHMBMAPFRECDPP0009RSAServicePayload {
+    
     @Schema(description = "Integration Id", example = "Conveni 00EAncia-Rede el 00E1stica para porta-malas")
     private String serviceId;
     @Schema(description = "Service Date", example = "2015-08-09")

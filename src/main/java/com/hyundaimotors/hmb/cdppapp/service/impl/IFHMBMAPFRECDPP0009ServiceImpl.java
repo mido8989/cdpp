@@ -1,9 +1,11 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBMAPFRECDPP0009Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013.IFHMBMAPFRECDPP0009RSAServicePayDto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0046Mapper;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBMAPFRECDPP0009Mapper;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBMAPFRECDPP0009.IFHMBMAPFRECDPP0009RSAServicePayload;
@@ -35,18 +37,19 @@ public class IFHMBMAPFRECDPP0009ServiceImpl implements IFHMBMAPFRECDPP0009Servic
 
         rowIdCount = mapper.getCheckoutRowId(dto);
 
-       
-
         if(0 < assetCount){
             if(0 < rowIdCount){
                 resultNum = mapper.updateObject(dto);
 
                 if(resSetviceList.size() > 0){
                     for(int i=0; i<resSetviceList.size();i++){
+                        ModelMapper modelMapper = new ModelMapper();
                         int rasServiceCheckNum = 0;
-                        IFHMBMAPFRECDPP0009RSAServicePayload rasService = new IFHMBMAPFRECDPP0009RSAServicePayload();
-
-                        rasService = resSetviceList.get(i);
+                        IFHMBMAPFRECDPP0009RSAServicePayDto rasService = new IFHMBMAPFRECDPP0009RSAServicePayDto();
+                        
+                        rasService = modelMapper.map(resSetviceList.get(i), IFHMBMAPFRECDPP0009RSAServicePayDto.class);
+                         
+                        rasService.setRowId(dto.getRowId());
 
                         rasServiceCheckNum = mapper.rasServiceCheck(rasService);
                         
@@ -60,6 +63,7 @@ public class IFHMBMAPFRECDPP0009ServiceImpl implements IFHMBMAPFRECDPP0009Servic
 
             }else{
                 resultNum = mapper.insertObject(dto);
+                resultNum = mapper.updateParRowId(dto);
             }
             
             if(0 < resultNum){
@@ -70,6 +74,9 @@ public class IFHMBMAPFRECDPP0009ServiceImpl implements IFHMBMAPFRECDPP0009Servic
                 resultDto.setErrorSpcMessage("fail");
             }
             
+        }else{
+                resultDto.setErrorSpcCode("1");
+                resultDto.setErrorSpcMessage("fail");
         }
         
         return resultDto;
