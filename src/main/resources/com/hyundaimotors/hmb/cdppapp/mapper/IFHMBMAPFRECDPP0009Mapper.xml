@@ -211,4 +211,7 @@
         and
             name = #{serviceId}
     </update>
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.hmb_auto_vehicle_rsa_claim_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
 </mapper>

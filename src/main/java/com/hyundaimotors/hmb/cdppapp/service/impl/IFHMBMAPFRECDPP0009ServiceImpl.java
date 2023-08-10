@@ -12,6 +12,7 @@ import com.hyundaimotors.hmb.cdppapp.payload.IFHMBMAPFRECDPP0009.IFHMBMAPFRECDPP
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBMAPFRECDPP0009Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 
@@ -61,9 +62,23 @@ public class IFHMBMAPFRECDPP0009ServiceImpl implements IFHMBMAPFRECDPP0009Servic
                     }
                 }
 
+                HashMap<String, String> map = new HashMap<>();
+
+                map.put("PARAM_ID", dto.getRowId());
+                map.put("checkcu", "update");
+
+                mapper.transferProcess(map);
+
             }else{
                 resultNum = mapper.insertObject(dto);
                 resultNum = mapper.updateParRowId(dto);
+
+                HashMap<String, String> map = new HashMap<>();
+
+                map.put("PARAM_ID", dto.getRowId());
+                map.put("checkcu", "insert");
+
+                mapper.transferProcess(map);
             }
             
             if(0 < resultNum){

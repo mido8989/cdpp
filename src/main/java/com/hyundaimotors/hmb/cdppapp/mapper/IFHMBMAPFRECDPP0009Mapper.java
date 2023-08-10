@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.mapper;
 
+import java.util.HashMap;
+
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBMAPFRECDPP0009Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013.IFHMBMAPFRECDPP0009RSAServicePayDto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBMAPFRECDPP0009.IFHMBMAPFRECDPP0009RSAServicePayload;
@@ -21,4 +23,6 @@ public interface IFHMBMAPFRECDPP0009Mapper {
     public int insertResSetvice(IFHMBMAPFRECDPP0009RSAServicePayDto dto)throws Exception;
 
     public int updateResSetvice(IFHMBMAPFRECDPP0009RSAServicePayDto dto)throws Exception;
+
+    public void transferProcess(HashMap<String, String> parMap)throws Exception;
 }
