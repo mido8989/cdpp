@@ -47,7 +47,7 @@ public class IFHMBMAPFRECDPP0009Payload {
         @Schema(description = "Vehicle License Number", example = "FCK1760")
         private String vehiclePlate;
         @Schema(description = "RSA Mileage", example = "900")
-        private String vehicleMileage;
+        private int vehicleMileage;
         List<IFHMBMAPFRECDPP0009RSAServicePayload> rsaSetvice;
     }
 

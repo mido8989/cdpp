@@ -36,13 +36,11 @@ public class IFHMBMAPFRECDPP0009Controller {
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBMAPFRECDPP0009Payload.Request.class)))
     @PostMapping(value = "/api/v1/HMBAutoVehicleRSAClaimWS")
     public Object upsertObject(@RequestBody IFHMBMAPFRECDPP0009Payload.Request request)throws Exception{
-         /*IFHMBMAPFRECDPP0009Dto dto = defaultMapper.map(request, IFHMBMAPFRECDPP0009Dto.class);
+         IFHMBMAPFRECDPP0009Dto dto = defaultMapper.map(request, IFHMBMAPFRECDPP0009Dto.class);
 
          IFHMBMAPFRECDPP0009Dto resultDto = service.upsertObject(dto);
 
-         return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBMAPFRECDPP0009Payload.Response.class) : null;*/
-
-         return "";
+         return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBMAPFRECDPP0009Payload.Response.class) : null;
          
     }
 }
