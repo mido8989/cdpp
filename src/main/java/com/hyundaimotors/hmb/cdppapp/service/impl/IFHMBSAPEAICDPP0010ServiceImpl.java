@@ -1,6 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -53,7 +54,12 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
                 }       
                 mapper.UpdateSAssetAccntDtoList(account);   
             }
-            
+            HashMap<String, String> map = new HashMap<>();
+            map.put("PARAM_ID", dto.getRowId());
+            map.put("checkcu", "update");
+
+            mapper.transferProcess(map);
+            mapper.transferReplica(map);
         } else {
             
             
@@ -76,6 +82,12 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
                 }       
                 mapper.InsertSAssetAccDtoList(account);
             }
+            HashMap<String, String> map = new HashMap<>();
+            map.put("PARAM_ID", dto.getRowId());
+            map.put("checkcu", "insert");
+
+            mapper.transferProcess(map);
+            mapper.transferReplica(map);
         }
 
         
