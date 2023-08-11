@@ -1,5 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0010Dto;
@@ -31,5 +32,9 @@ public interface IFHMBSAPEAICDPP0010Mapper {
     public int UpdateSAssetConDtoList(List<AutoVehicleWebserviceWFContactPayload> contact) throws Exception;
     
     public int UpdateSAssetAccntDtoList(List<AutoVehicleWebserviceWFAccountPayload> account) throws Exception;
+
+    public void transferProcess(HashMap<String, String> parMap)throws Exception;
+
+    public void transferReplica(HashMap<String, String> replicaMap)throws Exception;
     
 }
