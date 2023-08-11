@@ -10,6 +10,15 @@
             serial_num = #{serialNumber}
     </select>
 
+    <select id="getProductRowId" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="string">
+        select 
+            row_id as productRowId
+        from
+            landing.s_prod_int spi
+        where 
+            "name" = #{fscOcn}
+    </select>
+
     <insert id="InsertAutoVehicle" parameterType="IFHMBSAPEAICDPP0010Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.s_asset (
             status_cd
@@ -20,6 +29,7 @@
             , oper_status_cd
             , ownr_type_cd
             , dlr_con_int_id
+            , prod_id
             , created
             , created_by
             , last_upd
@@ -33,6 +43,7 @@
             , #{negotiationType}
             , #{subscriptionType}
             , #{salesrepId}
+            , #{productRowId}
             , now()
             , 'interface'
             , now()

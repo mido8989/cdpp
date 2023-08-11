@@ -61,7 +61,9 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             mapper.transferProcess(map);
             mapper.transferReplica(map);
         } else {
-            
+            String productRowId = "";
+            productRowId = mapper.getProductRowId(dto);
+            dto.setProductRowId(productRowId);
             
             mapper.InsertAutoVehicle(dto);
             mapper.InsertSAssetXDto(dto);
