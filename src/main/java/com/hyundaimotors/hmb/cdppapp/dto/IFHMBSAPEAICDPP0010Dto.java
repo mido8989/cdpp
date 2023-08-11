@@ -11,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class IFHMBSAPEAICDPP0010Dto {
+        private String productRowId;
         private String rowId;
         private String intergrationId;
         private String status;

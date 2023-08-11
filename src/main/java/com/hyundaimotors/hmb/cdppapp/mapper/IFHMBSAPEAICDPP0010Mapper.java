@@ -10,6 +10,8 @@ import com.hyundaimotors.hmb.cdppapp.payload.AutoVehicleWebserviceWFContactPaylo
 public interface IFHMBSAPEAICDPP0010Mapper {
     
     public List<IFHMBSAPEAICDPP0010Dto> getRowCheck(IFHMBSAPEAICDPP0010Dto dto) throws Exception;
+
+    public String getProductRowId(IFHMBSAPEAICDPP0010Dto dto) throws Exception;
         
     public int InsertAutoVehicle(IFHMBSAPEAICDPP0010Dto dto) throws Exception;
 
