@@ -30,27 +30,14 @@ public class IFHMBSAPEAICDPP0003Controller {
 
     private final ModelMapper defaultMapper;
     
-    @Operation(summary = "Vehicle insert", description = "Vehicle insert")
+    @Operation(summary = "Vehicle upsert", description = "Vehicle insert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0003Payload.Response.class)))
     @PostMapping(value = "/insert")
     public Object insertObject(@RequestBody IFHMBSAPEAICDPP0003Payload.Request request)throws Exception{
 
         IFHMBSAPEAICDPP0003Dto dto = defaultMapper.map(request, IFHMBSAPEAICDPP0003Dto.class);
 
-        IFHMBSAPEAICDPP0003Dto resultDto = service.insertObject(dto);
-
-        return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBSAPEAICDPP0003Payload.Response.class) : null;
-        
-    }
-
-    @Operation(summary = "Vehicle update", description = "Vehicle update")
-    @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0003Payload.Response.class)))
-    @PostMapping(value = "/update")
-    public Object updateObject(@RequestBody IFHMBSAPEAICDPP0003Payload.Request request)throws Exception{
-
-        IFHMBSAPEAICDPP0003Dto dto = defaultMapper.map(request, IFHMBSAPEAICDPP0003Dto.class);
-
-        IFHMBSAPEAICDPP0003Dto resultDto = service.updateObject(dto);
+        IFHMBSAPEAICDPP0003Dto resultDto = service.upsertObject(dto);
 
         return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBSAPEAICDPP0003Payload.Response.class) : null;
         

@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0003Mapper">
     
+    <select id="getProductIdCheckNum" parameterType="IFHMBSAPEAICDPP0003Dto" resultType="Integer">
+        select 
+            row_id as productIdCheckNum
+        from    
+            landing.S_PROD_INT
+        where
+            NAME = #{name}
+    </select>
+
     <insert id="insertProd" parameterType="IFHMBSAPEAICDPP0003Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.S_PROD_INT
         (
