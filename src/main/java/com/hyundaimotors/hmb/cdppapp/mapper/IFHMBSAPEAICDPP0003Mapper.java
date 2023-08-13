@@ -6,6 +6,8 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0003Dto;
 
 public interface IFHMBSAPEAICDPP0003Mapper {
     
+    public int getProductIdCheckNum(IFHMBSAPEAICDPP0003Dto dto)throws Exception;
+
     public int insertProd(IFHMBSAPEAICDPP0003Dto dto)throws Exception;
 
     public int insertProdx(IFHMBSAPEAICDPP0003Dto dto)throws Exception;
