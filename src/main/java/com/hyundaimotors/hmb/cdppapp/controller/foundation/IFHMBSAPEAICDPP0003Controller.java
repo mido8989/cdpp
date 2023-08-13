@@ -22,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 @Tag(name = "HMB Product Inbound WF", description = "SAP, EAI list Interface")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/HMBProductInboundWF")
 public class IFHMBSAPEAICDPP0003Controller {
     
     @Autowired
@@ -32,7 +31,7 @@ public class IFHMBSAPEAICDPP0003Controller {
     
     @Operation(summary = "Vehicle upsert", description = "Vehicle insert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0003Payload.Response.class)))
-    @PostMapping(value = "/insert")
+    @PostMapping(value = "/api/v1/HMBProductInboundWF/upsert")
     public Object insertObject(@RequestBody IFHMBSAPEAICDPP0003Payload.Request request)throws Exception{
 
         IFHMBSAPEAICDPP0003Dto dto = defaultMapper.map(request, IFHMBSAPEAICDPP0003Dto.class);
