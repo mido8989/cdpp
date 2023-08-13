@@ -162,18 +162,18 @@
     </update>
     
     <insert id="insertProcessAccount" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, 'insert');
+        call process.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>
 
     <update id="updateProcessAccount" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, 'update');
+        call process.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </update>
 
     <insert id="insertReplicaAccount" statementType="CALLABLE" parameterType="hashMap">
-        call replica.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, 'insert');
+        call replica.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>
 
     <update id="updateReplicaAccount" statementType="CALLABLE" parameterType="hashMap">
-        call replica.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, 'update');
+        call replica.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </update>
 </mapper>

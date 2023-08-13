@@ -32,6 +32,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
 
             HashMap<String, String> parMap = new HashMap<String, String>();
             parMap.put("PARAM_ID", dto.getRowId());
+            parMap.put("checkcu", "update");
 
             mapper.updateProcessAccount(parMap);
             mapper.updateProcessAccount(parMap);
@@ -50,6 +51,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
 
             HashMap<String, String> parMap = new HashMap<String, String>();
             parMap.put("PARAM_ID", dto.getRowId());
+            parMap.put("checkcu", "insert");
 
             mapper.insertProcessAccount(parMap);
             mapper.insertReplicaAccount(parMap);
