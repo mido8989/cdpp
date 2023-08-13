@@ -4,7 +4,7 @@
     
     <select id="getProductIdCheckNum" parameterType="IFHMBSAPEAICDPP0003Dto" resultType="Integer">
         select 
-            row_id as productIdCheckNum
+            count(row_id) as productIdCheckNum
         from    
             landing.S_PROD_INT
         where
