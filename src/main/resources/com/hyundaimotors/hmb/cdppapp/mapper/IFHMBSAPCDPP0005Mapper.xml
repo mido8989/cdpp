@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0005Mapper">
     
+    <select id="getAccountCheckNum" parameterType="IFHMBSAPCDPP0005Dto" resultType="Integer">
+        select 
+            count(row_id) as accountCheckNum
+        from
+            landing.S_ORG_EXT
+        where
+            INTEGRATION_ID = #{integrationId}
+    </select>
+
     <insert id="insertSoe" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.S_ORG_EXT
             (

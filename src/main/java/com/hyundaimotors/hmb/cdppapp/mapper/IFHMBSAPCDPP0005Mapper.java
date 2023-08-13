@@ -5,6 +5,8 @@ import java.util.HashMap;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0005Dto;
 
 public interface IFHMBSAPCDPP0005Mapper {
+
+    public int getAccountCheckNum(IFHMBSAPCDPP0005Dto dto)throws Exception;
     
     public int insertSoe(IFHMBSAPCDPP0005Dto dto)throws Exception;
 
