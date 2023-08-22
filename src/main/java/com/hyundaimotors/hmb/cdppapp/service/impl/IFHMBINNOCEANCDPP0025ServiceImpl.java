@@ -5,7 +5,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0025Dto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0025Mapper;
-import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0027Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0025Service;
 
 import lombok.RequiredArgsConstructor;
@@ -23,11 +22,7 @@ public class IFHMBINNOCEANCDPP0025ServiceImpl implements IFHMBINNOCEANCDPP0025Se
 
         int cpfCheck = mapper.getCPFCheck(dto);
 
-        if(0 < cpfCheck){
-            int resultNum = mapper.updateObject(dto);
-        }else{
-            int resultNum = mapper.insertObject(dto);
-        }
+        int resultNum = mapper.insertObject(dto);
 
         resultDto.setErrorSpcCode("0");
         resultDto.setErrorSpcMessage("OK");

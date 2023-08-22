@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0023Mapper">
+
+    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0023Dto"  useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into landing.if_mntsrvc_manage_emp_avail
+        (
+            created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , "source"
+            , employee_cpf
+            , dealer_code
+        )values(
+            now()
+            , 'interface'
+            , now()
+            , 'interface'
+            , #{source}
+            , #{employeeCPF}
+            , #{dealerCode}
+        )
+    </insert>
+
+    <insert id="insertDay" parameterType="IFHMBINNOCEANCDPP0023Dto">
+        insert into landing.if_mntsrvc_manage_emp_avail_day
+        (
+            par_row_id
+            , created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , day_name
+            , period1_start
+            , period1_end
+            , period2_start
+            , period2_end
+            , period3_start
+            , period3_end
+        )values
+        <foreach collection="listOfDays" item="item" separator=",">
+            (
+                #{rowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+                , #{item.dayName}
+                , to_date(#{item.period1Start},'YYYY-MM-DD HH24:MI:SS')
+                , to_date(#{item.period1End},'YYYY-MM-DD HH24:MI:SS')
+                , to_date(#{item.period2Start},'YYYY-MM-DD HH24:MI:SS')
+                , to_date(#{item.period2End},'YYYY-MM-DD HH24:MI:SS')
+                , to_date(#{item.period3Start},'YYYY-MM-DD HH24:MI:SS')
+                , to_date(#{item.period3End},'YYYY-MM-DD HH24:MI:SS')
+            )
+        </foreach>
+    </insert>
+</mapper>

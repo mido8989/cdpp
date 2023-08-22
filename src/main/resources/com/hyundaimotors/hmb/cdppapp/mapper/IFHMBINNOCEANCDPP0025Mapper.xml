@@ -63,34 +63,4 @@
             , to_date(#{serviceDeliverydate},'YYYY-MM-DD HH24:MI:SS')
         );
     </insert>
-
-    <update id="updateObject" parameterType="IFHMBINNOCEANCDPP0025Dto">
-        update landing.hmb_mntsrvc_schedule_maintenance set
-            source = #{source}
-            , srNumber = #{srNumber}
-            , srReason = #{srReason}
-            , srLevel1 = #{srLevel1}
-            , srLevel2 = #{srLevel2}
-            , srLevel3 = #{srLevel3}
-            , srLevel4 = #{srLevel4}
-            , srSource = #{srSource}
-            , srMethod = #{srMethod}
-            , srDescription = #{srDescription}
-            , srPriority = #{srPriority}
-            , srStatus = #{srStatus}
-            , dealerCode = #{dealerCode}
-            , chassis = #{chassis}
-            , customerCPF = #{customerCPF}
-            , consultantCPF = #{consultantCPF}
-            , technicianCPF = #{technicianCPF}
-            , serviceType = #{serviceType}
-            , serviceStatus = #{serviceStatus}
-            , serviceArrivaldate = to_date(#{serviceArrivaldate},'YYYY-MM-DD HH24:MI:SS')
-            , serviceStartdate = to_date(#{serviceStartdate},'YYYY-MM-DD HH24:MI:SS')
-            , serviceDuration = #{serviceDuration}
-            , serviceDeliverydate = to_date(#{serviceDeliverydate},'YYYY-MM-DD HH24:MI:SS')
-        where 
-	        customercpf = #{customerCPF};
-    </update>
-    
 </mapper>
