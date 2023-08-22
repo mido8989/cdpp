@@ -8,6 +8,4 @@ public interface IFHMBINNOCEANCDPP0025Mapper {
     
      public int insertObject(IFHMBINNOCEANCDPP0025Dto dto)throws Exception;
 
-     public int updateObject(IFHMBINNOCEANCDPP0025Dto dto)throws Exception;
-
 }
