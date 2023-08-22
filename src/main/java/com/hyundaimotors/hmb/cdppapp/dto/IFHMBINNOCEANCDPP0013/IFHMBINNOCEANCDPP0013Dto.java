@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Adress;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Contact;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013PartnerType;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Position;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -37,4 +39,6 @@ public class IFHMBINNOCEANCDPP0013Dto {
     private String ErrorSpcMessage;
     List<IFHMBINNOCEANCDPP0013Adress> addressList;
     List<IFHMBINNOCEANCDPP0013Contact> contactList;
+    List<IFHMBINNOCEANCDPP0013PartnerType> partnerTypeList;
+    List<IFHMBINNOCEANCDPP0013Position> positionList;
 }

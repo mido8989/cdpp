@@ -8,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class IFHMBINNOCEANCDPP0013Adress {
-    private String addressRowId;
     @Schema(description = "AddressName, Integration Id", example = "B05AM99999")
     private String addressName;
     @Schema(description = "Address street name.", example = "Av Sao 001")

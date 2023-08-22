@@ -57,6 +57,8 @@ public class IFHMBINNOCEANCDPP0013Payload {
         private String homepage;
         List<IFHMBINNOCEANCDPP0013Adress> addressList;
         List<IFHMBINNOCEANCDPP0013Contact> contactList;
+        List<IFHMBINNOCEANCDPP0013PartnerType> partnerTypeList;
+        List<IFHMBINNOCEANCDPP0013Position> positionList;
     }
 
     @Schema(name = "IFHMBINNOCEANCDPP0013Payload.Response")

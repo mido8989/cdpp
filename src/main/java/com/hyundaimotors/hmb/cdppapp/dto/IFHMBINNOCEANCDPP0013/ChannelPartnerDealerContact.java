@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ChannelPartnerDealerContact {
+    private String rowId;
     private String integrationId;
     private String cpf;
     private String firstName;

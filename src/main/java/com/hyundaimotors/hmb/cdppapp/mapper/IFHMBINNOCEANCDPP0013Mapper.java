@@ -11,27 +11,21 @@ public interface IFHMBINNOCEANCDPP0013Mapper {
     
     public int getRowId(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
 
-    public void insertAccount(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
+    public void insertBusinessAccount(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
+    
+    public void insertAdress(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
 
-    public void insertAccountSub(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
+    public void insertPersonAccount(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
 
-    public void insertAccountPrtnr(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
+    public void insertType(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
+
+    public void insertPosition(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
 
     public void transferProcess(HashMap<String, String> parMap)throws Exception;
 
     public void transferProcessContact(HashMap<String, String> parMap)throws Exception;
 
-    public void insertAddress(IFHMBINNOCEANCDPP0013Adress address)throws Exception;
-
-    public void insertContact(IFHMBINNOCEANCDPP0013Contact contact)throws Exception;
-
     public void updateAccount(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
 
     public void updateAccountSub(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
-
-    public void updateAccountPrtnr(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
-
-    public void updateContact(IFHMBINNOCEANCDPP0013Contact contact)throws Exception;
-
-    public void updateAddress(IFHMBINNOCEANCDPP0013Adress address)throws Exception;
 }

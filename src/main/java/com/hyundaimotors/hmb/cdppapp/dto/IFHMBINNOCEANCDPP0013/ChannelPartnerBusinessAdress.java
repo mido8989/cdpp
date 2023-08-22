@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ChannelPartnerBusinessAdress {
+    private String rowId;
     private String addressName;
     private String streetAddress;
     private String streetAddress2;
