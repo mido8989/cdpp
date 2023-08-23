@@ -25,7 +25,7 @@ public class IFHMBINNOCEANCDPP0023ServiceImpl implements IFHMBINNOCEANCDPP0023Se
 
         mapper.insertDay(dto);
 
-         HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
 
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
