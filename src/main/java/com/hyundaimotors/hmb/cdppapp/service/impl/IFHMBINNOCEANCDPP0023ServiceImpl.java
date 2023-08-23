@@ -29,7 +29,7 @@ public class IFHMBINNOCEANCDPP0023ServiceImpl implements IFHMBINNOCEANCDPP0023Se
 
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
-        //mapper.transferProcess(map);
+        mapper.transferProcess(map);
 
         IFHMBINNOCEANCDPP0023Dto resulDto = new IFHMBINNOCEANCDPP0023Dto();
 
