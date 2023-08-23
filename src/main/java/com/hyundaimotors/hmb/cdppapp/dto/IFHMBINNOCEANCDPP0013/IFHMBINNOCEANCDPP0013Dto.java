@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 public class IFHMBINNOCEANCDPP0013Dto {
     private String integrationId;
-    private String rowId;
+    private int rowId;
     private String cnpj;
     private String name;
     private String nickname;

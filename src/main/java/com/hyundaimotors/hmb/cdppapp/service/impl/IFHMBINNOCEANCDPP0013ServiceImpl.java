@@ -36,6 +36,12 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
         mapper.insertType(dto);
         mapper.insertPosition(dto);
 
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+
+        mapper.transferProcess(map);
+
         resultDto.setErrorSpcCode("0");
         resultDto.setErrorSpcMessage("OK");
         
