@@ -35,12 +35,12 @@
             , to_date(#{excpStartDate},'YYYY-MM-DD')
             , to_date(#{excpEndDate},'YYYY-MM-DD')
             , #{absencePeriod}
-            , to_date(#{period1Start},'YYYY-MM-DD HH24:MI:SS')
-            , to_date(#{period1End},'YYYY-MM-DD HH24:MI:SS')
-            , to_date(#{period2Start},'YYYY-MM-DD HH24:MI:SS')
-            , to_date(#{period2End},'YYYY-MM-DD HH24:MI:SS')
-            , to_date(#{period3Start},'YYYY-MM-DD HH24:MI:SS')
-            , to_date(#{period3End},'YYYY-MM-DD HH24:MI:SS')
+            , #{period1Start}
+            , #{period1End}
+            , #{period2Start}
+            , #{period2End}
+            , #{period3Start}
+            , #{period3End}
             , #{excpDesc}
             , #{source}
         )

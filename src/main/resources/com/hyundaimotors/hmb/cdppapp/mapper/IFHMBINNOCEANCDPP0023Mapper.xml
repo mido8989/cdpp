@@ -47,13 +47,18 @@
                 , now()
                 , 'interface'
                 , #{item.dayName}
-                , to_date(#{item.period1Start},'YYYY-MM-DD HH24:MI:SS')
-                , to_date(#{item.period1End},'YYYY-MM-DD HH24:MI:SS')
-                , to_date(#{item.period2Start},'YYYY-MM-DD HH24:MI:SS')
-                , to_date(#{item.period2End},'YYYY-MM-DD HH24:MI:SS')
-                , to_date(#{item.period3Start},'YYYY-MM-DD HH24:MI:SS')
-                , to_date(#{item.period3End},'YYYY-MM-DD HH24:MI:SS')
+                , #{item.period1Start}
+                , #{item.period1End}
+                , #{item.period2Start}
+                , #{item.period2End}
+                , #{item.period3Start}
+                , #{item.period3End}
             )
         </foreach>
     </insert>
+
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_mntsrvc_mng_emp_avail(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
+    
 </mapper>
