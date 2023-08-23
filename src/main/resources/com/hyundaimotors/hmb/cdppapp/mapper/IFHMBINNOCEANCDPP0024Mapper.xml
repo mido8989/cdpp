@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0024Mapper">
+
+    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0024Dto">
+        insert into landing.if_mntsrvc_manage_emp_avail_excp(
+            created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , operation
+            , excp_id
+            , employee_cpf
+            , dealer_code
+            , excp_start_date
+            , excp_end_date
+            , absence_period
+            , period1_start
+            , period1_end
+            , period2_start
+            , period2_end
+            , period3_start
+            , period3_end
+            , excp_desc
+            , "source"
+        )values(
+            now()
+            , 'interface'
+            , now()
+            , 'interface'
+            , #{operation}
+            , #{excpId}
+            , #{employeeCPF}
+            , #{dealerCode}
+            , to_date(#{excpStartDate},'YYYY-MM-DD')
+            , to_date(#{excpEndDate},'YYYY-MM-DD')
+            , #{absencePeriod}
+            , to_date(#{period1Start},'YYYY-MM-DD HH24:MI:SS')
+            , to_date(#{period1End},'YYYY-MM-DD HH24:MI:SS')
+            , to_date(#{period2Start},'YYYY-MM-DD HH24:MI:SS')
+            , to_date(#{period2End},'YYYY-MM-DD HH24:MI:SS')
+            , to_date(#{period3Start},'YYYY-MM-DD HH24:MI:SS')
+            , to_date(#{period3End},'YYYY-MM-DD HH24:MI:SS')
+            , #{excpDesc}
+            , #{source}
+        )
+    </insert>
+</mapper>

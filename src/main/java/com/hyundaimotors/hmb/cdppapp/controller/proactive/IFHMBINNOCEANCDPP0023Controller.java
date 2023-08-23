@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0022Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0023Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0025Dto;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0022Payload;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0025Payload;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0023.IFHMBINNOCEANCDPP0023Payload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0023Service;
@@ -38,8 +39,8 @@ public class IFHMBINNOCEANCDPP0023Controller {
         
         IFHMBINNOCEANCDPP0023Dto resultDto = new IFHMBINNOCEANCDPP0023Dto();
 
-        resultDto = service.upsertObject(dto);
+        resultDto = service.insertObject(dto);
 
-        return "";
+        return defaultMapper.map(resultDto, IFHMBINNOCEANCDPP0023Payload.Response.class);
     }
 }
