@@ -13,7 +13,7 @@
 
     <insert id="insertBusinessAccount" parameterType="IFHMBINNOCEANCDPP0013Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into 
-            landing.if_hmb_inbound_channel_partner_interface_workflow
+            landing.if_in_channel_partner_inf_wf
                 (
                     integrationid
                     , cnpj
@@ -71,13 +71,13 @@
 
     <insert id="insertAdress" parameterType="IFHMBINNOCEANCDPP0013Dto">
         insert into 
-        landing.if_hmb_inbound_channel_partner_interface_workflow_adress
+        landing.if_in_channel_partner_inf_wf_businessaddress
             (
                 addressname
                 , streetaddress
                 , streetaddress2
                 , streetaddress3
-                , county
+                , country
                 , city
                 , state
                 , latitude
@@ -112,7 +112,7 @@
 
     <insert id="insertPersonAccount" parameterType="IFHMBINNOCEANCDPP0013Dto">
         insert into 
-            landing.if_hmb_inbound_channel_partner_interface_workflow_contact
+            landing.if_in_channel_partner_inf_wf_dlrcontact
             (
                 integrationid
                 , cpf
@@ -158,7 +158,7 @@
     </insert>
 
     <insert id="insertType" parameterType="IFHMBINNOCEANCDPP0013Dto">
-        INSERT INTO landing.if_hmb_inbound_channel_partner_interface_workflow_partnertype(
+        INSERT INTO landing.if_in_channel_partner_inf_wf_type(
             partnertype
             , par_row_id
             , created
@@ -179,7 +179,7 @@
     </insert>
 
     <insert id="insertPosition" parameterType="IFHMBINNOCEANCDPP0013Dto">
-        INSERT INTO landing.if_hmb_inbound_channel_partner_interface_workflow_position(
+        INSERT INTO landing.if_in_channel_partner_inf_wf_position(
             position
             , par_row_id
             , created
@@ -279,7 +279,7 @@
     </update>
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_inbound_channel_partner_interface_workflow(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+        call process.if_in_channel_partner_inf_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
     <insert id="transferProcessContact" statementType="CALLABLE" parameterType="hashMap">
