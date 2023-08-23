@@ -1,4 +1,4 @@
-package com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013;
+package com.hyundaimotors.hmb.cdppapp.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;

@@ -11,23 +11,31 @@
             integration_id = #{integrationId} 
     </select>
 
-    <insert id="insertAccount" parameterType="IFHMBINNOCEANCDPP0013Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+    <insert id="insertBusinessAccount" parameterType="IFHMBINNOCEANCDPP0013Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into 
-            landing.S_ORG_EXT
+            landing.if_in_channel_partner_inf_wf
                 (
-                    INTEGRATION_ID
-                    , X_CNPJ
-                    , NAME
-                    , X_NICKNAME
-                    , PRTNR_FLG
-                    , X_REASON_STATUS
-                    , OU_NUM
-                    , MAIN_PH_NUM
-                    , MAIN_FAX_PH_NUM
-                    , MAIN_EMAIL_ADDR
-                    , PRTNRSHP_START_DT
-                    , REGION
-                    , URL
+                    integrationid
+                    , cnpj
+                    , "name"
+                    , nickname
+                    , partnerflag
+                    , reasonstatus
+                    , dealertype
+                    , dealercode
+                    , "location"
+                    , mainphone
+                    , fax
+                    , mainemailaddress
+                    , workemailaddress
+                    , salesdealerflag
+                    , servicedealerflag
+                    , partnerstartdate
+                    , partnerenddate
+                    , region
+                    , workinghour
+                    , facebookpage
+                    , homepage
                     , created
                     , created_by
                     , last_upd
@@ -39,140 +47,156 @@
                     , #{nickname}
                     , #{partnerFlag}
                     , #{reasonStatus}
+                    , #{dealerType}
                     , #{dealerCode}
+                    , #{location}
                     , #{mainPhone}
                     , #{fax}
                     , #{mainEmailAddress}
+                    , #{workEmailAddress}
+                    , #{salesDealerFlag}
+                    , #{serviceDealerFlag}
                     , to_date(#{partnerStartDate},'YYYY-MM-DD')
+                    , to_date(#{partnerEndDate},'YYYY-MM-DD')
                     , #{region}
+                    , #{workingHour}
+                    , #{facebookPage}
                     , #{homepage}
                     , now()
                     , 'interface'
                     , now()
                     , 'interface'
-                );
+                )
     </insert>
 
-    <insert id="insertAccountSub" parameterType="IFHMBINNOCEANCDPP0013Dto">
+    <insert id="insertAdress" parameterType="IFHMBINNOCEANCDPP0013Dto">
         insert into 
-        landing.S_ORG_EXT_X
+        landing.if_in_channel_partner_inf_wf_businessaddress
             (
-                par_row_id
-                , ATTRIB_39
-                <!--, LOC-->
-                , ATTRIB_51
-                , ATTRIB_10
-                , ATTRIB_11
-                , X_WORKING_HOURS
-                , X_SOCIAL_URL
+                addressname
+                , streetaddress
+                , streetaddress2
+                , streetaddress3
+                , country
+                , city
+                , state
+                , latitude
+                , longitude
+                , zipcode
+                , par_row_id
                 , created
                 , created_by
                 , last_upd
                 , last_upd_by
-        )values(
-                #{rowId}
-                , #{dealerType}
-                <!--, #{location}-->
-                , #{workEmailAddress}
-                , #{salesDealerFlag}
-                , #{serviceDealerFlag}
-                , #{workingHour}
-                , #{facebookPage}
+        )values
+        <foreach collection="addressList" item="item" separator=",">
+            (    
+                #{item.addressName}
+                , #{item.streetAddress}
+                , #{item.streetAddress2}
+                , #{item.streetAddress3}
+                , #{item.county}
+                , #{item.city}
+                , #{item.state}
+                , #{item.latitude}
+                , #{item.longitude}
+                , #{item.zipCode}
+                , #{rowId}
                 , now()
                 , 'interface'
                 , now()
                 , 'interface'
-            );
+            )
+        </foreach>    
     </insert>
 
-    <insert id="insertAccountPrtnr" parameterType="IFHMBINNOCEANCDPP0013Dto">
+    <insert id="insertPersonAccount" parameterType="IFHMBINNOCEANCDPP0013Dto">
         insert into 
-            landing.S_ORG_PRTNR
+            landing.if_in_channel_partner_inf_wf_dlrcontact
             (
-                par_row_id
-                , PTSHP_END_DT
+                integrationid
+                , cpf
+                , firstname
+                , lastname
+                , emailaddress
+                , homephone
+                , workphone
+                , jobtitle
+                , notes
+                , sanitizedflag
+                , statusdealer
+                , contacttype
+                , partytypecode
+                , par_row_id
                 , created
                 , created_by
                 , last_upd
                 , last_upd_by
-        )values(
-                #{rowId}
-                , to_date(#{partnerEndDate},'YYYY-MM-DD')
+        )values
+        <foreach collection="contactList" item="item" separator=",">
+            (    
+                #{item.integrationId}
+                , #{item.cpf}
+                , #{item.firstName}
+                , #{item.lastName}
+                , #{item.emailAddress}
+                , #{item.homePhone}
+                , #{item.workPhone}
+                , #{item.jobTitle}
+                , #{item.notes}
+                , #{item.sanitizedFlag}
+                , #{item.statusDealer}
+                , #{item.contactType}
+                , #{item.partyTypeCode}
+                , #{rowId}
                 , now()
                 , 'interface'
                 , now()
                 , 'interface'
-            );
+            )
+        </foreach>    
     </insert>
 
-    <insert id="insertAddress" parameterType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Adress" useGeneratedKeys="true" keyProperty="addressRowId" keyColumn="row_id">
-        INSERT INTO landing.S_ADDR_PER(
-            ADDR_NAME
-            , ADDR
-            , ADDR_LINE_2
-            , ADDR_LINE_3
-            , COUNTY
-            , CITY
-            , STATE
-            , LATITUDE
-            , LONGITUDE
-            , ZIPCODE
+    <insert id="insertType" parameterType="IFHMBINNOCEANCDPP0013Dto">
+        INSERT INTO landing.if_in_channel_partner_inf_wf_type(
+            partnertype
+            , par_row_id
             , created
             , created_by
             , last_upd
             , last_upd_by
-        )values(
-            #{addressName}
-            , #{streetAddress}
-            , #{streetAddress2}
-            , #{streetAddress3}
-            , #{county}
-            , #{city}
-            , #{state}
-            , #{latitude}
-            , #{longitude}
-            , #{zipCode}
-            , now()
-            , 'interface'
-            , now()
-            , 'interface'
-        );
+        )values
+        <foreach collection="partnerTypeList" item="item" separator=",">
+            (
+                #{item.partnerType}
+                , #{rowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+            )
+        </foreach>
     </insert>
 
-    <insert id="insertContact" parameterType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Contact" useGeneratedKeys="true" keyProperty="contactRowId" keyColumn="row_id">
-        INSERT INTO landing.S_CONTACT(
-            INTEGRATION_ID
-            , X_CPF
-            , FST_NAME
-            , LAST_NAME
-            , EMAIL_ADDR
-            , HOME_PH_NUM
-            , WORK_PH_NUM
-            , JOB_TITLE
-            , X_SANITIZED_FLG
-            , CON_CD
-            , pr_per_addr_id
+    <insert id="insertPosition" parameterType="IFHMBINNOCEANCDPP0013Dto">
+        INSERT INTO landing.if_in_channel_partner_inf_wf_position(
+            position
+            , par_row_id
             , created
             , created_by
             , last_upd
             , last_upd_by
-        )values(
-            #{integrationId}
-            , #{cpf}
-            , #{firstName}
-            , #{lastName}
-            , #{emailAddress}
-            , #{homePhone}
-            , #{workPhone}
-            , #{jobTitle}
-            , #{sanitizedFlag}
-            , #{contactType}
-            , #{addressRowId}
-            , now()
-            , 'interface'
-            , now()
-            , 'interface'
-        );
+        )values
+        <foreach collection="positionList" item="item" separator=",">
+            (
+                #{item.position}
+                , #{rowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+            )
+        </foreach>
     </insert>
 
     <update id="updateAccount" parameterType="IFHMBINNOCEANCDPP0013Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
@@ -255,7 +279,7 @@
     </update>
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_inbound_channel_partner_interface_workflow(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+        call process.if_in_channel_partner_inf_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
     <insert id="transferProcessContact" statementType="CALLABLE" parameterType="hashMap">

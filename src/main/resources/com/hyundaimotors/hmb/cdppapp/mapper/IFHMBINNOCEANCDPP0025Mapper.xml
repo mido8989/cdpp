@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0025Mapper">
+    
+    <select id="getCPFCheck" parameterType="IFHMBINNOCEANCDPP0025Dto" resultType="integer">
+        select 
+            count(row_id) as cpfCheck
+        from 
+            landing.hmb_mntsrvc_schedule_maintenance
+        where 
+            customercpf = #{customerCPF};
+    </select>
+
+    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0025Dto">
+        insert into landing.hmb_mntsrvc_schedule_maintenance
+        (
+            source
+            , srNumber
+            , srReason
+            , srLevel1
+            , srLevel2
+            , srLevel3
+            , srLevel4
+            , srSource
+            , srMethod
+            , srDescription
+            , srPriority
+            , srStatus
+            , dealerCode
+            , chassis
+            , customerCPF
+            , consultantCPF
+            , technicianCPF
+            , serviceType
+            , serviceStatus
+            , serviceArrivaldate
+            , serviceStartdate
+            , serviceDuration
+            , serviceDeliverydate
+        )values(
+            #{source}
+            , #{srNumber}
+            , #{srReason}
+            , #{srLevel1}
+            , #{srLevel2}
+            , #{srLevel3}
+            , #{srLevel4}
+            , #{srSource}
+            , #{srMethod}
+            , #{srDescription}
+            , #{srPriority}
+            , #{srStatus}
+            , #{dealerCode}
+            , #{chassis}
+            , #{customerCPF}
+            , #{consultantCPF}
+            , #{technicianCPF}
+            , #{serviceType}
+            , #{serviceStatus}
+            , to_date(#{serviceArrivaldate},'YYYY-MM-DD HH24:MI:SS')
+            , to_date(#{serviceStartdate},'YYYY-MM-DD HH24:MI:SS')
+            , #{serviceDuration}
+            , to_date(#{serviceDeliverydate},'YYYY-MM-DD HH24:MI:SS')
+        );
+    </insert>
+</mapper>
