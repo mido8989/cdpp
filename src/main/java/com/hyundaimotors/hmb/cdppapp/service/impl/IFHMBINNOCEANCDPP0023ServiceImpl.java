@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +24,12 @@ public class IFHMBINNOCEANCDPP0023ServiceImpl implements IFHMBINNOCEANCDPP0023Se
         mapper.insertObject(dto);
 
         mapper.insertDay(dto);
+
+         HashMap<String, String> map = new HashMap<>();
+
+        map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+
+        //mapper.transferProcess(map);
 
         IFHMBINNOCEANCDPP0023Dto resulDto = new IFHMBINNOCEANCDPP0023Dto();
 
