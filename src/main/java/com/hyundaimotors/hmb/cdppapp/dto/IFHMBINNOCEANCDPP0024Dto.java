@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class IFHMBINNOCEANCDPP0024Dto {
+    private int rowId;
     private String operation;
     private String excpId;
     private String employeeCPF;

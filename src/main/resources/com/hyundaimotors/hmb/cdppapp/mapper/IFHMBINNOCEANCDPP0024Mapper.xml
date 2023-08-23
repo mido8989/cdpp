@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0024Mapper">
 
-    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0024Dto">
+    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0024Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_mntsrvc_manage_emp_avail_excp(
             created
             , created_by
@@ -44,5 +44,9 @@
             , #{excpDesc}
             , #{source}
         )
+    </insert>
+
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_mntsrvc_mng_emp_avail_excp(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
