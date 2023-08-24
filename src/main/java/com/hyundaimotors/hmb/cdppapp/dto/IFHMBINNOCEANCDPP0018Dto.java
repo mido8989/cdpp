@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class IFHMBINNOCEANCDPP0018Dto {
+    private String cpf;
     private String protocolNum;
     private String protocolStatus;
     private String serviceType;

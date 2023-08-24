@@ -3,7 +3,9 @@ package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +15,8 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0018Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0001Payload;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0018Payload;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0032Payload;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0032Payload.SearchContactTD;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0018Service;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0021Service;
 
@@ -43,6 +47,12 @@ public class IFHMBINNOCEANCDPP0018Controller {
         List<IFHMBINNOCEANCDPP0018Dto> resultList = new ArrayList<>();
 
         resultList = service.getList(dto);
-        return "";
+        
+        return IFHMBINNOCEANCDPP0018Payload.Response.builder()
+                .errorSpcCode("0")
+                .errorSpcMessage("OK")
+                .listOfServices(resultList.size() > 0 ? defaultMapper.map(resultList, new TypeToken<List<IFHMBINNOCEANCDPP0018Payload.ListOfServices>>() {}.getType()) : null)
+                .build();
+        //return resultList.size() > 0 ? defaultMapper.map(resultList, new TypeToken<List<IFHMBINNOCEANCDPP0018Payload.ListOfServices>>() {}.getType()) : null;
     }    
 }

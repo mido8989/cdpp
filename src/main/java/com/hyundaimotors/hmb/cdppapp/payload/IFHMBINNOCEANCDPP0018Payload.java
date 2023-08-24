@@ -1,8 +1,11 @@
 package com.hyundaimotors.hmb.cdppapp.payload;
 
+import java.util.List;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 public class IFHMBINNOCEANCDPP0018Payload {
     
@@ -20,11 +23,14 @@ public class IFHMBINNOCEANCDPP0018Payload {
     @Schema(name = "IFHMBINNOCEANCDPP0018Payload.Response")
     @Getter
     @Setter
+    @SuperBuilder
     public static class Response{
         @Schema(description = "C00F3digo de erro (em caso de falha no servi 00E7o)", example = "0")
         private String errorSpcCode;
         @Schema(description = "Detalhe da mensagem de erro (em caso de falha no servi00E7o)", example = "OK")
         private String errorSpcMessage;
+
+        List<ListOfServices> listOfServices;
 
     }
     @Schema(name = "IFHMBINNOCEANCDPP0018Payload.ListOfServices")
