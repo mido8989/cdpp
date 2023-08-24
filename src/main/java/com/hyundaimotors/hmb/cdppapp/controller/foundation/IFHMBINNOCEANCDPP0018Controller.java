@@ -36,9 +36,9 @@ public class IFHMBINNOCEANCDPP0018Controller {
 
     private final ModelMapper defaultMapper;
 
-    @Operation(summary = "Account list", description = "Account list.")
+    @Operation(summary = "HMB MNTSRVC Customer Schedule", description = "HMB MNTSRVC Customer Schedule ")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0018Payload.Response.class)))
-    @PostMapping(value = "/api/v1/HMBGetContactWF")
+    @PostMapping(value = "/api/v1/HMBMNTSRVCCustomerSchedule")
     public Object getList(@RequestBody IFHMBINNOCEANCDPP0018Payload.Request request)throws Exception{
         ModelMapper modelMapper = new ModelMapper();
     
