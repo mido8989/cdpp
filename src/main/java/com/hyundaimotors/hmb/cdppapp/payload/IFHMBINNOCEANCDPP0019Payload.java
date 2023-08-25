@@ -20,7 +20,7 @@ public class IFHMBINNOCEANCDPP0019Payload {
 
     }
 
-    @Schema(name = "IFHMBINNOCEANCDPP0019Payload.Request")
+    @Schema(name = "IFHMBINNOCEANCDPP0019Payload.Response")
     @Getter
     @Setter
     @SuperBuilder
