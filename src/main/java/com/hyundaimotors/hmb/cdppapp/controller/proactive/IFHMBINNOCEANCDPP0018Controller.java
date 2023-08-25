@@ -1,4 +1,4 @@
-package com.hyundaimotors.hmb.cdppapp.controller.foundation;
+package com.hyundaimotors.hmb.cdppapp.controller.proactive;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +53,5 @@ public class IFHMBINNOCEANCDPP0018Controller {
                 .errorSpcMessage("OK")
                 .listOfServices(resultList.size() > 0 ? defaultMapper.map(resultList, new TypeToken<List<IFHMBINNOCEANCDPP0018Payload.ListOfServices>>() {}.getType()) : null)
                 .build();
-        //return resultList.size() > 0 ? defaultMapper.map(resultList, new TypeToken<List<IFHMBINNOCEANCDPP0018Payload.ListOfServices>>() {}.getType()) : null;
     }    
 }
