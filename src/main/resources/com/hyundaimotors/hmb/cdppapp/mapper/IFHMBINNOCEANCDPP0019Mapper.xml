@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0019Mapper">
     
-    <select id="getList" parameterType="IFHMBINNOCEANCDPP0019" resultType="IFHMBINNOCEANCDPP0019">
+    <select id="getList" parameterType="IFHMBINNOCEANCDPP0019Dto" resultType="IFHMBINNOCEANCDPP0019Dto">
         select
             to_char(pdh.holiday_date__c, 'DD') as description
             , pma.absence_period as available
