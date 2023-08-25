@@ -1,5 +1,8 @@
 package com.hyundaimotors.hmb.cdppapp.payload;
 
+import java.time.Year;
+
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0019Payload.ListOfDays;
 import java.util.List;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -13,9 +16,13 @@ public class IFHMBINNOCEANCDPP0019Payload {
     @Getter
     @Setter
     public static class Request{
+        @Schema(description = "Dealer Code", example = "B05AM19023")
         private String dealerCode;
+        @Schema(description = "Year to search for calendar availability, Format: YYYY", example = "2017")
         private String year;
+        @Schema(description = "Month to search for calendar availability", example = "11")
         private String month;
+        @Schema(description = "Name of requester system.", example = "Source")
         private String source;
 
     }
@@ -25,7 +32,9 @@ public class IFHMBINNOCEANCDPP0019Payload {
     @Setter
     @SuperBuilder
     public static class Response{
+        @Schema(description = "Returns 0 when success.", example = "0")
         private String errorSpcCode;
+        @Schema(description = "Returns OK when success.", example = "OK")
         private String errorSpcMessage;
         List<ListOfDays> listOfDays;
     }
@@ -34,7 +43,9 @@ public class IFHMBINNOCEANCDPP0019Payload {
     @Getter
     @Setter
     public static class ListOfDays{
+        @Schema(description = "Day number", example = "06")
         private String description;
+        @Schema(description = "Day availability flag, containing Y or N.", example = "Y")
         private String available;
     }
 }
