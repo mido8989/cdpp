@@ -282,6 +282,10 @@
         call process.if_in_channel_partner_inf_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_in_channel_partner_inf_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
     <insert id="transferProcessContact" statementType="CALLABLE" parameterType="hashMap">
         call process.hmb_inbound_channel_partner_interface_workflow_contact(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>

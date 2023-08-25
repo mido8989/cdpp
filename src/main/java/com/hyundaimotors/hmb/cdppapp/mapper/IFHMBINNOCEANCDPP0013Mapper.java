@@ -23,6 +23,8 @@ public interface IFHMBINNOCEANCDPP0013Mapper {
 
     public void transferProcess(HashMap<String, String> parMap)throws Exception;
 
+    public void transferReplica(HashMap<String, String> parMap)throws Exception;
+
     public void transferProcessContact(HashMap<String, String> parMap)throws Exception;
 
     public void updateAccount(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
