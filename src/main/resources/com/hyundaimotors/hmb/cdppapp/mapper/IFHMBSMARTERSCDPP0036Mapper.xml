@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSMARTERSCDPP0036Mapper">
+    
+    <insert id="insertServiceRequestChatInput" parameterType="IFHMBINNOCEANCDPP0034Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into landing.if_service_request_chat_ws(
+            created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , ownedbyid
+            , protocol
+            , reason
+            , level1
+            , level2
+            , level3
+            , level4
+            , source
+            , method
+            , description
+            , status
+            , priority
+            , solution
+            , serialnumber
+            , anonymousflag
+            , contactid
+            , accountid
+            , tendency
+            , satisfaction
+            , dealerid
+            , causingarea
+            , imobilizationdate
+            , relatedmodel
+            , quotedescription
+            , enginetransmission
+            , version
+            , versionprice
+            , color
+            , colorprice
+            , finalprice
+            , carreplacementintention
+            , roadservicerequest
+            , integrationid
+            , tdconfirmed
+            , tdtime
+            , tddate
+            , salesrepid
+            , pneflag
+            , campaignid
+            , sourcetag
+            , estoque
+            , medium
+            , content
+            , campaign
+            , additionalcomments
+            , causingperson
+            , custrepresentative
+            , custrepresentativerel
+            , diagnosisdifficultyflg
+            , diagnosispendingflg
+            , dlrdescription
+            , dlrfup
+            , dlrpending
+            , dlrretractionflg
+            , dlrreversal
+            , hotlineflg
+            , hotlinenum
+            , hotlineopendt
+            , purchaseproposalnum
+            , pwaflg
+            , pwanum
+            , pwaopendt
+            , recurrenceflg
+            , recurrencenum
+            , vehicledeliverydt
+            , vehicledeliveryflg
+            , wantsloan
+            , loantype
+            , installmentsamt
+            , downpayment
+            , usedcarasdownpaymnt
+            , dlrtemperature
+        )values(
+            now()
+            , 'interface'
+            , now()
+            , 'interface'
+            , #{serviceRequestChatInput.ownedById}
+            , #{serviceRequestChatInput.protocol}
+            , #{serviceRequestChatInput.reason}
+            , #{serviceRequestChatInput.level1}
+            , #{serviceRequestChatInput.level2}
+            , #{serviceRequestChatInput.level3}
+            , #{serviceRequestChatInput.level4}
+            , #{serviceRequestChatInput.source}
+            , #{serviceRequestChatInput.method}
+            , #{serviceRequestChatInput.description}
+            , #{serviceRequestChatInput.status}
+            , #{serviceRequestChatInput.priority}
+            , #{serviceRequestChatInput.solution}
+            , #{serviceRequestChatInput.serialNumber}
+            , #{serviceRequestChatInput.anonymousFlag}
+            , #{serviceRequestChatInput.contactId}
+            , #{serviceRequestChatInput.accountId}
+            , #{serviceRequestChatInput.tendency}
+            , #{serviceRequestChatInput.satisfaction}
+            , #{serviceRequestChatInput.dealerId}
+            , #{serviceRequestChatInput.causingArea}
+            , to_date(concat(SPLIT_PART(#{serviceRequestChatInput.imobilizationDate}, '/', 3)||'-'||SPLIT_PART(#{serviceRequestChatInput.imobilizationDate}, '/', 2)||'-'||SPLIT_PART(#{serviceRequestChatInput.imobilizationDate}, '/', 1)),'YYYY-MM-DD')
+            , #{serviceRequestChatInput.relatedModel}
+            , #{serviceRequestChatInput.quoteDescription}
+            , #{serviceRequestChatInput.engineTransmission}
+            , #{serviceRequestChatInput.version}
+            , #{serviceRequestChatInput.versionPrice}
+            , #{serviceRequestChatInput.color}
+            , #{serviceRequestChatInput.colorPrice}
+            , #{serviceRequestChatInput.finalPrice}
+            , #{serviceRequestChatInput.carReplacementIntention}
+            , #{serviceRequestChatInput.roadserviceRequest}
+            , #{serviceRequestChatInput.integrationId}
+            , #{serviceRequestChatInput.tdConfirmed}
+            , #{serviceRequestChatInput.tdTime}
+            , to_date(#{serviceRequestChatInput.tdDate},'YYYY-MM-DD')
+            , #{serviceRequestChatInput.salesrepId}
+            , #{serviceRequestChatInput.pneFlag}
+            , #{serviceRequestChatInput.campaignId}
+            , #{serviceRequestChatInput.sourceTag}
+            , #{serviceRequestChatInput.estoque}
+            , #{serviceRequestChatInput.medium}
+            , #{serviceRequestChatInput.content}
+            , #{serviceRequestChatInput.campaign}
+            , #{serviceRequestChatInput.additionalComments}
+            , #{serviceRequestChatInput.causingPerson}
+            , #{serviceRequestChatInput.custRepresentative}
+            , #{serviceRequestChatInput.custRepresentativeRel}
+            , #{serviceRequestChatInput.diagnosisDifficultyFlg}
+            , #{serviceRequestChatInput.diagnosisPendingFlg}
+            , #{serviceRequestChatInput.dlrDescription}
+            , #{serviceRequestChatInput.dlrFup}
+            , #{serviceRequestChatInput.dlrPending}
+            , #{serviceRequestChatInput.dlrRetractionFlg}
+            , #{serviceRequestChatInput.dlrReversal}
+            , #{serviceRequestChatInput.hotlineFlg}
+            , #{serviceRequestChatInput.hotlineNum}
+            , to_date(#{serviceRequestChatInput.hotlineOpenDt},'YYYY-MM-DD')
+            , #{serviceRequestChatInput.purchaseProposalNum}
+            , #{serviceRequestChatInput.pwaFlg}
+            , #{serviceRequestChatInput.pwaNum}
+            , to_date(#{serviceRequestChatInput.pwaOpenDt},'YYYY-MM-DD')
+            , #{serviceRequestChatInput.recurrenceFlg}
+            , #{serviceRequestChatInput.recurrenceNum}
+            , to_date(#{serviceRequestChatInput.vehicleDeliveryDt},'YYYY-MM-DD')
+            , #{serviceRequestChatInput.vehicleDeliveryFlg}
+            , #{serviceRequestChatInput.wantsLoan}
+            , #{serviceRequestChatInput.loanType}
+            , #{serviceRequestChatInput.installmentsAmt}
+            , #{serviceRequestChatInput.downPayment}
+            , #{serviceRequestChatInput.usedCarAsDownPaymnt}
+            , #{serviceRequestChatInput.dlrTemperature}
+        )
+    </insert>
+
+    <insert id="insertChat" parameterType="IFHMBINNOCEANCDPP0034Dto">
+        insert into landing.if_service_request_chat_ws_chat(
+            par_row_id
+            , created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , chatcode
+            , date
+            , source
+            , operator
+        )values
+        <foreach collection="listOfChat" item="item" separator=",">
+            (
+                #{rowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+                , #{item.chatCode}
+                , to_date(#{item.date},'YYYY-MM-DD')
+                , #{item.source}
+                , #{item.operator}
+            )
+        </foreach>
+    </insert>
+    
+    <insert id="insertMessage" parameterType="IFHMBINNOCEANCDPP0034Dto">
+        insert into landing.if_service_request_chat_ws_message(
+            par_row_id
+            , created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , msgcode
+            , date
+            , sentby
+            , msg
+            , msgstatus
+        )values
+        <foreach collection="listOfMessage" item="item" separator=",">
+            (
+                #{rowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+                , #{item.msgCode}
+                , to_date(#{item.date},'YYYY-MM-DD')
+                , #{item.sentBy}
+                , #{item.msg}
+                , #{item.msgStatus}
+            )
+        </foreach>
+    </insert>
+</mapper>
