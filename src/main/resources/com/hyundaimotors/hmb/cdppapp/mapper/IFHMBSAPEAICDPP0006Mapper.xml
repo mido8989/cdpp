@@ -34,6 +34,7 @@
             , planneddt
             , ordernum
             , dpuser
+            , estoque
         )values(    
             now()
             , 'interface'
@@ -65,6 +66,7 @@
             , to_date(#{action.plannedDt},'YYYY-MM-DD')
             , #{action.orderNum}
             , #{action.dpUser}
+            , #{action.estoque}
         )
     </insert>
 
