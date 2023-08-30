@@ -60,4 +60,6 @@ public class Action {
     private String orderNum;
     @Schema(description = "action inbound interface", example = "Henrique Duarte")
     private String dpUser;
+    @Schema(description = "stock", example = "stock")
+    private String estoque;
 }
