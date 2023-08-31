@@ -62,9 +62,9 @@ public class ServiceRequest {
     private String versionPrice;
     @Schema(description = "Color description related with a quote. Valid values: Blue Ocean, Clay Brown, Blue Sky", example = "Blue Sky")
     private String color;
-    @Schema(description = "Open text field to store color price for a quote.", example = "R$35.395,00")
+    @Schema(description = "Open text field to store color price for a quote.", example = "3539500")
     private String colorPrice;
-    @Schema(description = "Open text field to store vehicle final price for a quote.", example = "R$35.395,00")
+    @Schema(description = "Open text field to store vehicle final price for a quote.", example = "3539500")
     private String finalPrice;
     @Schema(description = "Describes when customer plans to replace his current car. Valid values: 1 Month, Coming soon", example = "Coming soon")
     private String carReplacementIntention;
