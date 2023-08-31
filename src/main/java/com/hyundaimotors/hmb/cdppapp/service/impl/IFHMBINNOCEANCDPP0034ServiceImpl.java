@@ -32,7 +32,7 @@ public class IFHMBINNOCEANCDPP0034ServiceImpl implements IFHMBINNOCEANCDPP0034Se
 
         mapper.transferProcess(map);
         
-        //mapper.transferReplica(map);
+        mapper.transferReplica(map);
 
         resulDto.setErrorSpcCode("0");
         resulDto.setErrorSpcMessage("OK");
