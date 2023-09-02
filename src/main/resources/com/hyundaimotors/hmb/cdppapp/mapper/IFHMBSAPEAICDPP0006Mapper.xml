@@ -142,11 +142,11 @@
         </foreach>
     </insert>
 
-    <!--<insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_action_in_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
-    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+    <!--<insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call replica.if_action_in_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>-->
 </mapper>
