@@ -36,7 +36,7 @@ public class IFHMBSAPEAICDPP0006ServiceImpl implements IFHMBSAPEAICDPP0006Servic
 
         mapper.transferProcess(map);
         
-        //mapper.transferReplica(map);
+        mapper.transferReplica(map);
 
         resulDto.setErrorSpcCode("0");
         resulDto.setErrorSpcMessage("OK");
