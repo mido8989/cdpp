@@ -30,13 +30,13 @@ public class IFHMBSAPEAICDPP0006ServiceImpl implements IFHMBSAPEAICDPP0006Servic
 
         mapper.insertSynergyActionAudit(dto);
 
-        /*HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
 
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
         mapper.transferProcess(map);
         
-        mapper.transferReplica(map);*/
+        //mapper.transferReplica(map);
 
         resulDto.setErrorSpcCode("0");
         resulDto.setErrorSpcMessage("OK");
