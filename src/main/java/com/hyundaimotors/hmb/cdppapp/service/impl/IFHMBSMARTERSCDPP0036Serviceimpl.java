@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,13 +28,13 @@ public class IFHMBSMARTERSCDPP0036Serviceimpl implements IFHMBSMARTERSCDPP0036Se
 
         mapper.insertMessage(dto);
 
-        /*HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
 
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
         mapper.transferProcess(map);
         
-        mapper.transferReplica(map);*/
+        mapper.transferReplica(map);
 
         resulDto.setErrorSpcCode("0");
         resulDto.setErrorSpcMessage("OK");
