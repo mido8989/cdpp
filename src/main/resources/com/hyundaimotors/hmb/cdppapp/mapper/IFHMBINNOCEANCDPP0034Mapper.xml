@@ -256,27 +256,27 @@
         call "replica".if_svc_req_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
-    <select id="getProtocalTestDrive" parameterType="IFHMBINNOCEANCDPP0034Dto" resultType="IFHMBINNOCEANCDPP0034Dto">
+    <select id="getProtocalTestDrive" parameterType="IFHMBINNOCEANCDPP0034Dto" resultType="String">
         select 
-            row_id
+            row_id as protocalResult
         from
             process.testdrivehistory__c
         where 
             external_id__c = cast(#{rowId} as text)
     </select>
 
-    <select id="getProtocalQuotation" parameterType="IFHMBINNOCEANCDPP0034Dto" resultType="IFHMBINNOCEANCDPP0034Dto">
+    <select id="getProtocalQuotation" parameterType="IFHMBINNOCEANCDPP0034Dto" resultType="String">
         select 
-            row_id
+            row_id as protocalResult
         from
             process.quotehistory__c
         where 
             external_id__c = cast(#{rowId} as text)
     </select>
 
-    <select id="getProtocalCase" parameterType="IFHMBINNOCEANCDPP0034Dto" resultType="IFHMBINNOCEANCDPP0034Dto">
+    <select id="getProtocalCase" parameterType="IFHMBINNOCEANCDPP0034Dto" resultType="String">
         select 
-            row_id
+            row_id as protocalResult
         from
             process.case
         where 
