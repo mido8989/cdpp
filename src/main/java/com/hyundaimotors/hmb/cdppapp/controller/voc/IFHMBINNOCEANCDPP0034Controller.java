@@ -36,6 +36,10 @@ public class IFHMBINNOCEANCDPP0034Controller {
 
         resultDto = service.insertObject(dto);
 
-        return defaultMapper.map(resultDto, IFHMBINNOCEANCDPP0034Payload.Response.class);
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.createTypeMap(IFHMBINNOCEANCDPP0034Dto.class, IFHMBINNOCEANCDPP0034Payload.Response.class)
+                                .addMapping(IFHMBINNOCEANCDPP0034Dto::getProtocalResult, IFHMBINNOCEANCDPP0034Payload.Response::setProtocol);
+
+        return modelMapper.map(resultDto, IFHMBINNOCEANCDPP0034Payload.Response.class);
     }
 }

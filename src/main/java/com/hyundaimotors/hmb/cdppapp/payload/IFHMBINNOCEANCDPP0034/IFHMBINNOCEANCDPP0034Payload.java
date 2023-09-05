@@ -25,6 +25,8 @@ public class IFHMBINNOCEANCDPP0034Payload {
     @Getter
     @Setter
     public static class Response{
+        @Schema(description = "Connex protocol number.", example = "HMB98949022323")
+        private String Protocol;
         @Schema(description = "Connex error code. Code 0 means success.", example = "0")
         private String errorSpcCode;
         @Schema(description = "Connex error message.", example = "OK")
