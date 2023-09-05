@@ -2,29 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0003Mapper">
     
-    <select id="getProductIdCheckNum" parameterType="IFHMBSAPEAICDPP0003Dto" resultType="Integer">
-        select 
-            count(row_id) as productIdCheckNum
-        from    
-            landing.S_PROD_INT
-        where
-            NAME = #{name}
-    </select>
-
-    <insert id="insertProd" parameterType="IFHMBSAPEAICDPP0003Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
-        insert into landing.S_PROD_INT
+    <insert id="insertObject" parameterType="IFHMBSAPEAICDPP0003Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into landing.if_product_in_wf
         (
             created
             , created_by
             , last_upd
             , last_upd_by
-            , NAME
-            , DATA_SRC
-            , TYPE
-            , PART_NUM
-            , MODEL_YR
-            , BODY_STYLE_CD
-            , ENGINE_TYPE_CD
+            , name
+            , source
+            , type
+            , part
+            , advdesc
+            , modelyear
+            , chassimodel
+            , bodystyle
+            , hmbcylindercapacity
+            , engine
+            , enginedesc
+            , versiondesc
+            , transmissiondesc
+            , transmission
+            , fuel
+            , doorsamnt
+            , suggestedprice            
         )
         values
         (
@@ -36,103 +37,22 @@
             , #{source}
             , #{type}
             , #{part}
-            , #{modelYear}
-            , #{bodyStyle}
-            , #{engine}
-        )
-        ;
-    </insert>
-
-    <insert id="insertProdx" parameterType="IFHMBSAPEAICDPP0003Dto">
-        insert into landing.S_PROD_INT_X
-        (
-            created
-            , created_by
-            , last_upd
-            , last_upd_by
-            , par_row_id
-            , X_ATTRIB_61
-            , ATTRIB_34
-            , ATTRIB_03
-            , ATTRIB_36
-            , ATTRIB_37
-            , ATTRIB_38
-            , ATTRIB_05
-            , ATTRIB_06
-            , ATTRIB_14
-        )
-        values
-        (
-            now()
-            , 'interface'
-            , now()
-            , 'interface'
-            , #{rowId}
             , #{advdesc}
-            , #{chassiModel} 
+            , #{modelYear}
+            , #{chassiModel}
+            , #{bodyStyle}
             , #{hmbCylindercapacity}
+            , #{engine}
             , #{engineDesc}
-            , #{versionDesc} 
-            , #{transmissionDesc} 
+            , #{versionDesc}
+            , #{transmissionDesc}
             , #{transmission}
             , #{fuel}
-            , #{doorsAmnt} 
+            , #{doorsAmnt}
+            , #{suggestedPrice}            
         )
         ;
-    </insert>
-
-    <update id="updateProd" parameterType="IFHMBSAPEAICDPP0003Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
-        update 
-            landing.S_PROD_INT 
-        set
-            last_upd = now()
-            , last_upd_by = 'interface'
-            , DATA_SRC = #{source}
-            , TYPE = #{type}
-            , PART_NUM = #{part}
-            , MODEL_YR = #{modelYear}
-            , BODY_STYLE_CD = #{bodyStyle}
-            , ENGINE_TYPE_CD = #{engine}
-        where
-            NAME = #{name}
-    </update>
-
-    <select id="getRowIdProdx" parameterType="IFHMBSAPEAICDPP0003Dto" resultType="string">
-        select 
-            row_id
-        from
-            landing.S_PROD_INT
-        where
-            name = #{name}
-    </select>
-
-    <update id="updateProdx" parameterType="IFHMBSAPEAICDPP0003Dto">
-        update 
-            landing.S_PROD_INT_X 
-        set
-            last_upd = now()
-            , last_upd_by = 'interface'
-            , X_ATTRIB_61 = #{advdesc}
-            , ATTRIB_34 = #{chassiModel} 
-            , ATTRIB_03 = #{hmbCylindercapacity}
-            , ATTRIB_36 = #{engineDesc}
-            , ATTRIB_37 = #{versionDesc} 
-            , ATTRIB_38 = #{transmissionDesc} 
-            , ATTRIB_05 = #{transmission}
-            , ATTRIB_06 = #{fuel}
-            , ATTRIB_14 = #{doorsAmnt} 
-        where
-            par_row_id = #{rowId}
-    </update>
-
-    <select id="processPoductId" parameterType="IFHMBSAPEAICDPP0003Dto" resultType="string">
-        select 
-            row_id as externalId
-        from
-            process.product
-        where 
-            external_id = #{rowId}
-    </select>
+    </insert>    
     
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.hmb_product_inbound_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
