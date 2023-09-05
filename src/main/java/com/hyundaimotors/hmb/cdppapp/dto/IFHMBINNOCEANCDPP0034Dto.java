@@ -13,6 +13,7 @@ import lombok.Setter;
 @Setter
 public class IFHMBINNOCEANCDPP0034Dto {
     private int rowId;
+    private String protocalResult;
     ServiceRequest serviceRequest;
     List<Accessory> listOfAccessories;
     List<Part> listOfParts;

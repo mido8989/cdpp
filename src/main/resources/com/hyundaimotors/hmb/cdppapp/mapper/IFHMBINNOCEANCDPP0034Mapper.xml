@@ -255,4 +255,31 @@
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call "replica".if_svc_req_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
+
+    <select id="getProtocalTestDrive" parameterType="IFHMBINNOCEANCDPP0034Dto" resultType="IFHMBINNOCEANCDPP0034Dto">
+        select 
+            row_id
+        from
+            process.testdrivehistory__c
+        where 
+            external_id__c = cast(#{rowId} as text)
+    </select>
+
+    <select id="getProtocalQuotation" parameterType="IFHMBINNOCEANCDPP0034Dto" resultType="IFHMBINNOCEANCDPP0034Dto">
+        select 
+            row_id
+        from
+            process.quotehistory__c
+        where 
+            external_id__c = cast(#{rowId} as text)
+    </select>
+
+    <select id="getProtocalCase" parameterType="IFHMBINNOCEANCDPP0034Dto" resultType="IFHMBINNOCEANCDPP0034Dto">
+        select 
+            row_id
+        from
+            process.case
+        where 
+            external__c = cast(#{rowId} as text)
+    </select>
 </mapper>
