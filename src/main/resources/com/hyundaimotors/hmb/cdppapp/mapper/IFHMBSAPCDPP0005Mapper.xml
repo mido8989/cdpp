@@ -2,34 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0005Mapper">
     
-    <select id="getAccountCheckNum" parameterType="IFHMBSAPCDPP0005Dto" resultType="Integer">
-        select 
-            count(row_id) as accountCheckNum
-        from
-            landing.S_ORG_EXT
-        where
-            INTEGRATION_ID = #{integrationId}
-    </select>
-
-    <insert id="insertSoe" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
-        insert into landing.S_ORG_EXT
+    <insert id="insertObject" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into landing.if_account_ws_wf
             (
                 created
                 , created_by
                 , last_upd
                 , last_upd_by
-                , INTEGRATION_ID
-                , X_CNPJ
-                , NAME
-                , X_NICKNAME
-                , ORI_CD
-                , X_CONTRACTED_SINCE
-                , SOURCE_CD
-                , MAIN_PH_NUM
-                , MAIN_FAX_PH_NUM
-                , MAIN_EMAIL_ADDR
-                , URL
-                , pr_addr_id
+                , integrationid
+                , cnpjnumber
+                , name
+                , nickname
+                , parentaccountname
+                , agencycode
+                , fleetacconttype
+                , industrytrend
+                , numberofemployee
+                , totalfleetsize
+                , contractedsince
+                , source
+                , organizationtype
+                , mainphonenumber
+                , mainfaxnumber
+                , mainemailaddress
+                , homepage
+                , streetaddress
+                , streetaddress2
+                , Streetaddress3
+                , county
+                , city
+                , state
+                , postalcode
             )
         values
             (
@@ -41,68 +44,19 @@
                 , #{cnpjNumber}
                 , #{name}
                 , #{nickname}
+                , #{parentAccountName}
                 , #{agencyCode}
-                , to_date(#{contractedSince},'YYYY-MM-DD')
-                , #{source}
-                , #{mainPhoneNumber}
-                , #{mainFaxNumber}
-                , #{mainEmailAddress}
-                , #{homepage}
-                , #{prAddrId}
-            );
-    </insert>
-
-    <insert id="insertSoex" parameterType="IFHMBSAPCDPP0005Dto">
-        insert into landing.S_ORG_EXT_X
-            (
-                created
-                , created_by
-                , last_upd
-                , last_upd_by
-                , par_row_id
-                , X_FLT_ACCT_TYPE
-                , X_FLT_IND_TYPE
-                , ATTRIB_07
-                , X_TOT_FLT_SIZE
-                , X_FLT_ORG_TYPE
-            )
-        values
-            (
-                now()
-                , 'interface'
-                , now()
-                , 'interface'
-                , #{rowId}
                 , #{fleetAccontType}
                 , #{industryTrend}
                 , #{numberOfEmployee}
                 , #{totalFleetSize}
+                , #{contractedSince}
+                , #{source}
                 , #{organizationType}
-            )
-            ;
-    </insert>
-
-    <insert id="insertSapr" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="prAddrId" keyColumn="row_id">
-        insert into landing.S_ADDR_PER
-            (
-                created
-                , created_by
-                , last_upd
-                , last_upd_by
-                , ADDR
-                , ADDR_LINE_2
-                , ADDR_LINE_3
-                , COUNTY
-                , CITY
-                , STATE
-                , ZIPCODE
-            )
-        values
-            (
-                now()
-                , 'interface'
-                , now()
-                , 'interface'
+                , #{mainPhoneNumber}
+                , #{mainFaxNumber}
+                , #{mainEmailAddress}
+                , #{homepage}
                 , #{streetAddress}
                 , #{streetAddress2}
                 , #{streetAddress3}
@@ -110,70 +64,17 @@
                 , #{city}
                 , #{state}
                 , #{postalCode}
-            )
-        ;
-    </insert>
-
-    <update id="updateSoe" parameterType="IFHMBSAPCDPP0005Dto">
-        update landing.S_ORG_EXT set 
-            last_upd = now()
-            , last_upd_by = 'interface'
-            , X_CNPJ = #{cnpjNumber}
-            , NAME = #{name}
-            , X_NICKNAME = #{nickname}
-            , ORI_CD = #{agencyCode}
-            , X_CONTRACTED_SINCE = to_date(#{contractedSince},'YYYY-MM-DD')
-            , SOURCE_CD = #{source}
-            , MAIN_PH_NUM = #{mainPhoneNumber}
-            , MAIN_FAX_PH_NUM = #{mainFaxNumber}
-            , MAIN_EMAIL_ADDR = #{mainEmailAddress}
-            , URL = #{homepage}
-        where
-            row_id = #{integrationId}
-    </update>
-
-    <update id="updateSoex" parameterType="IFHMBSAPCDPP0005Dto">
-        update landing.S_ORG_EXT_X set
-            last_upd = now()
-            , last_upd_by = 'interface'
-            , X_FLT_ACCT_TYPE = #{fleetAccontType}
-            , X_FLT_IND_TYPE = #{industryTrend}
-            , ATTRIB_07 = #{numberOfEmployee}
-            , X_TOT_FLT_SIZE = #{totalFleetSize}
-            , X_FLT_ORG_TYPE = #{organizationType}
-        where
-            row_id = #{integrationId}    
-    </update>
-
-    <update id="updateSapr" parameterType="IFHMBSAPCDPP0005Dto">
-        update landing.S_ADDR_PER set
-            last_upd = now()
-            , last_upd_by = 'interface'
-            , ADDR = #{streetAddress}
-            , ADDR_LINE_2 = #{streetAddress2}
-            , ADDR_LINE_3 = #{streetAddress3}
-            , COUNTY = #{county}
-            , CITY = #{city}
-            , STATE = #{state}
-            , ZIPCODE = #{postalCode}
-        where
-            row_id = #{integrationId}
-            
-    </update>
+                
+            );
+    </insert>   
     
     <insert id="insertProcessAccount" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+        call process.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
-    <update id="updateProcessAccount" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
-    </update>
 
     <insert id="insertReplicaAccount" statementType="CALLABLE" parameterType="hashMap">
-        call replica.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+        call replica.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
-    <update id="updateReplicaAccount" statementType="CALLABLE" parameterType="hashMap">
-        call replica.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
-    </update>
 </mapper>
