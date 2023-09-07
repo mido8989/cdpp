@@ -30,12 +30,12 @@ public class IFHMBSAPCDPP0005Controller {
     
     @Operation(summary = "Account upsert", description = "Account upsert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPCDPP0005Payload.Response.class)))
-    @PostMapping(value = "/api/v1/HMBAccountWebserviceWF/upsert")
+    @PostMapping(value = "/api/v1/HMBAccountWebserviceWF")
     public Object upsertObject(@RequestBody IFHMBSAPCDPP0005Payload.Request request)throws Exception{
 
         IFHMBSAPCDPP0005Dto dto = defaultMapper.map(request, IFHMBSAPCDPP0005Dto.class);
 
-        IFHMBSAPCDPP0005Dto resultDto = service.upsertObject(dto);
+        IFHMBSAPCDPP0005Dto resultDto = service.insertObject(dto);
 
         return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBSAPCDPP0005Payload.Response.class) : null;
     }

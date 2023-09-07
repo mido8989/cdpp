@@ -9,30 +9,30 @@
                 , created_by
                 , last_upd
                 , last_upd_by
-                integrationid
-                cnpjnumber
-                name
-                nickname
-                parentaccountname
-                agencycode
-                fleetacconttype
-                industrytrend
-                numberOfEmployee
-                totalFleetSize
-                contractedSince
-                Source
-                organizationType
-                mainPhoneNumber
-                mainFaxNumber
-                mainEmailAddress
-                homepage
-                StreetAddress
-                StreetAddress2
-                StreetAddress3
-                County
-                City
-                State
-                PostalCode
+                , integrationid
+                , cnpjnumber
+                , name
+                , nickname
+                , parentaccountname
+                , agencycode
+                , fleetacconttype
+                , industrytrend
+                , numberofemployee
+                , totalfleetsize
+                , contractedsince
+                , source
+                , organizationtype
+                , mainphonenumber
+                , mainfaxnumber
+                , mainemailaddress
+                , homepage
+                , streetaddress
+                , streetaddress2
+                , Streetaddress3
+                , country
+                , city
+                , state
+                , postalcode
             )
         values
             (
@@ -40,27 +40,41 @@
                 , 'interface'
                 , now()
                 , 'interface'
-
+                , #{integrationId}
+                , #{cnpjNumber}
+                , #{name}
+                , #{nickname}
+                , #{parentAccountName}
+                , #{agencyCode}
+                , #{fleetAccontType}
+                , #{industryTrend}
+                , #{numberOfEmployee}
+                , #{totalFleetSize}
+                , to_date(#{contractedSince}, 'YYYY-MM-DD')
+                , #{source}
+                , #{organizationType}
+                , #{mainPhoneNumber}
+                , #{mainFaxNumber}
+                , #{mainEmailAddress}
+                , #{homepage}
+                , #{streetAddress}
+                , #{streetAddress2}
+                , #{streetAddress3}
+                , #{county}
+                , #{city}
+                , #{state}
+                , #{postalCode}
+                
             );
     </insert>   
     
     <insert id="insertProcessAccount" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+        call process.if_account_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
-    <update id="updateProcessAccount" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
-    </update>
 
     <insert id="insertReplicaAccount" statementType="CALLABLE" parameterType="hashMap">
-        call replica.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+        call replica.if_account_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
-    <update id="updateReplicaAccount" statementType="CALLABLE" parameterType="hashMap">
-        call replica.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
-    </update>
 </mapper>
-
-
-
-	
