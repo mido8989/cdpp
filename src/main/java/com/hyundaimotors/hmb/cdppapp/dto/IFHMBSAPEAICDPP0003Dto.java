@@ -22,7 +22,7 @@ public class IFHMBSAPEAICDPP0003Dto {
     private String versionDesc; 
     private String transmissionDesc;
     private String transmission;
-    private int fuel;
+    private String fuel;
     private int doorsAmnt;
     private int suggestedPrice;
     private String errorSpcCode;

@@ -33,62 +33,7 @@ public class IFHMBSAPEAICDPP0003ServiceImpl implements IFHMBSAPEAICDPP0003Servic
 
         resulDto.setErrorSpcCode("0");
         resulDto.setErrorSpcMessage("OK");
-
-        // int productIdCheckNum = mapper.getProductIdCheckNum(dto);
-
-        // if(0 < productIdCheckNum){
-        //     int resultNum01 = mapper.updateProd(dto);
-
-        //     if(resultNum01 > 0){
-        //         dto.setRowId(mapper.getRowIdProdx(dto));
-
-        //         HashMap<String, String> map = new HashMap<>();
-        //         map.put("PARAM_ID", dto.getRowId());
-        //         map.put("checkcu", "update");
-
-        //         mapper.transferProcess(map);
-                
-        //         String externalId = mapper.processPoductId(dto);
-        //         HashMap<String, String> replicaMap = new HashMap<>();
-        //         replicaMap.put("PARAM_ID", externalId);
-        //         replicaMap.put("checkcu", "update");
-
-        //         mapper.transferReplica(replicaMap);
-        //     }
-
-        //     int resultNum02 = mapper.updateProdx(dto);
-
-        //     if(resultNum02 > 0){
-        //         resulDto.setErrorSpcCode("200");
-        //         resulDto.setErrorSpcMessage("success");
-        //     }
-
-        // }else{
-        //     int resultNum01 = mapper.insertProd(dto);
-
-        //     int resultNum02 = 0;
-
-        //     if(resulDto != null){
-        //         resultNum02 = mapper.insertProdx(dto);
-        //         HashMap<String, String> map = new HashMap<>();
-        //         map.put("PARAM_ID", dto.getRowId());
-        //         map.put("checkcu", "insert");
-                
-        //         mapper.transferProcess(map);
-
-        //         String externalId = mapper.processPoductId(dto);
-        //         HashMap<String, String> replicaMap = new HashMap<>();
-        //         replicaMap.put("PARAM_ID", externalId);
-        //         replicaMap.put("checkcu", "insert");
-
-        //         mapper.transferReplica(replicaMap);
-        //     }
-            
-        //     if(resultNum02 > 0){
-        //         resulDto.setErrorSpcCode("200");
-        //         resulDto.setErrorSpcMessage("success");
-        //     }
-        // }
+       
         return resulDto;
     }
 }

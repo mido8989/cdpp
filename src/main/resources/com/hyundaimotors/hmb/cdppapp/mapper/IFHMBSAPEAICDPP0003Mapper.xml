@@ -53,12 +53,16 @@
         )
         ;
     </insert>    
+
     
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_product_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
-        call replica.hmb_product_inbound_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call replica.if_product_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
+
+
+				
