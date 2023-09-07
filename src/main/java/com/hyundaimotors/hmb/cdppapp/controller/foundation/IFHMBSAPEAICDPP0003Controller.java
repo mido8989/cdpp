@@ -31,12 +31,12 @@ public class IFHMBSAPEAICDPP0003Controller {
     
     @Operation(summary = "Vehicle upsert", description = "Vehicle insert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0003Payload.Response.class)))
-    @PostMapping(value = "/api/v1/HMBProductInboundWF/upsert")
+    @PostMapping(value = "/api/v1/HMBProductInboundWF")
     public Object insertObject(@RequestBody IFHMBSAPEAICDPP0003Payload.Request request)throws Exception{
 
         IFHMBSAPEAICDPP0003Dto dto = defaultMapper.map(request, IFHMBSAPEAICDPP0003Dto.class);
 
-        IFHMBSAPEAICDPP0003Dto resultDto = service.upsertObject(dto);
+        IFHMBSAPEAICDPP0003Dto resultDto = service.insertObject(dto);
 
         return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBSAPEAICDPP0003Payload.Response.class) : null;
         

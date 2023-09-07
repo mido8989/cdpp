@@ -1,6 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.payload;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ public class IFHMBSAPEAICDPP0003Payload {
     @Setter
     public static class Request{
         @Schema(description = "FSC OCN unique code. This is the key field for integration.", example = "1-RGHT2")
+        @NotNull
         private String name;
         @Schema(description = "Name of external system.", example = "")
         private String source;

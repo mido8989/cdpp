@@ -18,65 +18,22 @@ public class IFHMBSAPEAICDPP0003ServiceImpl implements IFHMBSAPEAICDPP0003Servic
     
     private final IFHMBSAPEAICDPP0003Mapper mapper;
 
-    public IFHMBSAPEAICDPP0003Dto upsertObject(IFHMBSAPEAICDPP0003Dto dto)throws Exception{
+    public IFHMBSAPEAICDPP0003Dto insertObject(IFHMBSAPEAICDPP0003Dto dto)throws Exception{
 
         IFHMBSAPEAICDPP0003Dto resulDto = new IFHMBSAPEAICDPP0003Dto();
 
-        int productIdCheckNum = mapper.getProductIdCheckNum(dto);
+        mapper.insertObject(dto);
 
-        if(0 < productIdCheckNum){
-            int resultNum01 = mapper.updateProd(dto);
+        HashMap<String, String> map = new HashMap<>();
 
-            if(resultNum01 > 0){
-                dto.setRowId(mapper.getRowIdProdx(dto));
+        map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
-                HashMap<String, String> map = new HashMap<>();
-                map.put("PARAM_ID", dto.getRowId());
-                map.put("checkcu", "update");
+        mapper.transferProcess(map);        
+        mapper.transferReplica(map);
 
-                mapper.transferProcess(map);
-                
-                String externalId = mapper.processPoductId(dto);
-                HashMap<String, String> replicaMap = new HashMap<>();
-                replicaMap.put("PARAM_ID", externalId);
-                replicaMap.put("checkcu", "update");
-
-                mapper.transferReplica(replicaMap);
-            }
-
-            int resultNum02 = mapper.updateProdx(dto);
-
-            if(resultNum02 > 0){
-                resulDto.setErrorSpcCode("200");
-                resulDto.setErrorSpcMessage("success");
-            }
-
-        }else{
-            int resultNum01 = mapper.insertProd(dto);
-
-            int resultNum02 = 0;
-
-            if(resulDto != null){
-                resultNum02 = mapper.insertProdx(dto);
-                HashMap<String, String> map = new HashMap<>();
-                map.put("PARAM_ID", dto.getRowId());
-                map.put("checkcu", "insert");
-                
-                mapper.transferProcess(map);
-
-                String externalId = mapper.processPoductId(dto);
-                HashMap<String, String> replicaMap = new HashMap<>();
-                replicaMap.put("PARAM_ID", externalId);
-                replicaMap.put("checkcu", "insert");
-
-                mapper.transferReplica(replicaMap);
-            }
-            
-            if(resultNum02 > 0){
-                resulDto.setErrorSpcCode("200");
-                resulDto.setErrorSpcMessage("success");
-            }
-        }
+        resulDto.setErrorSpcCode("0");
+        resulDto.setErrorSpcMessage("OK");
+       
         return resulDto;
     }
 }
