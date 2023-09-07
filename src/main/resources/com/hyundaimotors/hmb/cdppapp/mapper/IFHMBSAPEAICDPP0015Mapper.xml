@@ -32,7 +32,7 @@
         </foreach>
     </insert>
 
-    <!--<insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.if_service_request_attachment(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
-    </insert>-->
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_in_color(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
 </mapper>

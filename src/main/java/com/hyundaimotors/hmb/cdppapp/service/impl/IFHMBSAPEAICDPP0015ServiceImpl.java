@@ -21,7 +21,7 @@ public class IFHMBSAPEAICDPP0015ServiceImpl implements IFHMBSAPEAICDPP0015Servic
     public IFHMBSAPEAICDPP0015Dto insertObject(IFHMBSAPEAICDPP0015Dto dto)throws Exception{
          mapper.insertObject(dto);
 
-        /*HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
 
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
