@@ -101,4 +101,8 @@
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_update_lead_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_update_lead_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
 </mapper>
