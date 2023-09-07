@@ -29,7 +29,7 @@
                 , streetaddress
                 , streetaddress2
                 , Streetaddress3
-                , county
+                , country
                 , city
                 , state
                 , postalcode
@@ -50,7 +50,7 @@
                 , #{industryTrend}
                 , #{numberOfEmployee}
                 , #{totalFleetSize}
-                , #{contractedSince}
+                , to_date(#{contractedSince}, 'YYYY-MM-DD')
                 , #{source}
                 , #{organizationType}
                 , #{mainPhoneNumber}
@@ -69,12 +69,12 @@
     </insert>   
     
     <insert id="insertProcessAccount" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call process.if_account_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
 
     <insert id="insertReplicaAccount" statementType="CALLABLE" parameterType="hashMap">
-        call replica.hmb_account_webservice_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call replica.if_account_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
 </mapper>

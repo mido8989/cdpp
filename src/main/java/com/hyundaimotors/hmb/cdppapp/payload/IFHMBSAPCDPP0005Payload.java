@@ -66,9 +66,9 @@ public class IFHMBSAPCDPP0005Payload {
     public static class Response{
         @Schema(description = "Company document number (numbers only)", example = "2038025000614")
         private String contactId;
-        @Schema(description = "Company document number (numbers only)", example = "2038025000614")
+        @Schema(description = "Connex error code. Code 0 means success.", example = "0")
         private String errorSpcCode;
-        @Schema(description = "Company document number (numbers only)", example = "2038025000614")
+        @Schema(description = "Connex error message.", example = "OK")
         private String errorSpcMessage;
     }
 }

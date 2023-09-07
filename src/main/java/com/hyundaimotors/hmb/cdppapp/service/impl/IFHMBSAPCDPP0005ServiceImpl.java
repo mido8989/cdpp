@@ -18,7 +18,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
     
     private final IFHMBSAPCDPP0005Mapper mapper;
 
-    public IFHMBSAPCDPP0005Dto upsertObject(IFHMBSAPCDPP0005Dto dto)throws Exception{
+    public IFHMBSAPCDPP0005Dto insertObject(IFHMBSAPCDPP0005Dto dto)throws Exception{
         IFHMBSAPCDPP0005Dto resulDto = new IFHMBSAPCDPP0005Dto();
 
         mapper.insertObject(dto);
@@ -26,8 +26,13 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
         HashMap<String, String> map = new HashMap<>();
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
-    
-         
+
+        mapper.insertProcessAccount(map);        
+        mapper.insertReplicaAccount(map);
+
+        resulDto.setContactId(dto.getRowId());
+        resulDto.setErrorSpcCode("0"); 
+        resulDto.setErrorSpcMessage("OK");
 
         return resulDto;
 
