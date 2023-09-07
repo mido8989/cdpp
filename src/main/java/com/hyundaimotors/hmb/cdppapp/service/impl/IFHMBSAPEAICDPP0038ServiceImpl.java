@@ -34,6 +34,8 @@ public class IFHMBSAPEAICDPP0038ServiceImpl implements IFHMBSAPEAICDPP0038Servic
 
         mapper.transferProcess(map);
 
+        mapper.transferReplica(map);
+        
         IFHMBSAPEAICDPP0038Dto resultDto = new IFHMBSAPEAICDPP0038Dto();
         //resultDto.set(dto.getRowId());
         resultDto.setErrorSpcCode("0");
