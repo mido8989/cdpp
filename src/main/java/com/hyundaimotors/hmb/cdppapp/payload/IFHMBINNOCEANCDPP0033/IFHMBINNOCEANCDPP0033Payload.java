@@ -15,7 +15,7 @@ public class IFHMBINNOCEANCDPP0033Payload {
         private String idInterface;
         @Schema(description = "Requester system.", example = "SAP")
         private String source;
-        @Schema(description = "Chassis number.", example = "9BHBG51CAKP082334")
+        @Schema(description = "Chassis number.", example = "9BHBG51CAFP380678")
         private String serialNumber;
         @Schema(description = "Vehicle plate number.", example = "RHL6I87")
         private String licenseNumber;
