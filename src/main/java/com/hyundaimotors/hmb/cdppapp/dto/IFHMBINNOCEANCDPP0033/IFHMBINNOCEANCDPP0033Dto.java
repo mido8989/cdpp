@@ -1,8 +1,6 @@
-package com.hyundaimotors.hmb.cdppapp.dto;
+package com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0033;
 
 import java.util.List;
-
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0033.HMBVehicle;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +18,9 @@ public class IFHMBINNOCEANCDPP0033Dto {
     private String startDate;
     private String endDate;
     private String connexid;
+    private String contactInputId;
+    private String accountInputId;
     private String ErrorSpcCode;
     private String ErrorSpcMessage;
-    List<HMBVehicle> listOfHMBVehicle;
+    List<HMBVehicleDto> listOfHMBVehicle;
 }

@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Objects;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0033Dto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0037Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0033.IFHMBINNOCEANCDPP0033Dto;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0028Payload;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0032Payload;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0033.IFHMBINNOCEANCDPP0033Payload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0033Service;
@@ -95,10 +96,14 @@ public class IFHMBINNOCEANCDPP0033Controller {
                 throw new Exception("haven't IdInterface");
             }
 
+            
+        }
             IFHMBINNOCEANCDPP0033Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0033Dto.class);
             IFHMBINNOCEANCDPP0033Dto resultDto = service.getObject(dto);
-        }
 
-        return "Sucess";
+            resultDto.setErrorSpcCode("0");
+            resultDto.setErrorSpcMessage("OK");
+            
+            return defaultMapper.map(resultDto, IFHMBINNOCEANCDPP0033Payload.Response.class);
     }
 }
