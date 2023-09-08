@@ -42,11 +42,7 @@ public class IFHMBINNOCEANCDPP0033Controller {
         }else{
             if("1".equals(checkInterfaceVal)){
                 if(Objects.isNull(request.getSerialNumber()) || request.getSerialNumber().isEmpty()){
-                    try {
                         throw new Exception("haven't SerialNumber");    
-                    } catch (Exception e) {
-                        e.getMessage();
-                    }
                 }
             }else if("2".equals(checkInterfaceVal)){
                 if(Objects.isNull(request.getLicenseNumber()) || request.getLicenseNumber().isEmpty()){
