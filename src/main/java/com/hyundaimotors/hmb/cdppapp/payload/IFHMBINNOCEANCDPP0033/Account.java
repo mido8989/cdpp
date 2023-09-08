@@ -1,0 +1,29 @@
+package com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0033;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
+
+@Schema(name = "Account")
+@Getter
+@Setter
+public class Account {
+    private String id;
+    private String integrationId;
+    private String cnpj;
+    private String name;
+    private String nickname;
+    private String personType;
+    private String zipCode;
+    private String streetAddress;
+    private String streetAddress2;
+    private String streetAddress3;
+    private String city;
+    private String state;
+    private String neighborhood;
+    private String mainPhone;
+    private String fax;
+    private String mainEmailAddress;
+    private String relationshipType;
+    private String relationshipStatus;
+}
