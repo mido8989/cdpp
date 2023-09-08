@@ -42,7 +42,7 @@ public class IFHMBINNOCEANCDPP0033Controller {
         }else{
             if("1".equals(checkInterfaceVal)){
                 if(Objects.isNull(request.getSerialNumber()) || request.getSerialNumber().isEmpty()){
-                        throw new Exception("haven't SerialNumber");    
+                    throw new Exception("haven't SerialNumber");    
                 }
             }else if("2".equals(checkInterfaceVal)){
                 if(Objects.isNull(request.getLicenseNumber()) || request.getLicenseNumber().isEmpty()){
@@ -91,12 +91,9 @@ public class IFHMBINNOCEANCDPP0033Controller {
             }else{
                 throw new Exception("haven't IdInterface");
             }
-
-            
         }
             IFHMBINNOCEANCDPP0033Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0033Dto.class);
             IFHMBINNOCEANCDPP0033Dto resultDto = service.getObject(dto);
-
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");
             
