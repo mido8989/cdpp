@@ -27,7 +27,7 @@ public class IFHMBSAPEAICDPP0015ServiceImpl implements IFHMBSAPEAICDPP0015Servic
 
         mapper.transferProcess(map);
         
-        //mapper.transferReplica(map);*/
+        mapper.transferReplica(map);
 
         IFHMBSAPEAICDPP0015Dto resultDto = new IFHMBSAPEAICDPP0015Dto();
         
