@@ -19,59 +19,71 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
     
     private final IFHMBINNOCEANCDPP0022Mapper mapper;   
 
-    public int manageObject(IFHMBINNOCEANCDPP0022Dto dto)throws Exception{
+    public IFHMBINNOCEANCDPP0022Dto insertObject(IFHMBINNOCEANCDPP0022Dto dto)throws Exception{
 
-        List<IFHMBINNOCEANCDPP0022Dto> rowIdList = mapper.getCheckHolyDay(dto);
-        int res = 0;
+        IFHMBINNOCEANCDPP0022Dto resultDto = new IFHMBINNOCEANCDPP0022Dto();
+        List<IFHMBINNOCEANCDPP0022Dto> rowIdList = mapper.getCheckHoliDay(dto);
+
         if("upsert".equalsIgnoreCase(dto.getOperation())){
+
             if(rowIdList.size() > 0) {
             
-            //IFHMBINNOCEANCDPP0022Dto rowIdDto = mapper.getRowId(dto); // x_org_ext.row_id
             IFHMBINNOCEANCDPP0022Dto rowIdDto = rowIdList.get(0);
             dto.setHolyRowId(rowIdDto.getHolyRowId());
+
+            mapper.insertObject(dto);
             
-            res = mapper.updateObject(dto);
 
             HashMap<String, String> map = new HashMap<>();
-                map.put("PARAM_ID", rowIdDto.getHolyRowId());
-                map.put("checkcu", "update");
+            map.put("PARAM_ID", String.valueOf(dto.getHolyRowId()));
+            map.put("checkcu", "update");
             
             mapper.transferProcess(map);
-
-            mapper.transferReplica(map);
+            mapper.transferReplica(map);      
             
-            }else{
-                IFHMBINNOCEANCDPP0022Dto rowIdDto = mapper.getRowId(dto);
-                dto.setRowId(rowIdDto.getRowId());
-                res = mapper.insertObject(dto);
+            resultDto.setErrorSpcCode("0");
+            resultDto.setErrorSpcMessage("OK");
+                
+            }else{            
+                System.out.println("222222 insert");
+                mapper.insertObject(dto);
                 
                 HashMap<String, String> map = new HashMap<>();
-                map.put("PARAM_ID", dto.getHolyRowId());
+                map.put("PARAM_ID", String.valueOf(dto.getHolyRowId()));
                 map.put("checkcu", "insert");
                 
                 mapper.transferProcess(map);
-
                 mapper.transferReplica(map);
-                
-            }
+
+                resultDto.setErrorSpcCode("0");
+                resultDto.setErrorSpcMessage("OK");
+            }            
+
         }else if("delete".equalsIgnoreCase(dto.getOperation())){
+
             if(rowIdList.size() > 0) {
+
+                System.out.println("333333 delete");
+
                 IFHMBINNOCEANCDPP0022Dto rowIdDto = rowIdList.get(0);
                 dto.setHolyRowId(rowIdDto.getHolyRowId());
                 
                 HashMap<String, String> map = new HashMap<>();
-                map.put("PARAM_ID", dto.getHolyRowId());
+                map.put("PARAM_ID", String.valueOf(dto.getHolyRowId()));
                 map.put("checkcu", "delete");
 
                 mapper.transferProcess(map);
-
                 mapper.transferReplica(map);
                 
-                res = mapper.deleteObject(dto);
+                mapper.insertObject(dto);
 
+                resultDto.setErrorSpcCode("0");
+                resultDto.setErrorSpcMessage("OK");
             }
         }
 
-        return res;
+        
+
+        return resultDto;       
     }
 }
