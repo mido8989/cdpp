@@ -11,13 +11,16 @@ public class IFHMBINNOCEANCDPP0022Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(description = "Name of requester system.", example = "Source")
+        @Schema(description = "Name of requester system.", example = "SAP")
+        @NotNull
         private String source;
         @Schema(description = "Holiday description.", example = "Proclama 00E7 00E3o da Rep 00FAblica")
         private String holidayDescription;
         @Schema(description = "Holiday date. Format: MM/DD/YYYY", example = "2016-11-15")
+        @NotNull
         private String holidayDate;
         @Schema(description = "Dealer Code", example = "B05AM99999")
+        @NotNull
         private String dealerCode;
         @Schema(description = "Requested operation. Possible values are: UPSERT for update or insert. DELETE for deletion.", example = "DELETE")
         private String operation;

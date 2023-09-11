@@ -1,5 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.controller.proactive;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,12 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0022Dto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0032Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0022Payload;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPCDPP0005Payload;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0003Payload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0022Service;
-import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPCDPP0005Service;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -38,18 +35,9 @@ public class IFHMBINNOCEANCDPP0022Controller {
     public Object manageObject(@RequestBody IFHMBINNOCEANCDPP0022Payload.Request request)throws Exception{
         IFHMBINNOCEANCDPP0022Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0022Dto.class);
         
-        int resultNum = service.manageObject(dto);
+        IFHMBINNOCEANCDPP0022Dto resultDto = service.insertObject(dto);
 
-        if(0 < resultNum){
-            dto.setErrorSpcCode("0");
-            dto.setErrorSpcMessage("OK");
-        }else{
-            dto.setErrorSpcCode("1");
-            dto.setErrorSpcMessage("fail");
-        }
-
-        
-        return defaultMapper.map(dto, IFHMBINNOCEANCDPP0022Payload.Response.class);
+        return ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBINNOCEANCDPP0022Payload.Response.class) : null;
     }
 
 }
