@@ -3,12 +3,13 @@ package com.hyundaimotors.hmb.cdppapp.payload;
 import java.util.List;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 public class IFHMBINNOCEANCDPP0002Payload {
     
-    @Schema(name = "IFHMBZICARDCDPP0002Payload.Request")
+    @Schema(name = "IFHMBINNOCEANCDPP0002Payload.Request")
     @Getter
     @Setter
     public static class Request{
@@ -16,8 +17,10 @@ public class IFHMBINNOCEANCDPP0002Payload {
         private String integrationId;
         @Schema(description = "Individual's document number (numbers only)", example = "12337343006")
         private String cpf;
+        @NotNull
         @Schema(description = "Contact first name", example = "Jose")
         private String firstName;
+        @NotNull
         @Schema(description = "Contact last name", example = "Ciclano")
         private String lastName;
         @Schema(description = "Contact birth date - Format: MM/DD/YYYY", example = "2005-11-24")
@@ -32,6 +35,7 @@ public class IFHMBINNOCEANCDPP0002Payload {
         private String workPhone;
         @Schema(description = "Contact cell phone.", example = "11941319501")
         private String cellPhone;
+        @NotNull
         @Schema(description = "Contact email address.", example = "kilosolution2s@gmail.com")
         private String emailAddress;
         @Schema(description = "Contact preferred way of contact. Valid values: Uninformed, Email, Mail, Sms, Home phone, Mobile phone, Work phone ", example = "Email")
@@ -95,7 +99,7 @@ public class IFHMBINNOCEANCDPP0002Payload {
         List<InboundContactWorkflowSoccerTeamPayLoad> soccerTeam;
     }
 
-    @Schema(name = "IFHMBZICARDCDPP0002Payload.Response")
+    @Schema(name = "IFHMBINNOCEANCDPP0002Payload.Response")
     @Getter
     @Setter
     public static class Response{
