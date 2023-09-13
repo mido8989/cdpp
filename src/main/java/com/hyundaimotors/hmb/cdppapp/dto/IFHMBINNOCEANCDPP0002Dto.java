@@ -8,14 +8,13 @@ import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowHobbyPayLoad;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowSnsPayLoad;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowSoccerTeamPayLoad;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class IFHMBINNOCEANCDPP0002Dto {
-    private String rowId;
+    private int rowId;
     private String integrationId;
     private String cpf;
     private String firstName;
