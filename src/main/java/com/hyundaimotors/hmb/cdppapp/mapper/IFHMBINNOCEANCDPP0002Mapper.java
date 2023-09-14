@@ -7,6 +7,10 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002Dto;
 
 public interface IFHMBINNOCEANCDPP0002Mapper {
     
+    public String foundContactIdbyCpf(IFHMBINNOCEANCDPP0002Dto dto)throws Exception;
+
+    public String foundContactId(IFHMBINNOCEANCDPP0002Dto dto)throws Exception;
+    
     public int insertObject(IFHMBINNOCEANCDPP0002Dto dto) throws Exception;
 
     public int insertCar(IFHMBINNOCEANCDPP0002Dto dto) throws Exception;
