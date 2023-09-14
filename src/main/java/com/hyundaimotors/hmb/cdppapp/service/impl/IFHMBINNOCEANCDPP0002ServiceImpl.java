@@ -27,14 +27,50 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         mapper.insertCar(dto);
         mapper.insertApp(dto);
         mapper.insertSocialmedia(dto);
-        mapper.insertHobby(dto);
+        mapper.insertHobby(dto);            
         mapper.insertSoccerteam(dto);
-        
-        HashMap<String, String> map = new HashMap<>();
-        map.put("PARAM_ID", String.valueOf(dto.getRowId()));
-        
-        mapper.transferProcess(map);
-        mapper.transferReplica(map);
+
+        // contact 존재 여부 체크
+        if( dto.getCpf() != null ){
+
+            String foundContactIdByCpf = mapper.foundContactIdbyCpf(dto);
+
+            if( foundContactIdByCpf != null){
+
+                HashMap<String, String> map = new HashMap<>();
+                map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+                map.put("CONTACT_ID", foundContactIdByCpf);
+                map.put("checkcu", "update");
+                
+                mapper.transferProcess(map);
+                mapper.transferReplica(map);
+                
+            }else{
+
+                String foundContactId = mapper.foundContactId(dto);
+                
+                if(foundContactId != null ){
+    
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+                    map.put("CONTACT_ID", foundContactId);
+                    map.put("checkcu", "update");
+                    
+                    mapper.transferProcess(map);
+                    mapper.transferReplica(map);
+
+                }else{
+
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+                    map.put("CONTACT_ID", "");
+                    map.put("checkcu", "insert");
+                    
+                    mapper.transferProcess(map);
+                    mapper.transferReplica(map);
+                }
+            }
+        }
 
         String processingRowId = mapper.getContactId(dto);
         
