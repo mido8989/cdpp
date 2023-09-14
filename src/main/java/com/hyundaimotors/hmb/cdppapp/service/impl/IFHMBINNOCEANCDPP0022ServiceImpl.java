@@ -45,7 +45,6 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
             resultDto.setErrorSpcMessage("OK");
                 
             }else{            
-                System.out.println("222222 insert");
                 mapper.insertObject(dto);
                 
                 HashMap<String, String> map = new HashMap<>();
@@ -62,9 +61,6 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
         }else if("delete".equalsIgnoreCase(dto.getOperation())){
 
             if(rowIdList.size() > 0) {
-
-                System.out.println("333333 delete");
-
                 IFHMBINNOCEANCDPP0022Dto rowIdDto = rowIdList.get(0);
                 dto.setHolyRowId(rowIdDto.getHolyRowId());
                 
