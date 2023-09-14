@@ -2,6 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0002Mapper">
     
+    <select id="foundContactIdbyCpf" parameterType="IFHMBINNOCEANCDPP0002Dto" resultType="String">
+        select 
+            row_id as foundContactIdByCpf
+        from
+            process.contact
+        where 
+            cpf__c = #{cpf}
+    </select>
+
+    <select id="foundContactId" parameterType="IFHMBINNOCEANCDPP0002Dto" resultType="String">
+        select 
+            row_id as foundContactId
+        from
+            process.contact
+        where 
+            firstname = #{firstName}
+        and
+            lastname = #{lastName}
+        and
+            email = #{emailAddress}
+    </select>
 
     <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0002Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_in_contact_inf_wf
@@ -228,11 +249,11 @@
     </insert>
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.if_in_contact_inf_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call process.if_in_contact_inf_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN}, #{CONTACT_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
-        call Replica.if_in_contact_inf_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call Replica.if_in_contact_inf_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN}, #{CONTACT_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
 
