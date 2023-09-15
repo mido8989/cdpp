@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0037Dto;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfAutoVehicle;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactHobby;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactSoccerTeam;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactSocialMedia;
@@ -11,18 +12,20 @@ import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.UpdateContact
 
 public interface IFHMBINNOCEANCDPP0037Mapper {
     
-    public int updateContact(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
-    
-    public int updateContactx(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
+    public void insertObject(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
 
-    public int updateContactHobby(List<ListOfContactHobby> listOfContactHobby)throws Exception;
+    public void insertAutoVehicle(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
 
-    public int updateSoccerTeam(List<ListOfContactSoccerTeam> listOfContactSoccerTeam)throws Exception;
+    public void insertHobby(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
 
-    public int updateContactSocialMedia(List<ListOfContactSocialMedia> listOfContactSocialMedia)throws Exception;
+    public void insertSoccerTeam(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
+
+    public void insertSocialMedia(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
 
     public UpdateContactOutput getUpdateContactOutput(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
 
+    public List<ListOfAutoVehicle> getListVehicle(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
+    
     public List<ListOfContactHobby> getListHobby(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
 
     public List<ListOfContactSoccerTeam> getListSoccerTeam(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;

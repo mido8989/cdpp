@@ -8,20 +8,20 @@ import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContact
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactSocialMedia;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.UpdateContactOutput;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 public class IFHMBINNOCEANCDPP0037Dto {
+    private int rowId;
     private String cnheXpirationDate;
     private String contactId;
     private String suppressAllEmails;
     private String suppressAllSMS;
     private String printedCard;
-    private String replicaAccountRowId;
-    private String replicaContactRowId;
+    private String processAccountRowId;
+    private String processContactRowId;
 
     List<ListOfAutoVehicle> listOfAutoVehicle;
     List<ListOfContactHobby> listOfContactHobby;
