@@ -1,75 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0037Mapper">
+
+
+
+    <insert id='insertObject' parameterType="IFHMBINNOCEANCDPP0037Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into landing.if_update_contact_in_wf
+        (
+            , created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , cnhexpirationdate
+            , contactid
+            , suppressallemails
+            , suppressallsms
+            , printedcard
+        )
+        values
+        (
+            now()
+            , 'interface'
+            , now()
+            , 'interface'
+            , to_date(#{cnheXpirationDate}, 'YYYY-MM-DD')
+            , #{contactId}
+            , #{suppressAllEmails}
+            , #{suppressAllSMS}
+            , case when lower(#{printedCard}) = 'false' then false else true end
+        )
+    </insert>
     
-    <update id="updateContact" parameterType="IFHMBINNOCEANCDPP0037Dto">
-        update 
-            landing.S_CONTACT 
-        set
-            SUPPRESS_EMAIL_FLG = #{suppressAllEmails}
-            <!--, SUPPRESS_SMS_FLG = #{suppressAllSMS}-->
-            , X_PRINTED_CARD = #{printedCard}
-            , last_upd = now()
-            , last_upd_by = 'interface'
-        where 
-            ROW_ID = #{contactId}
-    </update>
-
-    <update id="updateContactx" parameterType="IFHMBINNOCEANCDPP0037Dto">
-        update 
-            landing.S_CONTACT_X 
-        set
-            X_CNH_EXP_DATE = to_date(#{cnheXpirationDate},'YYYY-MM-DD')
-        where 
-            par_row_id = #{contactId}
-    </update>
-
-    <update id="updateContactHobby" parameterType="IFHMBINNOCEANCDPP0037Dto">
-        <foreach collection="list" item="item" separator=";">
-            update 
-                landing.s_contact_xm 
-            set
-                last_upd = now()
-                , last_upd_by = 'interface'
-                , name = #{item.hobbyDescription}
-            where
-                par_row_id = #{item.hobbyContactId}
-            and
-                type = 'Hobby'
+    <insert id="insertAutoVehicle" parameterType="IFHMBINNOCEANCDPP0037Dto">
+        insert into landing.if_update_contact_in_wf_vehicle
+        (
+            par_row_id
+            , created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , vehicleid
+            , relationshiptatus 
+            , hmbrenavamcode
+            , currentmileage
+            , vehiclelicensenumber
+        )
+        values
+        <foreach collection="listOfAutoVehicle" item="item" separator=",">
+            (
+                #{rowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+                , #{item.vehicleId}
+                , #{item.relashionshipStatus}
+                , #{item.HMBRenavamCode}
+                , #{item.currenMileage}
+                , #{item.vehicleLicenseNumber}
+            )
         </foreach>
-    </update>
+    </insert>
 
-    <update id="updateSoccerTeam" parameterType="IFHMBINNOCEANCDPP0037Dto">
-        <foreach collection="list" item="item" separator=";">
-            update 
-                landing.s_contact_xm 
-            set
-                last_upd = now()
-                , last_upd_by = 'interface'
-                , name = #{item.soccerTeam}
-            where
-                par_row_id = #{item.SoccerTeamContactId}
-            and
-                type = 'Soccer Team'
+    <insert id="insertHobby" parameterType="IFHMBINNOCEANCDPP0037Dto">
+        insert into landing.if_update_contact_in_wf_hobby
+        (
+            par_row_id
+            , created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , hobbydescription
+        )
+        values
+        <foreach collection="listOfContactHobby" item="item" separator=",">
+            (
+                #{rowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+                , #{hobbyDescription}
+            )
         </foreach>
-    </update>
+    </insert>
 
-    <update id="updateContactSocialMedia" parameterType="IFHMBINNOCEANCDPP0037Dto">
-        <foreach collection="list" item="item" separator=";">
-            update 
-                landing.s_contact_xm 
-            set
-                last_upd = now()
-                , last_upd_by = 'interface'
-                , name = #{item.socialMediaName}
-                , X_SOC_MED_USER = #{item.socialMediaUser}
-                , X_SOURCE_CITY = #{item.sourceCity}
-            where
-                par_row_id = #{item.socialMediaContactId}
-            and
-                type = 'Social Media'
+    <insert id="insertSoccerTeam" parameterType="IFHMBINNOCEANCDPP0037Dto">
+        insert into landing.if_update_contact_in_wf_soccerteam
+        (
+            par_row_id
+            , created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , soccerteam
+        )
+        values
+        <foreach collection="listOfContactSoccerTeam" item="item" separator=",">
+            (
+                #{rowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+                , #{soccerTeam}
+            )
         </foreach>
-    </update>
+    </insert>
+
+    <insert id="insertSocialMedia" parameterType="IFHMBINNOCEANCDPP0037Dto">
+        insert into landing.if_update_contact_in_wf_socialmedi
+        (
+            par_row_id
+            , created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , socialmedianame
+            , socialmediauser
+            , sourcecity
+        )
+        values
+        <foreach collection="listOfContactSocialMedia" item="item" separator=",">
+            (
+                #{rowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+                , #{socialMediaName}
+                , #{socialMediaUser}
+                , #{sourceCity}
+            )
+        </foreach>
+    </insert> 
+
 
     <select id="getUpdateContactOutput" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.UpdateContactOutput">
         select 
@@ -99,50 +164,57 @@
         where 
             c.external_id__c = #{contactId}
     </select>
+    
+    <select id="getListVehicle" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfAutoVehicle">
+        select 
+            vehicleid as hobbyDescription
+            , relashionshipstatus as relashionshipStatus
+            , hmbrenavamcode as HMBRenavamCode
+            , currenmileage as currenMileage
+            , vehiclelicensenumber as vehicleLicenseNumber
+        from 
+            landing.if_update_contact_in_wf_vehicle v 
+        where 
+            v.par_row_id = #{rowId}        
+    </select>
 
     <select id="getListHobby" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactHobby">
         select 
-            NAME as hobbyDescription
+            hobbydescription as hobbyDescription
         from 
-            landing.s_contact_xm scx 
-        where 
-            scx.par_row_id = #{contactId}
-        and
-            scx.type = 'Hobby'
+            landing.if_update_contact_in_wf_hobby h 
+        whereh
+            h.par_row_id = #{rowId}
     </select>
-
+    
     <select id="getListSoccerTeam" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactSoccerTeam">
         select 
-            NAME as soccerTeam
+            soccerteam as soccerTeam
         from 
-            landing.s_contact_xm scx 
+            landing.if_update_contact_in_wf_soccerteam s 
         where 
-            scx.par_row_id = #{contactId}
-        and
-            scx.type = 'Soccer Team'
+            s.par_row_id = #{rowId}
     </select>
 
     <select id="getListSocialMedia" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactSocialMedia">
         select 
-            NAME as soccerTeam
-            , X_SOC_MED_USER as socialMediaUser
-            , X_SOURCE_CITY as sourceCity
+            socialmedianame as soccerTeam
+            , socialmediauser as socialMediaUser
+            , sourcecity as sourceCity
         from 
-            landing.s_contact_xm scx 
+            landing.if_update_contact_in_wf_socialmedia s 
         where 
-            scx.par_row_id = #{contactId}
-        and
-            scx.type = 'Social Media'
+            s.par_row_id = #{rowId}
     </select>
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_update_contact_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call process.if_update_contact_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{CONTACT_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
     <select id="getAcountAndContactId" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="IFHMBINNOCEANCDPP0037Dto">
         select
-            a.row_id as replicaAccountRowId
-            , c.row_id as replicaContactRowId
+            a.row_id as processAccountRowId
+            , c.row_id as processContactRowId
         from 
             process.account a 
         join
@@ -150,10 +222,10 @@
         on
             a.row_id = c.account_row_id 
         where 
-            a.external_id__c = #{contactId}
+            c.row_id = #{contactId}
     </select>
 
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
-        call Replica.hmb_update_contact_in_wf(#{PARAM_ID_01,jdbcType=VARCHAR,mode=IN},#{PARAM_ID_02,jdbcType=VARCHAR,mode=IN});
+        call Replica.if_update_contact_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{PARAM_ID_01,jdbcType=VARCHAR,mode=IN},#{PARAM_ID_02,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
