@@ -10,7 +10,6 @@
         where 
             cpf__c = #{cpf}
     </select>
-
     <select id="foundContactId" parameterType="IFHMBINNOCEANCDPP0002Dto" resultType="String">
         select 
             row_id as foundContactId
@@ -23,7 +22,6 @@
         and
             email = #{emailAddress}
     </select>
-
     <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0002Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_in_contact_inf_wf
         (
@@ -114,7 +112,6 @@
             , #{alreadyCustomer}
         )
     </insert>
-
     <insert id="insertCar" parameterType="IFHMBINNOCEANCDPP0002Dto">
         insert into landing.if_in_contact_inf_wf_car 
         (
@@ -148,7 +145,6 @@
             )
         </foreach>
     </insert>
-
     <insert id="insertApp" parameterType="IFHMBINNOCEANCDPP0002Dto">
         insert into landing.if_in_contact_inf_wf_app 
         (
@@ -174,7 +170,6 @@
         )
         </foreach>
     </insert>
-
     
     <insert id="insertSocialmedia" parameterType="IFHMBINNOCEANCDPP0002Dto">
         insert into landing.if_in_contact_inf_wf_socialmedia 
@@ -225,7 +220,6 @@
             )
         </foreach>
     </insert>
-
     <insert id="insertSoccerteam" parameterType="IFHMBINNOCEANCDPP0002Dto">
         insert into landing.if_in_contact_inf_wf_soccerteam 
         (
@@ -247,23 +241,10 @@
             )
         </foreach>
     </insert>
-
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_in_contact_inf_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN}, #{CONTACT_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
-
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call Replica.if_in_contact_inf_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN}, #{CONTACT_ID,jdbcType=VARCHAR,mode=IN});
-    </insert>
-
-
-    <select id="getContactId" parameterType="IFHMBINNOCEANCDPP0002Dto" resultType="String">
-        select 
-            row_id as processingRowId
-        from
-            process.contact
-        where 
-            external_id__c = cast(#{rowId} as text)
-    </select>
-
+    </insert>    
 </mapper>
