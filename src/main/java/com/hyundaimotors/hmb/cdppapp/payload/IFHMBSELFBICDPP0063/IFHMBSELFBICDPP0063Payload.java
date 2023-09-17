@@ -12,13 +12,13 @@ public class IFHMBSELFBICDPP0063Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(description = "MM/DD/YYYY, billing date to capture.", example = "2020-10-25")
+        @Schema(description = "MM/DD/YYYY, billing date to capture.", example = "2018-10-30")
         private String dateInput;
         @Schema(description = "Y or N. If you select Y, then Siebel will get all VIN searching them by Created Field. If you select N, then Siebel will get all VIN searching them by Sales date field.", example = "Y")
         private String createdOption;
         @Schema(description = "1=All Sales, 2=Different from Direct Sales, 3=Direct Sales", example = "1")
         private String seq;
-        @Schema(description = "Vehicle number", example = "9BHBG51CADP010537")
+        @Schema(description = "Vehicle number", example = "9BHGA811BKP099943")
         private String vin;
     }
 
