@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSELFBICDPP0063Mapper">
+    
+    <select id="getAsset" parameterType="IFHMBSELFBICDPP0063Dto" resultType="IFHMBSELFBICDPP0063Dto">
+        select 
+            pa.serialnumber as Chassi
+            , pa.billing_date__c as SalesDate
+            , pa.dealercode__c as dealerCode
+            , (select corporaterepresentativename__c from process.account where external_id__c = pa.dealercode__c) as SalesDealerNick
+            , pa.oper_status_cd__c as SalesCode
+            , pa."name" as SalesFSCOCN
+            , pa.enginetype__c as SalesMotor
+            , pa.modelname__c as VINModel
+            , pa.vehiclecolor__c as externalColorCode
+            , pa.x_del_home__c as DelHome
+            , pa.x_dig_sales__c as DigitalSales
+            , pa.x_td_home__c as TDHome
+            , pa.x_sales_cancel_dt__c as SalesCancelled
+            , pa.row_id as assetId
+        from
+            process.asset pa
+        where
+            <choose>
+                <when test='createdOption == "Y"'>
+                    pa.created = to_date(#{dateInput}, 'YYYY-MM-DD')
+                </when>
+                <otherwise>
+                    pa.billing_date__c = to_date(#{dateInput}, 'YYYY-MM-DD')
+                </otherwise>
+            </choose>
+            <choose>
+                <when test='seq == "2"'>
+                and    
+                    pa.oper_status_cd__c = 'ZV02'
+                </when>
+                <when test='seq == "3"'>
+                and
+                    pa.oper_status_cd__c = 'ZV02'
+                </when>
+                <otherwise>
+
+                </otherwise>
+            </choose>
+        <if test="vin != null and vin != ''">
+            and
+                pa.serialnumber = #{vin}
+        </if>    
+    </select>
+
+    <select id="getContact"  parameterType="String" resultType="ContactGetVinDto">
+        select
+            pa.row_id as IdSiebel
+            , ac.relation_type_cd as RelatedType
+            , ac.status_cd as RelatedStatus
+            , pa.calloptyn__pc as SuppressAllCalls
+            , pa.emailoptyn__pc as SuppressAllEmails
+            , pa.directmailoptyn__pc as SuppressAllMailings
+            , pa.directmailoptyn__pc as SuppressAllMailings
+            , pa.blockedmobile__c as SuppressAllMobilePhone
+            , pa.blockedsms__c as SuppressAllSMS
+            , pa.x_printed_card__c as SuppressAllVideoCall
+            , pa.blockedwhatsapp__c as SuppressAllWhatsapp
+        from
+            process.account pa
+        join
+            process.asset_con ac 
+        on
+            pa.external_id__c = ac.contact_id 
+        where 
+            ac.asset_id = #{assetGetRowId}
+    </select>
+
+    <select id="getAccount"  parameterType="String" resultType="AccountGetVinDto">
+        select
+            pa.row_id as IdSiebel
+            , aa.rel_type_cd as RelatedType
+            , aa.status_cd as RelatedStatus
+        from
+            process.account pa
+        join
+            process.asset_accnt aa 
+        on
+            pa.external_id__c = aa.accnt_id
+        where
+            aa.asset_id = #{assetGetRowId}
+    </select>
+</mapper>
