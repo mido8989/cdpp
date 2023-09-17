@@ -26,24 +26,26 @@ public class IFHMBSELFBICDPP0063ServiceImpl implements IFHMBSELFBICDPP0063Servic
         List<VehicleDto> vehicleList = new ArrayList<>();
 
         vehicleList = mapper.getAsset(dto);
+        if(vehicleList.size() > 0){
+            for(int i = 0; i < vehicleList.size(); i++){
+                List<AccountGetVinDto> accountDto = new ArrayList<>();
+                List<ContactGetVinDto> contactDto = new ArrayList<>();
 
-        for(int i = 0; i < vehicleList.size(); i++){
-            List<AccountGetVinDto> accountDto = new ArrayList<>();
-            List<ContactGetVinDto> contactDto = new ArrayList<>();
+                String assetGetRowId = dto.getListOfVehicle().get(i).getAssetId();
 
-            String assetGetRowId = dto.getListOfVehicle().get(i).getAssetId();
-
-            contactDto = mapper.getContact(assetGetRowId);
-            accountDto = mapper.getAccount(assetGetRowId);
-            if(0 < contactDto.size()){
-                vehicleList.get(i).setListOfContact(contactDto);
+                contactDto = mapper.getContact(assetGetRowId);
+                accountDto = mapper.getAccount(assetGetRowId);
+                if(0 < contactDto.size()){
+                    vehicleList.get(i).setListOfContact(contactDto);
+                }
+                if(0 < accountDto.size()){
+                    vehicleList.get(i).setListOfAccount(accountDto);
+                }
             }
-            if(0 < accountDto.size()){
-                vehicleList.get(i).setListOfAccount(accountDto);
-            }
+
+            resulDto.setListOfVehicle(vehicleList);
         }
-
-        resulDto.setListOfVehicle(vehicleList);
+        
         return resulDto;
     }
 }
