@@ -44,6 +44,13 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
         mapper.insertHobby(dto);
         mapper.insertSoccerTeam(dto);
         mapper.insertSocialMedia(dto); 
+        
+        int checkVehicleInfo = mapper.checkVehicleInfo(dto);
+
+        if( checkVehicleInfo> 0 ){
+            processMap.put("ASSET_ID", "Y");
+        }
+
         processMap.put("PARAM_ID", String.valueOf(dto.getRowId()));
         processMap.put("CONTACT_ID", dto.getContactId());
         
