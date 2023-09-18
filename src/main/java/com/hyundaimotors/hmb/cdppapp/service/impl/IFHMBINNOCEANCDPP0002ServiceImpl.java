@@ -70,7 +70,38 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     resultDto.setError_spcMessage("OK"); 
                 }
             }
-        }       
+        } else {
+            String foundContactId = mapper.foundContactId(dto);
+            
+            if(foundContactId != null ){
+
+                HashMap<String, String> map = new HashMap<>();
+                map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+                map.put("CONTACT_ID", foundContactId);
+                map.put("checkcu", "update");
+                
+                mapper.transferProcess(map);
+                mapper.transferReplica(map);
+                resultDto.setContactId(foundContactId);
+                resultDto.setError_spcCode("0");
+                resultDto.setError_spcMessage("OK"); 
+            }else{
+                HashMap<String, String> map = new HashMap<>();
+                map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+                map.put("checkcu", "insert");
+                
+                mapper.transferProcess(map);
+
+                String contactId = mapper.foundContactId(dto);
+
+                map.put("CONTACT_ID", contactId);
+                mapper.transferReplica(map);
+
+                resultDto.setContactId(contactId);
+                resultDto.setError_spcCode("0");
+                resultDto.setError_spcMessage("OK"); 
+            }
+        }
              
         
         return resultDto;
