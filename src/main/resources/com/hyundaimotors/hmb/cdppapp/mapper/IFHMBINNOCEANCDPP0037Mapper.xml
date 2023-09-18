@@ -7,7 +7,7 @@
     <insert id='insertObject' parameterType="IFHMBINNOCEANCDPP0037Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_update_contact_in_wf
         (
-            , created
+            created
             , created_by
             , last_upd
             , last_upd_by
@@ -27,7 +27,7 @@
             , #{contactId}
             , #{suppressAllEmails}
             , #{suppressAllSMS}
-            , case when lower(#{printedCard}) = 'false' then false else true end
+            , case when lower(#{printedCard}) = 'false' then 'N' else 'Y' end
         )
     </insert>
     
@@ -135,6 +135,19 @@
         </foreach>
     </insert> 
 
+    <select id="checkVehicleInfo" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="int">
+        select 
+            count(*)
+        from 
+            landing.if_update_contact_in_wf_vehicle v 
+        join
+            landing.if_update_contact_in_wf l
+        on
+            v.par_row_id = l.row_id 
+        where
+            l.row_id = #{rowId}
+    </select>
+
 
     <select id="getUpdateContactOutput" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.UpdateContactOutput">
         select 
@@ -208,7 +221,7 @@
     </select>
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.if_update_contact_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{CONTACT_ID,jdbcType=VARCHAR,mode=IN});
+        call process.if_update_contact_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{CONTACT_ID,jdbcType=VARCHAR,mode=IN}, #{UPDATE_ASSET,jdbcType=VARCHAR,mode=IN});
     </insert>
 
     <select id="getAcountAndContactId" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="IFHMBINNOCEANCDPP0037Dto">
@@ -226,6 +239,6 @@
     </select>
 
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
-        call Replica.if_update_contact_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{PARAM_ID_01,jdbcType=VARCHAR,mode=IN},#{PARAM_ID_02,jdbcType=VARCHAR,mode=IN});
+        call Replica.if_update_contact_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{PARAM_ID_01,jdbcType=VARCHAR,mode=IN},#{PARAM_ID_02,jdbcType=VARCHAR,mode=IN}, #{UPDATE_ASSET,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
