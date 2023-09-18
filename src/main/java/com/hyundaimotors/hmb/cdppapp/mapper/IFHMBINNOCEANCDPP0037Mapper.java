@@ -22,6 +22,8 @@ public interface IFHMBINNOCEANCDPP0037Mapper {
 
     public void insertSocialMedia(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
 
+    public int checkVehicleInfo(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
+
     public UpdateContactOutput getUpdateContactOutput(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
 
     public List<ListOfAutoVehicle> getListVehicle(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
