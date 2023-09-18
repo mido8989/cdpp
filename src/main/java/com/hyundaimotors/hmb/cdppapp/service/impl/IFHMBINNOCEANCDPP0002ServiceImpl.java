@@ -56,13 +56,16 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 }else{
                     HashMap<String, String> map = new HashMap<>();
                     map.put("PARAM_ID", String.valueOf(dto.getRowId()));
-                    map.put("CONTACT_ID", "");
                     map.put("checkcu", "insert");
                     
                     mapper.transferProcess(map);
+
+                    String contactId = mapper.foundContactId(dto);
+
+                    map.put("CONTACT_ID", contactId);
                     mapper.transferReplica(map);
-                    String resultContactId = mapper.foundContactId(dto);
-                    resultDto.setContactId(resultContactId);
+
+                    resultDto.setContactId(contactId);
                     resultDto.setError_spcCode("0");
                     resultDto.setError_spcMessage("OK"); 
                 }
