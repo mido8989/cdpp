@@ -23,7 +23,7 @@
         where
             <choose>
                 <when test='createdOption == "Y"'>
-                    pa.created = to_date(#{dateInput}, 'YYYY-MM-DD')
+                    pa.legacy_created = to_date(#{dateInput}, 'YYYY-MM-DD')
                 </when>
                 <otherwise>
                     pa.billing_date__c = to_date(#{dateInput}, 'YYYY-MM-DD')
