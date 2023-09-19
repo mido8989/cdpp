@@ -32,7 +32,7 @@
             <choose>
                 <when test='seq == "2"'>
                 and    
-                    pa.oper_status_cd__c = 'ZV02'
+                    pa.oper_status_cd__c != 'ZV02'
                 </when>
                 <when test='seq == "3"'>
                 and
