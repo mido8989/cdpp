@@ -34,7 +34,7 @@ public class IFHMBINNOCEANCDPP0027Controller {
 
     @Operation(summary = "registers insert", description = "registers insert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0027Payload.Response.class)))
-    @PostMapping(value = "/api/v1/HMBRegisterInApplicationWS/upsert")
+    @PostMapping(value = "/api/v1/HMBRegisterInApplicationWS")
     public Object upsertObject(@RequestBody IFHMBINNOCEANCDPP0027Payload.Request request)throws Exception{
         ModelMapper modelMapper = new ModelMapper();
         IFHMBINNOCEANCDPP0027Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0027Dto.class);

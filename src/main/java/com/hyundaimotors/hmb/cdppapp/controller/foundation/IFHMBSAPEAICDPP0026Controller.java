@@ -37,7 +37,7 @@ public class IFHMBSAPEAICDPP0026Controller {
 
     @Operation(summary = "Poduct insert", description = "Poduct insert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0026Payload.Response.class)))
-    @PostMapping(value = "/api/v1/HMBProductListInboundWF/insert")
+    @PostMapping(value = "/api/v1/HMBProductListInboundWF")
     public Object insertList(@RequestBody List<ListOfProduct> request)throws Exception{
         List<IFHMBSAPEAICDPP0026Dto> list = new ArrayList<>();
         for(int i=0; i < request.size(); i++){
