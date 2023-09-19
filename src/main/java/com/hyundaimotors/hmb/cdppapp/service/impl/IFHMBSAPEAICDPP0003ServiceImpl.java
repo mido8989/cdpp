@@ -28,7 +28,12 @@ public class IFHMBSAPEAICDPP0003ServiceImpl implements IFHMBSAPEAICDPP0003Servic
 
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
-        mapper.transferProcess(map);        
+        mapper.transferProcess(map);   
+        
+        mapper.getProductRowId(dto);
+
+        map.put("PRODUCT_ID", dto.getProcessProductId());
+
         mapper.transferReplica(map);
 
         resulDto.setErrorSpcCode("0");
