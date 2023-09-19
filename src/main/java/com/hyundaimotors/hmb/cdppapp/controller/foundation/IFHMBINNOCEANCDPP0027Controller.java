@@ -34,7 +34,7 @@ public class IFHMBINNOCEANCDPP0027Controller {
 
     @Operation(summary = "registers insert", description = "registers insert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0027Payload.Response.class)))
-    @PostMapping(value = "/api/v1/HMBRegisterInApplicationWS/upsert")
+    @PostMapping(value = "/api/v1/HMBRegisterInApplicationWS")
     public Object upsertObject(@RequestBody IFHMBINNOCEANCDPP0027Payload.Request request)throws Exception{
         ModelMapper modelMapper = new ModelMapper();
         IFHMBINNOCEANCDPP0027Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0027Dto.class);
@@ -42,19 +42,7 @@ public class IFHMBINNOCEANCDPP0027Controller {
         
         IFHMBINNOCEANCDPP0027Dto resultDto = service.upsertObject(dto);
 
-        if(ObjectUtils.isNotEmpty(resultDto)){
-            IFHMBINNOCEANCDPP0027Dto resultSuDto = new IFHMBINNOCEANCDPP0027Dto();
-            resultSuDto.setErrorSpcCode("0");
-            resultSuDto.setErrorSpcMessage("OK");
-
-            return modelMapper.map(resultSuDto, IFHMBINNOCEANCDPP0027Payload.Response.class);
-        }else{
-            IFHMBINNOCEANCDPP0027Dto resultSuDto = new IFHMBINNOCEANCDPP0027Dto();
-            resultSuDto.setErrorSpcCode("0");
-            resultSuDto.setErrorSpcMessage("OK");
-
-            return modelMapper.map(resultSuDto, IFHMBINNOCEANCDPP0027Payload.Response.class);
-        }
+        return modelMapper.map(resultDto, IFHMBINNOCEANCDPP0027Payload.Response.class);
         
     }
 
