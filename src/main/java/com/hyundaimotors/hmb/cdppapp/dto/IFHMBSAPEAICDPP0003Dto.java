@@ -27,4 +27,5 @@ public class IFHMBSAPEAICDPP0003Dto {
     private int suggestedPrice;
     private String errorSpcCode;
     private String errorSpcMessage;
+    private String processProductId;
 }

@@ -54,13 +54,22 @@
         ;
     </insert>    
 
+    <select id="getProductRowId" parameterType="IFHMBSAPEAICDPP0003Dto" resultType="IFHMBSAPEAICDPP0003Dto">
+        select 
+            row_id as processProductId
+        from 
+            process.product
+        where
+            "name" = #{name} 
+    </select>
+
     
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_product_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
-        call replica.if_product_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call replica.if_product_in_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{PRODUCT_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
 
