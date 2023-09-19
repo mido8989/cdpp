@@ -54,7 +54,7 @@
         ;
     </insert>    
 
-    <select id="getProductRowId" parameterType="IFHMBSAPEAICDPP0003Dto" resultType="IFHMBSAPEAICDPP0003Dto">
+    <select id="getProductRowId" parameterType="IFHMBSAPEAICDPP0003Dto" resultType="String">
         select 
             row_id as processProductId
         from 

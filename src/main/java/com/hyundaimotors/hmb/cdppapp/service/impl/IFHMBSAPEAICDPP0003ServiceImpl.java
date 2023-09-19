@@ -30,9 +30,11 @@ public class IFHMBSAPEAICDPP0003ServiceImpl implements IFHMBSAPEAICDPP0003Servic
 
         mapper.transferProcess(map);   
         
-        mapper.getProductRowId(dto);
+        String productRowId = mapper.getProductRowId(dto);
 
-        map.put("PRODUCT_ID", dto.getProcessProductId());
+        System.out.println("ProcessProductId ===== > " + productRowId);
+        map.put("PRODUCT_ID", productRowId);
+
 
         mapper.transferReplica(map);
 
