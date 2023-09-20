@@ -22,21 +22,93 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
         IFHMBSAPCDPP0005Dto resulDto = new IFHMBSAPCDPP0005Dto();
 
         mapper.insertObject(dto);
-        
-        HashMap<String, String> map = new HashMap<>();
-        map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
 
-        mapper.insertProcessAccount(map);        
-        mapper.insertReplicaAccount(map);
+        if( dto.getCnpjNumber() != null && dto.getCnpjNumber() != ""){
+            String foundAccountIdbyCnpj = mapper.foundAccountIdbyCnpj(dto);
+            if( foundAccountIdbyCnpj != null ){
+                
+                HashMap<String, String> map = new HashMap<>();
+                map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+                map.put("PROC_ACC_ID", foundAccountIdbyCnpj);
+                map.put("checkcu","update");
+                
+                mapper.insertProcessAccount(map);        
+                mapper.insertReplicaAccount(map);
 
-        resulDto.setContactId(dto.getRowId());
-        resulDto.setErrorSpcCode("0"); 
-        resulDto.setErrorSpcMessage("OK");
 
-        return resulDto;
+                resulDto.setContactId(foundAccountIdbyCnpj);
+                resulDto.setErrorSpcCode("0"); 
+                resulDto.setErrorSpcMessage("OK");
+            }else{
+                String foundAccountId = mapper.foundAccountId(dto);
+                if( foundAccountId != null ){
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+                    map.put("PROC_ACC_ID", foundAccountId);
+                    map.put("checkcu","update");                    
 
-        
+                    mapper.insertProcessAccount(map);        
+                    mapper.insertReplicaAccount(map);
+
+                    
+                    resulDto.setContactId(foundAccountId);
+                    resulDto.setErrorSpcCode("0"); 
+                    resulDto.setErrorSpcMessage("OK");
+                }else{
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+                    map.put("checkcu","insert");
+                    
+                    mapper.insertProcessAccount(map);  
+                    
+                    foundAccountId = mapper.foundAccountId(dto);
+                    
+                    map.put("PROC_ACC_ID", foundAccountId );
+                    mapper.insertReplicaAccount(map);
+                    
+                    resulDto.setContactId(foundAccountId);
+                    resulDto.setErrorSpcCode("0"); 
+                    resulDto.setErrorSpcMessage("OK");
+                }
+            }
+            
+        }else{
+
+            String foundAccountId = mapper.foundAccountId(dto);
+            if( foundAccountId != null ){
+                HashMap<String, String> map = new HashMap<>();
+                map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+                map.put("PROC_ACC_ID", foundAccountId);
+                map.put("checkcu","update");          
+                
+                
+                mapper.insertProcessAccount(map);        
+                mapper.insertReplicaAccount(map);
+                
+                resulDto.setContactId(foundAccountId);
+                resulDto.setErrorSpcCode("0"); 
+                resulDto.setErrorSpcMessage("OK");
+            }else{
+                HashMap<String, String> map = new HashMap<>();
+                map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+                map.put("checkcu","insert");
+                
+                mapper.insertProcessAccount(map);  
+                
+                foundAccountId = mapper.foundAccountId(dto);
+
+
+                map.put("PROC_ACC_ID", foundAccountId );
+                mapper.insertReplicaAccount(map);
+
+                resulDto.setContactId(foundAccountId);
+                resulDto.setErrorSpcCode("0"); 
+                resulDto.setErrorSpcMessage("OK");
+            }
+        }
+
+        return resulDto;        
     }
 
 }
