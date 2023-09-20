@@ -37,11 +37,6 @@ public class IFHMBSAPEAICDPP0006ServiceImpl implements IFHMBSAPEAICDPP0006Servic
         mapper.transferProcess(map);
         
         mapper.transferReplica(map);
-        
-        /*if(!"Test drive - update".equals(dto.getAction().getType())|| !"Test drive - add".equals(dto.getAction().getType())){
-            String actionId = mapper.getTaskRowId(dto);
-            resulDto.setActionId(actionId);
-        }*/
 
         
         resulDto.setErrorSpcCode("0");
