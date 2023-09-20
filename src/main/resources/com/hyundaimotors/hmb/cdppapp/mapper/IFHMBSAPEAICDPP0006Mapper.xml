@@ -149,4 +149,13 @@
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call replica.if_action_in_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
+
+    <select id="getTaskRowId" parameterType="IFHMBSAPEAICDPP0006Dto" resultType="String">
+        select
+            row_id as actionId
+        from
+            process.task
+        where
+            active_row_id = #{rowId}
+    </select>
 </mapper>

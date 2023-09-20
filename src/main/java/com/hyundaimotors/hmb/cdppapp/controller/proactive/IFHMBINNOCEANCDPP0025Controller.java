@@ -32,7 +32,7 @@ public class IFHMBINNOCEANCDPP0025Controller {
 
     @Operation(summary = "HMB MNTSRVC Schedule Maintenance", description = "HMB MNTSRVC Schedule Maintenance")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0025Payload.Response.class)))
-    @PostMapping(value = "/api/v1/HMBMNTSRVCScheduleMaintenance/upsert")
+    @PostMapping(value = "/api/v1/HMBMNTSRVCScheduleMaintenance")
     public Object upsertObject(@RequestBody IFHMBINNOCEANCDPP0025Payload.Request request)throws Exception{
         ModelMapper modelMapper = new ModelMapper();
         IFHMBINNOCEANCDPP0025Dto resultDto = new IFHMBINNOCEANCDPP0025Dto();
