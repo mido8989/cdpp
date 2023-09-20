@@ -35,7 +35,7 @@ public class IFHMBSAPCDPP0031Controller {
     public Object getObject(@RequestBody IFHMBSAPCDPP0031Payload.Request request)throws Exception{
         IFHMBSAPCDPP0031Dto dto = defaultMapper.map(request, IFHMBSAPCDPP0031Dto.class);
         IFHMBSAPCDPP0031Dto resultDto = service.getObject(dto);
-        
+
         return defaultMapper.map(resultDto, IFHMBSAPCDPP0031Payload.Response.class);
     }
 }

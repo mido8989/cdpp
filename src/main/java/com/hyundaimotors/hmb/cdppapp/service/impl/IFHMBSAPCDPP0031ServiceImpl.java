@@ -30,6 +30,9 @@ public class IFHMBSAPCDPP0031ServiceImpl implements IFHMBSAPCDPP0031Service{
 
         resuDto.setListOfHmbSearchServiceRequest(listServiceRequest);
 
+        resuDto.setErrorSpcCode("0");
+        resuDto.setErrorSpcMessage("OK");
+        
         return resuDto;
     }
 }
