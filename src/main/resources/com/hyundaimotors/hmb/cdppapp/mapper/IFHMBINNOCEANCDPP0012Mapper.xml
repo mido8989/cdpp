@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0012Mapper">
     
-    <select id="getChannelPartner" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="IFHMBINNOCEANCDPP0012Dto">
+    <select id="getChannelPartner" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="ChannelPartnerDto">
         select 
-            pca.row_id as integrationId
+            pca.integrationid as integrationId
             , pca.corporateregistrationnumber__c as cnpj
             , pca.name as name
             , pca.corporaterepresentativename__c as nickname
@@ -33,15 +33,16 @@
             , pca.billinglatitude as latitude
             , pca.billinglongitude as longitude
             , pca.billingpostalcode as zipCode
+            , pca.row_id as rowId
         from
             process.account pca
         where
-            pca.row_id = #{source}
+            pca.registrysource__c = #{source}
     </select>
 
-    <select id="getChannelPartnerContactList" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="IFHMBINNOCEANCDPP0012Dto">
+    <select id="getChannelPartnerContactList" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="ChannelPartnerContactDto">
         select
-            pcc.external_id__c as integrationId
+            pcc.integrationid as integrationId
             , pcc.cpf__c as cpf
             , pcc.firstname as firstName
             , pcc.lastname as lastName
@@ -50,16 +51,10 @@
             , pcc.companyphone__c as workPhone
             , pcc.mobilephone as cellPhone
             , pcc.title as jobTitle
-            <!--, spp.X_STATUS as status
-            , spp.X_NOTES as notes -->
         from
-            process.contact pcc 
-        <!--join
-            landing.s_party_per spp 
-        on
-            sc.row_id = sap.row_id -->
+            process.contact pcc
         where
-            pcc.account_row_id = #{source}
+            pcc.account_row_id = #{accountRowId}
     </select>
     
 </mapper>
