@@ -29,7 +29,7 @@ public class IFHMBSAPEAICDPP0006Controller {
 
     private final ModelMapper defaultMapper;
 
-     @Operation(summary = "HMB Action Inbound Webservice WF", description = "HMB Action Inbound Webservice WF")
+    @Operation(summary = "HMB Action Inbound Webservice WF", description = "HMB Action Inbound Webservice WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0006Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBActionInboundWebserviceWF")
     public Object insertObject(@RequestBody IFHMBSAPEAICDPP0006Payload.Request request)throws Exception{
