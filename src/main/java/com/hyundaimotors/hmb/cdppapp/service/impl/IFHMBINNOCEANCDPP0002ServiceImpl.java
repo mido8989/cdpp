@@ -62,9 +62,10 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
 
                     foundContactId = mapper.foundContactId(dto);
 
+                    
                     map.put("CONTACT_ID", foundContactId);
                     mapper.transferReplica(map);
-
+                    
                     resultDto.setContactId(foundContactId);
                     resultDto.setError_spcCode("0");
                     resultDto.setError_spcMessage("OK"); 
@@ -74,7 +75,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             String foundContactId = mapper.foundContactId(dto);
             
             if(foundContactId != null ){
-
+                
                 HashMap<String, String> map = new HashMap<>();
                 map.put("PARAM_ID", String.valueOf(dto.getRowId()));
                 map.put("CONTACT_ID", foundContactId);
@@ -91,18 +92,18 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 map.put("checkcu", "insert");
                 
                 mapper.transferProcess(map);
-
+                
                 foundContactId = mapper.foundContactId(dto);
-
+                
                 map.put("CONTACT_ID", foundContactId);
                 mapper.transferReplica(map);
-
+                
                 resultDto.setContactId(foundContactId);
                 resultDto.setError_spcCode("0");
                 resultDto.setError_spcMessage("OK"); 
             }
         }
-             
+        
         
         return resultDto;
     }
