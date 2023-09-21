@@ -2,43 +2,50 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0026Mapper">
     
-    <insert id="insertList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
-        insert into landing.S_PROD_INT(created, created_by, last_upd, last_upd_by, name, data_src, type<!--, campo_calculado-->)
-        values
-        <foreach collection="list" item="item" separator=",">
-            (now(), 'interface', now(), 'interface', #{item.name}, #{item.source}, #{item.type}<!--,, #{item.suggestedPrice}-->)
-        </foreach>
-        
-    </insert>
+    
 
-    <update id="updateList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
-        <foreach collection="list" item="item" separator=";">
-            update
-                landing.S_PROD_INT
-            set
-                last_upd = now()
-                , last_upd_by = 'interface'
-                , data_src = #{item.source}
-                , type = #{item.type}
-            where
-                name = #{item.name}
-        </foreach>
-    </update>
+    <insert id="insertProductList" parameterType="ListOfProductDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into landing.if_product_list_in_wf_product
+        (
+            created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , name
+            , source
+            , type
+            , suggestedprice
+            )
+        values
+            (
+                now()
+                , 'interface'
+                , now()
+                , 'interface'
+                , #{name}
+                , #{source}
+                , #{type}
+                , cast(#{suggestedPrice} as Integer)
+            )        
+    </insert>
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.HMB_Product_List_Inbound_WF(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+        call process.if_product_list_in_wf(#{PARAM_ID});
     </insert>
-    
-    <select id="processPoductId" parameterType="String" resultType="String">
-        select 
-            row_id as externalId
+
+    <select id="getProcIdList" parameterType="hashMap" resultType="String">
+        select
+            row_id
         from
-            process.product
-        where 
-            external_id = #{externalId};
+            process.product 
+        where
+            "name" in 
+            <foreach collection="NAME_LIST" item="item" index="idx" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
     </select>
 
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
-        call replica.HMB_Product_List_Inbound_WF(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+        call replica.if_product_list_in_wf(#{PROC_ID});
     </insert>
 </mapper>
