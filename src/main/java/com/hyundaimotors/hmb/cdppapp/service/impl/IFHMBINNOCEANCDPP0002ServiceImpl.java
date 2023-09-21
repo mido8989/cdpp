@@ -60,12 +60,12 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     
                     mapper.transferProcess(map);
 
-                    String contactId = mapper.foundContactId(dto);
+                    foundContactId = mapper.foundContactId(dto);
 
-                    map.put("CONTACT_ID", contactId);
+                    map.put("CONTACT_ID", foundContactId);
                     mapper.transferReplica(map);
 
-                    resultDto.setContactId(contactId);
+                    resultDto.setContactId(foundContactId);
                     resultDto.setError_spcCode("0");
                     resultDto.setError_spcMessage("OK"); 
                 }
@@ -92,12 +92,12 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 
                 mapper.transferProcess(map);
 
-                String contactId = mapper.foundContactId(dto);
+                foundContactId = mapper.foundContactId(dto);
 
-                map.put("CONTACT_ID", contactId);
+                map.put("CONTACT_ID", foundContactId);
                 mapper.transferReplica(map);
 
-                resultDto.setContactId(contactId);
+                resultDto.setContactId(foundContactId);
                 resultDto.setError_spcCode("0");
                 resultDto.setError_spcMessage("OK"); 
             }
