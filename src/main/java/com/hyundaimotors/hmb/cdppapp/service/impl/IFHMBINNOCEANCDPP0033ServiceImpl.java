@@ -37,6 +37,7 @@ public class IFHMBINNOCEANCDPP0033ServiceImpl implements IFHMBINNOCEANCDPP0033Se
                 List<ContactDto> contactDto = new ArrayList<>();
                 dto.setContactInputId(vehicleList.get(i).getContactSearchId());
                 dto.setAccountInputId(vehicleList.get(i).getAccountSearchId());
+                dto.setAssetInputId(vehicleList.get(i).getAssetId());
                 contactDto = mapper.getContact(dto);
                 accountAssetDto = mapper.getAccount(dto);
                 if(0 < contactDto.size()){
