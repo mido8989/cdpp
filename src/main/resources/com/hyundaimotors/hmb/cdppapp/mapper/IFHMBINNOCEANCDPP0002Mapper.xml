@@ -6,7 +6,7 @@
         select 
             row_id as foundContactIdByCpf
         from
-            process.contact
+            process.account
         where 
             cpf__c = #{cpf}
     </select>
@@ -14,13 +14,13 @@
         select 
             row_id as foundContactId
         from
-            process.contact
+            process.account
         where 
             firstname = #{firstName}
         and
             lastname = #{lastName}
         and
-            email = #{emailAddress}
+            emailaddress__c = #{emailAddress}
     </select>
     <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0002Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_in_contact_inf_wf
