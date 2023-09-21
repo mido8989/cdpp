@@ -3,6 +3,8 @@ package com.hyundaimotors.hmb.cdppapp.payload;
 import java.util.List;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
@@ -14,8 +16,12 @@ public class IFHMBINNOCEANCDPP0032Payload {
     @Setter
     public static class Request{
         @Schema(description = "cpfNumber", example = "21955839832")
+        @NotNull
+        @NotEmpty
         private String cpf;
         @Schema(description = "ContactId", example = "proc00236829361")
+        @NotNull
+        @NotEmpty
         private String contactId;
     }
 

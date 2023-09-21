@@ -1,6 +1,8 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0034;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,8 +13,12 @@ public class ServiceRequest {
     @Schema(description = "Protocol unique identifier. If an update is needed, value on this tag must be provided.", example = "HMB98949022323")
     private String protocol;
     @Schema(description = "Protocol reason. Valid values:Complaint, Compliment", example = "Information")
+    @NotNull
+    @NotEmpty
     private String reason;
     @Schema(description = "VOC level 1. Values are according business definitions for each situation.", example = "Sales")
+    @NotNull
+    @NotEmpty
     private String level1;
     @Schema(description = "VOC level 2. Values are according business definitions for each situation.", example = "Request a quote")
     private String level2;

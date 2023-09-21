@@ -1,6 +1,8 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0006;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,6 +39,8 @@ public class Action {
     @Schema(description = "Action inbound interface", example = "123456")
     private String purchasePurposeId;
     @Schema(description = "Action Type", example = "E-mail - Sa 00EDda")
+    @NotNull
+    @NotEmpty
     private String type;
     @Schema(description = "Protocol Numer", example = "HMB8761468242")
     private String srProtocol;
