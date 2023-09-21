@@ -20,7 +20,7 @@
         and
             lastname = #{lastName}
         and
-            emailaddress__c = #{emailAddress}
+            personemail = #{emailAddress}
     </select>
     <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0002Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_in_contact_inf_wf
