@@ -57,10 +57,12 @@
         <if test='idInterface == "1"'>
         and    
             pa.serialnumber = #{serialNumber}
+        limit 1
         </if>
         <if test='idInterface == "2"'>
         and    
             pa.carregistrationnumber__c = #{licenseNumber}
+        limit 1
         </if>
         <if test='idInterface == "3"'>
         and
@@ -81,6 +83,7 @@
         <if test='idInterface == "7"'>
         and
             pa.external_id__c = #{connexid}
+        limit 1
         </if>
         <if test='idInterface == "8"'>
         and
@@ -89,6 +92,7 @@
         <if test='idInterface == "9"'>
         and
             pa.serialnumber = #{serialNumber}
+        limit 1
         </if>
         <if test='idInterface == "10"'>
         and
@@ -97,12 +101,14 @@
         <if test='idInterface == "11"'>
         and
             pa.serialnumber = #{serialNumber}
+        limit 1
         </if>
         <if test='idInterface == "12"'>
         and
             pa.billing_date__c between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
         and 
             a3.dealercode__c = #{dealerCode}
+        limit 1
         </if>
     </select>
 
