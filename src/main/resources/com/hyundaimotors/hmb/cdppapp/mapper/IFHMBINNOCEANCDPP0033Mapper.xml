@@ -134,8 +134,14 @@
             process.asset_con pac 
         on
             pc.external_id__c = pac.contact_id 
+        join 
+        	process.asset pa
+        on
+        	pa.external_id__c = pac.asset_id
         where 
             pc.external_id__c = #{contactInputId}
+        and
+        	pa.external_id__c = #{assetInputId}
     </select>
 
     <select id="getAccount"  parameterType="IFHMBINNOCEANCDPP0033Dto" resultType="AccountAssetDto">
@@ -163,7 +169,13 @@
             process.asset_accnt paa
         on
             pc.external_id__c  = paa.accnt_id 
+        join 
+        	process.asset pa
+        on
+        	paa.asset_id = pa.external_id__c
         where 
             pc.external_id__c = #{accountInputId}
+        and
+            pa.external_id__c = #{assetInputId}
     </select>
 </mapper>

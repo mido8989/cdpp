@@ -20,6 +20,7 @@ public class IFHMBINNOCEANCDPP0033Dto {
     private String connexid;
     private String contactInputId;
     private String accountInputId;
+    private String assetInputId;
     private String ErrorSpcCode;
     private String ErrorSpcMessage;
     List<HMBVehicleDto> listOfHMBVehicle;
