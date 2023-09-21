@@ -48,7 +48,7 @@
             process.account a3 
         on
             aa.accnt_id = a3.external_id__c and a3."type" not in('dealer','c_Customer','c_Prospect','c_Ex-Customer')
-        join
+        left join
             process.product pp
         on
             pa."name"  = pp."name"
