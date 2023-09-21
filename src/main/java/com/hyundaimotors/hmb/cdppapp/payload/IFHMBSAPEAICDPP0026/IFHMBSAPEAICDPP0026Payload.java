@@ -20,9 +20,9 @@ public class IFHMBSAPEAICDPP0026Payload {
     @Setter
     public static class Response{
         @Schema(description = "Returns 0 when success.", example = "0")
-        private String errorSpcCode;
+        private String error_spcCode;
         @Schema(description = "Returns OK when success.", example = "OK")
-        private String errorSpcMessage;
+        private String error_spcMessage;
     }
     
 }
