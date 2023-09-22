@@ -128,7 +128,7 @@
             , mileage
             , clientexpectedvalue
         ) VALUES 
-        <foreach collection="car" item="item" separator=",">
+        <foreach collection="ListOfCurrentCars" item="item" separator=",">
             (
                 #{rowId}
                 , now()
@@ -157,7 +157,7 @@
             , startdate            
             , status   
         ) VALUES 
-        <foreach collection="app" item="item" separator=",">
+        <foreach collection="ListOfApps" item="item" separator=",">
         (
             #{rowId}
             , now()
@@ -184,7 +184,7 @@
             , joindate
             , likehmb                 
         ) VALUES 
-        <foreach collection="socialMedia" item="item" separator=",">
+        <foreach collection="ListOfSocialMedia" item="item" separator=",">
             (
                 #{rowId}
                 , now()
@@ -209,7 +209,7 @@
             , last_upd_by   
             , description   
         ) VALUES 
-        <foreach collection="hobby" item="item" separator=",">
+        <foreach collection="ListOfHobby" item="item" separator=",">
             (
                 #{rowId}
                 , now()
@@ -230,7 +230,7 @@
             , last_upd_by
             , name      
         ) VALUES 
-        <foreach collection="soccerTeam" item="item" separator=",">
+        <foreach collection="ListOfSoccerTeam" item="item" separator=",">
             (
                 #{rowId}
                 , now()

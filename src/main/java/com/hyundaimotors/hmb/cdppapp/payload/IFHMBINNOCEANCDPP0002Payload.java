@@ -92,11 +92,11 @@ public class IFHMBINNOCEANCDPP0002Payload {
         private String printedCard;
         @Schema(description = "Flag to define if customer is already a customer. Valid values: Y, N", example = "N")
         private String alreadyCustomer;
-        List<InboundContactWorkflowCarPayLoad> car;
-        List<InboundContactWorkflowAppPayLoad> app;
-        List<InboundContactWorkflowSnsPayLoad> socialMedia;
-        List<InboundContactWorkflowHobbyPayLoad> hobby;
-        List<InboundContactWorkflowSoccerTeamPayLoad> soccerTeam;
+        List<InboundContactWorkflowCarPayLoad> ListOfCurrentCars;
+        List<InboundContactWorkflowAppPayLoad> ListOfApps;
+        List<InboundContactWorkflowSnsPayLoad> ListOfSocialMedia;
+        List<InboundContactWorkflowHobbyPayLoad> ListOfHobby;
+        List<InboundContactWorkflowSoccerTeamPayLoad> ListOfSoccerTeam;
     }
 
     @Schema(name = "IFHMBINNOCEANCDPP0002Payload.Response")

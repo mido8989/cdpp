@@ -56,9 +56,9 @@ public class IFHMBINNOCEANCDPP0002Dto {
     private String ContactId;
     private String Error_spcCode;
     private String Error_spcMessage;
-    List<InboundContactWorkflowCarPayLoad> car;
-    List<InboundContactWorkflowAppPayLoad> app;
-    List<InboundContactWorkflowSnsPayLoad> socialMedia;
-    List<InboundContactWorkflowHobbyPayLoad> hobby;
-    List<InboundContactWorkflowSoccerTeamPayLoad> soccerTeam;
+    List<InboundContactWorkflowCarPayLoad> ListOfCurrentCars;
+    List<InboundContactWorkflowAppPayLoad> ListOfApps;
+    List<InboundContactWorkflowSnsPayLoad> ListOfSocialMedia;
+    List<InboundContactWorkflowHobbyPayLoad> ListOfHobby;
+    List<InboundContactWorkflowSoccerTeamPayLoad> ListOfSoccerTeam;
 }
