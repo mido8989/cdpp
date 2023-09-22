@@ -30,7 +30,30 @@
         call process.if_auto_vehicle_bl_ws(#{param_id});
     </insert>
 
-    <!--<select id="getProcessRowIds" parameterType="" resultType="list">
+    <select id="getProcessRowIds" parameterType="list" resultType="string">
         select
-    </select>-->
+            pbc.row_id
+        from
+            landing.if_auto_vehicle_bluelink_ws libl
+        join
+            process.bluelink__c pbc 
+        on
+            libl.chassi = pbc.chassi__c 
+        where
+            libl.integrationid = pbc.integrationid__c 
+        and 
+            libl.activationdate = pbc.activationdate__c
+        and 
+            libl.firstactivation = pbc.firstactivation__c
+        and 
+            libl.row_id in
+            <foreach collection="paramList" item="item" index="index" open="(" close=")" separator=",">
+                CAST(#{item} AS INTEGER)
+            </foreach>
+    </select>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_auto_vehicle_bl_ws(#{param_id});
+    </insert>
+    
 </mapper>
