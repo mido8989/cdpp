@@ -11,4 +11,6 @@ public interface IFHMBBLUELINKCDPP0053Mapper {
     public void inserBluelink(BluelinkDto bluelinkDto)throws Exception;
 
     public void transferProcess(HashMap<String, String[]> parMap)throws Exception;
+
+    //public List<String> getProcessRowIds(List<String> paramList)throws Exception;
 }
