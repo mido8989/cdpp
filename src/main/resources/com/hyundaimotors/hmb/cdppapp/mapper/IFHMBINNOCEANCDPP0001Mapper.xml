@@ -4,17 +4,17 @@
     
     <select id="getObject" parameterType="IFHMBINNOCEANCDPP0001Dto" resultType="IFHMBINNOCEANCDPP0001Dto">
         select 
-            c.cpf__c as cpf
-            , c.ROW_ID as contactId
-            , concat(c.firstname || c.lastname) as name
-            , c.mobilephone as personCell
+            cpf__c as cpf
+            , row_id as contactId
+            , coalesce(firstname, '')||lastname as name
+            , personmobilephone as personCell
         from 
-            process.contact c
+            process.account
         where
-            c.mobilephone = #{phoneNumber}
+            personmobilephone = #{phoneNumber}
         <if test="cpf != null and cpf != ''">
             and
-                c.cpf__c = #{cpf}
+                cpf__c = #{cpf}
         </if>    
     </select>
 </mapper>
