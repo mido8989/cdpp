@@ -12,12 +12,12 @@ public class ListOfAutoVehicle {
     @Schema(description = "Asset Id", example = "1-1DL-53")
     @NotNull
     private String vehicleId;
-    @Schema(description = "Relashionship Status", example = "Owner")
-    private String relashionshipStatus;
+    @Schema(description = "Relationship Status", example = "Owner")
+    private String relationshipStatus;
     @Schema(description = "Renavam Code", example = "497269414")
-    private String HMBRenavamCode;
+    private String hmbRenavamCode;
     @Schema(description = "Curren Mileage", example = "24350.0")
-    private int currenMileage;
+    private int currentMileage;
     @Schema(description = "Vehicle License Number", example = "FGZ 4544")
     private String vehicleLicenseNumber;
 
