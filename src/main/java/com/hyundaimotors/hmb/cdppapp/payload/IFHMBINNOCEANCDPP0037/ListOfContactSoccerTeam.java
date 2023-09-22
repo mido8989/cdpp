@@ -12,6 +12,4 @@ public class ListOfContactSoccerTeam {
     @Schema(description = "Soccer team name. Valid values: Ponte Preta", example = "Ponte Preta")
     @NotNull
     private String soccerTeam;
-
-    private String SoccerTeamContactId;
 }

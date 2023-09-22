@@ -2,7 +2,7 @@ package com.hyundaimotors.hmb.cdppapp.service;
 
 import java.util.HashMap;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0037Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0037.IFHMBINNOCEANCDPP0037Dto;
 
 public interface IFHMBINNOCEANCDPP0037Service {
     

@@ -37,10 +37,10 @@ public class IFHMBINNOCEANCDPP0037Payload {
     @Setter
     public static class Response{
         private String contactId;
-        private String ErrorSpcCode;
-        private String ErrorSpcMessage;
+        private String error_spcCode;
+        private String error_spcMessage;
 
-        UpdateContactOutputResult updateContactOutputResult = new UpdateContactOutputResult();
+        UpdateContactOutput UpdateContactOutput = new UpdateContactOutput();
         List<ListOfAutoVehicle> listOfAutoVehicle;
         List<ListOfContactHobby> listOfContactHobby;
         List<ListOfContactSoccerTeam> listOfContactSoccerTeam;
