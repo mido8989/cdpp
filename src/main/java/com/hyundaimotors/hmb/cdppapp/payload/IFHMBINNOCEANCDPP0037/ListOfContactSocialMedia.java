@@ -18,6 +18,4 @@ public class ListOfContactSocialMedia {
     @Schema(description = "Source City ", example = "Brasil")
     @NotNull
     private String sourceCity;
-
-    private String socialMediaContactId;
 }
