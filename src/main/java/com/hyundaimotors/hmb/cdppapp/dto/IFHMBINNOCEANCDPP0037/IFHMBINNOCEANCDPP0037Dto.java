@@ -1,8 +1,7 @@
-package com.hyundaimotors.hmb.cdppapp.dto;
+package com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0037;
 
 import java.util.List;
 
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfAutoVehicle;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactHobby;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactSoccerTeam;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactSocialMedia;
@@ -22,8 +21,10 @@ public class IFHMBINNOCEANCDPP0037Dto {
     private String printedCard;
     private String processAccountRowId;
     private String processContactRowId;
+    private String error_spcCode;
+    private String error_spcMessage;
 
-    List<ListOfAutoVehicle> listOfAutoVehicle;
+    List<ListOfAutoVehicleDto> listOfAutoVehicle;
     List<ListOfContactHobby> listOfContactHobby;
     List<ListOfContactSoccerTeam> listOfContactSoccerTeam;
     List<ListOfContactSocialMedia> listOfContactSocialMedia;

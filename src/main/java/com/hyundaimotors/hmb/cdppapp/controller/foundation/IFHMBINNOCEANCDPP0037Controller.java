@@ -8,11 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0027Dto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0037Dto;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0032Payload;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0037.IFHMBINNOCEANCDPP0037Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.IFHMBINNOCEANCDPP0037Payload;
-import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0032Service;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0037Service;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -41,7 +38,7 @@ public class IFHMBINNOCEANCDPP0037Controller {
 
         HashMap<String, Object> result = service.updateObject(dto);
         
-        return result;
+        return defaultMapper.map(result, IFHMBINNOCEANCDPP0037Payload.Response.class);
     }
 
 }

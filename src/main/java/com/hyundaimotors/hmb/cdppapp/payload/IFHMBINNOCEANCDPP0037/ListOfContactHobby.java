@@ -12,6 +12,4 @@ public class ListOfContactHobby {
     @Schema(description = "Hobby name", example = "Dance")
     @NotNull
     private String hobbyDescription;
-    @Schema(description = "Hobby ContactId")
-    private String hobbyContactId;
 }
