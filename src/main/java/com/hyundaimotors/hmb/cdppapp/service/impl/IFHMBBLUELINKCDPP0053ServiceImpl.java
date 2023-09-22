@@ -29,6 +29,7 @@ public class IFHMBBLUELINKCDPP0053ServiceImpl implements IFHMBBLUELINKCDPP0053Se
         vehicleList = dto.getVehicle();
 
         List<String> paramList = new ArrayList<>();
+        List<String> replicaParamList = new ArrayList<>();
         if(0 < vehicleList.size()){
             for(int i=0;i< vehicleList.size(); i++){
                 List<BluelinkDto> bluelinkList = new ArrayList<>();
@@ -65,6 +66,8 @@ public class IFHMBBLUELINKCDPP0053ServiceImpl implements IFHMBBLUELINKCDPP0053Se
         map.put("param_id", param);
 
         mapper.transferProcess(map);
+        
+        //replicaParamList = mapper.getProcessRowIds(paramList);
 
         IFHMBBLUELINKCDPP0053Dto resultDto = new IFHMBBLUELINKCDPP0053Dto();
         //resultDto.set(dto.getRowId());

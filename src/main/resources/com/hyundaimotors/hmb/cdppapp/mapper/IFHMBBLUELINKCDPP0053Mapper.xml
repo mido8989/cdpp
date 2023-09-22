@@ -27,6 +27,10 @@
     </insert>
     
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call landing.if_auto_vehicle_bl_ws(#{param_id});
+        call process.if_auto_vehicle_bl_ws(#{param_id});
     </insert>
+
+    <!--<select id="getProcessRowIds" parameterType="" resultType="list">
+        select
+    </select>-->
 </mapper>
