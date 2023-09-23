@@ -24,6 +24,7 @@ public class IFHMBINNOCEANCDPP0001Payload {
         private String phoneNumber;
         
         @Schema(description = "cpfNumber", example = "21955839832")
+        @JsonProperty("cpf")
         private String cpf;
         
     }
