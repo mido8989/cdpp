@@ -20,15 +20,19 @@ public class IFHMBINNOCEANCDPP0001ServiceImpl implements IFHMBINNOCEANCDPP0001Se
     public IFHMBINNOCEANCDPP0001Dto getObject(IFHMBINNOCEANCDPP0001Dto dto)throws Exception{
         IFHMBINNOCEANCDPP0001Dto resulDto = new IFHMBINNOCEANCDPP0001Dto();
         resulDto = mapper.getObject(dto);
-        if(resulDto == null){
-            //resulDto.setErrorSpcCode("500");
-            //resulDto.setErrorSpcMessage("empty data");
-
+        
+        if(resulDto != null){
+            resulDto.setErrorSpcCode("0");
+            resulDto.setErrorSpcMessage("OK");
+            
+            return resulDto;
         }else{
-            resulDto.setErrorSpcCode("200");
-            resulDto.setErrorSpcMessage("success");
+            IFHMBINNOCEANCDPP0001Dto failResultDto = new IFHMBINNOCEANCDPP0001Dto();
+            failResultDto.setErrorSpcCode("1");
+            failResultDto.setErrorSpcCode("no data");
+            
+            return failResultDto;
         }
-        return resulDto;
     }
     
 }
