@@ -29,7 +29,7 @@ public class IFHMBINNOCEANCDPP0001ServiceImpl implements IFHMBINNOCEANCDPP0001Se
         }else{
             IFHMBINNOCEANCDPP0001Dto failResultDto = new IFHMBINNOCEANCDPP0001Dto();
             failResultDto.setErrorSpcCode("1");
-            failResultDto.setErrorSpcCode("no data");
+            failResultDto.setErrorSpcMessage("no data");
             
             return failResultDto;
         }
