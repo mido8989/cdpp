@@ -72,7 +72,8 @@ public class IFHMBBLUELINKCDPP0053ServiceImpl implements IFHMBBLUELINKCDPP0053Se
         String[] replicaParam = replicaParamList.toArray(new String[replicaParamList.size()]);
 
         HashMap<String, String[]> replicaMap = new HashMap<>();
-        map.put("param_id", replicaParam);
+        
+        replicaMap.put("param_id", replicaParam);
 
         mapper.transferReplica(replicaMap);
 
