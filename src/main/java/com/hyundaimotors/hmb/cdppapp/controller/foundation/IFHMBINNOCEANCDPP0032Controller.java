@@ -1,19 +1,15 @@
 package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 
-import java.util.List;
-
-import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0032Dto;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0032Payload;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0032Payload.GetContactTD;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0032Payload.SearchContactTD;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0032.IFHMBINNOCEANCDPP0032Dto;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0001Payload;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBZICARDCDPP0032.IFHMBINNOCEANCDPP0032Payload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0032Service;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,6 +17,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Search TD Webservice WF", description = "Innocean, SAP EAI list Interface")
@@ -33,30 +30,20 @@ public class IFHMBINNOCEANCDPP0032Controller {
 
     private final ModelMapper defaultMapper;
 
-
-
-    @Operation(summary = "Account list", description = "Account imformation list")
+    @Operation(summary = "HMB Search TD Webservice WF", description = "HMB Search TD Webservice WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0032Payload.Response.class)))
-    @PostMapping(value = "/api/v1/HMBSearchTDWebserviceWF")
-    public Object getObject(@RequestBody IFHMBINNOCEANCDPP0032Payload.Request request)throws Exception{
-        SearchContactTD searchContactTD = new SearchContactTD();
-        GetContactTD getContactTD = new GetContactTD();
+    @GetMapping(value = "/api/v1/HMBSearchTDWebserviceWF")
+    @ResponseBody
+    public Object getObject(@Valid IFHMBINNOCEANCDPP0032Payload.Request request)throws Exception{
+        ModelMapper modelMapper = new ModelMapper();
+        ObjectMapper mapper = new ObjectMapper();
+
+        IFHMBINNOCEANCDPP0032Dto resultDto = new IFHMBINNOCEANCDPP0032Dto();
 
         IFHMBINNOCEANCDPP0032Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0032Dto.class);
         
-        IFHMBINNOCEANCDPP0032Dto searchContactDto = service.getSearchContact(dto);
+        resultDto = service.getObject(dto);
 
-        List<IFHMBINNOCEANCDPP0032Dto> list = service.getlistOfServiceRequest(dto);
-
-        getContactTD.setErrorSpcCode("200");
-        getContactTD.setErrorSpcMessage("success");
-        
-        
-        return IFHMBINNOCEANCDPP0032Payload.Response.builder()
-                .getContactTD(getContactTD)
-                .searchContactTD(ObjectUtils.isNotEmpty(searchContactDto) ? defaultMapper.map(searchContactDto, SearchContactTD.class) : null)
-                //.searchContactTD(defaultMapper.map(searchContactDto, SearchContactTD.class))
-                .listOfServiceRequest(list.size() > 0 ? defaultMapper.map(list, new TypeToken<List<IFHMBINNOCEANCDPP0032Payload.ListOfServiceRequest>>() {}.getType()) : null)
-                .build();
+        return modelMapper.map(resultDto, IFHMBINNOCEANCDPP0032Payload.Response.class);
     }
 }

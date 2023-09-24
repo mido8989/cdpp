@@ -1,19 +1,11 @@
-package com.hyundaimotors.hmb.cdppapp.dto;
+package com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0032;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class IFHMBINNOCEANCDPP0032Dto {
-    private String cpf;
-    private String contactId;
-
-    //GetContactTD
-    private String ErrorSpcCode;
-    private String ErrorSpcMessage;
-    
-    //SearchContactTD
+public class SearchContactTDDto {
     private String firstName;
     private String lastName;
     private String genre;
@@ -45,18 +37,4 @@ public class IFHMBINNOCEANCDPP0032Dto {
     private String county;
     private String city;
     private String State;
-
-    //ListOfServiceRequest
-    private String searchspec;
-    private String codigoSAPTD;
-    private String protocol;
-    private String status;
-    private String dealer;
-    private String model;
-    private String salesRepFirstName;
-    private String salesRepLastName;
-    private String testDriveDate;
-    private String testDriveTime;
-    private String testDriveConfirmed;
-    private String area;
 }

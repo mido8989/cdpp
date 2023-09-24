@@ -3,7 +3,6 @@ package com.hyundaimotors.hmb.cdppapp.controller.proactive;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0018Dto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Dto;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0001Payload;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0018Payload;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0032Payload;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0032Payload.SearchContactTD;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0018Service;
-import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0021Service;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
