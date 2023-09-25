@@ -12,11 +12,11 @@
             process.account
         where
             1=1
-        <if test="phoneNumber != null and phoneNumber != ''">
+        <if test="phoneNumber != null and phoneNumber.equals('')">
             and
                 personmobilephone = #{phoneNumber}
         </if>        
-        <if test="cpf != null and cpf != ''">
+        <if test="cpf != null and cpf.equals('')">
             and
                 cpf__c = #{cpf}
         </if>    
