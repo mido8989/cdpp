@@ -1,8 +1,5 @@
 package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 
-import java.util.List;
-
-import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,10 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0046Dto;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0028Payload;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0046.IFHMBINNOCEANCDPP0046Payload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0046Service;
-import com.nimbusds.jose.shaded.gson.reflect.TypeToken;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -36,19 +31,11 @@ public class IFHMBINNOCEANCDPP0046Controller {
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0046Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBMNTSRVCManageDealerService")
     public Object getList(@RequestBody IFHMBINNOCEANCDPP0046Payload.Request request)throws Exception{
-        ModelMapper modelMapper = new ModelMapper();
         IFHMBINNOCEANCDPP0046Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0046Dto.class);
 
         IFHMBINNOCEANCDPP0046Dto resultDto = service.insertList(dto);
-        if(resultDto != null){
-            return defaultMapper.map(dto, IFHMBINNOCEANCDPP0046Payload.Response.class);
-            
-        }else{
-            IFHMBINNOCEANCDPP0046Payload.Response failResponseDto = new IFHMBINNOCEANCDPP0046Payload.Response();
-            failResponseDto.setErrorSpcCode("1");
-            failResponseDto.setErrorSpcMessage("fail");
-            return failResponseDto;
-        }
+
+        return defaultMapper.map(resultDto, IFHMBINNOCEANCDPP0046Payload.Response.class);  
         
     }
 }
