@@ -37,11 +37,9 @@ public class IFHMBINNOCEANCDPP0001Controller {
 
     @Operation(summary = "HMB Get Contact WF", description = "HMB Get Contact WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0001Payload.Response.class)))
-    @GetMapping(value = "/api/v1/HMBGetContactWF")
-    @ResponseBody
-    public Object getObject(@Valid IFHMBINNOCEANCDPP0001Payload.Request request)throws Exception{
+    @PostMapping(value = "/api/v1/HMBGetContactWF")
+    public Object getObject(@RequestBody IFHMBINNOCEANCDPP0001Payload.Request request)throws Exception{
         ModelMapper modelMapper = new ModelMapper();
-        ObjectMapper mapper = new ObjectMapper();
         
         IFHMBINNOCEANCDPP0001Dto resultDto = new IFHMBINNOCEANCDPP0001Dto();
 
