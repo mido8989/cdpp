@@ -11,7 +11,11 @@
         from 
             process.account
         where
-            personmobilephone = #{phoneNumber}
+            1=1
+        <if test="cpf != null and cpf != ''">
+            and
+                personmobilephone = #{phoneNumber}
+        </if>        
         <if test="cpf != null and cpf != ''">
             and
                 cpf__c = #{cpf}
