@@ -1,7 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,30 +19,34 @@ public class IFHMBINNOCEANCDPP0046ServiceImpl implements IFHMBINNOCEANCDPP0046Se
     private final IFHMBINNOCEANCDPP0046Mapper mapper;
 
     public IFHMBINNOCEANCDPP0046Dto insertList(IFHMBINNOCEANCDPP0046Dto dto)throws Exception{
-        String parRowId = mapper.getParRowId(dto);
-        dto.setParRowId(parRowId);
-        
-        int resDeleteNum = mapper.deleteList(dto);
+        IFHMBINNOCEANCDPP0046Dto resultDto = new IFHMBINNOCEANCDPP0046Dto();
+        String parRowId = mapper.getAccRowIdByDealercode(dto);
 
-        int resInsertNum = mapper.insertList(dto);
+        if ( parRowId != null ){
 
-        HashMap<String, String> map = new HashMap<String, String>();
+            dto.setParRowId(parRowId);
+            
+            mapper.insertObject(dto);
+            mapper.deleteList(dto);
+            mapper.insertList(dto);
+    
+            HashMap<String, String> map = new HashMap<String, String>();
+    
+            map.put("PARROW_ID", dto.getParRowId());
+            
+            mapper.transferProcess(map);
+            mapper.transferReplica(map);
+            
+            resultDto.setDealerCode(parRowId);
+            resultDto.setErrorSpcCode("0");
+            resultDto.setErrorSpcMessage("OK");      
 
-        map.put("PARAM_ID", dto.getParRowId());
-        
-        mapper.transferProcess(map);
+        }else{
+            resultDto.setDealerCode(dto.getDealerCode());
+            resultDto.setErrorSpcCode("1");
+            resultDto.setErrorSpcMessage("FAIL");        
+        }
 
-        String replicaRowId = mapper.getReplicaRowId(dto);
-
-        HashMap<String, String> replicaMap = new HashMap<String, String>();
-
-        replicaMap.put("PARAM_ID", replicaRowId);
-
-        mapper.transferReplica(replicaMap);
-
-        dto.setErrorSpcCode("0");
-        dto.setErrorSpcMessage("OK");        
-
-        return dto;
+        return resultDto;
     }
 }
