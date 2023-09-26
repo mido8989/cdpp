@@ -41,7 +41,7 @@
         on
             pas.prod_id = pp.int_x_par_row_id
         where 
-            pcc.cpf__c = #{cpf}
+            pac.cpf__c = #{cpf}
 
     </select>
     
