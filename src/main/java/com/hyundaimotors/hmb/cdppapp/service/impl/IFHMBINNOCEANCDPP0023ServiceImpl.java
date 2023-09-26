@@ -5,9 +5,10 @@ import java.util.HashMap;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0023Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0023.IFHMBINNOCEANCDPP0023Dto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0022Mapper;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0023Mapper;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0023.EmpAvailabIn;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0023Service;
 
 import lombok.RequiredArgsConstructor;
@@ -21,13 +22,15 @@ public class IFHMBINNOCEANCDPP0023ServiceImpl implements IFHMBINNOCEANCDPP0023Se
 
     public IFHMBINNOCEANCDPP0023Dto insertObject(IFHMBINNOCEANCDPP0023Dto dto)throws Exception{
         
-        mapper.insertObject(dto);
+        mapper.insertObject(dto.getEmpAvailabIn());
 
-        mapper.insertDay(dto);
+        dto.setDayRowId(dto.getEmpAvailabIn().getRowId());
+
+        mapper.insertDay(dto.getEmpAvailabIn());
 
         HashMap<String, String> map = new HashMap<>();
 
-        map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+        map.put("PARAM_ID", String.valueOf(dto.getDayRowId()));
 
         mapper.transferProcess(map);
 

@@ -11,13 +11,7 @@ public class IFHMBINNOCEANCDPP0023Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(description = "Name of requester system.", example = "Source")
-        private String source;
-        @Schema(description = "Employee document number.", example = "30311079800")
-        private String employeeCPF;
-        @Schema(description = "Dealer Code", example = "B05AM99999")
-        private String dealerCode;
-        List<IFHMBINNOCEANCDPP0023Day>listOfDays;
+        EmpAvailabIn EmpAvailabIn;
     }
 
     @Schema(name = "IFHMBINNOCEANCDPP0023Payload.Response")

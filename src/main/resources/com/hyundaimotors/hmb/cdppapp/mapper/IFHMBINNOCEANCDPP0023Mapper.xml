@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0023Mapper">
 
-    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0023Dto"  useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+    <insert id="insertObject" parameterType="EmpAvailabInDto"  useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_mntsrvc_manage_emp_avail
         (
             created
@@ -23,7 +23,7 @@
         )
     </insert>
 
-    <insert id="insertDay" parameterType="IFHMBINNOCEANCDPP0023Dto">
+    <insert id="insertDay" parameterType="EmpAvailabInDto">
         insert into landing.if_mntsrvc_manage_emp_avail_day
         (
             par_row_id
