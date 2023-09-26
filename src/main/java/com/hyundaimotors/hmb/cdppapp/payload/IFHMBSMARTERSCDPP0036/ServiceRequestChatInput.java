@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBSMARTERSCDPP0036;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -12,6 +14,7 @@ import lombok.Setter;
 public class ServiceRequestChatInput {
     
     @Schema(description = "Owner By Id", example = "1-3LHJF40")
+    @JsonProperty("OwnedById")
     private String ownedById;
     @Schema(description = "Protocol unique identifier. If an update is needed, value on this tag must be provided.", example = "HMB98949022323")
     private String protocol;
@@ -148,14 +151,19 @@ public class ServiceRequestChatInput {
     @Schema(description = "Flag indicating if the vehicle was delivered, either for purchases or repairs. Valid values: Y, N", example = "Y")
     private String vehicleDeliveryFlg;
     @Schema(description = "Flag indicating if customer wants a loan in a quote. Valid values: Y, N", example = "Y")
+    @JsonProperty("wants_loan")
     private String wantsLoan;
     @Schema(description = "Loan type. Possible values are according to business definitions. Connex will accept any string limited to 50 characters. Suggested values: Hyundai Financiamento, Hyundai Financiamento, Compra Certa", example = "Compra Certa")
+    @JsonProperty("loan_type")
     private String loanType;
     @Schema(description = "Desired installments amount for the loan.", example = "14300")
+    @JsonProperty("installments_amt")
     private int installmentsAmt;
     @Schema(description = "Down payment value.", example = "60")
+    @JsonProperty("down_payment")
     private int downPayment;
     @Schema(description = "Flag indicating if customer wants to give his current car as down payment in a quote. Valid values: Y, N", example = "Y")
+    @JsonProperty("used_car_as_down_paymnt")
     private String usedCarAsDownPaymnt;
     @Schema(description = "Dealer temperature indicates the level for close deal. Valid values: Q, M, F", example = "Q")
     private String dlrTemperature;
