@@ -2,6 +2,7 @@ package com.hyundaimotors.hmb.cdppapp.payload;
 
 import java.time.Year;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0019Payload.ListOfDays;
 import java.util.List;
 
@@ -17,12 +18,14 @@ public class IFHMBINNOCEANCDPP0019Payload {
     @Setter
     public static class Request{
         @Schema(description = "Dealer Code", example = "B05AM19023")
+        @JsonProperty("dealer-code")
         private String dealerCode;
         @Schema(description = "Year to search for calendar availability, Format: YYYY", example = "2017")
         private String year;
         @Schema(description = "Month to search for calendar availability", example = "11")
         private String month;
         @Schema(description = "Name of requester system.", example = "Source")
+        @JsonProperty("Source")
         private String source;
 
     }
@@ -33,8 +36,10 @@ public class IFHMBINNOCEANCDPP0019Payload {
     @SuperBuilder
     public static class Response{
         @Schema(description = "Returns 0 when success.", example = "0")
+        @JsonProperty("Error_spcCode")
         private String errorSpcCode;
         @Schema(description = "Returns OK when success.", example = "OK")
+        @JsonProperty("Error_spcMessage")
         private String errorSpcMessage;
         List<ListOfDays> listOfDays;
     }
