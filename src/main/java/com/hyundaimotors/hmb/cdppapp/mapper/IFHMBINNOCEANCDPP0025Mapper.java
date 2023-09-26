@@ -2,11 +2,12 @@ package com.hyundaimotors.hmb.cdppapp.mapper;
 
 import java.util.HashMap;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0025Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0025.IFHMBINNOCEANCDPP0025Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0025.ScheduleMaintenanceINDto;
 
 public interface IFHMBINNOCEANCDPP0025Mapper {
 
-     public int insertObject(IFHMBINNOCEANCDPP0025Dto dto)throws Exception;
+     public int insertObject(ScheduleMaintenanceINDto ScheduleMaintenanceIN)throws Exception;
 
      public void transferProcess(HashMap<String, String> parMap)throws Exception;
 
