@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0023;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +11,7 @@ import lombok.Setter;
 @Setter
 public class IFHMBINNOCEANCDPP0023Day {
     @Schema(description = "Day name. Possible values are: Sunday ~ Saturday ", example = "Friday")
+    @JsonProperty("day-name")
     private String dayName;
     @Schema(description = "First working period start time. Format: HH:MM:SS", example = "2017-11-15 08:00:00 AM")
     private String period1Start;
