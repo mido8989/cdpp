@@ -1,12 +1,11 @@
-package com.hyundaimotors.hmb.cdppapp.dto;
+package com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0025;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class IFHMBINNOCEANCDPP0025Dto {
+public class ScheduleMaintenanceINDto {
     private int rowId;
     private String source;
     private String srNumber;
@@ -31,6 +30,4 @@ public class IFHMBINNOCEANCDPP0025Dto {
     private String serviceStartdate;
     private int serviceDuration;
     private String serviceDeliverydate;
-    private String ErrorSpcCode;
-    private String ErrorSpcMessage;
 }
