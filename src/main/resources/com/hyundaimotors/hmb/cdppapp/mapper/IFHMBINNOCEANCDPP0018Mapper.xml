@@ -32,18 +32,14 @@
             process.account pac
         on
             pc.contact_row_id__c = pac.s_con_par_row_id
-        join 
+        left join  
             process.asset pas
         on
             pc.asset_id = pas.external_id__c 
-        join 
+        left join  
             process.product pp
         on
             pas.prod_id = pp.int_x_par_row_id
-        join 
-            process.contact pcc
-        on
-            pac.row_id = pcc.account_row_id
         where 
             pcc.cpf__c = #{cpf}
 
