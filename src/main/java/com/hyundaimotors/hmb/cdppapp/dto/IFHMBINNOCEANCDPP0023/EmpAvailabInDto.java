@@ -1,4 +1,4 @@
-package com.hyundaimotors.hmb.cdppapp.dto;
+package com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0023;
 
 import java.util.List;
 
@@ -9,12 +9,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class IFHMBINNOCEANCDPP0023Dto {
+public class EmpAvailabInDto {
     private int rowId;
     private String source;
     private String employeeCPF;
     private String dealerCode;
     List<IFHMBINNOCEANCDPP0023Day>listOfDays;
-    private String errorSpcCode;
-    private String errorSpcMessage;
 }
