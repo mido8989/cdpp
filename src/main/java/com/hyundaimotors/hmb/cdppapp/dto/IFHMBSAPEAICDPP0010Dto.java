@@ -26,6 +26,7 @@ public class IFHMBSAPEAICDPP0010Dto {
         private String fuel;
         private int purchasePrice;
         private String manufactureYear;
+        private int modelYear;
         private int mileage;
         private String saleToDealerDate;
         private String warrantyStartDate;
@@ -38,6 +39,14 @@ public class IFHMBSAPEAICDPP0010Dto {
         private String salesrepId;
         private String salesrepFirstName;
         private String salesrepLastName;
+        private String urlPhoto;
+        private String urlphotoDate;
+        private String urlauthPublication;
+        private String VehicleLicenseDate;
+        private String digitalSales;
+        private String deliveryatHome;
+        private String TDatHome;
+        private String ccs_flg;
         private String errorSpcCode;
         private String errorSpcMessage;
         private String connexContactId;

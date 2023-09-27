@@ -9,7 +9,6 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0010Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0010Payload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0010Service;
 
-import io.swagger.v3.core.util.Json;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

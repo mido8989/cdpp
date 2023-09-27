@@ -13,7 +13,6 @@ import com.hyundaimotors.hmb.cdppapp.payload.AutoVehicleWebserviceWFAccountPaylo
 import com.hyundaimotors.hmb.cdppapp.payload.AutoVehicleWebserviceWFContactPayload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0010Service;
 
-import io.swagger.v3.core.util.Json;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -58,8 +57,8 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             map.put("PARAM_ID", dto.getRowId());
             map.put("checkcu", "update");
 
-            mapper.transferProcess(map);
-            mapper.transferReplica(map);
+            // mapper.transferProcess(map);
+            // mapper.transferReplica(map);
         } else {
             String productRowId = "";
             productRowId = mapper.getProductRowId(dto);
@@ -88,15 +87,14 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             map.put("PARAM_ID", dto.getRowId());
             map.put("checkcu", "insert");
 
-            mapper.transferProcess(map);
-            mapper.transferReplica(map);
+            // mapper.transferProcess(map);
+            // mapper.transferReplica(map);
         }
 
         
         dto.setErrorSpcCode("0");
         dto.setErrorSpcMessage("OK");
 
-        System.out.println("DONE ! ! !");
 
         return dto;
     } 
