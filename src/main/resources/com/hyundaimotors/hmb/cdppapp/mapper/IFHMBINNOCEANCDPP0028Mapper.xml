@@ -2,62 +2,52 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0028Mapper">
     
-    <select id="checkRowId" parameterType="IFHMBINNOCEANCDPP0028Dto" resultType="Integer">
+    <select id="getProcRowId" parameterType="IFHMBINNOCEANCDPP0028Dto" resultType="String">
         select
-            count(row_id) as checkRowNum
+            row_id as getProcRowId
         from
-            landing.CX_CNT_BNF_XM ccbx
+            process.loyalty_program pl
         where
-            ccbx.par_row_id = #{contactId}
-        and
-            ccbx.row_id = #{partnerExternalId}
+            pl.dealer_account_id = #{contactId}
     </select>
 
     <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0028Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
-        insert into landing.CX_CNT_BNF_XM
+        insert into landing.if_register_loyalty_bnf_used_ws
             (
-                PAR_ROW_ID
-                , X_ACCOUNT_ID
-                , NAME
-                , X_BENEFIT_NAME
-                , X_BENEFIT_URL
-                , X_SRC_APP
-                , created_by
+                created_by
                 , created
                 , last_upd_by
                 , last_upd
-                , type
+                , contactid
+                , partnername
+                , partnercnpj
+                , partnerexternalid
+                , benefitname
+                , benefiturl
+                , appsource
         )values(
-                #{contactId}
+                'interface'
+                , now()
+                , 'interface'
+                , now()
                 , #{contactId}
-				, #{partnerName}
-				, #{benefitName}
-				, #{benefitURL}
-				, #{appSource}
-                , 'interface'
-                , now()
-                , 'interface'
-                , now()
-                , 'type'
+                , #{partnerName}
+                , #{partnerCNPJ}
+                , #{partnerExternalId}
+                , #{benefitName}
+                , #{benefitURL}
+                , #{appSource}
         );
     </insert>
 
-    <update id="updateObject" parameterType="IFHMBINNOCEANCDPP0028Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
-        update landing.CX_CNT_BNF_XM set
-                NAME = #{partnerName}
-                , X_BENEFIT_NAME = #{benefitName}
-                , X_BENEFIT_URL = #{benefitURL}
-                , X_SRC_APP = #{appSource}
-                , last_upd_by = 'interface'
-                , last_upd = now()
-        where
-            PAR_ROW_ID = #{contactId}
-        and
-            ROW_ID = #{partnerExternalId}
-    </update>
+   
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_register_loyalty_benefit_used_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+        call process.if_register_loyalty_bnf_used_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{PROC_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_register_loyalty_bnf_used_ws(#{PROC_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>
     
+
 
 </mapper>
