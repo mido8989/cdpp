@@ -18,6 +18,7 @@ public class IFHMBINNOCEANCDPP0033Dto {
     private String startDate;
     private String endDate;
     private String connexid;
+    private String dealerCode;
     private String contactInputId;
     private String accountInputId;
     private String assetInputId;
