@@ -2,6 +2,8 @@ package com.hyundaimotors.hmb.cdppapp.payload;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -42,6 +44,8 @@ public class IFHMBSAPEAICDPP0010Payload {
         private int purchasePrice;
         @Schema(description = "Manufacture year.", example = "2012")
         private String manufactureYear;
+        @Schema(description = "modelYear", example = "2015")
+        private int modelYear;
         @Schema(description = "Mileage.", example = "1000")
         private int mileage;
         @Schema(description = "Sale to dealer date. Format: MM/DD/YYYY", example = "2012.10.25")
@@ -66,7 +70,26 @@ public class IFHMBSAPEAICDPP0010Payload {
         private String salesrepFirstName;
         @Schema(description = "Last name for the sales representative.", example = "Soto")
         private String salesrepLastName;
+        @Schema(description = "url Photo", example = "https://meuhyundai.com.br/static/momento_especial/1660764424478--1-EU7NVW7.jpg")
+        private String urlPhoto;
+        @Schema(description = "url Photo Date", example = "08/08/2022")
+        private String urlphotoDate;
+        @Schema(description = "url Auth Piblication", example = "")
+        private String urlauthPublication;
+        @Schema(description = "Vehicle License Date", example = "08/08/2022")
+        private String VehicleLicenseDate;
+        @Schema(description = "Digital Sales", example = "N")
+        private String digitalSales;
+        @Schema(description = "deliveryatHome", example = "N")
+        private String deliveryatHome;
+        @Schema(description = "TD at Home", example = "Y")
+        @JsonProperty("TDatHome")
+        private String TDatHome;
+        @Schema(description = "ccs_flg", example = "N")
+        private String ccs_flg;
+        @JsonProperty("ListOfContact")
         List<AutoVehicleWebserviceWFContactPayload> contact;
+        @JsonProperty("ListOfAccount")
         List<AutoVehicleWebserviceWFAccountPayload> account;
     }
 
