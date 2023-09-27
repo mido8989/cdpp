@@ -57,8 +57,8 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             map.put("PARAM_ID", dto.getRowId());
             map.put("checkcu", "update");
 
-            // mapper.transferProcess(map);
-            // mapper.transferReplica(map);
+            mapper.transferProcess(map);
+            mapper.transferReplica(map);
         } else {
             String productRowId = "";
             productRowId = mapper.getProductRowId(dto);
@@ -87,8 +87,8 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             map.put("PARAM_ID", dto.getRowId());
             map.put("checkcu", "insert");
 
-            // mapper.transferProcess(map);
-            // mapper.transferReplica(map);
+            mapper.transferProcess(map);
+            mapper.transferReplica(map);
         }
 
         
