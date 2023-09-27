@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBMAPFRECDPP0009.IFHMBMAPFRECDPP0009RSAServicePayload;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +13,8 @@ public class IFHMBMAPFRECDPP0009Dto {
     private String rowId;
     private String claimId;
     private String source;
+    private String contactId;
+    private String accountId;
     private String requesterFirstName;
     private String requesterLastName;
     private String requesterDocument;
@@ -32,5 +33,5 @@ public class IFHMBMAPFRECDPP0009Dto {
     private int vehicleMileage;
     private String errorSpcCode;
     private String errorSpcMessage;
-    List<IFHMBMAPFRECDPP0009RSAServicePayload> rsaSetvice;
+    List<IFHMBMAPFRECDPP0009RSAServicePayload> listOfRSASetvice;
 }
