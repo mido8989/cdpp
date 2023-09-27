@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBMAPFRECDPP0009Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBMAPFRECDPP0009RSAServicePayDto;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBMAPFRECDPP0009.IFHMBMAPFRECDPP0009RSAServicePayload;
 
 public interface IFHMBMAPFRECDPP0009Mapper {
     

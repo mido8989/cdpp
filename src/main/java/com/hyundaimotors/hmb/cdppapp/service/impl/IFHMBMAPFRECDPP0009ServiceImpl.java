@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBMAPFRECDPP0009Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBMAPFRECDPP0009RSAServicePayDto;
-import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0046Mapper;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBMAPFRECDPP0009Mapper;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBMAPFRECDPP0009.IFHMBMAPFRECDPP0009RSAServicePayload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBMAPFRECDPP0009Service;
@@ -27,8 +26,8 @@ public class IFHMBMAPFRECDPP0009ServiceImpl implements IFHMBMAPFRECDPP0009Servic
         IFHMBMAPFRECDPP0009Dto resultDto = new IFHMBMAPFRECDPP0009Dto();
 
         List<IFHMBMAPFRECDPP0009RSAServicePayload> resSetviceList = new ArrayList<>();
-        resSetviceList = dto.getRsaSetvice();
-        
+        resSetviceList = dto.getListOfRSASetvice();
+
         int assetCount = 0; // Asset 정보 확인
         int rowIdCount = 0; // RSA 테이블 Upsert 여부
         int resSetviceNum = 0;
@@ -53,6 +52,7 @@ public class IFHMBMAPFRECDPP0009ServiceImpl implements IFHMBMAPFRECDPP0009Servic
                         rasService.setRowId(dto.getRowId());
 
                         rasServiceCheckNum = mapper.rasServiceCheck(rasService);
+
                         
                         if(0 < rasServiceCheckNum){
                             resSetviceNum = mapper.updateResSetvice(rasService);
