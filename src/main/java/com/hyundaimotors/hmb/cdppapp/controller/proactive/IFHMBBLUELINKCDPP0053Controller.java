@@ -5,10 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0046Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBBLUELINKCDPP0053.IFHMBBLUELINKCDPP0053Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBBLUELINKCDPP0053.IFHMBBLUELINKCDPP0053Payload;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0023.IFHMBINNOCEANCDPP0023Payload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBBLUELINKCDPP0053Service;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,7 +29,6 @@ public class IFHMBBLUELINKCDPP0053Controller {
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBBLUELINKCDPP0053Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBAutoVehicleBluelinkWS")
     public Object getList(@RequestBody IFHMBBLUELINKCDPP0053Payload.Request request)throws Exception{
-        ModelMapper modelMapper = new ModelMapper();
     
         IFHMBBLUELINKCDPP0053Dto dto = defaultMapper.map(request, IFHMBBLUELINKCDPP0053Dto.class);
 
