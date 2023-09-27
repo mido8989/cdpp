@@ -65,7 +65,7 @@ public class IFHMBBLUELINKCDPP0053ServiceImpl implements IFHMBBLUELINKCDPP0053Se
         HashMap<String, String[]> map = new HashMap<>();
         map.put("param_id", param);
 
-        // mapper.transferProcess(map);
+        mapper.transferProcess(map);
         
         replicaParamList = mapper.getProcessRowIds(paramList);
 
@@ -75,7 +75,7 @@ public class IFHMBBLUELINKCDPP0053ServiceImpl implements IFHMBBLUELINKCDPP0053Se
         
         replicaMap.put("param_id", replicaParam);
 
-        // mapper.transferReplica(replicaMap);
+        mapper.transferReplica(replicaMap);
 
         IFHMBBLUELINKCDPP0053Dto resultDto = new IFHMBBLUELINKCDPP0053Dto();
         //resultDto.set(dto.getRowId());
