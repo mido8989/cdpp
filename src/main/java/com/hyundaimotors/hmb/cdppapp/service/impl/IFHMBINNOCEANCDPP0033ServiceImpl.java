@@ -16,7 +16,6 @@ import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0033Mapper;
 
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0033Service;
 
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -31,7 +30,7 @@ public class IFHMBINNOCEANCDPP0033ServiceImpl implements IFHMBINNOCEANCDPP0033Se
         
         vehicleList = mapper.getAsset(dto);
 
-        //if(0 < vehicleList.size()) {
+        if(0 < vehicleList.size()) {
             for(int i = 0; i < vehicleList.size(); i++){
                 List<AccountAssetDto> accountAssetDto = new ArrayList<>();
                 List<ContactDto> contactDto = new ArrayList<>();
@@ -47,7 +46,7 @@ public class IFHMBINNOCEANCDPP0033ServiceImpl implements IFHMBINNOCEANCDPP0033Se
                     vehicleList.get(i).setListOfAccount(accountAssetDto);
                 }
             }
-        //}
+        }
 
         resulDto.setListOfHMBVehicle(vehicleList);
         return resulDto;

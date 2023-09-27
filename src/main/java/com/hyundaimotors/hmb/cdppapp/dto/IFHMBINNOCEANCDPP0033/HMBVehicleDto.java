@@ -32,6 +32,10 @@ public class HMBVehicleDto {
     private String dealerName;
     private String dealerNickname;
     private String salesManName;
+    private String model;
+    private String negotiationType;
+    private String salesManId;
+    private int mileage;
     private String contactSearchId;
     private String AccountSearchId;
     List<ContactDto> listOfContact;
