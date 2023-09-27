@@ -37,7 +37,7 @@ public class IFHMBINNOCEANCDPP0033Payload {
         @Schema(description = "Connex Asset Id.", example = "1-383PB4S")
         @JsonProperty("Connexid")
         private String connexid;
-        @Schema(description = "Dealer Code.", example = "B05AM19029")
+        @Schema(description = "Dealer Code", example = "B05AM19029")
         private String dealerCode;
     }
 
