@@ -11,6 +11,7 @@ public class IFHMBZICARDCDPP0007Dto {
     private String contactId;
     private String relationShip;
     private String hkmeRetailDate;
+    private String dealerCode;
     private String errorSpcCode;
     private String errorSpcMessage;
     private String numAffRow;    
