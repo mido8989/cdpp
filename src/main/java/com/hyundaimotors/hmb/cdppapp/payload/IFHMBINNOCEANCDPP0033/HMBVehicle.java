@@ -22,7 +22,7 @@ public class HMBVehicle {
     private String fscOcn;
     private String description;
     private String manufactureYear;
-    @JsonProperty("fsc_ocn")
+    @JsonProperty("Model Year")
     private String modelYear;
     private String vehicleLicenseNumber;
     private String internalColorCode;
