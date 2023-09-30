@@ -36,9 +36,7 @@ public class IFHMBINNOCEANCDPP0034ServiceImpl implements IFHMBINNOCEANCDPP0034Se
         
         HashMap<String, String> replicaMap = new HashMap<>();
 
-        map.put("PARAM_ID", protocolID);
-
-        System.out.println("protocolID ::::::::::::::::::::::::::::::::::::::::::::::::::::;"+protocolID);
+        replicaMap.put("PARAM_ID", protocolID);
 
         mapper.transferReplica(replicaMap);
 
