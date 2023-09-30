@@ -21,5 +21,7 @@ public interface IFHMBINNOCEANCDPP0034Mapper {
     public String getProtocalQuotation(IFHMBINNOCEANCDPP0034Dto dto)throws Exception;
 
     public String getProtocalCase(IFHMBINNOCEANCDPP0034Dto dto)throws Exception;
+
+    public String getprotocolID(IFHMBINNOCEANCDPP0034Dto dto)throws Exception;
     
 }

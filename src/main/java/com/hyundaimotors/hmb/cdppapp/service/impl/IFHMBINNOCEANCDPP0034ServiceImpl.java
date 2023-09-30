@@ -31,8 +31,14 @@ public class IFHMBINNOCEANCDPP0034ServiceImpl implements IFHMBINNOCEANCDPP0034Se
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
         mapper.transferProcess(map);
+
+        String protocolID = mapper.getprotocolID(dto);
         
-        mapper.transferReplica(map);
+        HashMap<String, String> replicaMap = new HashMap<>();
+
+        map.put("PARAM_ID", protocolID);
+
+        mapper.transferReplica(replicaMap);
 
         String protocalResult = "";
         if("Information".equals(dto.getServiceRequest().getReason()) && "Sales".equals(dto.getServiceRequest().getLevel1()) && "Test drive".equals(dto.getServiceRequest().getLevel2())){
