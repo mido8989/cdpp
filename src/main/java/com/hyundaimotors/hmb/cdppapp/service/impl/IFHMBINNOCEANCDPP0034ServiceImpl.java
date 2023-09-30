@@ -49,7 +49,7 @@ public class IFHMBINNOCEANCDPP0034ServiceImpl implements IFHMBINNOCEANCDPP0034Se
             protocalResult = mapper.getProtocalCase(dto);
         }
         
-        resulDto.setProtocalResult(protocalResult);
+        resulDto.setProtocalResult(protocolID);
         resulDto.setErrorSpcCode("0");
         resulDto.setErrorSpcMessage("OK");
 
