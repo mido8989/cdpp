@@ -38,6 +38,8 @@ public class IFHMBINNOCEANCDPP0034ServiceImpl implements IFHMBINNOCEANCDPP0034Se
 
         map.put("PARAM_ID", protocolID);
 
+        System.out.println("protocolID ::::::::::::::::::::::::::::::::::::::::::::::::::::;"+protocolID);
+
         mapper.transferReplica(replicaMap);
 
         String protocalResult = "";
