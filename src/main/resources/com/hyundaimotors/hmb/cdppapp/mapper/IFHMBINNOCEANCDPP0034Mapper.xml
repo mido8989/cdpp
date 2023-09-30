@@ -282,4 +282,13 @@
         where 
             external__c = cast(#{rowId} as text)
     </select>
+
+    <select id="getprotocolID" parameterType="IFHMBINNOCEANCDPP0034Dto" resultType="String">
+        select
+            protocol__c as protocolID
+        from
+            process.service_request
+        where 
+            row_id = CAST(#{rowId} AS INTEGER)
+    </select>
 </mapper>
