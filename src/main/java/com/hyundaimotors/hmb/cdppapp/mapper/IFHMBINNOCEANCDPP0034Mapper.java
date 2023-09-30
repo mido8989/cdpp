@@ -14,7 +14,7 @@ public interface IFHMBINNOCEANCDPP0034Mapper {
 
     public void transferProcess(HashMap<String, String> parMap)throws Exception;
 
-    public void transferReplica(HashMap<String, String> parMap)throws Exception;
+    public void transferReplica(HashMap<String, String> replicaMap)throws Exception;
 
     public String getProtocalTestDrive(IFHMBINNOCEANCDPP0034Dto dto)throws Exception;
 
