@@ -289,6 +289,6 @@
         from
             process.service_request
         where 
-            row_id = CAST(#{rowId} AS INTEGER)
+            external_id__c = CAST(#{rowId} AS TEXT)
     </select>
 </mapper>
