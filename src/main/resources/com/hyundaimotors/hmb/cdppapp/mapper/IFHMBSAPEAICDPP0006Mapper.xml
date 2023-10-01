@@ -165,6 +165,6 @@
         from 
             process.service_event_act
         where 
-            external_id__c = cast(#{rowId} as Integer)
+            external_id__c = cast(#{rowId} as TEXT)
     </select>
 </mapper>
