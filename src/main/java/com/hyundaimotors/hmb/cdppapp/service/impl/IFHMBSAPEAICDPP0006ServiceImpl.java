@@ -35,6 +35,12 @@ public class IFHMBSAPEAICDPP0006ServiceImpl implements IFHMBSAPEAICDPP0006Servic
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
         mapper.transferProcess(map);
+
+        String actionRowId = mapper.getActionRowId(dto);
+
+        HashMap<String, String> replicaMap = new HashMap<>();
+
+        replicaMap.put("PARAM_ID", String.valueOf(dto.getRowId()));
         
         mapper.transferReplica(map);
 
