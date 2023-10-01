@@ -40,9 +40,9 @@ public class IFHMBSAPEAICDPP0006ServiceImpl implements IFHMBSAPEAICDPP0006Servic
 
         HashMap<String, String> replicaMap = new HashMap<>();
 
-        replicaMap.put("PARAM_ID", String.valueOf(dto.getRowId()));
+        replicaMap.put("PARAM_ID", actionRowId);
         
-        mapper.transferReplica(map);
+        mapper.transferReplica(replicaMap);
 
         
         resulDto.setErrorSpcCode("0");
