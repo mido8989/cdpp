@@ -19,4 +19,6 @@ public interface IFHMBSAPEAICDPP0006Mapper {
     public void transferReplica(HashMap<String, String> parMap)throws Exception;
 
     public String getTaskRowId(IFHMBSAPEAICDPP0006Dto dto)throws Exception;
+
+    public String getActionRowId(IFHMBSAPEAICDPP0006Dto dto)throws Exception;
 }
