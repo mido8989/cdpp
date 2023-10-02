@@ -33,19 +33,9 @@ public class IFHMBZICARDCDPP0007Controller {
         ModelMapper modelMapper = new ModelMapper();
         IFHMBZICARDCDPP0007Dto dto = modelMapper.map(request, IFHMBZICARDCDPP0007Dto.class);
         
-        int resultNum = service.upsertObject(dto);
+        IFHMBZICARDCDPP0007Dto resultDto = service.upsertObject(dto);
 
-        if( resultNum == 2) {
-            dto.setErrorSpcCode("0");
-            dto.setErrorSpcMessage("OK");
-            dto.setNumAffRow("100");
-        }else{
-            dto.setErrorSpcCode("1");
-            dto.setErrorSpcMessage("FAIL");
-            dto.setNumAffRow("100");
-        }
-
-        return modelMapper.map(dto, IFHMBZICARDCDPP0007Payload.Response.class);       
+        return modelMapper.map(resultDto, IFHMBZICARDCDPP0007Payload.Response.class);       
     }
     
 }

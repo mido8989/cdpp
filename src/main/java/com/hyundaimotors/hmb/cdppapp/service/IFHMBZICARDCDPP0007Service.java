@@ -4,6 +4,6 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBZICARDCDPP0007Dto;
 
 public interface IFHMBZICARDCDPP0007Service {
 
-    public  int upsertObject(IFHMBZICARDCDPP0007Dto dto)throws Exception;
+    public  IFHMBZICARDCDPP0007Dto upsertObject(IFHMBZICARDCDPP0007Dto dto)throws Exception;
     
 }

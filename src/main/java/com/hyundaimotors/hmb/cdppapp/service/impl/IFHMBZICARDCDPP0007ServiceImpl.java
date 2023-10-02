@@ -18,37 +18,46 @@ public class IFHMBZICARDCDPP0007ServiceImpl implements IFHMBZICARDCDPP0007Servic
 
     private final IFHMBZICARDCDPP0007Mapper mapper;
 
-    public int upsertObject(IFHMBZICARDCDPP0007Dto dto)throws Exception{
-        int assetExistNum = mapper.getAssetExistNum(dto);
-        int contactExistNum = mapper.getContactExistNum(dto);
-        int assetConNum = mapper.getAssetConNum(dto);
-        int resultNum = 0;
+    public IFHMBZICARDCDPP0007Dto upsertObject(IFHMBZICARDCDPP0007Dto dto)throws Exception{
+        
+        IFHMBZICARDCDPP0007Dto resultDto = new IFHMBZICARDCDPP0007Dto();
 
-        resultNum = assetExistNum + contactExistNum;
-        if(assetExistNum + contactExistNum == 2 ){
-           if(0 < assetConNum){
-                mapper.updateObject(dto);
-                
-                HashMap<String, String> map = new HashMap<String, String>();
+        String procId = mapper.getCustomerVehicleId(dto);
 
-                map.put("PARAM_ID", dto.getRowId());
+        mapper.insertObject(dto);
 
-                map.put("checkcu",  "update");
-                
-                mapper.transferProcess(map);
+        if( procId != null ){
 
-           }else{
-                mapper.insertObject(dto);
+            HashMap<String, String> map = new HashMap<String, String>();
+    
+            map.put("PARAM_ID", dto.getRowId());    
+            map.put("PROC_ID", procId);
+            map.put("checkcu",  "update");            
+            mapper.transferProcess(map);
+            mapper.transferReplica(map);
 
-                HashMap<String, String> map = new HashMap<String, String>();
+            resultDto.setErrorSpcCode("0");
+            resultDto.setErrorSpcMessage("OK");
+            resultDto.setNumAffRow("1");
 
-                map.put("PARAM_ID", dto.getRowId());
+        }else {
+    
+            HashMap<String, String> map = new HashMap<String, String>();
+    
+            map.put("PARAM_ID", dto.getRowId());    
+            map.put("checkcu",  "insert");            
+            mapper.transferProcess(map);
 
-                map.put("checkcu",  "insert");
-                
-                mapper.transferProcess(map);
-           }
+            procId = mapper.getCustomerVehicleId(dto);
+
+            map.put("PROC_ID", procId);
+            mapper.transferReplica(map);
+
+            resultDto.setErrorSpcCode("0");
+            resultDto.setErrorSpcMessage("OK");
+            resultDto.setNumAffRow("1");
         }
-        return resultNum;
+          
+        return resultDto;
     }
 }
