@@ -3,6 +3,7 @@ package com.hyundaimotors.hmb.cdppapp.service.impl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBCSUCDPP0086Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBCSUCDPP0085.IFHMBCSUCDPP0085Dto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBCSUCDPP0085Mapper;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBCSUCDPP0086Mapper;
@@ -16,8 +17,8 @@ import lombok.RequiredArgsConstructor;
 public class IFHMBCSUCDPP0086ServiceImpl implements IFHMBCSUCDPP0086Service{
     private final IFHMBCSUCDPP0086Mapper mapper;
 
-    public IFHMBCSUCDPP0085Dto insertObject(IFHMBCSUCDPP0085Dto dto)throws Exception{
-        IFHMBCSUCDPP0085Dto resulDto = new IFHMBCSUCDPP0085Dto();
+    public IFHMBCSUCDPP0086Dto insertObject(IFHMBCSUCDPP0086Dto dto)throws Exception{
+        IFHMBCSUCDPP0086Dto resulDto = new IFHMBCSUCDPP0086Dto();
         resulDto = mapper.getAccountObject(dto);
 
         if(resulDto != null){
