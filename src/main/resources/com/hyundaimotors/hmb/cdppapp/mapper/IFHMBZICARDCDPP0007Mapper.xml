@@ -2,42 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBZICARDCDPP0007Mapper">
     
-    <select id="getAssetExistNum" parameterType="IFHMBZICARDCDPP0007Dto" resultType="Integer">    
+    <select id="getCustomerVehicleId" parameterType="IFHMBZICARDCDPP0007Dto" resultType="String">    
         select 
-            count(row_id)
+            row_id as getCustomerVehicleId
         from 
-            process.asset
+            process.customer_vehicle
         where 
-            external_id__c = #{assetId}
-    </select>
-
-    <select id="getContactExistNum" parameterType="IFHMBZICARDCDPP0007Dto" resultType="Integer">
-        select
-            count(row_id)
-        from
-            process.account
-        where
-            external_id__c = #{contactId}
-    </select>
-
-    <select id="getAssetConNum" parameterType="IFHMBZICARDCDPP0007Dto" resultType="Integer">
-        select
-            count(row_id)
-        from
-            landing.s_asset_con 
-        where
-            asset_id = #{assetId}
+            account_id = #{contactId}
         and
-            contact_id = #{contactId}
-    </select>
+            asset_id = #{assetId}
+    </select>  
 
     <insert id="insertObject" parameterType="IFHMBZICARDCDPP0007Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
-        insert into landing.s_asset_con 
+        insert into landing.if_asset_contact_upsert_ws 
             (
-                asset_id
-                , contact_id
-                , relation_type_cd
-                , attrib_26
+                assetid
+                , contactid
+                , relationship
+                , hkmeretaildate
                 , created
                 , created_by
                 , last_upd
@@ -56,19 +38,12 @@
             );
     </insert>
 
-    <update id="updateObject" parameterType="IFHMBZICARDCDPP0007Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
-        update landing.s_asset_con
-        set 
-        relation_type_cd = #{relationShip}
-        , attrib_26 = to_date(#{hkmeRetailDate}, 'YYYY-MM-DD')
-        where
-        asset_id = #{assetId}
-        and
-        contact_id = #{contactId}
-    </update>
-
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.hmb_asset_contact_upsert_webservice_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+        call process.if_asset_contact_upsert_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{PROC_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_asset_contact_upsert_ws(#{PROC_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>
 
 </mapper>
