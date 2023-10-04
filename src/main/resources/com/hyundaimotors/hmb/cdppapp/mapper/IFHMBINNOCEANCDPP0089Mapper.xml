@@ -31,7 +31,7 @@
         left join 
             process.customer_vehicle pcvp
         on
-            pas.row_id = pcvp.asset_id and pcvp.cv_type = 'Person' and pcvb.status_cd = 'Active'
+            pas.row_id = pcvp.asset_id and pcvp.cv_type = 'Person' and pcvp.status_cd = 'Active'
         where 
             pas.start_date = to_date(#{startDate}, 'YYYY-MM-DD')
         and
