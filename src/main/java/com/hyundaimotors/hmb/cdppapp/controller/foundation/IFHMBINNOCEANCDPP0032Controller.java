@@ -3,6 +3,8 @@ package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,9 +34,8 @@ public class IFHMBINNOCEANCDPP0032Controller {
 
     @Operation(summary = "HMB Search TD Webservice WF", description = "HMB Search TD Webservice WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0032Payload.Response.class)))
-    @GetMapping(value = "/api/v1/HMBSearchTDWebserviceWF")
-    @ResponseBody
-    public Object getObject(@Valid IFHMBINNOCEANCDPP0032Payload.Request request)throws Exception{
+    @PostMapping(value = "/api/v1/HMBSearchTDWebserviceWF")
+    public Object getObject(@RequestBody IFHMBINNOCEANCDPP0032Payload.Request request)throws Exception{
         ModelMapper modelMapper = new ModelMapper();
         ObjectMapper mapper = new ObjectMapper();
 
