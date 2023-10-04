@@ -52,4 +52,9 @@ springdoc:
     packages-to-scan: 
       - com.hyundaimotors.hmb.cdppapp.controller.proactive
       - com.hyundaimotors.hmb.cdppapp.controller.accesstocken
+
+  - group: campaign
+    packages-to-scan: 
+      - com.hyundaimotors.hmb.cdppapp.controller.campaign
+      - com.hyundaimotors.hmb.cdppapp.controller.accesstocken
     
