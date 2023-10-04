@@ -1,4 +1,4 @@
-package com.hyundaimotors.hmb.cdppapp.dto;
+package com.hyundaimotors.hmb.cdppapp.dto.IFHMBMAPFRECDPP0009;
 
 import lombok.Getter;
 import lombok.Setter;

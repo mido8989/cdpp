@@ -1,6 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.service;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBMAPFRECDPP0009Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBMAPFRECDPP0009.IFHMBMAPFRECDPP0009Dto;
 
 public interface IFHMBMAPFRECDPP0009Service {
     
