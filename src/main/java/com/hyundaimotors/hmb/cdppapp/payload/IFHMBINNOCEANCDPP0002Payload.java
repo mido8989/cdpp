@@ -58,7 +58,7 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @JsonProperty("Occupation")
         private String occupation;
         @Schema(description = "Contact preferred way of contact. Valid values: Uninformed, Divorced, Married, Partner, Separated, Single, Stable union, Widowed, Others", example = "Single")
-        @JsonProperty("Occupation")
+        @JsonProperty("MaritalStatus")
         private String maritalStatus;
         @Schema(description = "Contact's income.", example = "R$1.000 or less")
         @JsonProperty("Income")
