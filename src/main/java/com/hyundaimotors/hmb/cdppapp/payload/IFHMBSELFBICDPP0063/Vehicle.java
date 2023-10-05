@@ -2,6 +2,8 @@ package com.hyundaimotors.hmb.cdppapp.payload.IFHMBSELFBICDPP0063;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +27,8 @@ public class Vehicle {
     private String DigitalSales;
     private String TDHome;
     private String SalesCancelled;
+    @JsonProperty("Contact")
     List<ContactGetVin> ListOfContact;
+    @JsonProperty("Account")
     List<AccountGetVin> ListOfAccount;
 }
