@@ -51,6 +51,9 @@ public class IFHMBINNOCEANCDPP0002Dto {
     private String suppressAllMailings;
     private String suppressAllEmails;
     private String suppressAllSMS;
+    private String suppressAllVideoCall;
+    private String suppressAllWhatsapp;
+    private String suppressAllMobile;
     private String printedCard;
     private String alreadyCustomer;
     private String ContactId;
