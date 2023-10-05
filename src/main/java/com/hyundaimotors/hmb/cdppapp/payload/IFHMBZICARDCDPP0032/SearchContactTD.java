@@ -30,7 +30,7 @@ public class SearchContactTD {
     private String emailAddress;
     @JsonProperty("WorkPhone")
     private String workPhone;
-    @JsonProperty("RowId")
+    @JsonProperty("NumericRowId")
     private String rowId;
     @JsonProperty("AmountFriends")
     private String amountFriends;
@@ -62,18 +62,20 @@ public class SearchContactTD {
     private String suppressAllEmails;
     @JsonProperty("SuppressAllSMS")
     private String suppressAllSMS;
-    @JsonProperty("postalCode")
+    @JsonProperty("AddressPostalCode")
     private String postalCode;
-    @JsonProperty("street")
+    @JsonProperty("StreetAddress")
     private String street;
-    @JsonProperty("number")
+    @JsonProperty("AddressNumber")
     private String number;
-    @JsonProperty("complement")
+    @JsonProperty("AddressComplement")
     private String complement;
-    @JsonProperty("county")
+    @JsonProperty("AddressCounty")
     private String county;
-    @JsonProperty("City")
+    @JsonProperty("AddressCity")
     private String city;
-    @JsonProperty("State")
+    @JsonProperty("AddressState")
     private String State;
+    @JsonProperty("AddressCountry")
+    private String country;
 }

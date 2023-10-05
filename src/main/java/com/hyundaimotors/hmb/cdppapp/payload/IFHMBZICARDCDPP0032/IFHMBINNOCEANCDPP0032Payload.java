@@ -21,14 +21,12 @@ public class IFHMBINNOCEANCDPP0032Payload {
         @NotNull
         @NotEmpty
         @NotBlank
-        @JsonProperty("Cpf")
         private String cpf;
 
         @Schema(description = "ContactId", example = "proc00236829361")
         @NotNull
         @NotEmpty
         @NotBlank
-        @JsonProperty("ContactId")
         private String contactId;
     }
 
@@ -36,8 +34,11 @@ public class IFHMBINNOCEANCDPP0032Payload {
     @Getter
     @Setter
     public static class Response{
+        @JsonProperty("Error_spcCode")
         private String ErrorSpcCode;
+        @JsonProperty("Error_spcMessage")
         private String ErrorSpcMessage;
+        @JsonProperty("SearchContactTD_Output")
         private List<SearchContactTD> ListOfSearchContactTD;
         private List<ServiceRequestTD> ListOfServiceRequest;
     }
