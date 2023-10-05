@@ -6,12 +6,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0031.IFHMBSAPCDPP0031Dto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSELFBICDPP0063.IFHMBSELFBICDPP0063Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPCDPP0031.IFHMBSAPCDPP0031Payload;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSELFBICDPP0063.IFHMBSELFBICDPP0063Payload;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSMARTERSCDPP0036.IFHMBSMARTERSCDPP0036Payload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPCDPP0031Service;
-import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0006Service;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
