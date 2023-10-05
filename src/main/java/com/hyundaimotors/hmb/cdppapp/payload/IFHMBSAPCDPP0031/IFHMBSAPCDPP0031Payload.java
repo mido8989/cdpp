@@ -1,6 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPCDPP0031;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -13,8 +13,10 @@ public class IFHMBSAPCDPP0031Payload {
     @Setter
     public static class Request{
         @Schema(description = "Date_Input is null,Informe Data", example = "2023-09-25")
+        @JsonProperty("date")
         private String dateInput;
         @Schema(description = "Created Opcion value : scheduled, Created", example = "scheduled")
+        @JsonProperty("created")
         private String createdOption;
 
     }
@@ -23,10 +25,7 @@ public class IFHMBSAPCDPP0031Payload {
     @Getter
     @Setter
     public static class Response{
-        @Schema(description = "Connex error code. Code 0 means success.", example = "0")
-        private String errorSpcCode;
-        @Schema(description = "Connex error message.", example = "OK")
-        private String errorSpcMessage;
-        private List<SearchServiceRequest> listOfHmbSearchServiceRequest;
+        @JsonProperty("HMBSearchServiceRequestTDWebservice_Output")
+        HMBSearchServiceRequestTDWebserviceOutput hmbSearchServiceRequestTDWebserviceOutput;
     }
 }

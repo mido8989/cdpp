@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0031.HMBSearchServiceRequestTDWebserviceOutputDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0031.IFHMBSAPCDPP0031Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0031.SearchServiceRequestDto;
-import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0005Mapper;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0031Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPCDPP0031Service;
 
@@ -28,10 +28,13 @@ public class IFHMBSAPCDPP0031ServiceImpl implements IFHMBSAPCDPP0031Service{
 
         listServiceRequest = mapper.getServiceRequestTD(dto);
 
-        resuDto.setListOfHmbSearchServiceRequest(listServiceRequest);
+        HMBSearchServiceRequestTDWebserviceOutputDto hmbSearchServiceRequestTDWebserviceOutput = new HMBSearchServiceRequestTDWebserviceOutputDto();
 
-        resuDto.setErrorSpcCode("0");
-        resuDto.setErrorSpcMessage("OK");
+        hmbSearchServiceRequestTDWebserviceOutput.setListOfHmbSearchServiceRequest(listServiceRequest);
+        hmbSearchServiceRequestTDWebserviceOutput.setErrorSpcCode(("0"));
+        hmbSearchServiceRequestTDWebserviceOutput.setErrorSpcMessage(("OK"));        
+
+        resuDto.setHmbSearchServiceRequestTDWebserviceOutput(hmbSearchServiceRequestTDWebserviceOutput);    
         
         return resuDto;
     }
