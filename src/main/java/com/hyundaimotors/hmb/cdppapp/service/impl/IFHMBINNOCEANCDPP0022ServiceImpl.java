@@ -25,6 +25,10 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
         IFHMBINNOCEANCDPP0022Dto resultDto = new IFHMBINNOCEANCDPP0022Dto();
         List<IFHMBINNOCEANCDPP0022Dto> rowIdList = mapper.getCheckHoliDay(dto);
 
+        mapper.insertObject(dto);
+
+        String procDealerHolidayRowId = mapper.getRowId(dto);
+
         if("upsert".equalsIgnoreCase(dto.getOperation())){
 
             if(rowIdList.size() > 0) {
@@ -32,11 +36,11 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
             IFHMBINNOCEANCDPP0022Dto rowIdDto = rowIdList.get(0);
             dto.setHolyRowId(rowIdDto.getHolyRowId());
 
-            mapper.insertObject(dto);
             
 
             HashMap<String, String> map = new HashMap<>();
             map.put("PARAM_ID", String.valueOf(dto.getHolyRowId()));
+            map.put("PROC_ID", procDealerHolidayRowId);
             map.put("checkcu", "update");
             
             mapper.transferProcess(map);
@@ -48,17 +52,20 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
             manageDealerHolidayOutput.setErrorSpcMessage("OK");
             
             resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput);
-            //resultDto.getManageDealerHolidayOutput().setErrorSpcCode("0");
-            //resultDto.getManageDealerHolidayOutput().setErrorSpcMessage("OK");
                 
             }else{            
-                mapper.insertObject(dto);
                 
                 HashMap<String, String> map = new HashMap<>();
                 map.put("PARAM_ID", String.valueOf(dto.getHolyRowId()));
                 map.put("checkcu", "insert");
                 
                 mapper.transferProcess(map);
+                
+                procDealerHolidayRowId = mapper.getRowId(dto);
+                
+                map.put("PROC_ID", procDealerHolidayRowId);
+
+
                 mapper.transferReplica(map);
 
                 ManageDealerHolidayOutputDto manageDealerHolidayOutput = new ManageDealerHolidayOutputDto();
@@ -77,6 +84,7 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
                 
                 HashMap<String, String> map = new HashMap<>();
                 map.put("PARAM_ID", String.valueOf(dto.getHolyRowId()));
+                map.put("PROC_ID", procDealerHolidayRowId);
                 map.put("checkcu", "delete");
 
                 mapper.transferProcess(map);

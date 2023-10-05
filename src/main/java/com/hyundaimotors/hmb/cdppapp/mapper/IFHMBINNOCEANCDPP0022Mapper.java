@@ -9,7 +9,7 @@ public interface IFHMBINNOCEANCDPP0022Mapper {
 
     public List<IFHMBINNOCEANCDPP0022Dto> getCheckHoliDay(IFHMBINNOCEANCDPP0022Dto dto)throws Exception;
 
-    public IFHMBINNOCEANCDPP0022Dto getRowId(IFHMBINNOCEANCDPP0022Dto dto)throws Exception;
+    public String getRowId(IFHMBINNOCEANCDPP0022Dto dto)throws Exception;
 
     public int insertObject(IFHMBINNOCEANCDPP0022Dto dto)throws Exception;
 
