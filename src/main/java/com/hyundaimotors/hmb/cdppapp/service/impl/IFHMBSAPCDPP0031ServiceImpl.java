@@ -24,17 +24,27 @@ public class IFHMBSAPCDPP0031ServiceImpl implements IFHMBSAPCDPP0031Service{
     public IFHMBSAPCDPP0031Dto getObject(IFHMBSAPCDPP0031Dto dto)throws Exception{
         IFHMBSAPCDPP0031Dto resuDto = new IFHMBSAPCDPP0031Dto();
         
+        HMBSearchServiceRequestTDWebserviceOutputDto hmbSearchServiceRequestTDWebserviceOutput = new HMBSearchServiceRequestTDWebserviceOutputDto();
         List<SearchServiceRequestDto> listServiceRequest = new ArrayList<>();
 
         listServiceRequest = mapper.getServiceRequestTD(dto);
 
-        HMBSearchServiceRequestTDWebserviceOutputDto hmbSearchServiceRequestTDWebserviceOutput = new HMBSearchServiceRequestTDWebserviceOutputDto();
+        if(0 < listServiceRequest.size()){
 
-        hmbSearchServiceRequestTDWebserviceOutput.setListOfHmbSearchServiceRequest(listServiceRequest);
-        hmbSearchServiceRequestTDWebserviceOutput.setErrorSpcCode(("0"));
-        hmbSearchServiceRequestTDWebserviceOutput.setErrorSpcMessage(("OK"));        
+            hmbSearchServiceRequestTDWebserviceOutput.setListOfHmbSearchServiceRequest(listServiceRequest);
+            hmbSearchServiceRequestTDWebserviceOutput.setErrorSpcCode(("0"));
+            hmbSearchServiceRequestTDWebserviceOutput.setErrorSpcMessage(("OK"));  
+            resuDto.setHmbSearchServiceRequestTDWebserviceOutput(hmbSearchServiceRequestTDWebserviceOutput);  
 
-        resuDto.setHmbSearchServiceRequestTDWebserviceOutput(hmbSearchServiceRequestTDWebserviceOutput);    
+        }else{
+            
+            hmbSearchServiceRequestTDWebserviceOutput.setErrorSpcCode(("1"));
+            hmbSearchServiceRequestTDWebserviceOutput.setErrorSpcMessage(("FAIL"));  
+            resuDto.setHmbSearchServiceRequestTDWebserviceOutput(hmbSearchServiceRequestTDWebserviceOutput);    
+            
+        }
+              
+
         
         return resuDto;
     }
