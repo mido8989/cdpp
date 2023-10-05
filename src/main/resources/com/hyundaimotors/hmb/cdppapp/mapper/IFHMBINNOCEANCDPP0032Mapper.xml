@@ -36,6 +36,7 @@
             , a.billingcountry as county
             , a.billingcity as city
             , a.billingstate as state
+            , a.billingcountry as country
         from
             process.account a
         left join

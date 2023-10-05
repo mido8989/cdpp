@@ -2,15 +2,11 @@ package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0032.IFHMBINNOCEANCDPP0032Dto;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0001Payload;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBZICARDCDPP0032.IFHMBINNOCEANCDPP0032Payload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0032Service;
 
@@ -19,7 +15,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Search TD Webservice WF", description = "Innocean, SAP EAI list Interface")
@@ -37,7 +32,6 @@ public class IFHMBINNOCEANCDPP0032Controller {
     @PostMapping(value = "/api/v1/HMBSearchTDWebserviceWF")
     public Object getObject(@RequestBody IFHMBINNOCEANCDPP0032Payload.Request request)throws Exception{
         ModelMapper modelMapper = new ModelMapper();
-        ObjectMapper mapper = new ObjectMapper();
 
         IFHMBINNOCEANCDPP0032Dto resultDto = new IFHMBINNOCEANCDPP0032Dto();
 
