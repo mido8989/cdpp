@@ -3,7 +3,7 @@ package com.hyundaimotors.hmb.cdppapp.mapper;
 import java.util.HashMap;
 import java.util.List;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0022Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0022.IFHMBINNOCEANCDPP0022Dto;
 
 public interface IFHMBINNOCEANCDPP0022Mapper {
 
