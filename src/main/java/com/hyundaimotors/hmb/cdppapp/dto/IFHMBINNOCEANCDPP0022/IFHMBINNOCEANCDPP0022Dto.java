@@ -1,4 +1,5 @@
-package com.hyundaimotors.hmb.cdppapp.dto;
+package com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0022;
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,4 +18,6 @@ public class IFHMBINNOCEANCDPP0022Dto {
     private String operation;
     private String ErrorSpcCode;
     private String ErrorSpcMessage;
+
+    ManageDealerHolidayOutputDto manageDealerHolidayOutput;
 }
