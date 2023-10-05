@@ -1,4 +1,4 @@
-package com.hyundaimotors.hmb.cdppapp.dto;
+package com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0046;
 
 import java.util.List;
 
@@ -17,5 +17,7 @@ public class IFHMBINNOCEANCDPP0046Dto {
     private List<ListOfServices> listOfServices;
     private String errorSpcCode;
     private String errorSpcMessage;
+
+    ManageDealerServiceOutDto ManageDealerServiceOut;
 }
 

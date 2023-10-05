@@ -5,7 +5,8 @@ import java.util.HashMap;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0046Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0046.IFHMBINNOCEANCDPP0046Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0046.ManageDealerServiceOutDto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0046Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0046Service;
 
@@ -36,13 +37,19 @@ public class IFHMBINNOCEANCDPP0046ServiceImpl implements IFHMBINNOCEANCDPP0046Se
             
             mapper.transferProcess(map);
             mapper.transferReplica(map);
-            
-            resultDto.setDealerCode(parRowId);
+
+            ManageDealerServiceOutDto ManageDealerServiceOut = new ManageDealerServiceOutDto();
+            ManageDealerServiceOut.setDealerCode(dto.getDealerCode());
+
+            resultDto.setManageDealerServiceOut(ManageDealerServiceOut);    
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");      
 
         }else{
-            resultDto.setDealerCode(dto.getDealerCode());
+             ManageDealerServiceOutDto ManageDealerServiceOut = new ManageDealerServiceOutDto();
+            ManageDealerServiceOut.setDealerCode(dto.getDealerCode());
+
+            resultDto.setManageDealerServiceOut(ManageDealerServiceOut);
             resultDto.setErrorSpcCode("1");
             resultDto.setErrorSpcMessage("FAIL");        
         }
