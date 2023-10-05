@@ -20,7 +20,7 @@ public class IFHMBINNOCEANCDPP0001Payload {
         @NotEmpty
         @NotBlank
         @Schema(description = "phone Number", example = "+5515997501064")
-        @JsonProperty("PhoneNumber")
+        @JsonProperty("phone")
         private String phoneNumber;
         
         @Schema(description = "cpfNumber", example = "21955839832")
