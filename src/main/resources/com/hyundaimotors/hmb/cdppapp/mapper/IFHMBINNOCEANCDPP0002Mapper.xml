@@ -65,6 +65,9 @@
             , suppressallmailings
             , suppressallemails
             , suppressallsms
+            , suppressallvideocall
+            , suppressallwhatsapp
+            , suppressallmobile
             , printedcard
             , already_customer                       
         )values(
@@ -108,6 +111,9 @@
             , #{suppressAllMailings}
             , #{suppressAllEmails}
             , #{suppressAllSMS}
+            , #{suppressAllVideoCall}
+            , #{suppressAllWhatsapp}
+            , #{suppressAllMobile}
             , #{printedCard}
             , #{alreadyCustomer}
         )

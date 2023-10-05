@@ -14,14 +14,18 @@ import lombok.Setter;
 public class InboundContactWorkflowSnsPayLoad {
     @Schema(description = "Social media name. Valid values: Facebook", example = "Facebook")
     @NotNull
+    @JsonProperty("Name")
     public String name;
     @Schema(description = "User name in the social media. (not login name, but the display name)", example = "Gianca")
     @NotNull
+    @JsonProperty("User")
     public String user;
     @Schema(description = "Social media join date.", example = "1980-10-21")
     @NotNull
+    @JsonProperty("JoinDate")
     public String joinDate;
     @Schema(description = "Indicates if customer liked HMB page on facebook. Valid values:true, False", example = "False")
     @NotNull
+    @JsonProperty("LikeHMB")
     public String likeHMB;
 }
