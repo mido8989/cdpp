@@ -27,26 +27,22 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
 
         TotalLeadDto lead = new TotalLeadDto();
 
-        List<TotalContactDto> contactList = new ArrayList<>();
-        TotalActionDto action = new TotalActionDto();
-
         lead = mapper.getLead(dto);
 
         if(lead != null){
-            System.out.println("check01:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+            List<TotalContactDto> contactList = new ArrayList<>();
+            TotalActionDto action = new TotalActionDto();
             String contactRowId = lead.getContactRowId();
             contactList = mapper.getContact(contactRowId);
 
             if(0 < contactList.size()){
-                System.out.println("check02:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
                 lead.setContact(contactList);
             }
             
             String protocol = lead.getProtocol();
             action = mapper.getAction(protocol);
             if(null != action){
-                System.out.println("check03:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-                lead.setAction(action);    
+                lead.setAction(action); 
             }
             resulDto.setTotallead(lead);
 
