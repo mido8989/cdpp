@@ -32,7 +32,7 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
 
         lead = mapper.getLead(dto);
 
-        if(lead != null){
+        if(null != lead){
             
             String contactRowId = lead.getContactRowId();
             contactList = mapper.getContact(contactRowId);
@@ -42,7 +42,7 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
             
             String protocol = lead.getProtocol();
             action = mapper.getAction(protocol);
-            if(action != null){
+            if(null != action){
                 lead.setAction(action);    
             }
             resulDto.setTotallead(lead);
