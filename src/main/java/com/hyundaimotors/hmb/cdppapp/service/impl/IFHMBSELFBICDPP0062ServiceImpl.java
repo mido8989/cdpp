@@ -32,23 +32,20 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
 
         lead = mapper.getLead(dto);
 
-        if(lead == null){
-            resulDto.setErrorSpcCode("1");
-            resulDto.setErrorSpcMessage("No Data");
-            
-        }else{
+        if(lead != null){
+            System.out.println("check01:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
             String contactRowId = lead.getContactRowId();
             contactList = mapper.getContact(contactRowId);
 
             if(0 < contactList.size()){
+                System.out.println("check02:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
                 lead.setContact(contactList);
             }
             
             String protocol = lead.getProtocol();
             action = mapper.getAction(protocol);
-            if(null == action){
-                
-            }else{
+            if(null != action){
+                System.out.println("check03:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
                 lead.setAction(action);    
             }
             resulDto.setTotallead(lead);
@@ -56,6 +53,9 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
             resulDto.setErrorSpcCode("0");
             resulDto.setErrorSpcMessage("OK");
             
+        }else{
+            resulDto.setErrorSpcCode("1");
+            resulDto.setErrorSpcMessage("No Data");
         }
         
         return resulDto;
