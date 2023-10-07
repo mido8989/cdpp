@@ -90,7 +90,7 @@
         </choose>
     </select>
     
-    <select id="getContact" parameterType="string" resultType="TotalContactDto">
+    <select id="getContact" parameterType="String" resultType="TotalContactDto">
         select 
             pc.personbirthdate as birthDate
             , pc.gender__pc as gender
@@ -108,7 +108,7 @@
             pc.row_id = #{contactRowId}
     </select>
 
-    <select id="getAction" parameterType="string" resultType="TotalActionDto">
+    <select id="getAction" parameterType="String" resultType="TotalActionDto">
         select 
             psea.first_interaction as fstInteraction
             , psea.get_lead_date as getLead
