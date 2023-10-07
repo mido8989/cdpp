@@ -36,15 +36,15 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
             String contactRowId = lead.getContactRowId();
             contactList = mapper.getContact(contactRowId);
 
-            //if(0 < contactList.size()){
+            if(0 < contactList.size()){
                 lead.setContact(contactList);
-            //}
+            }
             
             String protocol = lead.getProtocol();
             action = mapper.getAction(protocol);
-            //if(null != action){
+            if(action!= null){
                 lead.setAction(action);
-            //}
+            }
             resulDto.setTotallead(lead);
 
             resulDto.setErrorSpcCode("0");
