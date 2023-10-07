@@ -48,6 +48,9 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
                 lead.setAction(action);
             }
             resulDto.setTotallead(lead);
+            System.out.println("lead:::::::::::::::::::::::::::::::::::::::::::::::"+lead);
+            System.out.println("contactSize:::::::::::::::::::::::::::::::::::::::::::::::"+lead.getContact());
+            System.out.println("action:::::::::::::::::::::::::::::::::::::::::::::::"+lead.getAction());
 
             resulDto.setErrorSpcCode("0");
             resulDto.setErrorSpcMessage("OK");
