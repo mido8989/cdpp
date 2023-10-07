@@ -32,7 +32,9 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
         if(lead != null){
             List<TotalContactDto> contactList = new ArrayList<>();
             TotalActionDto action = new TotalActionDto();
+            
             String contactRowId = lead.getContactRowId();
+            System.out.println("contactRowId:::::::::::::::::::::::::::::::::::::::::::::::"+contactRowId);
             contactList = mapper.getContact(contactRowId);
 
             if(0 < contactList.size()){
@@ -40,9 +42,10 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
             }
             
             String protocol = lead.getProtocol();
+            System.out.println("protocol:::::::::::::::::::::::::::::::::::::::::::::::"+protocol);
             action = mapper.getAction(protocol);
             if(null != action){
-                lead.setAction(action); 
+                lead.setAction(action);
             }
             resulDto.setTotallead(lead);
 
