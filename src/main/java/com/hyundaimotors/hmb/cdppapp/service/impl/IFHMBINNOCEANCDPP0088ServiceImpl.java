@@ -25,7 +25,7 @@ public class IFHMBINNOCEANCDPP0088ServiceImpl implements IFHMBINNOCEANCDPP0088Se
 
         HashMap<String, String> map = new HashMap<String, String>();
     
-        map.put("PARROW_ID", String.valueOf(dto.getRowId()));
+        map.put("PARAM_ID", String.valueOf(dto.getRowId()));
         
         mapper.transferProcess(map);
         
