@@ -1,9 +1,6 @@
-package com.hyundaimotors.hmb.cdppapp.dto;
+package com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0010;
 
 import java.util.List;
-
-import com.hyundaimotors.hmb.cdppapp.payload.AutoVehicleWebserviceWFAccountPayload;
-import com.hyundaimotors.hmb.cdppapp.payload.AutoVehicleWebserviceWFContactPayload;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -42,20 +39,14 @@ public class IFHMBSAPEAICDPP0010Dto {
         private String urlPhoto;
         private String urlphotoDate;
         private String urlauthPublication;
-        private String VehicleLicenseDate;
+        private String vehicleLicenseDate;
         private String digitalSales;
         private String deliveryatHome;
-        private String TDatHome;
+        private String tdatHome;
         private String ccs_flg;
         private String errorSpcCode;
         private String errorSpcMessage;
-        private String connexContactId;
-        private String contactType;
-        private String contactStatus;
-        private String employee;
-        private String connexAccountId;
-        private String accountType;
-        private String accountStatus;
-        List<AutoVehicleWebserviceWFContactPayload> contact;
-        List<AutoVehicleWebserviceWFAccountPayload> account;
+
+        List<AutoVehicleWebserviceWFContactDto> contact;
+        List<AutoVehicleWebserviceWFAccountDto> account;
 }
