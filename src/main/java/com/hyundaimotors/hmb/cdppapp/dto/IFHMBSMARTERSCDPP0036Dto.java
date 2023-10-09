@@ -6,7 +6,6 @@ import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSMARTERSCDPP0036.Chat;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSMARTERSCDPP0036.Message;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSMARTERSCDPP0036.ServiceRequestChatInput;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +13,8 @@ import lombok.Setter;
 @Setter
 public class IFHMBSMARTERSCDPP0036Dto {
     private int rowId;
+    private String ownedById;
+    private String processProtocol;
     ServiceRequestChatInput serviceRequestChatInput;
     List<Chat> listOfChat;
     List<Message> listOfMessage;
