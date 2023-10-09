@@ -38,6 +38,8 @@ public class IFHMBSMARTERSCDPP0036Serviceimpl implements IFHMBSMARTERSCDPP0036Se
 
         replicaDto = mapper.getPocessData(dto);
 
+        System.out.println("processProtocol::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" + replicaDto.getProcessProtocol());
+
         HashMap<String, String> replicaMap = new HashMap<>();
 
         replicaMap.put("PARAM_ID", replicaDto.getProcessProtocol());
