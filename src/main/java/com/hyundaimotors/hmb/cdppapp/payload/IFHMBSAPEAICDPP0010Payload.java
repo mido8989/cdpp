@@ -18,12 +18,13 @@ public class IFHMBSAPEAICDPP0010Payload {
         @Schema(description = "This tag was deactivated. serialNumber should be used instead.", example = "9BHBG51DADP011617")
         @NotNull
         private String intergrationId;
-        @Schema(description = "Valid values:Dealer Owned, Customer Owned, Cancelled.", example = "Dealer")
+        @Schema(description = "Valid values:Dealer Owned, Customer Owned, Cancelled.", example = "Customer Owned")
         private String status;
         @Schema(description = "Chassis number.Unique code for the asset record to be added. It is used as key field for this integration, to determine if a existing record should be updated or a new record should be inserted.", example = "9BHBH41DBGP633658")
         @NotNull
         private String serialNumber;
         @Schema(description = "Renavam code.", example = "497269414")
+        @NotNull
         private String renavamCode;
         @Schema(description = "Engine number.", example = "F3LACU001831")
         private String engineNumber;
@@ -32,7 +33,7 @@ public class IFHMBSAPEAICDPP0010Payload {
         @Schema(description = "Product FSC OCN Name", example = "092214A000")
         @NotNull
         private String fscOcn;
-        @Schema(description = "Product description.", example = "")
+        @Schema(description = "Product description.", example = "ELANTRA")
         private String modelName;
         @Schema(description = "Internal color code.", example = "9P")
         private String internalColorCode;
@@ -62,7 +63,7 @@ public class IFHMBSAPEAICDPP0010Payload {
         private String negotiationType;
         @Schema(description = "Subscription type.", example = "KU")
         private String subscriptionType;
-        @Schema(description = "Fiscal receipt.", example = "")
+        @Schema(description = "Fiscal receipt.", example = "120109")
         private String fiscalReceipt;
         @Schema(description = "Integration Id (CPF) for the sales representative.", example = "23351")
         private String salesrepId;
@@ -72,19 +73,20 @@ public class IFHMBSAPEAICDPP0010Payload {
         private String salesrepLastName;
         @Schema(description = "url Photo", example = "https://meuhyundai.com.br/static/momento_especial/1660764424478--1-EU7NVW7.jpg")
         private String urlPhoto;
-        @Schema(description = "url Photo Date", example = "08/08/2022")
+        @Schema(description = "url Photo Date", example = "2022.08.08")
         private String urlphotoDate;
-        @Schema(description = "url Auth Piblication", example = "")
+        @Schema(description = "url Auth Piblication", example = "2022.08.08")
         private String urlauthPublication;
-        @Schema(description = "Vehicle License Date", example = "08/08/2022")
-        private String VehicleLicenseDate;
+        @Schema(description = "Vehicle License Date", example = "2022.08.08")
+        @JsonProperty("VehicleLicenseDate")
+        private String vehicleLicenseDate;
         @Schema(description = "Digital Sales", example = "N")
         private String digitalSales;
         @Schema(description = "deliveryatHome", example = "N")
         private String deliveryatHome;
         @Schema(description = "TD at Home", example = "Y")
         @JsonProperty("TDatHome")
-        private String TDatHome;
+        private String tdatHome;
         @Schema(description = "ccs_flg", example = "N")
         private String ccs_flg;
         @JsonProperty("ListOfContact")
@@ -98,8 +100,10 @@ public class IFHMBSAPEAICDPP0010Payload {
     @Setter
     public static class Response{
         @Schema(description = "Connex error code. Code 0 means success.", example = "0")
+        @JsonProperty("Error_spcCode")
         private String errorSpcCode;
         @Schema(description = "Connex error message.", example = "OK")
+        @JsonProperty("Error_spcMessage")
         private String errorSpcMessage;
     }
 }
