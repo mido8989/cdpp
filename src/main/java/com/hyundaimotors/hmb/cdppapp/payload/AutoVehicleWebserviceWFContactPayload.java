@@ -15,11 +15,10 @@ public class AutoVehicleWebserviceWFContactPayload {
     @Schema(description = "Relationship type between asset and contact. Valid values: Assignee, Driver, Family, First owner, Mechanic, Other, Owner, Unspecified.", example = "Driver")
     @JsonProperty("Type")
     public String contactType;
-    @Schema(description = "Status of the relationship between asset and contact. Valid values: Active, Inactive.", example = "Inactive")
+    @Schema(description = "Status of the relationship between asset and contact. Valid values: Active, Inactive.", example = "Active")
     @JsonProperty("status")
     public String contactStatus;
     @Schema(description = "Is Buyer Employee Flag? Valid values: Y, N.", example = "Y")
     public String employee;
-    public String assetRowId; // Dto역할 할 때만 임시로 쓰이는 필드
     
 }

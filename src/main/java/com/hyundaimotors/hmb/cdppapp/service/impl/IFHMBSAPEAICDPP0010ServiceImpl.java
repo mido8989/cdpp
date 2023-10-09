@@ -7,10 +7,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0010Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0010.AutoVehicleWebserviceWFAccountDto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0010.AutoVehicleWebserviceWFContactDto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0010.IFHMBSAPEAICDPP0010Dto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0010Mapper;
-import com.hyundaimotors.hmb.cdppapp.payload.AutoVehicleWebserviceWFAccountPayload;
-import com.hyundaimotors.hmb.cdppapp.payload.AutoVehicleWebserviceWFContactPayload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0010Service;
 
 import lombok.RequiredArgsConstructor;
@@ -22,81 +22,147 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
     private final IFHMBSAPEAICDPP0010Mapper mapper;
     
-    public IFHMBSAPEAICDPP0010Dto UpsertAutoVehicle(IFHMBSAPEAICDPP0010Dto dto)throws Exception{
+    public HashMap<String, Object> UpsertAutoVehicle(IFHMBSAPEAICDPP0010Dto dto)throws Exception{
 
-        List<AutoVehicleWebserviceWFContactPayload> contact = new ArrayList<>();
-        List<AutoVehicleWebserviceWFAccountPayload> account = new ArrayList<>();
+        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, String[]> processMap = new HashMap<>();
 
-        contact = dto.getContact();
-        account = dto.getAccount();
+        List<AutoVehicleWebserviceWFContactDto> listOfContact = new ArrayList<>();
+        List<AutoVehicleWebserviceWFAccountDto> listOfAccount = new ArrayList<>();
+        List<String> listParamId = new ArrayList<>();
+        List<String> listProcAssetId = new ArrayList<>();
+        List<String> listProcInvoiceId = new ArrayList<>();
+        List<String> listContactId = new ArrayList<>();
+        List<String> listAccontId = new ArrayList<>();
+        List<String> listProcCustVehicleId = new ArrayList<>();
         
-        List<IFHMBSAPEAICDPP0010Dto> dtoList = mapper.getRowCheck(dto);        
-        
-        if( dtoList.size() > 0 ){
+        String getAssetId = mapper.getProcAssetId(dto);
+        String getProcInvoiceId = mapper.getProcInvoiceId(dto);
 
-            dto.setRowId(dtoList.get(0).getRowId());
+        mapper.insertAutoVehicle(dto);        
 
-            mapper.UpdateAutoVehicle(dto);
-            mapper.UpdateSAssetXDto(dto);
-            mapper.UpdateSAssetAtxDto(dto);
-            
-            if (contact != null && contact.size() > 0) {
-                for (AutoVehicleWebserviceWFContactPayload cont : contact) {
-                    cont.setAssetRowId(dto.getRowId());
-                }       
-                mapper.UpdateSAssetConDtoList(contact);     
-            }
-            
-            if (account != null && account.size() > 0){
-                for (AutoVehicleWebserviceWFAccountPayload acct : account) {
-                    acct.setAssetRowId(dto.getRowId());
-                }       
-                mapper.UpdateSAssetAccntDtoList(account);   
-            }
-            HashMap<String, String> map = new HashMap<>();
-            map.put("PARAM_ID", dto.getRowId());
-            map.put("checkcu", "update");
+        listParamId.add(dto.getRowId());
+        if(getAssetId != null)
+            listProcAssetId.add(getAssetId);
+        if(getProcInvoiceId != null)
+            listProcInvoiceId.add(getProcInvoiceId);
+        listOfContact = dto.getContact();
+        listOfAccount = dto.getAccount();
 
-            mapper.transferProcess(map);
-            mapper.transferReplica(map);
-        } else {
-            String productRowId = "";
-            productRowId = mapper.getProductRowId(dto);
-            dto.setProductRowId(productRowId);
-            
-            mapper.InsertAutoVehicle(dto);
-            mapper.InsertSAssetXDto(dto);
-            mapper.InsertSAssetAtxDto(dto);
-            
-            if (contact != null && contact.size() > 0) {                
-                for (AutoVehicleWebserviceWFContactPayload cont : contact) {
-                    cont.setAssetRowId(dto.getRowId());
-                }       
-                mapper.InsertSAssetConDtoList(contact);
-                mapper.UpdateSConDtoList(contact);
-                
+        if( listOfContact.size() > 0 ){
+            for(int i = 0; i < listOfContact.size(); i++){
+                AutoVehicleWebserviceWFContactDto con = new AutoVehicleWebserviceWFContactDto();
+                con = listOfContact.get(i);
+                con.setSerialNumber(dto.getSerialNumber());
+                con.setParRowId(dto.getRowId());
+                mapper.insertContactList(con);
+                listContactId.add(String.valueOf(con.getConRowId()));
             }
-            
-            if (account != null && account.size() > 0){
-                for (AutoVehicleWebserviceWFAccountPayload acct : account) {
-                    acct.setAssetRowId(dto.getRowId());
-                }       
-                mapper.InsertSAssetAccDtoList(account);
-            }
-            HashMap<String, String> map = new HashMap<>();
-            map.put("PARAM_ID", dto.getRowId());
-            map.put("checkcu", "insert");
-
-            mapper.transferProcess(map);
-            mapper.transferReplica(map);
         }
 
+        if( listOfAccount.size() > 0 ){
+            for(int i = 0; i < listOfAccount.size(); i++){
+                AutoVehicleWebserviceWFAccountDto accnt = new AutoVehicleWebserviceWFAccountDto();
+                accnt = listOfAccount.get(i);
+                accnt.setSerialNumber(dto.getSerialNumber());
+                accnt.setParRowId(dto.getRowId());
+                mapper.insertAccountList(accnt);
+                listAccontId.add(String.valueOf(accnt.getAccntRowId()));
+            }
+        }     
         
-        dto.setErrorSpcCode("0");
-        dto.setErrorSpcMessage("OK");
+        String[] paramId = listParamId.toArray(new String[listParamId.size()]);  
+        String[] procAssetId = listProcAssetId.toArray(new String[listProcAssetId.size()]);
+        String[] procInvoiceId = listProcInvoiceId.toArray(new String[listProcInvoiceId.size()]);
+        String[] contactId = listContactId.toArray(new String[listContactId.size()]);
+        String[] accountId = listAccontId.toArray(new String[listAccontId.size()]);
 
 
-        return dto;
+        
+        processMap.put("PARAM_ID", paramId);
+        processMap.put("PROC_ASSET_ID", procAssetId);
+        processMap.put("PROC_INVOICE_ID", procInvoiceId);
+        processMap.put("account_rowid", accountId);
+        processMap.put("contact_rowid", contactId); 
+     
+        if ( getAssetId != null && getProcInvoiceId != null){
+
+
+            mapper.transferProcess(processMap);
+
+            listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
+            String[] procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
+            processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
+            mapper.transferReplica(processMap);
+
+            map.put("errorSpcCode", "0");
+            map.put("errorSpcMessage", "OK"); 
+
+        }else if(getProcInvoiceId != null && getAssetId == null ) {
+
+            mapper.transferProcess(processMap);
+
+            
+            getAssetId = mapper.getProcAssetId(dto);
+            listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
+            listProcAssetId.add(getAssetId);
+            procAssetId = listProcAssetId.toArray(new String[listProcAssetId.size()]);
+            String[] procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
+            processMap.put("PROC_ASSET_ID", procAssetId);
+            processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
+
+            mapper.transferReplica(processMap);
+
+            map.put("errorSpcCode", "0");
+            map.put("errorSpcMessage", "OK"); 
+
+        }else if(getAssetId != null && getProcInvoiceId == null){
+
+
+            mapper.transferProcess(processMap);
+
+            
+            getProcInvoiceId = mapper.getProcInvoiceId(dto);
+            listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
+            listProcInvoiceId.add(getProcInvoiceId);
+            procInvoiceId = listProcInvoiceId.toArray(new String[listProcInvoiceId.size()]);
+            String[] procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
+            processMap.put("PROC_INVOICE_ID", procInvoiceId);
+            processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
+
+            mapper.transferReplica(processMap);
+
+            map.put("errorSpcCode", "0");
+            map.put("errorSpcMessage", "OK");      
+            
+        } else {
+
+            mapper.transferProcess(processMap);
+
+            
+            getProcInvoiceId = mapper.getProcInvoiceId(dto);
+            getAssetId = mapper.getProcAssetId(dto);
+            listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
+            listProcInvoiceId.add(getProcInvoiceId);
+            listProcAssetId.add(getAssetId);
+            procInvoiceId = listProcInvoiceId.toArray(new String[listProcInvoiceId.size()]);
+            procAssetId = listProcAssetId.toArray(new String[listProcAssetId.size()]);
+            String[] procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
+            processMap.put("PROC_INVOICE_ID", procInvoiceId);
+            processMap.put("PROC_ASSET_ID", procAssetId);
+            processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
+
+            mapper.transferReplica(processMap);
+
+            map.put("errorSpcCode", "0");
+            map.put("errorSpcMessage", "OK");      
+
+        }
+        
+
+        return map;
     } 
-    
 }
+
+
+
