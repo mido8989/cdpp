@@ -39,6 +39,10 @@ public class IFHMBSMARTERSCDPP0036Controller {
 
         resultDto = service.insertObject(dto);
 
-        return defaultMapper.map(resultDto, IFHMBSMARTERSCDPP0036Payload.Response.class);
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.createTypeMap(IFHMBSMARTERSCDPP0036Dto.class, IFHMBSMARTERSCDPP0036Payload.Response.class)
+                                .addMapping(IFHMBSMARTERSCDPP0036Dto::getProcessProtocol, IFHMBSMARTERSCDPP0036Payload.Response::setProtocol);
+
+        return modelMapper.map(resultDto, IFHMBSMARTERSCDPP0036Payload.Response.class);
     }
 }

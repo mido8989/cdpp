@@ -38,8 +38,6 @@ public class IFHMBSMARTERSCDPP0036Serviceimpl implements IFHMBSMARTERSCDPP0036Se
 
         replicaDto = mapper.getPocessData(dto);
 
-        System.out.println("processProtocol::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" + replicaDto.getProcessProtocol());
-
         HashMap<String, String> replicaMap = new HashMap<>();
 
         replicaMap.put("PARAM_ID", replicaDto.getProcessProtocol());
@@ -47,7 +45,7 @@ public class IFHMBSMARTERSCDPP0036Serviceimpl implements IFHMBSMARTERSCDPP0036Se
         mapper.transferReplica(replicaMap);
 
         resulDto.setOwnedById(replicaDto.getOwnedById());
-        resulDto.getServiceRequestChatInput().setProtocol(replicaDto.getProcessProtocol());;
+        resulDto.setProcessProtocol(replicaDto.getProcessProtocol());
         resulDto.setErrorSpcCode("0");
         resulDto.setErrorSpcMessage("OK");
 
