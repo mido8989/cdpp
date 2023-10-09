@@ -227,7 +227,7 @@
         from
             process.service_request
         where 
-            external_id__c = #{rowId}
+            external_id__c = cast(#{rowId} as text)
     </select>
 
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
