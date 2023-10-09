@@ -8,6 +8,7 @@
             , pac.row_id as contactId
             , pac.personmobilephone as personCell
             , psr.protocol__c as protocol
+            , count(psr.protocol__c) as qtdProtocol
         from
             process.account pac
         left join
@@ -15,10 +16,10 @@
         on
             pac.row_id = psr.contact_row_id__c 
         where
-            pac.personmobilephone = #{phoneNumber}
             case when char_length(#{phoneNumber}) <![CDATA[<]]> 14 then (pac.personhomephone = #{phoneNumber} or pac.companyphone__pc = #{phoneNumber} or pac.personmobilephone = #{phoneNumber})
                 when char_length(#{phoneNumber}) <![CDATA[>]]> 14 then pac.personmobilephone = #{phoneNumber}
             end
+        group by pac.firstname||pac.lastname, pac.cpf__c, pac.row_id, pac.personmobilephone, psr.protocol__c
         limit 1
     </select>
 </mapper>
