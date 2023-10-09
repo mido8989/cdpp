@@ -13,8 +13,8 @@ public class IFHMBCSUCDPP0086Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(description = "cpfNumber", example = "11941319501")
-        @JsonProperty("CPF")
+        @Schema(description = "Phone number with format: +PaísDDDNumber", example = "+551130675420")
+        @JsonProperty("PhoneNumber")
         private String phoneNumber;
     }
 
