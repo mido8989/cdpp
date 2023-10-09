@@ -33,9 +33,19 @@ public class IFHMBSMARTERSCDPP0036Serviceimpl implements IFHMBSMARTERSCDPP0036Se
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
         mapper.transferProcess(map);
-        
-        mapper.transferReplica(map);
 
+        IFHMBSMARTERSCDPP0036Dto replicaDto = new IFHMBSMARTERSCDPP0036Dto();
+
+        replicaDto = mapper.getPocessData(dto);
+
+        HashMap<String, String> replicaMap = new HashMap<>();
+
+        replicaMap.put("PARAM_ID", replicaDto.getProcessProtocol());
+
+        mapper.transferReplica(replicaMap);
+
+        resulDto.setOwnedById(replicaDto.getOwnedById());
+        resulDto.getServiceRequestChatInput().setProtocol(replicaDto.getProcessProtocol());;
         resulDto.setErrorSpcCode("0");
         resulDto.setErrorSpcMessage("OK");
 

@@ -15,5 +15,7 @@ public interface IFHMBSMARTERSCDPP0036Mapper {
 
     public void transferProcess(HashMap<String, String> parMap)throws Exception;
 
+    public IFHMBSMARTERSCDPP0036Dto getPocessData(IFHMBSMARTERSCDPP0036Dto dto)throws Exception;
+
     public void transferReplica(HashMap<String, String> parMap)throws Exception;
 }

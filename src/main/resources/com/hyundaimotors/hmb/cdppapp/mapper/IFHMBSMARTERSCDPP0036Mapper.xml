@@ -220,6 +220,16 @@
         call process.if_svc_req_chat_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
+    <select id="getPocessData" parameterType="IFHMBSMARTERSCDPP0036Dto" resultType="IFHMBSMARTERSCDPP0036Dto">
+        select 
+            row_id as ownedById 
+            , protocol__c as processProtocol
+        from
+            process.service_request
+        where 
+            external_id__c = #{rowId}
+    </select>
+
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call "replica".if_svc_req_chat_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
