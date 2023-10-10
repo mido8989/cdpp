@@ -20,6 +20,7 @@
             , last_upd_by
             , contactid
             , appsource
+            , appstatus
         )
         values
         (
@@ -29,6 +30,7 @@
             , 'interface'
             , #{contactId}
             , #{appSource}
+            , #{appStatus}
         );
     </insert>
 
