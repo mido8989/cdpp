@@ -11,10 +11,10 @@ import lombok.Setter;
 @Setter
 public class IFHMBINNOCEANCDPP0021Dto {
     private String serviceName;
-    private String Source;
+    private String source;
 
-    private String ErrorSpcCode;
-    private String ErrorSpcMessage;
+    private String errorSpcCode;
+    private String errorSpcMessage;
     
     List<ListOfDealers> listOfDealers;
 }
