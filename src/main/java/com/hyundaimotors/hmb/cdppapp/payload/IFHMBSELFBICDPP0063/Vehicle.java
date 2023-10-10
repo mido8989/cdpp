@@ -12,21 +12,36 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Vehicle {
-    private String Chassi;
-    private String SalesDate;
-    private String SalesDealerCode;
-    private String SalesDealerNick;
-    private String SalesCode;
-    private String SalesVersion;
-    private String SalesFSCOCN;
-    private String SalesMotor;
-    private String VINModel;
-    private String VINColor;
-    private String Updated;
-    private String DelHome;
-    private String DigitalSales;
-    private String TDHome;
-    private String SalesCancelled;
+    @JsonProperty("Chassi")
+    private String chassi;
+    @JsonProperty("SalesDate")
+    private String salesDate;
+    @JsonProperty("SalesDealerCode")
+    private String salesDealerCode;
+    @JsonProperty("SalesDealerNick")
+    private String salesDealerNick;
+    @JsonProperty("SalesCode")
+    private String salesCode;
+    @JsonProperty("SalesVersion")
+    private String salesVersion;
+    @JsonProperty("SalesFSCOCN")
+    private String salesFSCOCN;
+    @JsonProperty("SalesMotor")
+    private String salesMotor;
+    @JsonProperty("VINModel")
+    private String vinModel;
+    @JsonProperty("VINColor")
+    private String vinColor;
+    @JsonProperty("Updated")
+    private String updated;
+    @JsonProperty("DelHome")
+    private String delHome;
+    @JsonProperty("DigitalSales")
+    private String digitalSales;
+    @JsonProperty("TDHome")
+    private String tdHome;
+    @JsonProperty("SalesCancelled")
+    private String salesCancelled;
     @JsonProperty("Contact")
     List<ContactGetVin> ListOfContact;
     @JsonProperty("Account")

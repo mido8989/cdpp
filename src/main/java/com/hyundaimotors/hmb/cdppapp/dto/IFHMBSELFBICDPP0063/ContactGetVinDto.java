@@ -6,14 +6,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ContactGetVinDto {
-    private String IdSiebel;
-    private String RelatedType;
-    private String RelatedStatus;
-    private String SuppressAllCalls;
-    private String SuppressAllEmails;
-    private String SuppressAllMailings;
-    private String SuppressAllMobilePhone;
-    private String SuppressAllSMS;
-    private String SuppressAllVideoCall;
-    private String SuppressAllWhatsapp;
+    private String idSiebel;
+    private String relatedType;
+    private String relatedStatus;
+    private String suppressAllCalls;
+    private String suppressAllEmails;
+    private String suppressAllMailings;
+    private String suppressAllMobilePhone;
+    private String suppressAllSMS;
+    private String suppressAllVideoCall;
+    private String suppressAllWhatsapp;
 }
