@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.payload;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,8 +33,10 @@ public class IFHMBINNOCEANCDPP0028Payload {
     @Setter
     public static class Response{
         @Schema(description = "Connex error code. Code 0 means success.", example = "0")
+        @JsonProperty("Error_spcCode")
         private String errorSpcCode;
         @Schema(description = "Connex error message.", example = "OK")
+        @JsonProperty("Error_spcMessage")
         private String errorSpcMessage;
     }
 }
