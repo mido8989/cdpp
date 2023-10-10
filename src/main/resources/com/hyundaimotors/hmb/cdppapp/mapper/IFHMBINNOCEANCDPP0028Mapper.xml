@@ -8,7 +8,7 @@
         from
             process.loyalty_program pl
         where
-            pl.dealer_account_id = #{contactId}
+            pl.person_account_id = #{contactId}
     </select>
 
     <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0028Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
