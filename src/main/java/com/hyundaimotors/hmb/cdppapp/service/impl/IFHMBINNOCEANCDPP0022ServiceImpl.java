@@ -1,7 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,82 +22,89 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
     public IFHMBINNOCEANCDPP0022Dto insertObject(IFHMBINNOCEANCDPP0022Dto dto)throws Exception{
 
         IFHMBINNOCEANCDPP0022Dto resultDto = new IFHMBINNOCEANCDPP0022Dto();
-        List<IFHMBINNOCEANCDPP0022Dto> rowIdList = mapper.getCheckHoliDay(dto);
-
+        ManageDealerHolidayOutputDto manageDealerHolidayOutput = new ManageDealerHolidayOutputDto();        
+        
         mapper.insertObject(dto);
 
-        String procDealerHolidayRowId = mapper.getRowId(dto);
-
+        IFHMBINNOCEANCDPP0022Dto rowId = mapper.getCheckHoliDay(dto);
+        
+        if( rowId != null ){
+            dto.setAccntRowId(rowId.getAccntRowId());
+            dto.setHolyRowId(rowId.getHolyRowId());
+        }
+        
+        
         if("upsert".equalsIgnoreCase(dto.getOperation())){
 
-            if(rowIdList.size() > 0) {
             
-            IFHMBINNOCEANCDPP0022Dto rowIdDto = rowIdList.get(0);
-            dto.setHolyRowId(rowIdDto.getHolyRowId());
+            if(rowId != null) { // 딜러코드, 해당 날짜 존재할 때           
 
-            
-
-            HashMap<String, String> map = new HashMap<>();
-            map.put("PARAM_ID", String.valueOf(dto.getHolyRowId()));
-            map.put("PROC_ID", procDealerHolidayRowId);
-            map.put("checkcu", "update");
-            
-            mapper.transferProcess(map);
-            mapper.transferReplica(map);
-            
-            ManageDealerHolidayOutputDto manageDealerHolidayOutput = new ManageDealerHolidayOutputDto();
-            
-            manageDealerHolidayOutput.setErrorSpcCode("0");
-            manageDealerHolidayOutput.setErrorSpcMessage("OK");
-            
-            resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput);
+                HashMap<String, String> map = new HashMap<>();
+                map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+                map.put("PROC_ID", dto.getHolyRowId());
+                map.put("checkcu", "update");
                 
-            }else{            
+                mapper.transferProcess(map);
+                mapper.transferReplica(map);
+                
+                
+                manageDealerHolidayOutput.setErrorSpcCode("0");
+                manageDealerHolidayOutput.setErrorSpcMessage("OK");
+                
+                resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput);                         
+                
+            }else{ // 해당날짜 holiday가 없을때                   
                 
                 HashMap<String, String> map = new HashMap<>();
-                map.put("PARAM_ID", String.valueOf(dto.getHolyRowId()));
+                map.put("PARAM_ID", String.valueOf(dto.getRowId()));
                 map.put("checkcu", "insert");
                 
                 mapper.transferProcess(map);
                 
-                procDealerHolidayRowId = mapper.getRowId(dto);
+                rowId = mapper.getCheckHoliDay(dto);
                 
-                map.put("PROC_ID", procDealerHolidayRowId);
+                map.put("PROC_ID", rowId.getHolyRowId());
 
 
                 mapper.transferReplica(map);
 
-                ManageDealerHolidayOutputDto manageDealerHolidayOutput = new ManageDealerHolidayOutputDto();
             
                 manageDealerHolidayOutput.setErrorSpcCode("0");
                 manageDealerHolidayOutput.setErrorSpcMessage("OK");
                 
-                resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput);
+                resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput); 
+                
             }            
 
         }else if("delete".equalsIgnoreCase(dto.getOperation())){
 
-            if(rowIdList.size() > 0) {
-                IFHMBINNOCEANCDPP0022Dto rowIdDto = rowIdList.get(0);
-                dto.setHolyRowId(rowIdDto.getHolyRowId());
+            if(rowId != null) {    
                 
                 HashMap<String, String> map = new HashMap<>();
-                map.put("PARAM_ID", String.valueOf(dto.getHolyRowId()));
-                map.put("PROC_ID", procDealerHolidayRowId);
+                map.put("PROC_ID", rowId.getHolyRowId());
                 map.put("checkcu", "delete");
 
                 mapper.transferProcess(map);
                 mapper.transferReplica(map);
                 
                 mapper.insertObject(dto);
-
-                ManageDealerHolidayOutputDto manageDealerHolidayOutput = new ManageDealerHolidayOutputDto();
             
                 manageDealerHolidayOutput.setErrorSpcCode("0");
                 manageDealerHolidayOutput.setErrorSpcMessage("OK");
                 
                 resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput);
+            }else {
+                manageDealerHolidayOutput.setErrorSpcCode("1");
+                manageDealerHolidayOutput.setErrorSpcMessage("FAIL");
+                
+                resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput);
             }
+        }else {
+
+            manageDealerHolidayOutput.setErrorSpcCode("1");
+            manageDealerHolidayOutput.setErrorSpcMessage("FAIL");
+            
+            resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput);        
         }
 
         

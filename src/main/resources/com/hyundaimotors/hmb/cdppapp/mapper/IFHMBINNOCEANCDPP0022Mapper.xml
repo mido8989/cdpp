@@ -4,7 +4,7 @@
 
     <select id="getCheckHoliDay" parameterType="IFHMBINNOCEANCDPP0022Dto" resultType="IFHMBINNOCEANCDPP0022Dto">
         select
-            a.row_id as rowId
+            a.row_id as accntRowId
             , d.row_id as holyRowId
         from
             process.dealerholiday d
@@ -20,21 +20,8 @@
             d.type__c = 'Dealer Local Holiday'
         order by d.createddate desc
     </select>
-
-    <select id="getRowId" parameterType="IFHMBINNOCEANCDPP0022Dto" resultType="String">
-        select
-            d.row_id as rowId
-        from
-            process.dealerholiday d
-        join
-            process.account a
-        on
-            a.row_id  = d.par_row_id__c
-        where    
-            a.dealercode__c = #{dealerCode}
-    </select>
-    
-    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0022Dto" useGeneratedKeys="true" keyProperty="holyRowId" keyColumn="row_id">
+        
+    <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0022Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_mntsrvc_manage_dlr_holiday
         (
             created
