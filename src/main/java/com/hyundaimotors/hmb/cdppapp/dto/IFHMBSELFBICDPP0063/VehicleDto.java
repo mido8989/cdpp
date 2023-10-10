@@ -8,21 +8,21 @@ import lombok.Setter;
 @Getter
 @Setter
 public class VehicleDto {
-    private String Chassi;
-    private String SalesDate;
-    private String SalesDealerCode;
-    private String SalesDealerNick;
-    private String SalesCode;
-    private String SalesVersion;
-    private String SalesFSCOCN;
-    private String SalesMotor;
-    private String VINModel;
-    private String VINColor;
-    private String Updated;
-    private String DelHome;
-    private String DigitalSales;
-    private String TDHome;
-    private String SalesCancelled;
+    private String chassi;
+    private String salesDate;
+    private String salesDealerCode;
+    private String salesDealerNick;
+    private String salesCode;
+    private String salesVersion;
+    private String salesFSCOCN;
+    private String salesMotor;
+    private String vinModel;
+    private String vinColor;
+    private String updated;
+    private String delHome;
+    private String digitalSales;
+    private String tdHome;
+    private String salesCancelled;
     private String assetId;
     List<ContactGetVinDto> ListOfContact;
     List<AccountGetVinDto> ListOfAccount;

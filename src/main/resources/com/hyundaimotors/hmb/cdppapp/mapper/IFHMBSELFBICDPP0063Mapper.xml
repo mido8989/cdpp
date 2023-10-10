@@ -4,19 +4,21 @@
     
     <select id="getAsset" parameterType="IFHMBSELFBICDPP0063Dto" resultType="VehicleDto">
         select 
-            pa.serialnumber as Chassi
-            , pa.billing_date__c as SalesDate
-            , pa.dealercode__c as dealerCode
-            , (select corporaterepresentativename__c from process.account where external_id__c = pa.dealercode__c) as SalesDealerNick
-            , pa.oper_status_cd__c as SalesCode
-            , pa."name" as SalesFSCOCN
-            , pa.enginetype__c as SalesMotor
-            , pa.modelname__c as VINModel
-            , pa.vehiclecolor__c as externalColorCode
-            , pa.x_del_home__c as DelHome
-            , pa.x_dig_sales__c as DigitalSales
-            , pa.x_td_home__c as TDHome
-            , pa.x_sales_cancel_dt__c as SalesCancelled
+            pa.serialnumber as chassi
+            , pa.billing_date__c as salesDate
+            , pa.dealercode__c as salesDealerCode
+            , (select corporaterepresentativename__c from process.account where external_id__c = pa.dealercode__c) as salesDealerNick
+            , pa.oper_status_cd__c as salesCode
+            , pa.description__c as saleVersion
+            , pa.fsc__c as salesFSCOCN
+            , pa.enginetype__c as salesMotor
+            , pa.modelname__c as vinModel
+            , pa.vehiclecolor__c as vinColor
+            , pa.legacy_last_upd as updated
+            , pa.x_del_home__c as delHome
+            , pa.x_dig_sales__c as digitalSales
+            , pa.x_td_home__c as tdHome
+            , pa.x_sales_cancel_dt__c as salesCancelled
             , pa.external_id__c as assetId
         from
             process.asset pa
@@ -50,17 +52,16 @@
 
     <select id="getContact"  parameterType="String" resultType="ContactGetVinDto">
         select
-            pa.row_id as IdSiebel
-            , ac.relation_type_cd as RelatedType
-            , ac.status_cd as RelatedStatus
-            , pa.calloptyn__pc as SuppressAllCalls
-            , pa.emailoptyn__pc as SuppressAllEmails
-            , pa.directmailoptyn__pc as SuppressAllMailings
-            , pa.directmailoptyn__pc as SuppressAllMailings
-            , pa.blockedmobile__c as SuppressAllMobilePhone
-            , pa.blockedsms__c as SuppressAllSMS
-            , pa.x_printed_card__c as SuppressAllVideoCall
-            , pa.blockedwhatsapp__c as SuppressAllWhatsapp
+            pa.row_id as idSiebel
+            , ac.relation_type_cd as relatedType
+            , ac.status_cd as relatedStatus
+            , pa.calloptyn__pc as suppressAllCalls
+            , pa.emailoptyn__pc as suppressAllEmails
+            , pa.directmailoptyn__pc as suppressAllMailings
+            , pa.blockedmobile__c as suppressAllMobilePhone
+            , pa.blockedsms__c as suppressAllSMS
+            , pa.x_printed_card__c as suppressAllVideoCall
+            , pa.blockedwhatsapp__c as suppressAllWhatsapp
         from
             process.account pa
         join
@@ -73,9 +74,9 @@
 
     <select id="getAccount"  parameterType="String" resultType="AccountGetVinDto">
         select
-            pa.row_id as IdSiebel
-            , aa.rel_type_cd as RelatedType
-            , aa.status_cd as RelatedStatus
+            pa.row_id as idSiebel
+            , aa.rel_type_cd as relatedType
+            , aa.status_cd as relatedStatus
         from
             process.account pa
         join
