@@ -5,8 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ChannelPartnerDealerContact {
+public class ListOfContactsDto {
     private String rowId;
+    private String parRowId;
+    private String accntRowId;
     private String integrationId;
     private String cpf;
     private String firstName;
@@ -14,10 +16,8 @@ public class ChannelPartnerDealerContact {
     private String emailAddress;
     private String homePhone;
     private String workPhone;
+    private String cellPhone;
     private String jobTitle;
     private String notes;
-    private String sanitizedFlag;
-    private String statusDealer;
-    private String contactType;
-    private String partyTypeCode;
+    private String status;
 }
