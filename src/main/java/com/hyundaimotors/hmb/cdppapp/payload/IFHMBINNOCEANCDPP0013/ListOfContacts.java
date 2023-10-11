@@ -7,7 +7,7 @@ import lombok.Setter;
 @Schema(name = "IFHMBINNOCEANCDPP0013Contact")
 @Getter
 @Setter
-public class IFHMBINNOCEANCDPP0013Contact {
+public class ListOfContacts {
     @Schema(description = "External system unique identifier. HMBDealerContactIntegrationId", example = "73522541960")
     private String integrationId;
     @Schema(description = "Individual's document number (numbers only), HMBDealerContactCPF", example = "73522541960")
@@ -26,12 +26,7 @@ public class IFHMBINNOCEANCDPP0013Contact {
     private String jobTitle;
     @Schema(description = "Dealer Contact Note,  HMBDealerContactNotesonDealer", example = "30694501808")
     private String notes;
-    @Schema(description = "Dealer Contact Sanitized, HMBDealerContactSanitized", example = "N")
-    private String sanitizedFlag;
     @Schema(description = "Dealer Contact Status,  HMBDealerContactStatusonDealer", example = "Active")
-    private String statusDealer;
-    @Schema(description = "Dealer Contac Type, HMBDealerContactType", example = "Dealer")
-    private String contactType;
-    @Schema(description = "PartyTypeCode", example = "Person")
-    private String partyTypeCode;
+    private String status;
+
 }
