@@ -6,13 +6,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBCSUCDPP0085.ChannelPartnerCSUDto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBCSUCDPP0085.IFHMBCSUCDPP0085Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0089.IFHMBINNOCEANCDPP0089Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0089.SatisfactionSurveyDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0089.SurveyAccountDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0089.SurveyContactDto;
-import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0046Mapper;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0089Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0089Service;
 
