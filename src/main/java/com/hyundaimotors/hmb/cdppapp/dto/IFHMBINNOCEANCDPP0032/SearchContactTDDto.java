@@ -1,5 +1,9 @@
 package com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0032;
 
+import java.util.List;
+
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBZICARDCDPP0032.ServiceRequestTD;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,4 +41,6 @@ public class SearchContactTDDto {
     private String county;
     private String city;
     private String State;
+
+    private List<ServiceRequestTD> listOfServiceRequest;
 }
