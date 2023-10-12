@@ -39,6 +39,8 @@ public class ChannelPartnerDto {
     private String latitude;
     private String longitude;
     private String zipCode;
-    private String rowId;
-    List<ChannelPartnerContactDto> channelPartnerContact;
+    private String csn;
+    private String id;
+
+    List<ChannelPartnerContact> channelPartnerContact;
 }
