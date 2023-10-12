@@ -33,6 +33,7 @@ public class IFHMBSAPCDPP0005Dto {
     private String city;
     private String state;
     private String postalCode;
+    private String description;
     private String contactId;
     private String errorSpcCode;
     private String errorSpcMessage;
