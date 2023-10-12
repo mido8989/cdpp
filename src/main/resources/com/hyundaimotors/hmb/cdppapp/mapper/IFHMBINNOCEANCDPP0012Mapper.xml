@@ -27,12 +27,15 @@
             , pca.billingstreet as streetAddress
             , pca.billingstreet_2__c as streetAddress2
             , pca.billingstreet_3__c as streetAddress3
+            , pca.billingcountry as county
             , pca.billingcity as city
             , pca.billingstate as state
             , pca.billingcountry as neighborhood
             , pca.billinglatitude as latitude
             , pca.billinglongitude as longitude
             , pca.billingpostalcode as zipCode
+            , pca.dealercode__c as csn
+            , pca.row_id as id
             , pca.row_id as rowId
         from
             process.account pca
@@ -40,7 +43,7 @@
             pca.registrysource__c = #{source}
     </select>
 
-    <select id="getChannelPartnerContactList" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="ChannelPartnerContactDto">
+    <select id="getChannelPartnerContactList" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="ChannelPartnerContact">
         select
             pcc.integrationid as integrationId
             , pcc.cpf__c as cpf
@@ -51,6 +54,7 @@
             , pcc.companyphone__c as workPhone
             , pcc.mobilephone as cellPhone
             , pcc.title as jobTitle
+            , pcc.row_id as id
         from
             process.contact pcc
         where
