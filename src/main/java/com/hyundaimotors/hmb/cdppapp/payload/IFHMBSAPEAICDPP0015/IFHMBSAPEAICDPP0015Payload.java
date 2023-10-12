@@ -14,7 +14,8 @@ public class IFHMBSAPEAICDPP0015Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(name = "Name of requester system.", example = "Source")
+
+        @Schema(description = "Name of requester system.", example = "Source")
         @JsonProperty("Source")
         private String source;
         @JsonProperty("ListOfColors")
@@ -26,8 +27,8 @@ public class IFHMBSAPEAICDPP0015Payload {
     @Setter
     public static class Response{
         @JsonProperty("Error_spcCode")
-        private String ErrorSpcCode;
+        private String errorSpcCode;
         @JsonProperty("Error_spcMessage")
-        private String ErrorSpcMessage;
+        private String errorSpcMessage;
     }
 }

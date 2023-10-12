@@ -12,7 +12,9 @@ import lombok.Setter;
 public class IFHMBSAPEAICDPP0015Dto {
     private String rowId;
     private String source;
-    List<Color> listOfColor;
-    private String ErrorSpcCode;
-    private String ErrorSpcMessage;
+
+    List<Color> listOfColor; 
+
+    private String errorSpcCode;
+    private String errorSpcMessage;
 }
