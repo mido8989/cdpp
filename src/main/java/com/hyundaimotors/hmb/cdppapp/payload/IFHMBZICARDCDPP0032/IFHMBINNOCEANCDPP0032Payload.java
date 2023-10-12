@@ -35,11 +35,11 @@ public class IFHMBINNOCEANCDPP0032Payload {
     @Setter
     public static class Response{
         @JsonProperty("Error_spcCode")
-        private String ErrorSpcCode;
+        private String errorSpcCode;
         @JsonProperty("Error_spcMessage")
-        private String ErrorSpcMessage;
+        private String errorSpcMessage;
+        
         @JsonProperty("SearchContactTD_Output")
-        private List<SearchContactTD> ListOfSearchContactTD;
-        private List<ServiceRequestTD> ListOfServiceRequest;
+        private List<SearchContactTD> listOfSearchContactTD;        
     }
 }

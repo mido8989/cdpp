@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBZICARDCDPP0032;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -78,4 +80,7 @@ public class SearchContactTD {
     private String State;
     @JsonProperty("AddressCountry")
     private String country;
+
+    @JsonProperty("ListOfServiceRequest")
+    private List<ServiceRequestTD> listOfServiceRequest;
 }

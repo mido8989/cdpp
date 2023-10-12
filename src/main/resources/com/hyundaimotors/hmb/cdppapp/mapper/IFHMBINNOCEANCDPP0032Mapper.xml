@@ -47,9 +47,10 @@
             a.row_id = #{contactId}
         and
             a.cpf__c = #{cpf}
+        limit 1
     </select>
 
-    <select id="getServiceRequest" parameterType="IFHMBINNOCEANCDPP0032Dto" resultType="ServiceRequestTDDto">
+    <select id="getServiceRequest" parameterType="IFHMBINNOCEANCDPP0032Dto" resultType="ServiceRequestTD">
         select 
             sr.protocol__c as protocol
             , sr.status as status
@@ -66,8 +67,8 @@
         join 
             process.service_request sr
         on
-            a.row_id = sr.contact_row_id__c
-        where 
+            a.row_id = sr.account_row_id__c
+        where
             a.row_id = #{contactId};
     </select>
     
