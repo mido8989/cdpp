@@ -14,13 +14,13 @@ public class IFHMBCSUCDPP0087Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(description = "Serial Number", example = "9BHBG51DADP011621")
+        @Schema(description = "Serial Number", example = "9BHBG51DAEP171603")
         @JsonProperty("SerialNumber")
         private String serialNumber;
         @Schema(description = "Interface", example = "Source")
         @JsonProperty("Interface")
         private String interfaces;
-        @Schema(description = "Contact Id", example = "1-7890WX")
+        @Schema(description = "Contact Id", example = "1-LK2UJ")
         @JsonProperty("ContactId")
         private String contactId;
         @Schema(description = "Campaing Name", example = "HMB Evento After Sales BH")
