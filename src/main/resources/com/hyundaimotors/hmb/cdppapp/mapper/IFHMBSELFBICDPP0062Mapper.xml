@@ -64,7 +64,7 @@
         on
             psr.serialnumber = pas.serialnumber 
         where
-            psr.legacy_created::date = to_date(#{date}, 'YYYY-MM-DD')
+            psr.legacycreateddate__c::date = to_date(#{date}, 'YYYY-MM-DD')
         and
             psr.protocol__c = #{lead}
         <choose>
