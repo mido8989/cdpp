@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.payload;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -54,10 +56,12 @@ public class IFHMBSAPCDPP0005Payload {
         private String county;
         @Schema(description = "Address city.", example = "Brasil")
         private String city;
-        @Schema(description = "Address state.", example = "S\u00E3o Paulo ")
+        @Schema(description = "Address state.", example = "S00E3o Paulo ")
         private String state;
         @Schema(description = "Address zip code.", example = "4007001")
         private String postalCode;
+        @Schema(description = "Description", example = "Description")
+        private String description;
     }
 
     @Schema(name = "IFHMBZICARDCDPP0005Payload.Response")
@@ -65,10 +69,13 @@ public class IFHMBSAPCDPP0005Payload {
     @Setter
     public static class Response{
         @Schema(description = "Company document number (numbers only)", example = "2038025000614")
+        @JsonProperty("AccountId")
         private String contactId;
         @Schema(description = "Connex error code. Code 0 means success.", example = "0")
+        @JsonProperty("Error_spcCode")
         private String errorSpcCode;
         @Schema(description = "Connex error message.", example = "OK")
+        @JsonProperty("Error_spcMessage")
         private String errorSpcMessage;
     }
 }
