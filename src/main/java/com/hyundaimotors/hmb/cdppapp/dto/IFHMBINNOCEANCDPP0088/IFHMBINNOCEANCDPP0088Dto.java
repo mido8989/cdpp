@@ -2,8 +2,6 @@ package com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0088;
 
 import java.util.List;
 
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0088.AmaroCSISurveyAnswer;
-
 import lombok.Getter;
 import lombok.Setter;
 

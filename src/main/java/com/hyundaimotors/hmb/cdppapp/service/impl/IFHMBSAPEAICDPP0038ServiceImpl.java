@@ -5,9 +5,7 @@ import java.util.HashMap;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0035Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0038Dto;
-import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0035Mapper;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0038Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0038Service;
 

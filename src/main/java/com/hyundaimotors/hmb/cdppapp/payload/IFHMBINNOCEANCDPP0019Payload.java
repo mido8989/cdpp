@@ -1,10 +1,8 @@
 package com.hyundaimotors.hmb.cdppapp.payload;
 
-import java.time.Year;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0019Payload.ListOfDays;
-import java.util.List;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;

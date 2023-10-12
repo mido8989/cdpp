@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSMARTERSCDPP0036Dto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSMARTERSCDPP0036Mapper;
-import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBZICARDCDPP0007Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSMARTERSCDPP0036Service;
 
 import lombok.RequiredArgsConstructor;

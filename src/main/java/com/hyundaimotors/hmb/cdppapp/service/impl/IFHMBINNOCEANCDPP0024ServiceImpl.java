@@ -6,10 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0024Dto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0023.IFHMBINNOCEANCDPP0023Dto;
-import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0023Mapper;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0024Mapper;
-import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0023Service;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0024Service;
 
 import lombok.RequiredArgsConstructor;

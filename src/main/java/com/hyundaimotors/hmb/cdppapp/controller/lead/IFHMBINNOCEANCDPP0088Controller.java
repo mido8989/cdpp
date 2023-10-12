@@ -5,12 +5,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0038Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0088.IFHMBINNOCEANCDPP0088Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0088.IFHMBINNOCEANCDPP0088Payload;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0038.IFHMBSAPEAICDPP0038Payload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0088Service;
-import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0038Service;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

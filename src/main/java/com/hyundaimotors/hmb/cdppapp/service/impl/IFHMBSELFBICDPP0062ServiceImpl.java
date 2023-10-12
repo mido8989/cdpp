@@ -11,7 +11,6 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSELFBICDPP0062.TotalActionDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSELFBICDPP0062.TotalContactDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSELFBICDPP0062.TotalLeadDto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSELFBICDPP0062Mapper;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSELFBICDPP0062.TotalLead;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSELFBICDPP0062Service;
 
 import lombok.RequiredArgsConstructor;

@@ -3,9 +3,6 @@ package com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0034;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0006.ActionNote;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0006.ActionProducts;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0006.SynergyActionAudit;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
