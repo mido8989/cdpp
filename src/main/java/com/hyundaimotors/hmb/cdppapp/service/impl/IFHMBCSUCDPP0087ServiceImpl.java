@@ -56,6 +56,9 @@ public class IFHMBCSUCDPP0087ServiceImpl implements IFHMBCSUCDPP0087Service{
             resultDto.setListOfContactOutput(listOfContactOutput);
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");
+        }else{
+            resultDto.setErrorSpcCode("1");
+            resultDto.setErrorSpcMessage("No data");
         }
         
 
