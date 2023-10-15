@@ -62,12 +62,17 @@
             , (select corporaterepresentativename__c from process.account where row_id = account_row_id__c) as salesRepId
             , (select lastname from process.account where row_id = contact_row_id__c) as salesRepLastName
             , (select firstname from process.account where row_id = contact_row_id__c) as salesReFirstName
+            , pci.val as operatingStatus
         from
             process.asset pas
         join
             process.customer_vehicle pcvp
         on
             pas.row_id = pcvp.asset_id and pcvp.cv_type = 'Person'
+        left join 
+            process.color_information pci
+        on
+            pci.name_code = pas.oper_status_cd__c and pci.type = 'OPERATING_STATUS' and pci.lang_id__c = 'PTB'
         where 
             pas.serialnumber = #{serialNumber}
     </select>
