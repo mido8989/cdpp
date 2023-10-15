@@ -1,6 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -24,12 +25,27 @@ public class IFHMBCSUCDPP0085ServiceImpl implements IFHMBCSUCDPP0085Service{
 
         IFHMBCSUCDPP0085Dto resulDto = new IFHMBCSUCDPP0085Dto();
 
-        List<ChannelPartnerCSUDto> channelPartnerList = new ArrayList<>();
+        HashMap<String, String> map = new HashMap<>();
+        map.put("param_id", String.valueOf(dto.getVcep()));
+        if("Y".equalsIgnoreCase(dto.getVService())){
+            map.put("saleorservice", "service");
+        }else{
+            map.put("saleorservice", "sales");
+        }
+        
 
-        channelPartnerList = mapper.getChannelObject(dto);
+        String dealerId = mapper.getDealerId(map);
 
-        if(0 < channelPartnerList.size()){
-            resulDto.setChannelPartner(channelPartnerList);
+        System.out.println("dealerId::::::::::::::::::::::::::::::::::::::::" + dealerId);
+
+        dto.setObjectSpcId(dealerId);
+
+        ChannelPartnerCSUDto channelPartnerDto = new ChannelPartnerCSUDto();
+
+        channelPartnerDto = mapper.getChannelObject(dto);
+
+        if(channelPartnerDto != null){
+            resulDto.setChannelPartner(channelPartnerDto);
 
             resulDto.setErrorSpcCode("0");
             resulDto.setErrorSpcMessage("OK");
