@@ -36,7 +36,7 @@
         from
             landing.if_auto_vehicle_bluelink_ws libl
         join
-            process.bluelink__c pbc 
+            process.bluelink pbc 
         on
             libl.chassi = pbc.chassi__c 
         where
