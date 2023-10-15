@@ -48,7 +48,7 @@ public class IFHMBCSUCDPP0085Payload {
         @Schema(description = "Name of requester system.", example = "Source")
         @JsonProperty("Connex_spcOperation_spcObject_spcId")
         private String connexSpcOperationSpcObjectSpcId;
-        @JsonProperty("ListOfChannelPartner")
-        private List<ChannelPartnerCSUD> channelPartner;
+        @JsonProperty("HmbChannelPartnerCtiDealer")
+        private ChannelPartnerCSUD channelPartner;
     }
 }
