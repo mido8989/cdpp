@@ -36,8 +36,6 @@ public class IFHMBCSUCDPP0085ServiceImpl implements IFHMBCSUCDPP0085Service{
 
         String dealerId = mapper.getDealerId(map);
 
-        System.out.println("dealerId::::::::::::::::::::::::::::::::::::::::" + dealerId);
-
         dto.setObjectSpcId(dealerId);
 
         ChannelPartnerCSUDto channelPartnerDto = new ChannelPartnerCSUDto();
@@ -47,6 +45,8 @@ public class IFHMBCSUCDPP0085ServiceImpl implements IFHMBCSUCDPP0085Service{
         if(channelPartnerDto != null){
             resulDto.setChannelPartner(channelPartnerDto);
 
+            resulDto.setObjectSpcId(dto.getObjectSpcId());
+            resulDto.setProcessSpcInstanceSpcId(dto.getVcep());
             resulDto.setErrorSpcCode("0");
             resulDto.setErrorSpcMessage("OK");
         }else{
