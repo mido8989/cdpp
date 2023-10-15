@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0079Mapper">
-    <insert id="insertRepair" parameterType="IFHMBSAPCDPP0079Dto">
+    <insert id="insertRepair" parameterType="IFHMBSAPCDPP0079Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_in_repair_order(
             created
             , created_by
