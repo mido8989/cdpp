@@ -9,7 +9,7 @@
             , firstactivation__c as firstActivation
             , activationdate__c as eventDate
         from
-            process.bluelink__c
+            process.bluelink
         where
             1=1
         <if test="dateInput != null and !dateInput.equals('')">
