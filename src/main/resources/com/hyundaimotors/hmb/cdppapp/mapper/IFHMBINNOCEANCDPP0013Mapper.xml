@@ -75,6 +75,15 @@
                     , latitude
                     , longitude
                     , postalcode
+                    , dealergroup
+                    , salesgroup
+                    , salesmanager
+                    , servicemanager
+                    , servicewhatsappnumber
+                    , saleswhatsappnumber
+                    , salesdistrict
+                    , salesoffice
+                    , division
                     , created
                     , created_by
                     , last_upd
@@ -109,6 +118,15 @@
                     , #{latitude}
                     , #{longitude}
                     , #{postalCode}
+                    , #{dealerGroup}
+                    , #{salesGroup}
+                    , #{salesManager}
+                    , #{serviceManager}
+                    , #{serviceWhatsAppNumber}
+                    , #{salesWhatsAppNumber}
+                    , #{salesDistrict}
+                    , #{salesOffice}
+                    , #{division}
                     , now()
                     , 'interface'
                     , now()

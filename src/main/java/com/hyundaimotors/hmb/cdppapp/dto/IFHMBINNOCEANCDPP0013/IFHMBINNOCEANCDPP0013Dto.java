@@ -38,7 +38,18 @@ public class IFHMBINNOCEANCDPP0013Dto {
     private int latitude;
     private int longitude;
     private String postalCode;
-    private String ErrorSpcCode;
-    private String ErrorSpcMessage;
+
+    private String dealerGroup;
+    private String salesGroup;
+    private String salesManager;
+    private String serviceManager;
+    private String serviceWhatsAppNumber;
+    private String salesWhatsAppNumber;
+    private String salesDistrict;
+    private String salesOffice;
+    private String division;
+
+    private String errorSpcCode;
+    private String errorSpcMessage;
     List<ListOfContactsDto> contactList;
 }
