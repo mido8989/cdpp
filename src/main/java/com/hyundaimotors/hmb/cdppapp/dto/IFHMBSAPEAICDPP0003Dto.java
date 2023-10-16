@@ -25,6 +25,9 @@ public class IFHMBSAPEAICDPP0003Dto {
     private String fuel;
     private int doorsAmnt;
     private int suggestedPrice;
+    private String description;
+    private String productTypeCode;
+    
     private String errorSpcCode;
     private String errorSpcMessage;
     private String processProductId;
