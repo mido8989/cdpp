@@ -25,7 +25,9 @@
             , transmission
             , fuel
             , doorsamnt
-            , suggestedprice            
+            , suggestedprice    
+            , description
+            , producttypecode        
         )
         values
         (
@@ -49,7 +51,9 @@
             , #{transmission}
             , #{fuel}
             , #{doorsAmnt}
-            , #{suggestedPrice}            
+            , #{suggestedPrice}          
+            , #{description}
+            , #{productTypeCode}  
         )
         ;
     </insert>    
