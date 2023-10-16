@@ -1,9 +1,8 @@
-package com.hyundaimotors.hmb.cdppapp.dto;
+package com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002;
 
 import java.util.List;
 
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowAppPayLoad;
-import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowCarPayLoad;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowHobbyPayLoad;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowSnsPayLoad;
 import com.hyundaimotors.hmb.cdppapp.payload.InboundContactWorkflowSoccerTeamPayLoad;
@@ -59,7 +58,8 @@ public class IFHMBINNOCEANCDPP0002Dto {
     private String ContactId;
     private String Error_spcCode;
     private String Error_spcMessage;
-    List<InboundContactWorkflowCarPayLoad> ListOfCurrentCars;
+
+    List<InboundContactWorkflowCarDto> ListOfCurrentCars;
     List<InboundContactWorkflowAppPayLoad> ListOfApps;
     List<InboundContactWorkflowSnsPayLoad> ListOfSocialMedia;
     List<InboundContactWorkflowHobbyPayLoad> ListOfHobby;
