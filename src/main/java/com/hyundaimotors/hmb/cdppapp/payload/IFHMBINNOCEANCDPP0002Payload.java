@@ -142,11 +142,16 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @JsonProperty("already_customer")
         private String alreadyCustomer;
 
-        List<InboundContactWorkflowCarPayLoad> ListOfCurrentCars;
-        List<InboundContactWorkflowAppPayLoad> ListOfApps;
-        List<InboundContactWorkflowSnsPayLoad> ListOfSocialMedia;
-        List<InboundContactWorkflowHobbyPayLoad> ListOfHobby;
-        List<InboundContactWorkflowSoccerTeamPayLoad> ListOfSoccerTeam;
+        @JsonProperty("ListOfCurrentCars")
+        List<InboundContactWorkflowCarPayLoad> listOfCurrentCars;
+        @JsonProperty("ListOfApps")
+        List<InboundContactWorkflowAppPayLoad> listOfApps;
+        @JsonProperty("ListOfSocialMedia")
+        List<InboundContactWorkflowSnsPayLoad> listOfSocialMedia;
+        @JsonProperty("ListOfHobby")
+        List<InboundContactWorkflowHobbyPayLoad> listOfHobby;
+        @JsonProperty("ListOfSoccerTeam")
+        List<InboundContactWorkflowSoccerTeamPayLoad> listOfSoccerTeam;
     }
 
     @Schema(name = "IFHMBINNOCEANCDPP0002Payload.Response")
@@ -154,10 +159,13 @@ public class IFHMBINNOCEANCDPP0002Payload {
     @Setter
     public static class Response{
         @Schema(description = "Contact Identifier.")
-        private String ContactId;
+        @JsonProperty("ContactId")
+        private String contactId;
         @Schema(description = "Connex error code. Code 200 means success.", example = "200")
-        private String Error_spcCode;
+        @JsonProperty("Error_spcCode")
+        private String error_spcCode;
         @Schema(description = "Connex error message.", example = "success")
-        private String Error_spcMessage;
+        @JsonProperty("Error_spcMessage")
+        private String error_spcMessage;
     }
 }

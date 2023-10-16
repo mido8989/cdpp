@@ -14,7 +14,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class InboundContactWorkflowCarPayLoad {
-    public String parRowId;
     @NotNull
     @Schema(description = "Car name.", example = "HB20")
     @JsonProperty("Name")
