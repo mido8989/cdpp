@@ -105,6 +105,35 @@ public class IFHMBINNOCEANCDPP0013Payload {
         @Schema(description = "Address zip code.", example = "18085450")
         @JsonProperty("PostalCode")
         private String postalCode;
+
+        @Schema(description = "Dealer Group", example = "50")
+        @JsonProperty("DealerGroup")
+        private String dealerGroup;
+        @Schema(description = "Salse Group", example = "SP3")
+        @JsonProperty("SalseGroup")
+        private String salesGroup;
+        @Schema(description = "Sales Manager", example = "ALEXANDRE CINTRA")
+        @JsonProperty("SalesManager")
+        private String salesManager;
+        @Schema(description = "Sevice Manager", example = "GUSTAVO RODRIGUES DE CARVALHO")
+        @JsonProperty("SeviceManager")
+        private String serviceManager;
+        @Schema(description = "Service WhatsApp Number", example = "(11) 96904-0287")
+        @JsonProperty("ServiceWhatsAppNumber")
+        private String serviceWhatsAppNumber;
+        @Schema(description = "Sales WhatsApp Number", example = "(11) 98360-8844")
+        @JsonProperty("SalesWhatsAppNumber")
+        private String salesWhatsAppNumber;
+        @Schema(description = "Sales District", example = "SE003")
+        @JsonProperty("SalesDistrict")
+        private String salesDistrict;
+        @Schema(description = "Sales Office", example = "R5")
+        @JsonProperty("SalesOffice")
+        private String salesOffice;
+        @Schema(description = "Division", example = "11")
+        @JsonProperty("Division")
+        private String division;
+
         @JsonProperty("ListOfContacts")
         List<ListOfContacts> contactList;
 
