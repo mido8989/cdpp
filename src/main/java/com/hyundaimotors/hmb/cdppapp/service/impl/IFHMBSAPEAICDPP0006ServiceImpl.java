@@ -23,11 +23,17 @@ public class IFHMBSAPEAICDPP0006ServiceImpl implements IFHMBSAPEAICDPP0006Servic
 
         mapper.insertAction(dto);
 
-        mapper.insertActionNote(dto);
+        if( dto.getActionNote() != null ){
+            mapper.insertActionNote(dto);
+        }
 
-        mapper.insertActionProducts(dto);
+        if( dto.getActionProducts() != null ){
+            mapper.insertActionProducts(dto);
+        }
 
-        mapper.insertSynergyActionAudit(dto);
+        if( dto.getSynergyActionAudit() != null ){
+            mapper.insertSynergyActionAudit(dto);
+        }
 
         HashMap<String, String> map = new HashMap<>();
 
