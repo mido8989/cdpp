@@ -9,6 +9,7 @@
             process.account
         where 
             cpf__c = #{cpf}
+        limit 1
     </select>
     <select id="foundContactId" parameterType="IFHMBINNOCEANCDPP0002Dto" resultType="String">
         select 
