@@ -41,9 +41,9 @@ public class IFHMBINNOCEANCDPP0034ServiceImpl implements IFHMBINNOCEANCDPP0034Se
         mapper.transferReplica(replicaMap);
 
         String protocalResult = "";
-        if("Information".equals(dto.getServiceRequest().getReason()) && "Sales".equals(dto.getServiceRequest().getLevel1()) && "Test drive".equals(dto.getServiceRequest().getLevel2())){
+        if("Information".equals(dto.getReason()) && "Sales".equals(dto.getLevel1()) && "Test drive".equals(dto.getLevel2())){
             protocalResult = mapper.getProtocalTestDrive(dto);
-        }else if("Sales opportunity".equals(dto.getServiceRequest().getReason()) && "Sales".equals(dto.getServiceRequest().getLevel1()) && "Request a quote".equals(dto.getServiceRequest().getLevel2())){
+        }else if("Sales opportunity".equals(dto.getReason()) && "Sales".equals(dto.getLevel1()) && "Request a quote".equals(dto.getLevel2())){
             protocalResult = mapper.getProtocalQuotation(dto);
         }else{
             protocalResult = mapper.getProtocalCase(dto);
