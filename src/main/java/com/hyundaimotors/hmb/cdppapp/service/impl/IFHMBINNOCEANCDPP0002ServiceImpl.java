@@ -19,11 +19,22 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
     
         IFHMBINNOCEANCDPP0002Dto resultDto = new IFHMBINNOCEANCDPP0002Dto();
         mapper.insertObject(dto);
-        mapper.insertCar(dto);
-        mapper.insertApp(dto);
-        mapper.insertSocialmedia(dto);
-        mapper.insertHobby(dto);            
-        mapper.insertSoccerteam(dto);
+        if(  dto.getListOfCurrentCars() != null){
+            mapper.insertCar(dto);
+        }
+        if ( dto.getListOfApps() != null){
+            mapper.insertApp(dto);
+        }
+        if(  dto.getListOfSocialMedia() != null){
+            mapper.insertSocialmedia(dto);
+        }
+        if(  dto.getListOfHobby() != null){
+            mapper.insertHobby(dto);            
+        }
+        if(  dto.getListOfSoccerTeam() != null){
+            mapper.insertSoccerteam(dto);
+        }
+        
         // contact 존재 여부 체크
         if( dto.getCpf() != null ){
             String foundContactIdByCpf = mapper.foundContactIdbyCpf(dto);
