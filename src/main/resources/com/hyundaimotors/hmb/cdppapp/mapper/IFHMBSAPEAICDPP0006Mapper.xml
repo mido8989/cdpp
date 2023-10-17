@@ -40,33 +40,33 @@
             , 'interface'
             , now()
             , 'interface'
-            , #{action.integrationId}
-            , #{action.result}
-            , #{action.answer}
-            , #{action.status}
-            , #{action.hotlineId}
-            , to_date(#{action.hotlineCreation},'YYYY-MM-DD')
-            , #{action.pwaId}
-            , #{action.pwaCreation}
-            , #{action.roId}
-            , to_date(#{action.roCreation},'YYYY-MM-DD')
-            , #{action.mobisId}
-            , #{action.mobisStatus}
-            , to_date(#{action.expectedDelivery},'YYYY-MM-DD')
-            , #{action.purchasePurposeId}
-            , #{action.type}
-            , #{action.srProtocol}
-            , #{action.priority}
-            , #{action.owner}
-            , #{action.description}
-            , #{action.contactId}
-            , #{action.dealerCode}
-            , #{action.serialNumber}
-            , to_date(#{action.creationDate},'YYYY-MM-DD')
-            , to_date(#{action.plannedDt},'YYYY-MM-DD')
-            , #{action.orderNum}
-            , #{action.dpUser}
-            , #{action.estoque}
+            , #{integrationId}
+            , #{result}
+            , #{answer}
+            , #{status}
+            , #{hotlineId}
+            , to_date(#{hotlineCreation},'YYYY-MM-DD')
+            , #{pwaId}
+            , #{pwaCreation}
+            , #{roId}
+            , to_date(#{roCreation},'YYYY-MM-DD')
+            , #{mobisId}
+            , #{mobisStatus}
+            , to_date(#{expectedDelivery},'YYYY-MM-DD')
+            , #{purchasePurposeId}
+            , #{type}
+            , #{srProtocol}
+            , #{priority}
+            , #{owner}
+            , #{description}
+            , #{contactId}
+            , #{dealerCode}
+            , #{serialNumber}
+            , to_date(#{creationDate},'YYYY-MM-DD')
+            , to_date(#{plannedDt},'YYYY-MM-DD')
+            , #{orderNum}
+            , #{dpUser}
+            , #{estoque}
         )
     </insert>
 
