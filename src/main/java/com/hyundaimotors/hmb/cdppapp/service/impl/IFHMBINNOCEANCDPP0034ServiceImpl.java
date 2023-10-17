@@ -22,9 +22,13 @@ public class IFHMBINNOCEANCDPP0034ServiceImpl implements IFHMBINNOCEANCDPP0034Se
 
         mapper.insertServiceRequest(dto);
 
-        mapper.insertAccessory(dto);
+        if( dto.getListOfAccessories() != null){
+            mapper.insertAccessory(dto);
+        }
 
-        mapper.insertPart(dto);
+        if( dto.getListOfParts() != null ){
+            mapper.insertPart(dto);
+        }
 
         HashMap<String, String> map = new HashMap<>();
 

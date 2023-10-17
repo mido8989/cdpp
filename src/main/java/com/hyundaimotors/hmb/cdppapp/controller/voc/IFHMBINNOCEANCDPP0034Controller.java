@@ -29,7 +29,7 @@ public class IFHMBINNOCEANCDPP0034Controller {
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0034Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBServiceRequestWebserviceWF")
     public Object insertObject(@RequestBody IFHMBINNOCEANCDPP0034Payload.Request request)throws Exception{
-
+        
         IFHMBINNOCEANCDPP0034Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0034Dto.class);
         
         IFHMBINNOCEANCDPP0034Dto resultDto = new IFHMBINNOCEANCDPP0034Dto();

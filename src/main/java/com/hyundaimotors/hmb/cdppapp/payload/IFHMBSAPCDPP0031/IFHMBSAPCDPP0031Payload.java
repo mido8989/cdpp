@@ -15,7 +15,7 @@ public class IFHMBSAPCDPP0031Payload {
         @Schema(description = "Date_Input is null,Informe Data", example = "2023-09-25")
         @JsonProperty("date")
         private String dateInput;
-        @Schema(description = "Created Opcion value : scheduled, Created", example = "scheduled")
+        @Schema(description = "Created Opcion value : scheduled, Created", example = "Y")
         @JsonProperty("created")
         private String createdOption;
 
