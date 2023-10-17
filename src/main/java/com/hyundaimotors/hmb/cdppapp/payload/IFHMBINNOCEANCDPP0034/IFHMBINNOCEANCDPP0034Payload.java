@@ -106,7 +106,7 @@ public class IFHMBINNOCEANCDPP0034Payload {
         private String medium;
         @Schema(description = "VIP List Campaign content tag.", example = "Email_NewHB20SCustomer_Loyalty")
         private String content;
-        @Schema(description = "VIP List Campaign tag.", example = "'Email_LoyaltyProgram_Outubro15")
+        @Schema(description = "VIP List Campaign tag.", example = "Email_LoyaltyProgram_Outubro15")
         private String campaign;
         @Schema(description = "Service request additional comments. Field currently not in use. Was created for synergy project between Connex and Dealer Portal and was not used.", example = "Comentarios adicionais")
         private String additionalComments;

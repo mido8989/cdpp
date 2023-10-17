@@ -32,11 +32,11 @@
             ptc.contact_id__c = pa.row_id
         where
         ptc.integrationid__c notnull
-            <if test='createdOption == "scheduled"'>
+            <if test='createdOption == "Y"'>
                 and
-                    ptc.testdriverequestdate__c = to_date(#{dateInput}, 'YYYY-MM-DD')
+                    ptc.legacy_last_upd = to_date(#{dateInput}, 'YYYY-MM-DD')
             </if>
-            <if test='createdOption == "Created"'>
+            <if test='createdOption == "N"'>
                 and
                     ptc.legacy_created = to_date(#{dateInput}, 'YYYY-MM-DD')
             </if>
