@@ -22,6 +22,7 @@ public class IFHMBDElTAGLOBALCDPP0093ServiceImpl implements IFHMBDElTAGLOBALCDPP
     public IFHMBDElTAGLOBALCDPP0093Dto insertObject(IFHMBDElTAGLOBALCDPP0093Dto dto)throws Exception{
         IFHMBDElTAGLOBALCDPP0093Dto resuDto = new IFHMBDElTAGLOBALCDPP0093Dto();
         List<String> paramList = new ArrayList<>();
+        List<String> replicaParamList = new ArrayList<>();
         
         for(int i=0;i < dto.getListOfRentalResult().size(); i++){
             if(!"Confirmed".equals(dto.getListOfRentalResult().get(i).getRentalStatus())){
@@ -32,8 +33,7 @@ public class IFHMBDElTAGLOBALCDPP0093ServiceImpl implements IFHMBDElTAGLOBALCDPP
             }else{
                 mapper.insertRental(dto.getListOfRentalResult().get(i));
                 paramList.add(i, String.valueOf(dto.getListOfRentalResult().get(i).getRowId()));
-                resuDto.setErrorSpcCode("0");
-                resuDto.setErrorSpcMessage("OK");
+                
             }
         }
 
@@ -44,8 +44,19 @@ public class IFHMBDElTAGLOBALCDPP0093ServiceImpl implements IFHMBDElTAGLOBALCDPP
 
         mapper.transferProcess(map);
 
+        replicaParamList = mapper.getProcessRowIds(paramList);
+
+        String[] replicaParam = replicaParamList.toArray(new String[replicaParamList.size()]);
+
+        HashMap<String, String[]> replicaMap = new HashMap<>();
         
-        
+        replicaMap.put("param_id", replicaParam);
+
+        mapper.transferReplica(replicaMap);
+
+        resuDto.setErrorSpcCode("0");
+        resuDto.setErrorSpcMessage("OK");
+
         return resuDto;
     }
 }

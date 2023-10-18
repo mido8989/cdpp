@@ -28,4 +28,24 @@
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_in_rental_car_rq_rs(#{param_id});
     </insert>
+
+    <select id="getProcessRowIds" parameterType="list" resultType="string">
+        select
+            prt.row_id
+        from
+            landing.if_in_rental_car_rq_rs iircrr
+        join
+            process.rental prt
+        where
+            iircrr.name = prt.name
+        and
+            iircrr.row_id in
+            <foreach collection="paramList" item="item" index="index" open="(" close=")" separator=",">
+                CAST(#{item} AS INTEGER)
+            </foreach>
+    </select>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_in_rental_car_rq_rs(#{param_id});
+    </insert>
 </mapper>
