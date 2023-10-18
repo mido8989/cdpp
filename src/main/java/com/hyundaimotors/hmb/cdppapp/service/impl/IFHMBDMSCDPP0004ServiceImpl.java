@@ -1,11 +1,14 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadContactDto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadDto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.IFHMBDMSCDPP0004Dto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBDMSCDPP0004Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBDMSCDPP0004Service;
 
@@ -18,28 +21,19 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
     
     private final IFHMBDMSCDPP0004Mapper mapper;
 
-    public List<IFHMBDMSCDPP0004Dto> getContact(IFHMBDMSCDPP0004Dto dto)throws Exception{   
-
-        return mapper.getContact(dto);
-    }
-
-    public IFHMBDMSCDPP0004Dto contactInfoList(IFHMBDMSCDPP0004Dto dto)throws Exception{
-
-        return mapper.contactInfoList(dto);
-    }
-
-    public List<IFHMBDMSCDPP0004Dto> veiculoInfoList(IFHMBDMSCDPP0004Dto dto)throws Exception{
+    public IFHMBDMSCDPP0004Dto insertObject(IFHMBDMSCDPP0004Dto dto)throws Exception{
+        IFHMBDMSCDPP0004Dto resultDto = new IFHMBDMSCDPP0004Dto();
         
-        return mapper.veiculoInfoList(dto);
-    }
+        List<GetLeadDto> listOfLead = new ArrayList<>();
 
-    public IFHMBDMSCDPP0004Dto opvInfoList(IFHMBDMSCDPP0004Dto dto)throws Exception{
+        List<IFHMBDMSCDPP0004Dto> getContactId = new ArrayList<>();
 
-        return mapper.opvInfoList(dto);
-    }
-    
-    public IFHMBDMSCDPP0004Dto financiamentoopvList(IFHMBDMSCDPP0004Dto dto)throws Exception{
+        getContactId = mapper.getContact(dto);
+        
+        GetLeadContactDto contato = new GetLeadContactDto();
 
-        return mapper.financiamentoopvList(dto);
+        contato = mapper.GetContato(dto);
+
+        return resultDto;
     }
 }

@@ -17,39 +17,40 @@
 
     <select id="contactInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
         select 
-            a.row_id as rowId
-            , a.firstname as nome
-            , a.lastname as sobrenome
-            , a.gender__pc as genero
-            , a.personbirthdate as dataNascimento
-            , a.personmobilephone as telefone
-            , a.personemail as email
-            , c.cpf__c as cpf
-            , a.billingpostalcode as cep
-            , a.billingstreet as endereco
-            , a.row_id as idconnex
-            <!--, a.X_CAR_REPL_INTENT as dataPrevistaCarroNovo-->
+            pac.firstname as nome
+            , pac.lastname as sobrenome
+            , pac.gender__pc as genero
+            , pac.personbirthdate as dataNascimento
+            , pac.age__c as idade
+            , pac.personmobilephone as telefone
+            , pac.personemail as email
+            , pac.cpf__c as cpf
+            , pac.billingpostalcode as cep
+            , pac.billingstreet as endereco
+            , pac.row_id as idconnex
+            , psr.quote_replace_intention__c as dataPrevistaCarroNovo
         from 
-            process.account a
+            process.account pac
         join
-        	process.contact c 
+            process.service_request psr  
         on
-        	a.row_id = c.account_row_id
+            pac.row_id = psr.contact_row_id__c
         where
-            a.row_id = #{rowId}
+            pac.row_id = #{rowId}
     </select>
     
     <select id="veiculoInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
         select
-            ass.modelname__c as modelo
-            , ass.enginetype__c as motor
-            , ass.latestmileage__c as transmissao
-            , ass.x_license_plate__c as versao
-            , ass.vehiclecolor__c as cor
+            pac.modelname__c as modelo
+            , pac.enginetype__c as motor
+            , pac.latestmileage__c as transmissao
+            , pac.x_license_plate__c as versao
+            , pac.vehiclecolor__c as cor
+            , pac.purchaseprice__c as preco
         from 
-            process.asset ass 
+            process.asset pac 
         where 
-            ass.assetaccountrollupkey__c = #{rowId}
+            pac.contact_row_id__c = #{rowId}
 
     </select>
 
