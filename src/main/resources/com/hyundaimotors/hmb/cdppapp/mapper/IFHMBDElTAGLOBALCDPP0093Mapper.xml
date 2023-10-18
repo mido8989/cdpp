@@ -36,9 +36,9 @@
             landing.if_in_rental_car_rq_rs iircrr
         join
             process.rental prt
-        where
+        on
             iircrr.name = prt.name
-        and
+        where
             iircrr.row_id in
             <foreach collection="paramList" item="item" index="index" open="(" close=")" separator=",">
                 CAST(#{item} AS INTEGER)
