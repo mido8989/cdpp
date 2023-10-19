@@ -15,9 +15,7 @@ public interface IFHMBINNOCEANCDPP0037Mapper {
 
     public void insertAutoVehicle(ListOfAutoVehicleDto dto)throws Exception;
 
-    public void insertHobby(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
-
-    public void insertSoccerTeam(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
+    public int checkAccountId(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
 
     public void insertSocialMedia(IFHMBINNOCEANCDPP0037Dto dto)throws Exception;
 

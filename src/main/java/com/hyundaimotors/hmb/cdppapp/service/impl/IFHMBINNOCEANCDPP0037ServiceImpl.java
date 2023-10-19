@@ -46,72 +46,88 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
         List<AutoVehicle> listOfAutoVehicleOut = new ArrayList<>();
         List<ContactSocialMedia> listOfContactSocialMediaOut = new ArrayList<>();
 
-        mapper.insertObject(dto);
 
-        if( dto.getListOfContactSocialMedia() != null ){
-            mapper.insertSocialMedia(dto); 
-        }
+        int checkContactId = mapper.checkAccountId(dto);
 
-        listOfAutoVehicle = dto.getListOfAutoVehicle();
-        listParamId.add(String.valueOf(dto.getRowId()));
-        listAccountId.add(dto.getContactId());
+        if ( checkContactId > 0 ){
 
-        if( listOfAutoVehicle.size() > 0 ){
-            for(int i = 0; i < listOfAutoVehicle.size(); i++){
-                ListOfAutoVehicleDto vehicle = new ListOfAutoVehicleDto();
-                vehicle = listOfAutoVehicle.get(i);
-                vehicle.setParRowId(dto.getRowId());
-                mapper.insertAutoVehicle(vehicle);
-                listVehicleId.add(String.valueOf(vehicle.getRowId()));
-                listAssetId.add(String.valueOf(vehicle.getVehicleId()));
+            mapper.insertObject(dto);
+    
+            if( dto.getListOfContactSocialMedia() != null ){
+                mapper.insertSocialMedia(dto); 
             }
-        }
-        String[] vehicleId = listVehicleId.toArray(new String[listVehicleId.size()]);
-        String[] paramId = listParamId.toArray(new String[listParamId.size()]);
-        String[] accountId = listAccountId.toArray(new String[listAccountId.size()]);
-        String[] assetId = listAssetId.toArray(new String[listAssetId.size()]);
-
-
-        // landing dummy rowId
-        processMap.put("PARAM_ID", paramId);
-        // landing dummy vehicle rowId list
-        processMap.put("VEHICLE_ID", vehicleId);
-        // process account rowId       
-        processMap.put("PROC_ACCOUNT_ID", accountId);
-        // process asset rowId list
-        processMap.put("ASSET_ID_LIST", assetId);
-
-        mapper.transferProcess(processMap);    
-        
-        mapper.transferReplica(processMap);
-
-
-        map.put("contactId", dto.getContactId());
-        map.put("error_spcCode", "0");
-        map.put("error_spcMessage", "OK");
-
-        updateContactOutput = mapper.getUpdateContactOutput(dto);  
-        listVehicle = mapper.getListVehicle(processMap);
-        listSocialMedia = mapper.getListSocialMedia(dto);
-
-        if( listVehicle.size() > 0){
-            for( int i = 0; i < listVehicle.size(); i++){
-                autoVehicle.setAutoVehicle(listVehicle.get(i));
-                listOfAutoVehicleOut.add(autoVehicle);
+    
+            listOfAutoVehicle = dto.getListOfAutoVehicle();
+            listParamId.add(String.valueOf(dto.getRowId()));
+            listAccountId.add(dto.getContactId());
+    
+            if( listOfAutoVehicle.size() > 0 ){
+                for(int i = 0; i < listOfAutoVehicle.size(); i++){
+                    ListOfAutoVehicleDto vehicle = new ListOfAutoVehicleDto();
+                    vehicle = listOfAutoVehicle.get(i);
+                    vehicle.setParRowId(dto.getRowId());
+                    mapper.insertAutoVehicle(vehicle);
+                    listVehicleId.add(String.valueOf(vehicle.getRowId()));
+                    listAssetId.add(String.valueOf(vehicle.getVehicleId()));
+                }
             }
-            updateContactOutput.setListOfAutoVehicle(listOfAutoVehicleOut);
-        }
-
-
-        if( listSocialMedia.size() > 0){
-            for( int i = 0; i < listSocialMedia.size(); i++){
-                contactSocialMedia.setContactSocialMedia(listSocialMedia.get(i));
-                listOfContactSocialMediaOut.add(contactSocialMedia);
+            String[] vehicleId = listVehicleId.toArray(new String[listVehicleId.size()]);
+            String[] paramId = listParamId.toArray(new String[listParamId.size()]);
+            String[] accountId = listAccountId.toArray(new String[listAccountId.size()]);
+            String[] assetId = listAssetId.toArray(new String[listAssetId.size()]);
+    
+    
+            // landing dummy rowId
+            processMap.put("PARAM_ID", paramId);
+            // landing dummy vehicle rowId list
+            processMap.put("VEHICLE_ID", vehicleId);
+            // process account rowId       
+            processMap.put("PROC_ACCOUNT_ID", accountId);
+            // process asset rowId list
+            processMap.put("ASSET_ID_LIST", assetId);
+    
+            mapper.transferProcess(processMap);    
+            
+            mapper.transferReplica(processMap);
+    
+    
+            map.put("contactId", dto.getContactId());
+            map.put("error_spcCode", "0");
+            map.put("error_spcMessage", "OK");
+    
+            updateContactOutput = mapper.getUpdateContactOutput(dto);  
+            listVehicle = mapper.getListVehicle(processMap);
+            listSocialMedia = mapper.getListSocialMedia(dto);
+    
+    
+            if( listVehicle.size() > 0){
+                for( int i = 0; i < listVehicle.size(); i++){
+                    autoVehicle.setAutoVehicle(listVehicle.get(i));
+                    listOfAutoVehicleOut.add(autoVehicle);
+                }
+                if(updateContactOutput != null){
+                    updateContactOutput.setListOfAutoVehicle(listOfAutoVehicleOut);
+                }
             }
-            updateContactOutput.setListOfContactSocialMedia(listOfContactSocialMediaOut);
+    
+    
+            if( listSocialMedia.size() > 0){
+                for( int i = 0; i < listSocialMedia.size(); i++){
+                    contactSocialMedia.setContactSocialMedia(listSocialMedia.get(i));
+                    listOfContactSocialMediaOut.add(contactSocialMedia);
+                }
+                if(updateContactOutput != null){
+                    updateContactOutput.setListOfContactSocialMedia(listOfContactSocialMediaOut);
+                }
+            }
+    
+            map.put("updateContactOutput", updateContactOutput);
+        }else {
+            map.put("contactId", dto.getContactId());
+            map.put("error_spcCode", "1");
+            map.put("error_spcMessage", "No Data");
         }
 
-        map.put("updateContactOutput", updateContactOutput);
 
         return map;
     }
