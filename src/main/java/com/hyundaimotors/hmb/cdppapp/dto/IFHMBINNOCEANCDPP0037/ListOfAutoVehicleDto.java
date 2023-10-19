@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class ListOfAutoVehicleDto {
     private int rowId;
+    private int parRowId;
     private String vehicleId;
     private String relationshipStatus;
     private String hmbRenavamCode;

@@ -10,11 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0037.IFHMBINNOCEANCDPP0037Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0037.ListOfAutoVehicleDto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0037Mapper;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.AutoVehicle;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ContactData;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ContactSocialMedia;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfAutoVehicle;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactHobby;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactSoccerTeam;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactSocialMedia;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.UpdateContactOutput;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0037Service;
 
 import lombok.RequiredArgsConstructor;
@@ -29,12 +29,12 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
     public HashMap<String, Object> updateObject(IFHMBINNOCEANCDPP0037Dto dto)throws Exception{
         
         List<ListOfAutoVehicle> listVehicle = new ArrayList<>();
-        List<ListOfContactHobby> listHobby = new ArrayList<>();
-        List<ListOfContactSoccerTeam> listSoccerTeam = new ArrayList<>();
         List<ListOfContactSocialMedia> listSocialMedia = new ArrayList<>();
         
-        UpdateContactOutput updateContactOutput = new UpdateContactOutput();  
-        
+        ContactData updateContactOutput = new ContactData();  
+        AutoVehicle autoVehicle = new AutoVehicle();
+        ContactSocialMedia contactSocialMedia = new ContactSocialMedia();
+
         HashMap<String, String[]> processMap = new HashMap<>();
         HashMap<String, Object> map = new HashMap<>();
         List<ListOfAutoVehicleDto> listOfAutoVehicle = new ArrayList<>();         
@@ -43,10 +43,14 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
         List<String> listAccountId = new ArrayList<>();
         List<String> listAssetId = new ArrayList<>();
 
+        List<AutoVehicle> listOfAutoVehicleOut = new ArrayList<>();
+        List<ContactSocialMedia> listOfContactSocialMediaOut = new ArrayList<>();
+
         mapper.insertObject(dto);
-        mapper.insertHobby(dto);
-        mapper.insertSoccerTeam(dto);
-        mapper.insertSocialMedia(dto); 
+
+        if( dto.getListOfContactSocialMedia() != null ){
+            mapper.insertSocialMedia(dto); 
+        }
 
         listOfAutoVehicle = dto.getListOfAutoVehicle();
         listParamId.add(String.valueOf(dto.getRowId()));
@@ -56,6 +60,7 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
             for(int i = 0; i < listOfAutoVehicle.size(); i++){
                 ListOfAutoVehicleDto vehicle = new ListOfAutoVehicleDto();
                 vehicle = listOfAutoVehicle.get(i);
+                vehicle.setParRowId(dto.getRowId());
                 mapper.insertAutoVehicle(vehicle);
                 listVehicleId.add(String.valueOf(vehicle.getRowId()));
                 listAssetId.add(String.valueOf(vehicle.getVehicleId()));
@@ -72,7 +77,7 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
         // landing dummy vehicle rowId list
         processMap.put("VEHICLE_ID", vehicleId);
         // process account rowId       
-        processMap.put("ACCOUNT_ID", accountId);
+        processMap.put("PROC_ACCOUNT_ID", accountId);
         // process asset rowId list
         processMap.put("ASSET_ID_LIST", assetId);
 
@@ -86,20 +91,27 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
         map.put("error_spcMessage", "OK");
 
         updateContactOutput = mapper.getUpdateContactOutput(dto);  
-        updateContactOutput.setContactId(dto.getContactId());      
-        map.put("updateContactOutput", updateContactOutput);
-
         listVehicle = mapper.getListVehicle(processMap);
-        map.put("listOfAutoVehicle", listVehicle);    
-
-        listHobby = mapper.getListHobby(dto);
-        map.put("listOfContactHobby", listHobby);
-
-        listSoccerTeam = mapper.getListSoccerTeam(dto);
-        map.put("listOfContactSoccerTeam", listSoccerTeam);
-
         listSocialMedia = mapper.getListSocialMedia(dto);
-        map.put("listOfContactSocialMedia", listSocialMedia);
+
+        if( listVehicle.size() > 0){
+            for( int i = 0; i < listVehicle.size(); i++){
+                autoVehicle.setAutoVehicle(listVehicle.get(i));
+                listOfAutoVehicleOut.add(autoVehicle);
+            }
+            updateContactOutput.setListOfAutoVehicle(listOfAutoVehicleOut);
+        }
+
+
+        if( listSocialMedia.size() > 0){
+            for( int i = 0; i < listSocialMedia.size(); i++){
+                contactSocialMedia.setContactSocialMedia(listSocialMedia.get(i));
+                listOfContactSocialMediaOut.add(contactSocialMedia);
+            }
+            updateContactOutput.setListOfContactSocialMedia(listOfContactSocialMediaOut);
+        }
+
+        map.put("updateContactOutput", updateContactOutput);
 
         return map;
     }
