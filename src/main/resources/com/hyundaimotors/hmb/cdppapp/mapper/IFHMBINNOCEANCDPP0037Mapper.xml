@@ -166,7 +166,7 @@
             , pc.mailingstreet as streetAddress
             , pc.mailingstreet_2__c as streetAddress2
             , pc.mailingstreet_3__c as streetAddress3
-            , pc.mailingcountry as counrty
+            , pc.mailingcountry as country
             , pc.mailingcounty as county
             , pc.mailingcity as city
             , pc.mailingstate as state
