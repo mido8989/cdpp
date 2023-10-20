@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class IFHMBSAPCDPP0031Dto {
     private String dateInput;
-    private String createdOption;
+    private String created;
 
     HMBSearchServiceRequestTDWebserviceOutputDto hmbSearchServiceRequestTDWebserviceOutput;    
 }
