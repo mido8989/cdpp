@@ -9,5 +9,6 @@ import lombok.Setter;
 @Setter
 public class VehicleBluelinkDto {
     private String chassi;
+    private String latestMileage;
     List<BluelinkDto> ListOfBluelink;
 }
