@@ -26,7 +26,7 @@ public class IFHMBBLUELINKCDPP0091ServiceImpl implements IFHMBBLUELINKCDPP0091Se
 
         bluelinkList = mapper.getBluelinkList(dto);
 
-        if(0 < bluelinkList.size()){
+        if( bluelinkList != null ){
             resulDto.setListOfBluelink(bluelinkList); 
             resulDto.setErrorSpcCode("0");
             resulDto.setErrorSpcMessage("OK");
