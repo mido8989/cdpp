@@ -39,6 +39,7 @@ public class IFHMBBLUELINKCDPP0053ServiceImpl implements IFHMBBLUELINKCDPP0053Se
                     BluelinkDto bluelinkDto = new BluelinkDto();
                     bluelinkDto = bluelinkList.get(j);
                     bluelinkDto.setSetChassi(vehicleList.get(i).getChassi());
+                    bluelinkDto.setSetLatestMileage(vehicleList.get(i).getLatestMileage());
                     // type에 따른 결과 값 저장
                     if("GPI-H".equals(bluelinkDto.getType())){
                         bluelinkDto.setType("ENROLLMENT (VIA TMU)");

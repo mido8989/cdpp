@@ -16,7 +16,7 @@
             , type
         )values(                 
             #{setChassi}
-            , #{latestMileage}
+            , #{setLatestMileage}
             , #{integrationId}
             , now()
             , 'interface'
