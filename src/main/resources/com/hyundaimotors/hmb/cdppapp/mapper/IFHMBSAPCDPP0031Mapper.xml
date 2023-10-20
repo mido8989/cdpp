@@ -32,11 +32,11 @@
             ptc.contact_id__c = pa.row_id
         where
         ptc.integrationid__c notnull
-            <if test='created == "Y"'>
+            <if test='created == "N"'>
                 and
                     ptc.legacy_last_upd = to_date(#{dateInput}, 'YYYY-MM-DD')
             </if>
-            <if test='created == "N"'>
+            <if test='created == "Y"'>
                 and
                     ptc.legacy_created = to_date(#{dateInput}, 'YYYY-MM-DD')
             </if>
