@@ -82,7 +82,7 @@
                 , #{item.answerDescription}
                 , #{item.answerValue}
                 , #{item.answerComplement}
-                , #{integrationId}
+                , concat(#{source}||#{integrationId})
             )
         </foreach>
     </insert>

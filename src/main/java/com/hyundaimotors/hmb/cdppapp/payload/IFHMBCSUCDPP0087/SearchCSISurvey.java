@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SearchCSISurvey {
-    @Schema(description = "Unique code for the survey record to be added. A numeric sequence can be used. Connex will automatically concatenate the field source as prefix in this field, to avoid duplicated records from different partners.", example = "AMARO0000544697")
+    @Schema(description = "Unique code for the survey record to be added. A numeric sequence can be used. Connex will automatically concatenate the field source as prefix in this field, to avoid duplicated records from different partners.", example = "0000544697")
     @JsonProperty("integrationId")
     private String integrationId;
     @Schema(description = "Connex asset Id associated with the survey.   Must be a valid Connex id.", example = "1-KS4ZX")
