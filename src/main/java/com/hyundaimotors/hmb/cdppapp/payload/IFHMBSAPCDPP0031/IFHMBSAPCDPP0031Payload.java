@@ -17,7 +17,7 @@ public class IFHMBSAPCDPP0031Payload {
         private String dateInput;
         @Schema(description = "Created Opcion value : scheduled, Created", example = "Y")
         @JsonProperty("created")
-        private String createdOption;
+        private String created;
 
     }
 

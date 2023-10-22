@@ -3,6 +3,14 @@
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0037Mapper">
 
 
+    <select id="checkAccountId" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="int">
+        select 
+	        count(*)
+        from
+            process.account acc        
+        where 
+            acc.row_id = #{contactId}
+    </select>
 
     <insert id='insertObject' parameterType="IFHMBINNOCEANCDPP0037Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_update_contact_in_wf
@@ -11,11 +19,36 @@
             , created_by
             , last_upd
             , last_upd_by
-            , cnhexpirationdate
             , contactid
+            , cnhexpirationdate
+            , firstname
+            , lastname
+            , birthdate
+            , genre
+            , hkmeretaildate
+            , homephone
+            , workphone
+            , cellularphone
+            , emailaddress
+            , amountfriends
+            , amountchildren
+            , loyaltyoptinflag
+            , streetaddress
+            , addressnumber
+            , addresscomplement
+            , addresscountry
+            , addresscounty
+            , addresscity
+            , addressstate
+            , addresspostalCode
             , suppressallemails
+            , suppressallmailings
+            , suppressallcalls
+            , suppressallwhatsapp
+            , suppressallmobile
+            , suppressallvideocall
             , suppressallsms
-            , printedcard
+            , hmbprintedcard
         )
         values
         (
@@ -23,11 +56,36 @@
             , 'interface'
             , now()
             , 'interface'
-            , to_date(#{cnheXpirationDate}, 'YYYY-MM-DD')
             , #{contactId}
+            , to_date(#{cnheXpirationDate}, 'YYYY-MM-DD')
+            , #{firstName}
+            , #{lastName}
+            , to_date(#{birthDate}, 'YYYY-MM-DD')
+            , #{genre}
+            , to_date(#{hkmeRetailDate}, 'YYYY-MM-DD')
+            , #{homePhone}
+            , #{workPhone}
+            , #{cellularPhone}
+            , #{emailAddress}
+            , #{amountFriends}
+            , #{amountChildren}
+            , #{loyaltyOPTINFlag}
+            , #{streetAddress}
+            , #{addressNumber}
+            , #{addressComplement}
+            , #{addressCountry}
+            , #{addressCounty}
+            , #{addressCity}
+            , #{addressState}
+            , #{addressPostalCode}
             , #{suppressAllEmails}
+            , #{suppressAllMailings}
+            , #{suppressAllCalls}
+            , #{suppressAllWhatsapp}
+            , #{suppressAllMobile}
+            , #{suppressAllVideoCall}
             , #{suppressAllSMS}
-            , case when lower(#{printedCard}) = 'false' then 'N' else 'Y' end
+            , case when lower(#{hmbPrintedCard}) = 'false' then 'N' else 'Y' end
         )
     </insert>
     
@@ -38,6 +96,7 @@
             , created_by
             , last_upd
             , last_upd_by
+            , par_row_id
             , vehicleid
             , relationshipstatus 
             , hmbrenavamcode
@@ -50,6 +109,7 @@
                 , 'interface'
                 , now()
                 , 'interface'
+                , #{parRowId}
                 , #{vehicleId}
                 , #{relationshipStatus}
                 , #{hmbRenavamCode}
@@ -58,51 +118,6 @@
             )
     </insert>
 
-    <insert id="insertHobby" parameterType="IFHMBINNOCEANCDPP0037Dto">
-        insert into landing.if_update_contact_in_wf_hobby
-        (
-            par_row_id
-            , created
-            , created_by
-            , last_upd
-            , last_upd_by
-            , hobbydescription
-        )
-        values
-        <foreach collection="listOfContactHobby" item="item" separator=",">
-            (
-                #{rowId}
-                , now()
-                , 'interface'
-                , now()
-                , 'interface'
-                , #{item.hobbyDescription}
-            )
-        </foreach>
-    </insert>
-
-    <insert id="insertSoccerTeam" parameterType="IFHMBINNOCEANCDPP0037Dto">
-        insert into landing.if_update_contact_in_wf_soccerteam
-        (
-            par_row_id
-            , created
-            , created_by
-            , last_upd
-            , last_upd_by
-            , soccerteam
-        )
-        values
-        <foreach collection="listOfContactSoccerTeam" item="item" separator=",">
-            (
-                #{rowId}
-                , now()
-                , 'interface'
-                , now()
-                , 'interface'
-                , #{item.soccerTeam}
-            )
-        </foreach>
-    </insert>
 
     <insert id="insertSocialMedia" parameterType="IFHMBINNOCEANCDPP0037Dto">
         insert into landing.if_update_contact_in_wf_socialmedia
@@ -132,29 +147,38 @@
     </insert> 
 
 
-    <select id="getUpdateContactOutput" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.UpdateContactOutput">
+    <select id="getUpdateContactOutput" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ContactData">
         select 
-            pa.loyaltyexpirationdate__c  as cnheXpirationDate
+            pa.row_id as contactId
+            , pa.loyaltyexpirationdate__c  as cnheXpirationDate
             , pa.firstname as firstName
             , pa.lastname as lastName
             , pa.personbirthdate as birthDate
             , pc.gender__c as gender
+            , pa.hkmeretaildate as retailDate
             , pa.personhomephone as homePhone
             , pc.companyphone__c as workPhone
             , pa.personhomephone as cellPhone
             , pa.personemail as emailAddress
-            , pc.emailoptyn__c as suppressAllEmails
-            , pc.x_printed_card__c as printedCard
             , pc.x_amount_friends__c as amountFriends
             , pc.x_amount_children__c as amountChildren
             , pc.x_loyalty_optin_flg__c as loyaltyOPTINFla
             , pc.mailingstreet as streetAddress
             , pc.mailingstreet_2__c as streetAddress2
             , pc.mailingstreet_3__c as streetAddress3
-            , pc.mailingcountry as county
+            , pc.mailingcountry as country
+            , pc.mailingcounty as county
             , pc.mailingcity as city
             , pc.mailingstate as state
             , pc.mailingpostalcode as postalCode
+            , pc.emailoptyn__c as suppressAllEmails
+            , pc.directmailoptyn__c as suppressAllMailings
+            , pc.calloptyn__c as suppressAllCalls
+            , pc.blockedwhatsapp__c as suppressAllWhatsapp
+            , pc.blockedmobile__c as suppressAllMobile
+            , pc.x_printed_card__c as suppressAllVideoCall
+            , pc.blockedsms__c  as suppressAllSMS
+            , pc.x_printed_card__c as hmbPrintedCard
         from
             process.account pa
         join
@@ -169,7 +193,7 @@
         select 
             vehicleid as vehicleId
             , relationshipstatus as relationshipStatus
-            , hmbrenavamcode as HMBRenavamCode
+            , hmbrenavamcode as hmbRenavamCode
             , currentmileage as currentMileage
             , vehiclelicensenumber as vehicleLicenseNumber
         from 
@@ -181,23 +205,6 @@
             </foreach>     
     </select>
 
-    <select id="getListHobby" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactHobby">
-        select 
-            hobbydescription as hobbyDescription
-        from 
-            landing.if_update_contact_in_wf_hobby h 
-        where
-            h.par_row_id = #{rowId}
-    </select>
-    
-    <select id="getListSoccerTeam" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactSoccerTeam">
-        select 
-            soccerteam as soccerTeam
-        from 
-            landing.if_update_contact_in_wf_soccerteam s 
-        where 
-            s.par_row_id = #{rowId}
-    </select>
 
     <select id="getListSocialMedia" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0037.ListOfContactSocialMedia">
         select 
@@ -214,22 +221,10 @@
     
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.if_update_contact_in_wf(#{PARAM_ID}, #{VEHICLE_ID}, #{ACCOUNT_ID});
+        call process.if_update_contact_in_wf(#{PARAM_ID}, #{VEHICLE_ID}, #{PROC_ACCOUNT_ID});
     </insert>
 
-    <!-- <select id="getCustomerVehicleId" parameterType="hashMap" resultType="String">
-        select
-            row_id
-        from
-            process.customer_vehicle
-        where
-            asset_id in 
-            <foreach collection="ASSET_ID_LIST" item="item" index="idx" open="(" close=")" separator=",">
-                #{item}
-            </foreach>
-    </select> -->
-
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
-        call Replica.if_update_contact_in_wf(#{ASSET_ID_LIST}, #{ACCOUNT_ID});
+        call Replica.if_update_contact_in_wf(#{ASSET_ID_LIST}, #{PROC_ACCOUNT_ID});
     </insert>
 </mapper>

@@ -37,14 +37,14 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
         if(getProcAccntRowId != null){
             listProcAccntId.add(getProcAccntRowId);
         }
-        listOfcontacts = dto.getContactList();         
-        
+        listOfcontacts = dto.getContactList();              
     
         
         
         if( getProcAccntRowId != null ){ // 딜러 어카운트 존재할 때
 
-            if( listOfcontacts.size() > 0 ){
+            String[] conRowId = null;
+            if( listOfcontacts != null ){
                 for(int i = 0; i < listOfcontacts.size(); i++){
                     ListOfContactsDto contact = new ListOfContactsDto();
                     contact = listOfcontacts.get(i);
@@ -55,10 +55,10 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
     
                     listConRowId.add(contact.getRowId());
                 }
+                conRowId = listConRowId.toArray(new String[listConRowId.size()]);
             }
             String[] paramId = listParamId.toArray(new String[listParamId.size()]);
             String[] procAccntId = listProcAccntId.toArray(new String[listProcAccntId.size()]);
-            String[] conRowId = listConRowId.toArray(new String[listConRowId.size()]);
 
             HashMap<String, String[]> map = new HashMap<>();
 
@@ -74,7 +74,8 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
             mapper.transferProcess(map);
 
             // process.contact row_id 리스트
-            if( listOfcontacts.size() > 0 ){
+            String[] procConId = null;
+            if( listOfcontacts != null ){
                 for(int i = 0; i < listOfcontacts.size(); i++){
                     ListOfContactsDto contact = new ListOfContactsDto();
                     contact = listOfcontacts.get(i);
@@ -87,8 +88,8 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                         listProcConId.add(getContactId);                      
                     }
                 }
+                procConId = listProcConId.toArray(new String[listProcConId.size()]);
             }
-            String[] procConId = listProcConId.toArray(new String[listProcConId.size()]);
 
             map.put("PROC_CON_ID",procConId);
 
@@ -108,7 +109,8 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
             String[] checkcu = listCheckcu.toArray(new String[listCheckcu.size()]);
             map.put("checkcu", checkcu); //insert
 
-            if( listOfcontacts.size() > 0 ){
+            String[] conRowId = null;
+            if( listOfcontacts != null ){
                 for(int i = 0; i < listOfcontacts.size(); i++){
                     ListOfContactsDto contact = new ListOfContactsDto();
                     contact = listOfcontacts.get(i);
@@ -118,20 +120,24 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
 
                     listConRowId.add(contact.getRowId());
                 }
+                conRowId = listConRowId.toArray(new String[listConRowId.size()]);
             }   
-            String[] conRowId = listConRowId.toArray(new String[listConRowId.size()]);
 
             map.put("CON_ROWID", conRowId);
 
             mapper.transferProcess(map);
 
             getProcAccntRowId = mapper.getRowId(dto);
-            listProcAccntId.add(getProcAccntRowId);
-            String[] procAccntId = listProcAccntId.toArray(new String[listProcAccntId.size()]);
+            String[] procAccntId = null;
+            if( getProcAccntRowId != null){
+                listProcAccntId.add(getProcAccntRowId);
+                procAccntId = listProcAccntId.toArray(new String[listProcAccntId.size()]);
+            }
             map.put("PROC_ACC_ID", procAccntId);
 
+            String[] procConId = null;
             // process.contact row_id 리스트
-            if( listOfcontacts.size() > 0 ){
+            if( listOfcontacts != null ){
                 for(int i = 0; i < listOfcontacts.size(); i++){
                     ListOfContactsDto contact = new ListOfContactsDto();
                     contact = listOfcontacts.get(i);
@@ -146,8 +152,9 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                         listProcConId.add(getContactId);                      
                     }
                 }
+                procConId = listProcConId.toArray(new String[listProcConId.size()]);
             }
-            String[] procConId = listProcConId.toArray(new String[listProcConId.size()]);
+     
             map.put("PROC_CON_ID",procConId);
 
             mapper.transferReplica(map);
