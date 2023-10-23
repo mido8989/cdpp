@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hyundaimotors.hmb.cdppapp.dto.ApiLogDto;
@@ -13,11 +14,16 @@ import com.hyundaimotors.hmb.cdppapp.mapper.ApiLogMapper;
 import com.hyundaimotors.hmb.cdppapp.service.ApiLogService;
 import com.hyundaimotors.hmb.cdppapp.util.ApiLogStep;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ApiLogServiceImpl implements ApiLogService {
 
     private static final Logger logger = LoggerFactory.getLogger(ApiLogServiceImpl.class);
-    private ApiLogMapper mapper;
+
+    @Autowired
+    private final ApiLogMapper mapper;
 
     @Override
     public void writeStepLogging(ApiLogStep step, ApiLogDto dto) {
