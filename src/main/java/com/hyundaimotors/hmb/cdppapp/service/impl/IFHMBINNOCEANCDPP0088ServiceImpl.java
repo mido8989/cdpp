@@ -22,16 +22,31 @@ public class IFHMBINNOCEANCDPP0088ServiceImpl implements IFHMBINNOCEANCDPP0088Se
         
         mapper.insertAmaroCSISurvey(dto);
         mapper.insertAmaroCSISurveyAnswer(dto);
-
-        HashMap<String, String> map = new HashMap<String, String>();
-    
-        map.put("param_id", String.valueOf(dto.getRowId()));
+        String getProcId = mapper.getProcId(dto);
         
-        mapper.transferProcess(map);
-        
+        if( getProcId != null){
 
-        resulDto.setErrorSpcCode("0");
-        resulDto.setErrorSpcMessage("OK");
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("param_id", String.valueOf(dto.getRowId()));
+            map.put("checkcu", "update");
+
+            mapper.transferProcess(map);
+            
+            resulDto.setErrorSpcCode("0");
+            resulDto.setErrorSpcMessage("OK");
+
+        }else{
+            
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("param_id", String.valueOf(dto.getRowId()));
+            map.put("checkcu", "insert");
+            
+            mapper.transferProcess(map);
+                
+            resulDto.setErrorSpcCode("0");
+            resulDto.setErrorSpcMessage("OK");
+        }
+
         return resulDto;
     }
 }
