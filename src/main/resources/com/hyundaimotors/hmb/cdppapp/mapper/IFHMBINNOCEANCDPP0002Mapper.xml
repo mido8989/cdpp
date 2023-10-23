@@ -22,6 +22,9 @@
             lastname = #{lastName}
         and
             personemail = #{emailAddress}
+        order by
+            row_id desc
+        limit 1
     </select>
     <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0002Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_in_contact_inf_wf
