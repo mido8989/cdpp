@@ -20,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class IFHMBINNOCEANCDPP0023Controller {
+
+    private static final String IF_ID = "IF025";
     
     private final IFHMBINNOCEANCDPP0023Service service;
 

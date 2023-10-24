@@ -23,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IFHMBSAPCDPP0005Controller {
 
+    private static final String IF_ID = "IF007";
+
     @Autowired
     private final IFHMBSAPCDPP0005Service service;
 

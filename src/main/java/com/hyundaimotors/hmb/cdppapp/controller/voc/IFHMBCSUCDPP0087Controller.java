@@ -5,11 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBCSUCDPP0086Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBCSUCDPP0087.IFHMBCSUCDPP0087Dto;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBCSUCDPP0086Payload;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBCSUCDPP0087.IFHMBCSUCDPP0087Payload;
-import com.hyundaimotors.hmb.cdppapp.service.IFHMBCSUCDPP0086Service;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBCSUCDPP0087Service;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,6 +20,9 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class IFHMBCSUCDPP0087Controller {
+
+    private static final String IF_ID = "IF087";
+
     private final IFHMBCSUCDPP0087Service service;
 
     private final ModelMapper defaultMapper;

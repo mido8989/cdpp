@@ -1,11 +1,5 @@
 package com.hyundaimotors.hmb.cdppapp.controller.lead;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,9 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.IFHMBDMSCDPP0004Dto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0088.IFHMBINNOCEANCDPP0088Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBDMSCDPP0004.IFHMBDMSCDPP0004Payload;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0088.IFHMBINNOCEANCDPP0088Payload;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBDMSCDPP0004Service;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,6 +21,8 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class IFHMBDMSCDPP0004Controller {
+
+    private static final String IF_ID = "IF006";
     
     @Autowired
     private final IFHMBDMSCDPP0004Service service;

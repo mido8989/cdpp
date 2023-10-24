@@ -20,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class IFHMBBLUELINKCDPP0053Controller {
+
+    private static final String IF_ID = "IF063";
     
     private final IFHMBBLUELINKCDPP0053Service service;
 

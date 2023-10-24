@@ -21,6 +21,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IFHMBINNOCEANCDPP0088Controller {
 
+    private static final String IF_ID = "IF088";
+
     private final IFHMBINNOCEANCDPP0088Service service;
 
     private final ModelMapper defaultMapper;
