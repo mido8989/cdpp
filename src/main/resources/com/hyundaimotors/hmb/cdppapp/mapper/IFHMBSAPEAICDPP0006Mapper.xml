@@ -62,8 +62,8 @@
             , #{contactId}
             , #{dealerCode}
             , #{serialNumber}
-            , to_date(#{creationDate},'YYYY-MM-DD')
-            , to_date(#{plannedDt},'YYYY-MM-DD')
+            , #{creationDate}::timestamp(0)
+            , #{plannedDt}::timestamp(0)
             , #{orderNum}
             , #{dpUser}
             , #{estoque}

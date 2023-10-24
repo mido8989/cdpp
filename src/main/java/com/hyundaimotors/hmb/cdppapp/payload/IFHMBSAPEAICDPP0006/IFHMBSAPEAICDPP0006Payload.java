@@ -64,9 +64,9 @@ public class IFHMBSAPEAICDPP0006Payload {
         private String dealerCode;
         @Schema(description = "Serial Number", example = "123456790")
         private String serialNumber;
-        @Schema(description = "Action Created", example = "2012-10-15  5:46:06 PM")
+        @Schema(description = "Action Created", example = "2023-10-20T15:14:33-0300")
         private String creationDate;
-        @Schema(description = "Follow-up Date", example = "2012-10-15  6:52:26 PM")
+        @Schema(description = "Follow-up Date", example = "2012-10-15T06:52:26-0300")
         private String plannedDt;
         @Schema(description = "Action Order Numero", example = "1-19FJ6")
         private String orderNum;
