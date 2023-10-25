@@ -12,6 +12,7 @@ import lombok.Setter;
 public class SearchContactTDDto {
     private String firstName;
     private String lastName;
+    private String cpf;
     private String genre;
     private String birthDate;
     private String cellularPhone;
