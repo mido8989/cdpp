@@ -45,7 +45,7 @@
             a.row_id = c.account_row_id
         where 
             a.row_id = #{contactId}
-        and
+        or
             a.cpf__c = #{cpf}
         limit 1
     </select>
