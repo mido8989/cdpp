@@ -67,9 +67,11 @@
         join 
             process.service_request sr
         on
-            a.row_id = sr.account_row_id__c
+            a.row_id = sr.contact_row_id__c
         where
-            a.row_id = #{contactId};
+            a.row_id = #{contactId}
+        or
+            a.cpf__c = #{cpf};
     </select>
     
 </mapper>
