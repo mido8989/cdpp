@@ -17,6 +17,7 @@
             , a.row_id as rowId
             , a.x_printed_card__c as hmbPrintedCard
             , a.emailoptyn__pc as suppressAllEmails
+            , a.blockedsms__c as suppressAllSMS
             , c.x_amount_friends__c as amountFriends
             , c.x_amount_children__c as amountChildren
             , a.loyaltyexpirationdate__c as cnhexpirationDate
