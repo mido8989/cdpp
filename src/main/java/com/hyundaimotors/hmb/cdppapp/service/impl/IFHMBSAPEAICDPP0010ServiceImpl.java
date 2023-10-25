@@ -43,10 +43,6 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
         mapper.insertAutoVehicle(dto);        
 
         listParamId.add(dto.getRowId());
-        if(getAssetId != null)
-            listProcAssetId.add(getAssetId);
-        if(getProcInvoiceId != null)
-            listProcInvoiceId.add(getProcInvoiceId);
         if(dto.getContact() != null){
             listOfContact = dto.getContact();
         }
@@ -60,12 +56,13 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
                 con = listOfContact.get(i);
                 con.setSerialNumber(dto.getSerialNumber());
                 con.setParRowId(dto.getRowId());
+                dto.setContactId(con.getConnexContactId());
                 mapper.insertContactList(con);
                 listContactId.add(String.valueOf(con.getConRowId()));
             }
             contactId = listContactId.toArray(new String[listContactId.size()]);
         }
-
+        
         String[] accountId = null;
         if( listOfAccount != null ){
             for(int i = 0; i < listOfAccount.size(); i++){
@@ -78,6 +75,11 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             }
             accountId = listAccontId.toArray(new String[listAccontId.size()]);
         }     
+        
+        if(getAssetId != null)
+            listProcAssetId.add(getAssetId);
+        if(getProcInvoiceId != null)
+            listProcInvoiceId.add(getProcInvoiceId);
         
         String[] paramId = listParamId.toArray(new String[listParamId.size()]);  
         String[] procAssetId = listProcAssetId.toArray(new String[listProcAssetId.size()]);

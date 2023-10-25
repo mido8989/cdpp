@@ -17,6 +17,10 @@
             process.invoiceinfo
         where            
             name = #{serialNumber}
+        <if test="contactId != null">
+        and 
+            contact_row_id__c = #{contactId}
+        </if>
     </select>
 
     <select id="getProcCustVehicleId" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="String">

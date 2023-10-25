@@ -44,6 +44,7 @@ public class IFHMBSAPEAICDPP0010Dto {
         private String deliveryatHome;
         private String tdatHome;
         private String ccs_flg;
+        private String contactId;
         private String errorSpcCode;
         private String errorSpcMessage;
 
