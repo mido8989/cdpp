@@ -23,9 +23,13 @@ public class IFHMBSMARTERSCDPP0036Serviceimpl implements IFHMBSMARTERSCDPP0036Se
 
         mapper.insertServiceRequestChatInput(dto);
 
-        mapper.insertChat(dto);
+        if( dto.getListOfChat() != null ){
+            mapper.insertChat(dto);
+        }
 
-        mapper.insertMessage(dto);
+        if( dto.getListOfMessage() != null){
+            mapper.insertMessage(dto);
+        }
 
         HashMap<String, String> map = new HashMap<>();
 
