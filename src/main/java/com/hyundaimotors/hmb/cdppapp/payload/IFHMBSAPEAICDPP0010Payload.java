@@ -17,7 +17,7 @@ public class IFHMBSAPEAICDPP0010Payload {
     public static class Request{
         @Schema(description = "This tag was deactivated. serialNumber should be used instead.", example = "9BHBG51DADP011617")
         @NotNull
-        private String intergrationId;
+        private String integrationId;
         @Schema(description = "Valid values:Dealer Owned, Customer Owned, Cancelled.", example = "Customer Owned")
         private String status;
         @Schema(description = "Chassis number.Unique code for the asset record to be added. It is used as key field for this integration, to determine if a existing record should be updated or a new record should be inserted.", example = "9BHBH41DBGP633658")
