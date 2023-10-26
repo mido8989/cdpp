@@ -38,7 +38,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식)
-    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
         System.out.println("GateWay!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         
@@ -142,8 +142,8 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                     moderation = (JSONObject) obj.get("moderation");
                     if(moderation.containsKey("status"))retrieveTicketId.setModerationStatus(String.valueOf(moderation.get("status")));
                     if(moderation.containsKey("reason"))retrieveTicketId.setModerationReason(String.valueOf(moderation.get("reason")));
-                    if(moderation.containsKey("request_date"))retrieveTicketId.setModerationRequestDate(String.valueOf(moderation.get("request_date")));
-                    if(moderation.containsKey("response_date"))retrieveTicketId.setModerationResponseDate(String.valueOf(moderation.get("response_date")));
+                    if(moderation.containsKey("request_date")&& moderation.containsValue("request_date"))retrieveTicketId.setModerationRequestDate(String.valueOf(moderation.get("request_date")));
+                    if(moderation.containsKey("response_date")&& moderation.containsValue("response_date"))retrieveTicketId.setModerationResponseDate(String.valueOf(moderation.get("response_date")));
                 }
                 
                 if(obj.containsKey("ra")){

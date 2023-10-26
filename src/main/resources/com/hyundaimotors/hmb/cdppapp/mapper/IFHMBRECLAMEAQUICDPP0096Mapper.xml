@@ -89,6 +89,10 @@
             , active 
             , ra_moderation_request_message
             , customerId
+            , moderationstatus
+            , moderationreason
+            <if test="moderationRequestDate != null">, moderationrequestdate</if>
+            <if test="moderationResponseDate != null">, moderationresponsedate</if>
         )values(                 
             #{id}
             , now()
@@ -175,6 +179,10 @@
             , #{active}
             , #{message}
             , #{customerId}
+            , #{moderationStatus}
+            , #{moderationReason}
+            <if test="moderationRequestDate != null">, #{moderationRequestDate}::timestamp</if>
+            <if test="moderationResponseDate != null">, #{moderationResponseDate}::timestamp</if>
         )
     </insert>
     
