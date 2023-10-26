@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBSMARTERSCDPP0036;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -167,4 +169,8 @@ public class ServiceRequestChatInput {
     private String usedCarAsDownPaymnt;
     @Schema(description = "Dealer temperature indicates the level for close deal. Valid values: Q, M, F", example = "Q")
     private String dlrTemperature;
+
+
+    List<Chat> listOfChat;
+    List<Message> listOfMessage;
 }

@@ -160,7 +160,7 @@
         )
     </insert>
 
-    <insert id="insertChat" parameterType="IFHMBSMARTERSCDPP0036Dto">
+    <insert id="insertChat" parameterType="ServiceRequestChatInput">
         insert into landing.if_service_request_chat_ws_chat(
             par_row_id
             , created
@@ -187,7 +187,7 @@
         </foreach>
     </insert>
     
-    <insert id="insertMessage" parameterType="IFHMBSMARTERSCDPP0036Dto">
+    <insert id="insertMessage" parameterType="ServiceRequestChatInput">
         insert into landing.if_service_request_chat_ws_message(
             par_row_id
             , created
