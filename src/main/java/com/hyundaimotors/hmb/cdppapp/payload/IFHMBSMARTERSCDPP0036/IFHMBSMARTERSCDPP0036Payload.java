@@ -12,6 +12,7 @@ public class IFHMBSMARTERSCDPP0036Payload {
     @Getter
     @Setter
     public static class Request{
+        @JsonProperty("ServiceRequest")
         ServiceRequestChatInput serviceRequestChatInput;
         
     }
