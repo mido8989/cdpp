@@ -14,7 +14,7 @@ public class Chat {
     @NotNull
     @NotEmpty
     private String chatCode;
-    @Schema(description = "Date Chat", example = "2020-01-31  10:31:02 AM")
+    @Schema(description = "Date Chat", example = "2023-10-24T15:00:02")
     private String date;
     @Schema(description = "Source Chat", example = "WhatsApp")
     private String source;
