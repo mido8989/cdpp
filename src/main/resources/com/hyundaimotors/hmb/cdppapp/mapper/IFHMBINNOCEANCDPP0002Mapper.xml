@@ -73,7 +73,8 @@
             , suppressallwhatsapp
             , suppressallmobile
             , printedcard
-            , already_customer                       
+            , already_customer    
+            , favorite_dealer                   
         )values(
             now()
             , 'interface'
@@ -120,6 +121,7 @@
             , #{suppressAllMobile}
             , #{printedCard}
             , #{alreadyCustomer}
+            , #{favorite_dealer}
         )
     </insert>
     <insert id="insertCar" parameterType="IFHMBINNOCEANCDPP0002Dto">

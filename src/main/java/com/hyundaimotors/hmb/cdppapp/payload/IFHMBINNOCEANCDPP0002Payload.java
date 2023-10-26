@@ -141,6 +141,9 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @Schema(description = "Flag to define if customer is already a customer. Valid values: Y, N", example = "N")
         @JsonProperty("already_customer")
         private String alreadyCustomer;
+        @Schema(description = "Favorite_Dealer", example = "B05AM58024")
+        @JsonProperty("Favorite_Dealer")
+        private String favorite_dealer;
 
         @JsonProperty("ListOfCurrentCars")
         List<InboundContactWorkflowCarPayLoad> listOfCurrentCars;

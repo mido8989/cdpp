@@ -55,6 +55,7 @@ public class IFHMBINNOCEANCDPP0002Dto {
     private String suppressAllMobile;
     private String printedCard;
     private String alreadyCustomer;
+    private String favorite_dealer;
     private String ContactId;
     private String Error_spcCode;
     private String Error_spcMessage;
