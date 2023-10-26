@@ -162,7 +162,7 @@
         )
     </insert>
 
-    <insert id="insertChat" parameterType="ServiceRequestChatInput">
+    <insert id="insertChat" parameterType="ServiceRequestChatInputDto">
         insert into landing.if_service_request_chat_ws_chat(
             par_row_id
             , created
@@ -173,23 +173,21 @@
             , date
             , source
             , operator
-        )values
-        <foreach collection="listOfChat" item="item" separator=",">
-            (
-                #{rowId}
-                , now()
-                , 'interface'
-                , now()
-                , 'interface'
-                , #{item.chatCode}
-                , #{item.date}
-                , #{item.source}
-                , #{item.operator}
-            )
-        </foreach>
+        )values       
+        (
+            #{rowId}
+            , now()
+            , 'interface'
+            , now()
+            , 'interface'
+            , #{chat.chatCode}
+            , #{chat.date}
+            , #{chat.source}
+            , #{chat.operator}
+        )        
     </insert>
     
-    <insert id="insertMessage" parameterType="ServiceRequestChatInput">
+    <insert id="insertMessage" parameterType="ChatDto">
         insert into landing.if_service_request_chat_ws_message(
             par_row_id
             , created

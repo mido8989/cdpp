@@ -2,6 +2,7 @@ package com.hyundaimotors.hmb.cdppapp.mapper;
 
 import java.util.HashMap;
 
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSMARTERSCDPP0036.ChatDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSMARTERSCDPP0036.IFHMBSMARTERSCDPP0036Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSMARTERSCDPP0036.ServiceRequestChatInputDto;
 
@@ -11,7 +12,7 @@ public interface IFHMBSMARTERSCDPP0036Mapper {
 
     public void insertChat(ServiceRequestChatInputDto dto)throws Exception;
 
-    public void insertMessage(ServiceRequestChatInputDto dto)throws Exception;
+    public void insertMessage(ChatDto dto)throws Exception;
 
     public void transferProcess(HashMap<String, String> parMap)throws Exception;
 

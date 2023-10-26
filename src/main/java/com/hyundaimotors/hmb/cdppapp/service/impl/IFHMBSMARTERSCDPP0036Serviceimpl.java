@@ -24,12 +24,13 @@ public class IFHMBSMARTERSCDPP0036Serviceimpl implements IFHMBSMARTERSCDPP0036Se
         mapper.insertServiceRequestChatInput(dto);
         dto.getServiceRequestChatInput().setRowId(dto.getRowId());
 
-        if( dto.getServiceRequestChatInput().getListOfChat() != null ){
+        if( dto.getServiceRequestChatInput().getChat() != null ){
             mapper.insertChat(dto.getServiceRequestChatInput());
+            dto.getServiceRequestChatInput().getChat().setRowId(dto.getRowId());
         }
 
-        if( dto.getServiceRequestChatInput().getListOfMessage() != null){
-            mapper.insertMessage(dto.getServiceRequestChatInput());
+        if( dto.getServiceRequestChatInput().getChat().getListOfMessage() != null){
+            mapper.insertMessage(dto.getServiceRequestChatInput().getChat());
         }
 
         HashMap<String, String> map = new HashMap<>();

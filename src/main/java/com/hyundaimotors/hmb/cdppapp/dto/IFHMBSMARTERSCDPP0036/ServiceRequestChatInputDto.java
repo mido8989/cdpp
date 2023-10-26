@@ -1,10 +1,5 @@
 package com.hyundaimotors.hmb.cdppapp.dto.IFHMBSMARTERSCDPP0036;
 
-import java.util.List;
-
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSMARTERSCDPP0036.Chat;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSMARTERSCDPP0036.Message;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -87,7 +82,6 @@ public class ServiceRequestChatInputDto {
     private String dlrTemperature;
 
 
-    List<Chat> listOfChat;
-    List<Message> listOfMessage;
+    ChatDto chat;
     
 }
