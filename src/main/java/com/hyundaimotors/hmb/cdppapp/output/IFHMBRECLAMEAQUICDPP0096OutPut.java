@@ -38,7 +38,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식)
-    //@Scheduled(cron = "0 */5 * * * *") 
+    @Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
         System.out.println("GateWay!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         
@@ -78,7 +78,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
             JSONArray jsonArr = (JSONArray) jsonObj.get("data");
 
             List<RetrieveTicketId> ticketList = new ArrayList<RetrieveTicketId>();
-            
+            System.out.println("jsonArr :::: " + jsonArr);
             for(Object arr : jsonArr) {
                 JSONObject obj = (JSONObject) arr;
 
@@ -173,10 +173,25 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                     if(rafone.containsKey("status_id"))retrieveTicketId.setRafoneStatusId(String.valueOf(rafone.get("status_id")));
                     if(rafone.containsKey("status_name"))retrieveTicketId.setRafoneStatusName(String.valueOf(rafone.get("status_name")));
                 }
-                /*if(obj.containsKey("interactions")){
-                    interactions = (JSONObject) obj.get("interactions");
-                    if(interactions.containsKey("ticket_interaction_id"))retrieveTicketId.setRafoneExpirationDate(String.valueOf(interactions.get("ticket_interaction_id")));
-                }*/
+                JSONArray jsonInteractions = (JSONArray) obj.get("interactions");
+                if(0 < jsonInteractions.size()){
+                    interactions = (JSONObject)jsonInteractions.get(0);
+                    if(interactions.containsKey("ticket_interaction_id"))retrieveTicketId.setTicketInteractionId(String.valueOf(interactions.get("ticket_interaction_id")));
+                    //if(interactions.containsKey("ticket_interaction_type_id"))retrieveTicketId.setTicketInteractionTypeId(Integer.parseInt(String.valueOf(obj.get("ticket_interaction_type_id"))));
+                    //if(interactions.containsKey("ticket_interaction_name"))retrieveTicketId.setTicketInteractionName(String.valueOf(interactions.get("ticket_interaction_name")));
+                    if(interactions.containsKey("customer_id"))retrieveTicketId.setCustomerId(String.valueOf(interactions.get("customer_id")));
+                    if(interactions.containsKey("responsible_id"))retrieveTicketId.setResponsibleId(String.valueOf(interactions.get("responsible_id")));
+                    if(interactions.containsKey("responsible_name"))retrieveTicketId.setResponsibleId(String.valueOf(interactions.get("responsible_name")));
+                    if(interactions.containsKey("message"))retrieveTicketId.setMessage(String.valueOf(interactions.get("message")));
+                    if(interactions.containsKey("privacy"))retrieveTicketId.setPrivacy(String.valueOf(interactions.get("privacy")));
+                    if(interactions.containsKey("creation_date"))retrieveTicketId.setInteractionCreationDate(String.valueOf(interactions.get("creation_date")));
+                    if(interactions.containsKey("modification_date"))retrieveTicketId.setModificationDate(String.valueOf(interactions.get("modification_date")));
+                    if(interactions.containsKey("delivered"))retrieveTicketId.setDelivered(String.valueOf(interactions.get("delivered")));
+                    if(interactions.containsKey("readed"))retrieveTicketId.setReaded(String.valueOf(interactions.get("readed")));
+                    if(interactions.containsKey("visualized"))retrieveTicketId.setVisualized(String.valueOf(interactions.get("visualized")));
+                    if(interactions.containsKey("video"))retrieveTicketId.setVideo(String.valueOf(interactions.get("video")));
+                    if(interactions.containsKey("picture"))retrieveTicketId.setPicture(String.valueOf(interactions.get("picture")));
+                }
 
                 if(obj.containsKey("_id"))retrieveTicketId.setUnderId(String.valueOf(obj.get("_id")));
                 if(obj.containsKey("id"))retrieveTicketId.setId(Integer.parseInt(String.valueOf(obj.get("id"))));

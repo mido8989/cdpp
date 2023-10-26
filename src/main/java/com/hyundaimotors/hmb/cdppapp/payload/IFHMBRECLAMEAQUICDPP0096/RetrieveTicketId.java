@@ -100,7 +100,6 @@ public class RetrieveTicketId {
     private String ticketInteractionType;
     @JsonProperty("ticket_messages_count")
     private int ticketMessagesCount;
-
     @JsonProperty("last_feeling")
     private String lastFeeling;
     @JsonProperty("status")
@@ -153,7 +152,28 @@ public class RetrieveTicketId {
     @JsonProperty("rule_id")
     public String ruleId;
     public String active;
-    
-    
-    
+
+    @JsonProperty("ticket_interaction_id")
+    public String ticketInteractionId;
+    @JsonProperty("ticket_interaction_type_id")
+    public int ticketInteractionTypeId;
+    @JsonProperty("ticket_interaction_name")
+    public String ticketInteractionName;
+    @JsonProperty("customer_id")
+    public String customerId;
+    @JsonProperty("responsible_id")
+    public String responsibleId;
+    @JsonProperty("responsible_name")
+    public String responsibleName;
+    public String message;
+    public String privacy;
+    public String interactionCreationDate;
+    @JsonProperty("modification_date")
+    public String modificationDate;
+    public String delivered;
+    public String readed;
+    public String visualized;
+    public String video;
+    public String picture;
+
 }

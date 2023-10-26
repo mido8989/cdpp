@@ -87,6 +87,8 @@
             , contact_us
             , rule_id 
             , active 
+            , ra_moderation_request_message
+            , customerId
         )values(                 
             #{id}
             , now()
@@ -171,6 +173,8 @@
             , #{contactUs}
             , #{ruleId}
             , #{active}
+            , #{message}
+            , #{customerId}
         )
     </insert>
     

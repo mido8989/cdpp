@@ -60,7 +60,6 @@ public class RetrieveTicketIdDto {
     private String ticketDetailTypeId;
     private String ticketInteractionType;
     private int ticketMessagesCount;
-
     private String lastFeeling;
     private String moderationStatus;
     private String moderationReason;
@@ -90,4 +89,20 @@ public class RetrieveTicketIdDto {
     public String contactUs;
     public String ruleId;
     public String active;
+
+    public String ticketInteractionId;
+    public int ticketInteractionTypeId;
+    public String ticketInteractionName;
+    public String customerId;
+    public String responsibleId;
+    public String responsibleName;
+    public String message;
+    public String privacy;
+    public String interactionCreationDate;
+    public String modificationDate;
+    public String delivered;
+    public String readed;
+    public String visualized;
+    public String video;
+    public String picture;
 }
