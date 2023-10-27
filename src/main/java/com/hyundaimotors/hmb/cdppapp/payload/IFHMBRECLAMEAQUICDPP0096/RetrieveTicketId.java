@@ -183,5 +183,7 @@ public class RetrieveTicketId {
     public String email;
     @JsonProperty("phone_numbers")
     public String phoneNumbers;
+    public String firstName;
+    public String lastName;
 
 }

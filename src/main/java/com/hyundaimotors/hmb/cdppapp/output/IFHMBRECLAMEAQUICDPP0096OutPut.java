@@ -38,7 +38,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식)
-    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
         System.out.println("GateWayAllTicket!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         
@@ -220,6 +220,15 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                     if(0 < phoneNumbers.size()){
                         retrieveTicketId.setPhoneNumbers(String.valueOf(phoneNumbers.get(0)));
                     }
+
+                    /*if(customer.containsKey("name")){
+                        String customerName = String.valueOf((JSONObject)customer.get("name"));
+                        int idx = customerName.indexOf(" ");
+
+                        retrieveTicketId.setFirstName(customerName.substring(0, idx));
+                        retrieveTicketId.setLastName(customerName.substring(idx+1));
+                    }*/
+
                 }
 
                 if(obj.containsKey("_id"))retrieveTicketId.setUnderId(String.valueOf(obj.get("_id")));

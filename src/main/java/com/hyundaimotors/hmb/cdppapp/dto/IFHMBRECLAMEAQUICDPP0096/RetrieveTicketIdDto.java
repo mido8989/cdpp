@@ -112,4 +112,6 @@ public class RetrieveTicketIdDto {
     public String gender;
     public String email;
     public String phoneNumbers;
+    public String firstName;
+    public String lastName;
 }

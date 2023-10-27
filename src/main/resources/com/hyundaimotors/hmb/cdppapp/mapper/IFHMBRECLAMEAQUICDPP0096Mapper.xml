@@ -99,6 +99,8 @@
             , gender
             , email
             , phonenumbers
+            , firstname
+            , lastname
         )values(                 
             #{id}
             , now()
@@ -195,6 +197,8 @@
             , #{gender}
             , #{email}
             , #{phoneNumbers}
+            , #{firstName}
+            , #{lastName}
         )
     </insert>
     
