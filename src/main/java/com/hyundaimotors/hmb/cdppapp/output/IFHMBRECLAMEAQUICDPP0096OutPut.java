@@ -176,7 +176,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                 }
                 JSONArray jsonInteractions = (JSONArray) obj.get("interactions");
                 if(0 < jsonInteractions.size()){
-                    interactions = (JSONObject)jsonInteractions.get(0);
+                    interactions = (JSONObject)jsonInteractions.get(jsonInteractions.size()-1);
                     if(interactions.containsKey("ticket_interaction_id"))retrieveTicketId.setTicketInteractionId(String.valueOf(interactions.get("ticket_interaction_id")));
                     //if(interactions.containsKey("ticket_interaction_type_id"))retrieveTicketId.setTicketInteractionTypeId(Integer.parseInt(String.valueOf(obj.get("ticket_interaction_type_id"))));
                     //if(interactions.containsKey("ticket_interaction_name"))retrieveTicketId.setTicketInteractionName(String.valueOf(interactions.get("ticket_interaction_name")));
