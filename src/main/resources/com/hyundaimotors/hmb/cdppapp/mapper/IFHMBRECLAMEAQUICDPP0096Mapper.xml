@@ -93,6 +93,12 @@
             , moderationreason
             <if test="moderationRequestDate != null">, moderationrequestdate</if>
             <if test="moderationResponseDate != null">, moderationresponsedate</if>
+            , birthday
+            , cpf
+            , rg
+            , gender
+            , email
+            , phonenumbers
         )values(                 
             #{id}
             , now()
@@ -183,6 +189,12 @@
             , #{moderationReason}
             <if test="moderationRequestDate != null">, #{moderationRequestDate}::timestamp</if>
             <if test="moderationResponseDate != null">, #{moderationResponseDate}::timestamp</if>
+            , #{birthday}::date
+            , #{cpf}
+            , #{rg}
+            , #{gender}
+            , #{email}
+            , #{phoneNumbers}
         )
     </insert>
     

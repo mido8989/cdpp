@@ -176,4 +176,12 @@ public class RetrieveTicketId {
     public String video;
     public String picture;
 
+    public String birthday;
+    public String cpf;
+    public String rg;
+    public String gender;
+    public String email;
+    @JsonProperty("phone_numbers")
+    public String phoneNumbers;
+
 }

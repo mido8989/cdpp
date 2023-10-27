@@ -38,9 +38,9 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식)
-    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
-        System.out.println("GateWay!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("GateWayAllTicket!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         
         ModelMapper modelMapper = new ModelMapper();
 
@@ -97,6 +97,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                 JSONObject account;
                 JSONObject rafone;
                 JSONObject interactions;
+                JSONObject customer;
 
                 if(obj.containsKey("hugme_status")){
                     hugmeStatus = (JSONObject) obj.get("hugme_status");
@@ -191,6 +192,34 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                     if(interactions.containsKey("visualized"))retrieveTicketId.setVisualized(String.valueOf(interactions.get("visualized")));
                     if(interactions.containsKey("video"))retrieveTicketId.setVideo(String.valueOf(interactions.get("video")));
                     if(interactions.containsKey("picture"))retrieveTicketId.setPicture(String.valueOf(interactions.get("picture")));
+                }
+
+                if(obj.containsKey("customer")){
+                    customer = (JSONObject) obj.get("customer");
+                    JSONArray birthday = (JSONArray) customer.get("birthday");
+                    if(0 < birthday.size()){
+                        retrieveTicketId.setBirthday(String.valueOf(birthday.get(0)));
+                    }
+                    JSONArray cpf = (JSONArray) customer.get("cpf");
+                    if(0 < cpf.size()){
+                        retrieveTicketId.setCpf(String.valueOf(cpf.get(0)));
+                    }
+                    JSONArray rg = (JSONArray) customer.get("cpf");
+                    if(0 < rg.size()){
+                        retrieveTicketId.setRg(String.valueOf(rg.get(0)));
+                    }
+                    JSONArray gender = (JSONArray) customer.get("cpf");
+                    if(0 < gender.size()){
+                        retrieveTicketId.setGender(String.valueOf(gender.get(0)));
+                    }
+                    JSONArray email = (JSONArray) customer.get("email");
+                    if(0 < email.size()){
+                        retrieveTicketId.setEmail(String.valueOf(email.get(0)));
+                    }
+                    JSONArray phoneNumbers = (JSONArray) customer.get("phone_numbers");
+                    if(0 < phoneNumbers.size()){
+                        retrieveTicketId.setPhoneNumbers(String.valueOf(phoneNumbers.get(0)));
+                    }
                 }
 
                 if(obj.containsKey("_id"))retrieveTicketId.setUnderId(String.valueOf(obj.get("_id")));
