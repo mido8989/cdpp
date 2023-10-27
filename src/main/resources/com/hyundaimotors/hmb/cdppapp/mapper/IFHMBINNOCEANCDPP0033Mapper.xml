@@ -23,11 +23,15 @@
             , pa.cf_eval_svc_cd__c as ccsFlg
             , pa.warranty_start_dt__c as warrantyStartDate
             , pa.purch_loc_desc__c as fiscalReceipt
-            , pa.dealercode__c as dealerId
-            , (select dealercode__c from process.account where external_id__c = pa.dealercode__c) as dealerCodeRe
-            , (select "name" from process.account where external_id__c = pa.dealercode__c) as dealerName
-            , (select corporaterepresentativename__c from process.account where external_id__c = pa.dealercode__c) as dealerNickname
-            , (select spc.firstname || spc.lastname from process.account spa join process.contact spc on spa.row_id = spc.account_row_id where spa.external_id__c = pa.dealercode__c) as salesManName
+            , (select row_id from process.account where dealercode__c = pa.dealercode__c  ) as dealerId
+            , pa.dealercode__c  as dealerCode
+            , (select "name" from process.account where dealercode__c = pa.dealercode__c) as dealerName
+            , (select corporaterepresentativename__c from process.account where dealercode__c = pa.dealercode__c) as dealerNickname
+            , pa.salesrepfirstname || ' ' || pa.salesreplastname  as salesManName
+            , pa.oper_status_cd__c as negotiationType
+            , pa.dlr_con_int_id__c as salesManId
+            , pa.fsc__c as fsc_ocn
+            , pa.latestmileage__c as mileage
             , a3.external_id__c as AccountSearchId
             , a2.external_id__c as contactSearchId
         from
@@ -91,9 +95,13 @@
         </if>
         <if test='idInterface == "9"'>
         and
+            pa.billing_date__c between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
+        </if>
+        <!-- <if test='idInterface == "9"'>
+        and
             pa.serialnumber = #{serialNumber}
         limit 1
-        </if>
+        </if> -->
         <if test='idInterface == "10"'>
         and
             pa.billing_date__c = to_date(#{startDate}, 'YYYY-MM-DD')
