@@ -17,8 +17,8 @@ public class IFHMBINNOCEANCDPP0022Dto {
     private String holidayDate;
     private String dealerCode;
     private String operation;
+
     private String ErrorSpcCode;
     private String ErrorSpcMessage;
 
-    ManageDealerHolidayOutputDto manageDealerHolidayOutput;
 }

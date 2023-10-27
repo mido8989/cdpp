@@ -35,7 +35,11 @@ public class IFHMBINNOCEANCDPP0022Payload {
     @Getter
     @Setter
     public static class Response{
-        @JsonProperty("ManageDealerHoliday_Output")
-        ManageDealerHolidayOutput manageDealerHolidayOutput;
+        @Schema(description = "Returns 0 when success.", example = "0")
+        @JsonProperty("Error_spcCode")
+        private String ErrorSpcCode;
+        @Schema(description = "Returns OK when success.", example = "OK")
+        @JsonProperty("Error_spcMessage")
+        private String ErrorSpcMessage;
     }
 }
