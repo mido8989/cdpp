@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Part {
-    @Schema(description = "Part backorder date. Format: MM/DD/YYYY ", example = "2016-12-04")
+    @Schema(description = "Part backorder date. Format: MM/DD/YYYY ", example = "2023-10-24T15:00:02")
     private String backOrderDate;
     @Schema(description = "Flag to define if part have backorder. Valid values: Y, N", example = "Y")
     private String backOrderFlg;
