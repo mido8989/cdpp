@@ -101,6 +101,8 @@
             , phonenumbers
             , firstname
             , lastname
+            , city
+            , address_state
         )values(                 
             #{id}
             , now()
@@ -199,6 +201,8 @@
             , #{phoneNumbers}
             , #{firstName}
             , #{lastName}
+            , #{city}
+            , #{addressState}
         )
     </insert>
     

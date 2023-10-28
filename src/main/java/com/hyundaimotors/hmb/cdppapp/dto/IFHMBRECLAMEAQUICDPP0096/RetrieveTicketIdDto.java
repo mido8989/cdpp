@@ -114,4 +114,7 @@ public class RetrieveTicketIdDto {
     public String phoneNumbers;
     public String firstName;
     public String lastName;
+
+    public String city;
+    public String addressState;
 }

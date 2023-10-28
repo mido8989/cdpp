@@ -186,4 +186,7 @@ public class RetrieveTicketId {
     public String firstName;
     public String lastName;
 
+    public String city;
+    public String addressState;
+
 }

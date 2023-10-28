@@ -38,7 +38,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식)
-    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 * * * * *")
     public void getAllTicket() throws ParseException {
         System.out.println("GateWayAllTicket!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         
@@ -98,6 +98,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                 JSONObject rafone;
                 JSONObject interactions;
                 JSONObject customer;
+                JSONObject customerName;
 
                 if(obj.containsKey("hugme_status")){
                     hugmeStatus = (JSONObject) obj.get("hugme_status");
@@ -221,13 +222,22 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                         retrieveTicketId.setPhoneNumbers(String.valueOf(phoneNumbers.get(0)));
                     }
 
-                    /*if(customer.containsKey("name")){
-                        String customerName = String.valueOf((JSONObject)customer.get("name"));
-                        int idx = customerName.indexOf(" ");
+                    JSONArray state = (JSONArray) customer.get("state");
+                    if(0 < state.size()){
+                        JSONObject adressState = (JSONObject)state.get(0);
+                        if(adressState.containsKey("state"))retrieveTicketId.setAddressState(String.valueOf(adressState.get("state")));
+                    }
 
-                        retrieveTicketId.setFirstName(customerName.substring(0, idx));
-                        retrieveTicketId.setLastName(customerName.substring(idx+1));
-                    }*/
+                    JSONArray city = (JSONArray) customer.get("city");
+                    
+                    if(customer.containsKey("name")){
+                        String subCustomName = customer.get("name").toString();
+                        
+                        int idx = subCustomName.indexOf(" ");
+
+                        retrieveTicketId.setFirstName(subCustomName.substring(0, idx));
+                        retrieveTicketId.setLastName(subCustomName.substring(idx+1));
+                    }
 
                 }
 
