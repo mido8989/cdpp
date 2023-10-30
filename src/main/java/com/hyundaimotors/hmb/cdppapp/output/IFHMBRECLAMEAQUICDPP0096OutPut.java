@@ -38,7 +38,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식)
-    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
         System.out.println("GateWayAllTicket!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         
@@ -99,6 +99,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                 JSONObject interactions;
                 JSONObject customer;
                 JSONObject customerName;
+                JSONObject attach;
 
                 if(obj.containsKey("hugme_status")){
                     hugmeStatus = (JSONObject) obj.get("hugme_status");
@@ -174,6 +175,13 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                     if(rafone.containsKey("expiration_date"))retrieveTicketId.setRafoneExpirationDate(String.valueOf(rafone.get("expiration_date")));
                     if(rafone.containsKey("status_id"))retrieveTicketId.setRafoneStatusId(String.valueOf(rafone.get("status_id")));
                     if(rafone.containsKey("status_name"))retrieveTicketId.setRafoneStatusName(String.valueOf(rafone.get("status_name")));
+                }
+                JSONArray attached = (JSONArray) obj.get("attached");
+                if(0 < attached.size()){
+                    attach = (JSONObject)attached.get(attached.size()-1);
+                    if(attach.containsKey("detail_description"))retrieveTicketId.setDetailDescription(String.valueOf(attach.get("detail_description")));
+                    if(attach.containsKey("creation_date"))retrieveTicketId.setAttachCreationDate(String.valueOf(attach.get("creation_date")));
+                    if(attach.containsKey("name"))retrieveTicketId.setAttachName(String.valueOf(attach.get("name")));
                 }
                 JSONArray jsonInteractions = (JSONArray) obj.get("interactions");
                 if(0 < jsonInteractions.size()){

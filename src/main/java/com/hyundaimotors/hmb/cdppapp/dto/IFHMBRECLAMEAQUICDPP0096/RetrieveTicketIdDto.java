@@ -117,4 +117,8 @@ public class RetrieveTicketIdDto {
 
     public String city;
     public String addressState;
+
+    public String detailDescription;
+    public String attachName;
+    public String attachCreationDate;
 }
