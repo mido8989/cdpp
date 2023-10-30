@@ -74,7 +74,7 @@ public class IFHMBMAPFRECDPP0009Payload {
         @Schema(description = "RSA Mileage", example = "900")
         @JsonProperty("vehicleMileage")
         private int vehicleMileage;
-        @JsonProperty("ListOfRSASetvice")
+        @JsonProperty("ListOfService")
         List<IFHMBMAPFRECDPP0009RSAServicePayload> listOfRSASetvice;
     }
 

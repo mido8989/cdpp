@@ -56,10 +56,10 @@
             , #{technicianCPF}
             , #{serviceType}
             , #{serviceStatus}
-            , to_date(#{serviceArrivaldate},'YYYY-MM-DD HH24:MI:SS')
-            , to_date(#{serviceStartdate},'YYYY-MM-DD HH24:MI:SS')
+            , #{serviceArrivaldate}::timestamp(0)
+            , #{serviceStartdate}::timestamp(0)
             , #{serviceDuration}
-            , to_date(#{serviceDeliverydate},'YYYY-MM-DD HH24:MI:SS')
+            , #{serviceDeliverydate}::timestamp(0)
         );
     </insert>
 

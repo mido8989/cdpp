@@ -35,6 +35,7 @@ public class IFHMBINNOCEANCDPP0018Payload {
         @JsonProperty("Error_spcMessage")
         private String errorSpcMessage;
 
+        @JsonProperty("ListOfServices")
         List<ListOfServices> listOfServices;
 
     }

@@ -12,7 +12,8 @@ public class IFHMBINNOCEANCDPP0025Payload {
     @Getter
     @Setter
     public static class Request{
-        ScheduleMaintenanceIN ScheduleMaintenanceIN;
+        @JsonProperty("ScheduleMaintenanceIN")
+        ScheduleMaintenanceIN scheduleMaintenanceIN;
     }
 
     @Schema(name = "IFHMBINNOCEANCDPP0025Payload.Response")
