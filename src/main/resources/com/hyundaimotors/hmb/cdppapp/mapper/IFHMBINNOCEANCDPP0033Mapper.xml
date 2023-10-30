@@ -28,6 +28,7 @@
             , (select "name" from process.account where dealercode__c = pa.dealercode__c limit 1) as dealerName
             , (select corporaterepresentativename__c from process.account where dealercode__c = pa.dealercode__c limit 1) as dealerNickname
             , a2.firstname  || ' ' || a2.lastname  as salesManName
+            , pp.chassi_model__c as model
             , pa.oper_status_cd__c as negotiationType
             , pa.dlr_con_int_id__c as salesManId
             , pa.fsc__c as fsc_ocn
@@ -70,7 +71,7 @@
         </if>
         <if test='idInterface == "4"'>
         and
-            a2.cpf__c = #{cpf}
+            a3.cpf__c = #{cpf}
         </if>
         <if test='idInterface == "5"'>
         and
@@ -104,7 +105,7 @@
         </if>
         <if test='idInterface == "11"'>
         and
-            pa.serialnumber = #{serialNumber}
+            pa.serialnumber like concat('%',#{serialNumber},'%')
         limit 1
         </if>
         <if test='idInterface == "12"'>
