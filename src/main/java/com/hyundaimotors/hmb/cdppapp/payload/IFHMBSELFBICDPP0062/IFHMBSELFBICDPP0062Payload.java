@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBSELFBICDPP0062;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -34,6 +36,6 @@ public class IFHMBSELFBICDPP0062Payload {
         @JsonProperty("Error_spcMessage")
         private String errorSpcMessage;
         @JsonProperty("Lead")
-        TotalLead totallead;
+        List<TotalLead> totallead;
     }
 }

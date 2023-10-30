@@ -146,7 +146,8 @@ public class TotalLead {
     @JsonProperty("QuoteReplaceIntention")
     private String quoteReplaceIntention;
     @JsonProperty("Contact")
-    List<TotalContact> contact;
+//    List<TotalContact> contact;//20231030 Object Type 으로 수정 Mapping Spec 확인
+    TotalContact contact;
     @JsonProperty("Action")
     TotalAction action;
 }
