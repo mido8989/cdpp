@@ -38,7 +38,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식)
-    @Scheduled(cron = "0 */5 * * * *")
+    //@Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
         System.out.println("GateWayAllTicket!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         
@@ -187,12 +187,41 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                 if(0 < jsonInteractions.size()){
                     interactions = (JSONObject)jsonInteractions.get(jsonInteractions.size()-1);
                     if(interactions.containsKey("ticket_interaction_id"))retrieveTicketId.setTicketInteractionId(String.valueOf(interactions.get("ticket_interaction_id")));
-                    //if(interactions.containsKey("ticket_interaction_type_id"))retrieveTicketId.setTicketInteractionTypeId(Integer.parseInt(String.valueOf(obj.get("ticket_interaction_type_id"))));
+                    if(interactions.containsKey("ticket_interaction_type_id")){
+                        retrieveTicketId.setTicketInteractionTypeId(Integer.parseInt(String.valueOf(interactions.get("ticket_interaction_type_id"))));
+                        if(1 == retrieveTicketId.getTicketInteractionTypeId()){
+                            if(obj.containsKey("complaint_content"))retrieveTicketId.setComplaintContent(String.valueOf(obj.get("complaint_content")));
+                            //retrieveTicketId.setMessage("Manifestation answer");
+                        }else if(2 == retrieveTicketId.getTicketInteractionTypeId()){
+                            //retrieveTicketId.setMessage("Answer");
+                        }else if(3 == retrieveTicketId.getTicketInteractionTypeId()){
+                            //retrieveTicketId.setMessage("Private Message - Company");
+                        }else if(4 == retrieveTicketId.getTicketInteractionTypeId()){
+                            //retrieveTicketId.setMessage("Tweet");
+                        }else if(5 == retrieveTicketId.getTicketInteractionTypeId()){
+                            //retrieveTicketId.setMessage("Facebook Post");
+                        }else if(6 == retrieveTicketId.getTicketInteractionTypeId()){
+                            //retrieveTicketId.setMessage("Private Message - Consumer");
+                        }else if(7 == retrieveTicketId.getTicketInteractionTypeId()){
+                            //retrieveTicketId.setMessage("Third Party Comment");
+                        }else if(8 == retrieveTicketId.getTicketInteractionTypeId()){
+                            retrieveTicketId.setRaModerationRequestMessage("Mediation Request");
+                            //if(interactions.containsKey("message"))retrieveTicketId.setRaModerationRequestMessage(String.valueOf(interactions.get("message")));
+                            //retrieveTicketId.setMessage("Mediation Request");
+                        }else if(9 == retrieveTicketId.getTicketInteractionTypeId()){
+                            retrieveTicketId.setRaModerationResponseMessage("Mediation Response");
+                            //if(interactions.containsKey("message"))retrieveTicketId.setRaModerationResponseMessage(String.valueOf(interactions.get("message")));
+                            //retrieveTicketId.setMessage("Mediation Response");
+                        }else if(10 == retrieveTicketId.getTicketInteractionTypeId()){
+                            //retrieveTicketId.setMessage("Redistribution");
+                        }else if(11 == retrieveTicketId.getTicketInteractionTypeId()){
+                            //retrieveTicketId.setMessage("Evaluation");
+                        }
+                    }
                     //if(interactions.containsKey("ticket_interaction_name"))retrieveTicketId.setTicketInteractionName(String.valueOf(interactions.get("ticket_interaction_name")));
                     if(interactions.containsKey("customer_id"))retrieveTicketId.setCustomerId(String.valueOf(interactions.get("customer_id")));
                     if(interactions.containsKey("responsible_id"))retrieveTicketId.setResponsibleId(String.valueOf(interactions.get("responsible_id")));
                     if(interactions.containsKey("responsible_name"))retrieveTicketId.setResponsibleId(String.valueOf(interactions.get("responsible_name")));
-                    if(interactions.containsKey("message"))retrieveTicketId.setMessage(String.valueOf(interactions.get("message")));
                     if(interactions.containsKey("privacy"))retrieveTicketId.setPrivacy(String.valueOf(interactions.get("privacy")));
                     if(interactions.containsKey("creation_date"))retrieveTicketId.setInteractionCreationDate(String.valueOf(interactions.get("creation_date")));
                     if(interactions.containsKey("modification_date"))retrieveTicketId.setModificationDate(String.valueOf(interactions.get("modification_date")));
@@ -267,7 +296,6 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                 if(obj.containsKey("request_moderation"))retrieveTicketId.setRequestModeration(String.valueOf(obj.get("request_moderation")));
                 if(obj.containsKey("request_evaluation"))retrieveTicketId.setRequestEvaluation(String.valueOf(obj.get("request_evaluation")));
                 if(obj.containsKey("frozen"))retrieveTicketId.setFrozen(String.valueOf(obj.get("frozen")));
-                if(obj.containsKey("complaint_content"))retrieveTicketId.setComplaintContent(String.valueOf(obj.get("complaint_content")));
                 if(obj.containsKey("ra_reason"))retrieveTicketId.setRaReason(String.valueOf(obj.get("ra_reason")));
                 if(obj.containsKey("ra_feeling"))retrieveTicketId.setRaFeeling(String.valueOf(obj.get("ra_feeling")));
                 if(obj.containsKey("complaint_response_content"))retrieveTicketId.setComplaintResponseContent(String.valueOf(obj.get("complaint_response_content")));
