@@ -94,11 +94,6 @@
         and
             pa.billing_date__c between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
         </if>
-        <!-- <if test='idInterface == "9"'>
-        and
-            pa.serialnumber = #{serialNumber}
-        limit 1
-        </if> -->
         <if test='idInterface == "10"'>
         and
             pa.billing_date__c = to_date(#{startDate}, 'YYYY-MM-DD')
