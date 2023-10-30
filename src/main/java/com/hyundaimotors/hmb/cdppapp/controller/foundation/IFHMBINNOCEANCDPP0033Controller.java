@@ -72,8 +72,8 @@ public class IFHMBINNOCEANCDPP0033Controller {
                     throw new Exception("haven't EndDate");
                 }
             }else if("9".equals(checkInterfaceVal)){
-                if(Objects.isNull(request.getSerialNumber()) || request.getSerialNumber().isEmpty()){
-                    throw new Exception("haven't SerialNumber");
+                if(Objects.isNull(request.getStartDate()) || Objects.isNull(request.getEndDate()) || request.getStartDate().isEmpty()  || request.getEndDate().isEmpty()){
+                    throw new Exception("haven't RenavamCode");
                 }
             }else if("10".equals(checkInterfaceVal)){
                 if(Objects.isNull(request.getStartDate()) || request.getStartDate().isEmpty()){
@@ -84,8 +84,8 @@ public class IFHMBINNOCEANCDPP0033Controller {
                     throw new Exception("haven't SerialNumber");
                 }
             }else if("12".equals(checkInterfaceVal)){
-                if(Objects.isNull(request.getSerialNumber()) || request.getSerialNumber().isEmpty()){
-                    throw new Exception("haven't SerialNumber");
+                if(Objects.isNull(request.getDealerCode()) || request.getDealerCode().isEmpty() || Objects.isNull(request.getStartDate()) || request.getStartDate().isEmpty() || Objects.isNull(request.getEndDate()) || request.getEndDate().isEmpty()){
+                    throw new Exception("haven't DealerCode");
                 }
             }else{
                 throw new Exception("haven't IdInterface");
