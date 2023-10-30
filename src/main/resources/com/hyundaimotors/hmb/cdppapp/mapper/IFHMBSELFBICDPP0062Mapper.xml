@@ -65,7 +65,8 @@
             psr.serialnumber = pas.serialnumber 
         where
             psr.legacycreateddate__c::date = to_date(#{date}, 'YYYY-MM-DD')
-       <if test="lead != null and lead != ''"> and psr.protocol__c = #{lead}</if>
+        and
+            psr.protocol__c = #{lead}
         <choose>
             <when test='created == "TestDrive"'>
                 and
