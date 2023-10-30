@@ -38,7 +38,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식)
-    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
         System.out.println("GateWayAllTicket!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         
@@ -233,10 +233,14 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                     JSONArray state = (JSONArray) customer.get("state");
                     if(0 < state.size()){
                         JSONObject adressState = (JSONObject)state.get(0);
-                        if(adressState.containsKey("state"))retrieveTicketId.setAddressState(String.valueOf(adressState.get("state")));
+                        if(adressState.containsKey("name"))retrieveTicketId.setAddressState(String.valueOf(adressState.get("name")));
                     }
 
                     JSONArray city = (JSONArray) customer.get("city");
+                    if(0 < city.size()){
+                        JSONObject customCity = (JSONObject)city.get(0);
+                        if(customCity.containsKey("name"))retrieveTicketId.setCity(String.valueOf(customCity.get("name")));
+                    }
                     
                     if(customer.containsKey("name")){
                         String subCustomName = customer.get("name").toString();
