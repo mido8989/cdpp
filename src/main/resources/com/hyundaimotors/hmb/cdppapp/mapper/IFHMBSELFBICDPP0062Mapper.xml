@@ -65,9 +65,9 @@
             psr.serialnumber = pas.serialnumber 
         where
             psr.legacycreateddate__c::date = to_date(#{date}, 'YYYY-MM-DD')
-        <if test="lead != null and lead != ''"> and psr.protocol__c = #{lead}</if>
+       <if test="lead != null and lead != ''"> and psr.protocol__c = #{lead}</if>
         <choose>
-            <when test='created == "TestDrive"'>
+            <when test='voc == "TestDrive"'>
                 and
                     psr.reason__c = 'Information'
                 and
@@ -75,7 +75,7 @@
                 and
                     psr.voc_class = 'Test drive'
             </when>
-            <when test='created == "RequestaQuote"'>
+            <when test='voc == "RequestaQuote"'>
                 and
                     psr.reason__c = 'Sales opportunity'
                 and
@@ -87,6 +87,21 @@
 
             </otherwise>
         </choose>
+
+        <choose>
+            <when test='created == "Y"'>
+                and
+                    psr.legacycreateddate__c::date = to_date(#{date}, 'YYYY-MM-DD')
+            </when>
+            <when test='created == "N"'>
+                and
+                    psr.legacy_last_update__c::date = to_date(#{date}, 'YYYY-MM-DD')
+            </when>
+            <otherwise>
+
+            </otherwise>
+        </choose>
+
     </select>
     
     <select id="getContact" parameterType="String" resultType="TotalContactDto">
