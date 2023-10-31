@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0025Mapper">
 
+    <select id="getProcProtocol" parameterType="ScheduleMaintenanceINDto" resultType="String">
+        select
+            protocol__c as procProtocol
+        from
+            process.service_request
+        where
+            external_id__c = CAST(#{rowId} AS TEXT)
+    </select>
+
     <insert id="insertObject" parameterType="ScheduleMaintenanceINDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_mntsrvc_schedule_maintenance
         (
@@ -65,5 +74,9 @@
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_mntsrvc_schedule_maintenace(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_mntsrvc_schedule_maintenace(#{PROC_PROTOCOL,jdbcType=VARCHAR,mode=IN});
     </insert>
 </mapper>
