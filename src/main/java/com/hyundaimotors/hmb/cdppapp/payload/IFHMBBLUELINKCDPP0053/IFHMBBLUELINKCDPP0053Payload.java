@@ -14,7 +14,14 @@ public class IFHMBBLUELINKCDPP0053Payload {
     @Getter
     @Setter
     public static class Request{
-        List<VehicleBluelink> Vehicle;
+        @Schema(description = "This tag was deactivated. serialNumber should be used instead.", example = "9BHBG51DADP011617")
+        @JsonProperty("Chassi")
+        private String chassi;
+        // @Schema(description = "Latest Mileage of Asset", example = "1000")
+        // @JsonProperty("LatestMileage")
+        // private String latestMileage;
+        @JsonProperty("ListOfBluelink")
+        List<Bluelink> listOfBluelink;
     }
 
     @Schema(name = "IFHMBBLUELINKCDPP0053Payload.Response")
@@ -22,9 +29,9 @@ public class IFHMBBLUELINKCDPP0053Payload {
     @Setter
     public static class Response{
         @JsonProperty("Error_spcCode")
-        private String ErrorSpcCode;
+        private String errorSpcCode;
         @JsonProperty("Error_spcMessage")
-        private String ErrorSpcMessage;
+        private String errorSpcMessage;
 
     }
 }
