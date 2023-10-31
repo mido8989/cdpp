@@ -6,8 +6,8 @@
         select 
             pas.row_id as assetId
             , pas.serialnumber as vin
-            , pas."name" as fscOcn
-            , pas.description__c as description
+            , pas.fsc__c as fscOcn
+            , pas."name"  as description
             , pas.billing_date__c as assignedDate
             , pas.purch_loc_desc__c as fiscalReceipt
             , pas.account_row_id__c as dealerId
