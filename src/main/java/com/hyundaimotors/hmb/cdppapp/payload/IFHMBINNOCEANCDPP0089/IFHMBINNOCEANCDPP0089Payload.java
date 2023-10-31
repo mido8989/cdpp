@@ -26,11 +26,11 @@ public class IFHMBINNOCEANCDPP0089Payload {
     public static class Response{
         @Schema(description = "Connex error code. Code 0 means success.", example = "0")
         @JsonProperty("Error_spcCode")
-        private String ErrorSpcCode;
+        private String errorSpcCode;
         @Schema(description = "Connex error message.", example = "OK")
         @JsonProperty("Error_spcMessage")
-        private String ErrorSpcMessage;
-        @JsonProperty("ListOfSatisfactionSurvey")
+        private String errorSpcMessage;
+        @JsonProperty("ListOfSatisfactionSurveyOut")
         List<SatisfactionSurvey> listOfSatisfactionSurvey;
     }
 }
