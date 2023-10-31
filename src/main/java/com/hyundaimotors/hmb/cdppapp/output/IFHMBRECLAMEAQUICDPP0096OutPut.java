@@ -2,7 +2,6 @@ package com.hyundaimotors.hmb.cdppapp.output;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublisher;
@@ -38,7 +37,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식)
-    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
         System.out.println("GateWayAllTicket!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         
