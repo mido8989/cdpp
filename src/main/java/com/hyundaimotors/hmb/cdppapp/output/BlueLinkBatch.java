@@ -86,7 +86,7 @@ public class BlueLinkBatch {
     }
 
 
-    @Scheduled(cron = "0 */5 * * * *") // 매 시간 실행 (크론 표현식)
+    //@Scheduled(cron = "0 */5 * * * *") // 매 시간 실행 (크론 표현식)
     public void runRestApiJob() {
         System.out.println("GateWay!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         JobExecution jobExecution;
