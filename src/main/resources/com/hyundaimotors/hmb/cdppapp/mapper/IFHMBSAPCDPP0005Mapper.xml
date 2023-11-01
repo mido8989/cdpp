@@ -9,6 +9,7 @@
             process.account
         where
             corporateregistrationnumber__c = #{cnpjNumber}
+        limit 1
     </select>
 
     <select id="foundAccountId" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
@@ -18,6 +19,7 @@
             process.account
         where
             lower(trim(name)) = lower(trim(#{name}))
+        limit 1
     </select>
     
     <insert id="insertObject" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
