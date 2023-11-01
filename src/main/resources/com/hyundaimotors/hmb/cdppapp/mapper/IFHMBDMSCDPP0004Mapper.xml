@@ -18,7 +18,7 @@
         on
             sr.protocol__c = po.testdriveprotocolid__c
         where
-            po.createddate = #{date}::date
+            po.createddate::date = #{date}::date
         <if test="statusLead != null and statusLead != ''">
             and
                 sr.status = #{statusLead}
