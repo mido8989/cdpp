@@ -37,7 +37,6 @@
         on
             ptc.protocolid__c = sr.protocol__c
         where
-        ptc.integrationid__c notnull
             <if test='created == "N"'>
                 and
                     ptc.legacy_last_upd = to_date(#{dateInput}, 'YYYY-MM-DD')
