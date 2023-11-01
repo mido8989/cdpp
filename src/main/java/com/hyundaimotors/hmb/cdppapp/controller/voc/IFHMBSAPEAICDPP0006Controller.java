@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.controller.voc;
 
+import java.util.UUID;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,7 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0006Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0006.IFHMBSAPEAICDPP0006Payload;
+import com.hyundaimotors.hmb.cdppapp.service.ApiLogService;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0006Service;
+import com.hyundaimotors.hmb.cdppapp.util.ApiLog;
+import com.hyundaimotors.hmb.cdppapp.util.ApiLogStep;
+import com.hyundaimotors.hmb.cdppapp.util.JsonUtils;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,6 +29,8 @@ public class IFHMBSAPEAICDPP0006Controller {
 
     private static final String IF_ID = "IF008";
     
+    private final ApiLogService logService;
+    
     private final IFHMBSAPEAICDPP0006Service service;
 
     private final ModelMapper defaultMapper;
@@ -31,12 +39,31 @@ public class IFHMBSAPEAICDPP0006Controller {
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0006Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBActionInboundWebserviceWF")
     public Object insertObject(@RequestBody IFHMBSAPEAICDPP0006Payload.Request request)throws Exception{
-        IFHMBSAPEAICDPP0006Dto dto = defaultMapper.map(request, IFHMBSAPEAICDPP0006Dto.class);
-        
-        IFHMBSAPEAICDPP0006Dto resultDto = new IFHMBSAPEAICDPP0006Dto();
-
-        resultDto = service.insertObject(dto);
-
-        return defaultMapper.map(resultDto, IFHMBSAPEAICDPP0006Payload.Response.class);
+    	UUID IF_TR_ID = UUID.randomUUID();
+    	
+    	// this.logApi(ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
+    	ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
+    	IFHMBSAPEAICDPP0006Payload.Response response = new IFHMBSAPEAICDPP0006Payload.Response();
+    	 try {
+    		IFHMBSAPEAICDPP0006Dto dto = defaultMapper.map(request, IFHMBSAPEAICDPP0006Dto.class);
+    		 
+	//    	this.logApi(ApiLogStep.STEP1, IF_TR_ID, null);
+    		ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
+	        IFHMBSAPEAICDPP0006Dto resultDto = service.insertObject(dto);
+	        ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP2, IF_TR_ID, null);
+//	        this.logApi(ApiLogStep.STEP1, IF_TR_ID, null);
+	
+	        response  = defaultMapper.map(resultDto, IFHMBSAPEAICDPP0006Payload.Response.class);
+//	        this.logApi(ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
+	        ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
+    	 }catch(Exception e) {
+//    		   response.setError_spcCode("500");
+//               response.setError_spcMessage(e.getLocalizedMessage());
+    		 response.setErrorSpcCode("500");
+    		 response.setErrorSpcMessage(e.getLocalizedMessage());
+//               this.logApi(ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
+    		 ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
+    	 }
+        return response;
     }
 }
