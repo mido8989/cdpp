@@ -54,13 +54,9 @@
             , pac.billingpostalcode as cep
             , pac.billingstreet as endereco
             , pac.row_id as idconnex
-            , psr.quote_replace_intention__c as dataPrevistaCarroNovo
+            <!--, psr.quote_replace_intention__c as dataPrevistaCarroNovo-->
         from 
             process.account pac
-        join
-            process.service_request psr  
-        on
-            pac.row_id = psr.contact_row_id__c
         where
             pac.row_id = #{rowId}
     </select>
