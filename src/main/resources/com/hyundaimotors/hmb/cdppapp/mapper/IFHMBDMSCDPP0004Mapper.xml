@@ -152,7 +152,7 @@
     <select id="getResult" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadResultDto">
         select 
             interactionstartdate__c as firstInteractionDate
-            , SaleStatus as saleStatus
+            , statussales__c as saleStatus
             , reason__c as reason
             , result__c as result
             , salespersoncode__c as saleCPF
@@ -163,6 +163,8 @@
             process.sales_consult_history
         where 
             protocolid__c = #{protocol}
+        order by interactionnumber__c desc
+        limit 1
     </select>
 
     <select id="getInteractionList" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadInteractionDto">
@@ -175,6 +177,7 @@
             process.sales_consult_history
         where
             protocolid__c = #{protocol}
+        order by interactionnumber__c asc
     </select>
 
     <select id="getVeiculoEntradaOPV" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeaDveiculoEntradaOPVDto">
