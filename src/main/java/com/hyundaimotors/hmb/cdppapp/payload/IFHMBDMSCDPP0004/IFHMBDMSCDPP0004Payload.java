@@ -14,11 +14,11 @@ public class IFHMBDMSCDPP0004Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(description = "MM/DD/YYYY", example = "2019-09-10")
+        @Schema(description = "YYYY-MM-DD", example = "2019-09-10")
         private String date;
-        @Schema(description = "It should be a pre-existing Dealer Code in CRM.", example = "proc00035047103")
+        @Schema(description = "It should be a pre-existing Dealer Code in CRM.", example = "B05AM26057")
         private String dealerCode;
-        @Schema(description = "It should be an existing Api Key in CRM.", example = "4455")
+        @Schema(description = "It should be an existing Api Key in CRM.", example = "4ectZfEIGhrAFoLyAUVq0HzuZ5GBMevx")
         private String apiKey;
         @Schema(description = "Open or Done", example = "Open")
         private String statusLead;
