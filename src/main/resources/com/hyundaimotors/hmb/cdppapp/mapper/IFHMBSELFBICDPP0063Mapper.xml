@@ -7,7 +7,7 @@
             pa.serialnumber as chassi
             , pa.billing_date__c::timestamp  as salesDate
             , pa.dealercode__c as salesDealerCode
-            , (select corporaterepresentativename__c from process.account where row_id  = pa.contact_row_id__c) as salesDealerNick
+            , (select corporaterepresentativename__c from process.account where row_id  = pa.account_row_id__c) as salesDealerNick
             , pa.oper_status_cd__c as salesCode
             , (select pp.part__c from process.product pp where pp.row_id = pa.product2id) as saleVersion
             , pa.fsc__c as salesFSCOCN
