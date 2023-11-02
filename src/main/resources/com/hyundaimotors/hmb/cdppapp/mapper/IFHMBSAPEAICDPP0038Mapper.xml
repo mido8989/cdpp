@@ -35,7 +35,7 @@
             , #{salesStatus}
             , #{saleCPF}
             , #{status}
-            , (#{firstInteractionDate}::timestamp
+            , #{firstInteractionDate}::timestamp
             , #{saleReason}
             , #{endDate}::timestamp
             , #{dlrReceiveDate}::timestamp
