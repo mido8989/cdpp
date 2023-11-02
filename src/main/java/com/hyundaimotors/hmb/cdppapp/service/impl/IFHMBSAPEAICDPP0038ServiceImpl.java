@@ -21,6 +21,7 @@ public class IFHMBSAPEAICDPP0038ServiceImpl implements IFHMBSAPEAICDPP0038Servic
     private final IFHMBSAPEAICDPP0038Mapper mapper;
 
     public IFHMBSAPEAICDPP0038Dto insertObject(IFHMBSAPEAICDPP0038Dto dto)throws Exception{
+        IFHMBSAPEAICDPP0038Dto resultDto = new IFHMBSAPEAICDPP0038Dto();
 
         mapper.insertLead(dto);
 
@@ -39,12 +40,15 @@ public class IFHMBSAPEAICDPP0038ServiceImpl implements IFHMBSAPEAICDPP0038Servic
         List<String> actionId = new ArrayList<>();
 
         actionId = mapper.getActionId(dto);
-
-        String actionRowId = actionId.toString();
+        if(0 < actionId.size()){
+            String actionRowId = String.join("," , actionId);
+            resultDto.setActionId(actionRowId);
+        }
         
-        IFHMBSAPEAICDPP0038Dto resultDto = new IFHMBSAPEAICDPP0038Dto();
+        
+        
         //resultDto.set(dto.getRowId());
-        resultDto.setActionId(actionRowId);
+        
         resultDto.setErrorSpcCode("0");
         resultDto.setErrorSpcMessage("OK");
 
