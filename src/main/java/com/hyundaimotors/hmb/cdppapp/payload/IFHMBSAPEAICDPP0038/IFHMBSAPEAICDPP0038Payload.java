@@ -56,7 +56,9 @@ public class IFHMBSAPEAICDPP0038Payload {
         private String visitdate;
         @Schema(description = "Visit Status", example = "Canceled")
         private String visitstat;
+        @JsonProperty("ListOfTemperature")
         List<Temperature> listOfTemperature;
+        @JsonProperty("ListOfInteraction")
         List<Interaction> listOfInteraction;
     }
 
