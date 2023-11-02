@@ -112,6 +112,6 @@
         from
             process.sales_consult_history psc
         where
-            external_id__c = #{rowId}
+            external_id__c = #{rowId}::text
     </select>
 </mapper>
