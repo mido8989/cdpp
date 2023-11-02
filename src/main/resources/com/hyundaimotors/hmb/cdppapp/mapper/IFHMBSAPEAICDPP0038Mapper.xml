@@ -105,4 +105,13 @@
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call replica.if_update_lead_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
+
+    <select id="getActionId" parameterType="IFHMBSAPEAICDPP0038Dto" resultType="list">
+        select
+            row_id as rowId
+        from
+            process.sales_consult_history psc
+        where
+            external_id__c = #{rowId}
+    </select>
 </mapper>
