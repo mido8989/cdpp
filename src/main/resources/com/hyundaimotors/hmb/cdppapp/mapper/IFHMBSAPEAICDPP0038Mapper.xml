@@ -35,15 +35,15 @@
             , #{salesStatus}
             , #{saleCPF}
             , #{status}
-            , to_timestamp(#{firstInteractionDate}, 'YYYY-MM-DD hh24:mi:ss')
+            , (#{firstInteractionDate}::timestamp
             , #{saleReason}
-            , to_timestamp(#{endDate}, 'YYYY-MM-DD hh24:mi:ss')
-            , to_timestamp(#{dlrReceiveDate}, 'YYYY-MM-DD hh24:mi:ss')
-            , to_timestamp(#{dlrResponseTime}, 'YYYY-MM-DD hh24:mi:ss')
+            , #{endDate}::timestamp
+            , #{dlrReceiveDate}::timestamp
+            , #{dlrResponseTime}::timestamp
             , #{pcd}
             , #{source}
-            , to_timestamp(#{schedvisit}, 'YYYY-MM-DD hh24:mi:ss')
-            , to_timestamp(#{visitdate}, 'YYYY-MM-DD hh24:mi:ss')
+            , #{schedvisit}::timestamp
+            , #{visitdate}::timestamp
             , #{visitstat}
         )
     </insert>
