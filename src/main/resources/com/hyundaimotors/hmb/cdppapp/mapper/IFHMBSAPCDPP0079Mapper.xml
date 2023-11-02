@@ -55,49 +55,49 @@
             , 'interface'
             , now()
             , 'interface'
-            , #{repair.soid}
-            , #{repair.dealercode}
-            , #{repair.vincode}
-            , #{repair.mileage}
-            , #{repair.model}
-            , #{repair.zyear}
-            , #{repair.plate}
-            , #{repair.status}
-            , #{repair.quicksrv}
-            , #{repair.consultCpf}
-            , #{repair.consultName}
-            , #{repair.opendt}
-            , #{repair.closedt}
-            , #{repair.canceldt}
-            , #{repair.deliverydt}
-            , #{repair.schedulingdt}
-            , #{repair.comments}
-            , #{repair.filesentdt}
-            , #{repair.totalWorkedHours}
-            , #{repair.totalSoldHours}
-            , #{repair.totalValue}
-            , #{repair.partner}
-            , #{repair.firstname}
-            , #{repair.lastname}
-            , #{repair.cpf}
-            , #{repair.city}
-            , #{repair.postlCod1}
-            , #{repair.street}
-            , #{repair.houseNo}
-            , #{repair.country}
-            , #{repair.region}
-            , #{repair.taxjurcode}
-            , #{repair.email}
-            , #{repair.telNumber}
-            , #{repair.mobNumber}
-            , #{repair.blockcontact}
-            , #{repair.queried}
-            , #{repair.ernam}
-            , #{repair.erdat}::date
-            , #{repair.erzet}::time
-            , #{repair.aenam}
-            , #{repair.aedat}::date
-            , #{repair.aezet}::time
+            , #{soid}
+            , #{dealercode}
+            , #{vincode}
+            , #{mileage}
+            , #{model}
+            , #{zyear}
+            , #{plate}
+            , #{status}
+            , #{quicksrv}
+            , #{consultCpf}
+            , #{consultName}
+            , #{opendt}
+            , #{closedt}
+            , #{canceldt}
+            , #{deliverydt}
+            , #{schedulingdt}
+            , #{comments}
+            , #{filesentdt}
+            , #{totalWorkedHours}
+            , #{totalSoldHours}
+            , #{totalValue}
+            , #{partner}
+            , #{firstname}
+            , #{lastname}
+            , #{cpf}
+            , #{city}
+            , #{postlCod1}
+            , #{street}
+            , #{houseNo}
+            , #{country}
+            , #{region}
+            , #{taxjurcode}
+            , #{email}
+            , #{telNumber}
+            , #{mobNumber}
+            , #{blockcontact}
+            , #{queried}
+            , #{ernam}
+            , #{erdat}::date
+            , #{erzet}::time
+            , #{aenam}
+            , #{aedat}::date
+            , #{aezet}::time
         )
     </insert>
     <insert id="insertRepairService" parameterType="IFHMBSAPCDPP0079Dto">
@@ -125,7 +125,7 @@
             , aedat
             , aezet
         )values
-        <foreach collection="repair.listOfService" item="item" separator=",">
+        <foreach collection="listOfService" item="item" separator=",">
             (
                 #{rowId}
                 , now()
@@ -177,7 +177,7 @@
             , aedat
             , aezet    
         )values
-        <foreach collection="repair.listOfParts" item="item" separator=",">
+        <foreach collection="listOfParts" item="item" separator=",">
             (
                 #{rowId}
                 , now()

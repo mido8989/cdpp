@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0079.IFHMBSAPCDPP0079Dto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0079.InboundRepairDto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0079Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPCDPP0079Service;
 
