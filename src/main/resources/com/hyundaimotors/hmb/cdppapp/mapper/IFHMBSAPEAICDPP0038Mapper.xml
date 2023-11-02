@@ -106,7 +106,7 @@
         call replica.if_update_lead_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
-    <select id="getActionId" parameterType="IFHMBSAPEAICDPP0038Dto" resultType="list">
+    <select id="getActionId" parameterType="IFHMBSAPEAICDPP0038Dto" resultType="List">
         select
             row_id as rowId
         from
