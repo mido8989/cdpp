@@ -9,6 +9,7 @@
             process.service_request
         where
             external_id__c = CAST(#{rowId} AS TEXT)
+        limit 1
     </select>
 
     <insert id="insertObject" parameterType="ScheduleMaintenanceINDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
