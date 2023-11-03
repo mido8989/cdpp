@@ -26,7 +26,6 @@ public class IFHMBBLUELINKCDPP0053Payload {
         // @JsonProperty("LatestMileage")
         // private String latestMileage;
         @JsonProperty("ListOfBluelink")
-        @Valid @NotNull
         List<Bluelink> listOfBluelink;
     }
 
