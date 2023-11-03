@@ -151,6 +151,6 @@
         from
             process.road_side_assistant
         where 
-            rowId = #{procId}
+            row_id = #{procId}
     </select>
 </mapper>
