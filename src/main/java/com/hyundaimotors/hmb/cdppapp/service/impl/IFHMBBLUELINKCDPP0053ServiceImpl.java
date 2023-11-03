@@ -76,6 +76,7 @@ public class IFHMBBLUELINKCDPP0053ServiceImpl implements IFHMBBLUELINKCDPP0053Se
         
         replicaMap.put("param_id", replicaParam);
 
+        System.out.println("replicaParamList :::::::::::::::::::::::::::::::::::::::::::::::::::::: " + replicaParamList);
         System.out.println("replicaParam :::::::::::::::::::::::::::::::::::::::::::::::::::::: " + replicaParam);
         System.out.println("replicaMap :::::::::::::::::::::::::::::::::::::::::::::::::::::: " + replicaMap);
         mapper.transferReplica(replicaMap);
