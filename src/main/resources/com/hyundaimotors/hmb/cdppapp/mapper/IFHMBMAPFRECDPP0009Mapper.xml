@@ -151,6 +151,6 @@
         from
             process.road_side_assistant
         where 
-            external_id__c = #{rowId}
+            rowId = #{procId}
     </select>
 </mapper>
