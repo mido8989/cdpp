@@ -7,10 +7,10 @@
             pd.protocol__c as protocolNum
             , sr.status as protocolStatus
             , pd.srvc_type as serviceType
-            , pd.srvc_arrival_date as serviceArrivaldate
-            , pd.srvc_start_date as serviceStartdate
+            , pd.srvc_arrival_date::timestamp as serviceArrivaldate
+            , pd.srvc_start_date::timestamp as serviceStartdate
             , pd.srvc_duration as serviceDuration
-            , pd.srvc_delivery_date as serviceDeliverydate
+            , pd.srvc_delivery_date::timestamp as serviceDeliverydate
             , pd.srvc_status_cd as serviceStatus
             , a2.dealercode__c as dealerCode
             , a2.corporaterepresentativename__c as dealerName
