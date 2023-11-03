@@ -3,7 +3,7 @@
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBDMSCDPP0004Mapper">
     
     <select id="getLeadInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
-        <!--select 
+        select 
             sr.contact_row_id__c as rowId
             , sr.protocol__c as protocol
             , sr.status as status
@@ -16,7 +16,7 @@
         join
             process.opportunity po
         on
-            sr.protocol__c = po.testdriveprotocolid__c
+            sr.protocol__c = po.protocol__c
         where
             po.createddate::date = #{date}::date
         <if test="statusLead != null and statusLead != ''">
@@ -30,15 +30,7 @@
         <if test="apiKey != null and apiKey != ''">
             and
                 pa.apikey__c = #{apiKey}
-        </if>-->
-        select
-            sr.contact_row_id__c as rowId
-            , sr.protocol__c as protocol
-            , sr.status as status
-        from
-            process.service_request sr
-        where
-            protocol__c = 'HMB17069869853'
+        </if>
     </select>
 
     <select id="getContactInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadContactDto">
