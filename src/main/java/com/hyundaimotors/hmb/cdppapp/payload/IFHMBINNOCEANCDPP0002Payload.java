@@ -5,6 +5,9 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,10 +25,14 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @JsonProperty("CPF")
         private String cpf;
         @NotNull
+        @NotEmpty
+        @NotBlank
         @Schema(description = "Contact first name", example = "Jose")
         @JsonProperty("FirstName")
         private String firstName;
         @NotNull
+        @NotEmpty
+        @NotBlank
         @Schema(description = "Contact last name", example = "Ciclano")
         @JsonProperty("LastName")
         private String lastName;
@@ -48,6 +55,8 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @JsonProperty("CellPhone")
         private String cellPhone;
         @NotNull
+        @NotEmpty
+        @NotBlank
         @Schema(description = "Contact email address.", example = "kilosolution2s@gmail.com")
         @JsonProperty("EmailAddress")
         private String emailAddress;
@@ -142,15 +151,15 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @JsonProperty("already_customer")
         private String alreadyCustomer;
 
-        @JsonProperty("ListOfCurrentCars")
+        @Valid @JsonProperty("ListOfCurrentCars")
         List<InboundContactWorkflowCarPayLoad> listOfCurrentCars;
-        @JsonProperty("ListOfApps")
+        @Valid @JsonProperty("ListOfApps")
         List<InboundContactWorkflowAppPayLoad> listOfApps;
-        @JsonProperty("ListOfSocialMedia")
+        @Valid @JsonProperty("ListOfSocialMedia")
         List<InboundContactWorkflowSnsPayLoad> listOfSocialMedia;
-        @JsonProperty("ListOfHobby")
+        @Valid @JsonProperty("ListOfHobby")
         List<InboundContactWorkflowHobbyPayLoad> listOfHobby;
-        @JsonProperty("ListOfSoccerTeam")
+        @Valid @JsonProperty("ListOfSoccerTeam")
         List<InboundContactWorkflowSoccerTeamPayLoad> listOfSoccerTeam;
     }
 

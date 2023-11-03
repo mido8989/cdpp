@@ -17,6 +17,7 @@ public class IFHMBINNOCEANCDPP0024Payload {
         @Schema(description = "UPSERT", example = "UPSERT")
         private String operation;
         @Schema(description = "Record identifier.", example = "1")
+        @NotNull
         @JsonProperty("excp-id")
         private int excpId;
         @NotNull

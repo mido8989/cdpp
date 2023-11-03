@@ -3,6 +3,7 @@ package com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0025;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ public class IFHMBINNOCEANCDPP0025Payload {
     @Getter
     @Setter
     public static class Request{
+        @Valid
         ScheduleMaintenanceIN ScheduleMaintenanceIN;
     }
 

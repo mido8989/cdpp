@@ -3,6 +3,9 @@ package com.hyundaimotors.hmb.cdppapp.payload;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,10 +20,12 @@ public class IFHMBSAPCDPP0005Payload {
         @Schema(description = "Company document number (numbers only)", example = "2038025000614")
         private String cnpjNumber;
         @Schema(description = "Company name", example = "AUTO POSTO ITATIAIA LTDA SUL")
+        @NotNull @NotBlank @NotEmpty
         private String name;
         @Schema(description = "Company nickname", example = "POSTO ITATIAIA")
         private String nickname;
-        @Schema(description = "Parent Company if belongs to a group.", example = "AUTO POSTO ITATIAIA LTDA")
+        @NotNull @NotBlank @NotEmpty
+        @Schema(description = "Parent Company if belongs to a group.", example = "AUTO POSTO ITATIAIA LTDA")        
         private String parentAccountName;
         @Schema(description = "agencyCode", example = "HQ")
         private String agencyCode;
@@ -36,6 +41,7 @@ public class IFHMBSAPCDPP0005Payload {
         private String contractedSince;
         @Schema(description = "External source. Valid values: X Call Center , X Dealer , X Home Page , X Marketing , X Sap ", example = "Call Center")
         private String source;
+        @NotNull @NotBlank @NotEmpty
         @Schema(description = "National or International", example = "National")
         private String organizationType;
         @Schema(description = "Main phone.", example = "2345678")

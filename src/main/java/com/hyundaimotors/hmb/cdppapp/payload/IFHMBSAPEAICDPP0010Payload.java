@@ -5,6 +5,9 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,22 +19,21 @@ public class IFHMBSAPEAICDPP0010Payload {
     @Setter
     public static class Request{
         @Schema(description = "This tag was deactivated. serialNumber should be used instead.", example = "9BHBG51DADP011617")
-        @NotNull
+        @NotNull @NotBlank @NotEmpty
         private String intergrationId;
         @Schema(description = "Valid values:Dealer Owned, Customer Owned, Cancelled.", example = "Customer Owned")
         private String status;
         @Schema(description = "Chassis number.Unique code for the asset record to be added. It is used as key field for this integration, to determine if a existing record should be updated or a new record should be inserted.", example = "9BHBH41DBGP633658")
-        @NotNull
+        @NotNull @NotBlank @NotEmpty
         private String serialNumber;
-        @Schema(description = "Renavam code.", example = "497269414")
-        @NotNull
+        @Schema(description = "Renavam code.", example = "497269414")        
         private String renavamCode;
         @Schema(description = "Engine number.", example = "F3LACU001831")
         private String engineNumber;
         @Schema(description = "Vehicle Plate.", example = "FCK1760")
         private String vehicleLicenseNumber;
         @Schema(description = "Product FSC OCN Name", example = "092214A000")
-        @NotNull
+        @NotNull @NotBlank @NotEmpty
         private String fscOcn;
         @Schema(description = "Product description.", example = "ELANTRA")
         private String modelName;
@@ -89,9 +91,9 @@ public class IFHMBSAPEAICDPP0010Payload {
         private String tdatHome;
         @Schema(description = "ccs_flg", example = "N")
         private String ccs_flg;
-        @JsonProperty("ListOfContact")
+        @Valid @JsonProperty("ListOfContact")
         List<AutoVehicleWebserviceWFContactPayload> contact;
-        @JsonProperty("ListOfAccount")
+        @Valid @JsonProperty("ListOfAccount")
         List<AutoVehicleWebserviceWFAccountPayload> account;
     }
 

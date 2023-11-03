@@ -1,6 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0023;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ public class IFHMBINNOCEANCDPP0023Payload {
     @Getter
     @Setter
     public static class Request{
+        @Valid
         EmpAvailabIn EmpAvailabIn;
     }
 

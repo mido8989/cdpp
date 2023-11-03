@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -47,8 +48,7 @@ public class IFHMBSAPEAICDPP0006Payload {
         @Schema(description = "Action inbound interface", example = "123456")
         private String purchasePurposeId;
         @Schema(description = "Action Type", example = "E-mail - Sa 00EDda")
-        @NotNull
-        @NotEmpty
+        @NotNull @NotBlank @NotEmpty
         private String type;
         @Schema(description = "Protocol Numer", example = "HMB8761468242")
         private String srProtocol;

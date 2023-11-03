@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,9 @@ public class IFHMBSMARTERSCDPP0036Payload {
     @Getter
     @Setter
     public static class Request{
+        @Valid
         ServiceRequestChatInput serviceRequestChatInput;
+        @Valid
         List<Chat> listOfChat;
         List<Message> listOfMessage;
     }
