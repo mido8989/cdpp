@@ -20,7 +20,7 @@
             , pas.manufacturedate  as vehicleManufacyear
             , (select ci.val from process.color_information ci where ci.lang_id__c = 'ENU' and ci."type" = 'AUTO_EXTERIOR' and ci.name_code = pas.vehiclecolor__c) as vehicleExtcolor
             , pas.serialnumber as vehicleChassi
-            , (select concat(pc.firstname || ' ' || pc.lastname ) from process.contact pc where row_id = pd.srvc_consultant_id) as consultantName
+            , concat(a2.firstname || ' ' || a2.lastname ) as consultantName
             , (select concat(pc.firstname || ' ' || pc.lastname ) from process.contact pc where row_id = pd.srvc_technician_id) as technicianName
         from 
             process.dealer_appointment_history pd
