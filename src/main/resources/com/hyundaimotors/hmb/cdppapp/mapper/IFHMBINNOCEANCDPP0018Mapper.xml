@@ -7,10 +7,10 @@
             pd.protocol__c as protocolNum
             , sr.status as protocolStatus
             , pd.srvc_type as serviceType
-            , pd.srvc_arrival_date::timestamp as serviceArrivaldate
-            , pd.srvc_start_date::timestamp as serviceStartdate
+            , (pd.srvc_arrival_date::timestamp)::varchar as serviceArrivaldate
+            , (pd.srvc_start_date::timestamp)::varchar as serviceStartdate
             , pd.srvc_duration as serviceDuration
-            , pd.srvc_delivery_date::timestamp as serviceDeliverydate
+            , (pd.srvc_delivery_date::timestamp)::varchar as serviceDeliverydate
             , pd.srvc_status_cd as serviceStatus
             , a2.dealercode__c as dealerCode
             , a2.corporaterepresentativename__c as dealerName
@@ -20,7 +20,7 @@
             , pas.manufacturedate  as vehicleManufacyear
             , (select ci.val from process.color_information ci where ci.lang_id__c = 'ENU' and ci."type" = 'AUTO_EXTERIOR' and ci.name_code = pas.vehiclecolor__c) as vehicleExtcolor
             , pas.serialnumber as vehicleChassi
-            , concat(a2.firstname || ' ' || a2.lastname ) as consultantName
+            , (select concat(a2.firstname || ' ' || a2.lastname ) from process.contact pc where row_id = pd.srvc_consultant_id) as consultantName
             , (select concat(pc.firstname || ' ' || pc.lastname ) from process.contact pc where row_id = pd.srvc_technician_id) as technicianName
         from 
             process.dealer_appointment_history pd
