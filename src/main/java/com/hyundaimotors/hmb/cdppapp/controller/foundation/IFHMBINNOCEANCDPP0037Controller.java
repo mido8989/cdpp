@@ -22,6 +22,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Update Contact IN WF", description = "Innocean, SAP EAI list Interface")
@@ -41,7 +42,7 @@ public class IFHMBINNOCEANCDPP0037Controller {
     @Operation(summary = "Person Account Update", description = "Person Account Update")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0037Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBUpdateContactINWF")
-    public Object updateObject(@RequestBody IFHMBINNOCEANCDPP0037Payload.Request request) throws Exception {
+    public Object updateObject(@Valid @RequestBody IFHMBINNOCEANCDPP0037Payload.Request request) throws Exception {
        UUID IF_TR_ID = UUID.randomUUID();
 
        IFHMBINNOCEANCDPP0037Payload.Response response = new IFHMBINNOCEANCDPP0037Payload.Response();

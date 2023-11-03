@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Service Request Webservice WF", description = "This web service can be used to insert occurrences into Connex system. Connex uses the upsert method in this web service, which means it will determine if an existing record should be updated or a new record should be inserted based on the information provided.")
@@ -38,7 +39,7 @@ public class IFHMBINNOCEANCDPP0034Controller {
     @Operation(summary = "HMB Service Request Webservice WF", description = "HMB Service Request Webservice WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0034Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBServiceRequestWebserviceWF")
-    public Object insertObject(@RequestBody IFHMBINNOCEANCDPP0034Payload.Request request) throws Exception {
+    public Object insertObject(@Valid @RequestBody IFHMBINNOCEANCDPP0034Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0034Payload.Response response = new IFHMBINNOCEANCDPP0034Payload.Response();

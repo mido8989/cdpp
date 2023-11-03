@@ -22,6 +22,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Register Loyalty Benefit Used WS", description = "Innocean Benefit insert or update Interface")
@@ -41,7 +42,7 @@ public class IFHMBINNOCEANCDPP0028Controller {
     @Operation(summary = "Benefit imfomation upsert", description = "Benefit imfomation upsert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0028Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBRegisterLoyaltyBenefitUsedWS")
-    public Object upsertObject(@RequestBody IFHMBINNOCEANCDPP0028Payload.Request request) throws Exception {
+    public Object upsertObject(@Valid @RequestBody IFHMBINNOCEANCDPP0028Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0028Payload.Response response = new IFHMBINNOCEANCDPP0028Payload.Response();

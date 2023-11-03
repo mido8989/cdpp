@@ -24,6 +24,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB MNTSRVC Customer Schedule", description = "This web service can be used to query the customer's maintenance service schedule.")
@@ -43,7 +44,7 @@ public class IFHMBINNOCEANCDPP0018Controller {
     @Operation(summary = "HMB MNTSRVC Customer Schedule", description = "HMB MNTSRVC Customer Schedule ")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0018Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBMNTSRVCCustomerSchedule")
-    public Object getList(@RequestBody IFHMBINNOCEANCDPP0018Payload.Request request) throws Exception {
+    public Object getList(@Valid @RequestBody IFHMBINNOCEANCDPP0018Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0018Payload.Response response = null;//new IFHMBINNOCEANCDPP0018Payload.Response();

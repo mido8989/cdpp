@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Get BLK WF", description = "Interface Requirement for Get Bluelink I/F Requirement")
@@ -38,7 +39,7 @@ public class IFHMBBLUELINKCDPP0091Controller {
     @Operation(summary = "HMB Get BLK WF", description = "HMB Get BLK WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBBLUELINKCDPP0091Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBGetBLKWF")
-    public Object updateObject(@RequestBody IFHMBBLUELINKCDPP0091Payload.Request request) throws Exception {
+    public Object updateObject(@Valid @RequestBody IFHMBBLUELINKCDPP0091Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBBLUELINKCDPP0091Payload.Response response = new IFHMBBLUELINKCDPP0091Payload.Response();

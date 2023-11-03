@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Get Lead WS", description = "DMS list Interface")
@@ -40,7 +41,7 @@ public class IFHMBDMSCDPP0004Controller {
     @Operation(summary = "Lead list", description = "Lead list.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBDMSCDPP0004Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBGetLeadWS")
-    public Object getObject(@RequestBody IFHMBDMSCDPP0004Payload.Request request) throws Exception {
+    public Object getObject(@Valid @RequestBody IFHMBDMSCDPP0004Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
 
         IFHMBDMSCDPP0004Payload.Response response = new IFHMBDMSCDPP0004Payload.Response();

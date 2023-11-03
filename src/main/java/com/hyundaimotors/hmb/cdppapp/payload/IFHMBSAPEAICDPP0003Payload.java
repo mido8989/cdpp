@@ -3,6 +3,8 @@ package com.hyundaimotors.hmb.cdppapp.payload;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,13 +16,15 @@ public class IFHMBSAPEAICDPP0003Payload {
     @Setter
     public static class Request{
         @Schema(description = "FSC OCN unique code. This is the key field for integration.", example = "1-RGHT2")
-        @NotNull
+        @NotNull @NotBlank @NotEmpty
         @JsonProperty("Name")
         private String name;
         @Schema(description = "Name of external system.", example = "")
+        @NotNull @NotBlank @NotEmpty
         @JsonProperty("Source")
         private String source;
         @Schema(description = "Connex product type. It must be a literal value for the purpose of this project: Vehicle.", example = "Vehicle")
+        @NotNull @NotBlank @NotEmpty
         @JsonProperty("Type")
         private String type;
         @Schema(description = "Vehicle description: E.g.:", example = "HB20 1.6L COMFORT PLUS MT")

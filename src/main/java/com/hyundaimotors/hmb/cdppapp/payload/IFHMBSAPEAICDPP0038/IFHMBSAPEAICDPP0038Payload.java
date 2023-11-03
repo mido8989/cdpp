@@ -5,6 +5,9 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -49,6 +52,7 @@ public class IFHMBSAPEAICDPP0038Payload {
         @Schema(description = "PNE Flag", example = "Y")
         private String pcd;
         @Schema(description = "Source", example = "Source")
+        @NotNull @NotBlank @NotEmpty
         private String source;
         @Schema(description = "Scheduled Visit Date", example = "2018-10-17 16:30:00")
         private String schedvisit;

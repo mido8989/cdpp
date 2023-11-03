@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Inbound Color", description = "This web service can be used to insert or Update  List Of Val  Color into Connex.")
@@ -37,7 +38,7 @@ public class IFHMBSAPEAICDPP0015Controller {
     @Operation(summary = "HMB Inbound Color", description = "HMB Inbound Color")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0015Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBInboundColor")
-    public Object upserObject(@RequestBody IFHMBSAPEAICDPP0015Payload.Request request) throws Exception {
+    public Object upserObject(@Valid @RequestBody IFHMBSAPEAICDPP0015Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBSAPEAICDPP0015Payload.Response response = new IFHMBSAPEAICDPP0015Payload.Response();

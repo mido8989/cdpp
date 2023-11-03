@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Product List Inbound WF", description = "SAP EAI Product Create/Update Interface")
@@ -40,7 +41,7 @@ public class IFHMBSAPEAICDPP0026Controller {
     @Operation(summary = "UpsertProductList", description = "UpsertProductList")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0026Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBProductListInboundWF")
-    public Object insertObject(@RequestBody IFHMBSAPEAICDPP0026Payload.Request request)throws Exception{
+    public Object insertObject(@Valid @RequestBody IFHMBSAPEAICDPP0026Payload.Request request)throws Exception{
     	UUID IF_TR_ID = UUID.randomUUID();
     	
     	IFHMBSAPEAICDPP0026Payload.Response response = new IFHMBSAPEAICDPP0026Payload.Response();

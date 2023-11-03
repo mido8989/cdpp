@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Asset Contact Upsert Webservice WS", description = "INNOCEAN, EAI list Interface")
@@ -38,7 +39,7 @@ public class IFHMBZICARDCDPP0007Controller {
     @Operation(summary = "assetContact upsert", description = "assetContact upsert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBZICARDCDPP0007Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBAssetContactUpsertWS")
-    public Object getObject(@RequestBody IFHMBZICARDCDPP0007Payload.Request request) throws Exception {
+    public Object getObject(@Valid @RequestBody IFHMBZICARDCDPP0007Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBZICARDCDPP0007Payload.Response response = new IFHMBZICARDCDPP0007Payload.Response();

@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Search IVR Contact", description = "This web service will be created to be used to search IVR Contact ) by phone number and return contact / protocol information.")
@@ -38,7 +39,7 @@ public class IFHMBCSUCDPP0086Controller {
     @Operation(summary = "HMB Search IVR Contact", description = "HMB Search IVR Contact")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBCSUCDPP0086Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBSearchIVRContact")
-    public Object insertObject(@RequestBody IFHMBCSUCDPP0086Payload.Request request) throws Exception {
+    public Object insertObject(@Valid @RequestBody IFHMBCSUCDPP0086Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBCSUCDPP0086Payload.Response response = new IFHMBCSUCDPP0086Payload.Response();

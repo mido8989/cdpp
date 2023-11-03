@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Service Request Attachment", description = "This web service can be used to insert attachment  into Connex system.")
@@ -38,7 +39,7 @@ public class IFHMBSAPEAICDPP0035Controller {
     @Operation(summary = "HMB Service Request Attachment", description = "HMB Service Request Attachment")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0035Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBServiceRequestAttachment")
-    public Object upserObject(@RequestBody IFHMBSAPEAICDPP0035Payload.Request request) throws Exception {
+    public Object upserObject(@Valid @RequestBody IFHMBSAPEAICDPP0035Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBSAPEAICDPP0035Payload.Response response = new IFHMBSAPEAICDPP0035Payload.Response();

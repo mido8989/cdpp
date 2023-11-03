@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Get VIN Sales WF", description = "Interface Requirement for Get VIN Sales WF I/F Requirement")
@@ -38,7 +39,7 @@ public class IFHMBSELFBICDPP0063Controller {
     @Operation(summary = "HMB Get VIN Sales WF", description = "HMB Get VIN Sales WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSELFBICDPP0063Payload.Request.class)))
     @PostMapping(value = "/api/v1/HMBGetVINSalesWF")
-    public Object getObject(@RequestBody IFHMBSELFBICDPP0063Payload.Request request) throws Exception {
+    public Object getObject(@Valid @RequestBody IFHMBSELFBICDPP0063Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
 
         IFHMBSELFBICDPP0063Payload.Response response = new IFHMBSELFBICDPP0063Payload.Response();

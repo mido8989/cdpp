@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Get Contact WF", description = "INNOCEAN, EAI list Interface")
@@ -39,7 +40,7 @@ public class IFHMBINNOCEANCDPP0001Controller {
     @Operation(summary = "HMB Get Contact WF", description = "HMB Get Contact WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0001Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBGetContactWF")
-    public Object getObject(@RequestBody IFHMBINNOCEANCDPP0001Payload.Request request) throws Exception {
+    public Object getObject(@Valid @RequestBody IFHMBINNOCEANCDPP0001Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0001Payload.Response response = new IFHMBINNOCEANCDPP0001Payload.Response();

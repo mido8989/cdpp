@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB MNTSRVC Manage Dealer Service", description = "Innocean, SAP EAI list Interface")
@@ -40,7 +41,7 @@ public class IFHMBINNOCEANCDPP0046Controller {
     @Operation(summary = "dealer Manage list", description = "dealer Manage list.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0046Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBMNTSRVCManageDealerService")
-    public Object getList(@RequestBody IFHMBINNOCEANCDPP0046Payload.Request request) throws Exception {
+    public Object getList(@Valid @RequestBody IFHMBINNOCEANCDPP0046Payload.Request request) throws Exception {
        UUID IF_TR_ID = UUID.randomUUID();
        
        IFHMBINNOCEANCDPP0046Payload.Response response = new IFHMBINNOCEANCDPP0046Payload.Response();

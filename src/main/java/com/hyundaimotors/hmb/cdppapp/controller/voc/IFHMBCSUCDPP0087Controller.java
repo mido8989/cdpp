@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMBSearchContactWF", description = "This web service will be created to be used to search Contact  by Contact id, Serial number, Campaimg Name  and return  Vehicle, Campaing nformation and Contacts.")
@@ -38,7 +39,7 @@ public class IFHMBCSUCDPP0087Controller {
     @Operation(summary = "HMBSearchContactWF", description = "HMBSearchContactWF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBCSUCDPP0087Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBSearchContactWF")
-    public Object insertObject(@RequestBody IFHMBCSUCDPP0087Payload.Request request) throws Exception {
+    public Object insertObject(@Valid @RequestBody IFHMBCSUCDPP0087Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBCSUCDPP0087Payload.Response response = new IFHMBCSUCDPP0087Payload.Response();

@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Channel Partner Get Webservice Inbound WF", description = "This web service will be created to be used to search Channel Partner  (individuals) by source and return channet /Contact information.")
@@ -40,7 +41,7 @@ public class IFHMBINNOCEANCDPP0012Controller {
     @Operation(summary = "HMB Channel Partner Get Webservice Inbound WF", description = "HMB Channel Partner Get Webservice Inbound WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0012Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBChannelPartnerGetWebserviceInboundWF")
-    public Object getObject(@RequestBody IFHMBINNOCEANCDPP0012Payload.Request request) throws Exception {
+    public Object getObject(@Valid @RequestBody IFHMBINNOCEANCDPP0012Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0012Payload.Response response = new IFHMBINNOCEANCDPP0012Payload.Response();

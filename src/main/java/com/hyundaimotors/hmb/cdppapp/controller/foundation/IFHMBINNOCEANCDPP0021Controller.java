@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB MNTSRVC Maintenance Service", description = "This web service can be used to query availability of maintenance services in the dealers.")
@@ -40,7 +41,7 @@ public class IFHMBINNOCEANCDPP0021Controller {
     @Operation(summary = "HMB MNTSRVC Maintenance Service", description = "This web service can be used to query availability of maintenance services in the dealers.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0021Payload.Response.class)))
     @PostMapping(value = "/api/v1/getHMBMNTSRVCMaintenanceService")
-    public Object getList(@RequestBody IFHMBINNOCEANCDPP0021Payload.Request request) throws Exception {
+    public Object getList(@Valid @RequestBody IFHMBINNOCEANCDPP0021Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0021Payload.Response response = new IFHMBINNOCEANCDPP0021Payload.Response();

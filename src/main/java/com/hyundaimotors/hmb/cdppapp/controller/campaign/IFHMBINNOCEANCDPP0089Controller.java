@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Satisfaction Survey WS", description = "This web service can be used to retrieve from Connex retail sales data with their associated individuals and legal entities. Retail sales will have status Customer Owned. For all business purposes, only contacts/accounts with relationship status \"Active\" should be considered. ")
@@ -40,7 +41,7 @@ public class IFHMBINNOCEANCDPP0089Controller {
     @Operation(summary = "HMB Satisfaction Survey WS", description = "HMB Satisfaction Survey WS")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0089Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBSatisfactionSurveyWS")
-    public Object getObject(@RequestBody IFHMBINNOCEANCDPP0089Payload.Request request) throws Exception {
+    public Object getObject(@Valid @RequestBody IFHMBINNOCEANCDPP0089Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0089Payload.Response response = new IFHMBINNOCEANCDPP0089Payload.Response();

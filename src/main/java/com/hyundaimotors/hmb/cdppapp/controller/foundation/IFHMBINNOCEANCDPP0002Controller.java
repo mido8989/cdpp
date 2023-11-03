@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Inbound Contact Interface Workflow", description = "INNOCEAN, SAP EAI insert Interface")
@@ -38,7 +39,7 @@ public class IFHMBINNOCEANCDPP0002Controller {
     @Operation(summary = "Person Account Insert", description = "Person Account Insert.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0002Payload.Request.class)))
     @PostMapping(value = "/api/v1/HMBInboundContactInterfaceWorkflow")
-    public Object insertInboundContactWorkflow(@RequestBody IFHMBINNOCEANCDPP0002Payload.Request request) throws Exception {
+    public Object insertInboundContactWorkflow(@Valid @RequestBody IFHMBINNOCEANCDPP0002Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
 
         ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));

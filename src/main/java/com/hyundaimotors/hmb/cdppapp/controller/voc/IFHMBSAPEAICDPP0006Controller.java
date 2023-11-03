@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Action Inbound Webservice WF", description = "This web service can be used to  update Action information")
@@ -38,7 +39,7 @@ public class IFHMBSAPEAICDPP0006Controller {
     @Operation(summary = "HMB Action Inbound Webservice WF", description = "HMB Action Inbound Webservice WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0006Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBActionInboundWebserviceWF")
-    public Object insertObject(@RequestBody IFHMBSAPEAICDPP0006Payload.Request request) throws Exception {
+    public Object insertObject(@Valid @RequestBody IFHMBSAPEAICDPP0006Payload.Request request) throws Exception {
          UUID IF_TR_ID = UUID.randomUUID();
          
          ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));

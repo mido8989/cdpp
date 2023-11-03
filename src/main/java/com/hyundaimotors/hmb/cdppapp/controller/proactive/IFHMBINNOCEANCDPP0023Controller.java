@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB MNTSRVC Manage Employee Availability", description = "This web service can be used to manage the maintenance service consultant availability. This web service will use a synchronize operation and expects to receive one item in the list for each week day available. The week days not present in the XML file will be excluded from the consultant availability, making the Connex database look like an exact photo from the xml.")
@@ -38,7 +39,7 @@ public class IFHMBINNOCEANCDPP0023Controller {
     @Operation(summary = "HMBMNTSRVCManageEmployeeAvailability", description = "HMB MNTSRVC Manage Employee Availability")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0023Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBMNTSRVCManageEmployeeAvailability")
-    public Object upsertObject(@RequestBody IFHMBINNOCEANCDPP0023Payload.Request request) throws Exception {
+    public Object upsertObject(@Valid @RequestBody IFHMBINNOCEANCDPP0023Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0023Payload.Response response = new IFHMBINNOCEANCDPP0023Payload.Response();

@@ -22,6 +22,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Inbound Channel Partner Interface Workflow", description = "delear Account Insert Interface")
@@ -41,7 +42,7 @@ public class IFHMBINNOCEANCDPP0013Controller {
     @Operation(summary = "delear Account Insert", description = "delear Account Insert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0002Payload.Request.class)))
     @PostMapping(value = "/api/v1/HMBInboundChannelPartnerInterfaceWorkflow")
-    public Object upsertObject(@RequestBody IFHMBINNOCEANCDPP0013Payload.Request request) throws Exception {
+    public Object upsertObject(@Valid @RequestBody IFHMBINNOCEANCDPP0013Payload.Request request) throws Exception {
        UUID IF_TR_ID = UUID.randomUUID();
        
        IFHMBINNOCEANCDPP0013Payload.Response response = new IFHMBINNOCEANCDPP0013Payload.Response();

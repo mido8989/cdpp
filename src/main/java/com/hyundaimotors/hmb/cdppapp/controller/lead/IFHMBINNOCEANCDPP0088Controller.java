@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Amaro CSI Survey WS", description = "This web service can be used to send survey data to Connex.")
@@ -38,7 +39,7 @@ public class IFHMBINNOCEANCDPP0088Controller {
     @Operation(summary = "HMB Amaro CSI Survey WS", description = "HMB Amaro CSI Survey WS")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0088Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBAmaroCSISurveyWS")
-    public Object updateObject(@RequestBody IFHMBINNOCEANCDPP0088Payload.Request request) throws Exception {
+    public Object updateObject(@Valid @RequestBody IFHMBINNOCEANCDPP0088Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
 
         IFHMBINNOCEANCDPP0088Payload.Response response = new IFHMBINNOCEANCDPP0088Payload.Response();

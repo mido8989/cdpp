@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Get Total Leads WF", description = "Interface Requirement for Get Total Leads WF I/F Requirement")
@@ -40,7 +41,7 @@ public class IFHMBSELFBICDPP0062Controller {
     @Operation(summary = "HMB Get Total Leads WF", description = "HMB Get Total Leads WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSELFBICDPP0062Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBGetTotalLeadsWF")
-    public Object getObject(@RequestBody IFHMBSELFBICDPP0062Payload.Request request) throws Exception {
+    public Object getObject(@Valid @RequestBody IFHMBSELFBICDPP0062Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBSELFBICDPP0062Payload.Response response = new IFHMBSELFBICDPP0062Payload.Response();

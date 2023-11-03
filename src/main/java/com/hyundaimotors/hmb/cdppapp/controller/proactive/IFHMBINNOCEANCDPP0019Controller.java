@@ -23,6 +23,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB MNTSRVC Dealer Calendar", description = "This web service can be used to query availability of dealer's maintenance service schedule for a specific month.")
@@ -41,7 +42,7 @@ public class IFHMBINNOCEANCDPP0019Controller {
     @Operation(summary = "HMB MNTSRVC Dealer Calendar", description = "HMB MNTSRVC Dealer Calendar ")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0019Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBMNTSRVCDealerCalendar")
-    public Object getList(@RequestBody IFHMBINNOCEANCDPP0019Payload.Request request) throws Exception {
+    public Object getList(@Valid @RequestBody IFHMBINNOCEANCDPP0019Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0019Payload.Response response = null;

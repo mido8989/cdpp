@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Search Service Request TD Webservice WF", description = "This web service will be created to be used to search Service Request  by Date Input and return  protocol information.")
@@ -39,7 +40,7 @@ public class IFHMBSAPCDPP0031Controller {
     @Operation(summary = "HMB Search Service Request TD Webservice WF", description = "HMB Search Service Request TD Webservice WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPCDPP0031Payload.Request.class)))
     @PostMapping(value = "/api/v1/HMBSearchServiceRequestTDWebserviceWF")
-    public Object getObject(@RequestBody IFHMBSAPCDPP0031Payload.Request request) throws Exception {
+    public Object getObject(@Valid @RequestBody IFHMBSAPCDPP0031Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBSAPCDPP0031Payload.Response response = new IFHMBSAPCDPP0031Payload.Response();

@@ -22,6 +22,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Account Webservice WF", description = "SAP, EAI Create/Update Interface")
@@ -41,7 +42,7 @@ public class IFHMBSAPCDPP0005Controller {
     @Operation(summary = "Account upsert", description = "Account upsert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPCDPP0005Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBAccountWebserviceWF")
-    public Object upsertObject(@RequestBody IFHMBSAPCDPP0005Payload.Request request) throws Exception {
+    public Object upsertObject(@Valid @RequestBody IFHMBSAPCDPP0005Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
 
         IFHMBSAPCDPP0005Payload.Response response = new IFHMBSAPCDPP0005Payload.Response();

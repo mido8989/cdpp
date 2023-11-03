@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Get Vehicle WF", description = "This web service can be used to retrieve from Connex whole sales data and retail sales data with their associated individuals and legal entities. Whole sales will have status \"Dealer Owned\", while retail sales will have status \"Customer Owned\".")
@@ -39,7 +40,7 @@ public class IFHMBINNOCEANCDPP0033Controller {
     @Operation(summary = "HMB Get Vehicle WF", description = "HMB Get Vehicle WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0033Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBGetVehicleWF")
-    public Object getObject(@RequestBody IFHMBINNOCEANCDPP0033Payload.Request request) throws Exception {
+    public Object getObject(@Valid @RequestBody IFHMBINNOCEANCDPP0033Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0033Payload.Response response = new IFHMBINNOCEANCDPP0033Payload.Response();

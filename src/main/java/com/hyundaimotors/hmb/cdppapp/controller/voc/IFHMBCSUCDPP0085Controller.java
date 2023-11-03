@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Closest Dealer WS", description = "This web service will be created to be used to search Closest Dealer (individuals) by CEP  and return channet /Contact information.")
@@ -38,7 +39,7 @@ public class IFHMBCSUCDPP0085Controller {
     @Operation(summary = "HMB Closest Dealer WS", description = "HMB Closest Dealer WS")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBCSUCDPP0085Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBClosestDealerWS")
-    public Object insertObject(@RequestBody IFHMBCSUCDPP0085Payload.Request request) throws Exception {
+    public Object insertObject(@Valid @RequestBody IFHMBCSUCDPP0085Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBCSUCDPP0085Payload.Response response = new IFHMBCSUCDPP0085Payload.Response();

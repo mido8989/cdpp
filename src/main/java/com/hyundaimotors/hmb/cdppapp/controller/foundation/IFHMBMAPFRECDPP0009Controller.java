@@ -22,6 +22,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Auto Vehicle RSA Claim WS", description = "This web service can be used to insert or update Auto Vehicle Information")
@@ -41,7 +42,7 @@ public class IFHMBMAPFRECDPP0009Controller {
     @Operation(summary = "HMB Auto Vehicle RSA Claim WS", description = "HMB Auto Vehicle RSA Claim WS")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBMAPFRECDPP0009Payload.Request.class)))
     @PostMapping(value = "/api/v1/HMBAutoVehicleRSAClaimWS")
-    public Object upsertObject(@RequestBody IFHMBMAPFRECDPP0009Payload.Request request) throws Exception {
+    public Object upsertObject(@Valid @RequestBody IFHMBMAPFRECDPP0009Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBMAPFRECDPP0009Payload.Response response = new IFHMBMAPFRECDPP0009Payload.Response();

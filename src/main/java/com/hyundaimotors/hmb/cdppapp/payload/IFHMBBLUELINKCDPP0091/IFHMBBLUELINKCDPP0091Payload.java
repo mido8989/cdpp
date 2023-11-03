@@ -5,6 +5,9 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +18,7 @@ public class IFHMBBLUELINKCDPP0091Payload {
     @Setter
     public static class Request{
         @Schema(description = "YYYY-MM-DD, Bluelink date to capture.", example = "2023-10-08")
+        @NotNull @NotBlank @NotEmpty
         @JsonProperty("Date_Input")
         private String dateInput;
         @Schema(description = "Vehicle number", example = "9BHBG51DADP011617")

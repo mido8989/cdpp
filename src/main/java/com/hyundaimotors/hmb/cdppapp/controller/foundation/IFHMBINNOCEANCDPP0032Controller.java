@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Search TD Webservice WF", description = "Innocean, SAP EAI list Interface")
@@ -40,7 +41,7 @@ public class IFHMBINNOCEANCDPP0032Controller {
     @Operation(summary = "HMB Search TD Webservice WF", description = "HMB Search TD Webservice WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0032Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBSearchTDWebserviceWF")
-    public Object getObject(@RequestBody IFHMBINNOCEANCDPP0032Payload.Request request) throws Exception {
+    public Object getObject(@Valid @RequestBody IFHMBINNOCEANCDPP0032Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0032Payload.Response response = new IFHMBINNOCEANCDPP0032Payload.Response();

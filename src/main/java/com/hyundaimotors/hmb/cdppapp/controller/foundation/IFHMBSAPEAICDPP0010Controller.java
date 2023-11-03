@@ -22,6 +22,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Auto Vehicle Webservice WF", description = "UpsertAutoVehicle")
@@ -39,7 +40,7 @@ public class IFHMBSAPEAICDPP0010Controller {
     @Operation(summary = "asset upsert", description = "asset upsert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0010Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBAutoVehicleUpsertWS")
-    public Object upserObject(@RequestBody IFHMBSAPEAICDPP0010Payload.Request request) throws Exception {
+    public Object upserObject(@Valid @RequestBody IFHMBSAPEAICDPP0010Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBSAPEAICDPP0010Payload.Response response = new IFHMBSAPEAICDPP0010Payload.Response();

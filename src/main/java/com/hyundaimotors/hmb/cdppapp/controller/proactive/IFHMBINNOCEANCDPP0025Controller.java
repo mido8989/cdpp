@@ -20,6 +20,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB MNTSRVC Schedule Maintenance", description = "This web service can be used to insert or update maintenance services.")
@@ -38,7 +39,7 @@ public class IFHMBINNOCEANCDPP0025Controller {
     @Operation(summary = "HMB MNTSRVC Schedule Maintenance", description = "HMB MNTSRVC Schedule Maintenance")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0025Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBMNTSRVCScheduleMaintenance")
-    public Object upsertObject(@RequestBody IFHMBINNOCEANCDPP0025Payload.Request request) throws Exception {
+    public Object upsertObject(@Valid @RequestBody IFHMBINNOCEANCDPP0025Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0025Payload.Response response = new IFHMBINNOCEANCDPP0025Payload.Response();

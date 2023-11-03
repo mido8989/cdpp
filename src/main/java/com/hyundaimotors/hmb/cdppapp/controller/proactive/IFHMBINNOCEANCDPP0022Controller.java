@@ -22,6 +22,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB MNTSRVC Manage Dealer Holiday", description = "Innocean SAP EAI insert Delete Interface")
@@ -41,7 +42,7 @@ public class IFHMBINNOCEANCDPP0022Controller {
     @Operation(summary = "dealer holiday insert", description = "dealer holiday insert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0022Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBMNTSRVCManageDealerHoliday")
-    public Object manageObject(@RequestBody IFHMBINNOCEANCDPP0022Payload.Request request) throws Exception {
+    public Object manageObject(@Valid @RequestBody IFHMBINNOCEANCDPP0022Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0022Payload.Response response = new IFHMBINNOCEANCDPP0022Payload.Response();

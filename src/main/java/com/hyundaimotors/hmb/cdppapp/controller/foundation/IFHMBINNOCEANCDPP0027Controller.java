@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @Tag(name = "HMB Register In Application WS", description = "Innocean insert or update Interface")
@@ -40,7 +41,7 @@ public class IFHMBINNOCEANCDPP0027Controller {
     @Operation(summary = "registers insert", description = "registers insert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0027Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBRegisterInApplicationWS")
-    public Object upsertObject(@RequestBody IFHMBINNOCEANCDPP0027Payload.Request request) throws Exception {
+    public Object upsertObject(@Valid @RequestBody IFHMBINNOCEANCDPP0027Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBINNOCEANCDPP0027Payload.Response response = new IFHMBINNOCEANCDPP0027Payload.Response();
