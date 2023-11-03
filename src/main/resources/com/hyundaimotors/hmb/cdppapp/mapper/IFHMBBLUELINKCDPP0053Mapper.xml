@@ -42,12 +42,6 @@
         on
             libl.chassi = pbc.chassi__c 
         where
-            libl.integrationid = pbc.integrationid__c 
-        and 
-            libl.activationdate = pbc.activationdate__c
-        and 
-            libl.firstactivation = pbc.firstactivation__c
-        and 
             libl.row_id in
             <foreach collection="paramList" item="item" index="index" open="(" close=")" separator=",">
                 CAST(#{item} AS INTEGER)
