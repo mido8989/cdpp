@@ -38,32 +38,25 @@ public class IFHMBSAPEAICDPP0006Controller {
     @Operation(summary = "HMB Action Inbound Webservice WF", description = "HMB Action Inbound Webservice WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0006Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBActionInboundWebserviceWF")
-    public Object insertObject(@RequestBody IFHMBSAPEAICDPP0006Payload.Request request)throws Exception{
-    	UUID IF_TR_ID = UUID.randomUUID();
-    	
-    	// this.logApi(ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
-    	ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
-    	IFHMBSAPEAICDPP0006Payload.Response response = new IFHMBSAPEAICDPP0006Payload.Response();
-    	 try {
-    		IFHMBSAPEAICDPP0006Dto dto = defaultMapper.map(request, IFHMBSAPEAICDPP0006Dto.class);
-    		 
-	//    	this.logApi(ApiLogStep.STEP1, IF_TR_ID, null);
-    		ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
-	        IFHMBSAPEAICDPP0006Dto resultDto = service.insertObject(dto);
-	        ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP2, IF_TR_ID, null);
-//	        this.logApi(ApiLogStep.STEP1, IF_TR_ID, null);
-	
-	        response  = defaultMapper.map(resultDto, IFHMBSAPEAICDPP0006Payload.Response.class);
-//	        this.logApi(ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
-	        ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
-    	 }catch(Exception e) {
-//    		   response.setError_spcCode("500");
-//               response.setError_spcMessage(e.getLocalizedMessage());
-    		 response.setErrorSpcCode("500");
-    		 response.setErrorSpcMessage(e.getLocalizedMessage());
-//               this.logApi(ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
-    		 ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
-    	 }
-        return response;
+    public Object insertObject(@RequestBody IFHMBSAPEAICDPP0006Payload.Request request) throws Exception {
+         UUID IF_TR_ID = UUID.randomUUID();
+         
+         ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
+         IFHMBSAPEAICDPP0006Payload.Response response = new IFHMBSAPEAICDPP0006Payload.Response();
+         try {
+             IFHMBSAPEAICDPP0006Dto dto = defaultMapper.map(request, IFHMBSAPEAICDPP0006Dto.class);
+              
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
+            IFHMBSAPEAICDPP0006Dto resultDto = service.insertObject(dto);
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP2, IF_TR_ID, null);
+     
+            response  = defaultMapper.map(resultDto, IFHMBSAPEAICDPP0006Payload.Response.class);
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
+         }catch(Exception e) {
+              response.setErrorSpcCode("500");
+              response.setErrorSpcMessage(e.getLocalizedMessage());
+              ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
+         }
+         return response;
     }
 }

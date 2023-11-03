@@ -1,6 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 
 import java.util.Objects;
+import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0033.IFHMBINNOCEANCDPP0033Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0033.IFHMBINNOCEANCDPP0033Payload;
+import com.hyundaimotors.hmb.cdppapp.service.ApiLogService;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0033Service;
+import com.hyundaimotors.hmb.cdppapp.util.ApiLog;
+import com.hyundaimotors.hmb.cdppapp.util.ApiLogStep;
+import com.hyundaimotors.hmb.cdppapp.util.JsonUtils;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -24,6 +29,8 @@ import lombok.RequiredArgsConstructor;
 public class IFHMBINNOCEANCDPP0033Controller {
 
     private static final String IF_ID = "IF038";
+    
+    private final ApiLogService logService;
 
     private final IFHMBINNOCEANCDPP0033Service service;
 
@@ -32,7 +39,11 @@ public class IFHMBINNOCEANCDPP0033Controller {
     @Operation(summary = "HMB Get Vehicle WF", description = "HMB Get Vehicle WF")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0033Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBGetVehicleWF")
-    public Object getObject(@RequestBody IFHMBINNOCEANCDPP0033Payload.Request request)throws Exception{
+    public Object getObject(@RequestBody IFHMBINNOCEANCDPP0033Payload.Request request) throws Exception {
+        UUID IF_TR_ID = UUID.randomUUID();
+        
+        IFHMBINNOCEANCDPP0033Payload.Response response = new IFHMBINNOCEANCDPP0033Payload.Response();
+        ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
         
         String checkInterfaceVal = request.getIdInterface();
 
@@ -91,11 +102,24 @@ public class IFHMBINNOCEANCDPP0033Controller {
                 throw new Exception("haven't IdInterface");
             }
         }
+        
+        try {
             IFHMBINNOCEANCDPP0033Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0033Dto.class);
+            
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
             IFHMBINNOCEANCDPP0033Dto resultDto = service.getObject(dto);
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP2, IF_TR_ID, null);
             
-            return defaultMapper.map(resultDto, IFHMBINNOCEANCDPP0033Payload.Response.class);
+            response = defaultMapper.map(resultDto, IFHMBINNOCEANCDPP0033Payload.Response.class);
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
+        }catch(Exception e) {
+            response.setErrorSpcCode("500");
+            response.setErrorSpcMessage(e.getLocalizedMessage());
+
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
+        }
+        return response;
     }
 }
