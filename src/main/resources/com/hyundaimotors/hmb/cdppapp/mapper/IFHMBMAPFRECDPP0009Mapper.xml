@@ -145,7 +145,7 @@
         call replica.if_auto_vehicle_rsa_claim_ws(#{PROC_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>
 
-    <select id="resGetProtocolId" parameterType="IFHMBMAPFRECDPP0009Dto" resultType="string">
+    <select id="resGetProtocolId" parameterType="string" resultType="string">
         select 
             protocol__c as protocol
         from

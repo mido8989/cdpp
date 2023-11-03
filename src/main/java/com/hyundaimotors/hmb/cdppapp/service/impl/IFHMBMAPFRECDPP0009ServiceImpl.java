@@ -36,7 +36,7 @@ public class IFHMBMAPFRECDPP0009ServiceImpl implements IFHMBMAPFRECDPP0009Servic
             mapper.transferProcess(map);
             mapper.transferReplica(map);
             
-            String protocol = mapper.resGetProtocolId(dto);
+            String protocol = mapper.resGetProtocolId(procId);
             resultDto.setProtocol(protocol);
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");
@@ -55,7 +55,7 @@ public class IFHMBMAPFRECDPP0009ServiceImpl implements IFHMBMAPFRECDPP0009Servic
             map.put("PROC_ID", procId);
             mapper.transferReplica(map);
 
-            String protocol = mapper.resGetProtocolId(dto);
+            String protocol = mapper.resGetProtocolId(procId);
             resultDto.setProtocol(protocol);
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");
