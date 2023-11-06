@@ -14,7 +14,7 @@ public class IFHMBINNOCEANCDPP0023Payload {
     @Setter
     public static class Request{
         @Valid @NotNull @NotBlank @NotEmpty
-        EmpAvailabIn EmpAvailabIn;
+        EmpAvailabIn empAvailabIn;
     }
 
     @Schema(name = "IFHMBINNOCEANCDPP0023Payload.Response")

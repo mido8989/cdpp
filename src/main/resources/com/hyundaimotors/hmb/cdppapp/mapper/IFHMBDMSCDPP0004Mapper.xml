@@ -83,6 +83,8 @@
             , sr.usedcar_as_down_payment__c as usadoNaTroca
             , pc.corporaterepresentativename__c as nomeConcessionaria
             , pc.cust_stat_cd__c as statusConcessionaria
+            , sr.description as comentario
+            , sr.close_date__c as dataFechamento
             , sr.method as metodoContato
             , sr.description as observacoesContato
             , sr.x_camp_id__c as dadosCampanha
