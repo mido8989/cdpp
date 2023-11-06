@@ -47,7 +47,7 @@ public class IFHMBSAPEAICDPP0038Payload {
         @Schema(description = "mm/dd/yyyy hh24:mi:ss", example = "2018-10-15 16:30:00")
         @JsonProperty("DlrReceiveDate")
         private String dlrReceiveDate;
-        @Schema(description = "Dealer Responde", example = "2018-10-16 16:30:00")
+        @Schema(description = "Dealer Responde", example = "1")
         @JsonProperty("DlrResponseTime")
         private String dlrResponseTime;
         @Schema(description = "PNE Flag", example = "Y")
