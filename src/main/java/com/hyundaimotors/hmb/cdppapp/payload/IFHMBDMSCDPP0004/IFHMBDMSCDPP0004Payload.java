@@ -23,7 +23,6 @@ public class IFHMBDMSCDPP0004Payload {
         @Schema(description = "It should be a pre-existing Dealer Code in CRM.", example = "B05AM26057")
         private String dealerCode;
         @Schema(description = "It should be an existing Api Key in CRM.", example = "4ectZfEIGhrAFoLyAUVq0HzuZ5GBMevx")
-        @NotNull @NotBlank @NotEmpty
         private String apiKey;
         @Schema(description = "Open or Done", example = "Open")
         @NotNull @NotBlank @NotEmpty
