@@ -15,7 +15,7 @@
             , pca.phone as mainPhone
             , pca.fax as fax
             , pca.emailaddress__c as mainEmailAddress
-            , pca.personemail as workEmailAddress
+            , pca.emailaddress__c as workEmailAddress
             , pca.salesflag__c as salesDealerFlag
             , pca.serviceflag__c as serviceDealerFlag
             , pca.prtnrshp_start_dt__c as partnerStartDate
