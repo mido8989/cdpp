@@ -39,7 +39,7 @@ public class IFHMBINNOCEANCDPP0023Controller {
     @Operation(summary = "HMBMNTSRVCManageEmployeeAvailability", description = "HMB MNTSRVC Manage Employee Availability")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0023Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBMNTSRVCManageEmployeeAvailability")
-    public Object upsertObject(@Valid @RequestBody IFHMBINNOCEANCDPP0023Payload.Request request) throws Exception {
+    public Object upsertObject(@RequestBody IFHMBINNOCEANCDPP0023Payload.Request request) throws Exception {
 
         UUID IF_TR_ID = UUID.randomUUID();
         
