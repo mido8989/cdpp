@@ -31,7 +31,7 @@
             and
                 pa.apikey__c = #{apiKey}
         </if>
-        group by sr.legacycreateddate__c, sr.status, pa.dealercode__c, pa.apikey__c
+        group by sr.contact_row_id__c, sr.protocol__c, sr.status
     </select>
 
     <select id="getContactInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadContactDto">
