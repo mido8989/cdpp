@@ -5,7 +5,6 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -24,15 +23,11 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @Schema(description = "Individual's document number (numbers only)", example = "12337343006")
         @JsonProperty("CPF")
         private String cpf;
-        @NotNull
-        @NotEmpty
-        @NotBlank
+        @NotNull @NotBlank @NotEmpty
         @Schema(description = "Contact first name", example = "Jose")
         @JsonProperty("FirstName")
         private String firstName;
-        @NotNull
-        @NotEmpty
-        @NotBlank
+        @NotNull @NotBlank @NotEmpty
         @Schema(description = "Contact last name", example = "Ciclano")
         @JsonProperty("LastName")
         private String lastName;
@@ -53,10 +48,7 @@ public class IFHMBINNOCEANCDPP0002Payload {
         private String workPhone;
         @Schema(description = "Contact cell phone.", example = "11941319501")
         @JsonProperty("CellPhone")
-        private String cellPhone;
-        @NotNull
-        @NotEmpty
-        @NotBlank
+        private String cellPhone;        
         @Schema(description = "Contact email address.", example = "kilosolution2s@gmail.com")
         @JsonProperty("EmailAddress")
         private String emailAddress;
@@ -144,22 +136,25 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @Schema(description = "Flag to define if customer wants all mobile suppressed.", example = "Y")
         @JsonProperty("SuppressAllMobile")
         private String suppressAllMobile;
-        @Schema(description = "Printed card flag. Valid values: true, false", example = "Y")
+        @Schema(description = "Printed card flag. Valid values: true, false", example = "true")
         @JsonProperty("PrintedCard")
         private String printedCard;
         @Schema(description = "Flag to define if customer is already a customer. Valid values: Y, N", example = "N")
         @JsonProperty("already_customer")
         private String alreadyCustomer;
+        @Schema(description = "Favorite_Dealer", example = "B05AM58024")
+        @JsonProperty("Favorite_Dealer")
+        private String favorite_dealer;
 
-        @Valid @JsonProperty("ListOfCurrentCars")
+        @JsonProperty("ListOfCurrentCars")
         List<InboundContactWorkflowCarPayLoad> listOfCurrentCars;
-        @Valid @JsonProperty("ListOfApps")
+        @JsonProperty("ListOfApps")
         List<InboundContactWorkflowAppPayLoad> listOfApps;
-        @Valid @JsonProperty("ListOfSocialMedia")
+        @JsonProperty("ListOfSocialMedia")
         List<InboundContactWorkflowSnsPayLoad> listOfSocialMedia;
-        @Valid @JsonProperty("ListOfHobby")
+        @JsonProperty("ListOfHobby")
         List<InboundContactWorkflowHobbyPayLoad> listOfHobby;
-        @Valid @JsonProperty("ListOfSoccerTeam")
+        @JsonProperty("ListOfSoccerTeam")
         List<InboundContactWorkflowSoccerTeamPayLoad> listOfSoccerTeam;
     }
 

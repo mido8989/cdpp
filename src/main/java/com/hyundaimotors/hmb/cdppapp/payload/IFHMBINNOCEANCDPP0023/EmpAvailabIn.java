@@ -22,6 +22,7 @@ public class EmpAvailabIn {
         @Schema(description = "Dealer Code", example = "B05AM99999")
         @NotNull @NotBlank @NotEmpty
         private String dealerCode;
-        @Valid
+
+        @Valid @NotNull
         List<IFHMBINNOCEANCDPP0023Day>listOfDays;
 }

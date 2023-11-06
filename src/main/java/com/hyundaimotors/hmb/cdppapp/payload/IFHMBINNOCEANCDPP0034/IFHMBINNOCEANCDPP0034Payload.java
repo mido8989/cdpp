@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -61,7 +62,7 @@ public class IFHMBINNOCEANCDPP0034Payload {
         private String dealerId;
         @Schema(description = "Protocol causing area.Valid values: Dealer, Generalli, HMB, Mobis", example = "Dealer")
         private String causingArea;
-        @Schema(description = "Vehicle immobilized date. Format: MM/DD/YYYY", example = "28/06/1986")
+        @Schema(description = "Vehicle immobilized date. Format: MM/DD/YYYY", example = "2023-10-24T15:00:02")
         private String imobilizationDate;
         @Schema(description = "Vehicle model related with the protocol. Valid values: HB20, HB20 FOR YOU", example = "HB20")
         private String relatedModel;
@@ -89,7 +90,7 @@ public class IFHMBINNOCEANCDPP0034Payload {
         private String tdConfirmed;
         @Schema(description = "Test drive scheduled time.", example = "09:00~10:00")
         private String tdTime;
-        @Schema(description = "Test drive date. Format: MM/DD/YYYY", example = "2015-09-19")
+        @Schema(description = "Test drive date. Format: MM/DD/YYYY", example = "2023-10-24T15:00:02")
         private String tdDate;
         @Schema(description = "Sales representative's CPF.", example = "1-1540PO")
         private String salesrepId;
@@ -134,7 +135,7 @@ public class IFHMBINNOCEANCDPP0034Payload {
         private String hotlineFlg;
         @Schema(description = "Hotline number.", example = "HOT001")
         private String hotlineNum;
-        @Schema(description = "Hotline open date.", example = "2015-12-30")
+        @Schema(description = "Hotline open date.", example = "2023-10-24T15:00:02")
         private String hotlineOpenDt;
         @Schema(description = "Purchase proposal number for complaints related with delayed delivery.", example = "PROPOSTA002")
         private String purchaseProposalNum;
@@ -142,13 +143,13 @@ public class IFHMBINNOCEANCDPP0034Payload {
         private String pwaFlg;
         @Schema(description = "PWA number.", example = "PWA001")
         private String pwaNum;
-        @Schema(description = "PWA opened date.", example = "2015-11-30")
+        @Schema(description = "PWA opened date.", example = "2023-10-24T15:00:02")
         private String pwaOpenDt;
         @Schema(description = "Flag indicating if the complaint is recurring. Valid values: Y, N", example = "Y")
         private String recurrenceFlg;
         @Schema(description = "Number of complaint recurrences.", example = "23456789")
         private int recurrenceNum;
-        @Schema(description = "Date of vehicle delivery, either for purchases or repairs.", example = "2015-11-30")
+        @Schema(description = "Date of vehicle delivery, either for purchases or repairs.", example = "2023-10-24T15:00:02")
         private String vehicleDeliveryDt;
         @Schema(description = "Flag indicating if the vehicle was delivered, either for purchases or repairs. Valid values: Y, N", example = "Y")
         private String vehicleDeliveryFlg;
@@ -169,7 +170,7 @@ public class IFHMBINNOCEANCDPP0034Payload {
         private String usedCarAsDownPaymnt;
         @Schema(description = "Dealer temperature indicates the level for close deal. Valid values: Q, M, F", example = "Q")
         private String dlrTemperature;
-        @Schema(description = "payment date of reservation a new hmb car", example = "30/11/2015")
+        @Schema(description = "payment date of reservation a new hmb car", example = "2023-10-24T15:00:02")
         @JsonProperty("paymnt_date")
         private String paymntDate;
         @Schema(description = "payment method of reservation a new hmb car", example = "PIX, Credit Card")
@@ -183,10 +184,10 @@ public class IFHMBINNOCEANCDPP0034Payload {
         private String reservationAmount;
         @Schema(description = "VIP List Campaign form tag.", example = "Oferta")
         private String form;
-        @Schema(description = "", example = "2015-11-30")
+        @Schema(description = "", example = "2023-10-24T15:00:02")
         @JsonProperty("sched_dt")
         private String schedDt;
-        @Schema(description = "", example = "2015-12-01")
+        @Schema(description = "", example = "2023-10-24T15:00:02")
         @JsonProperty("sched_type")
         private String schedType;
         @Schema(description = "if customer wants to give your own car as a payment (car brand)", example = "Hyundai")
@@ -225,7 +226,7 @@ public class IFHMBINNOCEANCDPP0034Payload {
 
         @JsonProperty("ListOfAccessories")
         List<Accessory> listOfAccessories;
-        @JsonProperty("ListOfParts")
+        @Valid @JsonProperty("ListOfParts")
         List<Part> listOfParts;
     }
 

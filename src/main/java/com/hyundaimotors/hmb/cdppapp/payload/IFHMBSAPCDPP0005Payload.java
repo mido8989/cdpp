@@ -24,8 +24,8 @@ public class IFHMBSAPCDPP0005Payload {
         private String name;
         @Schema(description = "Company nickname", example = "POSTO ITATIAIA")
         private String nickname;
+        @Schema(description = "Parent Company if belongs to a group.", example = "AUTO POSTO ITATIAIA LTDA")
         @NotNull @NotBlank @NotEmpty
-        @Schema(description = "Parent Company if belongs to a group.", example = "AUTO POSTO ITATIAIA LTDA")        
         private String parentAccountName;
         @Schema(description = "agencyCode", example = "HQ")
         private String agencyCode;
@@ -41,7 +41,6 @@ public class IFHMBSAPCDPP0005Payload {
         private String contractedSince;
         @Schema(description = "External source. Valid values: X Call Center , X Dealer , X Home Page , X Marketing , X Sap ", example = "Call Center")
         private String source;
-        @NotNull @NotBlank @NotEmpty
         @Schema(description = "National or International", example = "National")
         private String organizationType;
         @Schema(description = "Main phone.", example = "2345678")

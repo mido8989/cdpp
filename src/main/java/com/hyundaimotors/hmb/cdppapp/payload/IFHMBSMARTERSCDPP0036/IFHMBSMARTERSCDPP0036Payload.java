@@ -1,7 +1,5 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBSMARTERSCDPP0036;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -15,11 +13,9 @@ public class IFHMBSMARTERSCDPP0036Payload {
     @Getter
     @Setter
     public static class Request{
-        @Valid
+        @Valid @JsonProperty("ServiceRequest")
         ServiceRequestChatInput serviceRequestChatInput;
-        @Valid
-        List<Chat> listOfChat;
-        List<Message> listOfMessage;
+        
     }
 
     @Schema(name = "IFHMBSMARTERSCDPP0036Payload.Response")

@@ -18,22 +18,21 @@ public class IFHMBSAPEAICDPP0010Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(description = "This tag was deactivated. serialNumber should be used instead.", example = "9BHBG51DADP011617")
-        @NotNull @NotBlank @NotEmpty
-        private String intergrationId;
+        @Schema(description = "This tag was deactivated. serialNumber should be used instead.", example = "9BHBG51DADP011617")        
+        private String integrationId;
         @Schema(description = "Valid values:Dealer Owned, Customer Owned, Cancelled.", example = "Customer Owned")
         private String status;
         @Schema(description = "Chassis number.Unique code for the asset record to be added. It is used as key field for this integration, to determine if a existing record should be updated or a new record should be inserted.", example = "9BHBH41DBGP633658")
         @NotNull @NotBlank @NotEmpty
         private String serialNumber;
-        @Schema(description = "Renavam code.", example = "497269414")        
+        @Schema(description = "Renavam code.", example = "497269414")
+        @NotNull @NotBlank @NotEmpty
         private String renavamCode;
         @Schema(description = "Engine number.", example = "F3LACU001831")
         private String engineNumber;
         @Schema(description = "Vehicle Plate.", example = "FCK1760")
         private String vehicleLicenseNumber;
-        @Schema(description = "Product FSC OCN Name", example = "092214A000")
-        @NotNull @NotBlank @NotEmpty
+        @Schema(description = "Product FSC OCN Name", example = "092214A000")        
         private String fscOcn;
         @Schema(description = "Product description.", example = "ELANTRA")
         private String modelName;

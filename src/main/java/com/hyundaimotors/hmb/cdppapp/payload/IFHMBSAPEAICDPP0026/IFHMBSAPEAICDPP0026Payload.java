@@ -6,9 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,9 +15,7 @@ public class IFHMBSAPEAICDPP0026Payload {
     @Getter
     @Setter
     public static class Request{
-        
-        @Valid @NotNull @NotBlank @NotEmpty
-        @JsonProperty("ListOfProduct") 
+        @Valid @JsonProperty("ListOfProduct")
         private List<ListOfProduct> listOfProduct;
     }
 

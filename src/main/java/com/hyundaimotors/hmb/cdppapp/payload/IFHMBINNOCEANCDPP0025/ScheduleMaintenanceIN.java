@@ -64,13 +64,13 @@ public class ScheduleMaintenanceIN {
     @Schema(description = "Maintenance service status. Possible values are: \"Service request\", \"Customer not scheduled\",", example = "Scheduled")
     @NotNull @NotBlank @NotEmpty
     private String serviceStatus;
-    @Schema(description = "Maintenance service car arrival date at dealer.", example = "2016-08-16  10:00:00 AM")
+    @Schema(description = "Maintenance service car arrival date at dealer.", example = "2023-05-04T16:30:32-0300")
     @NotNull @NotBlank @NotEmpty
     private String serviceArrivaldate;
-    @Schema(description = "Maintenance service's start date.", example = "2017-11-28  9:00:00 AM")
+    @Schema(description = "Maintenance service's start date.", example = "2023-05-04T16:30:32-0300")
     private String serviceStartdate;
     @Schema(description = "Maintenance service duration in minutes.", example = "50")
     private int serviceDuration;
-    @Schema(description = "Maintenance service car delivery date to customer.", example = "2017-11-29")
+    @Schema(description = "Maintenance service car delivery date to customer.", example = "2023-05-04T16:30:32-0300")
     private String serviceDeliverydate;
 }

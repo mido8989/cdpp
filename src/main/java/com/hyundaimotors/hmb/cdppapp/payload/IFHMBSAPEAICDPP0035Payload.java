@@ -15,8 +15,8 @@ public class IFHMBSAPEAICDPP0035Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(description = "URL", example = "C:/windows") 
-        @NotNull @NotBlank @NotEmpty      
+        @Schema(description = "URL", example = "C:/windows")
+        @NotNull @NotBlank @NotEmpty       
         @JsonProperty("URL") 
         private String url;
         @Schema(description = "SR Number", example = "HMB8739974017")   
