@@ -24,7 +24,7 @@ public class IFHMBSAPEAICDPP0038Payload {
         @JsonProperty("Result")
         private String result;
         @Schema(description = "Activity UID", example = "1-6789YU")
-        private String ntegrationId;
+        private String integrationId;
         @Schema(description = "Status Sales", example = "Sold")
         @JsonProperty("SalesStatus")
         private String salesStatus;
