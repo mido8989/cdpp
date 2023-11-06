@@ -35,15 +35,15 @@
             , #{salesStatus}
             , #{saleCPF}
             , #{status}
-            , to_timestamp(#{firstInteractionDate}, 'YYYY-MM-DD hh24:mi:ss')
+            , #{firstInteractionDate}::timestamp
             , #{saleReason}
-            , to_timestamp(#{endDate}, 'YYYY-MM-DD hh24:mi:ss')
-            , to_timestamp(#{dlrReceiveDate}, 'YYYY-MM-DD hh24:mi:ss')
-            , to_timestamp(#{dlrResponseTime}, 'YYYY-MM-DD hh24:mi:ss')
+            , #{endDate}::timestamp
+            , #{dlrReceiveDate}::timestamp
+            , #{dlrResponseTime}::timestamp
             , #{pcd}
             , #{source}
-            , to_timestamp(#{schedvisit}, 'YYYY-MM-DD hh24:mi:ss')
-            , to_timestamp(#{visitdate}, 'YYYY-MM-DD hh24:mi:ss')
+            , #{schedvisit}::timestamp
+            , #{visitdate}::timestamp
             , #{visitstat}
         )
     </insert>
@@ -105,4 +105,13 @@
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call replica.if_update_lead_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
+
+    <select id="getActionId" parameterType="IFHMBSAPEAICDPP0038Dto" resultType="String">
+        select
+            row_id as rowId
+        from
+            process.sales_consult_history psc
+        where
+            external_id__c = #{rowId}::text
+    </select>
 </mapper>

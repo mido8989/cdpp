@@ -122,7 +122,7 @@
             , #{satisfaction}
             , #{dealerId}
             , #{causingArea}
-            , to_date(concat(SPLIT_PART(#{imobilizationDate}, '/', 3)||'-'||SPLIT_PART(#{imobilizationDate}, '/', 2)||'-'||SPLIT_PART(#{imobilizationDate}, '/', 1)),'YYYY-MM-DD')
+            , #{imobilizationDate}::timestamp
             , #{relatedModel}
             , #{quoteDescription}
             , #{engineTransmission}
@@ -136,7 +136,7 @@
             , #{integrationId}
             , #{tdConfirmed}
             , #{tdTime}
-            , to_date(#{tdDate},'YYYY-MM-DD')
+            , #{tdDate}::timestamp
             , #{salesrepId}
             , #{pneFlag}
             , #{campaignId}
@@ -158,14 +158,14 @@
             , #{dlrReversal}
             , #{hotlineFlg}
             , #{hotlineNum}
-            , to_date(#{hotlineOpenDt},'YYYY-MM-DD')
+            , #{hotlineOpenDt}::timestamp
             , #{purchaseProposalNum}
             , #{pwaFlg}
             , #{pwaNum}
-            , to_date(#{pwaOpenDt},'YYYY-MM-DD')
+            , #{pwaOpenDt}::timestamp
             , #{recurrenceFlg}
             , #{recurrenceNum}
-            , to_date(#{vehicleDeliveryDt},'YYYY-MM-DD')
+            , #{vehicleDeliveryDt}::timestamp
             , #{vehicleDeliveryFlg}
             , #{wantsLoan}
             , #{loanType}
@@ -173,12 +173,12 @@
             , #{downPayment}
             , #{usedCarAsDownPaymnt}
             , #{dlrTemperature}
-            , to_date(concat(SPLIT_PART(#{paymntDate}, '/', 3)||'-'||SPLIT_PART(#{paymntDate}, '/', 2)||'-'||SPLIT_PART(#{paymntDate}, '/', 1)),'YYYY-MM-DD')
+            , #{paymntDate}::timestamp
             , #{paymntMethod}
             , #{paymntStatus}
             , #{reservationAmount}
             , #{form}
-            , to_date(#{schedDt},'YYYY-MM-DD')
+            , #{schedDt}::timestamp
             , #{schedType}
             , #{usedBrand}
             , #{usedChassi}
@@ -238,7 +238,7 @@
                 , 'interface'
                 , now()
                 , 'interface'
-                , to_date(#{item.backOrderDate},'YYYY-MM-DD')
+                , #{item.backOrderDate}::timestamp
                 , #{item.backOrderFlg}
                 , #{item.backOrderNum}
                 , #{item.backOrderStatus}

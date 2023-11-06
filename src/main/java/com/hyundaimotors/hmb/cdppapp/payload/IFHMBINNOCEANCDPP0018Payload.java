@@ -20,9 +20,11 @@ public class IFHMBINNOCEANCDPP0018Payload {
     public static class Request{
         @NotNull @NotBlank @NotEmpty
         @Schema(description = "Customer document (CPF).", example = "30311079800")
+        @NotNull @NotBlank @NotEmpty
         private String cpf;
         @NotNull @NotBlank @NotEmpty
         @Schema(description = "Name of requester system.", example = "Source")
+        @NotNull @NotBlank @NotEmpty
         @JsonProperty("Source")
         private String Source;
 
@@ -40,6 +42,7 @@ public class IFHMBINNOCEANCDPP0018Payload {
         @JsonProperty("Error_spcMessage")
         private String errorSpcMessage;
 
+        @JsonProperty("ListOfServices")
         List<ListOfServices> listOfServices;
 
     }

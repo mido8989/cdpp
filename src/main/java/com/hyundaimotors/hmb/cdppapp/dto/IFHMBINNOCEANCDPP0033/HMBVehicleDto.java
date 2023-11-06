@@ -28,7 +28,7 @@ public class HMBVehicleDto {
     private String warrantyStartDate;
     private String fiscalReceipt;
     private String dealerId;
-    private String dealerCodeRe;
+    private String dealerCode;
     private String dealerName;
     private String dealerNickname;
     private String salesManName;

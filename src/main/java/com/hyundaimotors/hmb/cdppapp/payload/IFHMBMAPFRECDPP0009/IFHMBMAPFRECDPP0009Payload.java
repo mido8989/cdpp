@@ -21,6 +21,7 @@ public class IFHMBMAPFRECDPP0009Payload {
         @Schema(description = "RSA Integration Id", example = "MONDIAL29130301")
         @NotNull @NotBlank @NotEmpty
         @JsonProperty("ClaimId")
+        @NotNull @NotBlank @NotEmpty
         private String claimId;
         @Schema(description = "Source", example = "Telephone")
         @JsonProperty("Source")
@@ -64,6 +65,7 @@ public class IFHMBMAPFRECDPP0009Payload {
         @Schema(description = "Auto Vehicle Serial Number", example = "9BHBH41DBGP633658")
         @NotNull @NotBlank @NotEmpty
         @JsonProperty("SerialNumber")
+        @NotNull @NotBlank @NotEmpty
         private String serialNumber;
         @Schema(description = "RSA Effective Start Date", example = "2015-08-06")
         @JsonProperty("EffectiveStartDate")

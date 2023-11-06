@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.dto.IFHMBSELFBICDPP0062;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,5 +14,6 @@ public class IFHMBSELFBICDPP0062Dto {
     private String created;
     private String voc;
     private String lead;
-    TotalLeadDto totallead;
+    // TotalLeadDto totallead;
+    List<TotalLeadDto> totallead;
 }

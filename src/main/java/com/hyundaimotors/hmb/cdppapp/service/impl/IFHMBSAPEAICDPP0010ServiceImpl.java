@@ -13,6 +13,7 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0010.IFHMBSAPEAICDPP0010
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0010Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0010Service;
 
+import io.swagger.v3.core.util.Json;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -42,25 +43,28 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
         mapper.insertAutoVehicle(dto);        
 
         listParamId.add(dto.getRowId());
-        if(getAssetId != null)
-            listProcAssetId.add(getAssetId);
-        if(getProcInvoiceId != null)
-            listProcInvoiceId.add(getProcInvoiceId);
-        listOfContact = dto.getContact();
-        listOfAccount = dto.getAccount();
-
-        if( listOfContact.size() > 0 ){
+        if(dto.getContact() != null){
+            listOfContact = dto.getContact();
+        }
+        if(dto.getAccount() != null ){
+            listOfAccount = dto.getAccount();
+        }
+        String[] contactId = null;
+        if( listOfContact != null ){
             for(int i = 0; i < listOfContact.size(); i++){
                 AutoVehicleWebserviceWFContactDto con = new AutoVehicleWebserviceWFContactDto();
                 con = listOfContact.get(i);
                 con.setSerialNumber(dto.getSerialNumber());
                 con.setParRowId(dto.getRowId());
+                dto.setContactId(con.getConnexContactId());
                 mapper.insertContactList(con);
                 listContactId.add(String.valueOf(con.getConRowId()));
             }
+            contactId = listContactId.toArray(new String[listContactId.size()]);
         }
-
-        if( listOfAccount.size() > 0 ){
+        
+        String[] accountId = null;
+        if( listOfAccount != null ){
             for(int i = 0; i < listOfAccount.size(); i++){
                 AutoVehicleWebserviceWFAccountDto accnt = new AutoVehicleWebserviceWFAccountDto();
                 accnt = listOfAccount.get(i);
@@ -69,13 +73,17 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
                 mapper.insertAccountList(accnt);
                 listAccontId.add(String.valueOf(accnt.getAccntRowId()));
             }
+            accountId = listAccontId.toArray(new String[listAccontId.size()]);
         }     
+        
+        if(getAssetId != null)
+            listProcAssetId.add(getAssetId);
+        if(getProcInvoiceId != null)
+            listProcInvoiceId.add(getProcInvoiceId);
         
         String[] paramId = listParamId.toArray(new String[listParamId.size()]);  
         String[] procAssetId = listProcAssetId.toArray(new String[listProcAssetId.size()]);
         String[] procInvoiceId = listProcInvoiceId.toArray(new String[listProcInvoiceId.size()]);
-        String[] contactId = listContactId.toArray(new String[listContactId.size()]);
-        String[] accountId = listAccontId.toArray(new String[listAccontId.size()]);
 
 
         
@@ -84,14 +92,19 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
         processMap.put("PROC_INVOICE_ID", procInvoiceId);
         processMap.put("account_rowid", accountId);
         processMap.put("contact_rowid", contactId); 
+
+        System.out.println("procAssetId : " + Json.pretty(procAssetId));
+        System.out.println("procInvoiceId : " + Json.pretty(procInvoiceId));
      
         if ( getAssetId != null && getProcInvoiceId != null){
 
 
             mapper.transferProcess(processMap);
-
-            listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
-            String[] procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
+            String[] procCustVehicleId = null;
+            if( dto.getAccount() != null){
+                listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
+                procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
+            }
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
             mapper.transferReplica(processMap);
 
@@ -104,10 +117,12 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
             
             getAssetId = mapper.getProcAssetId(dto);
-            listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
             listProcAssetId.add(getAssetId);
-            procAssetId = listProcAssetId.toArray(new String[listProcAssetId.size()]);
-            String[] procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
+            String[] procCustVehicleId = null;
+            if( dto.getAccount() != null){
+                listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
+                procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
+            }
             processMap.put("PROC_ASSET_ID", procAssetId);
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
@@ -123,10 +138,13 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
             
             getProcInvoiceId = mapper.getProcInvoiceId(dto);
-            listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
             listProcInvoiceId.add(getProcInvoiceId);
             procInvoiceId = listProcInvoiceId.toArray(new String[listProcInvoiceId.size()]);
-            String[] procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
+            String[] procCustVehicleId = null;
+            if( dto.getAccount() != null){
+                listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
+                procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
+            }
             processMap.put("PROC_INVOICE_ID", procInvoiceId);
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
@@ -142,12 +160,15 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             
             getProcInvoiceId = mapper.getProcInvoiceId(dto);
             getAssetId = mapper.getProcAssetId(dto);
-            listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
             listProcInvoiceId.add(getProcInvoiceId);
             listProcAssetId.add(getAssetId);
             procInvoiceId = listProcInvoiceId.toArray(new String[listProcInvoiceId.size()]);
             procAssetId = listProcAssetId.toArray(new String[listProcAssetId.size()]);
-            String[] procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
+           String[] procCustVehicleId = null;
+            if( dto.getAccount() != null){
+                listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
+                procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
+            }
             processMap.put("PROC_INVOICE_ID", procInvoiceId);
             processMap.put("PROC_ASSET_ID", procAssetId);
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);

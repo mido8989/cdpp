@@ -17,6 +17,10 @@
             process.invoiceinfo
         where            
             name = #{serialNumber}
+        <if test="contactId != null">
+        and 
+            contact_row_id__c = #{contactId}
+        </if>
     </select>
 
     <select id="getProcCustVehicleId" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="String">
@@ -28,18 +32,24 @@
             process.asset pa
         on
             pv.asset_id = pa.row_id
-        where            
-            pv.account_id in 
-            <foreach collection="contact" item="item" index="idx" open="(" close=")" separator=","> 
-                #{item.connexContactId}
-            </foreach>
-            or
-            pv.account_id in 
-            <foreach collection="account" item="item" index="idx" open="(" close=")" separator=","> 
-                #{item.connexAccountId}
-            </foreach>
-        and
+        where  
             pa.serialnumber = #{serialNumber}
+            <if test="account != null">
+                and 
+                pv.account_id in 
+                <foreach collection="account" item="item" index="idx" open="(" close=")" separator=","> 
+                    #{item.connexAccountId}
+                </foreach>
+            </if>
+            <if test="contact != null">
+                or 
+                pv.account_id in 
+                <foreach collection="contact" item="item" index="idx" open="(" close=")" separator=","> 
+                    #{item.connexContactId}
+                </foreach>
+            </if>      
+        
+            
     </select>
 
     <insert id="insertAutoVehicle" parameterType="IFHMBSAPEAICDPP0010Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
@@ -83,7 +93,7 @@
             , last_upd
             , last_upd_by
         ) values (
-            #{intergrationId}
+            #{integrationId}
             , #{status}
             , #{serialNumber}
             , #{renavamCode}

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSMARTERSCDPP0036Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSMARTERSCDPP0036.IFHMBSMARTERSCDPP0036Dto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSMARTERSCDPP0036Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSMARTERSCDPP0036Service;
 
@@ -22,10 +22,16 @@ public class IFHMBSMARTERSCDPP0036Serviceimpl implements IFHMBSMARTERSCDPP0036Se
         IFHMBSMARTERSCDPP0036Dto resulDto = new IFHMBSMARTERSCDPP0036Dto();
 
         mapper.insertServiceRequestChatInput(dto);
+        dto.getServiceRequestChatInput().setRowId(dto.getRowId());
 
-        mapper.insertChat(dto);
+        if( dto.getServiceRequestChatInput().getChat() != null ){
+            mapper.insertChat(dto.getServiceRequestChatInput());
+            dto.getServiceRequestChatInput().getChat().setRowId(dto.getRowId());
+        }
 
-        mapper.insertMessage(dto);
+        if( dto.getServiceRequestChatInput().getChat().getListOfMessage() != null){
+            mapper.insertMessage(dto.getServiceRequestChatInput().getChat());
+        }
 
         HashMap<String, String> map = new HashMap<>();
 

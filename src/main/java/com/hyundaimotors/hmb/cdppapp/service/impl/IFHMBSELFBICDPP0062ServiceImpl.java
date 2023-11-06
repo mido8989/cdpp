@@ -24,27 +24,51 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
     public IFHMBSELFBICDPP0062Dto getObject(IFHMBSELFBICDPP0062Dto dto)throws Exception{
         IFHMBSELFBICDPP0062Dto resulDto = new IFHMBSELFBICDPP0062Dto();
 
-        TotalLeadDto lead = new TotalLeadDto();
+        // TotalLeadDto lead = new TotalLeadDto();
+        List<TotalLeadDto> lead = new ArrayList<TotalLeadDto>();
 
         lead = mapper.getLead(dto);
 
         if(lead != null){
-            List<TotalContactDto> contactList = new ArrayList<>();
-            TotalActionDto action = new TotalActionDto();
-            
-            String contactRowId = lead.getContactRowId();
-            contactList = mapper.getContact(contactRowId);
+            for(int index=0;index < lead.size();index++ ) {
+                TotalLeadDto leadDto = lead.get(index);
 
-            if(0 < contactList.size()){
-                lead.setContact(contactList);
+            // List<TotalContactDto> contactList = new ArrayList<>();
+                TotalContactDto contactList = new TotalContactDto();
+                TotalActionDto action = new TotalActionDto();
+                
+                // String contactRowId = lead.getContactRowId();
+                String contactRowId = leadDto.getContactRowId();
+
+                System.out.println("■■■ contactRowId : " + contactRowId);
+                contactList = mapper.getContact(contactRowId);
+
+                // if(0 < contactList.size()){
+                // lead.setContact(contactList);
+                // }
+                lead.get(index).setContact(contactList);
+                
+                // String protocol = lead.getProtocol();
+                // action = mapper.getAction(protocol);
+                // if(action!= null){
+                //     lead.setAction(action);
+                // }
+                // resulDto.setTotallead(lead);
+
+                String protocol = leadDto.getProtocol();
+                System.out.println("■■■ protocol : " + protocol);
+
+                action = mapper.getAction(protocol);
+                if(action!= null){
+                    lead.get(index).setAction(action);
+                }
+
+                
             }
-            
-            String protocol = lead.getProtocol();
-            action = mapper.getAction(protocol);
-            if(action!= null){
-                lead.setAction(action);
-            }
+
             resulDto.setTotallead(lead);
+
+            
 
             resulDto.setErrorSpcCode("0");
             resulDto.setErrorSpcMessage("OK");

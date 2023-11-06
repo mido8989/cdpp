@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0022.IFHMBINNOCEANCDPP0022Dto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0022.ManageDealerHolidayOutputDto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0022Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0022Service;
 
@@ -22,7 +21,6 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
     public IFHMBINNOCEANCDPP0022Dto insertObject(IFHMBINNOCEANCDPP0022Dto dto)throws Exception{
 
         IFHMBINNOCEANCDPP0022Dto resultDto = new IFHMBINNOCEANCDPP0022Dto();
-        ManageDealerHolidayOutputDto manageDealerHolidayOutput = new ManageDealerHolidayOutputDto();        
         
         mapper.insertObject(dto);
 
@@ -45,13 +43,11 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
                 map.put("checkcu", "update");
                 
                 mapper.transferProcess(map);
-                mapper.transferReplica(map);
+                mapper.transferReplica(map);                
+
                 
-                
-                manageDealerHolidayOutput.setErrorSpcCode("0");
-                manageDealerHolidayOutput.setErrorSpcMessage("OK");
-                
-                resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput);                         
+                resultDto.setErrorSpcCode("0");    
+                resultDto.setErrorSpcMessage("OK");                
                 
             }else{ // 해당날짜 holiday가 없을때                   
                 
@@ -69,10 +65,8 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
                 mapper.transferReplica(map);
 
             
-                manageDealerHolidayOutput.setErrorSpcCode("0");
-                manageDealerHolidayOutput.setErrorSpcMessage("OK");
-                
-                resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput); 
+                resultDto.setErrorSpcCode("0");    
+                resultDto.setErrorSpcMessage("OK");     
                 
             }            
 
@@ -89,22 +83,17 @@ public class IFHMBINNOCEANCDPP0022ServiceImpl implements IFHMBINNOCEANCDPP0022Se
                 
                 mapper.insertObject(dto);
             
-                manageDealerHolidayOutput.setErrorSpcCode("0");
-                manageDealerHolidayOutput.setErrorSpcMessage("OK");
-                
-                resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput);
+                resultDto.setErrorSpcCode("0");    
+                resultDto.setErrorSpcMessage("OK");     
             }else {
-                manageDealerHolidayOutput.setErrorSpcCode("1");
-                manageDealerHolidayOutput.setErrorSpcMessage("FAIL");
-                
-                resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput);
+                resultDto.setErrorSpcCode("1");    
+                resultDto.setErrorSpcMessage("FAIL"); 
             }
         }else {
-
-            manageDealerHolidayOutput.setErrorSpcCode("1");
-            manageDealerHolidayOutput.setErrorSpcMessage("FAIL");
             
-            resultDto.setManageDealerHolidayOutput(manageDealerHolidayOutput);        
+            resultDto.setErrorSpcCode("1");    
+            resultDto.setErrorSpcMessage("FAIL"); 
+              
         }
 
         

@@ -3,6 +3,8 @@ package com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0024;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,34 +15,38 @@ public class IFHMBINNOCEANCDPP0024Payload {
     @Getter
     @Setter
     public static class Request{
-        @NotNull
+        @NotNull @NotBlank @NotEmpty
         @Schema(description = "UPSERT", example = "UPSERT")
         private String operation;
         @Schema(description = "Record identifier.", example = "1")
         @NotNull
         @JsonProperty("excp-id")
         private int excpId;
-        @NotNull
+        @NotNull @NotBlank @NotEmpty
         @Schema(description = "Dealer Code", example = "30311079800")
         @JsonProperty("employee-cpf")
         private String employeeCPF;
-        @NotNull
+        @NotNull @NotBlank @NotEmpty
         @Schema(description = "Dealer code where the consultant will be available.", example = "B05AM99999")
         @JsonProperty("dealer-code")
         private String dealerCode;
         @Schema(description = "Exception's start date.Format: MM/DD/YYYY", example = "2016-10-12")
+        @NotNull @NotBlank @NotEmpty
         @JsonProperty("excp-start-date")
         private String excpStartDate;
         @Schema(description = "Exception's end date.Format: MM/DD/YYYY", example = "2016-12-12")
+        @NotNull @NotBlank @NotEmpty
         @JsonProperty("excp-end-date")
         private String excpEndDate;
         @Schema(description = "Absence period flag. Possible values are:", example = "N")
         @JsonProperty("absence-period")
         private String absencePeriod;
         @Schema(description = "First working period start time.Format: HH:MM:SS", example = "2017-11-15 11:00:00 AM")
+        @NotNull @NotBlank @NotEmpty
         @JsonProperty("period1-start")
         private String period1Start;
         @Schema(description = "First working period end time. Format: HH:MM:SS", example = "2017-11-15 12:00:00 PM")
+        @NotNull @NotBlank @NotEmpty
         @JsonProperty("period1-end")
         private String period1End;
         @Schema(description = "Second working period start time.Format: HH:MM:SS", example = "2017-11-15 13:00:00 PM")
@@ -59,6 +65,7 @@ public class IFHMBINNOCEANCDPP0024Payload {
         @JsonProperty("excp-desc")
         private String excpDesc;
         @Schema(description = "Name of requester system.", example = "Source")
+        @NotNull @NotBlank @NotEmpty
         private String source;
     }
 

@@ -21,6 +21,7 @@ public class IFHMBINNOCEANCDPP0046Payload {
         @Schema(description = "Dealer Code", example = "B05AM99999")
         @NotNull @NotBlank @NotEmpty
         @JsonProperty("dealer-code")
+        @NotNull @NotBlank @NotEmpty
         private String dealerCode;
         @Schema(description = "Name of requester system.", example = "CDPP")
         @NotNull @NotBlank @NotEmpty

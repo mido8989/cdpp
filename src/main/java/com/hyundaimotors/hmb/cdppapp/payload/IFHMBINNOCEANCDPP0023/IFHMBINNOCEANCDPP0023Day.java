@@ -16,6 +16,7 @@ public class IFHMBINNOCEANCDPP0023Day {
     @Schema(description = "Day name. Possible values are: Sunday ~ Saturday ", example = "Friday")
     @NotNull @NotBlank @NotEmpty
     @JsonProperty("day-name")
+    @NotNull @NotBlank @NotEmpty
     private String dayName;
     @Schema(description = "First working period start time. Format: HH:MM:SS", example = "2017-11-15 08:00:00 AM")
     @NotNull @NotBlank @NotEmpty

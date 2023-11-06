@@ -8,15 +8,16 @@
             , a.firstname as firstName
             , a.lastname as lastName
             , a.cpf__c as cpf
-            , a.gender__pc as genre
+            <!-- , a.gender__pc as genre
             , a.personbirthdate as birthDate
             , a.personmobilephone as cellularPhone
-            , a.personhomephone as homePhone
+            , a.personhomephone as homePhone -->
             , a.personemail as emailAddress
-            , a.companyphone__pc as workPhone
+            <!-- , a.companyphone__pc as workPhone -->
             , a.row_id as rowId
-            , a.x_printed_card__c as hmbPrintedCard
+            <!-- , a.x_printed_card__c as hmbPrintedCard
             , a.emailoptyn__pc as suppressAllEmails
+            , a.blockedsms__c as suppressAllSMS
             , c.x_amount_friends__c as amountFriends
             , c.x_amount_children__c as amountChildren
             , a.loyaltyexpirationdate__c as cnhexpirationDate
@@ -36,7 +37,7 @@
             , a.billingcountry as county
             , a.billingcity as city
             , a.billingstate as state
-            , a.billingcountry as country
+            , a.billingcountry as country -->
         from
             process.account a
         left join
@@ -45,7 +46,7 @@
             a.row_id = c.account_row_id
         where 
             a.row_id = #{contactId}
-        and
+        or
             a.cpf__c = #{cpf}
         limit 1
     </select>
@@ -58,18 +59,20 @@
             , sr.relatedmodel__c as model
             , a.firstname as salesRepFirstName
             , a.lastname as salesRepLastName
-            , sr.date_test_drive__c as testDriveDate
+            , sr.date_test_drive__c::timestamp as testDriveDate
             , sr.testdrive_time__c as testDriveTime
-            , sr.testdrive_confirmed__c as testDriveConfirmed
+            , (case when sr.testdrive_confirmed__c = 't' then 'Y' when sr.testdrive_confirmed__c = 'f' then 'N' else null end) as testDriveConfirmed
             , sr.voc_class as area
         from
             process.account a
         join 
             process.service_request sr
         on
-            a.row_id = sr.account_row_id__c
+            a.row_id = sr.contact_row_id__c
         where
-            a.row_id = #{contactId};
+            a.row_id = #{contactId}
+        or
+            a.cpf__c = #{cpf};
     </select>
     
 </mapper>

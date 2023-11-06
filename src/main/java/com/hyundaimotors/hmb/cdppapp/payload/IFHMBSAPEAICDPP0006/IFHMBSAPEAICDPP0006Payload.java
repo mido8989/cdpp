@@ -1,7 +1,5 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0006;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -29,7 +27,7 @@ public class IFHMBSAPEAICDPP0006Payload {
         private String status;
         @Schema(description = "Action inbound interface", example = "123")
         private String hotlineId;
-        @Schema(description = "Action inbound interface", example = "2014-08-18")
+        @Schema(description = "Action inbound interface", example = "2023-10-20T15:14:33-0300")
         private String hotlineCreation;
         @Schema(description = "Action inbound interface", example = "1235469845")
         private String pwaId;
@@ -37,13 +35,13 @@ public class IFHMBSAPEAICDPP0006Payload {
         private String pwaCreation;
         @Schema(description = "Action inbound interface", example = "123456")
         private String roId;
-        @Schema(description = "Action inbound interface", example = "2014-08-18")
+        @Schema(description = "Action inbound interface", example = "2023-10-20T15:14:33-0300")
         private String roCreation;
         @Schema(description = "Action inbound interface", example = "123456")
         private String mobisId;
         @Schema(description = "Action inbound interface", example = "em faturamento")
         private String mobisStatus;
-        @Schema(description = "Action inbound interface", example = "2014-08-18")
+        @Schema(description = "Action inbound interface", example = "2023-10-20T15:14:33-0300")
         private String expectedDelivery;
         @Schema(description = "Action inbound interface", example = "123456")
         private String purchasePurposeId;
@@ -64,9 +62,9 @@ public class IFHMBSAPEAICDPP0006Payload {
         private String dealerCode;
         @Schema(description = "Serial Number", example = "123456790")
         private String serialNumber;
-        @Schema(description = "Action Created", example = "2012-10-15  5:46:06 PM")
+        @Schema(description = "Action Created", example = "2023-10-20T15:14:33-0300")
         private String creationDate;
-        @Schema(description = "Follow-up Date", example = "2012-10-15  6:52:26 PM")
+        @Schema(description = "Follow-up Date", example = "2023-10-20T15:14:33-0300")
         private String plannedDt;
         @Schema(description = "Action Order Numero", example = "1-19FJ6")
         private String orderNum;
@@ -75,12 +73,12 @@ public class IFHMBSAPEAICDPP0006Payload {
         @Schema(description = "stock", example = "stock")
         private String estoque;
 
-        @JsonProperty("ListOfNotes")
-        List<ActionNote> actionNote;
-        @JsonProperty("ListOfProducts")
-        List<ActionProducts> actionProducts;
-        @JsonProperty("ListOfFields")
-        List<SynergyActionAudit> synergyActionAudit;
+        @JsonProperty("actionNote")
+        ActionNote actionNote;
+        @JsonProperty("actionProducts")
+        ActionProducts actionProducts;
+        @JsonProperty("synergyActionAudit")
+        SynergyActionAudit synergyActionAudit;
     }
 
     @Schema(name = "IFHMBSAPEAICDPP0006Payload.Response")

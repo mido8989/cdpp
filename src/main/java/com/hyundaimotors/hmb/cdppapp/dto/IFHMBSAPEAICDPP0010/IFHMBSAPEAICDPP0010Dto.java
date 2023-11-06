@@ -10,7 +10,7 @@ import lombok.Setter;
 public class IFHMBSAPEAICDPP0010Dto {
         private String productRowId;
         private String rowId;
-        private String intergrationId;
+        private String integrationId;
         private String status;
         private String serialNumber;
         private String renavamCode;
@@ -44,6 +44,7 @@ public class IFHMBSAPEAICDPP0010Dto {
         private String deliveryatHome;
         private String tdatHome;
         private String ccs_flg;
+        private String contactId;
         private String errorSpcCode;
         private String errorSpcMessage;
 
