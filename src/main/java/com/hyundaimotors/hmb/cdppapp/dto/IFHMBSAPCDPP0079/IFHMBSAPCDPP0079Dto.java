@@ -2,6 +2,9 @@ package com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0079;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +12,14 @@ import lombok.Setter;
 @Setter
 public class IFHMBSAPCDPP0079Dto {
     private String soid;
+    private String dealercode;
+    private String vincode;
+    private float mileage;
+    private String cpf;
+    private String opendt;
+    private String closedt;
+    private int status;
+    /*private String soid;
     private String dealercode;
     private String vincode;
     private float mileage;
@@ -50,7 +61,7 @@ public class IFHMBSAPCDPP0079Dto {
     private String erzet;
     private String aenam;
     private String aedat;
-    private String aezet;
+    private String aezet;*/
     List<InboundRepairServiceDto> listOfService;
     List<InboundRepairPartsDto> listOfParts;
     private int rowId;

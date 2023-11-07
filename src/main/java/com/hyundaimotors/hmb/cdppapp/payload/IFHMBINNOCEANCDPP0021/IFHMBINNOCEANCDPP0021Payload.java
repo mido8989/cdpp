@@ -21,8 +21,9 @@ public class IFHMBINNOCEANCDPP0021Payload {
         @NotNull @NotBlank @NotEmpty
         @JsonProperty("service-name")
         private String serviceName;
+
+        //@NotNull @NotBlank @NotEmpty
         @Schema(description = "Name of requester system.", example = "Source")
-        @NotNull @NotBlank @NotEmpty
         @JsonProperty("Source")
         private String source;
     }

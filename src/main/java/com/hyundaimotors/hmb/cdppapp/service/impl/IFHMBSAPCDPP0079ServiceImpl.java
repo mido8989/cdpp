@@ -20,20 +20,22 @@ public class IFHMBSAPCDPP0079ServiceImpl implements IFHMBSAPCDPP0079Service{
     public IFHMBSAPCDPP0079Dto insertObject(IFHMBSAPCDPP0079Dto dto)throws Exception{
         IFHMBSAPCDPP0079Dto resultDto = new IFHMBSAPCDPP0079Dto();
         
-        mapper.insertRepair(dto);
-        mapper.insertRepairService(dto);
-        mapper.insertRepairPart(dto);
+        if(2 == dto.getStatus()){
+            mapper.insertRepair(dto);
+            mapper.insertRepairService(dto);
+            mapper.insertRepairPart(dto);
+            
+            HashMap<String, String> map = new HashMap<>();
 
-        HashMap<String, String> map = new HashMap<>();
+            map.put("PARAM_ID", String.valueOf(dto.getRowId()));
 
-        map.put("PARAM_ID", String.valueOf(dto.getRowId()));
-
-        mapper.transferProcess(map);
-
-        resultDto.setErrorSpcCode("0");
-        resultDto.setErrorSpcMessage("OK");
-
-
+            mapper.transferProcess(map);
+            resultDto.setErrorSpcCode("0");
+            resultDto.setErrorSpcMessage("OK");
+        }else{
+            resultDto.setErrorSpcCode("1");
+            resultDto.setErrorSpcMessage("Status is not 2");
+        }
         return resultDto;
     }
 }
