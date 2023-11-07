@@ -19,6 +19,7 @@ public class IFHMBSAPCDPP0079Dto {
     private String opendt;
     private String closedt;
     private int status;
+    private float totalValue;
     /*private String soid;
     private String dealercode;
     private String vincode;
