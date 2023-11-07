@@ -22,10 +22,10 @@ public class IFHMBSAPCDPP0079ServiceImpl implements IFHMBSAPCDPP0079Service{
         
         if(2 == dto.getStatus()){
             mapper.insertRepair(dto);
-            if(0 < dto.getListOfService().size()){
+            if(0 < dto.getListOfService().size() || dto.getListOfService().isEmpty()){
                 mapper.insertRepairService(dto);
             }
-            if(0 < dto.getListOfParts().size()){
+            if(0 < dto.getListOfParts().size() || dto.getListOfParts().isEmpty()){
                 mapper.insertRepairPart(dto);
             }
             
