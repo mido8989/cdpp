@@ -54,6 +54,8 @@
             , pcc.companyphone__c as workPhone
             , pcc.mobilephone as cellPhone
             , pcc.title as jobTitle
+            , pcc.statusdealer__c as status
+            , pcc.note__c  as notes
             , pcc.row_id as id
         from
             process.contact pcc
