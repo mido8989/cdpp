@@ -6,12 +6,12 @@
         select 
             ptc.integrationid__c as rsaIntegrationId
             , ptc.row_id as id
-            , ptc.testdriverequestdate__c::timestamp as testDriveDate
+            , TO_CHAR(ptc.testdriverequestdate__c::timestamp,'YYYY-MM-DD"T"HH24:MI:SS-0300') as testDriveDate
             , ptc.testdriverequesttime__c as testDriveTime
             , (case when ptc.testdriveconfirmed__c = 't' then 'Y' when ptc.testdriveconfirmed__c = 'f' then 'N' end) as testDriveConfirmed
-            , ptc.legacy_created as created
+            , TO_CHAR(ptc.legacy_created,'YYYY-MM-DD"T"HH24:MI:SS-0300') as created
             , ptc.legacy_created_by as createdBy
-            , ptc.legacy_last_upd as updated
+            , TO_CHAR(ptc.legacy_last_upd,'YYYY-MM-DD"T"HH24:MI:SS-0300') as updated
             , ptc.legacy_last_upd_by as updatedBy
             , pa.firstname as salesRepFirstName
             , pa.lastname as salesRepLastName
