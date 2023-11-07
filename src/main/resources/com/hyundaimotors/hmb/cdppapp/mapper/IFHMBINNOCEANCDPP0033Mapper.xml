@@ -53,85 +53,60 @@
             process.product pp
         on
             pa.product2id = pp.row_id
-        where 
-            1=1
+        where             
+            a3.registrysource__c = #{source}
         <if test='idInterface == "1"'>
         and    
-            pa.serialnumber = #{serialNumber}
-        and
-            a2.registrysource__c = #{source}
+            pa.serialnumber = #{serialNumber}        
         limit 1
         </if>
         <if test='idInterface == "2"'>
         and    
             pa.carregistrationnumber__c = #{licenseNumber}
-        and
-            a2.registrysource__c = #{source}
         limit 1
         </if>
         <if test='idInterface == "3"'>
         and
             pa.renavam_code__c = #{renavamCode}
-        and
-            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "4"'>
         and
-            a3.cpf__c = #{cpf}
-        and
-            a2.registrysource__c = #{source}
+            a2.cpf__c = #{cpf}
         </if>
         <if test='idInterface == "5"'>
         and
             a3.corporateregistrationnumber__c = #{cnpj}
-        and
-            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "6"'>
         and
             pa.billing_date__c between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
-        and
-            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "7"'>
         and
-            pa.external_id__c = #{connexid}
-        and
-            a2.registrysource__c = #{source}
+            pa.row_id = #{connexid}
         limit 1
         </if>
         <if test='idInterface == "8"'>
         and
             pa.billing_date__c between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
-        and
-            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "9"'>
         and
             pa.billing_date__c between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
-        and
-            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "10"'>
         and
             pa.billing_date__c = to_date(#{startDate}, 'YYYY-MM-DD')
-        and
-            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "11"'>
         and
-            pa.serialnumber like concat('%',#{serialNumber},'%')
-        and
-            a2.registrysource__c = #{source}
-        limit 1
+            pa.serialnumber like concat(#{serialNumber},'%')
         </if>
         <if test='idInterface == "12"'>
         and
             pa.billing_date__c between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
         and 
             a3.dealercode__c = #{dealerCode}
-        and
-            a2.registrysource__c = #{source}
         limit 1
         </if>
     </select>
@@ -139,6 +114,7 @@
     <select id="getContact"  parameterType="IFHMBINNOCEANCDPP0033Dto" resultType="ContactDto">
         select 
             pc.row_id  as id
+            , pc.integrationId as integrationId
             , pc.firstname as firstName
             , pc.lastname as lastName
             , pc.personbirthdate as birthDate
@@ -181,6 +157,7 @@
     <select id="getAccount"  parameterType="IFHMBINNOCEANCDPP0033Dto" resultType="AccountAssetDto">
         select 
             pc.row_id  as id
+            , pc.integrationId as integrationId
             , pc.corporateregistrationnumber__c as cnpj
             , pc.name as name
             , pc.corporaterepresentativename__c as nickname
