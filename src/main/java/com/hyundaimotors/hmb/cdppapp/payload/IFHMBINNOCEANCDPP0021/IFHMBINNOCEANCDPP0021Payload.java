@@ -17,14 +17,13 @@ public class IFHMBINNOCEANCDPP0021Payload {
     @Getter
     @Setter
     public static class Request{
-        @NotNull @NotBlank @NotEmpty
         @Schema(description = "Service Name. Possible values are:", example = "1st maintenance")
         @NotNull @NotBlank @NotEmpty
         @JsonProperty("service-name")
         private String serviceName;
-        @NotNull @NotBlank @NotEmpty
+
+        //@NotNull @NotBlank @NotEmpty
         @Schema(description = "Name of requester system.", example = "Source")
-        @NotNull @NotBlank @NotEmpty
         @JsonProperty("Source")
         private String source;
     }
