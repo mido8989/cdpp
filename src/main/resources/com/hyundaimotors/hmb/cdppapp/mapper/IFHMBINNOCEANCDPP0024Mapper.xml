@@ -32,15 +32,15 @@
             , #{excpId}
             , #{employeeCPF}
             , #{dealerCode}
-            , to_date(#{excpStartDate},'YYYY-MM-DD')
-            , to_date(#{excpEndDate},'YYYY-MM-DD')
+            , #{excpStartDate}::timestamp
+            , #{excpEndDate}::timestamp
             , #{absencePeriod}
-            , #{period1Start}
-            , #{period1End}
-            , #{period2Start}
-            , #{period2End}
-            , #{period3Start}
-            , #{period3End}
+            , #{period1Start}::timestamp
+            , #{period1End}::timestamp
+            , #{period2Start}::timestamp
+            , #{period2End}::timestamp
+            , #{period3Start}::timestamp
+            , #{period3End}::timestamp
             , #{excpDesc}
             , #{source}
         )
