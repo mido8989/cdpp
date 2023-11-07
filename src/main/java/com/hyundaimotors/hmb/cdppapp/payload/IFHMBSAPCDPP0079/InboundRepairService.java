@@ -33,13 +33,13 @@ public class InboundRepairService {
     @Schema(description = "value", example = "120")
     @JsonProperty("VALUE")
     private float value;
-    @Schema(description = "erdat", example = "27092023")
+    @Schema(description = "erdat", example = "20230927")
     @JsonProperty("ERDAT")
     private String erdat;
     @Schema(description = "erzet", example = "182636")
     @JsonProperty("ERZET")
     private String erzet;
-    @Schema(description = "aedat", example = "27092023")
+    @Schema(description = "aedat", example = "20230927")
     @JsonProperty("AEDAT")
     private String aedat;
     @Schema(description = "aezet", example = "183832")

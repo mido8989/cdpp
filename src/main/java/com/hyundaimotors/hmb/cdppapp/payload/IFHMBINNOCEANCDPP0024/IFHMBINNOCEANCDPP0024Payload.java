@@ -30,35 +30,35 @@ public class IFHMBINNOCEANCDPP0024Payload {
         @Schema(description = "Dealer code where the consultant will be available.", example = "B05AM99999")
         @JsonProperty("dealer-code")
         private String dealerCode;
-        @Schema(description = "Exception's start date.Format: MM/DD/YYYY", example = "2016-10-12")
+        @Schema(description = "Exception's start date.Format: MM/DD/YYYY", example = "2016-10-12T00:00:00-0300")
         @NotNull @NotBlank @NotEmpty
         @JsonProperty("excp-start-date")
         private String excpStartDate;
-        @Schema(description = "Exception's end date.Format: MM/DD/YYYY", example = "2016-12-12")
+        @Schema(description = "Exception's end date.Format: MM/DD/YYYY", example = "2016-12-12T00:00:00-0300")
         @NotNull @NotBlank @NotEmpty
         @JsonProperty("excp-end-date")
         private String excpEndDate;
         @Schema(description = "Absence period flag. Possible values are:", example = "N")
         @JsonProperty("absence-period")
         private String absencePeriod;
-        @Schema(description = "First working period start time.Format: HH:MM:SS", example = "2017-11-15 11:00:00 AM")
+        @Schema(description = "First working period start time.Format: HH:MM:SS", example = "2017-11-15T11:00:00-0300")
         @NotNull @NotBlank @NotEmpty
         @JsonProperty("period1-start")
         private String period1Start;
-        @Schema(description = "First working period end time. Format: HH:MM:SS", example = "2017-11-15 12:00:00 PM")
+        @Schema(description = "First working period end time. Format: HH:MM:SS", example = "2017-11-15T12:00:00-0300")
         @NotNull @NotBlank @NotEmpty
         @JsonProperty("period1-end")
         private String period1End;
-        @Schema(description = "Second working period start time.Format: HH:MM:SS", example = "2017-11-15 13:00:00 PM")
+        @Schema(description = "Second working period start time.Format: HH:MM:SS", example = "2017-11-15T13:00:00-0300")
         @JsonProperty("period2-start")
         private String period2Start;
-        @Schema(description = "Second working period end time.Format: HH:MM:SS", example = "2017-11-15 15:00:00 PM")
+        @Schema(description = "Second working period end time.Format: HH:MM:SS", example = "2017-11-15T15:00:00-0300")
         @JsonProperty("period2-end")
         private String period2End;
-        @Schema(description = "Third working period start time.Format: HH:MM:SS", example = "2017-11-15 16:00:00 PM")
+        @Schema(description = "Third working period start time.Format: HH:MM:SS", example = "2017-11-15T16:00:00-0300")
         @JsonProperty("period3-start")
         private String period3Start;
-        @Schema(description = "Third working period end time.Format: HH:MM:SS", example = "2017-11-15 20:00:00 PM")
+        @Schema(description = "Third working period end time.Format: HH:MM:SS", example = "2017-11-15T20:00:00-0300")
         @JsonProperty("period3-end")
         private String period3End;
         @Schema(description = "Exception's description.", example = "description")
