@@ -31,7 +31,7 @@ public class IFHMBZICARDCDPP0007Payload {
         @JsonProperty("RelationShip")
         private String relationShip;
 
-        @Schema(description = "Retail Date", example = "2012-12-13")
+        @Schema(description = "Retail Date", example = "2012-12-13T00:00:00-0300")
         @JsonProperty("HKMERetailDate")
         private String hkmeRetailDate;
 

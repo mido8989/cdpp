@@ -15,23 +15,41 @@ public class IFHMBSAPCDPP0079Payload {
     @Setter
     public static class Request{
         @Schema(description = "soid", example = "0002345")
-        @JsonProperty("CODIGO_OS")
+        @JsonProperty("SO_ID")
         private String soid;
         @Schema(description = "dealercode", example = "B05AM12345")
-        @JsonProperty("DEALER_CODE")
+        @JsonProperty("DEALERCODE")
         private String dealercode;
         @Schema(description = "vincode", example = "9BH12345678901234")
-        @JsonProperty("CHASSI")
+        @JsonProperty("VINCODE")
         private String vincode;
         @Schema(description = "mileage", example = "100.02")
-        @JsonProperty("KM_VEICULO")
+        @JsonProperty("MILEAGE")
         private float mileage;
-        @Schema(description = "plate", example = "AAA-1234")
+        @Schema(description = "cpf", example = "98765432101")
+        @JsonProperty("CPF")
+        private String cpf;
+        @Schema(description = "opendt", example = "20230927170725")
+        @JsonProperty("OPENDT")
+        private String opendt;
+        @Schema(description = "closedt", example = "20230927170725")
+        @JsonProperty("CLOSEDT")
+        private String closedt;
+        @Schema(description = "status", example = "2")
+        @JsonProperty("STATUS")
+        private int status;
+        @Schema(description = "totalValue", example = "4280.85")
+        @JsonProperty("TOTAL_VALUE")
+        private float totalValue;
+        @JsonProperty("ListOfService")
+        List<InboundRepairService> listOfService;
+        @JsonProperty("ListOfParts")
+        List<InboundRepairParts> listOfParts;
+
+        /*@Schema(description = "plate", example = "AAA-1234")
         @JsonProperty("PLACA_VEICULO")
         private String plate;
-        @Schema(description = "status", example = "99")
-        @JsonProperty("STATUS_OS")
-        private int status;
+        
         @Schema(description = "quicksrv", example = "X")
         @JsonProperty("QUICK_SERVICE")
         private String quicksrv;
@@ -41,9 +59,7 @@ public class IFHMBSAPCDPP0079Payload {
         @Schema(description = "consultName", example = "JOSÉ SILVA DE SOUZA")
         @JsonProperty("CONSULTOR_SERVICOS")
         private String consultName;
-        @Schema(description = "opendt", example = "20230927170725")
-        @JsonProperty("DATA_ABERTURA_OS")
-        private String opendt;
+        
         @Schema(description = "schedulingdt", example = "20230927170725")
         @JsonProperty("DATA_AGENDAMENTO")
         private String schedulingdt;
@@ -59,18 +75,14 @@ public class IFHMBSAPCDPP0079Payload {
         @Schema(description = "totalSold_hours", example = "6.2")
         @JsonProperty("QUANTIDADE_HORAS_VENDIDAS")
         private float totalSoldHours;
-        @Schema(description = "totalValue", example = "4280.85")
-        @JsonProperty("VALOR_TOTAL_OS")
-        private float totalValue;
+        
         @Schema(description = "firstname", example = "MARIA DAS GRAÇAS")
         @JsonProperty("NOME_CLIENTE")
         private String firstname;
         @Schema(description = "lastname", example = "DA SILVA")
         @JsonProperty("NOME2_CLIENTE")
         private String lastname;
-        @Schema(description = "cpf", example = "98765432101")
-        @JsonProperty("CPF_CLIENTE")
-        private String cpf;
+        
         @Schema(description = "city", example = "SÃO PAULO")
         @JsonProperty("CIDADE_CLIENTE")
         private String city;
@@ -100,11 +112,8 @@ public class IFHMBSAPCDPP0079Payload {
         private String mobNumber;
         @Schema(description = "codigoCliente", example = " ")
         @JsonProperty("CODIGO_CLIENTE")
-        private String codigoCliente;
-        @JsonProperty("ListOfService")
-        List<InboundRepairService> listOfService;
-        @JsonProperty("ListOfParts")
-        List<InboundRepairParts> listOfParts;
+        private String codigoCliente;*/
+        
     }
 
     @Schema(name = "IFHMBSAPCDPP0079Payload.Response")
