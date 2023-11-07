@@ -31,7 +31,7 @@
             , now()
             , 'interface'
             , #{result}
-            , #{ntegrationId}
+            , #{integrationId}
             , #{salesStatus}
             , #{saleCPF}
             , #{status}
@@ -39,7 +39,7 @@
             , #{saleReason}
             , #{endDate}::timestamp
             , #{dlrReceiveDate}::timestamp
-            , #{dlrResponseTime}::timestamp
+            , #{dlrResponseTime}
             , #{pcd}
             , #{source}
             , #{schedvisit}::timestamp

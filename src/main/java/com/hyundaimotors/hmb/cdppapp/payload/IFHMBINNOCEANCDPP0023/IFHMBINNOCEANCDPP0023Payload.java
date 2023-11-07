@@ -13,7 +13,7 @@ public class IFHMBINNOCEANCDPP0023Payload {
     @Getter
     @Setter
     public static class Request{
-        @Valid @NotNull @NotBlank @NotEmpty
+        @Valid @NotNull  
         EmpAvailabIn empAvailabIn;
     }
 

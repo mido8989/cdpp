@@ -10,7 +10,7 @@
             , pa.carregistrationnumber__c as licenseNumber
             , pa.renavam_code__c as renavamCode
             , pa.fsc__c as fscOcn
-            , pa.description__c  as description
+            , pa.description  as description
             , pa.manufacturedate as manufactureYear
             , pa.modelyear__c as modelYear
             , (select val from process.color_information ci where "type"= 'AUTO_INTERIOR' and lang_id__c= 'ENU' and name_code = pa.vehicleinternalcolor__c  limit 1) as internalColorCode
@@ -53,11 +53,11 @@
             process.product pp
         on
             pa.product2id = pp.row_id
-        where 
-            1=1
+        where             
+            a3.registrysource__c = #{source}
         <if test='idInterface == "1"'>
         and    
-            pa.serialnumber = #{serialNumber}
+            pa.serialnumber = #{serialNumber}        
         limit 1
         </if>
         <if test='idInterface == "2"'>
@@ -71,7 +71,7 @@
         </if>
         <if test='idInterface == "4"'>
         and
-            a3.cpf__c = #{cpf}
+            a2.cpf__c = #{cpf}
         </if>
         <if test='idInterface == "5"'>
         and
@@ -83,7 +83,7 @@
         </if>
         <if test='idInterface == "7"'>
         and
-            pa.external_id__c = #{connexid}
+            pa.row_id = #{connexid}
         limit 1
         </if>
         <if test='idInterface == "8"'>
@@ -100,8 +100,7 @@
         </if>
         <if test='idInterface == "11"'>
         and
-            pa.serialnumber like concat('%',#{serialNumber},'%')
-        limit 1
+            pa.serialnumber like concat(#{serialNumber},'%')
         </if>
         <if test='idInterface == "12"'>
         and
@@ -115,6 +114,7 @@
     <select id="getContact"  parameterType="IFHMBINNOCEANCDPP0033Dto" resultType="ContactDto">
         select 
             pc.row_id  as id
+            , pc.integrationId as integrationId
             , pc.firstname as firstName
             , pc.lastname as lastName
             , pc.personbirthdate as birthDate
@@ -157,6 +157,7 @@
     <select id="getAccount"  parameterType="IFHMBINNOCEANCDPP0033Dto" resultType="AccountAssetDto">
         select 
             pc.row_id  as id
+            , pc.integrationId as integrationId
             , pc.corporateregistrationnumber__c as cnpj
             , pc.name as name
             , pc.corporaterepresentativename__c as nickname
