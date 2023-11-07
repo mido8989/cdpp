@@ -58,49 +58,71 @@
         <if test='idInterface == "1"'>
         and    
             pa.serialnumber = #{serialNumber}
+        and
+            a2.registrysource__c = #{source}
         limit 1
         </if>
         <if test='idInterface == "2"'>
         and    
             pa.carregistrationnumber__c = #{licenseNumber}
+        and
+            a2.registrysource__c = #{source}
         limit 1
         </if>
         <if test='idInterface == "3"'>
         and
             pa.renavam_code__c = #{renavamCode}
+        and
+            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "4"'>
         and
             a3.cpf__c = #{cpf}
+        and
+            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "5"'>
         and
             a3.corporateregistrationnumber__c = #{cnpj}
+        and
+            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "6"'>
         and
             pa.billing_date__c between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
+        and
+            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "7"'>
         and
             pa.external_id__c = #{connexid}
+        and
+            a2.registrysource__c = #{source}
         limit 1
         </if>
         <if test='idInterface == "8"'>
         and
             pa.billing_date__c between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
+        and
+            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "9"'>
         and
             pa.billing_date__c between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
+        and
+            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "10"'>
         and
             pa.billing_date__c = to_date(#{startDate}, 'YYYY-MM-DD')
+        and
+            a2.registrysource__c = #{source}
         </if>
         <if test='idInterface == "11"'>
         and
             pa.serialnumber like concat('%',#{serialNumber},'%')
+        and
+            a2.registrysource__c = #{source}
         limit 1
         </if>
         <if test='idInterface == "12"'>
@@ -108,6 +130,8 @@
             pa.billing_date__c between to_date(#{startDate}, 'YYYY-MM-DD') and to_date(#{endDate}, 'YYYY-MM-DD')
         and 
             a3.dealercode__c = #{dealerCode}
+        and
+            a2.registrysource__c = #{source}
         limit 1
         </if>
     </select>
