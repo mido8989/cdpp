@@ -59,7 +59,7 @@
             , sr.relatedmodel__c as model
             , a.firstname as salesRepFirstName
             , a.lastname as salesRepLastName
-            , sr.date_test_drive__c::timestamp as testDriveDate
+            , TO_CHAR(sr.date_test_drive__c::timestamp,'YYYY-MM-DD"T"HH24:MI:SS-0300') as testDriveDate
             , sr.testdrive_time__c as testDriveTime
             , (case when sr.testdrive_confirmed__c = 't' then 'Y' when sr.testdrive_confirmed__c = 'f' then 'N' else null end) as testDriveConfirmed
             , sr.voc_class as area
