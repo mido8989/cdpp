@@ -12,6 +12,7 @@ public class InboundRepairPartsDto {
     private String soid;
     private String dealercode;
     private String vincode;
+    private String itmnum;
     private String sotype;
     private String pncode;
     private String zdesc;
