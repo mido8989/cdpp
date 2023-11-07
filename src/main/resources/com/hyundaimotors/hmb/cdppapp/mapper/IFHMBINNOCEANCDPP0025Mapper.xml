@@ -66,10 +66,10 @@
             , #{technicianCPF}
             , #{serviceType}
             , #{serviceStatus}
-            , #{serviceArrivaldate}::timestamp(0)
-            , #{serviceStartdate}::timestamp(0)
+            , #{serviceArrivaldate}::timestamp
+            , #{serviceStartdate}::timestamp
             , #{serviceDuration}
-            , #{serviceDeliverydate}::timestamp(0)
+            , #{serviceDeliverydate}::timestamp
         );
     </insert>
 

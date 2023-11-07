@@ -22,8 +22,13 @@ public class IFHMBSAPCDPP0079ServiceImpl implements IFHMBSAPCDPP0079Service{
         
         if(2 == dto.getStatus()){
             mapper.insertRepair(dto);
-            mapper.insertRepairService(dto);
-            mapper.insertRepairPart(dto);
+            if(0 < dto.getListOfService().size()){
+                mapper.insertRepairService(dto);
+            }
+            if(0 < dto.getListOfParts().size()){
+                mapper.insertRepairPart(dto);
+            }
+            
             
             HashMap<String, String> map = new HashMap<>();
 

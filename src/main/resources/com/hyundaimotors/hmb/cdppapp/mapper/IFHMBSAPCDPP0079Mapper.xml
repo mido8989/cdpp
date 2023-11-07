@@ -42,6 +42,7 @@
             , soid
             , dealercode
             , vincode
+            , itmnum
             , sotype
             , codsrc
             , zdesc
@@ -62,6 +63,7 @@
                 , #{item.soid}
                 , #{item.dealercode}
                 , #{item.vincode}
+                , #{item.itmnum}
                 , #{item.sotype}
                 , #{item.codsrc}
                 , #{item.zdesc}
@@ -84,6 +86,7 @@
             , soid
             , dealercode
             , vincode
+            , itmnum
             , sotype
             , pncode
             , zdesc
@@ -104,6 +107,7 @@
                 , #{item.soid}
                 , #{item.dealercode}
                 , #{item.vincode}
+                , #{item.itmnum}
                 , #{item.sotype}
                 , #{item.pncode}
                 , #{item.zdesc}

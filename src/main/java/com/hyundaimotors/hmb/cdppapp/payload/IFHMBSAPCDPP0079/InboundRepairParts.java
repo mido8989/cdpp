@@ -18,6 +18,9 @@ public class InboundRepairParts {
     @Schema(description = "vincode", example = "9BH12345678901234")
     @JsonProperty("VINCODE")
     private String vincode;
+    @Schema(description = "itmnum", example = "001")
+    @JsonProperty("COD_ITEM")
+    private String itmnum;
     @Schema(description = "sotype", example = "CSR-GSS")
     @JsonProperty("SOTYPE")
     private String sotype;
