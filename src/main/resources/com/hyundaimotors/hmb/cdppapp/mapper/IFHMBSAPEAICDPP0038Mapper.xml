@@ -39,7 +39,7 @@
             , #{saleReason}
             , #{endDate}::timestamp
             , #{dlrReceiveDate}::timestamp
-            , #{dlrResponseTime}
+            , #{dlrResponseTime}::timestamp
             , #{pcd}
             , #{source}
             , #{schedvisit}::timestamp
