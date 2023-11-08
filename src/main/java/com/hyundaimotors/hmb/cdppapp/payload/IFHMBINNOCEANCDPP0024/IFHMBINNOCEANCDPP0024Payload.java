@@ -40,24 +40,24 @@ public class IFHMBINNOCEANCDPP0024Payload {
         @Schema(description = "Absence period flag. Possible values are:", example = "N")
         @JsonProperty("absence-period")
         private String absencePeriod;
-        @Schema(description = "First working period start time.Format: HH:MM:SS", example = "2017-11-15T11:00:00-0300")
+        @Schema(description = "First working period start time.Format: HH:MM:SS", example = "08:00:00")
         @NotNull @NotBlank @NotEmpty
         @JsonProperty("period1-start")
         private String period1Start;
-        @Schema(description = "First working period end time. Format: HH:MM:SS", example = "2017-11-15T12:00:00-0300")
+        @Schema(description = "First working period end time. Format: HH:MM:SS", example = "12:00:00")
         @NotNull @NotBlank @NotEmpty
         @JsonProperty("period1-end")
         private String period1End;
-        @Schema(description = "Second working period start time.Format: HH:MM:SS", example = "2017-11-15T13:00:00-0300")
+        @Schema(description = "Second working period start time.Format: HH:MM:SS", example = "13:00:00")
         @JsonProperty("period2-start")
         private String period2Start;
-        @Schema(description = "Second working period end time.Format: HH:MM:SS", example = "2017-11-15T15:00:00-0300")
+        @Schema(description = "Second working period end time.Format: HH:MM:SS", example = "17:00:00")
         @JsonProperty("period2-end")
         private String period2End;
-        @Schema(description = "Third working period start time.Format: HH:MM:SS", example = "2017-11-15T16:00:00-0300")
+        @Schema(description = "Third working period start time.Format: HH:MM:SS", example = "14:00:00")
         @JsonProperty("period3-start")
         private String period3Start;
-        @Schema(description = "Third working period end time.Format: HH:MM:SS", example = "2017-11-15T20:00:00-0300")
+        @Schema(description = "Third working period end time.Format: HH:MM:SS", example = "19:00:00")
         @JsonProperty("period3-end")
         private String period3End;
         @Schema(description = "Exception's description.", example = "description")
