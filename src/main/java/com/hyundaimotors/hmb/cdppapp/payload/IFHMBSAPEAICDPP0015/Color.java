@@ -15,15 +15,15 @@ import lombok.Setter;
 public class Color {
     @NotNull @NotBlank @NotEmpty
     @Schema(description = "Type", example = "AUTO_EXTERIOR")
-    @JsonProperty("Type")
+    @JsonProperty("type")
     private String type;
     @Schema(description = "LIC", example = "RAR")
-    @JsonProperty("Code")
+    @JsonProperty("code")
     private String code;
     @Schema(description = "Value and Language = ENU", example = "TROPIC RED")
     @JsonProperty("description-EM")
     private String descriptionEM;
-    @NotNull @NotBlank @NotEmpty
+    //@NotNull @NotBlank @NotEmpty
     @Schema(description = "Value and Language = PTB", example = "VERMELHO TROPICAL")
     @JsonProperty("description-PT")
     private String descriptionPT;

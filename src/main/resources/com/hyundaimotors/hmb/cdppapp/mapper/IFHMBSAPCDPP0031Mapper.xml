@@ -28,7 +28,7 @@
             , ptc.row_id  as srId
             , ptc.dealercode__c as selectedSRRoutingDealerCode
         from
-            process.testdrivehistory__c ptc 
+            process.testdrivehistory ptc 
         join
             process.account pa
         on
