@@ -35,12 +35,12 @@
             , #{excpStartDate}::timestamp
             , #{excpEndDate}::timestamp
             , #{absencePeriod}
-            , #{period1Start}::timestamp
-            , #{period1End}::timestamp
-            , #{period2Start}::timestamp
-            , #{period2End}::timestamp
-            , #{period3Start}::timestamp
-            , #{period3End}::timestamp
+            , #{period1Start}
+            , #{period1End}
+            , #{period2Start}
+            , #{period2End}
+            , #{period3Start}
+            , #{period3End}
             , #{excpDesc}
             , #{source}
         )
