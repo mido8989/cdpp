@@ -260,7 +260,7 @@
         select 
             row_id as protocalResult
         from
-            process.testdrivehistory__c
+            process.testdrivehistory
         where 
             external_id__c = cast(#{rowId} as text)
     </select>
@@ -269,7 +269,7 @@
         select 
             row_id as protocalResult
         from
-            process.quotehistory__c
+            process.quotehistory
         where 
             external_id__c = cast(#{rowId} as text)
     </select>
