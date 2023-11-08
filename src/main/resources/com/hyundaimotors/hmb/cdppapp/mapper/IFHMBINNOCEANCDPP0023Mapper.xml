@@ -47,12 +47,12 @@
                 , now()
                 , 'interface'
                 , #{item.dayName}
-                , #{item.period1Start}::timestamp
-                , #{item.period1End}::timestamp
-                , #{item.period2Start}::timestamp
-                , #{item.period2End}::timestamp
-                , #{item.period3Start}::timestamp
-                , #{item.period3End}::timestamp
+                , #{item.period1Start}
+                , #{item.period1End}
+                , #{item.period2Start}
+                , #{item.period2End}
+                , #{item.period3Start}
+                , #{item.period3End}
             )
         </foreach>
     </insert>
