@@ -18,18 +18,18 @@ public class IFHMBINNOCEANCDPP0023Day {
     @JsonProperty("day-name")
     @NotNull @NotBlank @NotEmpty
     private String dayName;
-    @Schema(description = "First working period start time. Format: HH:MM:SS", example = "2017-11-15T08:00:00-0300")
+    @Schema(description = "First working period start time. Format: HH:MM:SS", example = "08:00:00")
     @NotNull @NotBlank @NotEmpty
     private String period1Start;
-    @Schema(description = "Second working period end time. Format: HH:MM:SS", example = "2017-11-15T12:00:00-0300")
+    @Schema(description = "Second working period end time. Format: HH:MM:SS", example = "12:00:00")
     @NotNull @NotBlank @NotEmpty
     private String period1End;
-    @Schema(description = "Second working period start time. Format: HH:MM:SS", example = "2017-11-15T14:00:00-0300")
+    @Schema(description = "Second working period start time. Format: HH:MM:SS", example = "13:00:00")
     private String period2Start;
-    @Schema(description = "Second working period end time. Format: HH:MM:SS", example = "2017-11-15T18:00:00-0300")
+    @Schema(description = "Second working period end time. Format: HH:MM:SS", example = "17:00:00")
     private String period2End;
-    @Schema(description = "Third working period start time. Format: HH:MM:SS", example = "2017-11-15T20:00:00-0300")
+    @Schema(description = "Third working period start time. Format: HH:MM:SS", example = "14:00:00")
     private String period3Start;
-    @Schema(description = "Third working period end time. Format: HH:MM:SS", example = "2017-11-15T22:00:00-0300")
+    @Schema(description = "Third working period end time. Format: HH:MM:SS", example = "19:00:00")
     private String period3End;
 }
