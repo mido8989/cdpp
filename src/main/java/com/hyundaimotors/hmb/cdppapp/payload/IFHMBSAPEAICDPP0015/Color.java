@@ -13,7 +13,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Color {
-    private String rowId;
     //@NotNull @NotBlank @NotEmpty
     @Schema(description = "Type", example = "AUTO_EXTERIOR")
     @JsonProperty("type")

@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0015Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0015.IFHMBSAPEAICDPP0015Dto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0015Mapper;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0015.Color;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0015Service;
@@ -30,7 +30,7 @@ public class IFHMBSAPEAICDPP0015ServiceImpl implements IFHMBSAPEAICDPP0015Servic
             for(int i=0; i < dto.getListOfColor().size(); i++){
                 mapper.insertObject(dto.getListOfColor().get(i));
 
-                paramList.set(i, dto.getListOfColor().get(i).getRowId());
+                paramList.set(i, String.valueOf(dto.getListOfColor().get(i).getRowId()));
             }
 
             String[] param = paramList.toArray(new String[paramList.size()]);
