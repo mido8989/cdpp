@@ -122,7 +122,7 @@
             , #{serviceRequestChatInput.integrationId}
             , #{serviceRequestChatInput.tdConfirmed}
             , #{serviceRequestChatInput.tdTime}
-            , #{serviceRequestChatInput.tdDate}
+            , #{serviceRequestChatInput.tdDate}::timestamp
             , #{serviceRequestChatInput.salesrepId}
             , #{serviceRequestChatInput.pneFlag}
             , #{serviceRequestChatInput.campaignId}
