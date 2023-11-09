@@ -57,12 +57,12 @@
             , now()
             , 'interface'
             , #{contactId}
-            , to_date(#{cnheXpirationDate}, 'YYYY-MM-DD')
+            , to_date(nullif(#{cnheXpirationDate},''), 'YYYY-MM-DD')
             , #{firstName}
             , #{lastName}
-            , to_date(#{birthDate}, 'YYYY-MM-DD')
+            , to_date(nullif(#{birthDate},''), 'YYYY-MM-DD')
             , #{genre}
-            , to_date(#{hkmeRetailDate}, 'YYYY-MM-DD')
+            , to_date(nullif(#{hkmeRetailDate},''), 'YYYY-MM-DD')
             , #{homePhone}
             , #{workPhone}
             , #{cellularPhone}
