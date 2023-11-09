@@ -65,7 +65,7 @@
 
     <insert id="insertAmaroCSISurveyAnswer" parameterType="IFHMBINNOCEANCDPP0088Dto">
         insert into landing.if_amaro_csi_survey_answer_ws (
-            amr_row_id
+            par_row_id
             , created
             , created_by
             , last_upd
