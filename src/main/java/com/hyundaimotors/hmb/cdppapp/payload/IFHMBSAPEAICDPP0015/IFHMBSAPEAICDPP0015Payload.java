@@ -23,7 +23,7 @@ public class IFHMBSAPEAICDPP0015Payload {
         @NotNull @NotBlank @NotEmpty
         @JsonProperty("Source")
         private String source;
-        @Valid @JsonProperty("ListOfColors")
+        @JsonProperty("ListOfColors")
         List<Color> listOfColor;
     }
 

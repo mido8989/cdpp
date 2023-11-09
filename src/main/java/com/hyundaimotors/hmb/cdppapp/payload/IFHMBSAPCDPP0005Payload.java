@@ -25,7 +25,7 @@ public class IFHMBSAPCDPP0005Payload {
         @Schema(description = "Company nickname", example = "POSTO ITATIAIA")
         private String nickname;
         @Schema(description = "Parent Company if belongs to a group.", example = "AUTO POSTO ITATIAIA LTDA")
-        @NotNull @NotBlank @NotEmpty
+//        @NotNull @NotBlank @NotEmpty
         private String parentAccountName;
         @Schema(description = "agencyCode", example = "HQ")
         private String agencyCode;

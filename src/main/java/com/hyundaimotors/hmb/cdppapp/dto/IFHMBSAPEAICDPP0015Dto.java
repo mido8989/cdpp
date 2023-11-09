@@ -10,7 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class IFHMBSAPEAICDPP0015Dto {
-    private String rowId;
     private String source;
 
     List<Color> listOfColor; 
