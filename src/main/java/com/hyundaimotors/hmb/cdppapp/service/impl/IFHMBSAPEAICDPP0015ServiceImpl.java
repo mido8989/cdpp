@@ -30,7 +30,7 @@ public class IFHMBSAPEAICDPP0015ServiceImpl implements IFHMBSAPEAICDPP0015Servic
             for(int i=0; i < dto.getListOfColor().size(); i++){
                 mapper.insertObject(dto.getListOfColor().get(i));
 
-                paramList.set(i, String.valueOf(dto.getListOfColor().get(i).getRowId()));
+                paramList.add(String.valueOf(String.valueOf(dto.getListOfColor().get(i).getRowId())));
             }
 
             String[] param = paramList.toArray(new String[paramList.size()]);
