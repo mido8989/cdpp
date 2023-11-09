@@ -1,4 +1,4 @@
-package com.hyundaimotors.hmb.cdppapp.dto;
+package com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0015;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import lombok.Setter;
 public class IFHMBSAPEAICDPP0015Dto {
     private String source;
 
-    List<Color> listOfColor; 
+    List<ColorDto> listOfColor; 
 
     private String errorSpcCode;
     private String errorSpcMessage;
