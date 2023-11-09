@@ -32,7 +32,7 @@
 
     <select id="getProcessRowIds" parameterType="list" resultType="string">
         select 
-            row_id
+            ci.row_id
         from
             process.color_information ci 
         join 
