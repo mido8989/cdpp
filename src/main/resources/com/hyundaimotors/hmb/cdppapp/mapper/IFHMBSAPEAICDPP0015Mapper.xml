@@ -32,11 +32,27 @@
         </foreach>
     </insert>
 
+    <select id="getProcessRowIds" parameterType="list" resultType="string">
+        select 
+            row_id
+        from
+            process.color_information ci 
+        join 
+            landing.if_in_color_ws_color iicwc
+        on
+            ci.external_id__c = iicwc.row_id
+        where
+            iicwc.row_id in
+            <foreach collection="paramList" item="item" index="index" open="(" close=")" separator=",">
+                CAST(#{item} AS INTEGER)
+            </foreach>
+    </select>
+
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.if_in_color(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call process.if_in_color(#{param_id});
     </insert>
 
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
-        call replica.if_in_color(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+        call replica.if_in_color(#{param_id});
     </insert>
 </mapper>
