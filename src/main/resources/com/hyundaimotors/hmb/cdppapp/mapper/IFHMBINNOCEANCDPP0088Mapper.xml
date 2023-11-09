@@ -11,7 +11,7 @@
             integration_id = concat(#{source}||#{integrationId})
     </select>
 
-    <insert id="insertAmaroCSISurvey" parameterType="IFHMBINNOCEANCDPP0088Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="amr_row_id">
+    <insert id="insertAmaroCSISurvey" parameterType="IFHMBINNOCEANCDPP0088Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_amaro_csi_survey_ws(
             created
             , created_by
