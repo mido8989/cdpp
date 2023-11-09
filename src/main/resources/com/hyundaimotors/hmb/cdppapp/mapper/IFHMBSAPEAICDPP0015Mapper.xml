@@ -38,7 +38,7 @@
         join 
             landing.if_in_color_ws_color iicwc
         on
-            ci.external_id__c = iicwc.row_id
+            ci.external_id__c = iicwc.row_id::text
         where
             iicwc.row_id in
             <foreach collection="paramList" item="item" index="index" open="(" close=")" separator=",">
