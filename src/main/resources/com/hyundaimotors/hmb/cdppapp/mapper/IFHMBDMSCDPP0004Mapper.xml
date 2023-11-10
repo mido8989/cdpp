@@ -120,7 +120,7 @@
 		from
 			process.opportunity
 		where 
-			testdriveprotocolid__c = #{protocol}
+            protocol__c = #{protocol}
 		union all
 		select 
 			temperaturenumber__c as temperatureNum 

@@ -34,7 +34,7 @@
             , psr.payment_date__c as paymentDate
             , psr.payment_method__c as paymentMethod
             , psr.payment_status__c as paymentStatus
-            , pas.description__c as tdVersion
+            , pas.description as tdVersion
             , psr.description as description
             , psr.usedcar_brand__c as usadoMarca
             , psr.usedcar_model__c as usadoModelo
@@ -138,5 +138,26 @@
             psea.protocol__c = #{protocol}
         order by legacy_created desc
         limit 1
+    </select>
+
+    <select id="getTemperature" parameterType="String" resultType="TotalTemperatureDto">
+        select 
+            '0' as name
+            , predictive_temp__c as temperature 
+            , createddate as created
+        from
+            process.opportunity
+        where 
+            protocol__c = #{protocol}
+        union all
+        select 
+            temperaturenumber__c as name 
+            ,predictivetemp__c as temperature
+            , createddate as created
+        FROM
+            process.sales_consult_history
+        where
+            protocol__c = #{protocol}
+        order by name asc
     </select>
 </mapper>
