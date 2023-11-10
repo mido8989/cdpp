@@ -108,10 +108,10 @@
             , #{manufactureYear}
             , #{modelYear}
             , #{mileage}
-            , to_date(#{saleToDealerDate}, 'YYYY-MM-DD')
-            , to_date(#{warrantyStartDate}, 'YYYY-MM-DD')
-            , to_date(#{billingDate}, 'YYYY-MM-DD')
-            , to_date(#{deliverToCustomerDate}, 'YYYY-MM-DD')
+            , to_date(nullif(#{saleToDealerDate},''), 'YYYY-MM-DD')
+            , to_date(nullif(#{warrantyStartDate},''), 'YYYY-MM-DD')
+            , to_date(nullif(#{billingDate},''), 'YYYY-MM-DD')
+            , to_date(nullif(#{deliverToCustomerDate},''), 'YYYY-MM-DD')
             , #{sellingDealerCode}
             , #{negotiationType}
             , #{subscriptionType}
@@ -120,9 +120,9 @@
             , #{salesrepFirstName}
             , #{salesrepLastName}
             , #{urlPhoto}
-            , to_date(#{urlphotoDate}, 'YYYY-MM-DD')
+            , to_date(nullif(#{urlphotoDate},''), 'YYYY-MM-DD')
             , #{urlauthPublication}
-            , to_date(#{vehicleLicenseDate}, 'YYYY-MM-DD')
+            , to_date(nullif(#{vehicleLicenseDate},''), 'YYYY-MM-DD')
             , #{digitalSales}
             , #{deliveryatHome}
             , #{tdatHome}
@@ -157,7 +157,7 @@
             , #{contactStatus}     
             , #{employee}  
             , #{serialNumber}
-            , CAST(#{parRowId} as Integer)
+            , CAST(nullif(#{parRowId},'') as Integer)
         )
     </insert>
 
@@ -182,7 +182,7 @@
             , #{accountType}
             , #{accountStatus}
             , #{serialNumber}
-            , CAST(#{parRowId} as Integer)
+            , CAST(nullif(#{parRowId},'') as Integer)
         )       
     </insert>
     
