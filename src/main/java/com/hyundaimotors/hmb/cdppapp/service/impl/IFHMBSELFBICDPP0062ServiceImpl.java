@@ -10,6 +10,7 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSELFBICDPP0062.IFHMBSELFBICDPP0062
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSELFBICDPP0062.TotalActionDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSELFBICDPP0062.TotalContactDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSELFBICDPP0062.TotalLeadDto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSELFBICDPP0062.TotalTemperatureDto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSELFBICDPP0062Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSELFBICDPP0062Service;
 
@@ -61,6 +62,9 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
                 action = mapper.getAction(protocol);
                 if(action!= null){
                     lead.get(index).setAction(action);
+
+                    List<TotalTemperatureDto> temperature = new ArrayList<>();
+                    temperature = mapper.getTemperature(protocol);
                 }
 
                 
