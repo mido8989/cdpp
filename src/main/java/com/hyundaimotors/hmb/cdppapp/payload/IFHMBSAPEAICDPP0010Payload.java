@@ -5,7 +5,6 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -50,13 +49,13 @@ public class IFHMBSAPEAICDPP0010Payload {
         private int modelYear;
         @Schema(description = "Mileage.", example = "1000")
         private int mileage;
-        @Schema(description = "Sale to dealer date. Format: MM/DD/YYYY", example = "2012.10.25")
+        @Schema(description = "Sale to dealer date. Format: MM/DD/YYYY", example = "2012-10-25")
         private String saleToDealerDate;
-        @Schema(description = "Warranty's start date. Format: MM/DD/YYYY", example = "2012.10.16")
+        @Schema(description = "Warranty's start date. Format: MM/DD/YYYY", example = "2023-11-07T00:00:00-0300")
         private String warrantyStartDate;
-        @Schema(description = "Billing date. Format: MM/DD/YYYY", example = "2012.10.16")
+        @Schema(description = "Billing date. Format: MM/DD/YYYY", example = "2023-11-07T11:45:05-0300")
         private String billingDate;
-        @Schema(description = "Deliver to customer date. Format: MM/DD/YYYY", example = "2012.11.6")
+        @Schema(description = "Deliver to customer date. Format: MM/DD/YYYY", example = "2023-06-09T00:00:00-0300")
         private String deliverToCustomerDate;
         @Schema(description = "Dealer code.", example = "B05AM19029")
         private String sellingDealerCode;
@@ -74,11 +73,11 @@ public class IFHMBSAPEAICDPP0010Payload {
         private String salesrepLastName;
         @Schema(description = "url Photo", example = "https://meuhyundai.com.br/static/momento_especial/1660764424478--1-EU7NVW7.jpg")
         private String urlPhoto;
-        @Schema(description = "url Photo Date", example = "2022.08.08")
+        @Schema(description = "url Photo Date", example = "2023-06-09T00:00:00-0300")
         private String urlphotoDate;
         @Schema(description = "url Auth Piblication", example = "2022.08.08")
         private String urlauthPublication;
-        @Schema(description = "Vehicle License Date", example = "2022.08.08")
+        @Schema(description = "Vehicle License Date", example = "2023-06-09T00:00:00-0300")
         @JsonProperty("VehicleLicenseDate")
         private String vehicleLicenseDate;
         @Schema(description = "Digital Sales", example = "N")
@@ -90,9 +89,9 @@ public class IFHMBSAPEAICDPP0010Payload {
         private String tdatHome;
         @Schema(description = "ccs_flg", example = "N")
         private String ccs_flg;
-        @Valid @JsonProperty("ListOfContact")
+        @JsonProperty("ListOfContact")
         List<AutoVehicleWebserviceWFContactPayload> contact;
-        @Valid @JsonProperty("ListOfAccount")
+        @JsonProperty("ListOfAccount")
         List<AutoVehicleWebserviceWFAccountPayload> account;
     }
 
