@@ -136,7 +136,8 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @Schema(description = "Flag to define if customer wants all mobile suppressed.", example = "Y")
         @JsonProperty("SuppressAllMobile")
         private String suppressAllMobile;
-        @Schema(description = "Printed card flag. Valid values: true, false", example = "true")
+        // 20231110 테이블 char 1 example = "true" => "Y" 변경
+        @Schema(description = "Printed card flag. Valid values: true, false", example = "Y")
         @JsonProperty("PrintedCard")
         private String printedCard;
         @Schema(description = "Flag to define if customer is already a customer. Valid values: Y, N", example = "N")
