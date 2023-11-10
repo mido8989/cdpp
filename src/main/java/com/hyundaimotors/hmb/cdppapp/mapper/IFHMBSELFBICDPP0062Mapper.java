@@ -16,5 +16,6 @@ public interface IFHMBSELFBICDPP0062Mapper {
 
     public TotalActionDto getAction(String protocol)throws Exception;
 
-    public List<TotalTemperatureDto> getTemperatureDto(String protocol)throws Exception;
+    public List<TotalTemperatureDto> getTemperature(String protocol)throws Exception;
+    
 }
