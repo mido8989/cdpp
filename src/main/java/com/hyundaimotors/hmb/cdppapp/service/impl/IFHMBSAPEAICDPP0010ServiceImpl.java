@@ -118,6 +118,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             
             getAssetId = mapper.getProcAssetId(dto);
             listProcAssetId.add(getAssetId);
+            procAssetId = listProcAssetId.toArray(new String[listProcAssetId.size()]);
             String[] procCustVehicleId = null;
             if( dto.getAccount() != null && dto.getContact() != null){
                 listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
@@ -165,11 +166,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             procInvoiceId = listProcInvoiceId.toArray(new String[listProcInvoiceId.size()]);
             procAssetId = listProcAssetId.toArray(new String[listProcAssetId.size()]);
 
-            System.out.println("getProcInvoiceId : " + getProcInvoiceId);
-            System.out.println("getAssetId : " + getAssetId);
-            System.out.println("listProcInvoiceId : " + listProcInvoiceId);
-            System.out.println("getProcInvoiceId : " + getProcInvoiceId);
-           String[] procCustVehicleId = null;
+            String[] procCustVehicleId = null;
             if( dto.getAccount() != null && dto.getContact() != null){
                 listProcCustVehicleId = mapper.getProcCustVehicleId(dto);
                 procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
