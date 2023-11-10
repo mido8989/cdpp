@@ -22,7 +22,7 @@ public class IFHMBSAPEAICDPP0010Payload {
         @Schema(description = "Valid values:Dealer Owned, Customer Owned, Cancelled.", example = "Customer Owned")
         private String status;
         @Schema(description = "Chassis number.Unique code for the asset record to be added. It is used as key field for this integration, to determine if a existing record should be updated or a new record should be inserted.", example = "9BHBH41DBGP633658")
-        @NotNull @NotBlank @NotEmpty
+        // @NotNull @NotBlank @NotEmpty
         private String serialNumber;
         @Schema(description = "Renavam code.", example = "497269414")
         @NotNull @NotBlank @NotEmpty
