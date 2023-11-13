@@ -120,7 +120,7 @@
             , #{salesrepFirstName}
             , #{salesrepLastName}
             , #{urlPhoto}
-            , #{urlphotoDate}
+            , #{urlphotoDate}::timestamp
             , #{urlauthPublication}
             , #{vehicleLicenseDate}
             , #{digitalSales}

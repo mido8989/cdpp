@@ -31,7 +31,7 @@ public class IFHMBSAPEAICDPP0006Payload {
         private String hotlineCreation;
         @Schema(description = "Action inbound interface", example = "1235469845")
         private String pwaId;
-        @Schema(description = "Created for Call Report", example = "1-19FJ8")
+        @Schema(description = "Created for Call Report", example = "2023-10-20T15:14:33-0300")
         private String pwaCreation;
         @Schema(description = "Action inbound interface", example = "123456")
         private String roId;
