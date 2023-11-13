@@ -25,7 +25,6 @@ public class IFHMBSAPEAICDPP0010Payload {
         @NotNull @NotBlank @NotEmpty
         private String serialNumber;
         @Schema(description = "Renavam code.", example = "497269414")
-        // @NotNull @NotBlank @NotEmpty
         private String renavamCode;
         @Schema(description = "Engine number.", example = "F3LACU001831")
         private String engineNumber;

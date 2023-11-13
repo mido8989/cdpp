@@ -122,7 +122,7 @@
             , #{urlPhoto}
             , #{urlphotoDate}::timestamp
             , #{urlauthPublication}
-            , #{vehicleLicenseDate}
+            , #{vehicleLicenseDate}::timestamp
             , #{digitalSales}
             , #{deliveryatHome}
             , #{tdatHome}
