@@ -62,7 +62,7 @@ public class IFHMBSAPEAICDPP0003Payload {
         @Schema(description = "Vehicle door amount. ", example = "5")
         private int doorsAmnt;
         @Schema(description = "Vehicle suggested price", example = "50000")
-        private String suggestedPrice;
+        private float suggestedPrice;
         @Schema(description = "Description", example = "Rede de porta-malas")
         @JsonProperty("Description")
         private String description;
