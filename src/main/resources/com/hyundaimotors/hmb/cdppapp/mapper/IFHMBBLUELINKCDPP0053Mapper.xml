@@ -5,7 +5,6 @@
     <insert id="inserBluelink" parameterType="BluelinkDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_auto_vehicle_bluelink_ws(
             chassi
-            <!-- , latestMileage -->
             , integrationId
             , created
             , created_by
@@ -16,7 +15,6 @@
             , type
         )values(                 
             #{setChassi}
-            <!-- , #{setLatestMileage} -->
             , #{integrationId}
             , now()
             , 'interface'
@@ -41,6 +39,8 @@
             process.bluelink pbc 
         on
             libl.chassi = pbc.chassi__c 
+        and
+            libl."type" = pbc.type__c
         where
             libl.row_id in
             <foreach collection="paramList" item="item" index="index" open="(" close=")" separator=",">
