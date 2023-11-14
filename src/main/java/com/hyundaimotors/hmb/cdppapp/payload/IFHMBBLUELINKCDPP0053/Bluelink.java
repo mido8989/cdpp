@@ -16,7 +16,7 @@ public class Bluelink {
     @Schema(description = "Id from the Partner", example = "1-U1V4")
     @JsonProperty("IntegrationId")
     private String integrationId;
-    @Schema(description = "Valid values: Assignee, Driver, Family, First owner, Mechanic, Other, Owner, Unspecified.", example = "Driver")
+    @Schema(description = "Activation Date", example = "2023-05-10T10:12:34-0300")
     @NotNull @NotBlank @NotEmpty
     @JsonProperty("ActivationDate")
     private String activationDate;
