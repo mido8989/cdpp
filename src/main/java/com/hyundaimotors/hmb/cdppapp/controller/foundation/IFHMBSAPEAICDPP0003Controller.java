@@ -3,6 +3,7 @@ package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 import java.util.UUID;
 
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,26 +44,28 @@ public class IFHMBSAPEAICDPP0003Controller {
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPEAICDPP0003Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBProductInboundWF")
     public Object insertObject(@Valid @RequestBody IFHMBSAPEAICDPP0003Payload.Request request) throws Exception {
-    	UUID IF_TR_ID = UUID.randomUUID();
-    	
-    	IFHMBSAPEAICDPP0003Payload.Response response = new IFHMBSAPEAICDPP0003Payload.Response();
-    	ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
-    	
-    	try {
-	        IFHMBSAPEAICDPP0003Dto dto = defaultMapper.map(request, IFHMBSAPEAICDPP0003Dto.class);
-	
-	        ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
-	        IFHMBSAPEAICDPP0003Dto resultDto = service.insertObject(dto);
-	        ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP2, IF_TR_ID, null);
-	
-	        response = ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBSAPEAICDPP0003Payload.Response.class) : null;
-	        ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
-    	}catch(Exception e) {
-    		response.setErrorSpcCode("500");
-            response.setErrorSpcMessage(e.getLocalizedMessage());
+        UUID IF_TR_ID = UUID.randomUUID();
+        
+        IFHMBSAPEAICDPP0003Payload.Response response = new IFHMBSAPEAICDPP0003Payload.Response();
+        ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
+        
+        try {
+            IFHMBSAPEAICDPP0003Dto dto = defaultMapper.map(request, IFHMBSAPEAICDPP0003Dto.class);
+    
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
+            IFHMBSAPEAICDPP0003Dto resultDto = service.insertObject(dto);
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP2, IF_TR_ID, null);
+    
+            response = ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBSAPEAICDPP0003Payload.Response.class) : null;
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
+        }catch(Exception e) {
+            response.setErrorSpcCode("500");
+            String message = e.getLocalizedMessage();
+            if(message == null || "".equals(message)) message = e.getCause().getMessage();
+            response.setErrorSpcMessage(message);
             ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
         }
-    	
-    	return  response;
+        
+        return  response;
     }
 }
