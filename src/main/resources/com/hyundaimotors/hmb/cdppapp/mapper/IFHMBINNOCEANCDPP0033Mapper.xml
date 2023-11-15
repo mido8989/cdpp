@@ -18,10 +18,13 @@
             , pa.carregistrationnumber__c as vehicleLicenseNumber
             , pa.fueltype__c as fuel
             , pa.status as status
-            , TO_CHAR(pa.dealer_rcpt_dt__c,'YYYY-MM-DD"T"HH24:MI:SS-0300') as saleToDealerDate
-            , TO_CHAR(pa.billing_date__c,'YYYY-MM-DD"T"HH24:MI:SS-0300') as billingDate
+          --  , TO_CHAR(pa.dealer_rcpt_dt__c,'YYYY-MM-DD"T"HH24:MI:SS-0300') as saleToDealerDate
+            , case when pa.dealer_rcpt_dt__c notnull then to_char(pa.dealer_rcpt_dt__c,'YYYY-MM-DD"T"HH24:MI:SS-0300') end as saleToDealerDate
+           -- , TO_CHAR(pa.billing_date__c,'YYYY-MM-DD"T"HH24:MI:SS-0300') as billingDate
+            , case when pa.billing_date__c notnull then to_char(pa.billing_date__c,'YYYY-MM-DD"T"HH24:MI:SS-0300') end as billingDate
             , pa.cf_eval_svc_cd__c  as ccsFlg
-            , TO_CHAR(pa.warranty_start_dt__c,'YYYY-MM-DD"T"HH24:MI:SS-0300') as warrantyStartDate
+           -- , TO_CHAR(pa.warranty_start_dt__c,'YYYY-MM-DD"T"HH24:MI:SS-0300') as warrantyStartDate
+            , case when pa.warranty_start_dt__c notnull then to_char(pa.warranty_start_dt__c,'YYYY-MM-DD"T"HH24:MI:SS-0300') end as warrantyStartDate
             , pa.purch_loc_desc__c as fiscalReceipt
             , (select row_id from process.account where dealercode__c = pa.dealercode__c limit 1) as dealerId
             , pa.dealercode__c  as dealerCode
