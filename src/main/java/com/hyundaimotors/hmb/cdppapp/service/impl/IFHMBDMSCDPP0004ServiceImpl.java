@@ -1,8 +1,10 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,12 +46,14 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
         GetLeadResultDto result = new GetLeadResultDto();
         List<GetLeadInteractionDto> interactionList = new ArrayList<>();
         GetLeaDveiculoEntradaOPVDto veiculoEntradaOPV = new GetLeaDveiculoEntradaOPVDto();
+        List<String> protocalList = new ArrayList<>();
 
         getLeadInfoList = mapper.getLeadInfoList(dto);
 
         
         if(0 < getLeadInfoList.size()){
             for(int i=0; i < getLeadInfoList.size(); i++){
+                protocalList.add(getLeadInfoList.get(i).getProtocol());
                 GetLeadDto getLeadDto = new GetLeadDto();
                 contato = mapper.getContactInfo(getLeadInfoList.get(i));
                 if(contato != null){
@@ -100,6 +104,14 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
             resultDto.setListOfLead(listOfLead);
             resultDto.setErrorspcCode("0");
             resultDto.setErrorspcMessage("OK");
+
+            String[] param = protocalList.toArray(new String[protocalList.size()]);
+            
+            HashMap<String, String[]> map = new HashMap<>();
+            map.put("param_id", param);
+            
+            UpdateOppt(map);
+
         }else{
             resultDto.setErrorspcCode("1");
             resultDto.setErrorspcMessage("No Data");
@@ -107,4 +119,9 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
 
         return resultDto;
     }
+    @Async
+    public void UpdateOppt(HashMap<String, String[]> map)throws Exception{
+        mapper.transferProcess(map);
+        mapper.transferReplica(map);
+    } 
 }

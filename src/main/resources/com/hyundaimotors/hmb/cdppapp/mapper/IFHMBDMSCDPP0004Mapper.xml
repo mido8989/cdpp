@@ -193,4 +193,12 @@
         where 
             protocol__c = #{protocol}
     </select>
+
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_getlead_ws(#{param_id});
+    </insert>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_getlead_ws(#{param_id});
+    </insert>
 </mapper>

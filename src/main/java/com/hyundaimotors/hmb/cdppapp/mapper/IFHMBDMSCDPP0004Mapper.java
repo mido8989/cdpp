@@ -1,5 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeaDveiculoEntradaOPVDto;
@@ -34,4 +35,8 @@ public interface IFHMBDMSCDPP0004Mapper {
     public List<GetLeadInteractionDto> getInteractionList(IFHMBDMSCDPP0004Dto dto)throws Exception;
 
     public GetLeaDveiculoEntradaOPVDto getVeiculoEntradaOPV(IFHMBDMSCDPP0004Dto dto)throws Exception;
+
+    public void transferProcess(HashMap<String, String[]> parMap)throws Exception;
+
+    public void transferReplica(HashMap<String, String[]> parMap)throws Exception;
 }
