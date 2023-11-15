@@ -61,7 +61,7 @@ public class ServiceRequestChatInput {
     private String dealerId;
     @Schema(description = "Protocol causing area.Valid values: Dealer, Generalli, HMB, Mobis", example = "Dealer")
     private String causingArea;
-    @Schema(description = "Vehicle immobilized date. Format: MM/DD/YYYY", example = "2023-10-24T15:00:02")
+    @Schema(description = "Vehicle immobilized date. Format: MM/DD/YYYY", example = "2023-10-24T15:00:02-0300")
     private String imobilizationDate;
     @Schema(description = "Vehicle model related with the protocol. Valid values: HB20, HB20 FOR YOU", example = "HB20")
     private String relatedModel;
@@ -133,7 +133,7 @@ public class ServiceRequestChatInput {
     private String hotlineFlg;
     @Schema(description = "Hotline number.", example = "HOT001")
     private String hotlineNum;
-    @Schema(description = "Hotline open date.", example = "2023-10-24T15:00:02")
+    @Schema(description = "Hotline open date.", example = "2023-10-24T15:00:02-0300")
     private String hotlineOpenDt;
     @Schema(description = "Purchase proposal number for complaints related with delayed delivery.", example = "PROPOSTA002")
     private String purchaseProposalNum;
@@ -141,13 +141,13 @@ public class ServiceRequestChatInput {
     private String pwaFlg;
     @Schema(description = "PWA number.", example = "PWA001")
     private String pwaNum;
-    @Schema(description = "PWA opened date.", example = "2023-10-24T15:00:02")
+    @Schema(description = "PWA opened date.", example = "2023-10-24T15:00:02-0300")
     private String pwaOpenDt;
     @Schema(description = "Flag indicating if the complaint is recurring. Valid values: Y, N", example = "Y")
     private String recurrenceFlg;
     @Schema(description = "Number of complaint recurrences.", example = "23456789")
     private int recurrenceNum;
-    @Schema(description = "Date of vehicle delivery, either for purchases or repairs.", example = "2023-10-24T15:00:02")
+    @Schema(description = "Date of vehicle delivery, either for purchases or repairs.", example = "2023-10-24T15:00:02-0300")
     private String vehicleDeliveryDt;
     @Schema(description = "Flag indicating if the vehicle was delivered, either for purchases or repairs. Valid values: Y, N", example = "Y")
     private String vehicleDeliveryFlg;
