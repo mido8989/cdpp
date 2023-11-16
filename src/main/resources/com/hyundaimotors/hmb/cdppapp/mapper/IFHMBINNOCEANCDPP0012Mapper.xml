@@ -16,8 +16,8 @@
             , pca.fax as fax
             , pca.emailaddress__c as mainEmailAddress
             , pca.emailaddress__c as workEmailAddress
-            , pca.salesflag__c as salesDealerFlag
-            , pca.serviceflag__c as serviceDealerFlag
+            , case when pca.salesflag__c = true then 'Y' when pca.salesflag__c = false then 'N' end salesDealerFlag
+            , case when pca.serviceflag__c = true then 'Y' when pca.serviceflag__c = false then 'N' end serviceDealerFlag
             , pca.prtnrshp_start_dt__c as partnerStartDate
             , pca.prtnrshp_end_dt__c as partnerEndDate
             , pca.region__c as region
