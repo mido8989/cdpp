@@ -25,27 +25,22 @@ public class IFHMBINNOCEANCDPP0024Payload {
         @Schema(description = "Dealer Code", example = "30311079800")
         @JsonProperty("employee-cpf")
         private String employeeCPF;
-        @NotNull @NotBlank @NotEmpty
         @Schema(description = "Dealer code where the consultant will be available.", example = "B05AM99999")
         @JsonProperty("dealer-code")
         private String dealerCode;
         @Schema(description = "Exception's start date.Format: MM/DD/YYYY", example = "2016-10-12T00:00:00-0300")
-        @NotNull @NotBlank @NotEmpty
         @JsonProperty("excp-start-date")
         private String excpStartDate;
         @Schema(description = "Exception's end date.Format: MM/DD/YYYY", example = "2016-12-12T00:00:00-0300")
-        @NotNull @NotBlank @NotEmpty
         @JsonProperty("excp-end-date")
         private String excpEndDate;
         @Schema(description = "Absence period flag. Possible values are:", example = "N")
         @JsonProperty("absence-period")
         private String absencePeriod;
         @Schema(description = "First working period start time.Format: HH:MM:SS", example = "08:00:00")
-        @NotNull @NotBlank @NotEmpty
         @JsonProperty("period1-start")
         private String period1Start;
         @Schema(description = "First working period end time. Format: HH:MM:SS", example = "12:00:00")
-        @NotNull @NotBlank @NotEmpty
         @JsonProperty("period1-end")
         private String period1End;
         @Schema(description = "Second working period start time.Format: HH:MM:SS", example = "13:00:00")
