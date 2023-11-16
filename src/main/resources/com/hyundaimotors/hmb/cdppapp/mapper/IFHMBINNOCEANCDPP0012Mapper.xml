@@ -41,6 +41,8 @@
             process.account pca
         where
             pca.registrysource__c = #{source}
+          and
+            pca."type" = 'Dealer'
     </select>
 
     <select id="getChannelPartnerContactList" parameterType="IFHMBINNOCEANCDPP0012Dto" resultType="ChannelPartnerContact">
