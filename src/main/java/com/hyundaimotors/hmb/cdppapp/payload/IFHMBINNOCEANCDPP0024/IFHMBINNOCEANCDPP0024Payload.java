@@ -16,14 +16,14 @@ public class IFHMBINNOCEANCDPP0024Payload {
     @Setter
     public static class Request{
         @NotNull @NotBlank @NotEmpty
-        @Schema(description = "UPSERT", example = "UPSERT")
+        @Schema(description = "DELETE/UPSERT", example = "UPSERT")
         private String operation;
         @Schema(description = "Record identifier.", example = "1")
         @NotNull
         @JsonProperty("excp-id")
-        private int excpId;
+        private String excpId;
         @NotNull @NotBlank @NotEmpty
-        @Schema(description = "Dealer Code", example = "30311079800")
+        @Schema(description = "Employee Cpf", example = "30311079800")
         @JsonProperty("employee-cpf")
         private String employeeCPF;
         @Schema(description = "Dealer code where the consultant will be available.", example = "B05AM99999")
