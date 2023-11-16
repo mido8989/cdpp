@@ -40,7 +40,7 @@
         from
             process.account pca
         where
-            pca.registrysource__c = #{source}
+            pca.cust_stat_cd__c = 'Active'
           and
             pca."type" = 'Dealer'
     </select>
