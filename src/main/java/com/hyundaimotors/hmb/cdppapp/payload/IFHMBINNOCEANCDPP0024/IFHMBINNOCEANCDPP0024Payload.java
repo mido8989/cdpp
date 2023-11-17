@@ -62,7 +62,6 @@ public class IFHMBINNOCEANCDPP0024Payload {
         @Schema(description = "Name of requester system.", example = "Source")
         @NotNull @NotBlank @NotEmpty
         private String source;
-        
     }
 
     @Schema(name = "IFHMBINNOCEANCDPP0024Payload.Response")
