@@ -34,22 +34,13 @@
             pv.asset_id = pa.row_id
         where  
             pa.serialnumber = #{serialNumber}
-            <if test="account != null">
-                and 
-                pv.account_id in 
-                <foreach collection="account" item="item" index="idx" open="(" close=")" separator=","> 
-                    #{item.connexAccountId}
-                </foreach>
-            </if>
             <if test="contact != null">
-                or 
+                and 
                 pv.account_id in 
                 <foreach collection="contact" item="item" index="idx" open="(" close=")" separator=","> 
                     #{item.connexContactId}
                 </foreach>
-            </if>      
-        
-            
+            </if>    
     </select>
 
     <insert id="insertAutoVehicle" parameterType="IFHMBSAPEAICDPP0010Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
