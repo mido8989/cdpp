@@ -22,7 +22,7 @@
             person_account_id = #{contactId}
         </if>
         and
-            lower(status) not in ('cancelled')   
+            lower(status) not in ('inactive')   
     </select>
 
     <select id="getProcCustVehicleId" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="String">
