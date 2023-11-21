@@ -16,7 +16,7 @@
             , pac.personemail as emailAddress
             , pac.amount_friends as amountFriends
             , pac.amount_children as amountChildren
-            , pac.optinflag__c as loyaltyOPTINFla
+            , case when pac.optinflag__c = true then 'Y' else 'N' end as loyaltyOPTINFla
             , pac.loyaltyactivationdate__c as loyaltyActivationDate
             , pac.loyaltyexpirationtodate__c as loyaltyExpirationDate
             , pac.loyaltyengagementindex__c as loyaltyEngagementIndex
@@ -33,9 +33,9 @@
             , pac.billingstate as state
             , pac.billingpostalcode as postalCode
             , pac.numeric_row_id as numericRowId
-            , pac.emailoptyn__pc as suppressAllEmails
+            , case when pac.emailoptyn__pc = true then 'Y' else 'N' end suppressAllEmails
             , pac.blockedsms__c as suppressAllSMS
-            , pac.x_printed_card__c as printedCard
+            , case when pac.x_printed_card__c = true then 'Y' else 'N' end printedCard
         from
             process.account pac 
         where 
