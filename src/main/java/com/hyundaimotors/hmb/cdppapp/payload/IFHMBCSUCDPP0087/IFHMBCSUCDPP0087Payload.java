@@ -33,6 +33,9 @@ public class IFHMBCSUCDPP0087Payload {
         //@NotNull @NotBlank @NotEmpty
         @JsonProperty("CampaignName")
         private String campaignName;
+        @Schema(description = "CPF", example = "02377363814")
+        @JsonProperty("CPF")
+        private String cpf;
     }
 
     @Schema(name = "IFHMBCSUCDPP0087Payload.Response")

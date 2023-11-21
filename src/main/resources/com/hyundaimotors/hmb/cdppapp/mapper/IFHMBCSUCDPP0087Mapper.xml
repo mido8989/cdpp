@@ -40,6 +40,8 @@
             process.account pac 
         where 
             pac.row_id = #{contactId}
+        and
+            pac.cpf__c = #{cpf}
     </select>
 
     <select id="getVehicleList" parameterType="IFHMBCSUCDPP0087Dto" resultType="SearchAutoVehicleDto">
