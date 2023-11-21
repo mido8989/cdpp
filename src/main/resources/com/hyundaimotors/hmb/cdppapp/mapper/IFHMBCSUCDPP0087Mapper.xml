@@ -39,9 +39,15 @@
         from
             process.account pac 
         where 
-            pac.row_id = #{contactId}
-        and
-            pac.cpf__c = #{cpf}
+            1=1
+        <if test="contactId != null and contactId != ''">   
+            and
+                pac.row_id = #{contactId}
+        </if>
+        <if test="cpf != null and cpf != ''">       
+            and
+                pac.cpf__c = #{cpf}
+        </if>
     </select>
 
     <select id="getVehicleList" parameterType="IFHMBCSUCDPP0087Dto" resultType="SearchAutoVehicleDto">
