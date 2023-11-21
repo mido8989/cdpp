@@ -2,37 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0005Mapper">
 
-    <select id="foundAccountIdbyCnpj" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
+    <select id="getAccountRowId" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
         select
-            row_id as foundAccountIdbyCnpj
+              a.row_id
         from
-            process.account
-        where
-            corporateregistrationnumber__c = #{cnpjNumber}
-        limit 1
-    </select>
-    
-    <select id="foundAccountIdbyNameAndPhoneAndEmail" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
-        select
-            row_id as foundAccountIdbyCnpj
-        from
-            process.account
-        where "name"          = #{name}
-          and phone           = #{mainPhoneNumber}
-          and emailaddress__c = #{mainEmailAddress}
-        limit 1
+            process.account a
+        inner join landing.if_account_ws_wf b
+            on (a.corporateregistrationnumber__c = b.cnpjnumber
+                or (a."name"              = b."name"
+                    and a.emailaddress__c = b.mainemailaddress
+                    and a.phone           = b.mainphonenumber))
+        where b.row_id = cast(nullif(#{rowId},'') as integer)
     </select>
 
-    <select id="foundAccountId" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
-        select
-            row_id as foundAccountId
-        from
-            process.account
-        where
-            lower(trim(name)) = lower(trim(#{name}))
-        limit 1
-    </select>
-    
     <insert id="insertObject" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_account_ws_wf
             (
