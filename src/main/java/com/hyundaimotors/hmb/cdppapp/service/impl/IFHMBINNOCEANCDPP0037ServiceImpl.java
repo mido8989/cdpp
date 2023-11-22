@@ -61,7 +61,10 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
             listParamId.add(String.valueOf(dto.getRowId()));
             listAccountId.add(dto.getContactId());
     
+            HashMap<String, String[]> vehicleMap = new HashMap<>();
+            
             if( listOfAutoVehicle != null ){
+            	String[] autoVehicleArray = new String[listOfAutoVehicle.size()];
                 for(int i = 0; i < listOfAutoVehicle.size(); i++){
                     ListOfAutoVehicleDto vehicle = new ListOfAutoVehicleDto();
                     vehicle = listOfAutoVehicle.get(i);
@@ -69,8 +72,11 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                     mapper.insertAutoVehicle(vehicle);
                     listVehicleId.add(String.valueOf(vehicle.getRowId()));
                     listAssetId.add(String.valueOf(vehicle.getVehicleId()));
+                    autoVehicleArray[i] = String.valueOf(vehicle.getRowId());
                 }
-                listVehicle = mapper.getListVehicle(processMap);
+//                listVehicle = mapper.getListVehicle(processMap);
+                vehicleMap.put("VEHICLE_ID", autoVehicleArray);
+                listVehicle = mapper.getListVehicle(vehicleMap);
             }
             String[] vehicleId = listVehicleId.toArray(new String[listVehicleId.size()]);
             String[] paramId = listParamId.toArray(new String[listParamId.size()]);
