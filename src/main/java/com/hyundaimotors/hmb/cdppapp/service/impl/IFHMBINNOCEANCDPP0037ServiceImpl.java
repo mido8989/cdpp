@@ -70,6 +70,7 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                     listVehicleId.add(String.valueOf(vehicle.getRowId()));
                     listAssetId.add(String.valueOf(vehicle.getVehicleId()));
                 }
+                listVehicle = mapper.getListVehicle(processMap);
             }
             String[] vehicleId = listVehicleId.toArray(new String[listVehicleId.size()]);
             String[] paramId = listParamId.toArray(new String[listParamId.size()]);
@@ -96,10 +97,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
             map.put("error_spcMessage", "OK");
     
             updateContactOutput = mapper.getUpdateContactOutput(dto);  
-            listVehicle = mapper.getListVehicle(processMap);
             listSocialMedia = mapper.getListSocialMedia(dto);
-    
-    
+            
+            
             if( listVehicle != null){
                 for( int i = 0; i < listVehicle.size(); i++){
                     autoVehicle.setAutoVehicle(listVehicle.get(i));
