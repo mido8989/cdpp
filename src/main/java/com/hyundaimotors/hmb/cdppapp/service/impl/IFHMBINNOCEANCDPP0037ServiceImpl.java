@@ -109,7 +109,7 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                     autoVehicle.setAutoVehicle(listVehicle.get(i));
                     listOfAutoVehicleOut.add(autoVehicle);
                 }
-                if(updateContactOutput != null){
+                if(listOfAutoVehicleOut != null){
                     updateContactOutput.setListOfAutoVehicle(listOfAutoVehicleOut);
                 }
             }
@@ -120,7 +120,7 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                     contactSocialMedia.setContactSocialMedia(listSocialMedia.get(i));
                     listOfContactSocialMediaOut.add(contactSocialMedia);
                 }
-                if(updateContactOutput != null){
+                if(listOfContactSocialMediaOut != null){
                     updateContactOutput.setListOfContactSocialMedia(listOfContactSocialMediaOut);
                 }
             }
