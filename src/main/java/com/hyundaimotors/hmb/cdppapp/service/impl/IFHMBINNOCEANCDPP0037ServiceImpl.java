@@ -70,14 +70,13 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                     listVehicleId.add(String.valueOf(vehicle.getRowId()));
                     listAssetId.add(String.valueOf(vehicle.getVehicleId()));
                 }
-                listVehicle = mapper.getListVehicle(processMap);
             }
             String[] vehicleId = listVehicleId.toArray(new String[listVehicleId.size()]);
             String[] paramId = listParamId.toArray(new String[listParamId.size()]);
             String[] accountId = listAccountId.toArray(new String[listAccountId.size()]);
             String[] assetId = listAssetId.toArray(new String[listAssetId.size()]);
-    
-    
+            
+            
             // landing dummy rowId
             processMap.put("PARAM_ID", paramId);
             // landing dummy vehicle rowId list
@@ -86,18 +85,23 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
             processMap.put("PROC_ACCOUNT_ID", accountId);
             // process asset rowId list
             processMap.put("ASSET_ID_LIST", assetId);
-    
+            
             mapper.transferProcess(processMap);    
             
             mapper.transferReplica(processMap);
-    
-    
+            
+            
             map.put("contactId", dto.getContactId());
             map.put("error_spcCode", "0");
             map.put("error_spcMessage", "OK");
-    
+            
             updateContactOutput = mapper.getUpdateContactOutput(dto);  
-            listSocialMedia = mapper.getListSocialMedia(dto);
+            if ( listOfAutoVehicle != null ){
+                listVehicle = mapper.getListVehicle(processMap);
+            }
+            if (dto.getListOfContactSocialMedia() != null){
+                listSocialMedia = mapper.getListSocialMedia(dto);
+            }
             
             
             if( listVehicle != null){
