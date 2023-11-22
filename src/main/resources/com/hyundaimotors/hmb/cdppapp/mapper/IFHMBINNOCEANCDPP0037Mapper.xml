@@ -157,7 +157,7 @@
             , pc.gender__c as gender
             , pa.hkmeretaildate as retailDate
             , pa.personhomephone as homePhone
-            , pc.workphone__c as workPhone
+            , pa.workphone__c as workPhone
             , pa.personhomephone as cellPhone
             , pa.personemail as emailAddress
             , pc.x_amount_friends__c as amountFriends
