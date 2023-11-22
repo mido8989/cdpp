@@ -2,19 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0005Mapper">
 
-    <select id="getAccountRowId" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
+    <select id="foundAccountIdbyCnpj" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
         select
-              a.row_id
+            row_id as foundAccountIdbyCnpj
         from
-            process.account a
-        inner join landing.if_account_ws_wf b
-            on (a.corporateregistrationnumber__c = b.cnpjnumber
-                or (a."name"              = b."name"
-                    and a.emailaddress__c = b.mainemailaddress
-                    and a.phone           = b.mainphonenumber))
-        where b.row_id = cast(nullif(#{rowId},'') as integer)
+            process.account
+        where
+            corporateregistrationnumber__c = #{cnpjNumber}
+    </select>
+    
+    <select id="foundAccountIdbyNameAndPhoneAndEmail" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
+        select
+            row_id as foundAccountIdbyNameAndPhoneAndEmail
+        from
+            process.account
+        where "name"                                        = #{name}
+          and coalesce(nullif(phone,''),'PHONE')            = coalesce(nullif(#{mainPhoneNumber},''),'PHONE')
+          and coalesce(nullif(emailaddress__c,''),'EMAIL')  = coalesce(nullif(#{mainEmailAddress},''),'EMAIL')
     </select>
 
+    <select id="foundAccountId" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
+         select
+            row_id as foundAccountId
+        from
+            process.account
+        where  corporateregistrationnumber__c = #{cnpjNumber}
+          or (lower(trim(name))               = lower(trim(#{name}))
+              and coalesce(nullif(phone,''),'PHONE')            = coalesce(nullif(#{mainPhoneNumber},''),'PHONE')
+              and coalesce(nullif(emailaddress__c,''),'EMAIL')  = coalesce(nullif(#{mainEmailAddress},''),'EMAIL'))
+    </select>
+    
     <insert id="insertObject" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_account_ws_wf
             (
