@@ -61,7 +61,7 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
             listParamId.add(String.valueOf(dto.getRowId()));
             listAccountId.add(dto.getContactId());
     
-            if( listOfAutoVehicle.size() > 0 ){
+            if( listOfAutoVehicle != null ){
                 for(int i = 0; i < listOfAutoVehicle.size(); i++){
                     ListOfAutoVehicleDto vehicle = new ListOfAutoVehicleDto();
                     vehicle = listOfAutoVehicle.get(i);
@@ -70,6 +70,7 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                     listVehicleId.add(String.valueOf(vehicle.getRowId()));
                     listAssetId.add(String.valueOf(vehicle.getVehicleId()));
                 }
+                listVehicle = mapper.getListVehicle(processMap);
             }
             String[] vehicleId = listVehicleId.toArray(new String[listVehicleId.size()]);
             String[] paramId = listParamId.toArray(new String[listParamId.size()]);
@@ -96,11 +97,10 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
             map.put("error_spcMessage", "OK");
     
             updateContactOutput = mapper.getUpdateContactOutput(dto);  
-            listVehicle = mapper.getListVehicle(processMap);
             listSocialMedia = mapper.getListSocialMedia(dto);
-    
-    
-            if( listVehicle.size() > 0){
+            
+            
+            if( listVehicle != null){
                 for( int i = 0; i < listVehicle.size(); i++){
                     autoVehicle.setAutoVehicle(listVehicle.get(i));
                     listOfAutoVehicleOut.add(autoVehicle);
@@ -111,7 +111,7 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
             }
     
     
-            if( listSocialMedia.size() > 0){
+            if( listSocialMedia != null){
                 for( int i = 0; i < listSocialMedia.size(); i++){
                     contactSocialMedia.setContactSocialMedia(listSocialMedia.get(i));
                     listOfContactSocialMediaOut.add(contactSocialMedia);
