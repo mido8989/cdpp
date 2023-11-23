@@ -171,13 +171,13 @@
             , pc.mailingcity as city
             , pc.mailingstate as state
             , pc.mailingpostalcode as postalCode
-            , pc.emailoptyn__c as suppressAllEmails
-            , pc.directmailoptyn__c as suppressAllMailings
-            , pc.calloptyn__c as suppressAllCalls
-            , pc.blockedwhatsapp__c as suppressAllWhatsapp
-            , pc.blockedmobile__c as suppressAllMobile
-            , pc.x_printed_card__c as suppressAllVideoCall
-            , pc.blockedsms__c  as suppressAllSMS
+            , pa.blockedemails__pc as suppressAllEmails
+            , pa.blockedletters__c as suppressAllMailings
+            , pa.calloptyn__c as suppressAllCalls
+            , pa.blockedwhatsapp__c as suppressAllWhatsapp
+            , pa.blockedmobile__c as suppressAllMobile
+            , pa.blockedvideocall__c as suppressAllVideoCall
+            , pa.blockedsms__c  as suppressAllSMS
             , pc.x_printed_card__c as hmbPrintedCard
         from
             process.account pa
