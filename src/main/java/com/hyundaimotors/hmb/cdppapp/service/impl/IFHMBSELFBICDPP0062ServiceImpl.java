@@ -65,6 +65,7 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
 
                     List<TotalTemperatureDto> temperature = new ArrayList<>();
                     temperature = mapper.getTemperature(protocol);
+                    lead.get(index).getAction().setTemperature(temperature);
                 }
 
                 
