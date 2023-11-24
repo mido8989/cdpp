@@ -11,8 +11,6 @@
             "name" = #{name} 
         and 
             dealercode__c = #{dealerCode}
-        and 
-           type = 'Dealer'
         limit 1
     </select>
 
@@ -23,8 +21,6 @@
             process.contact
         where  
             cpf__c = #{cpf}   
-        and
-            account_row_id = #{accntRowId}
         limit 1                     
     </select>
 
@@ -37,11 +33,7 @@
             firstname = #{firstName}
         and
             lastname = #{lastName}
-        and
-            email = #{emailAddress}  
-        and
-            account_row_id = #{accntRowId}   
-        limit 1                
+        limit 1
     </select>
 
     <insert id="insertBusinessAccount" parameterType="IFHMBINNOCEANCDPP0013Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
