@@ -85,7 +85,7 @@
             , #{suppressAllMobile}
             , #{suppressAllVideoCall}
             , #{suppressAllSMS}
-            , case when lower(#{hmbPrintedCard}) = 'false' then 'N' else 'Y' end
+            , case when lower(#{hmbPrintedCard}) = 'false' then 'N' when lower(#{hmbPrintedCard}) = 'true' = 'Y' else null end
         )
     </insert>
     
