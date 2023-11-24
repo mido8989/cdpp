@@ -11,6 +11,8 @@
             "name" = #{name} 
         and 
             dealercode__c = #{dealerCode}
+        and 
+           type = 'Dealer'
         limit 1
     </select>
 
@@ -177,7 +179,6 @@
             )  
     </insert>
 
-
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_in_channel_partner_inf_wf(#{PARAM_ID}, #{PROC_ACC_ID}, #{CON_ROWID}, #{checkcu});
     </insert>
@@ -185,5 +186,4 @@
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call replica.if_in_channel_partner_inf_wf(#{PROC_ACC_ID}, #{PROC_CON_ID}, #{checkcu});
     </insert>
-
 </mapper>
