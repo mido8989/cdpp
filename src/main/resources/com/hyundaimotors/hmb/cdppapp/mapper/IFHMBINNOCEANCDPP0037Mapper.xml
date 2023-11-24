@@ -171,14 +171,14 @@
             , pa.billingcity as city
             , pa.billingstate as state
             , pa.billingpostalcode as postalCode
-            , pa.blockedemails__pc as suppressAllEmails
-            , pa.blockedletters__c as suppressAllMailings
-            , pa.calloptyn__pc as suppressAllCalls
-            , pa.blockedwhatsapp__c as suppressAllWhatsapp
-            , pa.blockedmobile__c as suppressAllMobile
-            , pa.blockedvideocall__c as suppressAllVideoCall
-            , pa.blockedsms__c  as suppressAllSMS
-            , pc.x_printed_card__c as hmbPrintedCard
+            , ( case when pa.blockedemails__pc = true then 'Y' when pa.blockedemails__pc = false then 'N' else null end ) as suppressAllEmails
+            , ( case when pa.blockedletters__c = true then 'Y' when pa.blockedletters__c = false then 'N' else null end ) as suppressAllMailings
+            , ( case when pa.calloptyn__pc = true then 'Y' when pa.calloptyn__pc = false then 'N' else null end ) as suppressAllCalls
+            , ( case when pa.blockedwhatsapp__c = true then 'Y' when pa.blockedwhatsapp__c = false then 'N' else null end ) as suppressAllWhatsapp
+            , ( case when pa.blockedmobile__c = true then 'Y' when pa.blockedmobile__c = false then 'N' else null end ) as suppressAllMobile
+            , ( case when pa.blockedvideocall__c = true then 'Y' when pa.blockedvideocall__c = false then 'N' else null end ) as suppressAllVideoCall
+            , ( case when pa.blockedsms__c = true then 'Y' when pa.blockedsms__c = false then 'N' else null end )  as suppressAllSMS
+            , ( case when pc.x_printed_card__c = true then 'Y' when pc.x_printed_card__c = false then 'N' else null end ) as hmbPrintedCard
         from
             process.account pa
         join
