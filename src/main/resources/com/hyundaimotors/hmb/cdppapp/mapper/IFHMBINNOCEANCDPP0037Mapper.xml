@@ -173,7 +173,7 @@
             , pa.billingpostalcode as postalCode
             , pa.blockedemails__pc as suppressAllEmails
             , pa.blockedletters__c as suppressAllMailings
-            , pa.calloptyn__c as suppressAllCalls
+            , pa.calloptyn__pc as suppressAllCalls
             , pa.blockedwhatsapp__c as suppressAllWhatsapp
             , pa.blockedmobile__c as suppressAllMobile
             , pa.blockedvideocall__c as suppressAllVideoCall
