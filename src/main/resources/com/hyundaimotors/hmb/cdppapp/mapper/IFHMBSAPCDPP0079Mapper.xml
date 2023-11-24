@@ -69,10 +69,10 @@
                 , #{item.zdesc}
                 , #{item.zqty}
                 , #{item.value}
-                , #{item.erdat}::date
-                , #{item.erzet}::time
-                , #{item.aedat}::date
-                , #{item.aezet}::time
+                , nullif(#{item.erdat},'')::date
+                , nullif(#{item.erzet},'')::time
+                , nullif(#{item.aedat},'')::date
+                , nullif(#{item.aezet},'')::time
             )
         </foreach>
     </insert>
@@ -113,10 +113,10 @@
                 , #{item.zdesc}
                 , #{item.zqty}
                 , #{item.value}
-                , #{item.erdat}::date
-                , #{item.erzet}::time
-                , #{item.aedat}::date
-                , #{item.aezet}::time
+                , nullif(#{item.erdat},'')::date
+                , nullif(#{item.erzet},'')::time
+                , nullif(#{item.aedat},'')::date
+                , nullif(#{item.aezet},'')::time
             )
         </foreach>
     </insert>
