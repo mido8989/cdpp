@@ -163,14 +163,14 @@
             , pc.x_amount_friends__c as amountFriends
             , pc.x_amount_children__c as amountChildren
             , pc.x_loyalty_optin_flg__c as loyaltyOPTINFla
-            , pc.mailingstreet as streetAddress
-            , pc.mailingstreet_2__c as streetAddress2
-            , pc.mailingstreet_3__c as streetAddress3
-            , pc.mailingcountry as country
-            , pc.mailingcounty as county
-            , pc.mailingcity as city
-            , pc.mailingstate as state
-            , pc.mailingpostalcode as postalCode
+            , pa.billingstreet as streetAddress
+            , pa.billingstreet_2__c as streetAddress2
+            , pa.billingstreet_3__c as streetAddress3
+            , pa.billingcountry as country
+            , pa.billingcounty as county
+            , pa.billingcity as city
+            , pa.billingstate as state
+            , pa.billingpostalcode as postalCode
             , pa.blockedemails__pc as suppressAllEmails
             , pa.blockedletters__c as suppressAllMailings
             , pa.calloptyn__c as suppressAllCalls
