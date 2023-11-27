@@ -21,7 +21,7 @@
             process.contact
         where  
             cpf__c = #{cpf}   
-        limit 1                     
+        limit 1
     </select>
 
     <select id="getContactId" parameterType="ListOfContactsDto" resultType="String">
@@ -29,10 +29,13 @@
             row_id as getContactId
         from
             process.contact
-            where 
+        where 
             firstname = #{firstName}
         and
             lastname = #{lastName}
+        and
+            (coalesce(nullif(email,''),'EMAIL') = coalesce(nullif(#{emailAddress},''),'EMAIL') 
+              or coalesce(nullif(companyphone__c,''),'PHONE') = coalesce(nullif(#{workPhone},''),'PHONE'))
         limit 1
     </select>
 
