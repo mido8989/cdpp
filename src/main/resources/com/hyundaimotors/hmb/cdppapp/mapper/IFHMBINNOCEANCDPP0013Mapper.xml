@@ -5,6 +5,17 @@
     <select id="getRowId" parameterType="IFHMBINNOCEANCDPP0013Dto" resultType="String">
         select 
             row_id as getRowId
+        from
+            process.account
+        where  corporateregistrationnumber__c                   = #{cnpj}
+          or (lower(trim(name))                                 = lower(trim(#{name}))
+              and coalesce(nullif(phone,''),'PHONE')            = coalesce(nullif(#{mainPhone},''),'PHONE')
+              and coalesce(nullif(emailaddress__c,''),'EMAIL')  = coalesce(nullif(#{mainEmailAddress},''),'EMAIL'))
+    </select>
+    
+    <select id="getRowId_backup" parameterType="IFHMBINNOCEANCDPP0013Dto" resultType="String">
+        select 
+            row_id as getRowId
         from 
             process.account 
         where 
@@ -179,6 +190,6 @@
     </insert>
 
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
-        call replica.if_in_channel_partner_inf_wf(#{PROC_ACC_ID}, #{PROC_CON_ID}, #{checkcu});
+        call replica.if_in_channel_partner_inf_wf(#{PARAM_ID}, #{PROC_ACC_ID}, #{PROC_CON_ID}, #{checkcu});
     </insert>
 </mapper>
