@@ -23,7 +23,7 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @Schema(description = "Individual's document number (numbers only)", example = "12337343006")
         @JsonProperty("CPF")
         private String cpf;
-        @NotNull @NotBlank @NotEmpty
+        // @NotNull @NotBlank @NotEmpty
         @Schema(description = "Contact first name", example = "Jose")
         @JsonProperty("FirstName")
         private String firstName;
