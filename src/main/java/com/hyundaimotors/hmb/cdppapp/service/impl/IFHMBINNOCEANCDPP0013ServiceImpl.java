@@ -61,13 +61,18 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
         map.put("PARAM_ID", paramId);
         map.put("PROC_ACC_ID", procAccntId);
         map.put("CON_ROWID", conRowId);
-
+        
         List<String> listCheckcu = new ArrayList<>();
         listCheckcu.add("update");
         String[] checkcu = listCheckcu.toArray(new String[listCheckcu.size()]);
         map.put("checkcu", checkcu); //update
 
         mapper.transferProcess(map);
+        
+        if(getProcAccntRowId == null || "".equals(getProcAccntRowId)) {
+            listProcAccntId.add(mapper.getRowId(dto));
+            map.put("PROC_ACC_ID",listProcAccntId.toArray(new String[listProcAccntId.size()]));
+        }
 
         // process.contact row_id 리스트
         String[] procConId = null;
@@ -88,7 +93,6 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
         }
 
         map.put("PROC_CON_ID",procConId);
-
         mapper.transferReplica(map);
 
         resultDto.setErrorSpcCode("0");
