@@ -40,7 +40,7 @@ public class IFHMBINNOCEANCDPP0013Controller {
     private final ModelMapper defaultMapper;
 
     @Operation(summary = "delear Account Insert", description = "delear Account Insert")
-    @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0002Payload.Request.class)))
+    @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0013Payload.Request.class)))
     @PostMapping(value = "/api/v1/HMBInboundChannelPartnerInterfaceWorkflow")
     public Object upsertObject(@Valid @RequestBody IFHMBINNOCEANCDPP0013Payload.Request request) throws Exception {
        UUID IF_TR_ID = UUID.randomUUID();
