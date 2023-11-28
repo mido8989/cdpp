@@ -9,7 +9,7 @@
            and corporateregistrationnumber__c = #{cnpj}
            and lower(trim(name))              = lower(trim(#{name}))
          <if test="mainPhone != null or  mainPhone != ''">and phone                         = #{mainPhone}</if>
-         <if test="mainEmailAddress != null or  mainEmailAddress != ''">and emailaddress__c = #{mainEmailAddress}</if>
+         <if test="mainEmailAddress != null or  mainEmailAddress != ''">and lower(trim(emailaddress__c)) = lower(trim(#{mainEmailAddress}))</if>
          limit 1
     </select>
     
@@ -21,7 +21,7 @@
 	    and lower(trim(firstname)) = lower(trim(#{firstName}))
 	    and lower(trim(lastname))  = lower(trim(#{lastName}))
 	    <if test="workPhone != null or  workPhone != ''">and companyphone__c = #{workPhone}</if>
-	    <if test="emailAddress != null or emailAddress != ''">and email      = #{emailAddress}</if>
+	    <if test="emailAddress != null or emailAddress != ''">and lower(trim(email))      = lower(trim(#{emailAddress}))</if>
 	    limit 1
     </select>
     
@@ -32,7 +32,7 @@
            --and corporateregistrationnumber__c = {cnpj} isnull not key
            and lower(trim(name))              = lower(trim(#{name}))
          <if test="mainPhone != null or  mainPhone != ''">and phone                         = #{mainPhone}</if>
-         <if test="mainEmailAddress != null or  mainEmailAddress != ''">and emailaddress__c = #{mainEmailAddress}</if>
+         <if test="mainEmailAddress != null or  mainEmailAddress != ''">and lower(trim(emailaddress__c)) = lower(trim(#{mainEmailAddress}))</if>
          limit 1
     </select>
     
@@ -43,8 +43,8 @@
 	        and cpf__c                 = #{cpf}
 	        and lower(trim(firstname)) = lower(trim(#{firstName}))
 	        and lower(trim(lastname))  = lower(trim(#{lastName}))
-	        <if test="workPhone != null or  workPhone != ''">and companyphone__c = #{workPhone}</if>
-	        <if test="emailAddress != null or emailAddress != ''">and email      = #{emailAddress}</if>
+	        <if test="workPhone != null or  workPhone != ''">and companyphone__c         = #{workPhone}</if>
+	        <if test="emailAddress != null or emailAddress != ''">and lower(trim(email)) = lower(trim(#{emailAddress}))</if>
 	        limit 1
     </select>
 
