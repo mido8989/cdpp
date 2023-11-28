@@ -11,6 +11,7 @@
           or (lower(trim(name))                                 = lower(trim(#{name}))
               and coalesce(nullif(phone,''),'PHONE')            = coalesce(nullif(#{mainPhone},''),'PHONE')
               and coalesce(nullif(emailaddress__c,''),'EMAIL')  = coalesce(nullif(#{mainEmailAddress},''),'EMAIL'))
+         limit 1
     </select>
     
     <select id="getRowId_backup" parameterType="IFHMBINNOCEANCDPP0013Dto" resultType="String">
