@@ -34,6 +34,11 @@
             , pac.billingpostalcode as postalCode
             , pac.numeric_row_id as numericRowId
             , case when pac.emailoptyn__pc = true then 'Y' else 'N' end suppressAllEmails
+            , case when pac.calloptyn__pc = true then 'Y' else 'N' end SuppressAllCalls
+            , case when pac.directmailoptyn__pc = true then 'Y' else 'N' end SuppressAllMailings
+            , case when pac.x_printed_card__c = true then 'Y' else 'N' end SuppressAllVideoCall
+            , case when pac.blockedwhatsapp__c = true then 'Y' else 'N' end SuppressAllWhatsapp
+            , case when pac.blockedmobile__c = true then 'Y' else 'N' end SuppressAllMobile
             , pac.blockedsms__c as suppressAllSMS
             , case when pac.x_printed_card__c = true then 'Y' else 'N' end printedCard
         from
