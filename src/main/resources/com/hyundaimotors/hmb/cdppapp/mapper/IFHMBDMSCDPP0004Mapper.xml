@@ -165,7 +165,7 @@
             interactionnumber__c as interactionNum
             , first_interaction_date__c as date
             , description_interaction__c as description
-            , contact_flag__c as contactCustomer
+            , case when contact_flag__c = true then 'Y' else 'N' end as contactCustomer
         from
             process.sales_consult_history
         where
