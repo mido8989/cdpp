@@ -7,6 +7,12 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013.ListOfContactsDto
 
 public interface IFHMBINNOCEANCDPP0013Mapper {
     
+	public String getRowId(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
+
+    public String getContactIdByCpf(ListOfContactsDto dto)throws Exception;
+
+    public String getContactId(ListOfContactsDto dto)throws Exception;
+
     public void insertBusinessAccount(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
 
     public void insertPersonAccount(ListOfContactsDto dto)throws Exception;
@@ -17,11 +23,4 @@ public interface IFHMBINNOCEANCDPP0013Mapper {
 
     public void transferProcessContact(HashMap<String, String> parMap)throws Exception;
     
-    /**
-     * 
-     */
-    public String getProcessAccountRowId(IFHMBINNOCEANCDPP0013Dto dto) throws Exception;
-    public String getProcessContactRowId(ListOfContactsDto dto) throws Exception;
-    public String getReplicaAccountId(IFHMBINNOCEANCDPP0013Dto dto) throws Exception;
-    public String getReplicaContactId(ListOfContactsDto dto) throws Exception;
 }
