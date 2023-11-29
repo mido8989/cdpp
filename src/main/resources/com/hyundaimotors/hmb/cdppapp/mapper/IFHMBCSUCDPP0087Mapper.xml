@@ -34,6 +34,11 @@
             , pac.billingpostalcode as postalCode
             , pac.numeric_row_id as numericRowId
             , case when pac.emailoptyn__pc = true then 'Y' else 'N' end suppressAllEmails
+            , case when pac.calloptyn__pc = true then 'Y' else 'N' end SuppressAllCalls
+            , case when pac.directmailoptyn__pc = true then 'Y' else 'N' end SuppressAllMailings
+            , case when pac.x_printed_card__c = true then 'Y' else 'N' end SuppressAllVideoCall
+            , case when pac.blockedwhatsapp__c = true then 'Y' else 'N' end SuppressAllWhatsapp
+            , case when pac.blockedmobile__c = true then 'Y' else 'N' end SuppressAllMobile
             , pac.blockedsms__c as suppressAllSMS
             , case when pac.x_printed_card__c = true then 'Y' else 'N' end printedCard
         from
@@ -98,21 +103,25 @@
 
     <select id="getCSISurveyList" parameterType="IFHMBCSUCDPP0087Dto" resultType="SearchCSISurveyDto">
         select
-            pam.integration_id as integrationId
-            , pam.asset_id as assetId
-            , pas.serialnumber
-            , (select dealercode__c from process.account where row_id = pam.dealer_id) as dealerCustomerSap
-            , pam.research_date as date
-            , pam.status as status
-            , pam.research_name as description
-            , pam.sra_sr_id as spId
-            , pas.serialnumber as srNumber
+        pam.integration_id as integrationId
+        , pam.asset_id as assetId
+        , pas.serialnumber
+        , (select dealercode__c from process.account where row_id = pam.dealer_id) as dealerCustomerSap
+        , pam.research_date as date
+        , pam.status as status
+        , pam.research_name as description
+        , pam.sra_sr_id as spId
+        , psr.protocol__c as srNumber
         from 
             process.amaro pam
         left join
             process.asset pas
         on
             pam.asset_id = pas.row_id 
+        left join 
+            process.service_request psr 
+        on
+            pam.sra_sr_id = psr.row_id 
         where 
             pas.serialnumber = #{serialNumber}
     </select>
