@@ -125,4 +125,20 @@
         where 
             pas.serialnumber = #{serialNumber}
     </select>
+
+    <select id="getServiceRequestList" parameterType="IFHMBCSUCDPP0087Dto" resultType="SearchServiceRequestContactDto">
+        select 
+            legacycreateddate__c as srCreated
+            , protocol__c as srNumber
+            , dealercode__c as dealerCode
+            , relatedmodel__c as modelCar
+            , version__c as vehicleVersion
+            , quote_color__c as vehicleColor
+            , quotetransmission__c as engTrans
+            , voc_class as area
+        from
+            process.service_request psr
+        where
+            contact_row_id__c = #{contactId}
+    </select>
 </mapper>
