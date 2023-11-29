@@ -22,73 +22,146 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
     private final IFHMBINNOCEANCDPP0013Mapper mapper;   
 
     public IFHMBINNOCEANCDPP0013Dto upsertObject(IFHMBINNOCEANCDPP0013Dto dto)throws Exception{
-        List<ListOfContactsDto> listOfcontacts = new ArrayList<>();
+        List<ListOfContactsDto> listOfcontacts = new ArrayList<>();        
         IFHMBINNOCEANCDPP0013Dto resultDto = new IFHMBINNOCEANCDPP0013Dto();
+        List<String> listParamId = new ArrayList<>();
+        List<String> listProcAccntId = new ArrayList<>();
+        List<String> listConRowId = new ArrayList<>();
+        List<String> listProcConId = new ArrayList<>();
         
-        List<String> landingContact = new ArrayList<String>();
-        List<String> processContact = new ArrayList<String>();
-        List<String> replicaContact = new ArrayList<String>();
-        
-        listOfcontacts = dto.getContactList();
-        
-        //landing 
+        String getProcAccntRowId = mapper.getRowId(dto);
+
         mapper.insertBusinessAccount(dto);
-        String landingAccountRowId = String.valueOf(dto.getRowId());
-        String processAccountRowId = mapper.getProcessAccountRowId(dto);
-        String replicaAccountId    = mapper.getReplicaAccountId(dto);
+
+        listParamId.add(String.valueOf(dto.getRowId()));
+        if(getProcAccntRowId != null){
+            listProcAccntId.add(getProcAccntRowId);
+        }
+        listOfcontacts = dto.getContactList();              
+    
         
-        HashMap<String, String[]> procParam = new HashMap<String, String[]>();
         
-        procParam.put("LANDING_ACCOUNT_ROW_ID", new String[]{landingAccountRowId});
-        procParam.put("PROCESS_ACCOUNT_ROW_ID", new String[]{processAccountRowId});
-        procParam.put("REPLICA_ACCOUNT_ID", new String[]{replicaAccountId});
-        
-        if( listOfcontacts != null ){
-            for(int i = 0; i < listOfcontacts.size(); i++){
-               ListOfContactsDto contact = new ListOfContactsDto();
-               contact = listOfcontacts.get(i);
-               
-               mapper.insertPersonAccount(contact);
-               /**
-                * 
-                */
-               String processContactRowId = mapper.getProcessContactRowId(contact);
-               String replicaContactId    = mapper.getReplicaContactId(contact);
-               
-               landingContact.add(String.valueOf(contact.getRowId()));
-               processContact.add(processContactRowId);
-               replicaContact.add(replicaContactId);
+        if( getProcAccntRowId != null ){ // 딜러 어카운트 존재할 때
+
+            String[] conRowId = null;
+            if( listOfcontacts != null ){
+                for(int i = 0; i < listOfcontacts.size(); i++){
+                    ListOfContactsDto contact = new ListOfContactsDto();
+                    contact = listOfcontacts.get(i);
+                    contact.setParRowId(String.valueOf(dto.getRowId()));
+                    contact.setAccntRowId(getProcAccntRowId);
+    
+                    mapper.insertPersonAccount(contact);
+    
+                    listConRowId.add(contact.getRowId());
+                }
+                conRowId = listConRowId.toArray(new String[listConRowId.size()]);
             }
-            
-            procParam.put("LANDING_CONTACT_ROW_ID",landingContact.toArray(new String[landingContact.size()]));
-            procParam.put("PROCESS_CONTACT_ROW_ID",processContact.toArray(new String[processContact.size()]));
-            procParam.put("REPLICA_CONTACT_ID"    ,replicaContact.toArray(new String[replicaContact.size()]));
-       }
-        
-        mapper.transferProcess(procParam);
-        /** 신규일때 또는 중복 일때 **/
-        
-        procParam.put("PROCESS_ACCOUNT_ROW_ID", new String[]{mapper.getProcessAccountRowId(dto)});
-        procParam.put("REPLICA_ACCOUNT_ID"    , new String[]{mapper.getReplicaAccountId(dto)});
-        if( listOfcontacts != null ){
-            for(int i = 0; i < listOfcontacts.size(); i++){
-               ListOfContactsDto contact = new ListOfContactsDto();
-               contact = listOfcontacts.get(i);
-               
-               String processContactRowId = mapper.getProcessContactRowId(contact);
-               String replicaContactId    = mapper.getReplicaContactId(contact);
-               
-               processContact.add(processContactRowId);
-               replicaContact.add(replicaContactId);
+            String[] paramId = listParamId.toArray(new String[listParamId.size()]);
+            String[] procAccntId = listProcAccntId.toArray(new String[listProcAccntId.size()]);
+
+            HashMap<String, String[]> map = new HashMap<>();
+
+            map.put("PARAM_ID", paramId);
+            map.put("PROC_ACC_ID", procAccntId);
+            map.put("CON_ROWID", conRowId);
+
+            List<String> listCheckcu = new ArrayList<>();
+            listCheckcu.add("update");
+            String[] checkcu = listCheckcu.toArray(new String[listCheckcu.size()]);
+            map.put("checkcu", checkcu); //update
+
+            mapper.transferProcess(map);
+
+            // process.contact row_id 리스트
+            String[] procConId = null;
+            if( listOfcontacts != null ){
+                for(int i = 0; i < listOfcontacts.size(); i++){
+                    ListOfContactsDto contact = new ListOfContactsDto();
+                    contact = listOfcontacts.get(i);
+                    String getContactIdByCpf = mapper.getContactIdByCpf(contact);
+
+                    if(getContactIdByCpf != null){
+                        listProcConId.add(getContactIdByCpf); 
+                    }else{
+                        String getContactId = mapper.getContactId(contact);                        
+                        listProcConId.add(getContactId);                      
+                    }
+                }
+                procConId = listProcConId.toArray(new String[listProcConId.size()]);
             }
-            
-            procParam.put("PROCESS_CONTACT_ROW_ID",processContact.toArray(new String[processContact.size()]));
-            procParam.put("REPLICA_CONTACT_ID"    ,replicaContact.toArray(new String[replicaContact.size()]));
-       }
-        mapper.transferReplica(procParam);
+
+            map.put("PROC_CON_ID",procConId);
+
+            mapper.transferReplica(map);
+
+            resultDto.setErrorSpcCode("0");
+            resultDto.setErrorSpcMessage("OK");
+
+        }else{
         
-        resultDto.setErrorSpcCode("0");
-        resultDto.setErrorSpcMessage("OK");
+            HashMap<String, String[]> map = new HashMap<>();
+            String[] paramId = listParamId.toArray(new String[listParamId.size()]);
+            map.put("PARAM_ID", paramId);
+
+            List<String> listCheckcu = new ArrayList<>();
+            listCheckcu.add("insert");
+            String[] checkcu = listCheckcu.toArray(new String[listCheckcu.size()]);
+            map.put("checkcu", checkcu); //insert
+
+            String[] conRowId = null;
+            if( listOfcontacts != null ){
+                for(int i = 0; i < listOfcontacts.size(); i++){
+                    ListOfContactsDto contact = new ListOfContactsDto();
+                    contact = listOfcontacts.get(i);
+                    contact.setParRowId(String.valueOf(dto.getRowId()));
+                    
+                    mapper.insertPersonAccount(contact);
+
+                    listConRowId.add(contact.getRowId());
+                }
+                conRowId = listConRowId.toArray(new String[listConRowId.size()]);
+            }   
+
+            map.put("CON_ROWID", conRowId);
+
+            mapper.transferProcess(map);
+
+            getProcAccntRowId = mapper.getRowId(dto);
+            String[] procAccntId = null;
+            if( getProcAccntRowId != null){
+                listProcAccntId.add(getProcAccntRowId);
+                procAccntId = listProcAccntId.toArray(new String[listProcAccntId.size()]);
+            }
+            map.put("PROC_ACC_ID", procAccntId);
+
+            String[] procConId = null;
+            // process.contact row_id 리스트
+            if( listOfcontacts != null ){
+                for(int i = 0; i < listOfcontacts.size(); i++){
+                    ListOfContactsDto contact = new ListOfContactsDto();
+                    contact = listOfcontacts.get(i);
+                    contact.setAccntRowId(getProcAccntRowId);
+                    String getContactIdByCpf = mapper.getContactIdByCpf(contact);
+
+                    if(getContactIdByCpf != null){
+                        listProcConId.add(getContactIdByCpf);
+                    }else{
+                        String getContactId = mapper.getContactId(contact);
+                        
+                        listProcConId.add(getContactId);                      
+                    }
+                }
+                procConId = listProcConId.toArray(new String[listProcConId.size()]);
+            }
+     
+            map.put("PROC_CON_ID",procConId);
+
+            mapper.transferReplica(map);
+
+            resultDto.setErrorSpcCode("0");
+            resultDto.setErrorSpcMessage("OK");
+        }        
         
         return resultDto;
     }
