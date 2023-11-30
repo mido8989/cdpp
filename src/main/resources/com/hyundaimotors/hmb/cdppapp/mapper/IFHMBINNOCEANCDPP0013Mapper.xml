@@ -10,7 +10,7 @@
 		where 
             1=1
         <choose>
-            <when test="cnpj != null or cnpj != ''">
+            <when test="cnpj != null and cnpj != ''">
                 and corporateregistrationnumber__c = #{cnpj}
             </when>
             <otherwise>
@@ -30,10 +30,11 @@
             row_id
         from 
             process.contact
-        where 1=1
+        where 
+            1=1
         <choose>
-            <when test="cpf != null or cpf != ''">
-                and cpf__c                 = #{cpf}
+            <when test=" cpf !=null and cpf !='' ">
+                and cpf__c = #{cpf}
             </when>
             <otherwise>
                 and lower(trim(firstname)) = lower(trim(#{firstName}))

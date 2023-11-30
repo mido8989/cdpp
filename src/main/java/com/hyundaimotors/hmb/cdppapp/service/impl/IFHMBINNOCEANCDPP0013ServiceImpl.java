@@ -12,6 +12,7 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013.ListOfContactsDto
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0013Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0013Service;
 
+import io.swagger.v3.core.util.Json;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -86,6 +87,8 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                 }
                 procConId = listProcConId.toArray(new String[listProcConId.size()]);
             }
+
+            System.out.println("procConId" + Json.pretty(procConId));
 
             map.put("PROC_CON_ID",procConId);
 
