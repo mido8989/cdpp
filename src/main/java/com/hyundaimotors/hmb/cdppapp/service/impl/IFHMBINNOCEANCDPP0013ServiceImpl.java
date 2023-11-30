@@ -79,14 +79,10 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                 for(int i = 0; i < listOfcontacts.size(); i++){
                     ListOfContactsDto contact = new ListOfContactsDto();
                     contact = listOfcontacts.get(i);
-                    String getContactIdByCpf = mapper.getContactIdByCpf(contact);
-
-                    if(getContactIdByCpf != null){
-                        listProcConId.add(getContactIdByCpf); 
-                    }else{
-                        String getContactId = mapper.getContactId(contact);                        
-                        listProcConId.add(getContactId);                      
-                    }
+                    
+                    String getContactId = mapper.getContactId(contact);                        
+                    listProcConId.add(getContactId);                      
+                    
                 }
                 procConId = listProcConId.toArray(new String[listProcConId.size()]);
             }
@@ -142,15 +138,11 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                     ListOfContactsDto contact = new ListOfContactsDto();
                     contact = listOfcontacts.get(i);
                     contact.setAccntRowId(getProcAccntRowId);
-                    String getContactIdByCpf = mapper.getContactIdByCpf(contact);
-
-                    if(getContactIdByCpf != null){
-                        listProcConId.add(getContactIdByCpf);
-                    }else{
-                        String getContactId = mapper.getContactId(contact);
-                        
-                        listProcConId.add(getContactId);                      
-                    }
+                    
+                    String getContactId = mapper.getContactId(contact);
+                    
+                    listProcConId.add(getContactId);                      
+                    
                 }
                 procConId = listProcConId.toArray(new String[listProcConId.size()]);
             }
