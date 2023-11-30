@@ -15,6 +15,8 @@
             </when>
             <otherwise>
                 and lower(trim(name)) = lower(trim(#{name}))
+                and phone = #{mainPhone}
+                and emailaddress__c = #{mainEmailAddress}
             </otherwise>
         </choose>
         limit 1
@@ -39,6 +41,8 @@
             <otherwise>
                 and lower(trim(firstname)) = lower(trim(#{firstName}))
                 and lower(trim(lastname))  = lower(trim(#{lastName}))
+                and companyphone__c = #{workPhone}
+                and email      = #{emailAddress}
             </otherwise>
         </choose>   
         <!-- <if test="workPhone != null or  workPhone != ''">and companyphone__c = #{workPhone}</if>
