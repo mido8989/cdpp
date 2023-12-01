@@ -125,4 +125,17 @@
         call process.if_in_repair_order(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
 
+    <select id="getAssetRowId" parameterType="String" resultType="String">
+        select
+            asset_id as assetRowId
+        from
+            process.zhbrsdt1728 zs1728
+        where
+            zs1728.ro_id = #{assetRowId}
+    </select>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_in_repair_order(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
 </mapper>
