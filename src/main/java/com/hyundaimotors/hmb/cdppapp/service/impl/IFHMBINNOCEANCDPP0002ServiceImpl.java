@@ -20,10 +20,16 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         //To_Do : Return ContactId를 Process Id로 변경, Exception Runtime 으로 변경
     
         IFHMBINNOCEANCDPP0002Dto resultDto = new IFHMBINNOCEANCDPP0002Dto();
-
+        String dtoLastName = dto.getLastName();
+        String dtoFirstName = dto.getFirstName();
         // lastname 비어서 들어올 때 firstname을 lastname에 넣어주기
-        if( dto.getLastName() == null || dto.getLastName().isEmpty() || dto.getLastName() == ""){
-            dto.setLastName(dto.getFirstName());
+        if( dtoLastName == null || dtoLastName.isEmpty() || dtoLastName == ""){
+            String[] splFirstName = dtoFirstName.split(" ",2);
+            if ( splFirstName.length > 1){
+                dto.setLastName(splFirstName[2]);
+            }else{
+                dto.setLastName(dtoFirstName);
+            }
         }
 
         mapper.insertObject(dto);
