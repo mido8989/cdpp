@@ -26,7 +26,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         if( dtoLastName == null || dtoLastName.isEmpty() || dtoLastName == ""){
             String[] splFirstName = dtoFirstName.split(" ",2);
             if ( splFirstName.length > 1){
-                dto.setLastName(splFirstName[2]);
+                dto.setLastName(splFirstName[1]);
             }else{
                 dto.setLastName(dtoFirstName);
             }
