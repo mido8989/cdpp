@@ -22,10 +22,11 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         IFHMBINNOCEANCDPP0002Dto resultDto = new IFHMBINNOCEANCDPP0002Dto();
         String dtoLastName = dto.getLastName();
         String dtoFirstName = dto.getFirstName();
-        // lastname 비어서 들어올 때 firstname을 lastname에 넣어주기
+        // lastname 비어서 들어올 때 lastname 처리 
         if( dtoLastName == null || dtoLastName.isEmpty() || dtoLastName == ""){
             String[] splFirstName = dtoFirstName.split(" ",2);
             if ( splFirstName.length > 1){
+                dto.setFirstName(splFirstName[0]);
                 dto.setLastName(splFirstName[1]);
             }else{
                 dto.setLastName(dtoFirstName);
