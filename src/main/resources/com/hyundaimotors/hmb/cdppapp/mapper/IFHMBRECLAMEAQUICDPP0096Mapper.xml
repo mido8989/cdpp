@@ -214,8 +214,28 @@
         )
     </insert>
     
-    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
-        call process.if_reclaimaqui_retrieve_ticket_by_id(#{param_id});
+    <insert id="transferProcessAccount" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_reclaimaqui_account(#{param_id});
+    </insert>
+
+    <select id="getProcessAccountRowIds" parameterType="list" resultType="string">
+        select 
+            pa.row_id
+        from
+            landing.if_reclaimaqui_retrieve_ticket_by_id lirr
+        join
+            process.account pa
+        on
+            lirr.id = pa.reclame_aqui_id__c
+        where 
+            lirr.row_id in
+            <foreach collection="paramList" item="item" index="index" open="(" close=")" separator=",">
+                CAST(#{item} AS INTEGER)
+            </foreach>
+    </select>
+
+    <insert id="transferReplicaAccount" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_reclaimaqui_account(#{param_id});
     </insert>
 
     <select id="getProcessRowIds" parameterType="list" resultType="string">
@@ -233,6 +253,10 @@
                 CAST(#{item} AS INTEGER)
             </foreach>
     </select>
+
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_reclaimaqui_retrieve_ticket_by_id(#{param_id});
+    </insert>
     
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call replica.if_reclaimaqui_retrieve_ticket_by_id(#{param_id});
