@@ -39,7 +39,7 @@ public class IFHMBSMARTERSCDPP0036Controller {
     @Operation(summary = "HMB Service Request Chat WS", description = "HMB Service Request Chat WS")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSMARTERSCDPP0036Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBServiceRequestChatWS")
-    public Object insertObject(@Valid @RequestBody IFHMBSMARTERSCDPP0036Payload.Request request) throws Exception {
+    public Object insertObject(@RequestBody IFHMBSMARTERSCDPP0036Payload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBSMARTERSCDPP0036Payload.Response response = new IFHMBSMARTERSCDPP0036Payload.Response();
