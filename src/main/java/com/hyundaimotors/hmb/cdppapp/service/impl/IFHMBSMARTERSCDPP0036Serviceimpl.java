@@ -41,18 +41,28 @@ public class IFHMBSMARTERSCDPP0036Serviceimpl implements IFHMBSMARTERSCDPP0036Se
 
         IFHMBSMARTERSCDPP0036Dto replicaDto = new IFHMBSMARTERSCDPP0036Dto();
 
-        replicaDto = mapper.getPocessData(dto);
+        if(dto.getServiceRequestChatInput().getReason() != null){
+            replicaDto = mapper.getPocessData(dto);
 
-        HashMap<String, String> replicaMap = new HashMap<>();
+            HashMap<String, String> replicaMap = new HashMap<>();
 
-        replicaMap.put("PARAM_ID", replicaDto.getProcessProtocol());
+            replicaMap.put("PARAM_ID", replicaDto.getProcessProtocol());
 
-        mapper.transferReplica(replicaMap);
+            mapper.transferReplica(replicaMap);
 
-        resulDto.setOwnedById(replicaDto.getOwnedById());
-        resulDto.setProcessProtocol(replicaDto.getProcessProtocol());
-        resulDto.setErrorSpcCode("0");
-        resulDto.setErrorSpcMessage("OK");
+            resulDto.setOwnedById(replicaDto.getOwnedById());
+            resulDto.setProcessProtocol(replicaDto.getProcessProtocol());
+            resulDto.setErrorSpcCode("0");
+            resulDto.setErrorSpcMessage("OK");
+        }else{
+            replicaDto = mapper.getProcessChat(dto);
+
+            resulDto.setOwnedById(replicaDto.getOwnedById());
+            resulDto.setProcessProtocol(replicaDto.getProcessProtocol());
+            resulDto.setErrorSpcCode("0");
+            resulDto.setErrorSpcMessage("OK");
+        }
+
 
         return resulDto;
     }
