@@ -52,6 +52,9 @@ public class IFHMBBLUELINKCDPP0053ServiceImpl implements IFHMBBLUELINKCDPP0053Se
                 }else if("GPI-Q".equals(bluelinkDto.getType())){
                     bluelinkDto.setType("DEACTIVATION (VIA TMU)");
                     bluelinkDto.setFirstActivation("N");
+                }else {
+                	//처리
+                	bluelinkDto.getType();
                 }
                 mapper.inserBluelink(bluelinkDto);
                 paramList.add(String.valueOf(bluelinkDto.getRowId()));
