@@ -47,7 +47,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
         // 현재 날짜 구하기(Paris)
         LocalDate brazilNow = LocalDate.now(ZoneId.of("America/Sao_Paulo"));
 
-        String brazilDate = "?date=\'"+String.valueOf(brazilNow)+"\'";
+        String brazilDate = "?date=\'"+brazilNow+"\'";
         
         // REST API 호출 및 데이터 처리 로직
         HttpClient client = HttpClient.newHttpClient();
@@ -190,16 +190,22 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                             if(obj.containsKey("complaint_content"))retrieveTicketId.setComplaintContent(String.valueOf(obj.get("complaint_content")));
                             //retrieveTicketId.setMessage("Manifestation answer");
                         }else if(2 == retrieveTicketId.getTicketInteractionTypeId()){
+                        	int temp = retrieveTicketId.getTicketInteractionTypeId();
                             //retrieveTicketId.setMessage("Answer");
                         }else if(3 == retrieveTicketId.getTicketInteractionTypeId()){
+                        	int temp = retrieveTicketId.getTicketInteractionTypeId();
                             //retrieveTicketId.setMessage("Private Message - Company");
                         }else if(4 == retrieveTicketId.getTicketInteractionTypeId()){
+                        	int temp = retrieveTicketId.getTicketInteractionTypeId();
                             //retrieveTicketId.setMessage("Tweet");
                         }else if(5 == retrieveTicketId.getTicketInteractionTypeId()){
+                        	int temp = retrieveTicketId.getTicketInteractionTypeId();
                             //retrieveTicketId.setMessage("Facebook Post");
                         }else if(6 == retrieveTicketId.getTicketInteractionTypeId()){
+                        	int temp = retrieveTicketId.getTicketInteractionTypeId();
                             //retrieveTicketId.setMessage("Private Message - Consumer");
                         }else if(7 == retrieveTicketId.getTicketInteractionTypeId()){
+                        	int temp = retrieveTicketId.getTicketInteractionTypeId();
                             //retrieveTicketId.setMessage("Third Party Comment");
                         }else if(8 == retrieveTicketId.getTicketInteractionTypeId()){
                             retrieveTicketId.setRaModerationRequestMessage("Mediation Request");
@@ -210,8 +216,10 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                             //if(interactions.containsKey("message"))retrieveTicketId.setRaModerationResponseMessage(String.valueOf(interactions.get("message")));
                             //retrieveTicketId.setMessage("Mediation Response");
                         }else if(10 == retrieveTicketId.getTicketInteractionTypeId()){
+                        	int temp = retrieveTicketId.getTicketInteractionTypeId();
                             //retrieveTicketId.setMessage("Redistribution");
                         }else if(11 == retrieveTicketId.getTicketInteractionTypeId()){
+                        	int temp = retrieveTicketId.getTicketInteractionTypeId();
                             //retrieveTicketId.setMessage("Evaluation");
                         }
                     }
