@@ -96,8 +96,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
         processMap.put("account_rowid", accountId);
         processMap.put("contact_rowid", contactId); 
 
-        System.out.println("procAssetId : " + Json.pretty(procAssetId));
-        System.out.println("procInvoiceId : " + Json.pretty(procInvoiceId));
+
      
         if ( getAssetId != null && getProcInvoiceId != null){
 
@@ -175,7 +174,6 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
                 procCustVehicleId = listProcCustVehicleId.toArray(new String[listProcCustVehicleId.size()]);
             }
 
-            System.out.println("procCustVehicleId : " + procCustVehicleId);
 
             processMap.put("PROC_INVOICE_ID", procInvoiceId);
             processMap.put("PROC_ASSET_ID", procAssetId);

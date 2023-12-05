@@ -39,7 +39,6 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     // 매 시간 실행 (크론 표현식)
     //@Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
-        System.out.println("GateWayAllTicket!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         
         ModelMapper modelMapper = new ModelMapper();
 
@@ -77,7 +76,6 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
             JSONArray jsonArr = (JSONArray) jsonObj.get("data");
 
             List<RetrieveTicketId> ticketList = new ArrayList<RetrieveTicketId>();
-            System.out.println("jsonArr :::: " + jsonArr);
             for(Object arr : jsonArr) {
                 JSONObject obj = (JSONObject) arr;
 
@@ -340,10 +338,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
             }
             
             
-            System.out.println("HTTP Status Code: " + statusCode);
-            System.out.println("Response Body: " + responseBody);
-            System.out.println("jsonArr: " + jsonArr);
-            System.out.println("ticketList: " + ticketList);
+ 
 
             IFHMBRECLAMEAQUICDPP0096Payload.Response payload = new IFHMBRECLAMEAQUICDPP0096Payload.Response();
 
@@ -372,7 +367,6 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
         
         BodyPublisher body = BodyPublishers.ofString(params);
 
-        System.out.println("Token params: " + params);
 
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endPoint))
                 .setHeader("Content-Type", "application/x-www-form-urlencoded")
@@ -388,14 +382,12 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
 
         responseBody = response.body();
         
-        System.out.println("Token HTTP Status Code: " + statusCode);
-        System.out.println("Token Response Body: " + responseBody);
+     
         JSONObject jsonObj = (JSONObject) new JSONParser().parse(responseBody);
 
         accessToken = String.valueOf(jsonObj.get("access_token"));
 
         } catch (IOException | InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         

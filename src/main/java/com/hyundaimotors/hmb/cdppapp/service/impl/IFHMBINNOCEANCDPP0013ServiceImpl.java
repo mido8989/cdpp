@@ -88,7 +88,6 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                 procConId = listProcConId.toArray(new String[listProcConId.size()]);
             }
 
-            System.out.println("procConId" + Json.pretty(procConId));
 
             map.put("PROC_CON_ID",procConId);
 
