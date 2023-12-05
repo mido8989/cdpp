@@ -108,11 +108,12 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         
         mapper.transferProcess(map);
         
-        foundContactId = mapper.foundContactId(dto);
-        map.put("CONTACT_ID", foundContactId);
+        String param_foundContactId = foundContactId;
+        param_foundContactId = mapper.foundContactId(dto);
+        map.put("CONTACT_ID", param_foundContactId);
         mapper.transferReplica(map);
          
-         return foundContactId;
+         return param_foundContactId;
     }
     
     /**
@@ -140,6 +141,6 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
      * @return
      */
     private boolean isNull(String value) {
-        return (value != null && !"".equals(value.trim()))?false:true;
+        return !(value != null && !"".equals(value.trim())) && true;
     }
 }

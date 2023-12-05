@@ -112,7 +112,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
      * @return
      */
     private boolean isNull(String value) {
-        return (value != null && !"".equals(value.trim()))?false:true;
+        return !(value != null && !"".equals(value.trim())) && true;
     }
 
 }
