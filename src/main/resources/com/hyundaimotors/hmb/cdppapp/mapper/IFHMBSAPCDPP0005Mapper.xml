@@ -17,8 +17,14 @@
         from
             process.account
         where "name"                                        = #{name}
-          and coalesce(nullif(phone,''),'PHONE')            = coalesce(nullif(#{mainPhoneNumber},''),'PHONE')
-          and coalesce(nullif(emailaddress__c,''),'EMAIL')  = coalesce(nullif(#{mainEmailAddress},''),'EMAIL')
+            <if test="mainPhoneNumber != null and mainPhoneNumber !=''">
+                and a.phone = #{mainPhoneNumber}
+            </if>
+            <if test="mainEmailAddress != null and mainEmailAddress !=''">
+                and a.emailaddress__c = #{mainEmailAddress}
+            </if>
+            <!-- and coalesce(nullif(phone,''),'PHONE')            = coalesce(nullif(#{mainPhoneNumber},''),'PHONE')
+          and coalesce(nullif(emailaddress__c,''),'EMAIL')  = coalesce(nullif(#{mainEmailAddress},''),'EMAIL') -->
     </select>
 
     <select id="foundAccountId" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
@@ -28,8 +34,15 @@
             process.account
         where  corporateregistrationnumber__c = #{cnpjNumber}
           or (lower(trim(name))               = lower(trim(#{name}))
-              and coalesce(nullif(phone,''),'PHONE')            = coalesce(nullif(#{mainPhoneNumber},''),'PHONE')
-              and coalesce(nullif(emailaddress__c,''),'EMAIL')  = coalesce(nullif(#{mainEmailAddress},''),'EMAIL'))
+            <if test="mainPhoneNumber != null and mainPhoneNumber != ''">
+                and phone = #{mainPhoneNumber}
+            </if>
+            <if test="mainEmailAddress != null and mainEmailAddress != ''">
+                and emailaddress__c = #{mainEmailAddress}
+            </if>
+            )
+              <!-- and coalesce(nullif(phone,''),'PHONE')            = coalesce(nullif(#{mainPhoneNumber},''),'PHONE')
+              and coalesce(nullif(emailaddress__c,''),'EMAIL')  = coalesce(nullif(#{mainEmailAddress},''),'EMAIL')) -->
     </select>
     
     <insert id="insertObject" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
