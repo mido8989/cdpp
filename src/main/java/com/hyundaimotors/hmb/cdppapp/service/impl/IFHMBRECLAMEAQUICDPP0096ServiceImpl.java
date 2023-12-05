@@ -67,5 +67,8 @@ public class IFHMBRECLAMEAQUICDPP0096ServiceImpl implements IFHMBRECLAMEAQUICDPP
         replicaMap.put("param_id", replicaParam);
 
         mapper.transferReplica(replicaMap);
+
+        long afterTime = System.currentTimeMillis();
+        System.out.println("End Time =======>" + afterTime);
     }
 }
