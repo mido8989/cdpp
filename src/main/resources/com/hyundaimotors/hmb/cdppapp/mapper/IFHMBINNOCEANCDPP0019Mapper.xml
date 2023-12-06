@@ -15,7 +15,7 @@
         where 
             pdh.holiday_date__c <![CDATA[ > ]]> date_trunc('month', to_date(concat(#{year}||'-'||#{month}||'-'||'01'), 'YYYY-MM-DD'))::date and pdh.holiday_date__c <![CDATA[ < ]]> date_trunc('month',to_date(concat(#{year}||'-'||#{month}||'-'||'01'), 'YYYY-MM-DD') + interval '1 months')::date - 1
         and
-            to_date(pma.period1_start, 'YYYY-MM-DD') = pdh.holiday_date__c
+            pma.period1_start::date = pdh.holiday_date__c
         and
             pma.dealer_code = #{dealerCode}
         group by to_char(pdh.holiday_date__c, 'DD'), pma.absence_period
