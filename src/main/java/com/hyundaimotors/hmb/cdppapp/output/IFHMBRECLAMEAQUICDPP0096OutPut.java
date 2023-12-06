@@ -37,7 +37,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식)
-    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
 
         ModelMapper modelMapper = new ModelMapper();
@@ -310,7 +310,8 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                 if(obj.containsKey("resolved_issue"))retrieveTicketId.setResolvedIssue(String.valueOf(obj.get("resolved_issue")));
                 if(obj.containsKey("back_doing_business"))retrieveTicketId.setBackDoingBusiness(String.valueOf(obj.get("back_doing_business")));
                 if(obj.containsKey("consumer_consideration"))retrieveTicketId.setConsumerConsideration(String.valueOf(obj.get("consumer_consideration")));
-                if(obj.containsKey("consumer_consideration_date") && obj.containsValue("consumer_consideration_date"))retrieveTicketId.setConsumerConsiderationDate(String.valueOf(obj.get("consumer_consideration_date")));
+                if(obj.containsKey("consumer_consideration_date"))retrieveTicketId.setConsumerConsiderationDate(String.valueOf(obj.get("consumer_consideration_date")));
+                //if(obj.containsKey("consumer_consideration_date") && obj.containsValue("consumer_consideration_date"))retrieveTicketId.setConsumerConsiderationDate(String.valueOf(obj.get("consumer_consideration_date")));
                 if(obj.containsKey("company_consideration"))retrieveTicketId.setCompanyConsideration(String.valueOf(obj.get("company_consideration")));
                 if(obj.containsKey("company_consideration_date") && obj.containsValue("company_consideration_date"))retrieveTicketId.setCompanyConsiderationDate(String.valueOf(obj.get("company_consideration_date")));
                 if(obj.containsKey("private_treatment_time"))retrieveTicketId.setPrivateTreatmentTime(String.valueOf(obj.get("private_treatment_time")));
