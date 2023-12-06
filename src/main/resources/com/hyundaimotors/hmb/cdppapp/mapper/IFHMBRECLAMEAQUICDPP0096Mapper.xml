@@ -122,7 +122,7 @@
             , #{complaintContent}
             , #{complaintTitle}
             , #{consumerConsideration}
-            <if test="consumerConsiderationDate != null">, #{consumerConsiderationDate}::timestamp</if>
+            <if test="consumerConsiderationDate != null">, #{consumerConsiderationDate}</if>
             <if test="creationDate != null">, #{creationDate}::timestamp</if>
             , #{customer}
             , #{frozen}
