@@ -91,11 +91,11 @@
         <choose>
             <when test='created == "Y"'>
                 and
-                    psr.legacycreateddate__c::date = to_date(#{date}, 'YYYY-MM-DD')
+                    psr.legacycreateddate__c::date between to_date(#{date}, 'YYYY-MM-DD') and to_date(#{date}, 'YYYY-MM-DD')+ interval '90 days'
             </when>
             <when test='created == "N"'>
                 and
-                    psr.legacy_last_update__c::date = to_date(#{date}, 'YYYY-MM-DD')
+                    psr.legacy_last_update__c::date between to_date(#{date}, 'YYYY-MM-DD') and to_date(#{date}, 'YYYY-MM-DD')+ interval '90 days'
             </when>
             <otherwise>
 
