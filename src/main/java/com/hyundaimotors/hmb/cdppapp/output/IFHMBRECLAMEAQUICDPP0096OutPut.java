@@ -37,8 +37,10 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식)
-    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
+        long startTime = System.currentTimeMillis();
+        System.out.println("startTime ============>" + startTime);
 
         ModelMapper modelMapper = new ModelMapper();
 
@@ -62,6 +64,9 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                 .header("Content-Type", "text/plain")
                 .GET()
                 .build();
+
+        long endTime = System.currentTimeMillis();
+        System.out.println("endTime ============>" + endTime);
 
         try {
             // REST API 호출 및 응답 처리
