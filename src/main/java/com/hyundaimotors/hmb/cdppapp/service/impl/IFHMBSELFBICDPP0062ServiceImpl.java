@@ -57,7 +57,9 @@ public class IFHMBSELFBICDPP0062ServiceImpl implements IFHMBSELFBICDPP0062Servic
 
                 String protocol = leadDto.getProtocol();
 
-                action = mapper.getAction(protocol);
+                String strId = leadDto.getStrId();
+
+                action = mapper.getAction(strId);
                 if(action!= null){
                     lead.get(index).setAction(action);
 

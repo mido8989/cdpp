@@ -53,6 +53,7 @@
             , psr.quote_price__c as quotePrice
             , psr.quote_replace_intention__c as quoteReplaceIntention
             , psr.contact_row_id__c as contactRowId
+            , psr.row_id as strId
         from
             process.service_request psr 
         left join
@@ -135,7 +136,7 @@
         from
             process.service_event_act psea
         where 
-            psea.protocol__c = #{protocol}
+            psea.sra_sr_id = #{strId}
         order by legacy_created desc
         limit 1
     </select>
