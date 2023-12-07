@@ -37,7 +37,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식)
-    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
         
         ModelMapper modelMapper = new ModelMapper();
@@ -251,7 +251,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                     if(0 < rg.size()){
                         retrieveTicketId.setRg(String.valueOf(rg.get(0)));
                     }
-                    JSONArray gender = (JSONArray) customer.get("cpf");
+                    JSONArray gender = (JSONArray) customer.get("gender");
                     if(0 < gender.size()){
                         retrieveTicketId.setGender(String.valueOf(gender.get(0)));
                     }
