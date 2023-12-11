@@ -140,10 +140,21 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
 
                 if(obj.containsKey("moderation")){
                     moderation = (JSONObject) obj.get("moderation");
-                    if(moderation.containsKey("status"))retrieveTicketId.setModerationStatus(String.valueOf(moderation.get("status")));
-                    if(moderation.containsKey("reason"))retrieveTicketId.setModerationReason(String.valueOf(moderation.get("reason")));
-                    if(moderation.containsKey("request_date")&& moderation.containsValue("request_date"))retrieveTicketId.setModerationRequestDate(String.valueOf(moderation.get("request_date")));
-                    if(moderation.containsKey("response_date")&& moderation.containsValue("response_date"))retrieveTicketId.setModerationResponseDate(String.valueOf(moderation.get("response_date")));
+                    if(moderation.get("status") != null){
+                        if(moderation.containsKey("status"))retrieveTicketId.setModerationStatus(String.valueOf(moderation.get("status")));
+                    }
+
+                    if(moderation.get("reason") != null){
+                        if(moderation.containsKey("reason"))retrieveTicketId.setModerationReason(String.valueOf(moderation.get("reason")));
+                    }
+
+                    if(moderation.get("request_date") != null){
+                        if(moderation.containsKey("request_date")&& moderation.containsValue("request_date"))retrieveTicketId.setModerationRequestDate(String.valueOf(moderation.get("request_date")));
+                    }
+                    
+                    if(moderation.get("response_date") != null){
+                        if(moderation.containsKey("response_date")&& moderation.containsValue("response_date"))retrieveTicketId.setModerationResponseDate(String.valueOf(moderation.get("response_date")));
+                    }
                 }
                 
                 if(obj.containsKey("ra")){
@@ -309,8 +320,15 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                 if(obj.containsKey("interactions_not_readed_count"))retrieveTicketId.setInteractionsNotReadedCount(Integer.parseInt(String.valueOf(obj.get("interactions_not_readed_count"))));
                 if(obj.containsKey("resolved_issue"))retrieveTicketId.setResolvedIssue(String.valueOf(obj.get("resolved_issue")));
                 if(obj.containsKey("back_doing_business"))retrieveTicketId.setBackDoingBusiness(String.valueOf(obj.get("back_doing_business")));
-                if(obj.containsKey("consumer_consideration"))retrieveTicketId.setConsumerConsideration(String.valueOf(obj.get("consumer_consideration")));
-                if(obj.containsKey("consumer_consideration_date"))retrieveTicketId.setConsumerConsiderationDate(String.valueOf(obj.get("consumer_consideration_date")));
+                
+                if(obj.get("consumer_consideration") != null){
+                    if(obj.containsKey("consumer_consideration"))retrieveTicketId.setConsumerConsideration(String.valueOf(obj.get("consumer_consideration")));
+                }
+                
+                if(obj.get("consumer_consideration_date") != null){
+                    if(obj.containsKey("consumer_consideration_date"))retrieveTicketId.setConsumerConsiderationDate(String.valueOf(obj.get("consumer_consideration_date")));
+                }    
+                
                 //if(obj.containsKey("consumer_consideration_date") && obj.containsValue("consumer_consideration_date"))retrieveTicketId.setConsumerConsiderationDate(String.valueOf(obj.get("consumer_consideration_date")));
                 if(obj.containsKey("company_consideration"))retrieveTicketId.setCompanyConsideration(String.valueOf(obj.get("company_consideration")));
                 if(obj.containsKey("company_consideration_date") && obj.containsValue("company_consideration_date"))retrieveTicketId.setCompanyConsiderationDate(String.valueOf(obj.get("company_consideration_date")));
