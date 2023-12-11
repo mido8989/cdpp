@@ -31,10 +31,12 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
         resultList = mapper.getList(dto);
 
         /***************** sample **************/
-        List<ListOfDays> daysList = new ArrayList<ListOfDays>();
+        List<String> daysList = new ArrayList<String>();
 
         daysList.addAll(sampleList01());
         daysList.addAll(sampleList02());
+        
+        //String 날짜만있으면 N
         /*****************************************/
 
         Calendar cal = Calendar.getInstance();
@@ -63,15 +65,13 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
                 int day  = dayOfWeek;
             }else{
 //                System.out.print(" "+i+" ");
-                Map<String,ListOfDays> holidayMap = distinctMap(daysList);
+                Map<String,String> holidayMap = distinctMap(daysList);
                 String day = i>9?""+i:"0"+i;
-                if(holidayMap.get(day) == null) {
-                    IFHMBINNOCEANCDPP0019Dto resultDto = new IFHMBINNOCEANCDPP0019Dto();
-                    resultDto.setDescription(day);
-                    resultDto.setAvailable("Y");
-
-                    resultList.add(resultDto);
-                }
+                IFHMBINNOCEANCDPP0019Dto resultDto = new IFHMBINNOCEANCDPP0019Dto();
+                resultDto.setDescription(day);
+                
+                resultDto.setAvailable(holidayMap.get(day) == null?"Y":"N");
+                resultList.add(resultDto);
             }
             dayOfWeek++;
         }
@@ -83,40 +83,9 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
      *
      * @return
      */
-    public List<ListOfDays> distinctList(List<ListOfDays> daysList) {
-        List<ListOfDays> result = new ArrayList<ListOfDays>();
-        Map<String,ListOfDays> distinct = new HashMap<String,ListOfDays>();
-
-        for(int index=0;index<daysList.size();index++) {
-            ListOfDays day = daysList.get(index);
-            if("N".equals(day.getAvailable())) { //available : N 인값
-                distinct.put(day.getDescription(), day);
-            }
-        }
-
-        Set<String> keys = distinct.keySet(); // 해쉬맵의 키의 집합.
-        Iterator<String> iter = keys.iterator();
-        while(iter.hasNext()) {
-            String key = iter.next();
-            result.add(distinct.get(key));
-        }
-        return result;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public Map<String,ListOfDays> distinctMap(List<ListOfDays> daysList) {
-        Map<String,ListOfDays> result = new HashMap<String,ListOfDays>();
-
-        for(int index=0;index<daysList.size();index++) {
-            ListOfDays day = daysList.get(index);
-            if("N".equals(day.getAvailable())) { //available : N 인값
-                result.put(day.getDescription(), day);
-            }
-        }
-
+    public Map<String,String> distinctMap(List<String> daysList) {
+        Map<String,String> result = new HashMap<String,String>();
+        for(int index=0;index<daysList.size();index++) result.put(daysList.get(index), "N");
         return result;
     }
 
@@ -124,18 +93,14 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
      * sample
      * @return
      */
-    public List<ListOfDays> sampleList01() {
-        List<ListOfDays> result = new ArrayList<ListOfDays>();
+    public List<String> sampleList01() {
+        List<String> result = new ArrayList<String>();
 
         String[] description = {"06","08","10","14","22","30"};
-        String[] available   = { "N", "N", "Y", "N", "N", "N"};
 
         for(int index=0;index<description.length;index++) {
-            ListOfDays day = new ListOfDays();
-            day.setDescription(description[index]);
-            day.setAvailable(available[index]);
 
-            result.add(day);
+            result.add(description[index]);
         }
 
         return result;
@@ -145,18 +110,13 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
      * sample
      * @return
      */
-    public List<ListOfDays> sampleList02() {
-        List<ListOfDays> result = new ArrayList<ListOfDays>();
+    public List<String> sampleList02() {
+        List<String> result = new ArrayList<String>();
 
         String[] description = {"07","08","11","14","23","29"};
-        String[] available   = { "N", "N", "Y", "N", "N", "N"};
 
         for(int index=0;index<description.length;index++) {
-            ListOfDays day = new ListOfDays();
-            day.setDescription(description[index]);
-            day.setAvailable(available[index]);
-
-            result.add(day);
+        	result.add(description[index]);
         }
 
         return result;
