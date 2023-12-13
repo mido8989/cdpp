@@ -32,6 +32,9 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
 
         /***************** sample **************/
         List<String> daysList = new ArrayList<String>();
+        List<String> holyDayList = new ArrayList<>();
+
+        holyDayList = mapper.getHolyDayList(dto);
 
         daysList.addAll(sampleList01());
         daysList.addAll(sampleList02());
