@@ -24,17 +24,31 @@
 
     <select id="getHolyDayList" parameterType="IFHMBINNOCEANCDPP0019Dto" resultType="string">
         select 
-            to_char(soex.attrib_12, 'DD')
+            to_char(pdh.holiday_date__c, 'DD')
         from
-            process."S_ORG_EXT" soe
+            process.dealerholiday pdh
         join
-            process."S_ORG_EXT_XM" soex
+            process.account pa
         on
-            soe.row_id = soex.par_row_id
+            pdh.par_row_id__c = pa.row_id
         where
-            soex.attrib_12 <![CDATA[ > ]]> to_date(#{year}||'-'||#{month}||'-'||'01','YYYY-MM-DD') and soex.attrib_12 <![CDATA[ < ]]> to_date(#{year}||'-'||#{month}||'-'||'01','YYYY-MM-DD') + interval '1 months'
+            pdh.holiday_date__c <![CDATA[ > ]]> to_date(#{year}||'-'||#{month}||'-'||'01','YYYY-MM-DD') and pdh.holiday_date__c <![CDATA[ < ]]> to_date(#{year}||'-'||#{month}||'-'||'01','YYYY-MM-DD') + interval '1 months'
         and
-            soe.ou_num = #{dealerCode}
-        group by to_char(soex.attrib_12, 'DD')
+            pa.dealercode__c = #{dealerCode}
+        group by to_char(pdh.holiday_date__c, 'DD')
+    </select>
+
+    <select id="getMaintenanceDayList" parameterType="IFHMBINNOCEANCDPP0019Dto" resultType="string">
+        select
+	        to_char(ma.excp_date , 'DD')
+        from
+            process.maintenanceable_availability ma 
+        where
+        ma.excp_date <![CDATA[ > ]]> to_date(#{year}||'-'||#{month}||'-'||'01','YYYY-MM-DD') and ma.excp_date <![CDATA[ < ]]> to_date(#{year}||'-'||#{month}||'-'||'01','YYYY-MM-DD') + interval '1 months'
+        and
+            ma.dealer_code = #{dealerCode}
+        and
+            ma.absence_period = 'N'
+        group by to_char(ma.excp_date, 'DD')
     </select>
 </mapper>
