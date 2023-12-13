@@ -20,4 +20,21 @@
             pma.dealer_code = #{dealerCode}
         group by to_char(pdh.holiday_date__c, 'DD'), pma.absence_period
     </select>
+
+
+    <select id="getHolyDayList" parameterType="IFHMBINNOCEANCDPP0019Dto" resultType="string">
+        select 
+            to_char(soex.attrib_12, 'DD')
+        from
+            process."S_ORG_EXT" soe
+        join
+            process."S_ORG_EXT_XM" soex
+        on
+            soe.row_id = soex.par_row_id
+        where
+            soex.attrib_12 <![CDATA[ > ]]> to_date(#{year}||'-'||#{month}||'-'||'01','YYYY-MM-DD') and soex.attrib_12 <![CDATA[ < ]]> to_date(#{year}||'-'||#{month}||'-'||'01','YYYY-MM-DD') + interval '1 months'
+        and
+            soe.ou_num = #{dealerCode}
+        group by to_char(soex.attrib_12, 'DD')
+    </select>
 </mapper>
