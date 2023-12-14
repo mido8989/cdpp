@@ -28,6 +28,7 @@ public class IFHMBINNOCEANCDPP0024ServiceImpl implements IFHMBINNOCEANCDPP0024Se
         mapper.transferProcess(map);
 
         IFHMBINNOCEANCDPP0024Dto resulDto = new IFHMBINNOCEANCDPP0024Dto();
+        resulDto.setRowId(dto.getRowId());
         resulDto.setErrorSpcCode("0");
         resulDto.setErrorSpcMessage("OK");
         return resulDto;
