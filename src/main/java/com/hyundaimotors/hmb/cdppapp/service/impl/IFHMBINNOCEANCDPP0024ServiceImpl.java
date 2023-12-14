@@ -22,8 +22,8 @@ public class IFHMBINNOCEANCDPP0024ServiceImpl implements IFHMBINNOCEANCDPP0024Se
         IFHMBINNOCEANCDPP0024Dto resulDto = new IFHMBINNOCEANCDPP0024Dto();
         mapper.insertObject(dto);
 
-        System.out.println("======= Operation =======> " + dto.getOperation().toLowerCase());
-        if (dto.getOperation().toLowerCase() == "delete") {
+        if ("delete".equalsIgnoreCase(dto.getOperation().toLowerCase())) {
+
             String procRowId = mapper.getProcRowId(dto);
             resulDto.setProcRowId(procRowId);
         }
