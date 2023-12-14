@@ -19,7 +19,13 @@ public class IFHMBINNOCEANCDPP0024ServiceImpl implements IFHMBINNOCEANCDPP0024Se
 
     public IFHMBINNOCEANCDPP0024Dto insertObject(IFHMBINNOCEANCDPP0024Dto dto)throws Exception{
         
+        IFHMBINNOCEANCDPP0024Dto resulDto = new IFHMBINNOCEANCDPP0024Dto();
         mapper.insertObject(dto);
+
+        if (LowerCase(dto.getOperation()) == "delete") {
+            String procRowId = mapper.getProcRowId(dto);
+            resulDto.setProcRowId(procRowId);
+        }
 
         HashMap<String, String> map = new HashMap<>();
 
@@ -27,11 +33,14 @@ public class IFHMBINNOCEANCDPP0024ServiceImpl implements IFHMBINNOCEANCDPP0024Se
 
         mapper.transferProcess(map);
 
-        IFHMBINNOCEANCDPP0024Dto resulDto = new IFHMBINNOCEANCDPP0024Dto();
         resulDto.setRowId(dto.getRowId());
         resulDto.setErrorSpcCode("0");
         resulDto.setErrorSpcMessage("OK");
         return resulDto;
+    }
+
+    private String LowerCase(String operation) {
+        return null;
     }
 
     public void insertDPObject(IFHMBINNOCEANCDPP0024Dto dto)throws Exception{
@@ -39,8 +48,7 @@ public class IFHMBINNOCEANCDPP0024ServiceImpl implements IFHMBINNOCEANCDPP0024Se
         HashMap<String, String> map = new HashMap<>();
 
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
-
-        System.out.println("========= PARAM_ID ========> " + String.valueOf(dto.getRowId()));
+        map.put("PROC_ID", dto.getProcRowId());
         
         mapper.transferDPProcess(map);
     }
