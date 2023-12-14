@@ -38,6 +38,8 @@ public class IFHMBINNOCEANCDPP0024ServiceImpl implements IFHMBINNOCEANCDPP0024Se
         HashMap<String, String> map = new HashMap<>();
 
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+
+        System.out.println("========= PARAM_ID ========> " + String.valueOf(dto.getRowId()));
         
         mapper.transferDPProcess(map);
     }
