@@ -56,9 +56,9 @@
         and 
             pm.dealer_code = #{dealerCode}
         and
-            pm.excp_start_date = #{excpStartDate}
+            pm.excp_start_date = #{excpStartDate}::timestamp
         and 
-            pm.excp_end_date = #{excpEndDate}
+            pm.excp_end_date = #{excpEndDate}::timestamp
     </select>
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
