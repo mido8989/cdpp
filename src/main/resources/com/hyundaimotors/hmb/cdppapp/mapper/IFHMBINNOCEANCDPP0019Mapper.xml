@@ -40,15 +40,14 @@
 
     <select id="getMaintenanceDayList" parameterType="IFHMBINNOCEANCDPP0019Dto" resultType="string">
         select
-	        to_char(ma.excp_date , 'DD')
+            generate_series(to_char(ma.excp_start_date , 'DD')::int, case when to_char(ma.excp_start_date , 'MM') != to_char(ma.excp_end_date , 'MM') then to_char((concat(to_char(excp_start_date, 'YYYY')||'-'||to_char(excp_start_date, 'MM')||'-'||'01')::date + interval '1 months')::date -1, 'DD')::int else to_char(ma.excp_end_date , 'DD')::int end)::varchar
         from
             process.maintenanceable_availability ma 
         where
-        ma.excp_date <![CDATA[ > ]]> to_date(#{year}||'-'||#{month}||'-'||'01','YYYY-MM-DD') and ma.excp_date <![CDATA[ < ]]> to_date(#{year}||'-'||#{month}||'-'||'01','YYYY-MM-DD') + interval '1 months'
+            ma.excp_start_date::date <![CDATA[ <= ]]> (#{year}||'-'||#{month}||'-'||to_char((concat(to_char(excp_start_date, 'YYYY')||'-'||to_char(excp_start_date, 'MM')||'-'||'01')::date + interval '1 months')::date -1, 'DD'))::date and ma.excp_end_date::date <![CDATA[ >= ]]> (#{year}||'-'||#{month}||'-'||'01')::date
         and
             ma.dealer_code = #{dealerCode}
         and
             ma.absence_period = 'N'
-        group by to_char(ma.excp_date, 'DD')
     </select>
 </mapper>
