@@ -22,8 +22,8 @@ public class IFHMBINNOCEANCDPP0024ServiceImpl implements IFHMBINNOCEANCDPP0024Se
         IFHMBINNOCEANCDPP0024Dto resulDto = new IFHMBINNOCEANCDPP0024Dto();
         mapper.insertObject(dto);
 
-        System.out.println("======= Operation =======> " + LowerCase(dto.getOperation()));
-        if (LowerCase(dto.getOperation()) == "delete") {
+        System.out.println("======= Operation =======> " + dto.getOperation().toLowerCase());
+        if (dto.getOperation().toLowerCase() == "delete") {
             String procRowId = mapper.getProcRowId(dto);
             resulDto.setProcRowId(procRowId);
         }
@@ -40,9 +40,6 @@ public class IFHMBINNOCEANCDPP0024ServiceImpl implements IFHMBINNOCEANCDPP0024Se
         return resulDto;
     }
 
-    private String LowerCase(String operation) {
-        return null;
-    }
 
     public void insertDPObject(IFHMBINNOCEANCDPP0024Dto dto)throws Exception{
 
