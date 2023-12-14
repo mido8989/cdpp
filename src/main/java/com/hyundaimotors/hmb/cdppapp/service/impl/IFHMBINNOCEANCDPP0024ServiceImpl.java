@@ -22,6 +22,7 @@ public class IFHMBINNOCEANCDPP0024ServiceImpl implements IFHMBINNOCEANCDPP0024Se
         IFHMBINNOCEANCDPP0024Dto resulDto = new IFHMBINNOCEANCDPP0024Dto();
         mapper.insertObject(dto);
 
+        System.out.println("======= Operation =======> " + LowerCase(dto.getOperation()));
         if (LowerCase(dto.getOperation()) == "delete") {
             String procRowId = mapper.getProcRowId(dto);
             resulDto.setProcRowId(procRowId);
@@ -50,6 +51,9 @@ public class IFHMBINNOCEANCDPP0024ServiceImpl implements IFHMBINNOCEANCDPP0024Se
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
         map.put("PROC_ID", dto.getProcRowId());
         
+        System.out.println("======= ProcRowId =======> " + dto.getProcRowId());
+
+
         mapper.transferDPProcess(map);
     }
 
