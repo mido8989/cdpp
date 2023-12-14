@@ -44,7 +44,7 @@
         from
             process.maintenanceable_availability ma 
         where
-            ma.excp_start_date::date <![CDATA[ <= ]]> (#{year}||'-'||#{month}||'-'||to_char((concat(to_char(excp_start_date, 'YYYY')||'-'||to_char(excp_start_date, 'MM')||'-'||'01')::date + interval '1 months')::date -1, 'DD'))::date and ma.excp_end_date::date <![CDATA[ >= ]]> (#{year}||'-'||#{month}||'-'||'01')::date
+            ma.excp_start_date::date <![CDATA[ <= ]]> (#{year}||'-'||#{month}||'-'||to_char((concat(#{year}||'-'||#{month}||'-'||'01')::date + interval '1 months')::date -1, 'DD'))::date and ma.excp_end_date::date <![CDATA[ >= ]]> (#{year}||'-'||#{month}||'-'||'01')::date
         and
             ma.dealer_code = #{dealerCode}
         and
