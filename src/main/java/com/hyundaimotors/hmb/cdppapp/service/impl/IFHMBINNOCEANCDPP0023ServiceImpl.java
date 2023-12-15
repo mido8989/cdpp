@@ -47,8 +47,6 @@ public class IFHMBINNOCEANCDPP0023ServiceImpl implements IFHMBINNOCEANCDPP0023Se
 
         map.put("PARAM_ID", String.valueOf(dto.getDayRowId()));
 
-        System.out.println("PARAM_ID ==========> " + String.valueOf(dto.getDayRowId()));
-
         mapper.transferDPProcess(map);
 
     }

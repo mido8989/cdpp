@@ -45,8 +45,10 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
        if(isValidation) {
              if(!isNull(foundAccountIdbyCnpj)) {
                  resulDto.setContactId(update(dto,foundAccountIdbyCnpj));
+                 resulDto.setCheckUpsert("update");
              }else {
                  resulDto.setContactId(insert(dto));
+                 resulDto.setCheckUpsert("insert");
              }
              
              resulDto.setErrorSpcCode("0"); 
@@ -54,9 +56,11 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
        }else {
            String foundAccountId = mapper.foundAccountId(dto);
            if(!isNull(foundAccountId)) {//저장 조건중 row_id를 가져올수 있다면..
-               resulDto.setContactId(update(dto,foundAccountId));
+                resulDto.setContactId(update(dto,foundAccountId));
+                resulDto.setCheckUpsert("update");
            }else {
                resulDto.setContactId(insert(dto));
+               resulDto.setCheckUpsert("insert");
            }
            
            resulDto.setErrorSpcCode("0"); 
@@ -113,6 +117,18 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
      */
     private boolean isNull(String value) {
         return !(value != null && !"".equals(value.trim())) && true;
+    }
+
+
+    public void insertDPObject(IFHMBSAPCDPP0005Dto dto)throws Exception{
+
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("PARAM_ID", dto.getContactId());
+        map.put("checkcu", dto.getCheckUpsert());
+
+        mapper.transferDPProcess(map);
+
     }
 
 }
