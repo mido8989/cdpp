@@ -57,8 +57,23 @@
         </foreach>
     </insert>
 
+    <!-- <select id="getProcRowId" parameterType="EmpAvailabInDto" resultType="String">
+        select
+            pm.row_id
+        from
+            process.maintenanceable_availability pm
+        where
+            pm.employee_cpf = #{employeeCPF}
+        and 
+            pm.dealer_code = #{dealerCode}
+    </select> -->
+
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_mntsrvc_mng_emp_avail(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
+    <insert id="transferDPProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_dp_mntsrvc_mng_emp_avail(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
     
 </mapper>
