@@ -40,7 +40,7 @@
 
     <select id="getMaintenanceDayList" parameterType="IFHMBINNOCEANCDPP0019Dto" resultType="string">
         select
-            generate_series(to_char(ma.excp_start_date , 'DD')::int, case when to_char(ma.excp_start_date , 'MM') != to_char(ma.excp_end_date , 'MM') then to_char((concat(to_char(excp_start_date, 'YYYY')||'-'||to_char(excp_start_date, 'MM')||'-'||'01')::date + interval '1 months')::date -1, 'DD')::int else to_char(ma.excp_end_date , 'DD')::int end)::varchar
+        generate_series(case when (to_char(ma.excp_start_date, 'YYYYMM')::int - cast(#{year}||#{month} as integer)) = 0 then to_char(ma.excp_start_date, 'DD')::int else 1 end , case when (to_char(ma.excp_end_date, 'YYYYMM')::int - cast(#{year}||#{month} as integer)) = 0 then to_char(ma.excp_end_date, 'DD')::int else to_char(((#{year}||'-'||#{month}||'-'||'01')::date + interval '1 months')::date -1, 'DD')::int end )
         from
             process.maintenanceable_availability ma 
         where
