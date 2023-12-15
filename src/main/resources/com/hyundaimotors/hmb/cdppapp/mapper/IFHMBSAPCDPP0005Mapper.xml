@@ -23,8 +23,6 @@
             <if test="mainEmailAddress != null and mainEmailAddress !=''">
                 and a.emailaddress__c = #{mainEmailAddress}
             </if>
-            <!-- and coalesce(nullif(phone,''),'PHONE')            = coalesce(nullif(#{mainPhoneNumber},''),'PHONE')
-          and coalesce(nullif(emailaddress__c,''),'EMAIL')  = coalesce(nullif(#{mainEmailAddress},''),'EMAIL') -->
     </select>
 
     <select id="foundAccountId" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
@@ -41,8 +39,6 @@
                 and emailaddress__c = #{mainEmailAddress}
             </if>
             )
-              <!-- and coalesce(nullif(phone,''),'PHONE')            = coalesce(nullif(#{mainPhoneNumber},''),'PHONE')
-              and coalesce(nullif(emailaddress__c,''),'EMAIL')  = coalesce(nullif(#{mainEmailAddress},''),'EMAIL')) -->
     </select>
     
     <insert id="insertObject" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
@@ -115,6 +111,10 @@
     
     <insert id="insertProcessAccount" statementType="CALLABLE" parameterType="hashMap">
         call process.if_account_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN},#{PROC_ACC_ID,jdbcType=VARCHAR,mode=IN},#{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
+    <insert id="transferDPProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_dp_account_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>
 
 
