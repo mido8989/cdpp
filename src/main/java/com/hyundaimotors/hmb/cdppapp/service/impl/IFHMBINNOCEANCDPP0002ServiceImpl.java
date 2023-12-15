@@ -75,8 +75,10 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
        if(isValidation) {
              if(!isNull(foundContactIdbyCpf)) {
                  resultDto.setContactId(update(dto,foundContactIdbyCpf));
+                 resultDto.setCheckUpsert("update");
              }else {
                  resultDto.setContactId(insert(dto,foundContactId));
+                 resultDto.setCheckUpsert("insert");
              }
              
              resultDto.setError_spcCode("0"); 
@@ -84,8 +86,10 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
        }else {
            if(!isNull(foundContactId)) {//저장 조건중 row_id를 가져올수 있다면..
                resultDto.setContactId(update(dto,foundContactId));
+               resultDto.setCheckUpsert("update");
            }else {
                resultDto.setContactId(insert(dto,foundContactId));
+               resultDto.setCheckUpsert("insert");
            }
            
            resultDto.setError_spcCode("0"); 
@@ -142,5 +146,17 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
      */
     private boolean isNull(String value) {
         return !(value != null && !"".equals(value.trim())) && true;
+    }
+
+
+    public void insertDPObject(IFHMBINNOCEANCDPP0002Dto dto)throws Exception{
+
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("PARAM_ID", dto.getContactId());
+        map.put("checkcu", dto.getCheckUpsert());
+
+        mapper.transferDPProcess(map);
+
     }
 }
