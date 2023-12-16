@@ -38,8 +38,9 @@ public class IFHMBSAPEAICDPP0038ServiceImpl implements IFHMBSAPEAICDPP0038Servic
         mapper.transferReplica(map);
 
         List<String> actionId = new ArrayList<>();
-        resultDto.setActionIdArray(actionId);
         actionId = mapper.getActionId(dto);
+
+        resultDto.setActionIdArray(actionId);
         if(0 < actionId.size()){
             String actionRowId = String.join("," , actionId);
             resultDto.setActionId(actionRowId);
