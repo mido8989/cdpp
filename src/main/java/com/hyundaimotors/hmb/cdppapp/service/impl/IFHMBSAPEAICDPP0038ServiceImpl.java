@@ -71,7 +71,7 @@ public class IFHMBSAPEAICDPP0038ServiceImpl implements IFHMBSAPEAICDPP0038Servic
         System.out.println("actionIdArray ::::::::::::::::::::::::::::::>" + actionIdArray);
         System.out.println("actionIdArray ::::::::::::::::::::::::::::::>" + actionIdArray.size());
         System.out.println("param ::::::::::::::::::::::::::::::>" + param);
-        map.put("PARAM_ID", param);
+        map.put("param_id", param);
         
         mapper.transferDPProcess(map);
     }
