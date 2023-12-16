@@ -66,4 +66,12 @@ public class IFHMBSMARTERSCDPP0036Serviceimpl implements IFHMBSMARTERSCDPP0036Se
 
         return resulDto;
     }
+
+    public void insertDPObject(IFHMBSMARTERSCDPP0036Dto dto)throws Exception{
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("PARAM_ID", dto.getProcessProtocol());
+        
+        mapper.transferDPProcess(map);
+    }
 }
