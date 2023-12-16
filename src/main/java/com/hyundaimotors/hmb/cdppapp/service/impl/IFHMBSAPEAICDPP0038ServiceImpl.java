@@ -41,6 +41,9 @@ public class IFHMBSAPEAICDPP0038ServiceImpl implements IFHMBSAPEAICDPP0038Servic
         actionId = mapper.getActionId(dto);
 
         resultDto.setActionIdArray(actionId);
+
+        System.out.println("resultDto setActionIdArray ===========================>" + resultDto.getActionIdArray());
+        System.out.println("resultDto setActionIdArray Size ===========================>" + resultDto.getActionIdArray().size());
         if(0 < actionId.size()){
             String actionRowId = String.join("," , actionId);
             resultDto.setActionId(actionRowId);
@@ -63,6 +66,9 @@ public class IFHMBSAPEAICDPP0038ServiceImpl implements IFHMBSAPEAICDPP0038Servic
 
         String[] param = actionIdArray.toArray(new String[actionIdArray.size()]);
 
+        System.out.println("actionIdArray ::::::::::::::::::::::::::::::>" + actionIdArray);
+        System.out.println("actionIdArray ::::::::::::::::::::::::::::::>" + actionIdArray.size());
+        System.out.println("param ::::::::::::::::::::::::::::::>" + param);
         map.put("PARAM_ID", param);
         
         mapper.transferDPProcess(map);
