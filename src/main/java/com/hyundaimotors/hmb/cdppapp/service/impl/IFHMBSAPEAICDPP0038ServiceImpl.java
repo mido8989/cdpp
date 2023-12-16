@@ -38,7 +38,7 @@ public class IFHMBSAPEAICDPP0038ServiceImpl implements IFHMBSAPEAICDPP0038Servic
         mapper.transferReplica(map);
 
         List<String> actionId = new ArrayList<>();
-
+        resultDto.setActionIdArray(actionId);
         actionId = mapper.getActionId(dto);
         if(0 < actionId.size()){
             String actionRowId = String.join("," , actionId);
@@ -53,6 +53,18 @@ public class IFHMBSAPEAICDPP0038ServiceImpl implements IFHMBSAPEAICDPP0038Servic
         resultDto.setErrorSpcMessage("OK");
 
         return resultDto;
+    }
+
+    public void insertDPObject(IFHMBSAPEAICDPP0038Dto dto)throws Exception{
+        List<String> actionIdArray = new ArrayList<>();
+        actionIdArray = dto.getActionIdArray();
+        HashMap<String, String[]>  map = new HashMap<>();
+
+        String[] param = actionIdArray.toArray(new String[actionIdArray.size()]);
+
+        map.put("PARAM_ID", param);
+        
+        mapper.transferDPProcess(map);
     }
 
 }
