@@ -52,4 +52,45 @@
         and
             ma.type = 'Dealer Employee AvailabilityEx'
     </select>
+    
+    <!-- week sample -->
+    <select id="getSampleWeekDay" parameterType="IFHMBINNOCEANCDPP0019Dto" resultType="string">
+    with params as (
+    select date_trunc('month', (#{year}||#{month}|| '01')::timestamp)::timestamp as date_from
+         , (date_trunc('month', (#{year}||#{month}|| '01')::timestamp) + interval '1 month - 1 day')::timestamp as date_to
+    ),
+    week_info as (
+    select 1 as week_num, 'Monday' as week_name
+    union all
+    select 2 as week_num, 'Tuesday' as week_name
+    union all
+    select 3 as week_num, 'Wednesday' as week_name
+    union all
+    select 4 as week_num, 'Thursday' as week_name
+    union all
+    select 5 as week_num, 'Friday' as week_name
+    union all
+    select 6 as week_num, 'Saturday' as week_name
+    union all
+    select 7 as week_num, 'Sunday' as week_name
+  )
+  select to_char(yyyyMMdd,'dd') as days
+  from 
+  (select (select week_name from week_info where week_num = b.week_num) as week_name
+        , yyyyMMdd
+  from
+  (select EXTRACT(ISODOW from yyyyMMdd) as week_num
+       , yyyyMMdd
+  from
+  --(select generate_series(cast(date_trunc('month',current_date) as timestamp) 
+    --  , (date_trunc('MONTH', current_date) + INTERVAL '1 MONTH - 1 day')::timestamp, '1 day') as yyyyMMdd) a
+    (select generate_series((select  date_from from params), (select date_to from params), '1 day') as yyyyMMdd) a ) b ) c
+    inner join process.maintenanceable_availability ma 
+    on (c.week_name      = ma.day_name)
+    where ma.dealer_code = #{dealerCode}
+      and ma.source      = #{source}
+      and ma.excp_start_date <![CDATA[ < ]]> now()::timestamp
+      and ma.excp_end_date  >= now()::timestamp
+      and ma.type = 'Dealer Employee AvailabilityEx'
+    </select>
 </mapper>
