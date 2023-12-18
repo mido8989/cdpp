@@ -11,4 +11,8 @@ public interface IFHMBINNOCEANCDPP0019Mapper {
     public List<String> getHolyDayList(IFHMBINNOCEANCDPP0019Dto dto)throws Exception;
 
     public List<String> getMaintenanceDayList(IFHMBINNOCEANCDPP0019Dto dto)throws Exception;
+    
+    //week sample
+    public List<String> getSampleWeekDay(IFHMBINNOCEANCDPP0019Dto dto)throws Exception;
+    
 }
