@@ -13,7 +13,6 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0010.IFHMBSAPEAICDPP0010
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0010Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0010Service;
 
-import io.swagger.v3.core.util.Json;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -110,6 +109,8 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
             mapper.transferReplica(processMap);
 
+            map.put("PARAM_ID", paramId);
+            map.put("proc_asset_id", getAssetId);
             map.put("errorSpcCode", "0");
             map.put("errorSpcMessage", "OK"); 
 
@@ -131,6 +132,8 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
             mapper.transferReplica(processMap);
 
+            map.put("PARAM_ID", paramId);
+            map.put("proc_asset_id", getAssetId);
             map.put("errorSpcCode", "0");
             map.put("errorSpcMessage", "OK"); 
 
@@ -153,6 +156,8 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
             mapper.transferReplica(processMap);
 
+            map.put("PARAM_ID", paramId);
+            map.put("proc_asset_id", getAssetId);
             map.put("errorSpcCode", "0");
             map.put("errorSpcMessage", "OK");      
             
@@ -181,6 +186,8 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
             mapper.transferReplica(processMap);
 
+            map.put("PARAM_ID", paramId);
+            map.put("proc_asset_id", getAssetId);
             map.put("errorSpcCode", "0");
             map.put("errorSpcMessage", "OK");      
 
@@ -189,6 +196,17 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
         return map;
     } 
+
+    public void insertDPObject(HashMap<String, Object> resulMap)throws Exception{
+
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("PARAM_ID", String.valueOf(resulMap.get("PARAM_ID")));
+        map.put("PROC_ASSET_ID", String.valueOf(resulMap.get("proc_asset_id")));
+
+        mapper.transferDPProcess(map);
+    }
+
 }
 
 
