@@ -109,7 +109,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
             mapper.transferReplica(processMap);
 
-            map.put("PARAM_ID", paramId);
+            map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
             map.put("errorSpcCode", "0");
             map.put("errorSpcMessage", "OK"); 
@@ -132,7 +132,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
             mapper.transferReplica(processMap);
 
-            map.put("PARAM_ID", paramId);
+            map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
             map.put("errorSpcCode", "0");
             map.put("errorSpcMessage", "OK"); 
@@ -156,7 +156,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
             mapper.transferReplica(processMap);
 
-            map.put("PARAM_ID", paramId);
+            map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
             map.put("errorSpcCode", "0");
             map.put("errorSpcMessage", "OK");      
@@ -186,7 +186,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
             mapper.transferReplica(processMap);
 
-            map.put("PARAM_ID", paramId);
+            map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
             map.put("errorSpcCode", "0");
             map.put("errorSpcMessage", "OK");      
@@ -204,6 +204,8 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
         map.put("PARAM_ID", String.valueOf(resulMap.get("PARAM_ID")));
         map.put("PROC_ASSET_ID", String.valueOf(resulMap.get("proc_asset_id")));
 
+        System.out.println("PARAM_ID ======== > " + String.valueOf(resulMap.get("PARAM_ID")));
+        System.out.println("PROC_ASSET_ID ======== > " + String.valueOf(resulMap.get("proc_asset_id")));
         mapper.transferDPProcess(map);
     }
 
