@@ -93,6 +93,8 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
 
             mapper.transferReplica(map);
 
+            resultDto.setProcRowId(getProcAccntRowId);
+            resultDto.setListOfProcContactRowId(listProcConId);
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");
 
@@ -153,10 +155,34 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
 
             mapper.transferReplica(map);
 
+            resultDto.setProcRowId(getProcAccntRowId);
+            resultDto.setListOfProcContactRowId(listProcConId);
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");
         }        
         
         return resultDto;
+    }
+
+    public void insertDPObject(IFHMBINNOCEANCDPP0013Dto dto)throws Exception{
+
+        HashMap<String, String[]> map = new HashMap<>();
+        List<String> listProcAccntId = new ArrayList<>();
+        List<String> listProcConId = new ArrayList<>();
+
+        listProcAccntId.add(dto.getProcRowId());
+        listProcConId = dto.getListOfProcContactRowId();
+
+        String[] procAccntId = listProcAccntId.toArray(new String[listProcAccntId.size()]);
+        String[] procContId = listProcConId.toArray(new String[listProcConId.size()]);
+
+        map.put("PROC_ACC_ID", procAccntId);
+        map.put("PROC_CON_ID_LIST", procContId);
+
+        System.err.println(":::::::::::::: PROC_ACC_ID :::::::::::::" + Json.pretty(procAccntId));
+        System.err.println(":::::::::::::: PROC_CON_ID_LIST :::::::::::::" + Json.pretty(procContId));
+
+        mapper.transferDPProcess(map);
+
     }
 }
