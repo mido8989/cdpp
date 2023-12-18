@@ -204,8 +204,6 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
         map.put("PARAM_ID", String.valueOf(resulMap.get("PARAM_ID")));
         map.put("PROC_ASSET_ID", String.valueOf(resulMap.get("proc_asset_id")));
 
-        System.out.println("PARAM_ID ======== > " + String.valueOf(resulMap.get("PARAM_ID")));
-        System.out.println("PROC_ASSET_ID ======== > " + String.valueOf(resulMap.get("proc_asset_id")));
         mapper.transferDPProcess(map);
     }
 
