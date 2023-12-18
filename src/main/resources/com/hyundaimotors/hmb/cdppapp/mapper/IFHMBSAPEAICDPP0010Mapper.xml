@@ -185,6 +185,10 @@
         call process.if_auto_vehicle_ws_wf(#{PARAM_ID}, #{PROC_ASSET_ID}, #{PROC_INVOICE_ID}, #{account_rowid}, #{contact_rowid});
     </insert>
 
+    <insert id="transferDPProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_dp_auto_vehicle_ws_wf(#{PARAM_ID}, #{PROC_ASSET_ID});
+    </insert>
+
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call Replica.if_auto_vehicle_ws_wf(#{PROC_ASSET_ID},  #{PROC_INVOICE_ID}, #{PROC_CUSTVEHICLE_ID});
     </insert>
