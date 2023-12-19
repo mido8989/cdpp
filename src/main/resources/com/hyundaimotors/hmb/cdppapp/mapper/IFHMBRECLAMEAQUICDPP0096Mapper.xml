@@ -106,6 +106,7 @@
             , address_state
             , attach_detail_description
             , attach_name
+            , attach_id
             <if test="attachCreationDate != null">, attach_creation_date</if>
         )values(                 
             #{id}
@@ -210,6 +211,7 @@
             , #{addressState}
             , #{detailDescription}
             , #{attachName}
+            , #{attachId}
             <if test="attachCreationDate != null">, #{attachCreationDate}::timestamp</if>
         )
     </insert>
