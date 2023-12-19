@@ -54,7 +54,7 @@ public class IFHMBSAPEAICDPP0026ServiceImpl implements IFHMBSAPEAICDPP0026Servic
         map.put("PROC_ID", procId);
 
         mapper.transferReplica(map);
-        resultDto.setListParamId(listParamId);
+        resultDto.setListParamId(procIdList);
         resultDto.setError_spcCode("0");
         resultDto.setError_spcMessage("OK");
         
@@ -69,10 +69,6 @@ public class IFHMBSAPEAICDPP0026ServiceImpl implements IFHMBSAPEAICDPP0026Servic
         HashMap<String, String[]>  map = new HashMap<>();
 
         String[] param = listParamId.toArray(new String[listParamId.size()]);
-
-        System.out.println("listParamId =====================================>" + listParamId);
-        System.out.println("listParamId Size =====================================>" + listParamId.size());
-        System.out.println("param =====================================>" + param);
 
         map.put("param_id", param);
         
