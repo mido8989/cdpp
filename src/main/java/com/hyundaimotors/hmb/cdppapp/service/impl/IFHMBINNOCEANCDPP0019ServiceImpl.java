@@ -29,31 +29,21 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
 
         resultList = mapper.getList(dto);
         
-        /***************** sample **************/
         List<String> daysList = new ArrayList<String>();
         List<String> holyDayList = new ArrayList<>();
         List<String> MaintenanceDayList = new ArrayList<>();
-        
-        //sample week
         List<String> weekDayList = new ArrayList<>();
 
-        holyDayList = mapper.getHolyDayList(dto);
+        holyDayList        = mapper.getHolyDayList(dto);
         MaintenanceDayList = mapper.getMaintenanceDayList(dto);
-        
-        //sample week 처리 부분
-        weekDayList = mapper.getSampleWeekDay(dto);
-        daysList.addAll(weekDayList);
-        //////////////////////////////////
+        weekDayList        = mapper.getWeekDayList(dto);
         
         daysList.addAll(holyDayList);
         daysList.addAll(MaintenanceDayList);
         
-        //String 날짜만있으면 N
-        /*****************************************/
-
         Calendar cal = Calendar.getInstance();
 
-        int year = Integer.parseInt(dto.getYear());
+        int year  = Integer.parseInt(dto.getYear());
         int month = Integer.parseInt(dto.getMonth());
 
         cal.set(Calendar.YEAR, year);
@@ -69,41 +59,33 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
         String getMonth = month>9?""+month:"0"+month;
 
         /* 중복 제거 */
-        Map<String,String> holidayMap = distinctMap(daysList);
+        Map<String,String> holidayMap = distinctMap(daysList,weekDayList);
         
         for(int i=1; i<=end; i++) {
-            if(i==1) {
-                for(int j=1; j<dayOfWeek; j++) {
-
-                }
+            String day = i>9?""+i:"0"+i;
+            IFHMBINNOCEANCDPP0019Dto resultDto = new IFHMBINNOCEANCDPP0019Dto();
+            resultDto.setDescription(String.valueOf(Integer.parseInt(day)));
+            
+            int nextResult = isNextDay(nowDate, getYear, getMonth, day, dayOfWeek);
+            
+            switch(nextResult) {
+            case 0://오늘 이전일 처리
+                resultDto.setAvailable("N");
+                break;
+            case 1://주말 처리
+                resultDto.setAvailable(holidayMap.get(day) == null?"N":holidayMap.get(day));
+                break;
+            case 2://나머지 처리
+                resultDto.setAvailable(holidayMap.get(day) == null?"Y":holidayMap.get(day));
+                break;
+                default://그밖에
+                    resultDto.setAvailable("N");
+                    break;
             }
-
-            if(dayOfWeek%7==0) { //토요일
-                int week = dayOfWeek;
-            }else if(dayOfWeek%7==1){//일요일
-                int day  = dayOfWeek;
-            }else{
-                String day = i>9?""+i:"0"+i;
-                
-                if(isNextDay(nowDate, getYear, getMonth, day)) { //오늘 이후만 처리 할수 있다.
-                    IFHMBINNOCEANCDPP0019Dto resultDto = new IFHMBINNOCEANCDPP0019Dto();
-//                    resultDto.setDescription(day);//=>01
-                    resultDto.setDescription(String.valueOf(Integer.parseInt(day)));//=>1
-                    
-                    resultDto.setAvailable(holidayMap.get(day) == null?"Y":"N");
-                    resultList.add(resultDto);
-                }else {
-                     IFHMBINNOCEANCDPP0019Dto resultDto = new IFHMBINNOCEANCDPP0019Dto();
-//                     resultDto.setDescription(day);//=> 01
-                     resultDto.setDescription(String.valueOf(Integer.parseInt(day)));//=>1
-                     
-                     resultDto.setAvailable("N");
-                     resultList.add(resultDto);
-                }
-            }
+            resultList.add(resultDto);
             dayOfWeek++;
         }
-
+        
         return resultList;
     }
     
@@ -111,10 +93,13 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
      * Get Next Day, starting with the first greater than today.
      * @return
      */
-    public boolean isNextDay(String nowDate, String year, String month, String day) {
-        boolean result = false;
+    public int isNextDay(String nowDate, String year, String month, String day, int dayOfWeek) {
+        int result = 0;
         
-        if(Integer.parseInt(year+month+day) > Integer.parseInt(nowDate)) result = true;
+        if(Integer.parseInt(year+month+day) < Integer.parseInt(nowDate)) result = 0;
+        else if(dayOfWeek%7==0 || dayOfWeek%7==1) result = 1;
+        else result = 2;
+        
         return result;
     }
     
@@ -123,24 +108,30 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
      */
     public String nowDate() {
         LocalDate now = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");  
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         String formatedNow = now.format(formatter); 
         
         return formatedNow;
     }
-
+    
     /**
-     *
-     * @return
-     */
-    public Map<String,String> distinctMap(List<String> daysList) {
-        Map<String,String> result = new HashMap<String,String>();
-        for(int index=0;index<daysList.size();index++) {
-            String day = daysList.get(index).trim();
-            day = Integer.parseInt(day)>9?""+Integer.parseInt(day):"0"+Integer.parseInt(day);
-//            result.put(daysList.get(index), "N");
-            result.put(day, "N");
-        }
-        return result;
-    }
+    *
+    * @return
+    */
+   public Map<String,String> distinctMap(List<String> daysList,List<String> weekList) {
+       Map<String,String> result  = new HashMap<String,String>();
+       
+       for(int index=0;index<daysList.size();index++) {
+           String day = daysList.get(index).trim();
+           day = Integer.parseInt(day)>9?""+Integer.parseInt(day):"0"+Integer.parseInt(day);
+           result.put(day, "N");
+       }
+       
+       for(int index=0;index<weekList.size();index++) {
+           String day = weekList.get(index).trim();
+           day = Integer.parseInt(day)>9?""+Integer.parseInt(day):"0"+Integer.parseInt(day);
+           result.put(day, "Y");
+       }
+       return result;
+   }
 }
