@@ -135,5 +135,17 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
 
         return map;
     }
+
+    public void insertDPObject(HashMap<String, Object> resulMap)throws Exception{
+
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("PROC_CON_ID", String.valueOf(resulMap.get("contactId")));
+
+        System.out.println(":::::::::: PROC_CON_ID ::::::::::" + String.valueOf(resulMap.get("contactId")));
+
+        mapper.transferDPProcess(map);
+        
+    }
     
 }
