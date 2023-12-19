@@ -70,6 +70,10 @@ public class IFHMBSAPEAICDPP0026ServiceImpl implements IFHMBSAPEAICDPP0026Servic
 
         String[] param = listParamId.toArray(new String[listParamId.size()]);
 
+        System.out.println("listParamId =====================================>" + listParamId);
+        System.out.println("listParamId Size =====================================>" + listParamId.size());
+        System.out.println("param =====================================>" + param);
+
         map.put("param_id", param);
         
         mapper.transferDPProcess(map);
