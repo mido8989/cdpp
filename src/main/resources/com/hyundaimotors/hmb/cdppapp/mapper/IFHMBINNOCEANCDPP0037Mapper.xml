@@ -224,6 +224,10 @@
         call process.if_update_contact_in_wf(#{PARAM_ID}, #{VEHICLE_ID}, #{PROC_ACCOUNT_ID});
     </insert>
 
+    <insert id="transferDPProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_dp_update_contact_in_wf(#{PROC_CON_ID});
+    </insert>
+
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call Replica.if_update_contact_in_wf(#{ASSET_ID_LIST}, #{PROC_ACCOUNT_ID});
     </insert>

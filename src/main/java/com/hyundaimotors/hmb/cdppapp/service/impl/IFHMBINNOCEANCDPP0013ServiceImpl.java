@@ -179,9 +179,6 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
         map.put("PROC_ACC_ID", procAccntId);
         map.put("PROC_CON_ID_LIST", procContId);
 
-        System.err.println(":::::::::::::: PROC_ACC_ID :::::::::::::" + Json.pretty(procAccntId));
-        System.err.println(":::::::::::::: PROC_CON_ID_LIST :::::::::::::" + Json.pretty(procContId));
-
         mapper.transferDPProcess(map);
 
     }
