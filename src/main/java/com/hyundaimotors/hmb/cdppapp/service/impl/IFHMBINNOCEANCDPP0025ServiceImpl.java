@@ -40,4 +40,16 @@ public class IFHMBINNOCEANCDPP0025ServiceImpl implements IFHMBINNOCEANCDPP0025Se
         resultDto.setErrorSpcMessage("OK");
         return resultDto;
     }
+
+    public void insertDPObject(IFHMBINNOCEANCDPP0025Dto dto)throws Exception{
+
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("PROTOCOL_NUM", dto.getDtoSrnumber());
+
+        System.out.println(":::::::::: PROTOCOL_NUM ::::::::::=>" +  dto.getDtoSrnumber());
+
+        mapper.transferDPProcess(map);
+
+    }
 }
