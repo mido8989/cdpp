@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0015.IFHMBSAPEAICDPP0015Dto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0015Mapper;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0015.Color;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0015Service;
 
+import io.swagger.v3.core.util.Json;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -75,6 +75,8 @@ public class IFHMBSAPEAICDPP0015ServiceImpl implements IFHMBSAPEAICDPP0015Servic
         HashMap<String, String[]> map = new HashMap<>();
 
         map.put("PARAM_ID", param);
+
+        System.out.println("::::::: PARAM_ID ::::::: " + Json.pretty(param));
         
         mapper.transferDPProcess(map);
     }

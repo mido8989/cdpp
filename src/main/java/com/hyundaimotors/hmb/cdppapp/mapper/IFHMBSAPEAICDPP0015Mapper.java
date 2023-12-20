@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0015.ColorDto;
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0015.Color;
 
 public interface IFHMBSAPEAICDPP0015Mapper {
     public void insertObject(ColorDto dto)throws Exception;
