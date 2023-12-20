@@ -186,10 +186,11 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                 }
                 JSONArray attached = (JSONArray) obj.get("attached");
                 if(0 < attached.size()){
-                    attach = (JSONObject)attached.get(attached.size()-1);
+                    attach = (JSONObject)attached.get(0);
                     if(attach.containsKey("detail_description"))retrieveTicketId.setDetailDescription(String.valueOf(attach.get("detail_description")));
                     if(attach.containsKey("creation_date"))retrieveTicketId.setAttachCreationDate(String.valueOf(attach.get("creation_date")));
                     if(attach.containsKey("name"))retrieveTicketId.setAttachName(String.valueOf(attach.get("name")));
+                    if(attach.containsKey("id"))retrieveTicketId.setAttachId(String.valueOf(attach.get("id")));
                 }
                 JSONArray jsonInteractions = (JSONArray) obj.get("interactions");
                 if(0 < jsonInteractions.size()){
