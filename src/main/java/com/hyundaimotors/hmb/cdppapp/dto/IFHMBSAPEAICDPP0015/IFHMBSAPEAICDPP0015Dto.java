@@ -2,8 +2,6 @@ package com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0015;
 
 import java.util.List;
 
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0015.Color;
-
 import lombok.Getter;
 import lombok.Setter;
 
