@@ -155,6 +155,7 @@ public class RetrieveTicketId {
 
     @JsonProperty("ticket_interaction_id")
     public String ticketInteractionId;
+    public String ticketInteractionMessage;
     @JsonProperty("ticket_interaction_type_id")
     public int ticketInteractionTypeId;
     @JsonProperty("ticket_interaction_name")
