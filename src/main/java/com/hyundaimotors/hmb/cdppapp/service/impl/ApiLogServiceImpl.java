@@ -2,8 +2,10 @@ package com.hyundaimotors.hmb.cdppapp.service.impl;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.UUID;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,10 @@ public class ApiLogServiceImpl implements ApiLogService {
 
     @Override
     public void writeStepLogging(ApiLogStep step, ApiLogDto dto) {
+        // Checking excluded IF loggings.
+        if (ArrayUtils.contains(arrExcludeIfId, dto.getIfId())) {
+            return;
+        }
         Timestamp now = new Timestamp((new Date()).getTime());
         int resultCnt = 0;
         try {

@@ -12,7 +12,7 @@
         join
             process.account pa
         on
-            sr.account_row_id__c = pa.row_id 
+            sr.business_row_id = pa.dealercode__c 
         join
             process.opportunity po
         on
