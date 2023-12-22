@@ -87,4 +87,19 @@
       where ma.dealer_code = #{dealerCode}
         and ma.type        = 'Dealer Employee Availability'
     </select>
+    
+     <select id="getAbsencePeriodDayList" parameterType="IFHMBINNOCEANCDPP0019Dto" resultType="string">
+        select
+            generate_series(case when (to_char(ma.excp_start_date, 'YYYYMM')::int - cast(#{year}||#{month} as integer)) = 0 then to_char(ma.excp_start_date, 'DD')::int else 1 end , case when (to_char(ma.excp_end_date, 'YYYYMM')::int - cast(#{year}||#{month} as integer)) = 0 then to_char(ma.excp_end_date, 'DD')::int else to_char(((#{year}||'-'||#{month}||'-'||'01')::date + interval '1 months')::date -1, 'DD')::int end )
+        from
+            process.maintenanceable_availability ma 
+        where
+            ma.excp_start_date::date <![CDATA[ <= ]]> (#{year}||'-'||#{month}||'-'||to_char((concat(#{year}||'-'||#{month}||'-'||'01')::date + interval '1 months')::date -1, 'DD'))::date and ma.excp_end_date::date <![CDATA[ >= ]]> (#{year}||'-'||#{month}||'-'||'01')::date
+        and
+            ma.dealer_code = #{dealerCode}
+        and
+            ma.absence_period = 'Y'
+        and
+            ma.type = 'Dealer Employee AvailabilityEx'
+    </select>
 </mapper>

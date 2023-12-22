@@ -33,10 +33,14 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
         List<String> holyDayList        = new ArrayList<>();
         List<String> MaintenanceDayList = new ArrayList<>();
         List<String> weekDayList        = new ArrayList<>();
+        
+        List<String> absencePeriodDayList = new ArrayList<>();
 
         holyDayList        = mapper.getHolyDayList(dto);
         MaintenanceDayList = mapper.getMaintenanceDayList(dto);
         weekDayList        = mapper.getWeekDayList(dto);
+        
+        absencePeriodDayList = mapper.getAbsencePeriodDayList(dto);
         
         daysList.addAll(holyDayList);
         daysList.addAll(MaintenanceDayList);
@@ -66,8 +70,9 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
          * 2. holyDayList 입력된 날짜는 N
          * 3. MaintenanceDayList 입력된 날짜는 N
          * 4. weekDayList 입력된 날짜는 이외 N <= 주의.(2,3처리 무시?)
-         * 5. 오늘 이전일 처리 N
-         * 6. 결과 처리
+         * 5. 부재 기간 설정?
+         * 6. 오늘 이전일 처리 N
+         * 7. 결과 처리
          */
         
         /**
@@ -120,8 +125,16 @@ public class IFHMBINNOCEANCDPP0019ServiceImpl implements IFHMBINNOCEANCDPP0019Se
         }
         
         /**
-         * 5.오늘 이전일 처리 N
-         * 결과 처리
+         * 5. 부재 기간 설정?
+         */
+        for(int index=0;index<absencePeriodDayList.size();index++) {
+            int day = Integer.parseInt(absencePeriodDayList.get(index));
+            schedule.put(day, "N");
+        }
+        
+        /**
+         * 6.오늘 이전일 처리 N
+         * 7.결과 처리
          */
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         String toDay = dateFormat.format(new Date(System.currentTimeMillis()));
