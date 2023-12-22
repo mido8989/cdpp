@@ -108,6 +108,7 @@
             , attach_name
             , attach_id
             <if test="attachCreationDate != null">, attach_creation_date</if>
+            , ticket_interaction_message
         )values(                 
             #{id}
             , now()
@@ -213,6 +214,7 @@
             , #{attachName}
             , #{attachId}
             <if test="attachCreationDate != null">, #{attachCreationDate}::timestamp</if>
+            , #{ticketInteractionMessage}
         )
     </insert>
     

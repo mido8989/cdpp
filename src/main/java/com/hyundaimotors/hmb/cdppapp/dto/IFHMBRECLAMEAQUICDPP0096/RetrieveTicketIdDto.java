@@ -92,6 +92,7 @@ public class RetrieveTicketIdDto {
 
     public String ticketInteractionId;
     public int ticketInteractionTypeId;
+    public String ticketInteractionMessage;
     public String ticketInteractionName;
     public String customerId;
     public String responsibleId;

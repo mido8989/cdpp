@@ -37,7 +37,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식) 
-    @Scheduled(cron = "0 */5 * * * *")
+    //@Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
         
         ModelMapper modelMapper = new ModelMapper();
@@ -194,6 +194,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                 if(0 < jsonInteractions.size()){
                     interactions = (JSONObject)jsonInteractions.get(jsonInteractions.size()-1);
                     if(interactions.containsKey("ticket_interaction_id"))retrieveTicketId.setTicketInteractionId(String.valueOf(interactions.get("ticket_interaction_id")));
+                    if(interactions.containsKey("message"))retrieveTicketId.setTicketInteractionMessage(String.valueOf(interactions.get("message")));
                     if(interactions.containsKey("ticket_interaction_type_id")){
                         retrieveTicketId.setTicketInteractionTypeId(Integer.parseInt(String.valueOf(interactions.get("ticket_interaction_type_id"))));
                         if(1 == retrieveTicketId.getTicketInteractionTypeId()){
