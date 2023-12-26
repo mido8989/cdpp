@@ -10,17 +10,19 @@
         from 
             process.service_request sr
         join
-            process.account pa
-        on
-            sr.business_row_id = pa.dealercode__c 
-        join
             process.opportunity po
         on
             sr.protocol__c = po.protocol__c
+        join
+            process.account pa
+        on
+            po.dealercode__c = pa.dealercode__c
         where
             sr.legacycreateddate__c::date = #{date}::date
         and
             po.type = 'Quotation'
+        and
+            po.qexperttransferreddate__c + '5 minutes'::interval <![CDATA[ <= ]]> now()::timestamp
         <if test="statusLead != null and statusLead != ''">
             and
                 sr.status = #{statusLead}
