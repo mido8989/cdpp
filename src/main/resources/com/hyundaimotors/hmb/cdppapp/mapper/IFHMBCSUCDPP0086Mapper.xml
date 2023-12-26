@@ -16,8 +16,8 @@
         on
             pac.row_id = psr.contact_row_id__c 
         where
-            case when char_length(#{phoneNumber}) <![CDATA[<]]> 14 then (pac.personhomephone = #{phoneNumber} or pac.companyphone__pc = #{phoneNumber} or pac.personmobilephone = #{phoneNumber})
-                when char_length(#{phoneNumber}) <![CDATA[>]]> 14 then pac.personmobilephone = #{phoneNumber}
+            case when char_length(#{phoneNumber}) <![CDATA[<=]]> 14 then (pac.personhomephone = #{phoneNumber} or pac.companyphone__pc = #{phoneNumber} or pac.personmobilephone = #{phoneNumber})
+                when char_length(#{phoneNumber}) <![CDATA[>=]]> 14 then pac.personmobilephone = #{phoneNumber}
             end
         and
             psr.status = 'In Progress BO'
