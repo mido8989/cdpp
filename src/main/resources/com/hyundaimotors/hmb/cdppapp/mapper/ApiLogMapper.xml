@@ -33,4 +33,7 @@
     <select id="selectSeqNo" parameterType="String" resultType="int">
         SELECT COALESCE(MAX(seq_no),0) as seq_no FROM process.if_info_logs WHERE if_tr_id = #{ifTrId}
     </select>
+    <select id="selectLoggingYn" parameterType="String" resultType="String">
+        SELECT if_log_yn AS LogYn FROM process.if_info WHERE if_id = #{ifId} LIMIT 1
+    </select>
 </mapper>

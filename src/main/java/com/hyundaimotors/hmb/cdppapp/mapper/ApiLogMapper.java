@@ -13,4 +13,6 @@ public interface ApiLogMapper {
     public int updateObject(ApiLogDto dto) throws SQLException;
 
     public int selectSeqNo(@Param("ifTrId") String ifTrId) throws SQLException;
+
+    public String selectLoggingYn(@Param("ifId") String ifId) throws SQLException;
 }
