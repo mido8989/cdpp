@@ -42,23 +42,23 @@ public class IFHMBSAPCDPP0079Controller {
         UUID IF_TR_ID = UUID.randomUUID();
         
         IFHMBSAPCDPP0079Payload.Response response = new IFHMBSAPCDPP0079Payload.Response();
-        //ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
+        ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
         
         try {
             IFHMBSAPCDPP0079Dto resultDto = new IFHMBSAPCDPP0079Dto();
             IFHMBSAPCDPP0079Dto dto = defaultMapper.map(request, IFHMBSAPCDPP0079Dto.class);
     
-            //ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
             resultDto = service.insertObject(dto);
-            //ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP2, IF_TR_ID, null);
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP2, IF_TR_ID, null);
     
             response = defaultMapper.map(resultDto, IFHMBSAPCDPP0079Payload.Response.class);
-            //ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
         }catch(Exception e) {
             response.setErrorSpcCode("500");
             response.setErrorSpcMessage(e.getLocalizedMessage());
 
-            //ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
+            ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
         }
         return response;
     }
