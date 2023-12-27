@@ -1,5 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
@@ -30,9 +31,15 @@ public class ApiLogServiceImpl implements ApiLogService {
     @Override
     public void writeStepLogging(ApiLogStep step, ApiLogDto dto) {
         // Checking excluded IF loggings.
-        if (ArrayUtils.contains(arrExcludeIfId, dto.getIfId())) {
+        try {
+            if (!"Y".equalsIgnoreCase(mapper.selectLoggingYn(dto.getIfId()))) {
+                return;
+            }
+        } catch (SQLException e) {
+            logger.error("Error when inquiring about logging availability.("+dto.getIfId()+")", e);
             return;
         }
+        
         Timestamp now = new Timestamp((new Date()).getTime());
         int resultCnt = 0;
         try {
