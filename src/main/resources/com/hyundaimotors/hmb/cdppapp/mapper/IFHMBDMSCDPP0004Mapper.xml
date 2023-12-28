@@ -4,12 +4,12 @@
     
     <select id="getLeadInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
         select
-            a.rowId as rowId
+            a.rowid as rowId
             , a.protocol as protocol
             , a.status as status
         from
-            (select 
-                sr.contact_row_id__c as rowId
+        (select 
+                sr.contact_row_id__c as rowid
                 , sr.protocol__c as protocol
                 , sr.status as status
                 , po.qexperttransferreddate__c as qexperttransferreddate
@@ -40,8 +40,8 @@
                     pa.apikey__c = #{apiKey}
             </if>
             )as a
-        where
-            a.qexperttransferreddate + '5 minutes'::interval <![CDATA[ <= ]]> now()::timestamp
+            where
+                a.qexperttransferreddate + '5 minutes'::interval <![CDATA[ <= ]]> now()::timestamp
     </select>
 
     <select id="getContactInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadContactDto">
