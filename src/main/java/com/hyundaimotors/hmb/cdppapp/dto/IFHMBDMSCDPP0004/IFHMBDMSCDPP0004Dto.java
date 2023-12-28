@@ -1,5 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004;
 
+import java.util.HashMap;
 import java.util.List;
 
 import lombok.Getter;
@@ -18,4 +19,5 @@ public class IFHMBDMSCDPP0004Dto {
     private String errorspcCode;
     private String errorspcMessage;
     List<GetLeadDto> listOfLead;
+    HashMap<String, String[]> map = new HashMap<>();
 }

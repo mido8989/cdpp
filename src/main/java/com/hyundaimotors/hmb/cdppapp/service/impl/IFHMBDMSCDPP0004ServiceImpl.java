@@ -110,8 +110,7 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
             HashMap<String, String[]> map = new HashMap<>();
             map.put("param_id", param);
             
-            UpdateOppt(map);
-
+            resultDto.setMap(map);
         }else{
             resultDto.setErrorspcCode("1");
             resultDto.setErrorspcMessage("No Data");
@@ -119,7 +118,7 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
 
         return resultDto;
     }
-    @Async
+
     public void UpdateOppt(HashMap<String, String[]> map)throws Exception{
         mapper.transferProcess(map);
         mapper.transferReplica(map);
