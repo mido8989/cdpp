@@ -3,16 +3,10 @@
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBDMSCDPP0004Mapper">
     
     <select id="getLeadInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
-        select
-            a.rowid as rowId
-            , a.protocol as protocol
-            , a.status as status
-        from
-        (select 
+        select 
                 sr.contact_row_id__c as rowid
                 , sr.protocol__c as protocol
                 , sr.status as status
-                , po.qexperttransferreddate__c as qexperttransferreddate
             from 
                 process.service_request sr
             join
@@ -39,9 +33,8 @@
                 and
                     pa.apikey__c = #{apiKey}
             </if>
-            )as a
-            where
-                (a.qexperttransferreddate + '5 minutes'::interval) <![CDATA[ <= ]]> now()::timestamp
+            and
+                po.qexperttransferreddate__c <![CDATA[ <= ]]> (now() - '5 minutes'::interval)
     </select>
 
     <select id="getContactInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadContactDto">
