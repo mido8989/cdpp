@@ -21,7 +21,7 @@ public class IFHMBSAPEAICDPP0010Dto {
         private String internalColorCode;
         private String externalColorCode;
         private String fuel;
-        private int purchasePrice;
+        private float purchasePrice;
         private String manufactureYear;
         private int modelYear;
         private int mileage;

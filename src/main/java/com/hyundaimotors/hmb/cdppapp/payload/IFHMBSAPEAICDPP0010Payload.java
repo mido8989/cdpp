@@ -41,7 +41,7 @@ public class IFHMBSAPEAICDPP0010Payload {
         @Schema(description = "SAP fuel type.", example = "F")
         private String fuel;
         @Schema(description = "Purchase price.", example = "50000")
-        private int purchasePrice;
+        private float purchasePrice;
         @Schema(description = "Manufacture year.", example = "2012")
         private String manufactureYear;
         @Schema(description = "modelYear", example = "2015")
