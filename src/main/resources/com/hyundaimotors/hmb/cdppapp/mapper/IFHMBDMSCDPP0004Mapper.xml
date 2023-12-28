@@ -26,7 +26,7 @@
             where
                 sr.legacycreateddate__c::date = #{date}::date
             and
-                po.type = 'Quotation'
+                po."type" = 'Quotation'
             <if test="statusLead != null and statusLead != ''">
                 and
                     sr.status = #{statusLead}
@@ -41,7 +41,7 @@
             </if>
             )as a
             where
-                a.qexperttransferreddate + '5 minutes'::interval <![CDATA[ <= ]]> now()::timestamp
+                (a.qexperttransferreddate + '5 minutes'::interval) <![CDATA[ <= ]]> now()::timestamp
     </select>
 
     <select id="getContactInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadContactDto">
