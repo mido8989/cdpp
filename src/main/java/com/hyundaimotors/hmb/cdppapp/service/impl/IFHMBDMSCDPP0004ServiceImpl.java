@@ -50,7 +50,7 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
 
         getLeadInfoList = mapper.getLeadInfoList(dto);
 
-        
+        System.out.println("getLeadInfoList Size =======>" + getLeadInfoList.size());
         if(0 < getLeadInfoList.size()){
             for(int i=0; i < getLeadInfoList.size(); i++){
                 protocalList.add(getLeadInfoList.get(i).getProtocol());
