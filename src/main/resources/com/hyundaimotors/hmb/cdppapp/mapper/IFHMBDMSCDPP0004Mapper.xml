@@ -3,39 +3,45 @@
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBDMSCDPP0004Mapper">
     
     <select id="getLeadInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
-        select 
-            sr.contact_row_id__c as rowId
-            , sr.protocol__c as protocol
-            , sr.status as status
-        from 
-            process.service_request sr
-        join
-            process.opportunity po
-        on
-            sr.protocol__c = po.protocol__c
-        join
-            process.account pa
-        on
-            po.dealercode__c = pa.dealercode__c
+        select
+            a.rowId as rowId
+            , a.protocol as protocol
+            , a.status as status
+        from
+            (select 
+                sr.contact_row_id__c as rowId
+                , sr.protocol__c as protocol
+                , sr.status as status
+                , po.qexperttransferreddate__c as qexperttransferreddate
+            from 
+                process.service_request sr
+            join
+                process.opportunity po
+            on
+                sr.protocol__c = po.protocol__c
+            join
+                process.account pa
+            on
+                po.dealercode__c = pa.dealercode__c
+            where
+                sr.legacycreateddate__c::date = #{date}::date
+            and
+                po.type = 'Quotation'
+            <if test="statusLead != null and statusLead != ''">
+                and
+                    sr.status = #{statusLead}
+            </if>
+            <if test="dealerCode != null and dealerCode != ''">
+                and
+                    pa.dealercode__c = #{dealerCode}
+            </if>
+            <if test="apiKey != null and apiKey != ''">
+                and
+                    pa.apikey__c = #{apiKey}
+            </if>
+            )as a
         where
-            sr.legacycreateddate__c::date = #{date}::date
-        and
-            po.type = 'Quotation'
-        and
-            po.qexperttransferreddate__c + '5 minutes'::interval <![CDATA[ <= ]]> now()::timestamp
-        <if test="statusLead != null and statusLead != ''">
-            and
-                sr.status = #{statusLead}
-        </if>
-        <if test="dealerCode != null and dealerCode != ''">
-            and
-                pa.dealercode__c = #{dealerCode}
-        </if>
-        <if test="apiKey != null and apiKey != ''">
-            and
-                pa.apikey__c = #{apiKey}
-        </if>
-        <!--group by sr.contact_row_id__c, sr.protocol__c, sr.status-->
+            a.qexperttransferreddate + '5 minutes'::interval <![CDATA[ <= ]]> now()::timestamp
     </select>
 
     <select id="getContactInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadContactDto">
