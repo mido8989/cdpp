@@ -49,7 +49,7 @@ public class ScheduleMaintenanceIN {
     @NotNull @NotBlank @NotEmpty
     private String dealerCode;
     @Schema(description = "Vehicle chassis.", example = "9BHBG51DADP011617")
-    @NotNull @NotBlank @NotEmpty
+    // @NotNull @NotBlank @NotEmpty
     private String chassis;
     @Schema(description = "CPF for customer requesting maintenance service.", example = "37369350720")
     @NotNull @NotBlank @NotEmpty
