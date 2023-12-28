@@ -27,7 +27,7 @@
                 sr.legacycreateddate__c::date = #{date}::date
             and
                 po."type" = 'Quotation'
-            <!--<if test="statusLead != null and statusLead != ''">
+            <if test="statusLead != null and statusLead != ''">
                 and
                     sr.status = #{statusLead}
             </if>
@@ -38,13 +38,7 @@
             <if test="apiKey != null and apiKey != ''">
                 and
                     pa.apikey__c = #{apiKey}
-            </if>-->
-            and
-                sr.status = #{statusLead}
-            and
-                pa.dealercode__c = #{dealerCode}
-            and
-                pa.apikey__c = #{apiKey}
+            </if>
             )as a
             where
                 (a.qexperttransferreddate + '5 minutes'::interval) <![CDATA[ <= ]]> now()::timestamp
