@@ -57,7 +57,6 @@ public class IFHMBDMSCDPP0004Controller {
     
             response = defaultMapper.map(resultDto, IFHMBDMSCDPP0004Payload.Response.class);
             ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
-
             //service.UpdateOppt(dto.getMap());
         }catch(Exception e) {
             response.setErrorspcCode("500");
