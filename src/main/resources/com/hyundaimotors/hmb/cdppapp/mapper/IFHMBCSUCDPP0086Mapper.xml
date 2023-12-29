@@ -7,21 +7,21 @@
             , pac.cpf__c as personCPF
             , pac.row_id as contactId
             , pac.personmobilephone as personCell
-            , psr.protocol__c as protocol
-            , count(psr.protocol__c) as qtdProtocol
+            , pc.protocol__c as protocol
+            , count(pc.protocol__c) as qtdProtocol
         from
             process.account pac
         left join
-            process.service_request psr
+            process."case" pc
         on
-            pac.row_id = psr.contact_row_id__c 
+            pac.row_id = pc.contact_row_id__c  
         where
             case when char_length(#{phoneNumber}) <![CDATA[<=]]> 14 then (pac.personhomephone = #{phoneNumber} or pac.companyphone__pc = #{phoneNumber} or pac.personmobilephone = #{phoneNumber})
                 when char_length(#{phoneNumber}) <![CDATA[>=]]> 14 then pac.personmobilephone = #{phoneNumber}
             end
         and
-            psr.status = 'In Progress BO'
-        group by pac.firstname||pac.lastname, pac.cpf__c, pac.row_id, pac.personmobilephone, psr.protocol__c
+            pc.status in('Case Opened', 'Additional Consultation')
+        group by pac.firstname||pac.lastname, pac.cpf__c, pac.row_id, pac.personmobilephone, pc.protocol__c
         limit 1
     </select>
 </mapper>
