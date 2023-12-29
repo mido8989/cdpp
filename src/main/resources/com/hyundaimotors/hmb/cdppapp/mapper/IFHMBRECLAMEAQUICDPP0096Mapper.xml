@@ -27,7 +27,7 @@
             , personalized_fields
             , public_treatment_time
             , reclame_aqui
-            , ra_feeling
+            <if test="raFeeling != null">, ra_feeling</if>
             , ra_reason
             , ra_status
             , rafone
@@ -79,7 +79,7 @@
             , commentary
             <if test="insertionDate != null">, insertion_date</if>
             <if test="closedDate != null">, closed_date</if>
-            , complaint_response_content
+            <if test="complaintResponseContent != null">, complaint_response_content</if>
             <if test="complaintResponseDate != null">, complaint_response_date</if>
             , rating_time
             , rating
@@ -133,7 +133,7 @@
             , #{personalizedFields}
             , #{publicTreatmentTime}
             , #{reclameAqui}
-            , #{raFeeling}
+            <if test="raFeeling != null">, #{raFeeling}</if>
             , #{raReason}
             , #{raStatus}
             , #{rafone}
@@ -185,7 +185,7 @@
             , #{commentary}
             <if test="insertionDate != null">, #{insertionDate}::timestamp</if>
             <if test="closedDate != null">, #{closedDate}::timestamp</if>
-            , #{complaintResponseContent}
+            <if test="complaintResponseContent != null">, #{complaintResponseContent}</if>
             <if test="complaintResponseDate != null">, #{complaintResponseDate}::timestamp</if>
             , #{ratingTime}
             , #{rating}
