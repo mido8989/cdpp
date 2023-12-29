@@ -37,7 +37,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식) 
-    @Scheduled(cron = "0 */5 * * * *")
+    //@Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
         
         ModelMapper modelMapper = new ModelMapper();
@@ -313,8 +313,12 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
                 if(obj.containsKey("request_evaluation"))retrieveTicketId.setRequestEvaluation(String.valueOf(obj.get("request_evaluation")));
                 if(obj.containsKey("frozen"))retrieveTicketId.setFrozen(String.valueOf(obj.get("frozen")));
                 if(obj.containsKey("ra_reason"))retrieveTicketId.setRaReason(String.valueOf(obj.get("ra_reason")));
-                if(obj.containsKey("ra_feeling"))retrieveTicketId.setRaFeeling(String.valueOf(obj.get("ra_feeling")));
-                if(obj.containsKey("complaint_response_content"))retrieveTicketId.setComplaintResponseContent(String.valueOf(obj.get("complaint_response_content")));
+                if(obj.get("ra_feeling") != null){
+                    if(obj.containsKey("ra_feeling"))retrieveTicketId.setRaFeeling(String.valueOf(obj.get("ra_feeling")));
+                }
+                if(obj.get("complaint_response_content") != null){
+                    if(obj.containsKey("complaint_response_content"))retrieveTicketId.setComplaintResponseContent(String.valueOf(obj.get("complaint_response_content")));
+                }
                 if(obj.containsKey("complaint_response_date") && obj.containsValue("complaint_response_date"))retrieveTicketId.setComplaintResponseDate(String.valueOf(obj.get("complaint_response_date")));
                 if(obj.containsKey("interactions_count"))retrieveTicketId.setInteractionsCount(Integer.parseInt(String.valueOf(obj.get("interactions_count"))));
                 if(obj.containsKey("interactions_not_readed_count"))retrieveTicketId.setInteractionsNotReadedCount(Integer.parseInt(String.valueOf(obj.get("interactions_not_readed_count"))));
