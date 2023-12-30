@@ -24,4 +24,13 @@
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_service_request_attachment(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
+
+    <select id="getAttachId" parameterType="IFHMBSAPEAICDPP0035Dto" resultType="string">
+        select
+            row_id as attachId
+        from
+            process.service_request_file
+        where
+            external_id__c = #{rowId}
+    </select>
 </mapper>
