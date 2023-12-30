@@ -42,6 +42,7 @@ public class IFHMBSAPEAICDPP0035ServiceImpl implements IFHMBSAPEAICDPP0035Servic
     public void insertDPObject(IFHMBSAPEAICDPP0035Dto dto)throws Exception{
         HashMap<String, String> map = new HashMap<>();
 
+        System.out.println("AttachmentId =============>" + dto.getAttachmentId());
         map.put("PARAM_ID", dto.getAttachmentId());
         
         mapper.transferDPProcess(map);
