@@ -33,4 +33,8 @@
         where
             external_id__c = #{rowId}
     </select>
+
+    <select id="transferDPProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_dp_service_request_attachment(#{PARAM_ID,jdbcType=VARCHAR,mode=IN});
+    </select>
 </mapper>
