@@ -44,14 +44,14 @@ public class IFHMBINNOCEANCDPP0034ServiceImpl implements IFHMBINNOCEANCDPP0034Se
 
         mapper.transferReplica(replicaMap);
 
-        String protocalResult = "";
+        /*String protocalResult = "";
         if("Information".equals(dto.getReason()) && "Sales".equals(dto.getLevel1()) && "Test drive".equals(dto.getLevel2())){
             protocalResult = mapper.getProtocalTestDrive(dto);
         }else if("Sales opportunity".equals(dto.getReason()) && "Sales".equals(dto.getLevel1()) && "Request a quote".equals(dto.getLevel2())){
             protocalResult = mapper.getProtocalQuotation(dto);
         }else{
             protocalResult = mapper.getProtocalCase(dto);
-        }
+        }*/
         
         resulDto.setProtocalResult(protocolID);
         resulDto.setErrorSpcCode("0");
