@@ -10,6 +10,8 @@ public interface IFHMBSAPEAICDPP0035Mapper {
 
     public void transferProcess(HashMap<String, String> parMap)throws Exception;
 
+    public String getAttachId(IFHMBSAPEAICDPP0035Dto dto)throws Exception;
+
     //public void transferReplica(HashMap<String, String> parMap)throws Exception;
     
 }
