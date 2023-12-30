@@ -28,8 +28,12 @@ public class IFHMBSAPEAICDPP0035ServiceImpl implements IFHMBSAPEAICDPP0035Servic
         mapper.transferProcess(map);
 
         String attachId = mapper.getAttachId(dto);
+
+        HashMap<String, String> replicaMap = new HashMap<>();
+
+        replicaMap.put("PARAM_ID", String.valueOf(attachId));
         
-        //mapper.transferReplica(map);
+        mapper.transferReplica(replicaMap);
 
         IFHMBSAPEAICDPP0035Dto resultDto = new IFHMBSAPEAICDPP0035Dto();
         resultDto.setAttachmentId(attachId);
