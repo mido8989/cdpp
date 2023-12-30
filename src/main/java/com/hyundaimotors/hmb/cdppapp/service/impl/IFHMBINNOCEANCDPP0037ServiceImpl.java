@@ -142,8 +142,6 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
 
         map.put("PROC_CON_ID", String.valueOf(resulMap.get("contactId")));
 
-        System.out.println(":::::::::: PROC_CON_ID ::::::::::" + String.valueOf(resulMap.get("contactId")));
-
         mapper.transferDPProcess(map);
         
     }

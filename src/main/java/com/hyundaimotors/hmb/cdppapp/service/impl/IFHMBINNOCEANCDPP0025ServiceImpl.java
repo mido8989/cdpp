@@ -49,9 +49,6 @@ public class IFHMBINNOCEANCDPP0025ServiceImpl implements IFHMBINNOCEANCDPP0025Se
         map.put("PARAM_ID", dto.getRowId());
         map.put("PROTOCOL_NUM", dto.getDtoSrnumber());
 
-        System.out.println(":::::::::: PARAM_ID ::::::::::=>" +  dto.getRowId());
-        System.out.println(":::::::::: PROTOCOL_NUM ::::::::::=>" +  dto.getDtoSrnumber());
-
         mapper.transferDPProcess(map);
 
     }

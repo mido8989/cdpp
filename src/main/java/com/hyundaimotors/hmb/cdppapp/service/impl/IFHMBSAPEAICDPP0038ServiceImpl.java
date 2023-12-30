@@ -40,12 +40,8 @@ public class IFHMBSAPEAICDPP0038ServiceImpl implements IFHMBSAPEAICDPP0038Servic
         List<String> actionId = new ArrayList<>();
         actionId = mapper.getActionId(dto);
 
-        System.out.println("actionId ===========================>" + actionId);
-
         resultDto.setActionIdArray(actionId);
 
-        System.out.println("resultDto setActionIdArray ===========================>" + resultDto.getActionIdArray());
-        System.out.println("resultDto setActionIdArray Size ===========================>" + resultDto.getActionIdArray().size());
         if(0 < actionId.size()){
             String actionRowId = String.join("," , actionId);
             resultDto.setActionId(actionRowId);
