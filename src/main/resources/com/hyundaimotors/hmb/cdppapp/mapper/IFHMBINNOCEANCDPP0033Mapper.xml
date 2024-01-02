@@ -36,8 +36,8 @@
             , pa.dlr_con_int_id__c as salesManId
             , pa.fsc__c as fsc_ocn
             , pa.latestmileage__c as mileage
-            , a3.row_id  as AccountSearchId
-            , a2.row_id  as contactSearchId
+            , pa.account_row_id__c  as AccountSearchId
+            , pa.contact_row_id__c  as contactSearchId
         from
             process.asset pa
         left join

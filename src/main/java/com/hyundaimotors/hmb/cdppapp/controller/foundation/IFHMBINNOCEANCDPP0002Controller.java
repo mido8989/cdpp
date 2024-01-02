@@ -3,8 +3,10 @@ package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002.IFHMBINNOCEANCDPP0002Dto;
@@ -39,7 +41,8 @@ public class IFHMBINNOCEANCDPP0002Controller {
     @Operation(summary = "Person Account Insert", description = "Person Account Insert.")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0002Payload.Request.class)))
     @PostMapping(value = "/api/v1/HMBInboundContactInterfaceWorkflow")
-    public Object insertInboundContactWorkflow(@Valid @RequestBody IFHMBINNOCEANCDPP0002Payload.Request request) throws Exception {
+    public Object insertInboundContactWorkflow(@Valid @RequestBody IFHMBINNOCEANCDPP0002Payload.Request request, @RequestHeader MultiValueMap<String, String> headerMap) throws Exception {
+        request.setApiKey(String.valueOf(headerMap.getFirst("apikey")));
         UUID IF_TR_ID = UUID.randomUUID();
 
         ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
