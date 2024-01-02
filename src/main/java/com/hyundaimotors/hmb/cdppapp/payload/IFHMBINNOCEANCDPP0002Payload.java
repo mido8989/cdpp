@@ -147,6 +147,8 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @JsonProperty("Favorite_Dealer")
         private String favorite_dealer;
 
+        private String apiKey;
+
         @JsonProperty("ListOfCurrentCars")
         List<InboundContactWorkflowCarPayLoad> listOfCurrentCars;
         @JsonProperty("ListOfApps")
