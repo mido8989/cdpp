@@ -183,49 +183,58 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         InboundContactAuditDto auditDto = new InboundContactAuditDto();
 
         if("update".equals(dto.getCheckUpsert())){
-            if(dto.getCpf().equals(newAccount.getCpf())){
-                auditDto.setFieldName("cpf__c");
-                auditDto.setOperation("Modify");
-                auditDto.setOldValue(dto.getCpf());
-                auditDto.setNewValue(newAccount.getCpf());
-                auditDto.setRowId(dto.getContactId());
-                auditList.add(0, auditDto);
+            if(dto.getCpf() != null && newAccount.getCpf() != null){
+                if(dto.getCpf().equals(newAccount.getCpf())){
+                    auditDto.setFieldName("cpf__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getCpf());
+                    auditDto.setNewValue(newAccount.getCpf());
+                    auditDto.setRowId(dto.getContactId());
+                    auditList.add(0, auditDto);
+                }
             }
 
-            if(dto.getIntegrationId().equals(newAccount.getIntegrationId())){
-                auditDto.setFieldName("integrationid");
-                auditDto.setOperation("Modify");
-                auditDto.setOldValue(dto.getIntegrationId());
-                auditDto.setNewValue(newAccount.getIntegrationId());
-                auditDto.setRowId(dto.getContactId());
-                auditList.add(1, auditDto);
+            if(dto.getIntegrationId() != null && newAccount.getIntegrationId() != null){
+                if(dto.getIntegrationId().equals(newAccount.getIntegrationId())){
+                    auditDto.setFieldName("integrationid");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getIntegrationId());
+                    auditDto.setNewValue(newAccount.getIntegrationId());
+                    auditDto.setRowId(dto.getContactId());
+                    auditList.add(1, auditDto);
+                }
+            }
+            if(dto.getFirstName() != null && newAccount.getFirstName() != null){
+                if(dto.getFirstName().equals(newAccount.getFirstName())){
+                    auditDto.setFieldName("firstname");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getFirstName());
+                    auditDto.setNewValue(newAccount.getFirstName());
+                    auditDto.setRowId(dto.getContactId());
+                    auditList.add(2, auditDto);
+                }
             }
 
-            if(dto.getFirstName().equals(newAccount.getFirstName())){
-                auditDto.setFieldName("firstname");
-                auditDto.setOperation("Modify");
-                auditDto.setOldValue(dto.getFirstName());
-                auditDto.setNewValue(newAccount.getFirstName());
-                auditDto.setRowId(dto.getContactId());
-                auditList.add(2, auditDto);
+            if(dto.getLastName() != null && newAccount.getLastName() != null){
+                if(dto.getLastName().equals(newAccount.getLastName())){
+                    auditDto.setFieldName("lastname");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getLastName());
+                    auditDto.setNewValue(newAccount.getLastName());
+                    auditDto.setRowId(dto.getContactId());
+                    auditList.add(3, auditDto);
+                }
             }
 
-            if(dto.getLastName().equals(newAccount.getLastName())){
-                auditDto.setFieldName("lastname");
-                auditDto.setOperation("Modify");
-                auditDto.setOldValue(dto.getLastName());
-                auditDto.setNewValue(newAccount.getLastName());
-                auditDto.setRowId(dto.getContactId());
-                auditList.add(3, auditDto);
-            }
-
-            if(dto.getEmailAddress().equals(newAccount.getEmailAddress())){
-                auditDto.setFieldName("personemail");
-                auditDto.setOperation("Modify");
-                auditDto.setOldValue(dto.getEmailAddress());
-                auditDto.setNewValue(newAccount.getEmailAddress());
-                auditDto.setRowId(dto.getContactId());
-                auditList.add(4, auditDto);
+            if(dto.getEmailAddress() != null && newAccount.getEmailAddress() != null){
+                if(dto.getEmailAddress().equals(newAccount.getEmailAddress())){
+                    auditDto.setFieldName("personemail");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getEmailAddress());
+                    auditDto.setNewValue(newAccount.getEmailAddress());
+                    auditDto.setRowId(dto.getContactId());
+                    auditList.add(4, auditDto);
+                }
             }
         }else{
             if(dto.getCpf() != null){
