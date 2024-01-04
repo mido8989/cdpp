@@ -18,10 +18,10 @@
             process.account
         where "name"                                        = #{name}
             <if test="mainPhoneNumber != null and mainPhoneNumber !=''">
-                and a.phone = #{mainPhoneNumber}
+                and phone = #{mainPhoneNumber}
             </if>
             <if test="mainEmailAddress != null and mainEmailAddress !=''">
-                and a.emailaddress__c = #{mainEmailAddress}
+                and emailaddress__c = #{mainEmailAddress}
             </if>
     </select>
 
