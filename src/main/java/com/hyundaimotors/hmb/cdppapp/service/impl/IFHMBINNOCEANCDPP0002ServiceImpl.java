@@ -107,7 +107,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         
         HashMap<String, IFHMBINNOCEANCDPP0002Dto> resultMap = new HashMap<>();
 
-        resultMap.put("resultDto", dto);
+        resultMap.put("resultDto", resultDto);
         resultMap.put("oldAccount", oldAccount);
         
         return resultMap;
@@ -184,7 +184,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         if("update".equals(dto.getCheckUpsert())){
             System.out.println("update ====================================================>");
             if(dto.getCpf() != null && newAccount.getCpf() != null){
-                if(dto.getCpf().equals(newAccount.getCpf())){
+                if(!dto.getCpf().equals(newAccount.getCpf())){
                     InboundContactAuditDto auditDto = new InboundContactAuditDto();
                     auditDto.setFieldName("cpf__c");
                     auditDto.setOperation("Modify");
@@ -196,7 +196,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
 
             if(dto.getIntegrationId() != null && newAccount.getIntegrationId() != null){
-                if(dto.getIntegrationId().equals(newAccount.getIntegrationId())){
+                if(!dto.getIntegrationId().equals(newAccount.getIntegrationId())){
                     InboundContactAuditDto auditDto = new InboundContactAuditDto();
                     auditDto.setFieldName("integrationid");
                     auditDto.setOperation("Modify");
@@ -207,7 +207,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 }
             }
             if(dto.getFirstName() != null && newAccount.getFirstName() != null){
-                if(dto.getFirstName().equals(newAccount.getFirstName())){
+                if(!dto.getFirstName().equals(newAccount.getFirstName())){
                     InboundContactAuditDto auditDto = new InboundContactAuditDto();
                     auditDto.setFieldName("firstname");
                     auditDto.setOperation("Modify");
@@ -219,7 +219,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
 
             if(dto.getLastName() != null && newAccount.getLastName() != null){
-                if(dto.getLastName().equals(newAccount.getLastName())){
+                if(!dto.getLastName().equals(newAccount.getLastName())){
                     InboundContactAuditDto auditDto = new InboundContactAuditDto();
                     auditDto.setFieldName("lastname");
                     auditDto.setOperation("Modify");
@@ -231,7 +231,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
 
             if(dto.getEmailAddress() != null && newAccount.getEmailAddress() != null){
-                if(dto.getEmailAddress().equals(newAccount.getEmailAddress())){
+                if(!dto.getEmailAddress().equals(newAccount.getEmailAddress())){
                     InboundContactAuditDto auditDto = new InboundContactAuditDto();
                     auditDto.setFieldName("personemail");
                     auditDto.setOperation("Modify");
