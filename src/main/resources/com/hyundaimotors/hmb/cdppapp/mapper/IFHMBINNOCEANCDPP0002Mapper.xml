@@ -319,7 +319,7 @@
             pa.row_id = #{foundContactId}
     </select>
 
-    <insert id="insertAuditList" parameterType="IFHMBINNOCEANCDPP0002Dto">
+    <insert id="insertAuditList" parameterType="InboundContactAuditDto">
         insert into process.s_audit_item(
             , created_by
             , last_upd_by
