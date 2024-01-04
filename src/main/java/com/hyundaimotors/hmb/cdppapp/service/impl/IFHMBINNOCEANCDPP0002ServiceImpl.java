@@ -1,11 +1,14 @@
 
 package com.hyundaimotors.hmb.cdppapp.service.impl;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002.IFHMBINNOCEANCDPP0002Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002.InboundContactAuditDto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0002Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0002Service;
 
@@ -16,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Service{
     
     private final IFHMBINNOCEANCDPP0002Mapper mapper;
-    public IFHMBINNOCEANCDPP0002Dto insertObject(IFHMBINNOCEANCDPP0002Dto dto)throws Exception{
+    public HashMap<String, IFHMBINNOCEANCDPP0002Dto> insertObject(IFHMBINNOCEANCDPP0002Dto dto)throws Exception{
         //To_Do : Return ContactId를 Process Id로 변경, Exception Runtime 으로 변경
     
         IFHMBINNOCEANCDPP0002Dto resultDto = new IFHMBINNOCEANCDPP0002Dto();
@@ -72,13 +75,19 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
        
        String foundContactId = mapper.foundContactId(dto);
        
+       IFHMBINNOCEANCDPP0002Dto oldAccount = new IFHMBINNOCEANCDPP0002Dto();
+       
+       oldAccount = mapper.getOldAccount(foundContactId);
+
        if(isValidation) {
              if(!isNull(foundContactIdbyCpf)) {
                  resultDto.setContactId(update(dto,foundContactIdbyCpf));
                  resultDto.setCheckUpsert("update");
+                 oldAccount.setCheckUpsert("update");
              }else {
                  resultDto.setContactId(insert(dto,foundContactId));
                  resultDto.setCheckUpsert("insert");
+                 oldAccount.setCheckUpsert("insert");
              }
              
              resultDto.setError_spcCode("0"); 
@@ -96,7 +105,12 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
            resultDto.setError_spcMessage("OK");
        }
         
-        return resultDto;
+        HashMap<String, IFHMBINNOCEANCDPP0002Dto> resultMap = new HashMap<>();
+
+        resultMap.put("resultDto", dto);
+        resultMap.put("oldAccount", oldAccount);
+        
+        return resultMap;
     }
     
     /**
@@ -157,6 +171,105 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         map.put("checkcu", dto.getCheckUpsert());
 
         mapper.transferDPProcess(map);
+
+        IFHMBINNOCEANCDPP0002Dto newAccount = new IFHMBINNOCEANCDPP0002Dto();
+
+        newAccount = mapper.getOldAccount(dto.getContactId());
+
+        //String[] insertColumnValue = {"row_id" , "cpf__c" , "integrationid" , "firstname" , "lastname" , "personemail" , "personhomephone" , "workphone__c" , "personmobilephone" , "gender__pc" , "maritalstatus__pc" , "personbirthdate" , "occupation__pc" , "income__c" , "productofinterest__c" , "calledby__c" , "literacy__c" , "preferredcontactchannel__c" , "persondonotcall" , "calloptyn__pc" , "blockedemails__c" , "blockedemails__pc" , "blockedletters__c" , "blockedletters__pc" , "blockedmobile__c" , "blockedmobile__pc" , "blockedsms__c" , "blockedsms__pc" , "blockedvideocall__c" , "blockedvideocall__pc" , "blockedwhatsapp__c" , "blockedwhatsapp__pc" , "dealercode__c" , "registrysource__c" , "facebook__c" , "receiveproductnewsflag__c" , "receiveretailoffersflag__c" , "receiveserviceoffersflag__c" , "receivenewsletterflag__c" , "receiveeventsflag__c" , "receiveresearchflag__c" , "neighborhood"};
+        //String[] updateColumnValue = {"cpf__c" , "integrationid" , "firstname" , "lastname" , "personemail" , "personhomephone" , "workphone__c" , "personmobilephone" , "gender__pc" , "maritalstatus__pc" , "personbirthdate" , "occupation__pc" , "income__c" , "productofinterest__c" , "calledby__c" , "literacy__c" , "preferredcontactchannel__c" , "persondonotcall" , "calloptyn__pc" , "blockedemails__c" , "blockedemails__pc" , "blockedletters__c" , "blockedletters__pc" , "blockedmobile__c" , "blockedmobile__pc" , "blockedsms__c" , "blockedsms__pc" , "blockedvideocall__c" , "blockedvideocall__pc" , "blockedwhatsapp__c" , "blockedwhatsapp__pc" , "dealercode__c" , "registrysource__c" , "facebook__c" , "receiveproductnewsflag__c" , "receiveretailoffersflag__c" , "receiveserviceoffersflag__c" , "receivenewsletterflag__c" , "receiveeventsflag__c" , "receiveresearchflag__c" , "neighborhood"};
+        
+        List<InboundContactAuditDto> auditList = new ArrayList<>();
+        InboundContactAuditDto auditDto = new InboundContactAuditDto();
+
+        if("update".equals(dto.getCheckUpsert())){
+            if(dto.getCpf().equals(newAccount.getCpf())){
+                auditDto.setFieldName("cpf__c");
+                auditDto.setOperation("Modify");
+                auditDto.setOldValue(dto.getCpf());
+                auditDto.setNewValue(newAccount.getCpf());
+                auditDto.setRowId(dto.getContactId());
+                auditList.add(0, auditDto);
+            }
+
+            if(dto.getIntegrationId().equals(newAccount.getIntegrationId())){
+                auditDto.setFieldName("integrationid");
+                auditDto.setOperation("Modify");
+                auditDto.setOldValue(dto.getIntegrationId());
+                auditDto.setNewValue(newAccount.getIntegrationId());
+                auditDto.setRowId(dto.getContactId());
+                auditList.add(1, auditDto);
+            }
+
+            if(dto.getFirstName().equals(newAccount.getFirstName())){
+                auditDto.setFieldName("firstname");
+                auditDto.setOperation("Modify");
+                auditDto.setOldValue(dto.getFirstName());
+                auditDto.setNewValue(newAccount.getFirstName());
+                auditDto.setRowId(dto.getContactId());
+                auditList.add(2, auditDto);
+            }
+
+            if(dto.getLastName().equals(newAccount.getLastName())){
+                auditDto.setFieldName("lastname");
+                auditDto.setOperation("Modify");
+                auditDto.setOldValue(dto.getLastName());
+                auditDto.setNewValue(newAccount.getLastName());
+                auditDto.setRowId(dto.getContactId());
+                auditList.add(3, auditDto);
+            }
+
+            if(dto.getEmailAddress().equals(newAccount.getEmailAddress())){
+                auditDto.setFieldName("personemail");
+                auditDto.setOperation("Modify");
+                auditDto.setOldValue(dto.getEmailAddress());
+                auditDto.setNewValue(newAccount.getEmailAddress());
+                auditDto.setRowId(dto.getContactId());
+                auditList.add(4, auditDto);
+            }
+        }else{
+            if(dto.getCpf() != null){
+                auditDto.setFieldName("cpf__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(dto.getCpf());
+                auditDto.setRowId(dto.getContactId());
+                auditList.add(0, auditDto);
+            }
+
+            if(dto.getIntegrationId() != null){
+                auditDto.setFieldName("integrationid");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(dto.getIntegrationId());
+                auditDto.setRowId(dto.getContactId());
+                auditList.add(0, auditDto);
+            }
+
+            if(dto.getFirstName() != null){
+                auditDto.setFieldName("firstname");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(dto.getFirstName());
+                auditDto.setRowId(dto.getContactId());
+                auditList.add(0, auditDto);
+            }
+
+            if(dto.getLastName() != null){
+                auditDto.setFieldName("lastname");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(dto.getLastName());
+                auditDto.setRowId(dto.getContactId());
+                auditList.add(0, auditDto);
+            }
+
+            if(dto.getEmailAddress() != null){
+                auditDto.setFieldName("personemail");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(dto.getEmailAddress());
+                auditDto.setRowId(dto.getContactId());
+                auditList.add(0, auditDto);
+            }
+        }
+
+        mapper.insertAuditList(auditList);
 
     }
 }

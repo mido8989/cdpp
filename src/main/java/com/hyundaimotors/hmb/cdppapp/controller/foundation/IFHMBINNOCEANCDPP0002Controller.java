@@ -1,5 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
@@ -51,13 +52,23 @@ public class IFHMBINNOCEANCDPP0002Controller {
             IFHMBINNOCEANCDPP0002Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0002Dto.class);
 
             ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
-            IFHMBINNOCEANCDPP0002Dto resultDto = service.insertObject(dto);
+            HashMap<String, IFHMBINNOCEANCDPP0002Dto> resultMap = service.insertObject(dto);
+
+            IFHMBINNOCEANCDPP0002Dto resultDto = resultMap.get("resultDto");
+
             ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP2, IF_TR_ID, null);
 
             response = defaultMapper.map(resultDto, IFHMBINNOCEANCDPP0002Payload.Response.class);
             ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
 
-            service.insertDPObject(resultDto);
+            IFHMBINNOCEANCDPP0002Dto oldAccount = resultMap.get("oldAccount");
+
+            if(oldAccount != null){
+                service.insertDPObject(oldAccount);
+            }else{
+                service.insertDPObject(resultDto);
+            }
+            
 
         } catch (Exception e) {
             response.setError_spcCode("500");

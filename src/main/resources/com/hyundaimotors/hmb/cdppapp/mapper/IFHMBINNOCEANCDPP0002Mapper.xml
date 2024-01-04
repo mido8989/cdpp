@@ -275,6 +275,82 @@
             )
         </foreach>
     </insert>
+
+    <select id="getOldAccount" parameterType="string" resultType="IFHMBINNOCEANCDPP0002Dto">
+        select
+            row_id as ContactId
+            , cpf__c as cpf
+            , integrationid as integrationId
+            , firstname as firstName
+            , lastname as lastName
+            , personemail as emailAddress
+            , personhomephone as homephone
+            , workphone__c as workPhone
+            , personmobilephone as cellPhone
+            , gender__pc as gender
+            , maritalstatus__pc as maritalStatus
+            , personbirthdate as birthDate
+            , occupation__pc as occupation
+            , income__c as income
+            , productofinterest__c as carOfInterest
+            , calledby__c as calledBy
+            , literacy__c as literacy
+            , preferredcontactchannel__c as wayOfContact
+            , persondonotcall as suppressAllCalls
+            , calloptyn__pc as suppressAllCalls
+            , blockedemails__c as suppressAllEmails
+            , blockedletters__c as suppressAllMailings
+            , blockedmobile__c as suppressAllMobile
+            , blockedsms__c as suppressAllSMS
+            , blockedvideocall__c as suppressAllVideoCall
+            , blockedwhatsapp__c as suppressAllWhatsapp
+            , dealercode__c as favorite_dealer
+            , registrysource__c as source
+            , facebook__c as facebookSegment
+            , receiveproductnewsflag__c as contactOptIn
+            , receiveretailoffersflag__c as contactOptIn
+            , receiveserviceoffersflag__c as contactOptIn
+            , receivenewsletterflag__c as contactOptIn
+            , receiveeventsflag__c as contactOptIn
+            , neighborhood as county
+        from
+            process.account pa
+        where
+            pa.row_id = #{foundContactId}
+    </select>
+
+    <insert id="insertAuditList" parameterType="IFHMBINNOCEANCDPP0002Dto">
+        insert into process.s_audit_item(
+            , created_by
+            , last_upd_by
+            , buscomp_name
+            , operation_cd
+            , record_id
+            , user_id
+            , tbl_name
+            , old_val
+            , new_val
+            , tbl_record_id
+            , field_name
+        )
+        values
+        <foreach collection="list" item="item" separator=",">
+            (
+                'interface'
+                , 'interface'
+                , 'account'
+                , #{operation}
+                , #{rowId}
+                , 'interface'
+                , 'account'
+                , #{oldValue}
+                , #{newValue}
+                , #{rowId}
+                , #{fieldName}
+            )
+        </foreach>
+    </insert>
+
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_in_contact_inf_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN}, #{CONTACT_ID,jdbcType=VARCHAR,mode=IN});
     </insert>
