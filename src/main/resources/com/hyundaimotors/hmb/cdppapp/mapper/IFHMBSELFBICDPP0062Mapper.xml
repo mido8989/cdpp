@@ -28,7 +28,7 @@
             , psr.form__c as form
             , (case when psr.testdrive_confirmed__c = true then 'Y' when psr.testdrive_confirmed__c = false then 'N' else null end ) as tdConfirmed
             , (case when psr.status = 'Closed' and psr.testdrive_confirmed__c = 'Y' then 'Y' else 'N' end) as tdCompleted
-            , psr.legacy_last_upd as updated
+            , po.legacy_last_upd_by as updated
             , psr.relatedmodel__c as tdModel
             , psr.reserve_amount__c as reserveAmount
             , psr.payment_date__c as paymentDate
