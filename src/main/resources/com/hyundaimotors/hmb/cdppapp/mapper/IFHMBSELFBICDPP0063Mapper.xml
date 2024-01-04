@@ -72,6 +72,7 @@
             pa.row_id  = ac.account_id
         where 
             ac.account_id = #{cAccountId}
+        limit 1
     </select>
 
     <select id="getAccount"  parameterType="String" resultType="AccountGetVinDto">
