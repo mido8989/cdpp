@@ -35,8 +35,8 @@ public class IFHMBSELFBICDPP0063ServiceImpl implements IFHMBSELFBICDPP0063Servic
                     String bAccountId = vehicleList.get(i).getBAccountId();
                     String cAccountId = vehicleList.get(i).getCAccountId();
 
-                    contactDto = mapper.getContact(bAccountId);
-                    accountDto = mapper.getAccount(cAccountId);
+                    contactDto = mapper.getContact(cAccountId);
+                    accountDto = mapper.getAccount(bAccountId);
                     if(0 < contactDto.size()){
                         vehicleList.get(i).setListOfContact(contactDto);
                     }
