@@ -37,15 +37,7 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
         List<IFHMBDMSCDPP0004Dto> getLeadInfoList = new ArrayList<>();
 
         List<GetLeadDto> listOfLead = new ArrayList<>();
-        GetLeadContactDto contato = new GetLeadContactDto();
-        List<GetLeadVeiculo> veiculoInfoList = new ArrayList<>();
-        GetLeadOpvDto opv = new GetLeadOpvDto();
-        GetLeadFinanciamentoOPVDto financiamentoOPV = new GetLeadFinanciamentoOPVDto();
-        List<GetLeadTemperatureDto> temperatureList = new ArrayList<>();
-        List<GetLeadAgendamentoDto> agendamentoList = new ArrayList<>();
-        GetLeadResultDto result = new GetLeadResultDto();
-        List<GetLeadInteractionDto> interactionList = new ArrayList<>();
-        GetLeaDveiculoEntradaOPVDto veiculoEntradaOPV = new GetLeaDveiculoEntradaOPVDto();
+        
         List<String> protocalList = new ArrayList<>();
 
         getLeadInfoList = mapper.getLeadInfoList(dto);
@@ -54,46 +46,47 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
             for(int i=0; i < getLeadInfoList.size(); i++){
                 protocalList.add(getLeadInfoList.get(i).getProtocol());
                 GetLeadDto getLeadDto = new GetLeadDto();
+                GetLeadContactDto contato = new GetLeadContactDto();
                 contato = mapper.getContactInfo(getLeadInfoList.get(i));
                 if(contato != null){
                     getLeadDto.setContato(contato);
                 }
-
+                List<GetLeadVeiculo> veiculoInfoList = new ArrayList<>();
                 veiculoInfoList = mapper.getVeiculoInfoList(getLeadInfoList.get(i));
                 if(0 < veiculoInfoList.size()){
                     getLeadDto.setVeiculo(veiculoInfoList);
                 }
-                
+                GetLeadOpvDto opv = new GetLeadOpvDto();
                 opv = mapper.getOpvInfo(getLeadInfoList.get(0));
                 if(opv != null){
                     getLeadDto.setOpv(opv);
                 }
-
+                GetLeadFinanciamentoOPVDto financiamentoOPV = new GetLeadFinanciamentoOPVDto();
                 financiamentoOPV = mapper.getfinanciamentoOpv(getLeadInfoList.get(i));
                 if(financiamentoOPV != null){
                     getLeadDto.setFinanciamentoOPV(financiamentoOPV);
                 }
-
+                List<GetLeadTemperatureDto> temperatureList = new ArrayList<>();
                 temperatureList = mapper.getTemperatureList(getLeadInfoList.get(i));
                 if(0 < temperatureList.size()){
                     getLeadDto.setTemperature(temperatureList);
                 }
-
+                List<GetLeadAgendamentoDto> agendamentoList = new ArrayList<>();
                 agendamentoList = mapper.getAgendamentoList(getLeadInfoList.get(i));
                 if(0 < agendamentoList.size()){
                     getLeadDto.setAgendamento(agendamentoList);
                 }
-
+                GetLeadResultDto result = new GetLeadResultDto();
                 result = mapper.getResult(getLeadInfoList.get(i));
                 if(result != null){
                     getLeadDto.setResult(result);
                 }
-
+                List<GetLeadInteractionDto> interactionList = new ArrayList<>();
                 interactionList = mapper.getInteractionList(getLeadInfoList.get(i));
                 if(0 < interactionList.size()){
                     getLeadDto.setInteraction(interactionList);
                 }
-
+                GetLeaDveiculoEntradaOPVDto veiculoEntradaOPV = new GetLeaDveiculoEntradaOPVDto();
                 veiculoEntradaOPV = mapper.getVeiculoEntradaOPV(getLeadInfoList.get(i));
                 if(veiculoEntradaOPV != null){
                     getLeadDto.setVeiculoEntradaOPV(veiculoEntradaOPV);
