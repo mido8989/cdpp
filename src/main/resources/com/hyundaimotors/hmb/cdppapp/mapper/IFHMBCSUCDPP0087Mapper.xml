@@ -90,19 +90,14 @@
             process.color_information pci
         on
             pci.name_code = pas.oper_status_cd__c and pci.type = 'OPERATING_STATUS' and pci.lang_id__c = 'PTB'
-        where
-        <if test="interfaces == '2'">        
+        where       
             pac.cpf__c = #{cpf}
-            <if test="serialNumber != null and serialNumber != ''">
+        <if test="interfaces == '2' and serialNumber != null and serialNumber != ''">
             and 
                 pas.serialnumber = #{serialNumber}
             and
                 pcvp.status_cd = 'Active'
-            </if>
-        </if>
-        <if test="interfaces != '2'">
-            pac.cpf__c = #{cpf}
-        </if>            
+        </if>               
     </select>
 
     <select id="getCampaignList" parameterType="IFHMBCSUCDPP0087Dto" resultType="SearchCampaignDto">
