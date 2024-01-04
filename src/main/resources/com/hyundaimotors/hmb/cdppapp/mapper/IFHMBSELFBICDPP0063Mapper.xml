@@ -55,13 +55,13 @@
             pa.row_id as idSiebel
             , ac.relation_type_cd as relatedType
             , ac.status_cd as relatedStatus
-            , pa.calloptyn__pc as suppressAllCalls
-            , pa.emailoptyn__pc as suppressAllEmails
-            , pa.directmailoptyn__pc as suppressAllMailings
-            , pa.blockedmobile__c as suppressAllMobilePhone
-            , pa.blockedsms__c as suppressAllSMS
-            , pa.x_printed_card__c as suppressAllVideoCall
-            , pa.blockedwhatsapp__c as suppressAllWhatsapp
+            , ( case when pa.calloptyn__pc = true then 'Y' when pa.calloptyn__pc = false then 'N' else null end ) as suppressAllCalls
+            , ( case when pa.emailoptyn__pc = true then 'Y' when pa.emailoptyn__pc = false then 'N' else null end ) as suppressAllEmails
+            , ( case when pa.directmailoptyn__pc = true then 'Y' when pa.directmailoptyn__pc = false then 'N' else null end ) as suppressAllMailings
+            , ( case when pa.blockedmobile__c = true then 'Y' when pa.blockedmobile__c = false then 'N' else null end ) as suppressAllMobilePhone
+            , ( case when pa.blockedsms__c = true then 'Y' when pa.blockedsms__c = false then 'N' else null end ) as suppressAllSMS
+            , ( case when pa.x_printed_card__c = true then 'Y' when pa.x_printed_card__c = false then 'N' else null end ) as suppressAllVideoCall
+            , ( case when pa.blockedwhatsapp__c = true then 'Y' when pa.blockedwhatsapp__c = false then 'N' else null end ) as suppressAllWhatsapp
         from
             process.account pa
         join
