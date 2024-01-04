@@ -101,7 +101,8 @@
                         pcvp.status_cd = 'Active'
                 </if>                
             </when>
-        </choose>                      
+        </choose>    
+                          
     </select>
 
     <select id="getCampaignList" parameterType="IFHMBCSUCDPP0087Dto" resultType="SearchCampaignDto">
