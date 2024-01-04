@@ -16,7 +16,7 @@ public class SearchContactOutput {
     @JsonProperty("CNHExpirationDate")
     private String cnheXpirationDate;
     @Schema(description = "Contact Id", example = "1-7890WX")
-    @JsonProperty("ContactId")
+    @JsonProperty("ContactId2")
     private String contactId;
     @Schema(description = "Contact first name", example = "Jose")
     @JsonProperty("FirstName")
@@ -28,7 +28,7 @@ public class SearchContactOutput {
     @JsonProperty("BirthDate")
     private String birthDate;
     @Schema(description = "Contact gender. Valid values: Uninformed, Female, Male", example = "Male")
-    @JsonProperty("Gender")
+    @JsonProperty("Genre")
     private String gender;
     @Schema(description = "Contact home phone.", example = "2345678")
     @JsonProperty("HomePhone")
@@ -37,7 +37,7 @@ public class SearchContactOutput {
     @JsonProperty("WorkPhone")
     private String workPhone;
     @Schema(description = "Contact cell phone.", example = "11941319501")
-    @JsonProperty("CellPhone")
+    @JsonProperty("CellularPhone")
     private String cellPhone;
     @Schema(description = "Contact email address.", example = "kilosolution2s@gmail.com")
     @JsonProperty("EmailAddress")
@@ -48,8 +48,14 @@ public class SearchContactOutput {
     @Schema(description = "Amount Children", example = "2")
     @JsonProperty("AmountChildren")
     private String amountChildren;
+    @Schema(description = "Favorite Dealer", example = "B05AM19029")
+    @JsonProperty("HMBFavoriteDealer")
+    private String hmbFavoriteDealer;
+    @Schema(description = "CPF document number", example = "12345678987")
+    @JsonProperty("CPF")
+    private String cpf;
     @Schema(description = "Loyalty OPTINFla", example = "N")
-    @JsonProperty("LoyaltyOPTINFla")
+    @JsonProperty("LoyaltyOPTINFlag")
     private String loyaltyOPTINFla;
     @Schema(description = "Loyalty Activation Date", example = "2019-01-17")
     @JsonProperty("LoyaltyActivationDate")
@@ -79,22 +85,25 @@ public class SearchContactOutput {
     @JsonProperty("StreetAddress")
     private String streetAddress;
     @Schema(description = "Address house number", example = "380")
-    @JsonProperty("StreetAddress2")
+    @JsonProperty("AddressNumber")
     private String streetAddress2;
     @Schema(description = "Address complement.", example = "Andar 3")
-    @JsonProperty("StreetAddress3")
+    @JsonProperty("AddressComplement")
     private String streetAddress3;
     @Schema(description = "Address county.", example = "Paraiso")
-    @JsonProperty("County")
+    @JsonProperty("AddressCounty")
     private String county;
-    @Schema(description = "Address city.", example = "Brasil")
-    @JsonProperty("City")
+    @Schema(description = "Address city.", example = "Sao Paulo")
+    @JsonProperty("AddressCity")
     private String city;
+    @Schema(description = "Address Country", example = "Brasil")
+    @JsonProperty("AddressCountry")
+    private String country;
     @Schema(description = "Address state.", example = "São Paulo")
-    @JsonProperty("State")
+    @JsonProperty("AddressState")
     private String state;
     @Schema(description = "Address zip code.", example = "4007001")
-    @JsonProperty("PostalCode")
+    @JsonProperty("AddressPostalCode")
     private String postalCode;
     @Schema(description = "Numeric Row Id", example = "1402214")
     @JsonProperty("NumericRowId")
@@ -105,8 +114,23 @@ public class SearchContactOutput {
     @Schema(description = "Flag to define if customer wants all sms suppressed.", example = "Y")
     @JsonProperty("SuppressAllSMS")
     private String suppressAllSMS;
+    @Schema(description = "Flag to define if customer wants all callls suppressed.", example = "Y")
+    @JsonProperty("SuppressAllCalls")
+    private String suppressAllCalls;
+    @Schema(description = "Flag to define if customer wants all mailings suppressed.", example = "Y")
+    @JsonProperty("SuppressAllMailings")
+    private String suppressAllMailings;
+    @Schema(description = "Flag to define if customer wants all videocall suppressed.", example = "Y")
+    @JsonProperty("SuppressAllVideoCall")
+    private String suppressAllVideoCall;
+    @Schema(description = "Flag to define if customer wants all Whatsapp suppressed.", example = "Y")
+    @JsonProperty("SuppressAllWhatsapp")
+    private String suppressAllWhatsapp;
+    @Schema(description = "Flag to define if customer wants all Mobile suppressed.", example = "Y")
+    @JsonProperty("SuppressAllMobile")
+    private String suppressAllMobile;
     @Schema(description = "Printed card flag. Valid values: true, false", example = "TRUE")
-    @JsonProperty("PrintedCard")
+    @JsonProperty("HMBPrintedCard")
     private String printedCard;
     @JsonProperty("AutoVehicle")
     List<SearchAutoVehicle> autoVehicle;

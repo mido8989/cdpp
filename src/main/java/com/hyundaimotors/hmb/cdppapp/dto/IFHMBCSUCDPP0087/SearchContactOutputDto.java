@@ -2,8 +2,6 @@ package com.hyundaimotors.hmb.cdppapp.dto.IFHMBCSUCDPP0087;
 
 import java.util.List;
 
-import com.hyundaimotors.hmb.cdppapp.payload.IFHMBCSUCDPP0087.SearchServiceRequestContact;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +20,8 @@ public class SearchContactOutputDto {
     private String emailAddress;
     private String amountFriends;
     private String amountChildren;
+    private String hmbFavoriteDealer;
+    private String cpf;
     private String loyaltyOPTINFla;
     private String loyaltyActivationDate;
     private String loyaltyExpirationDate;
@@ -36,11 +36,17 @@ public class SearchContactOutputDto {
     private String streetAddress3;
     private String county;
     private String city;
+    private String country;
     private String state;
     private String postalCode;
     private String numericRowId;
     private String suppressAllEmails;
     private String suppressAllSMS;
+    private String suppressAllCalls;
+    private String suppressAllMailings;
+    private String suppressAllVideoCall;
+    private String suppressAllWhatsapp;
+    private String suppressAllMobile;
     private String printedCard;
     List<SearchAutoVehicleDto> autoVehicle;
     List<SearchCampaignDto> campaign;

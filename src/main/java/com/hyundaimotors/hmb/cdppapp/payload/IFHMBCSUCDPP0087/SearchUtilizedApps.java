@@ -11,12 +11,12 @@ import lombok.Setter;
 @Setter
 public class SearchUtilizedApps {
     @Schema(description = "App name download by customer. Valid values: HB20", example = "HB20")
-    @JsonProperty("Name")
+    @JsonProperty("AppName")
     private String name;
     @Schema(description = "Download date. Format: YYYY-MM-DD", example = "1980-10-21")
-    @JsonProperty("StartDate")
+    @JsonProperty("AppStartDate")
     private String startDate;
     @Schema(description = "Flag to inform if app is still active or was removed by customer. Valid values: Y, N", example = "Y")
-    @JsonProperty("Status")
+    @JsonProperty("AppStatus")
     private String status;
 }

@@ -16,6 +16,9 @@ public class SearchAutoVehicle {
     @Schema(description = "Relationship", example = "Owner")
     @JsonProperty("Relationship")
     private String relationship;
+    @Schema(description = "Relationship", example = "Owner")
+    @JsonProperty("RelashionshipStatus")
+    private String relashionshipStatus;
     @Schema(description = "Renavam Code", example = "497269414")
     @JsonProperty("HMBRenavamCode")
     private String hmbRenavamCode;
@@ -29,10 +32,10 @@ public class SearchAutoVehicle {
     @JsonProperty("SerialNumber")
     private String serialNumber;
     @Schema(description = "Product FSC OCN Name", example = "092214A000")
-    @JsonProperty("fsc_ocn")
+    @JsonProperty("FSCOCN")
     private String fscOcn;
     @Schema(description = "Manufacture year.", example = "2012")
-    @JsonProperty("manufactureYear")
+    @JsonProperty("ManufactureYear")
     private String manufactureYear;
     @Schema(description = "Model", example = "2015")
     @JsonProperty("Model")
@@ -41,16 +44,16 @@ public class SearchAutoVehicle {
     @JsonProperty("ModelYear")
     private String modelYear;
     @Schema(description = "Internal color code.", example = "9P")
-    @JsonProperty("internalColorCode")
+    @JsonProperty("InteriorColor")
     private String internalColorCode;
     @Schema(description = "External color code.", example = "R5S")
-    @JsonProperty("externalColorCode")
+    @JsonProperty("ExteriorColor")
     private String externalColorCode;
     @Schema(description = "Hexa Warranty's Flag", example = "HB20")
     @JsonProperty("HexaWarrantyFlag")
     private String hexaWarrantyFlag;
     @Schema(description = "Connex dealer id.", example = "1-7890WX")
-    @JsonProperty("dealerId")
+    @JsonProperty("DealerId")
     private String dealerId;
     @Schema(description = "Retail Date", example = "B05AM19029")
     @JsonProperty("RetailDt")
