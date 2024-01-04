@@ -85,6 +85,14 @@
                 and
                     po."type" = 'Quotation'
             </when>
+            <when test='voc == "Showroom"'>
+                and
+                    po."type" = 'Showroom'
+            </when>
+            <when test='voc == "HyundaiBank"'>
+                and
+                    po."type" = 'Hyundai Bank'
+            </when>
             <otherwise>
 
             </otherwise>
