@@ -27,14 +27,14 @@
             , pac.crmindex__c as loyaltyCRMIndex
             , pac.satisficationlevel__c as loyaltyTierLevel
             , pac.loyaltystatus__c as loyaltyStatus
-            , pac.billingstreet as streetAddress
-            , pac.billingstreet_2__c as streetAddress2
-            , pac.billingstreet_3__c as streetAddress3
+            , pc.mailingstreet as streetAddress
+            , pc.mailingstreet_2__c as streetAddress2
+            , pc.mailingstreet_3__c as streetAddress3
             , pac.neighborhood  as county
-            , pac.billingcity as city
-            , pac.billingcountry as country
-            , pac.billingstate as state
-            , pac.billingpostalcode as postalCode
+            , pc.mailingcity as city
+            , pc.mailingcountry as country
+            , pc.mailingstate as state
+            , pc.mailingpostalcode as postalCode
             , pac.numeric_row_id as numericRowId
             , case when pac.emailoptyn__pc = true then 'Y' else 'N' end suppressAllEmails
             , case when pac.blockedsms__c = true then 'Y' else 'N' end suppressAllSMS
@@ -46,6 +46,10 @@
             , case when pac.x_printed_card__c = true then 'Y' else 'N' end printedCard
         from
             process.account pac 
+        join
+            process.contact pc
+        on
+            pac.row_id = pc.account_row_id 
         where 
             1=1
         <if test="contactId != null and contactId != ''">   
