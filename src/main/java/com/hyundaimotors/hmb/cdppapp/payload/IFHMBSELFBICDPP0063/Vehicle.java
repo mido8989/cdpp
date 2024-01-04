@@ -25,7 +25,7 @@ public class Vehicle {
     @JsonProperty("SalesVersion")
     private String salesVersion;
     @JsonProperty("SalesFSCOCN")
-    private String salesFSCOCN;
+    private String salesFscocn;
     @JsonProperty("SalesMotor")
     private String salesMotor;
     @JsonProperty("VINModel")

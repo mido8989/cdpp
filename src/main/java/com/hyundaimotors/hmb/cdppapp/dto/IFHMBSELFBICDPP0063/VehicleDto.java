@@ -14,7 +14,7 @@ public class VehicleDto {
     private String salesDealerNick;
     private String salesCode;
     private String salesVersion;
-    private String salesFSCOCN;
+    private String salesFscocn;
     private String salesMotor;
     private String vinModel;
     private String vinColor;
