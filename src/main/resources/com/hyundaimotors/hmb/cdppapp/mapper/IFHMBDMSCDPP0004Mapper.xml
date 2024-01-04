@@ -21,6 +21,8 @@
                 sr.legacycreateddate__c::date = #{date}::date
             and
                 po."type" = 'Quotation'
+            and
+                po.transferredopportunity__c != true
             <if test="statusLead != null and statusLead != ''">
                 and
                     sr.status = #{statusLead}
