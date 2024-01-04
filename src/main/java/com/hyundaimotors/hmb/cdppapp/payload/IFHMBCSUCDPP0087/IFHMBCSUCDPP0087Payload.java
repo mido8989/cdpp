@@ -48,7 +48,7 @@ public class IFHMBCSUCDPP0087Payload {
         @Schema(description = "Connex error message.", example = "OK")
         @JsonProperty("Error_spcMessage")
         private String errorSpcMessage;
-        @JsonProperty("ListOfContact_Output")
+        @JsonProperty("ListOfHmbsearchcontactoutio")
         List<SearchContactOutput> listOfContactOutput;
     }
 }

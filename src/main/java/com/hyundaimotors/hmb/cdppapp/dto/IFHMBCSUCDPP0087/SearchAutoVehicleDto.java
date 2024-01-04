@@ -8,6 +8,7 @@ import lombok.Setter;
 public class SearchAutoVehicleDto {
     private String vehicleId;
     private String relationship;
+    private String relashionshipStatus;
     private String hmbRenavamCode;
     private String currenMileage;
     private String vehicleLicenseNumber;

@@ -16,6 +16,8 @@
             , pac.personemail as emailAddress
             , pac.amount_friends as amountFriends
             , pac.amount_children as amountChildren
+            , pac.favoritedealer__c as hmbFavoriteDealer
+            , pac.cpf__c as cpf
             , case when pac.optinflag__c = true then 'Y' else 'N' end as loyaltyOPTINFla
             , pac.loyaltyactivationdate__c as loyaltyActivationDate
             , pac.loyaltyexpirationtodate__c as loyaltyExpirationDate
@@ -28,18 +30,19 @@
             , pac.billingstreet as streetAddress
             , pac.billingstreet_2__c as streetAddress2
             , pac.billingstreet_3__c as streetAddress3
-            , pac.billingcountry as county
+            , pac.neighborhood  as county
             , pac.billingcity as city
+            , pac.billingcountry as country
             , pac.billingstate as state
             , pac.billingpostalcode as postalCode
             , pac.numeric_row_id as numericRowId
             , case when pac.emailoptyn__pc = true then 'Y' else 'N' end suppressAllEmails
+            , case when pac.blockedsms__c = true then 'Y' else 'N' end suppressAllSMS
             , case when pac.calloptyn__pc = true then 'Y' else 'N' end SuppressAllCalls
             , case when pac.directmailoptyn__pc = true then 'Y' else 'N' end SuppressAllMailings
             , case when pac.x_printed_card__c = true then 'Y' else 'N' end SuppressAllVideoCall
             , case when pac.blockedwhatsapp__c = true then 'Y' else 'N' end SuppressAllWhatsapp
-            , case when pac.blockedmobile__c = true then 'Y' else 'N' end SuppressAllMobile
-            , case when pac.blockedsms__c = true then 'Y' else 'N' end suppressAllSMS
+            , case when pac.blockedmobile__c = true then 'Y' else 'N' end SuppressAllMobile            
             , case when pac.x_printed_card__c = true then 'Y' else 'N' end printedCard
         from
             process.account pac 
@@ -59,6 +62,7 @@
         select
             pas.row_id as vehicleId
             , pcvp.relation_type_cd as relationship
+            , pcvp.status_cd as relashionshipStatus
             , pas.renavam_code__c as hmbRenavamCode
             , pas.latestmileage__c as currenMileage
             , pas.carregistrationnumber__c as vehicleLicenseNumber
@@ -92,8 +96,6 @@
             pci.name_code = pas.oper_status_cd__c and pci.type = 'OPERATING_STATUS' and pci.lang_id__c = 'PTB'
         where       
             pac.cpf__c = #{cpf}
-        <!-- <if test="serialNumber != null and !serialNumber.equals('') and interfaces == '2'"> -->
-        <!-- <if test="interfaces.equals('2')"> -->
         <if test="serialNumber != null and serialNumber != ''">
             and 
                 pas.serialnumber = #{serialNumber}
@@ -115,15 +117,15 @@
 
     <select id="getCSISurveyList" parameterType="IFHMBCSUCDPP0087Dto" resultType="SearchCSISurveyDto">
         select
-        pam.integration_id as integrationId
-        , pam.asset_id as assetId
-        , pas.serialnumber
-        , (select dealercode__c from process.account where row_id = pam.dealer_id) as dealerCustomerSap
-        , pam.research_date as date
-        , pam.status as status
-        , pam.research_name as description
-        , pam.sra_sr_id as spId
-        , psr.protocol__c as srNumber
+            pam.integration_id as integrationId
+            , pam.asset_id as assetId
+            , pas.serialnumber
+            , (select dealercode__c from process.account where row_id = pam.dealer_id) as dealerCustomerSap
+            , pam.research_date as date
+            , pam.status as status
+            , pam.research_name as description
+            , pam.sra_sr_id as spId
+            , psr.protocol__c as srNumber
         from 
             process.amaro pam
         left join
