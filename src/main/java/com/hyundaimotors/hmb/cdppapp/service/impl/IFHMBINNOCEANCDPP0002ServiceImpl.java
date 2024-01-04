@@ -288,7 +288,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditList.add(auditDto);
             }
         }
-
+        System.out.println("insertAuditList Size ============================================>" + auditList.size());
         mapper.insertAuditList(auditList);
 
     }

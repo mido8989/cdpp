@@ -70,6 +70,7 @@
         </if>
         <if test='idInterface == "4"'>
             a2.cpf__c = #{cpf}
+        limit 1    
         </if>
         <if test='idInterface == "5"'>
             a3.corporateregistrationnumber__c = #{cnpj}
