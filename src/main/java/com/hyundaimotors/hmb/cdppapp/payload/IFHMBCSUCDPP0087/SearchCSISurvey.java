@@ -11,10 +11,10 @@ import lombok.Setter;
 @Setter
 public class SearchCSISurvey {
     @Schema(description = "Unique code for the survey record to be added. A numeric sequence can be used. Connex will automatically concatenate the field source as prefix in this field, to avoid duplicated records from different partners.", example = "0000544697")
-    @JsonProperty("integrationId")
+    @JsonProperty("IntegrationId2")
     private String integrationId;
     @Schema(description = "Connex asset Id associated with the survey.   Must be a valid Connex id.", example = "1-KS4ZX")
-    @JsonProperty("assetId")
+    @JsonProperty("AssetId")
     private String assetId;
     @Schema(description = "Asset VIN", example = "9BHBG51DADP011620")
     @JsonProperty("AssetVIN")
@@ -26,15 +26,15 @@ public class SearchCSISurvey {
     @JsonProperty("Date")
     private String date;
     @Schema(description = "Survey status.", example = "Pesquisado")
-    @JsonProperty("status")
+    @JsonProperty("Status2")
     private String status;
     @Schema(description = "Description", example = "Vendas")
-    @JsonProperty("Description")
+    @JsonProperty("Description2")
     private String description;
     @Schema(description = "SR Id", example = "1-3KQWVL")
     @JsonProperty("SRId")
     private String srId;
     @Schema(description = "SR Number", example = "9BHBG51DADP011621")
-    @JsonProperty("SrNumber")
+    @JsonProperty("SRNumber")
     private String srNumber;
 }

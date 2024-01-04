@@ -11,6 +11,6 @@ import lombok.Setter;
 @Setter
 public class SearchSoccerTeam {
     @Schema(description = "Hobby name", example = "Dance")
-    @JsonProperty("HobbyDescription")
+    @JsonProperty("SoccerTeam")
     private String soccerTeam;
 }
