@@ -12,7 +12,6 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBCSUCDPP0087.SearchCSISurveyDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBCSUCDPP0087.SearchCampaignDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBCSUCDPP0087.SearchContactOutputDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBCSUCDPP0087.SearchServiceRequestContactDto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0031.SearchServiceRequestDto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBCSUCDPP0087Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBCSUCDPP0087Service;
 

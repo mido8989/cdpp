@@ -73,21 +73,36 @@
             , pas.account_row_id__c as dealerId
             , pcvp.retail_date as retailDt
             , (select corporaterepresentativename__c from process.account where row_id = account_row_id__c) as salesRepId
-            , (select lastname from process.account where row_id = contact_row_id__c) as salesRepLastName
-            , (select firstname from process.account where row_id = contact_row_id__c) as salesReFirstName
+            , pas.salesreplastname  as salesRepLastName
+            , pas.salesreplastname  as salesReFirstName
             , pci.val as operatingStatus
         from
-            process.asset pas
+            process.asset pas         
         join
             process.customer_vehicle pcvp
         on
             pas.row_id = pcvp.asset_id and pcvp.cv_type = 'Person'
+        join
+        	process.account pac
+        on 
+        	pcvp.account_id = pac.row_id
         left join 
             process.color_information pci
         on
             pci.name_code = pas.oper_status_cd__c and pci.type = 'OPERATING_STATUS' and pci.lang_id__c = 'PTB'
-        where 
-            pas.serialnumber = #{serialNumber}
+        where
+        <if test="interface == '2'">        
+            pac.cpf__c = #{cpf}
+            <if test="serialNumber != null and serialNumber != ''">
+            and 
+                pas.serialnumber = #{serialNumber}
+            and
+                pcvp.status_cd = 'Active'
+            </if>
+        </if>
+        <if test="interface != '2'">
+            pac.cpf__c = #{cpf}
+        </if>            
     </select>
 
     <select id="getCampaignList" parameterType="IFHMBCSUCDPP0087Dto" resultType="SearchCampaignDto">
