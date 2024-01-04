@@ -97,8 +97,11 @@
                 and
                     po."type" = ' '
             </when>
+            <when test='voc == "All"'>
+            </when>
             <otherwise>
-
+                and
+                    po."type" = ' '
             </otherwise>
         </choose>
 
