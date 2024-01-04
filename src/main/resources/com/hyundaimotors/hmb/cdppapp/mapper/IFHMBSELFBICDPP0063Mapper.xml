@@ -9,7 +9,7 @@
             , pa.dealercode__c as salesDealerCode
             , (select corporaterepresentativename__c from process.account where row_id  = pa.account_row_id__c) as salesDealerNick
             , pa.oper_status_cd__c as salesCode
-            , (select pp.part__c from process.product pp where pp.row_id = pa.product2id) as saleVersion
+            , version__c as saleVersion
             , pa.fsc__c as salesFSCOCN
             , (select pp.engine_desc__c from process.product pp where pp.row_id = pa.product2id) as salesMotor
             , pa.friendly_model__c  as vinModel
@@ -19,7 +19,7 @@
             , pa.x_dig_sales__c as digitalSales
             , pa.x_td_home__c as tdHome
             , pa.x_sales_cancel_dt__c as salesCancelled
-            , pa.external_id__c as assetId
+            , pa.row_id as assetId
         from
             process.asset pa
         where
