@@ -14,7 +14,7 @@
             1=1
         <if test="dateInput != null and !dateInput.equals('')">
             and
-                created = to_date(#{dateInput}, 'YYYY-MM-DD')
+                created::date = to_date(#{dateInput}, 'YYYY-MM-DD')
         </if>
         <if test="vin != null and !vin.equals('')">
             and
