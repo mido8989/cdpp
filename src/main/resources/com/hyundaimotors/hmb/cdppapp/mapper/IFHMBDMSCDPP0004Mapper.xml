@@ -18,7 +18,7 @@
             on
                 po.dealercode__c = pa.dealercode__c
             where
-                sr.legacycreateddate__c::date = #{date}::date
+            po.legacycreateddate__c <![CDATA[ <= ]]> (now() - '5 minutes'::interval)
             and
                 po."type" = 'Quotation'
             and
@@ -35,8 +35,7 @@
                 and
                     pa.apikey__c = #{apiKey}
             </if>
-            and
-                po.qexperttransferreddate__c <![CDATA[ <= ]]> (now() - '5 minutes'::interval)
+                
     </select>
 
     <select id="getContactInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadContactDto">
