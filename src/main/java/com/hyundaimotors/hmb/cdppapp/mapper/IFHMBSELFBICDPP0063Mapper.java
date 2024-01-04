@@ -11,7 +11,7 @@ public interface IFHMBSELFBICDPP0063Mapper {
     
     public List<VehicleDto> getAsset(IFHMBSELFBICDPP0063Dto dto)throws Exception;
 
-    public List<ContactGetVinDto> getContact(String assetGetRowId)throws Exception;
+    public List<ContactGetVinDto> getContact(String bAccountId)throws Exception;
 
-    public List<AccountGetVinDto> getAccount(String assetGetRowId)throws Exception;
+    public List<AccountGetVinDto> getAccount(String cAccountId)throws Exception;
 }

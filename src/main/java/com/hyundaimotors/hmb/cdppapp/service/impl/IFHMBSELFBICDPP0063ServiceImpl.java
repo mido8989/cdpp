@@ -32,10 +32,11 @@ public class IFHMBSELFBICDPP0063ServiceImpl implements IFHMBSELFBICDPP0063Servic
                 List<ContactGetVinDto> contactDto = new ArrayList<>();
 //                if(vehicleList.get(i).getAssetId() != null || vehicleList.get(i).getAssetId() != ""){
                 if(vehicleList.get(i).getAssetId() != null || !"".equals(vehicleList.get(i).getAssetId())){
-                    String assetGetRowId = vehicleList.get(i).getAssetId();
+                    String bAccountId = vehicleList.get(i).getBAccountId();
+                    String cAccountId = vehicleList.get(i).getCAccountId();
 
-                    contactDto = mapper.getContact(assetGetRowId);
-                    accountDto = mapper.getAccount(assetGetRowId);
+                    contactDto = mapper.getContact(bAccountId);
+                    accountDto = mapper.getAccount(cAccountId);
                     if(0 < contactDto.size()){
                         vehicleList.get(i).setListOfContact(contactDto);
                     }
