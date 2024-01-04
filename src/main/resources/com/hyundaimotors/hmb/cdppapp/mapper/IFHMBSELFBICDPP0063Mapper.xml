@@ -9,8 +9,8 @@
             , pa.dealercode__c as salesDealerCode
             , (select corporaterepresentativename__c from process.account where row_id  = pa.account_row_id__c) as salesDealerNick
             , pa.oper_status_cd__c as salesCode
-            , version__c as saleVersion
-            , pa.fsc__c as salesFSCOCN
+            , version__c as salesVersion
+            , pa.fsc__c as salesFscocn
             , (select pp.engine_desc__c from process.product pp where pp.row_id = pa.product2id) as salesMotor
             , pa.friendly_model__c  as vinModel
             , (select ci.val from process.color_information ci where ci.lang_id__c = 'ENU' and ci."type" = 'AUTO_EXTERIOR' and ci.name_code = pa.vehiclecolor__c) as vinColor
