@@ -101,7 +101,7 @@
         join
             process.account pc
         on
-            sr.contact_row_id__c = pc.row_id 
+            sr.business_row_id = pc.dealercode__c and "type" = 'Dealer'  
         where 
             sr.protocol__c = #{protocol}
     </select>
