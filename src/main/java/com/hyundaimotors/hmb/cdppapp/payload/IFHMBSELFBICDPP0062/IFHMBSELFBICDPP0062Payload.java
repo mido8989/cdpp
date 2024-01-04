@@ -17,16 +17,16 @@ public class IFHMBSELFBICDPP0062Payload {
     @Getter
     @Setter
     public static class Request{
-        @Schema(description = "Date of leads to capture. YYYY-MM-DD", example = "2023-09-25")
+        @Schema(description = "Date of leads to capture. YYYY-MM-DD", example = "2021-01-01")
         @NotNull @NotBlank @NotEmpty
         private String date;
         @Schema(description = "Y or N. If you select Y, then Siebel will retrieve all leads searching them by Created Field. If you select N, then Siebel will retrieve all leads searching them by Updated field.", example = "Y")
         @NotNull @NotBlank @NotEmpty
         private String created;
-        @Schema(description = "“All”,“RequestaQuote”,\"TestDrive\" ,\"LoyaltyProgram\" ,\"HyundaiBank\" ,\"Showroom\" ,\"Source_Massivas\" ,\"Source_Others\" ,\"Payment\"", example = "TestDrive")
+        @Schema(description = "“All”,“RequestaQuote”,\"TestDrive\" ,\"LoyaltyProgram\" ,\"HyundaiBank\" ,\"Showroom\" ,\"Source_Massivas\" ,\"Source_Others\" ,\"Payment\"", example = "RequestaQuote")
         @NotNull @NotBlank @NotEmpty
         private String voc;
-        @Schema(description = "HMB123123123", example = "HMBN00000000000000000010")
+        @Schema(description = "protocal", example = "HMB20740368284")
         private String lead;
         
     }
