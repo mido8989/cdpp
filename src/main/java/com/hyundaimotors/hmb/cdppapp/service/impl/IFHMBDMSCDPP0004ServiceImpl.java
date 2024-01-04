@@ -40,9 +40,11 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
 
         getLeadInfoList = mapper.getLeadInfoList(dto);
 
+        List<String> protocalList = new ArrayList<>();
+
         if(0 < getLeadInfoList.size()){
             for(int i=0; i < getLeadInfoList.size(); i++){
-                List<String> protocalList = new ArrayList<>();
+                
                 protocalList.add(getLeadInfoList.get(i).getProtocol());
                 GetLeadDto getLeadDto = new GetLeadDto();
                 GetLeadContactDto contato = new GetLeadContactDto();
@@ -56,7 +58,7 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
                     getLeadDto.setVeiculo(veiculoInfoList);
                 }
                 GetLeadOpvDto opv = new GetLeadOpvDto();
-                opv = mapper.getOpvInfo(getLeadInfoList.get(0));
+                opv = mapper.getOpvInfo(getLeadInfoList.get(i));
                 if(opv != null){
                     getLeadDto.setOpv(opv);
                 }
