@@ -321,7 +321,7 @@
 
     <insert id="insertAuditList" parameterType="list">
         insert into process.s_audit_item(
-            , created_by
+            created_by
             , last_upd_by
             , buscomp_name
             , operation_cd
