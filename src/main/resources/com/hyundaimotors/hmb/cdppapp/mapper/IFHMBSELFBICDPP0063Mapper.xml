@@ -71,7 +71,7 @@
         on
             pa.row_id  = ac.account_id
         where 
-            ac.account_id = #{bAccountId}
+            ac.account_id = #{cAccountId}
     </select>
 
     <select id="getAccount"  parameterType="String" resultType="AccountGetVinDto">
@@ -86,6 +86,6 @@
         on
             pa.row_id  = aa.account_id
         where
-            aa.account_id = #{cAccountId}
+            aa.account_id = #{bAccountId}
     </select>
 </mapper>
