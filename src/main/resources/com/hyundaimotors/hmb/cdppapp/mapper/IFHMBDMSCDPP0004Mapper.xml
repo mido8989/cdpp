@@ -16,7 +16,7 @@
             join
                 process.account pa
             on
-                po.dealercode__c = pa.dealercode__c
+                po.dealercode__c = pa.dealercode__c and pa."type" = 'Dealer'
             where
             po.legacycreateddate__c <![CDATA[ <= ]]> (now() - '5 minutes'::interval)
             and
@@ -35,7 +35,8 @@
                 and
                     pa.apikey__c = #{apiKey}
             </if>
-                
+            and
+                po.legacycreateddate__c::date = #{date}::date    
     </select>
 
     <select id="getContactInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadContactDto">
