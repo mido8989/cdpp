@@ -319,7 +319,7 @@
             pa.row_id = #{foundContactId}
     </select>
 
-    <insert id="insertAuditList" parameterType="InboundContactAuditDto">
+    <insert id="insertAuditList" parameterType="list">
         insert into process.s_audit_item(
             , created_by
             , last_upd_by
@@ -334,19 +334,19 @@
             , field_name
         )
         values
-        <foreach collection="list" item="item" separator=",">
+        <foreach collection="auditList" item="item" separator=",">
             (
                 'interface'
                 , 'interface'
                 , 'account'
-                , #{operation}
-                , #{rowId}
+                , #{item.operation}
+                , #{item.rowId}
                 , 'interface'
                 , 'account'
-                , #{oldValue}
-                , #{newValue}
-                , #{rowId}
-                , #{fieldName}
+                , #{item.oldValue}
+                , #{item.newValue}
+                , #{item.rowId}
+                , #{item.fieldName}
             )
         </foreach>
     </insert>
