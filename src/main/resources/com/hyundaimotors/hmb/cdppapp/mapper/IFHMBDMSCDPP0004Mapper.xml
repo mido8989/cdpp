@@ -108,7 +108,7 @@
 
     <select id="getfinanciamentoOpv" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadFinanciamentoOPVDto">
         select 
-            wants_loan__c::varchar as querFinanciar
+            (case when wants_loan__c = true then 'Sim' when wants_loan__c = false then 'Não' when wants_loan__c isnull then 'Não Informado' end) as querFinanciar
             , loan_type__c as tipoFinanciamento
             , down_payment__c as valorEntradaFinanciamento
             , installments_amt__c as qtdParcelaFinanciamento
