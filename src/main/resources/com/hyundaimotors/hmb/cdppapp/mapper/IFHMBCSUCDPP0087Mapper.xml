@@ -92,7 +92,7 @@
             pci.name_code = pas.oper_status_cd__c and pci.type = 'OPERATING_STATUS' and pci.lang_id__c = 'PTB'
         where       
             pac.cpf__c = #{cpf}
-        <if test="interfaces == '2'">
+        <if test="interfaces.equals('2')">
             and 
                 pas.serialnumber = #{serialNumber}
             and
