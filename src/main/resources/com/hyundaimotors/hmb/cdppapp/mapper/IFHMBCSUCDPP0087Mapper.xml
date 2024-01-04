@@ -39,7 +39,7 @@
             , case when pac.x_printed_card__c = true then 'Y' else 'N' end SuppressAllVideoCall
             , case when pac.blockedwhatsapp__c = true then 'Y' else 'N' end SuppressAllWhatsapp
             , case when pac.blockedmobile__c = true then 'Y' else 'N' end SuppressAllMobile
-            , pac.blockedsms__c as suppressAllSMS
+            , case when pac.blockedsms__c = true then 'Y' else 'N' end suppressAllSMS
             , case when pac.x_printed_card__c = true then 'Y' else 'N' end printedCard
         from
             process.account pac 
