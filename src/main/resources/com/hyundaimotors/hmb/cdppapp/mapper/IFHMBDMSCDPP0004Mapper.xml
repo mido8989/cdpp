@@ -76,7 +76,7 @@
     <select id="getOpvInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadOpvDto">
         select 
             sr.protocol__c as protocolo
-            , pc.dealercode__c as codigoConcessionaria
+            , sr.business_row_id as codigoConcessionaria
             , sr.origin as origem
             , sr.method as metodo
             , sr.legacy_created as dataAbertura
