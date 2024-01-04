@@ -20,6 +20,8 @@
             , pa.x_td_home__c as tdHome
             , pa.x_sales_cancel_dt__c as salesCancelled
             , pa.row_id as assetId
+            , pa.account_row_id__c as bAccountId
+            , pa.contact_row_id__c as cAccountId
         from
             process.asset pa
         where
@@ -69,7 +71,7 @@
         on
             pa.row_id  = ac.account_id
         where 
-            ac.asset_id = #{assetGetRowId}
+            ac.account_id = #{bAccountId}
     </select>
 
     <select id="getAccount"  parameterType="String" resultType="AccountGetVinDto">
@@ -84,6 +86,6 @@
         on
             pa.row_id  = aa.account_id
         where
-            aa.asset_id = #{assetGetRowId}
+            aa.account_id = #{cAccountId}
     </select>
 </mapper>

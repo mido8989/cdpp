@@ -24,6 +24,8 @@ public class VehicleDto {
     private String tdHome;
     private String salesCancelled;
     private String assetId;
+    private String bAccountId;
+    private String cAccountId;
     List<ContactGetVinDto> ListOfContact;
     List<AccountGetVinDto> ListOfAccount;
 }
