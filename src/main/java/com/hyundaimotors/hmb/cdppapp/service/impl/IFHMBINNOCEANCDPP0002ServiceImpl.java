@@ -203,7 +203,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     auditDto.setOldValue(dto.getIntegrationId());
                     auditDto.setNewValue(newAccount.getIntegrationId());
                     auditDto.setRowId(dto.getContactId());
-                    auditList.add(1, auditDto);
+                    auditList.add(auditDto);
                 }
             }
             if(dto.getFirstName() != null && newAccount.getFirstName() != null){
@@ -214,7 +214,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     auditDto.setOldValue(dto.getFirstName());
                     auditDto.setNewValue(newAccount.getFirstName());
                     auditDto.setRowId(dto.getContactId());
-                    auditList.add(2, auditDto);
+                    auditList.add(auditDto);
                 }
             }
 
@@ -226,7 +226,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     auditDto.setOldValue(dto.getLastName());
                     auditDto.setNewValue(newAccount.getLastName());
                     auditDto.setRowId(dto.getContactId());
-                    auditList.add(3, auditDto);
+                    auditList.add(auditDto);
                 }
             }
 
@@ -238,7 +238,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     auditDto.setOldValue(dto.getEmailAddress());
                     auditDto.setNewValue(newAccount.getEmailAddress());
                     auditDto.setRowId(dto.getContactId());
-                    auditList.add(4, auditDto);
+                    auditList.add(auditDto);
                 }
             }
         }else{
@@ -249,7 +249,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(dto.getCpf());
                 auditDto.setRowId(dto.getContactId());
-                auditList.add(0, auditDto);
+                auditList.add(auditDto);
             }
 
             if(dto.getIntegrationId() != null){
@@ -258,7 +258,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(dto.getIntegrationId());
                 auditDto.setRowId(dto.getContactId());
-                auditList.add(1, auditDto);
+                auditList.add(auditDto);
             }
 
             if(dto.getFirstName() != null){
@@ -267,7 +267,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(dto.getFirstName());
                 auditDto.setRowId(dto.getContactId());
-                auditList.add(2, auditDto);
+                auditList.add(auditDto);
             }
 
             if(dto.getLastName() != null){
@@ -276,7 +276,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(dto.getLastName());
                 auditDto.setRowId(dto.getContactId());
-                auditList.add(3, auditDto);
+                auditList.add(auditDto);
             }
 
             if(dto.getEmailAddress() != null){
@@ -285,7 +285,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(dto.getEmailAddress());
                 auditDto.setRowId(dto.getContactId());
-                auditList.add(4, auditDto);
+                auditList.add(auditDto);
             }
         }
 
