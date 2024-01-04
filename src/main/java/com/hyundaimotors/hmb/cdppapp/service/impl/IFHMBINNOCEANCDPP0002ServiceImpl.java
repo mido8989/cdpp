@@ -87,7 +87,6 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
              }else {
                  resultDto.setContactId(insert(dto,foundContactId));
                  resultDto.setCheckUpsert("insert");
-                 oldAccount.setCheckUpsert("insert");
              }
              
              resultDto.setError_spcCode("0"); 
