@@ -180,11 +180,11 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         //String[] updateColumnValue = {"cpf__c" , "integrationid" , "firstname" , "lastname" , "personemail" , "personhomephone" , "workphone__c" , "personmobilephone" , "gender__pc" , "maritalstatus__pc" , "personbirthdate" , "occupation__pc" , "income__c" , "productofinterest__c" , "calledby__c" , "literacy__c" , "preferredcontactchannel__c" , "persondonotcall" , "calloptyn__pc" , "blockedemails__c" , "blockedemails__pc" , "blockedletters__c" , "blockedletters__pc" , "blockedmobile__c" , "blockedmobile__pc" , "blockedsms__c" , "blockedsms__pc" , "blockedvideocall__c" , "blockedvideocall__pc" , "blockedwhatsapp__c" , "blockedwhatsapp__pc" , "dealercode__c" , "registrysource__c" , "facebook__c" , "receiveproductnewsflag__c" , "receiveretailoffersflag__c" , "receiveserviceoffersflag__c" , "receivenewsletterflag__c" , "receiveeventsflag__c" , "receiveresearchflag__c" , "neighborhood"};
         
         List<InboundContactAuditDto> auditList = new ArrayList<>();
-        InboundContactAuditDto auditDto = new InboundContactAuditDto();
 
         if("update".equals(dto.getCheckUpsert())){
             if(dto.getCpf() != null && newAccount.getCpf() != null){
                 if(dto.getCpf().equals(newAccount.getCpf())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
                     auditDto.setFieldName("cpf__c");
                     auditDto.setOperation("Modify");
                     auditDto.setOldValue(dto.getCpf());
@@ -196,6 +196,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
 
             if(dto.getIntegrationId() != null && newAccount.getIntegrationId() != null){
                 if(dto.getIntegrationId().equals(newAccount.getIntegrationId())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
                     auditDto.setFieldName("integrationid");
                     auditDto.setOperation("Modify");
                     auditDto.setOldValue(dto.getIntegrationId());
@@ -206,6 +207,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
             if(dto.getFirstName() != null && newAccount.getFirstName() != null){
                 if(dto.getFirstName().equals(newAccount.getFirstName())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
                     auditDto.setFieldName("firstname");
                     auditDto.setOperation("Modify");
                     auditDto.setOldValue(dto.getFirstName());
@@ -217,6 +219,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
 
             if(dto.getLastName() != null && newAccount.getLastName() != null){
                 if(dto.getLastName().equals(newAccount.getLastName())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
                     auditDto.setFieldName("lastname");
                     auditDto.setOperation("Modify");
                     auditDto.setOldValue(dto.getLastName());
@@ -228,6 +231,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
 
             if(dto.getEmailAddress() != null && newAccount.getEmailAddress() != null){
                 if(dto.getEmailAddress().equals(newAccount.getEmailAddress())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
                     auditDto.setFieldName("personemail");
                     auditDto.setOperation("Modify");
                     auditDto.setOldValue(dto.getEmailAddress());
@@ -238,6 +242,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
         }else{
             if(dto.getCpf() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("cpf__c");
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(dto.getCpf());
@@ -246,6 +251,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
 
             if(dto.getIntegrationId() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("integrationid");
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(dto.getIntegrationId());
@@ -254,6 +260,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
 
             if(dto.getFirstName() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("firstname");
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(dto.getFirstName());
@@ -262,6 +269,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
 
             if(dto.getLastName() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("lastname");
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(dto.getLastName());
@@ -270,6 +278,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
 
             if(dto.getEmailAddress() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("personemail");
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(dto.getEmailAddress());
