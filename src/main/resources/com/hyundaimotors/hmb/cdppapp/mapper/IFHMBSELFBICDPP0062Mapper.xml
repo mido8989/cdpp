@@ -26,7 +26,7 @@
             , psr.content_tag__c as contentTag
             , psr.campaignid__c as campaignTag
             , psr.form__c as form
-            , psr.testdrive_confirmed__c as tdConfirmed
+            , (case when psr.testdrive_confirmed__c = true then 'Y' when psr.testdrive_confirmed__c = false then 'N' else null end ) as tdConfirmed
             , (case when psr.status = 'Closed' and psr.testdrive_confirmed__c = 'Y' then 'Y' else 'N' end) as tdCompleted
             , psr.legacy_last_upd as updated
             , psr.relatedmodel__c as tdModel
