@@ -37,13 +37,12 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
         List<IFHMBDMSCDPP0004Dto> getLeadInfoList = new ArrayList<>();
 
         List<GetLeadDto> listOfLead = new ArrayList<>();
-        
-        List<String> protocalList = new ArrayList<>();
 
         getLeadInfoList = mapper.getLeadInfoList(dto);
 
         if(0 < getLeadInfoList.size()){
             for(int i=0; i < getLeadInfoList.size(); i++){
+                List<String> protocalList = new ArrayList<>();
                 protocalList.add(getLeadInfoList.get(i).getProtocol());
                 GetLeadDto getLeadDto = new GetLeadDto();
                 GetLeadContactDto contato = new GetLeadContactDto();
