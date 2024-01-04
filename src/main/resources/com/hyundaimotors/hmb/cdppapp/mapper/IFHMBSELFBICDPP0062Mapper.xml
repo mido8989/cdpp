@@ -93,8 +93,15 @@
                 and
                     po."type" = 'Hyundai Bank'
             </when>
+            <when test='voc == "LoyaltyProgram"'>
+                and
+                    po."type" = ' '
+            </when>
+            <when test='voc == "All"'>
+            </when>
             <otherwise>
-
+                and
+                    po."type" = ' '
             </otherwise>
         </choose>
 
