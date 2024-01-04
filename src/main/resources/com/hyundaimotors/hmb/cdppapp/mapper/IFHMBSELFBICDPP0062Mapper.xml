@@ -123,13 +123,13 @@
             pc.personbirthdate as birthDate
             , pc.gender__pc as gender
             , pc.pcd__c as pcd
-            , pc.calloptyn__pc as suppressAllCalls
-            , pc.emailoptyn__pc as suppressAllEmails
-            , pc.directmailoptyn__pc as suppressAllMailings
-            , pc.blockedmobile__c as suppressAllMobilePhone
-            , pc.blockedsms__c as suppressAllSMS
-            , pc.x_printed_card__c as suppressAllVideoCall
-            , pc.blockedwhatsapp__c as suppressAllWhatsapp
+            , ( case when pc.calloptyn__pc = true then 'Y' when pc.calloptyn__pc = false then 'N' else null end ) as suppressAllCalls
+            , ( case when pc.emailoptyn__pc = true then 'Y' when pc.emailoptyn__pc = false then 'N' else null end ) as suppressAllEmails
+            , ( case when pc.directmailoptyn__pc = true then 'Y' when pc.directmailoptyn__pc = false then 'N' else null end ) as suppressAllMailings
+            , ( case when pc.blockedmobile__c = true then 'Y' when pc.blockedmobile__c = false then 'N' else null end ) as suppressAllMobilePhone
+            , ( case when pc.blockedsms__c = true then 'Y' when pc.blockedsms__c = false then 'N' else null end ) as suppressAllSMS
+            , ( case when pc.x_printed_card__c = true then 'Y' when pc.x_printed_card__c = false then 'N' else null end ) as suppressAllVideoCall
+            , ( case when pc.blockedwhatsapp__c = true then 'Y' when pc.blockedwhatsapp__c = false then 'N' else null end ) as suppressAllWhatsapp
         from
             process.account pc 
         where
