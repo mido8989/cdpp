@@ -86,7 +86,7 @@
             , 'Y' as identificacaoPCD
             , pc.type as tipoContato
             , 'Y' as clienteHyundai
-            , sr.usedcar_as_down_payment__c as usadoNaTroca
+            , sr.usedcar_as_down_payment__c::varchar as usadoNaTroca
             , pc.corporaterepresentativename__c as nomeConcessionaria
             , pc.cust_stat_cd__c as statusConcessionaria
             , sr.method as metodoContato
@@ -121,7 +121,7 @@
     <select id="getTemperatureList" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadTemperatureDto">
         select 
 			'0' as temperatureNum
-			, predictive_temp__c as temperature 
+			, (case when predictive_temp__c = 'Q' then 'Hot' when predictive_temp__c = 'M' then 'Warm' when predictive_temp__c = 'Z' then 'Not Classified' when predictive_temp__c = 'X' then 'Not Available' when predictive_temp__c = 'F' then 'Cold' end) as temperature
 		from
 			process.opportunity
 		where 
@@ -129,7 +129,7 @@
 		union all
 		select 
 			temperaturenumber__c as temperatureNum 
-			,predictivetemp__c as temperature
+			, (case when predictivetemp__c = 'Q' then 'Hot' when predictivetemp__c = 'M' then 'Warm' when predictivetemp__c = 'Z' then 'Not Classified' when predictivetemp__c = 'X' then 'Not Available' when predictivetemp__c = 'F' then 'Cold' end) as temperature
 		FROM
 			process.sales_consult_history
 		where
