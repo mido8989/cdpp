@@ -64,6 +64,10 @@
             process.asset pas
         on
             psr.serialnumber = pas.serialnumber 
+        join
+            process.opportunity po
+        on
+            psr.protocol__c = po.protocol__c
         where
             1=1
         and
@@ -75,19 +79,11 @@
         <choose>
             <when test='voc == "TestDrive"'>
                 and
-                    psr.reason__c = 'Information'
-                and
-                    psr.voctype__c = 'Sales'
-                and
-                    psr.voc_class = 'Test drive'
+                    po."type" = 'Test Drive'
             </when>
             <when test='voc == "RequestaQuote"'>
                 and
-                    psr.reason__c = 'Sales opportunity'
-                and
-                    psr.voctype__c = 'Sales'
-                and
-                    psr.voc_class = 'Request a quote'
+                    po."type" = 'Quotation'
             </when>
             <otherwise>
 
@@ -97,19 +93,15 @@
         <choose>
             <when test='created == "Y"'>
                 and
-                    psr.legacycreateddate__c::date = to_date(#{date},'YYYY-MM-DD')
+                    po.legacycreateddate__c::date = to_date(#{date},'YYYY-MM-DD')
                 and
-                    (psr.legacycreateddate__c::date + interval '90 days') <![CDATA[ >= ]]> to_date(#{date},'YYYY-MM-DD')
-                <!-- and    
-                    psr.legacycreateddate__c::date between to_date(#{date}, 'YYYY-MM-DD') and to_date(#{date}, 'YYYY-MM-DD')+ interval '90 days' -->
+                    (po.legacycreateddate__c::date + interval '90 days') <![CDATA[ >= ]]> to_date(#{date},'YYYY-MM-DD')
             </when>
             <when test='created == "N"'>
                 and
-                    psr.legacy_last_update__c::date = to_date(#{date},'YYYY-MM-DD')
+                    po.legacy_last_update__c::date = to_date(#{date},'YYYY-MM-DD')
                 and
-                    (psr.legacy_last_update__c::date + interval '90 days') <![CDATA[ >= ]]> to_date(#{date},'YYYY-MM-DD')
-                <!-- and
-                    psr.legacy_last_update__c::date between to_date(#{date}, 'YYYY-MM-DD') and to_date(#{date}, 'YYYY-MM-DD')+ interval '90 days' -->
+                    (po.legacy_last_update__c::date + interval '90 days') <![CDATA[ >= ]]> to_date(#{date},'YYYY-MM-DD')
             </when>
             <otherwise>
 
