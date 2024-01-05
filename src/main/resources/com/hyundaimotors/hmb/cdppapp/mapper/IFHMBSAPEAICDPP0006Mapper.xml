@@ -82,9 +82,9 @@
             , noteDescription
             , noteCreator
         )values
-         <foreach collection="actionNote" item="item" index="index" open="(" close=")" separator=",">    
+         <foreach collection="actionNote" item="item" index="index" separator=",">
             (
-                #{item.rowId}
+                #{rowId}
                 , now()
                 , 'interface'
                 , now()
@@ -107,9 +107,9 @@
             , partid
             , partqty
         ) values
-        <foreach collection="actionProducts" item="item" index="index" open="(" close=")" separator=",">    
+        <foreach collection="actionProducts" item="item" index="index" separator=",">
             (
-                #{item.rowId}
+                #{rowId}
                 , now()
                 , 'interface'
                 , now()
@@ -130,9 +130,9 @@
             , fieldname
             , fieldvalue
         ) values 
-        <foreach collection="synergyActionAudit" item="item" index="index" open="(" close=")" separator=",">
+        <foreach collection="synergyActionAudit" item="item" index="index" separator=",">
             (
-                #{item.rowId}
+                #{rowId}
                 , now()
                 , 'interface'
                 , now()
