@@ -5,7 +5,7 @@
     <select id="getAsset" parameterType="IFHMBSELFBICDPP0063Dto" resultType="VehicleDto">
         select 
             pa.serialnumber as chassi
-            , pa.billing_date__c::timestamp  as salesDate
+            , pa.billing_date__c::timestamp as salesDate
             , pa.dealercode__c as salesDealerCode
             , (select corporaterepresentativename__c from process.account where row_id  = pa.account_row_id__c) as salesDealerNick
             , pa.oper_status_cd__c as salesCode
@@ -27,10 +27,10 @@
         where
             <choose>
                 <when test='createdOption == "Y"'>
-                    pa.legacy_created = to_date(#{dateInput}, 'YYYY-MM-DD')
+                    pa.legacy_created::date = to_date(#{dateInput}, 'YYYY-MM-DD')
                 </when>
                 <otherwise>
-                    pa.billing_date__c = to_date(#{dateInput}, 'YYYY-MM-DD')
+                    pa.billing_date__c::date = to_date(#{dateInput}, 'YYYY-MM-DD')
                 </otherwise>
             </choose>
             <choose>
