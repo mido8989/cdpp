@@ -20,7 +20,8 @@ public class IFHMBSAPEAICDPP0006ServiceImpl implements IFHMBSAPEAICDPP0006Servic
 
     public IFHMBSAPEAICDPP0006Dto insertObject(IFHMBSAPEAICDPP0006Dto dto)throws Exception{
         IFHMBSAPEAICDPP0006Dto resulDto = new IFHMBSAPEAICDPP0006Dto();
-
+        
+        System.out.println("Start Time ===================================================================>" + System.currentTimeMillis());
         mapper.insertAction(dto);
 
         if( dto.getActionNote() != null ){
@@ -34,13 +35,16 @@ public class IFHMBSAPEAICDPP0006ServiceImpl implements IFHMBSAPEAICDPP0006Servic
         if( dto.getSynergyActionAudit() != null ){
             mapper.insertSynergyActionAudit(dto);
         }
-
+        
         HashMap<String, String> map = new HashMap<>();
 
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
+        System.out.println("Landing End ===================================================================>" + System.currentTimeMillis());
 
+        System.out.println("Process Start ===================================================================>" + System.currentTimeMillis());
         mapper.transferProcess(map);
-
+        System.out.println("Process End ===================================================================>" + System.currentTimeMillis());
+        System.out.println("Replica Start ===================================================================>" + System.currentTimeMillis());
         String actionRowId = mapper.getActionRowId(dto);
 
         HashMap<String, String> replicaMap = new HashMap<>();
@@ -48,7 +52,7 @@ public class IFHMBSAPEAICDPP0006ServiceImpl implements IFHMBSAPEAICDPP0006Servic
         replicaMap.put("PARAM_ID", actionRowId);
         
         mapper.transferReplica(replicaMap);
-
+        System.out.println("Replica End ===================================================================>" + System.currentTimeMillis());
         resulDto.setActionId(actionRowId);
         resulDto.setErrorSpcCode("0");
         resulDto.setErrorSpcMessage("OK");
