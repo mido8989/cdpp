@@ -189,6 +189,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     auditDto.setOldValue(dto.getCpf());
                     auditDto.setNewValue(newAccount.getCpf());
                     auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
                     auditList.add(auditDto);
                 }
             }
@@ -201,6 +202,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     auditDto.setOldValue(dto.getIntegrationId());
                     auditDto.setNewValue(newAccount.getIntegrationId());
                     auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
                     auditList.add(auditDto);
                 }
             }
@@ -212,6 +214,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     auditDto.setOldValue(dto.getFirstName());
                     auditDto.setNewValue(newAccount.getFirstName());
                     auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
                     auditList.add(auditDto);
                 }
             }
@@ -224,6 +227,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     auditDto.setOldValue(dto.getLastName());
                     auditDto.setNewValue(newAccount.getLastName());
                     auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
                     auditList.add(auditDto);
                 }
             }
@@ -236,6 +240,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     auditDto.setOldValue(dto.getEmailAddress());
                     auditDto.setNewValue(newAccount.getEmailAddress());
                     auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
                     auditList.add(auditDto);
                 }
             }
@@ -246,6 +251,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(newAccount.getCpf());
                 auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
                 auditList.add(auditDto);
             }
 
@@ -255,6 +261,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(newAccount.getIntegrationId());
                 auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
                 auditList.add(auditDto);
             }
 
@@ -264,6 +271,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(newAccount.getFirstName());
                 auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
                 auditList.add(auditDto);
             }
 
@@ -273,6 +281,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(newAccount.getLastName());
                 auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
                 auditList.add(auditDto);
             }
 
@@ -282,6 +291,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(newAccount.getEmailAddress());
                 auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
                 auditList.add(auditDto);
             }
         }

@@ -11,4 +11,5 @@ public class InboundContactAuditDto {
     private String fieldName;
     private String operation;
     private String rowId;
+    private String apiKey;
 }
