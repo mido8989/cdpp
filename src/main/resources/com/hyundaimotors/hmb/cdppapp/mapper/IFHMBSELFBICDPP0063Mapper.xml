@@ -27,10 +27,14 @@
         where
             <choose>
                 <when test='createdOption == "Y"'>
-                    pa.legacy_created::date = to_date(#{dateInput}, 'YYYY-MM-DD')
+                    pa.legacy_created <![CDATA[ >= ]]> to_timestamp(#{dateInput} || ' 00:00:00', 'YYYY-MM-DD HH24:mi:SS')
+                and 
+                    pa.legacy_created <![CDATA[ <= ]]> to_timestamp(#{dateInput} || ' 23:59:59', 'YYYY-MM-DD HH24:mi:SS')
                 </when>
                 <otherwise>
-                    pa.billing_date__c::date = to_date(#{dateInput}, 'YYYY-MM-DD')
+                    pa.billing_date__c <![CDATA[ >= ]]> to_timestamp(#{dateInput} || ' 00:00:00', 'YYYY-MM-DD HH24:mi:SS')
+                and
+                    pa.billing_date__c <![CDATA[ <= ]]> to_timestamp(#{dateInput} || ' 23:59:59', 'YYYY-MM-DD HH24:mi:SS')
                 </otherwise>
             </choose>
             <choose>
