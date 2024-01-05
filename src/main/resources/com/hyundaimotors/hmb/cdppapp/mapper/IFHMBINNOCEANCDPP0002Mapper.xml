@@ -332,6 +332,7 @@
             , new_val
             , tbl_record_id
             , field_name
+            , header_apikey
         )
         values
         <foreach collection="auditList" item="item" separator=",">
@@ -347,6 +348,7 @@
                 , #{item.newValue}
                 , #{item.rowId}
                 , #{item.fieldName}
+                , #{item.apiKey}
             )
         </foreach>
     </insert>
