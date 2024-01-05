@@ -35,8 +35,8 @@ public class IFHMBINNOCEANCDPP0013Dto {
     private String county;
     private String city;
     private String state;
-    private int latitude;
-    private int longitude;
+    private Integer latitude;
+    private Integer longitude;
     private String postalCode;
 
     private String dealerGroup;
@@ -50,9 +50,13 @@ public class IFHMBINNOCEANCDPP0013Dto {
     private String division;
 
     private String procRowId;
+    private String checkUpsert;
 
     private String errorSpcCode;
     private String errorSpcMessage;
+
+    private String apiKey;
+
     List<ListOfContactsDto> contactList;
 
     List<String> listOfProcContactRowId;

@@ -1,8 +1,10 @@
 package com.hyundaimotors.hmb.cdppapp.mapper;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013.IFHMBINNOCEANCDPP0013Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013.InboundChannelPartnerAuditDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013.ListOfContactsDto;
 
 public interface IFHMBINNOCEANCDPP0013Mapper {
@@ -22,5 +24,9 @@ public interface IFHMBINNOCEANCDPP0013Mapper {
     public void transferReplica(HashMap<String, String[]> parMap)throws Exception;
 
     public void transferProcessContact(HashMap<String, String> parMap)throws Exception;
+
+    public IFHMBINNOCEANCDPP0013Dto getOldAccount(String getProcAccntRowId)throws Exception;
+
+    public void insertAuditList(List<InboundChannelPartnerAuditDto> auditList)throws Exception;
     
 }
