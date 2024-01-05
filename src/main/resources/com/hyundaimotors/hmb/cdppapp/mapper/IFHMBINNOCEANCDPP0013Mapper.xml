@@ -186,6 +186,87 @@
             )  
     </insert>
 
+    <select id="getOldAccount" parameterType="string" resultType="IFHMBINNOCEANCDPP0013Dto">
+        select
+            row_id
+            , integrationid 
+            , corporateregistrationnumber__c 
+            , "name"
+            , corporaterepresentativename__c 
+            , cust_stat_cd__c 
+            , situationstatusreason__c 
+            , dealershoptype__c 
+            , dealercode__c 
+            , phone 
+            , fax 
+            , emailaddress__c 
+            , sapworkaddress__c  
+            , salesflag__c
+            , serviceflag__c
+            , prtnrshp_start_dt__c
+            , prtnrshp_end_dt__c 
+            , region__c 
+            , businesshours__c 
+            , facebook__c 
+            , website 
+            , billingstreet 
+            , billingstreet_2__c 
+            , billingstreet_3__c 
+            , billingcounty 
+            , billingcity 
+            , billingstate 
+            , billinglatitude 
+            , billinglongitude 
+            , billingpostalcode 
+            , dealergroupcode__c 
+            , salesgroup__c 
+            , salesmanager__c 
+            , servicemanager__c 
+            , servicewhatsappnumber__c 
+            , saleswhatsappnumber__c 
+            , salesdistrict__c 
+            , salesoffice__c 
+            , division__c 
+        from
+            process.account pa
+        where
+            pa.row_id = #{getProcAccntRowId}
+    </select>
+
+    <insert id="insertAuditList" parameterType="list">
+        insert into process.s_audit_item(
+            created_by
+            , last_upd_by
+            , buscomp_name
+            , operation_cd
+            , record_id
+            , user_id
+            , tbl_name
+            , old_val
+            , new_val
+            , tbl_record_id
+            , field_name
+            , header_apikey
+        )
+        values
+        <foreach collection="auditList" item="item" separator=",">
+            (
+                'interface'
+                , 'interface'
+                , 'account'
+                , #{item.operation}
+                , #{item.rowId}
+                , 'interface'
+                , 'account'
+                , #{item.oldValue}
+                , #{item.newValue}
+                , #{item.rowId}
+                , #{item.fieldName}
+                , #{item.apiKey}
+            )
+        </foreach>
+    </insert>
+
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_in_channel_partner_inf_wf(#{PARAM_ID}, #{PROC_ACC_ID}, #{CON_ROWID}, #{checkcu});
     </insert>

@@ -100,10 +100,10 @@ public class IFHMBINNOCEANCDPP0013Payload {
         private String state;
         @Schema(description = "Address Latitude", example = "23.497694")
         @JsonProperty("Latitude")
-        private int latitude;
+        private Integer latitude;
         @Schema(description = "Address Longitude", example = "47.441679")
         @JsonProperty("Longitude")
-        private int longitude;
+        private Integer longitude;
         @Schema(description = "Address zip code.", example = "18085450")
         @JsonProperty("PostalCode")
         private String postalCode;
@@ -135,6 +135,8 @@ public class IFHMBINNOCEANCDPP0013Payload {
         @Schema(description = "Division", example = "11")
         @JsonProperty("Division")
         private String division;
+
+        private String apiKey;
 
         @JsonProperty("ListOfContacts")
         List<ListOfContacts> contactList;
