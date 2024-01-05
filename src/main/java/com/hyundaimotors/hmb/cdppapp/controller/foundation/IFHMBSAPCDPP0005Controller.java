@@ -46,7 +46,7 @@ public class IFHMBSAPCDPP0005Controller {
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPCDPP0005Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBAccountWebserviceWF")
     public Object upsertObject(@Valid @RequestBody IFHMBSAPCDPP0005Payload.Request request, @RequestHeader MultiValueMap<String, String> headerMap) throws Exception {
-        request.setApiKey(String.valueOf(headerMap.get("ApiKey")));
+        request.setApiKey(String.valueOf(headerMap.get("apikey")));
         UUID IF_TR_ID = UUID.randomUUID();
 
         ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
