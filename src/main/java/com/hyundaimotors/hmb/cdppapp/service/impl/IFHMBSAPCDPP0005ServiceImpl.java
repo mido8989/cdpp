@@ -101,7 +101,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
          String foundAccountId = mapper.foundAccountId(dto);
          
          map.put("PROC_ACC_ID", foundAccountId);
-        //  mapper.insertReplicaAccount(map);
+         mapper.insertReplicaAccount(map);
          
          return foundAccountId;
     }
@@ -120,7 +120,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
           map.put("checkcu","update");
           
           mapper.insertProcessAccount(map);
-        //   mapper.insertReplicaAccount(map);
+          mapper.insertReplicaAccount(map);
           
           return foundAccountIdbyCnpj;
     }
@@ -159,7 +159,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
                     auditDto.setOldValue(dto.getCnpjNumber());
                     auditDto.setNewValue(newAccount.getCnpjNumber());
                     auditDto.setRowId(dto.getContactId());
-                    auditDto.setApiKey(dto.getApiKey());
+                    auditDto.setApiKey(newAccount.getApiKey());
                     auditList.add(auditDto);
                 }
             }
@@ -185,7 +185,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
                     auditDto.setOldValue(dto.getIntegrationId());
                     auditDto.setNewValue(newAccount.getIntegrationId());
                     auditDto.setRowId(dto.getContactId());
-                    auditDto.setApiKey(dto.getApiKey());
+                    auditDto.setApiKey(newAccount.getApiKey());
                     auditList.add(auditDto);
                 }
             }
