@@ -157,7 +157,7 @@
         from 
             process.service_event_act
         where 
-            external_id__c = cast(#{rowId} as TEXT)
+            external_id__c = cast(#{rowId} as text)
     </select>
 
     <insert id="transferDPProcess" statementType="CALLABLE" parameterType="hashMap">
