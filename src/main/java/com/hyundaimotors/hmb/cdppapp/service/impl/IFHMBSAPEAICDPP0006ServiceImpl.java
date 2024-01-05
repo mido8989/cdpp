@@ -23,15 +23,15 @@ public class IFHMBSAPEAICDPP0006ServiceImpl implements IFHMBSAPEAICDPP0006Servic
         
         mapper.insertAction(dto);
 
-        if(0 < dto.getActionNote().size()){
+        if(dto.getActionNote() != null){
             mapper.insertActionNote(dto);
         }
 
-        if(0 < dto.getActionProducts().size()){
+        if(dto.getActionProducts() != null){
             mapper.insertActionProducts(dto);
         }
 
-        if(0 < dto.getSynergyActionAudit().size()){
+        if(dto.getSynergyActionAudit() != null){
             mapper.insertSynergyActionAudit(dto);
         }
         
