@@ -172,7 +172,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
                     auditDto.setOldValue(dto.getName());
                     auditDto.setNewValue(newAccount.getName());
                     auditDto.setRowId(dto.getContactId());
-                    auditDto.setApiKey(dto.getApiKey());
+                    auditDto.setApiKey(newAccount.getApiKey());
                     auditList.add(auditDto);
                 }
             }
@@ -198,7 +198,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
                     auditDto.setOldValue(dto.getMainPhoneNumber());
                     auditDto.setNewValue(newAccount.getMainPhoneNumber());
                     auditDto.setRowId(dto.getContactId());
-                    auditDto.setApiKey(dto.getApiKey());
+                    auditDto.setApiKey(newAccount.getApiKey());
                     auditList.add(auditDto);
                 }
             }
@@ -211,7 +211,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
                     auditDto.setOldValue(dto.getMainEmailAddress());
                     auditDto.setNewValue(newAccount.getMainEmailAddress());
                     auditDto.setRowId(dto.getContactId());
-                    auditDto.setApiKey(dto.getApiKey());
+                    auditDto.setApiKey(newAccount.getApiKey());
                     auditList.add(auditDto);
                 }
             }
