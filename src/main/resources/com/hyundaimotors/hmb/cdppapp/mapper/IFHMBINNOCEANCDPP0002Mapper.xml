@@ -345,7 +345,7 @@
                 , 'interface'
                 , 'account'
                 , #{item.oldValue}
-                , #{item.newValue}
+                , #{item.newValue}::varchar
                 , #{item.rowId}
                 , #{item.fieldName}
                 , #{item.apiKey}
