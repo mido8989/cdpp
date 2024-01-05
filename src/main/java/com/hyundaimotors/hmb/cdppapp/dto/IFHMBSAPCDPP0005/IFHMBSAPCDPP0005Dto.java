@@ -18,7 +18,7 @@ public class IFHMBSAPCDPP0005Dto {
     private String fleetAccontType;
     private String industryTrend;
     private String numberOfEmployee;
-    private int totalFleetSize;
+    private Integer totalFleetSize;
     private String contractedSince;
     private String source;
     private String organizationType;

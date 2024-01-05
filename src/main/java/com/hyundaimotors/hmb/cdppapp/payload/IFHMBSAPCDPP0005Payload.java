@@ -36,7 +36,7 @@ public class IFHMBSAPCDPP0005Payload {
         @Schema(description = "Number of Employee", example = "10")
         private String numberOfEmployee;
         @Schema(description = "Total Fleet Size", example = "0")
-        private int totalFleetSize;
+        private Integer totalFleetSize;
         @Schema(description = "Contracted Since", example = "2010-01-20")
         private String contractedSince;
         @Schema(description = "External source. Valid values: X Call Center , X Dealer , X Home Page , X Marketing , X Sap ", example = "Call Center")
