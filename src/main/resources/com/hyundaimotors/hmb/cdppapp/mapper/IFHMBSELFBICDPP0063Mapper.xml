@@ -72,6 +72,8 @@
             pa.row_id  = ac.account_id
         where 
             ac.account_id = #{cAccountId}
+        and
+            ac.cv_type = 'Person'
         limit 1
     </select>
 
@@ -87,6 +89,8 @@
         on
             pa.row_id  = aa.account_id
         where
-            aa.account_id = #{bAccountId}
+            aa.account_id = #{cAccountId}
+        and
+            aa.cv_type = 'Business'
     </select>
 </mapper>
