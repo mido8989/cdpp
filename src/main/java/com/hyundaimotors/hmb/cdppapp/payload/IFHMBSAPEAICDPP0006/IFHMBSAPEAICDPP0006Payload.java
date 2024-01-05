@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPEAICDPP0006;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -74,11 +76,11 @@ public class IFHMBSAPEAICDPP0006Payload {
         private String estoque;
 
         @JsonProperty("actionNote")
-        ActionNote actionNote;
+        List<ActionNote> actionNote;
         @JsonProperty("actionProducts")
-        ActionProducts actionProducts;
+        List<ActionProducts> actionProducts;
         @JsonProperty("synergyActionAudit")
-        SynergyActionAudit synergyActionAudit;
+        List<SynergyActionAudit> synergyActionAudit;
     }
 
     @Schema(name = "IFHMBSAPEAICDPP0006Payload.Response")

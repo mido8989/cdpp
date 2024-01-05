@@ -81,17 +81,20 @@
             , noteDate
             , noteDescription
             , noteCreator
-        ) values (
-            #{rowId}
-            , now()
-            , 'interface'
-            , now()
-            , 'interface'
-            , #{actionNote.noteType}
-            , #{actionNote.noteDate}::timestamp
-            , #{actionNote.noteDescription}
-            , #{actionNote.noteCreator}
-        )
+        )values
+         <foreach collection="actionNote" item="item" index="index" open="(" close=")" separator=",">    
+            (
+                #{rowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+                , #{item.noteType}
+                , #{item.noteDate}::timestamp
+                , #{item.noteDescription}
+                , #{item.noteCreator}
+            )
+        </foreach>
     </insert>
 
     <insert id="insertActionProducts" parameterType="IFHMBSAPEAICDPP0006Dto">
@@ -103,15 +106,18 @@
             , last_upd_by
             , partid
             , partqty
-        ) values (
-            #{rowId}
-            , now()
-            , 'interface'
-            , now()
-            , 'interface'
-            , #{actionProducts.partId}
-            , #{actionProducts.partQty}
-        )
+        ) values
+        <foreach collection="actionProducts" item="item" index="index" open="(" close=")" separator=",">    
+            (
+                #{rowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+                , #{item.partId}
+                , #{item.partQty}
+            )
+        </foreach>
     </insert>
 
     <insert id="insertSynergyActionAudit" parameterType="IFHMBSAPEAICDPP0006Dto">
@@ -123,15 +129,18 @@
             , last_upd_by
             , fieldname
             , fieldvalue
-        ) values (
-            #{rowId}
-            , now()
-            , 'interface'
-            , now()
-            , 'interface'
-            , #{synergyActionAudit.fieldName}
-            , #{synergyActionAudit.fieldValue}
-        )
+        ) values 
+        <foreach collection="synergyActionAudit" item="item" index="index" open="(" close=")" separator=",">
+            (
+                #{rowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+                , #{item.fieldName}
+                , #{item.fieldValue}
+            )
+        </foreach>
     </insert>
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
