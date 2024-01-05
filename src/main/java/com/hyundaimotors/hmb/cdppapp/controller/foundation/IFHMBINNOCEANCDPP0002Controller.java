@@ -66,7 +66,7 @@ public class IFHMBINNOCEANCDPP0002Controller {
             if(oldAccount != null){
                 service.insertDPObject(oldAccount);
             }else{
-                service.insertDPObject(dto);
+                service.insertDPObject(resultDto);
             }
             
 
