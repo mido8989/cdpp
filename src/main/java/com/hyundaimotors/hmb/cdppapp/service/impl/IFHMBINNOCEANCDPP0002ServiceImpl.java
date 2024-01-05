@@ -244,7 +244,477 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     auditList.add(auditDto);
                 }
             }
+            
+            if(dto.getHomePhone() != null && newAccount.getHomePhone() != null){
+                if(!dto.getHomePhone().equals(newAccount.getHomePhone())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("personhomephone");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getHomePhone());
+                    auditDto.setNewValue(newAccount.getHomePhone());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getWorkPhone() != null && newAccount.getWorkPhone() != null){
+                if(!dto.getWorkPhone().equals(newAccount.getWorkPhone())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("workphone__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getWorkPhone());
+                    auditDto.setNewValue(newAccount.getWorkPhone());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getCellPhone() != null && newAccount.getCellPhone() != null){
+                if(!dto.getCellPhone().equals(newAccount.getCellPhone())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("personmobilephone");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getCellPhone());
+                    auditDto.setNewValue(newAccount.getCellPhone());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getGender() != null && newAccount.getGender() != null){
+                if(!dto.getGender().equals(newAccount.getGender())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("gender__pc");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getGender());
+                    auditDto.setNewValue(newAccount.getGender());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getMaritalStatus() != null && newAccount.getMaritalStatus() != null){
+                if(!dto.getMaritalStatus().equals(newAccount.getMaritalStatus())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("maritalstatus__pc");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getMaritalStatus());
+                    auditDto.setNewValue(newAccount.getMaritalStatus());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getBirthDate() != null && newAccount.getBirthDate() != null){
+                if(!dto.getBirthDate().equals(newAccount.getBirthDate())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("personbirthdate");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getBirthDate());
+                    auditDto.setNewValue(newAccount.getBirthDate());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getOccupation() != null && newAccount.getOccupation() != null){
+                if(!dto.getOccupation().equals(newAccount.getOccupation())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("occupation__pc");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getOccupation());
+                    auditDto.setNewValue(newAccount.getOccupation());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getIncome() != null && newAccount.getIncome() != null){
+                if(!dto.getIncome().equals(newAccount.getIncome())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("income__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getIncome());
+                    auditDto.setNewValue(newAccount.getIncome());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getCarOfInterest() != null && newAccount.getCarOfInterest() != null){
+                if(!dto.getCarOfInterest().equals(newAccount.getCarOfInterest())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("productofinterest__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getCarOfInterest());
+                    auditDto.setNewValue(newAccount.getCarOfInterest());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getCalledBy() != null && newAccount.getCalledBy() != null){
+                if(!dto.getCalledBy().equals(newAccount.getCalledBy())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("calledby__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getCalledBy());
+                    auditDto.setNewValue(newAccount.getCalledBy());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getLiteracy() != null && newAccount.getLiteracy() != null){
+                if(!dto.getLiteracy().equals(newAccount.getLiteracy())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("literacy__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getLiteracy());
+                    auditDto.setNewValue(newAccount.getLiteracy());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getWayOfContact() != null && newAccount.getWayOfContact() != null){
+                if(!dto.getWayOfContact().equals(newAccount.getWayOfContact())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("preferredcontactchannel__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getWayOfContact());
+                    auditDto.setNewValue(newAccount.getWayOfContact());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllCalls() != null && newAccount.getSuppressAllCalls() != null){
+                if(!dto.getSuppressAllCalls().equals(newAccount.getSuppressAllCalls())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("persondonotcall");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllCalls());
+                    auditDto.setNewValue(newAccount.getSuppressAllCalls());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllCalls() != null && newAccount.getSuppressAllCalls() != null){
+                if(!dto.getSuppressAllCalls().equals(newAccount.getSuppressAllCalls())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("calloptyn__pc");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllCalls());
+                    auditDto.setNewValue(newAccount.getSuppressAllCalls());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllEmails() != null && newAccount.getSuppressAllEmails() != null){
+                if(!dto.getSuppressAllEmails().equals(newAccount.getSuppressAllEmails())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("blockedemails__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllEmails());
+                    auditDto.setNewValue(newAccount.getSuppressAllEmails());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllEmails() != null && newAccount.getSuppressAllEmails() != null){
+                if(!dto.getSuppressAllEmails().equals(newAccount.getSuppressAllEmails())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("blockedemails__pc");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllEmails());
+                    auditDto.setNewValue(newAccount.getSuppressAllEmails());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllMailings() != null && newAccount.getSuppressAllMailings() != null){
+                if(!dto.getSuppressAllMailings().equals(newAccount.getSuppressAllMailings())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("blockedletters__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllMailings());
+                    auditDto.setNewValue(newAccount.getSuppressAllMailings());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllMailings() != null && newAccount.getSuppressAllMailings() != null){
+                if(!dto.getSuppressAllMailings().equals(newAccount.getSuppressAllMailings())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("blockedletters__pc");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllMailings());
+                    auditDto.setNewValue(newAccount.getSuppressAllMailings());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllMobile() != null && newAccount.getSuppressAllMobile() != null){
+                if(!dto.getSuppressAllMobile().equals(newAccount.getSuppressAllMobile())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("blockedmobile__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllMobile());
+                    auditDto.setNewValue(newAccount.getSuppressAllMobile());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllSMS() != null && newAccount.getSuppressAllSMS() != null){
+                if(!dto.getSuppressAllSMS().equals(newAccount.getSuppressAllSMS())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("blockedmobile__pc");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllSMS());
+                    auditDto.setNewValue(newAccount.getSuppressAllSMS());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllSMS() != null && newAccount.getSuppressAllSMS() != null){
+                if(!dto.getSuppressAllSMS().equals(newAccount.getSuppressAllSMS())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("blockedsms__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllSMS());
+                    auditDto.setNewValue(newAccount.getSuppressAllSMS());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getCalledBy() != null && newAccount.getCalledBy() != null){
+                if(!dto.getCalledBy().equals(newAccount.getCalledBy())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("blockedsms__pc");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getCalledBy());
+                    auditDto.setNewValue(newAccount.getCalledBy());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllVideoCall() != null && newAccount.getSuppressAllVideoCall() != null){
+                if(!dto.getSuppressAllVideoCall().equals(newAccount.getSuppressAllVideoCall())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("blockedvideocall__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllVideoCall());
+                    auditDto.setNewValue(newAccount.getSuppressAllVideoCall());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllVideoCall() != null && newAccount.getSuppressAllVideoCall() != null){
+                if(!dto.getSuppressAllVideoCall().equals(newAccount.getSuppressAllVideoCall())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("blockedvideocall__pc");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllVideoCall());
+                    auditDto.setNewValue(newAccount.getSuppressAllVideoCall());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllWhatsapp() != null && newAccount.getSuppressAllWhatsapp() != null){
+                if(!dto.getSuppressAllWhatsapp().equals(newAccount.getSuppressAllWhatsapp())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("blockedwhatsapp__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllWhatsapp());
+                    auditDto.setNewValue(newAccount.getSuppressAllWhatsapp());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSuppressAllWhatsapp() != null && newAccount.getSuppressAllWhatsapp() != null){
+                if(!dto.getSuppressAllWhatsapp().equals(newAccount.getSuppressAllWhatsapp())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("blockedwhatsapp__pc");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSuppressAllWhatsapp());
+                    auditDto.setNewValue(newAccount.getSuppressAllWhatsapp());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getFavorite_dealer() != null && newAccount.getFavorite_dealer() != null){
+                if(!dto.getFavorite_dealer().equals(newAccount.getFavorite_dealer())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("dealercode__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getFavorite_dealer());
+                    auditDto.setNewValue(newAccount.getFavorite_dealer());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getSource() != null && newAccount.getSource() != null){
+                if(!dto.getSource().equals(newAccount.getSource())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("registrysource__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getSource());
+                    auditDto.setNewValue(newAccount.getSource());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getFacebookSegment() != null && newAccount.getFacebookSegment() != null){
+                if(!dto.getFacebookSegment().equals(newAccount.getFacebookSegment())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("facebook__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getFacebookSegment());
+                    auditDto.setNewValue(newAccount.getFacebookSegment());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getContactOptIn() != null && newAccount.getContactOptIn() != null){
+                if(!dto.getContactOptIn().equals(newAccount.getContactOptIn())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("receiveproductnewsflag__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getContactOptIn());
+                    auditDto.setNewValue(newAccount.getContactOptIn());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getContactOptIn() != null && newAccount.getContactOptIn() != null){
+                if(!dto.getContactOptIn().equals(newAccount.getContactOptIn())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("receiveretailoffersflag__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getContactOptIn());
+                    auditDto.setNewValue(newAccount.getContactOptIn());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getContactOptIn() != null && newAccount.getContactOptIn() != null){
+                if(!dto.getContactOptIn().equals(newAccount.getContactOptIn())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("receiveserviceoffersflag__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getContactOptIn());
+                    auditDto.setNewValue(newAccount.getContactOptIn());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getContactOptIn() != null && newAccount.getContactOptIn() != null){
+                if(!dto.getContactOptIn().equals(newAccount.getContactOptIn())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("receivenewsletterflag__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getContactOptIn());
+                    auditDto.setNewValue(newAccount.getContactOptIn());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getContactOptIn() != null && newAccount.getContactOptIn() != null){
+                if(!dto.getContactOptIn().equals(newAccount.getContactOptIn())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("receiveeventsflag__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getContactOptIn());
+                    auditDto.setNewValue(newAccount.getContactOptIn());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getContactOptIn() != null && newAccount.getContactOptIn() != null){
+                if(!dto.getContactOptIn().equals(newAccount.getContactOptIn())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("receiveresearchflag__c");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getContactOptIn());
+                    auditDto.setNewValue(newAccount.getContactOptIn());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
+            if(dto.getCounty() != null && newAccount.getCounty() != null){
+                if(!dto.getCounty().equals(newAccount.getCounty())){
+                    InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                    auditDto.setFieldName("neighborhood");
+                    auditDto.setOperation("Modify");
+                    auditDto.setOldValue(dto.getCounty());
+                    auditDto.setNewValue(newAccount.getCounty());
+                    auditDto.setRowId(dto.getContactId());
+                    auditDto.setApiKey(dto.getApiKey());
+                    auditList.add(auditDto);
+                }
+            }
+
         }else{
+
             if(newAccount.getCpf() != null){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("cpf__c");
@@ -290,6 +760,366 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditDto.setFieldName("personemail");
                 auditDto.setOperation("New Record");
                 auditDto.setNewValue(newAccount.getEmailAddress());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getHomePhone() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("personhomephone");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getHomePhone());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getWorkPhone() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("workphone__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getWorkPhone());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getCellPhone() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("personmobilephone");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getCellPhone());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getGender() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("gender__pc");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getGender());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getMaritalStatus() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("maritalstatus__pc");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getMaritalStatus());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getBirthDate() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("personbirthdate");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getBirthDate());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getOccupation() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("occupation__pc");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getOccupation());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getIncome() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("income__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getIncome());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getCarOfInterest() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("productofinterest__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getCarOfInterest());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getCalledBy() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("calledby__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getCalledBy());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getLiteracy() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("literacy__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getLiteracy());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getWayOfContact() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("preferredcontactchannel__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getWayOfContact());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllCalls() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("persondonotcall");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllCalls());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllCalls() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("calloptyn__pc");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllCalls());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllEmails() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("blockedemails__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllEmails());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllEmails() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("blockedemails__pc");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllEmails());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllMailings() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("blockedletters__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllMailings());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllMailings() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("blockedletters__pc");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllMailings());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllMobile() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("blockedmobile__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllMobile());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllMobile() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("blockedmobile__pc");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllMobile());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllSMS() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("blockedsms__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllSMS());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllSMS() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("blockedsms__pc");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllSMS());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllVideoCall() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("blockedvideocall__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllVideoCall());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllVideoCall() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("blockedvideocall__pc");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllVideoCall());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllWhatsapp() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("blockedwhatsapp__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllWhatsapp());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSuppressAllWhatsapp() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("blockedwhatsapp__pc");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSuppressAllWhatsapp());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getFavorite_dealer() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("dealercode__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getFavorite_dealer());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getSource() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("registrysource__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getSource());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getFacebookSegment() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("facebook__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getFacebookSegment());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getContactOptIn() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("receiveproductnewsflag__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getContactOptIn());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getContactOptIn() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("receiveretailoffersflag__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getContactOptIn());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getContactOptIn() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("receiveserviceoffersflag__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getContactOptIn());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getContactOptIn() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("receivenewsletterflag__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getContactOptIn());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getContactOptIn() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("receiveeventsflag__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getContactOptIn());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getContactOptIn() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("receiveresearchflag__c");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getContactOptIn());
+                auditDto.setRowId(newAccount.getContactId());
+                auditDto.setApiKey(dto.getApiKey());
+                auditList.add(auditDto);
+            }
+
+            if(newAccount.getCounty() != null){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("neighborhood");
+                auditDto.setOperation("New Record");
+                auditDto.setNewValue(newAccount.getCounty());
                 auditDto.setRowId(newAccount.getContactId());
                 auditDto.setApiKey(dto.getApiKey());
                 auditList.add(auditDto);
