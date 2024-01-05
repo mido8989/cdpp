@@ -244,53 +244,53 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
         }else{
             System.out.println("insert ====================================================>");
-            if(dto.getCpf() != null){
+            if(newAccount.getCpf() != null){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("cpf__c");
                 auditDto.setOperation("New Record");
                 auditDto.setOldValue("");
-                auditDto.setNewValue(dto.getCpf());
-                auditDto.setRowId(dto.getContactId());
+                auditDto.setNewValue(newAccount.getCpf());
+                auditDto.setRowId(newAccount.getContactId());
                 auditList.add(auditDto);
             }
 
-            if(dto.getIntegrationId() != null){
+            if(newAccount.getIntegrationId() != null){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("integrationid");
                 auditDto.setOperation("New Record");
                 auditDto.setOldValue("");
-                auditDto.setNewValue(dto.getIntegrationId());
-                auditDto.setRowId(dto.getContactId());
+                auditDto.setNewValue(newAccount.getIntegrationId());
+                auditDto.setRowId(newAccount.getContactId());
                 auditList.add(auditDto);
             }
 
-            if(dto.getFirstName() != null){
+            if(newAccount.getFirstName() != null){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("firstname");
                 auditDto.setOperation("New Record");
                 auditDto.setOldValue("");
-                auditDto.setNewValue(dto.getFirstName());
-                auditDto.setRowId(dto.getContactId());
+                auditDto.setNewValue(newAccount.getFirstName());
+                auditDto.setRowId(newAccount.getContactId());
                 auditList.add(auditDto);
             }
 
-            if(dto.getLastName() != null){
+            if(newAccount.getLastName() != null){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("lastname");
                 auditDto.setOperation("New Record");
                 auditDto.setOldValue("");
-                auditDto.setNewValue(dto.getLastName());
-                auditDto.setRowId(dto.getContactId());
+                auditDto.setNewValue(newAccount.getLastName());
+                auditDto.setRowId(newAccount.getContactId());
                 auditList.add(auditDto);
             }
 
-            if(dto.getEmailAddress() != null){
+            if(newAccount.getEmailAddress() != null){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("personemail");
                 auditDto.setOperation("New Record");
                 auditDto.setOldValue("");
-                auditDto.setNewValue(dto.getEmailAddress());
-                auditDto.setRowId(dto.getContactId());
+                auditDto.setNewValue(newAccount.getEmailAddress());
+                auditDto.setRowId(newAccount.getContactId());
                 auditList.add(auditDto);
             }
         }
