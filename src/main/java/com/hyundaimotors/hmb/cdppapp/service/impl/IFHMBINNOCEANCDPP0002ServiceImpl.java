@@ -180,6 +180,8 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         
         List<InboundContactAuditDto> auditList = new ArrayList<>();
 
+        System.out.println("IFHMBINNOCEANCDPP0002Dto ======================================> " + dto.getCpf());
+
         if("update".equals(dto.getCheckUpsert())){
             System.out.println("update ====================================================>");
             if(dto.getCpf() != null && newAccount.getCpf() != null){
@@ -246,6 +248,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("cpf__c");
                 auditDto.setOperation("New Record");
+                auditDto.setOldValue("");
                 auditDto.setNewValue(dto.getCpf());
                 auditDto.setRowId(dto.getContactId());
                 auditList.add(auditDto);
@@ -255,6 +258,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("integrationid");
                 auditDto.setOperation("New Record");
+                auditDto.setOldValue("");
                 auditDto.setNewValue(dto.getIntegrationId());
                 auditDto.setRowId(dto.getContactId());
                 auditList.add(auditDto);
@@ -264,6 +268,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("firstname");
                 auditDto.setOperation("New Record");
+                auditDto.setOldValue("");
                 auditDto.setNewValue(dto.getFirstName());
                 auditDto.setRowId(dto.getContactId());
                 auditList.add(auditDto);
@@ -273,6 +278,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("lastname");
                 auditDto.setOperation("New Record");
+                auditDto.setOldValue("");
                 auditDto.setNewValue(dto.getLastName());
                 auditDto.setRowId(dto.getContactId());
                 auditList.add(auditDto);
@@ -282,6 +288,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("personemail");
                 auditDto.setOperation("New Record");
+                auditDto.setOldValue("");
                 auditDto.setNewValue(dto.getEmailAddress());
                 auditDto.setRowId(dto.getContactId());
                 auditList.add(auditDto);
