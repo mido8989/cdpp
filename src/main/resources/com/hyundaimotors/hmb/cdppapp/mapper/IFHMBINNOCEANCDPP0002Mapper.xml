@@ -296,22 +296,22 @@
             , calledby__c as calledBy
             , literacy__c as literacy
             , preferredcontactchannel__c as wayOfContact
-            , persondonotcall as suppressAllCalls
-            , calloptyn__pc as suppressAllCalls
-            , blockedemails__c as suppressAllEmails
-            , blockedletters__c as suppressAllMailings
-            , blockedmobile__c as suppressAllMobile
-            , blockedsms__c as suppressAllSMS
-            , blockedvideocall__c as suppressAllVideoCall
-            , blockedwhatsapp__c as suppressAllWhatsapp
+            , persondonotcall::varchar as suppressAllCalls
+            , calloptyn__pc::varchar as suppressAllCalls
+            , blockedemails__c::varchar as suppressAllEmails
+            , blockedletters__c::varchar as suppressAllMailings
+            , blockedmobile__c::varchar as suppressAllMobile
+            , blockedsms__c::varchar as suppressAllSMS
+            , blockedvideocall__c::varchar as suppressAllVideoCall
+            , blockedwhatsapp__c::varchar as suppressAllWhatsapp
             , dealercode__c as favorite_dealer
             , registrysource__c as source
             , facebook__c as facebookSegment
-            , receiveproductnewsflag__c as contactOptIn
-            , receiveretailoffersflag__c as contactOptIn
-            , receiveserviceoffersflag__c as contactOptIn
-            , receivenewsletterflag__c as contactOptIn
-            , receiveeventsflag__c as contactOptIn
+            , receiveproductnewsflag__c::varchar as contactOptIn
+            , receiveretailoffersflag__c::varchar as contactOptIn
+            , receiveserviceoffersflag__c::varchar as contactOptIn
+            , receivenewsletterflag__c::varchar as contactOptIn
+            , receiveeventsflag__c::varchar as contactOptIn
             , neighborhood as county
         from
             process.account pa
@@ -345,7 +345,7 @@
                 , 'interface'
                 , 'account'
                 , #{item.oldValue}
-                , #{item.newValue}::varchar
+                , #{item.newValue}
                 , #{item.rowId}
                 , #{item.fieldName}
                 , #{item.apiKey}
