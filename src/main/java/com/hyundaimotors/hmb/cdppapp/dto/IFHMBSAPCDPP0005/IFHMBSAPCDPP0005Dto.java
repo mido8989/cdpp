@@ -1,4 +1,4 @@
-package com.hyundaimotors.hmb.cdppapp.dto;
+package com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0005;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -35,7 +35,9 @@ public class IFHMBSAPCDPP0005Dto {
     private String postalCode;
     private String description;
     private String contactId;
+    private String parentId;
     private String errorSpcCode;
     private String errorSpcMessage;
     private String checkUpsert;
+    private String apiKey;
 }

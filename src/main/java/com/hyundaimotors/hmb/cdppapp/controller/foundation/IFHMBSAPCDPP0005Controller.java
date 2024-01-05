@@ -1,15 +1,18 @@
 package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0005Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0005.IFHMBSAPCDPP0005Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBSAPCDPP0005Payload;
 import com.hyundaimotors.hmb.cdppapp.service.ApiLogService;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPCDPP0005Service;
@@ -42,28 +45,39 @@ public class IFHMBSAPCDPP0005Controller {
     @Operation(summary = "Account upsert", description = "Account upsert")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBSAPCDPP0005Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBAccountWebserviceWF")
-    public Object upsertObject(@Valid @RequestBody IFHMBSAPCDPP0005Payload.Request request) throws Exception {
+    public Object upsertObject(@Valid @RequestBody IFHMBSAPCDPP0005Payload.Request request, @RequestHeader MultiValueMap<String, String> headerMap) throws Exception {
+        request.setApiKey(String.valueOf(headerMap.getFirst("ApiKey")));
         UUID IF_TR_ID = UUID.randomUUID();
 
-        IFHMBSAPCDPP0005Payload.Response response = new IFHMBSAPCDPP0005Payload.Response();
         ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
+        IFHMBSAPCDPP0005Payload.Response response = new IFHMBSAPCDPP0005Payload.Response();
         
         try {
             IFHMBSAPCDPP0005Dto dto = defaultMapper.map(request, IFHMBSAPCDPP0005Dto.class);
     
             ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
-            IFHMBSAPCDPP0005Dto resultDto = service.insertObject(dto);
+            HashMap<String, IFHMBSAPCDPP0005Dto> resultMap = service.insertObject(dto);
+
+            IFHMBSAPCDPP0005Dto resultDto = resultMap.get("resultDto");
+            
             ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP2, IF_TR_ID, null);
     
             response = ObjectUtils.isNotEmpty(resultDto) ? defaultMapper.map(resultDto, IFHMBSAPCDPP0005Payload.Response.class) : null;
             ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
 
-            service.insertDPObject(resultDto);
+            IFHMBSAPCDPP0005Dto oldAccount = resultMap.get("oldAccount");
+
+            if(oldAccount != null){
+                oldAccount.setApiKey(request.getApiKey());
+                service.insertDPObject(oldAccount);
+            }else{
+                resultDto.setApiKey(request.getApiKey());
+                service.insertDPObject(resultDto);
+            }
 
         }catch(Exception e) {
             response.setErrorSpcCode("500");
             response.setErrorSpcMessage(e.getLocalizedMessage());
-
             ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
         }
         

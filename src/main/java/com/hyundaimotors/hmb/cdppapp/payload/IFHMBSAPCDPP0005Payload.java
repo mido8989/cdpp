@@ -67,6 +67,9 @@ public class IFHMBSAPCDPP0005Payload {
         private String postalCode;
         @Schema(description = "Description", example = "Description")
         private String description;
+
+        private String apiKey;
+
     }
 
     @Schema(name = "IFHMBZICARDCDPP0005Payload.Response")

@@ -108,6 +108,72 @@
                 
             );
     </insert>   
+
+    <select id="getOldAccount" parameterType="string" resultType="IFHMBSAPCDPP0005Dto">
+        select 
+            row_id as contactId
+            , integrationid as integrationId
+            , corporateregistrationnumber__c as cnpjNumber
+            , "name" as name
+            , corporaterepresentativename__c as nickname
+            , ori_cd__c as agencyCode
+            , businesstype__c asv
+            , industry as industryTrend             
+            , numberofemployees as numberOfEmployee
+            , x_tot_flt_size__c as totalFleetSize
+            , x_contracted_since__c as contractedSince
+            , registrysource__c as source
+            , fleettype__c as organizationType
+            , phone as mainPhoneNumber
+            , fax as mainFaxNumber
+            , emailaddress__c as mainEmailAddress
+            , website as homepage
+            , billingstreet as streetAddress
+            , billingstreet_2__c as streetAddress2
+            , billingstreet_3__c as streetAddress3
+            , neighborhood as county
+            , billingcity as city
+            , billingstate as state
+            , billingpostalcode as postalCode
+            , description as description
+            , parentid as parentId
+        from 
+            process.account pa
+        where
+            pa.row_id = #{foundAccountId}
+    </select>
+
+    <insert id="insertAuditList" parameterType="list">
+        insert into process.s_audit_item(
+            created_by
+            , last_upd_by
+            , buscomp_name
+            , operation_cd
+            , record_id
+            , user_id
+            , tbl_name
+            , old_val
+            , new_val
+            , tbl_record_id
+            , field_name
+        )
+        values
+        <foreach collection="auditList" item="item" separator=",">
+            (
+                'interface'
+                , 'interface'
+                , 'account'
+                , #{item.operation}
+                , #{item.rowId}
+                , 'interface'
+                , 'account'
+                , #{item.oldValue}
+                , #{item.newValue}
+                , #{item.rowId}
+                , #{item.fieldName}
+            )
+        </foreach>
+    </insert>
     
     <insert id="insertProcessAccount" statementType="CALLABLE" parameterType="hashMap">
         call process.if_account_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN},#{PROC_ACC_ID,jdbcType=VARCHAR,mode=IN},#{checkcu,jdbcType=VARCHAR,mode=IN});
