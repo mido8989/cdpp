@@ -188,45 +188,45 @@
 
     <select id="getOldAccount" parameterType="string" resultType="IFHMBINNOCEANCDPP0013Dto">
         select
-            row_id
-            , integrationid 
-            , corporateregistrationnumber__c 
-            , "name"
-            , corporaterepresentativename__c 
-            , cust_stat_cd__c 
-            , situationstatusreason__c 
-            , dealershoptype__c 
-            , dealercode__c 
-            , phone 
-            , fax 
-            , emailaddress__c 
-            , sapworkaddress__c  
-            , salesflag__c
-            , serviceflag__c
-            , prtnrshp_start_dt__c
-            , prtnrshp_end_dt__c 
-            , region__c 
-            , businesshours__c 
-            , facebook__c 
-            , website 
-            , billingstreet 
-            , billingstreet_2__c 
-            , billingstreet_3__c 
-            , billingcounty 
-            , billingcity 
-            , billingstate 
-            , billinglatitude 
-            , billinglongitude 
-            , billingpostalcode 
-            , dealergroupcode__c 
-            , salesgroup__c 
-            , salesmanager__c 
-            , servicemanager__c 
-            , servicewhatsappnumber__c 
-            , saleswhatsappnumber__c 
-            , salesdistrict__c 
-            , salesoffice__c 
-            , division__c 
+            row_id as procRowId
+            , integrationid as integrationId
+            , corporateregistrationnumber__c as cnpj
+            , "name" as name
+            , corporaterepresentativename__c as nickname
+            , cust_stat_cd__c as accountStatus
+            , situationstatusreason__c as reasonStatus
+            , dealershoptype__c as dealerType
+            , dealercode__c as dealerCode
+            , phone as mainPhone
+            , fax as fax
+            , emailaddress__c as mainEmailAddress
+            , sapworkaddress__c as workEmailAddress
+            , salesflag__c as salesDealerFlag
+            , serviceflag__c as serviceDealerFlag
+            , prtnrshp_start_dt__c as partnerStartDate
+            , prtnrshp_end_dt__c as partnerEndDate
+            , region__c as region
+            , businesshours__c as workingHours
+            , facebook__c as facebookPage
+            , website as homepage
+            , billingstreet as streetAddress
+            , billingstreet_2__c as streetAddress2
+            , billingstreet_3__c as streetAddress3
+            , billingcounty as county
+            , billingcity as city
+            , billingstate as state
+            , billinglatitude as latitude
+            , billinglongitude as longitude
+            , billingpostalcode as postalCode
+            , dealergroupcode__c as dealerGroup
+            , salesgroup__c as salesGroup
+            , salesmanager__c as salesManager
+            , servicemanager__c as serviceManager
+            , servicewhatsappnumber__c as serviceWhatsAppNumber
+            , saleswhatsappnumber__c as salesWhatsAppNumber
+            , salesdistrict__c as salesDistrict
+            , salesoffice__c as salesOffice
+            , division__c as division
         from
             process.account pa
         where
