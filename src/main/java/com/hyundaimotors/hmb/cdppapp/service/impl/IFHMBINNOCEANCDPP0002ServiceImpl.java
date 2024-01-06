@@ -128,7 +128,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         String param_foundContactId = foundContactId;
         param_foundContactId = mapper.foundContactId(dto);
         map.put("CONTACT_ID", param_foundContactId);
-        //mapper.transferReplica(map);
+        mapper.transferReplica(map);
          
          return param_foundContactId;
     }
