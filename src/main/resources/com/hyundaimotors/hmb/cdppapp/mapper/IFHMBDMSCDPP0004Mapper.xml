@@ -16,7 +16,7 @@
             join
                 process.account pa
             on
-                po.dealercode__c = pa.dealercode__c and pa."type" = 'Dealer'
+                po.dealercode__c = pa.dealercode__c
             where
                 po.legacycreateddate__c <![CDATA[ <= ]]> (now() - '5 minutes'::interval)
             and
