@@ -17,11 +17,17 @@ public class IFHMBCSUCDPP0086ServiceImpl implements IFHMBCSUCDPP0086Service{
 
     public IFHMBCSUCDPP0086Dto insertObject(IFHMBCSUCDPP0086Dto dto)throws Exception{
         IFHMBCSUCDPP0086Dto resulDto = new IFHMBCSUCDPP0086Dto();
+        IFHMBCSUCDPP0086Dto emptyResulDto = new IFHMBCSUCDPP0086Dto();
         resulDto = mapper.getAccountObject(dto);
 
         if(resulDto != null){
-            resulDto.setErrorSpcCode("0");
-            resulDto.setErrorSpcMessage("OK");
+            if("1".equals(resulDto.getQtdProtocol())){
+                resulDto.setErrorSpcCode("0");
+                resulDto.setErrorSpcMessage("OK");
+            }else{
+                emptyResulDto = mapper.getOnlyAccount(dto);
+            }
+            
         }
 
         return resulDto;

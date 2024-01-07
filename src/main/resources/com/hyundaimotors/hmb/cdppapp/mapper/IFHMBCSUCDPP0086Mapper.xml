@@ -24,4 +24,18 @@
         group by pac.firstname||pac.lastname, pac.cpf__c, pac.row_id, pac.personmobilephone, pc.protocol__c
         limit 1
     </select>
+
+    <select id="getOnlyAccount" parameterType="IFHMBCSUCDPP0086Dto" resultType="IFHMBCSUCDPP0086Dto">
+        select 
+            pac.firstname||pac.lastname as name
+            , pac.cpf__c as personCPF
+            , pac.row_id as contactId
+            , pac.personmobilephone as personCell
+        where
+            case when char_length(#{phoneNumber}) <![CDATA[<=]]> 14 then (pac.personhomephone = #{phoneNumber} or pac.companyphone__pc = #{phoneNumber} or pac.personmobilephone = #{phoneNumber})
+                when char_length(#{phoneNumber}) <![CDATA[>=]]> 14 then pac.personmobilephone = #{phoneNumber}
+            end
+        group by pac.firstname||pac.lastname, pac.cpf__c, pac.row_id, pac.personmobilephone
+        limit 1
+    </select>
 </mapper>
