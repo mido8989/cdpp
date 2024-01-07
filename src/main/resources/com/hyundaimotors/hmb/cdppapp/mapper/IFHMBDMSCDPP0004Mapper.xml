@@ -16,7 +16,7 @@
             join
                 process.account pa
             on
-                po.dealercode__c = pa.dealercode__c and pa."type" = 'Dealer'
+                po.dealercode__c = pa.dealercode__c
             where
                 po.legacycreateddate__c <![CDATA[ <= ]]> (now() - '5 minutes'::interval)
             and
@@ -105,9 +105,13 @@
         join
             process.account pc
         on
-            sr.business_row_id = pc.dealercode__c and "type" = 'Dealer'  
+            sr.business_row_id = pc.dealercode__c
         where 
             sr.protocol__c = #{protocol}
+        <if test="apiKey != null and apiKey != ''">
+            and
+                pc.apikey__c = #{apiKey}
+        </if>
     </select>
 
     <select id="getfinanciamentoOpv" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadFinanciamentoOPVDto">
