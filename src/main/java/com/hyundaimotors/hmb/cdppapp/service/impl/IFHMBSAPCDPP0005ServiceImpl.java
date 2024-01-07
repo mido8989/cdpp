@@ -101,7 +101,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
          String foundAccountId = mapper.foundAccountId(dto);
          
          map.put("PROC_ACC_ID", foundAccountId);
-        //  mapper.insertReplicaAccount(map);
+         mapper.insertReplicaAccount(map);
          
          return foundAccountId;
     }
@@ -120,7 +120,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
           map.put("checkcu","update");
           
           mapper.insertProcessAccount(map);
-        //   mapper.insertReplicaAccount(map);
+          mapper.insertReplicaAccount(map);
           
           return foundAccountIdbyCnpj;
     }
