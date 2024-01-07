@@ -98,9 +98,9 @@
             , used_version 
             , used_year 
         )values(    
-            now()
+            (now() - '3 hour'::interval)
             , 'interface'
-            , now()
+            , (now() - '3 hour'::interval)
             , 'interface'
             , #{protocol}
             , #{reason}
@@ -207,9 +207,9 @@
         <foreach collection="listOfAccessories" item="item" separator=",">
             (
                 #{rowId}
-                , now()
+                , (now() - '3 hour'::interval)
                 , 'interface'
-                , now()
+                , (now() - '3 hour'::interval)
                 , 'interface'
                 , #{item.accessory}
                 , #{item.accessoryPrice}
@@ -234,9 +234,9 @@
         <foreach collection="listOfParts" item="item" separator=",">
             (
                 #{rowId}
-                , now()
+                , (now() - '3 hour'::interval)
                 , 'interface'
-                , now()
+                , (now() - '3 hour'::interval)
                 , 'interface'
                 , #{item.backOrderDate}::timestamp
                 , #{item.backOrderFlg}
