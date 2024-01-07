@@ -217,8 +217,79 @@
             s.par_row_id = #{rowId}
     </select>
 
-
+    <select id="getAccountProcess" parameterType="IFHMBINNOCEANCDPP0037Dto" resultType="IFHMBINNOCEANCDPP0037Dto">
+        select 
+            cnhexpirationdate__c as cnheXpirationDate
+            , firstname as firstName
+            , lastname as lastName
+            , personbirthdate as birthDate
+            , gender__pc as gender
+            , hkmeretaildate as retailDate
+            , personhomephone as homePhone
+            , workphone__c as workPhone
+            , personmobilephone as cellPhone
+            , personemail as emailAddress
+            , optinflag__c as loyaltyoptinflag
+            , billingstreet as streetaddress
+            , billingstreet_2__c as addressnumber
+            , billingstreet_3__c as addresscomplement
+            , billingcountry as addresscountry
+            , neighborhood as addresscounty
+            , billingcity as addresscity
+            , billingstate as addressstate
+            , billingpostalcode as addresspostalcode
+            , persondonotcall as suppressallcalls
+            , calloptyn__pc as suppressallcalls
+            , blockedemails__pc as suppressallemails
+            , blockedletters__c as suppressallmailings
+            , blockedletters__pc as suppressallmailings
+            , blockedmobile__c as suppressallmobile
+            , blockedmobile__pc as suppressallmobile
+            , blockedsms__c as suppressallsms
+            , blockedsms__pc as suppressallsms
+            , blockedvideocall__c as suppressallvideocall
+            , blockedvideocall__pc as suppressallvideocall
+            , blockedwhatsapp__c as suppressallwhatsapp
+            , blockedwhatsapp__pc as suppressallwhatsapp
+        from
+            process.account
+        where 
+            row_id = #{contactId}
+    </select>
     
+    <insert id="insertAuditAccount" parameterType="list">
+        insert into process.s_audit_item(
+            created_by
+            , last_upd_by
+            , buscomp_name
+            , operation_cd
+            , record_id
+            , user_id
+            , tbl_name
+            , old_val
+            , new_val
+            , tbl_record_id
+            , field_name
+            , header_apikey
+        )
+        values
+        <foreach collection="auditList" item="item" separator=",">
+            (
+                'interface'
+                , 'interface'
+                , 'account'
+                , #{item.operation}
+                , #{item.rowId}
+                , 'interface'
+                , 'account'
+                , #{item.oldValue}
+                , #{item.newValue}
+                , #{item.rowId}
+                , #{item.fieldName}
+                , #{item.apiKey}
+            )
+        </foreach>
+    </insert>
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_update_contact_in_wf(#{PARAM_ID}, #{VEHICLE_ID}, #{PROC_ACCOUNT_ID});
