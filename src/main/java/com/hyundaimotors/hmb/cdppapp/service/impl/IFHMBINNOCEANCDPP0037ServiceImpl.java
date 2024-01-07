@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002.InboundContactAuditDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0037.IFHMBINNOCEANCDPP0037Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0037.ListOfAutoVehicleDto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0037Mapper;
@@ -46,6 +47,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
         List<AutoVehicle> listOfAutoVehicleOut = new ArrayList<>();
         List<ContactSocialMedia> listOfContactSocialMediaOut = new ArrayList<>();
 
+        IFHMBINNOCEANCDPP0037Dto auditAccount = new IFHMBINNOCEANCDPP0037Dto();
+
+        auditAccount = mapper.getAccountProcess(dto);
 
         int checkContactId = mapper.checkAccountId(dto);
 
@@ -94,6 +98,7 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
             map.put("contactId", dto.getContactId());
             map.put("error_spcCode", "0");
             map.put("error_spcMessage", "OK");
+            map.put("oldAccount", auditAccount);
             
             updateContactOutput = mapper.getUpdateContactOutput(dto);  
             if ( listOfAutoVehicle != null ){
@@ -113,7 +118,6 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                     updateContactOutput.setListOfAutoVehicle(listOfAutoVehicleOut);
                 }
             }
-    
     
             if( listSocialMedia != null){
                 for( int i = 0; i < listSocialMedia.size(); i++){
@@ -143,7 +147,31 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
         map.put("PROC_CON_ID", String.valueOf(resulMap.get("contactId")));
 
         mapper.transferDPProcess(map);
-        
+       
+        IFHMBINNOCEANCDPP0037Dto oldAccount = new IFHMBINNOCEANCDPP0037Dto();
+
+        IFHMBINNOCEANCDPP0037Dto newAccount = new IFHMBINNOCEANCDPP0037Dto();
+
+        oldAccount = (IFHMBINNOCEANCDPP0037Dto)resulMap.get("oldAccount");
+
+        newAccount = (IFHMBINNOCEANCDPP0037Dto)resulMap.get("newAccount");
+
+        List<InboundContactAuditDto> auditList = new ArrayList<>();
+
+        if(oldAccount.getCnheXpirationDate() != null && newAccount.getCnheXpirationDate() != null){
+            if(!oldAccount.getCnheXpirationDate().equals(newAccount.getCnheXpirationDate())){
+                InboundContactAuditDto auditDto = new InboundContactAuditDto();
+                auditDto.setFieldName("cnhexpirationdate__c");
+                auditDto.setOperation("Modify");
+                auditDto.setOldValue(oldAccount.getCnheXpirationDate());
+                auditDto.setNewValue(newAccount.getCnheXpirationDate());
+                auditDto.setRowId(oldAccount.getContactId());
+                auditDto.setApiKey(newAccount.getApiKey());
+                auditList.add(auditDto);
+            }
+        }
+
+        mapper.insertAuditAccount(auditList);
     }
     
 }

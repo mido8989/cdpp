@@ -112,6 +112,7 @@ public class IFHMBINNOCEANCDPP0037Payload {
         @Schema(description = "Printed card flag. Valid values: true, false", example = "true")
         @JsonProperty("HMBPrintedCard")
         private String hmbPrintedCard;
+        private String apiKey;
 
         @JsonProperty("ListOfAutoVehicle")
         List<ListOfAutoVehicle> listOfAutoVehicle;

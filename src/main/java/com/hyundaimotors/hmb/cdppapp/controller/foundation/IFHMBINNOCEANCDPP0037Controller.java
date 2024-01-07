@@ -5,8 +5,10 @@ import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0037.IFHMBINNOCEANCDPP0037Dto;
@@ -42,7 +44,8 @@ public class IFHMBINNOCEANCDPP0037Controller {
     @Operation(summary = "Person Account Update", description = "Person Account Update")
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0037Payload.Response.class)))
     @PostMapping(value = "/api/v1/HMBUpdateContactINWF")
-    public Object updateObject(@Valid @RequestBody IFHMBINNOCEANCDPP0037Payload.Request request) throws Exception {
+    public Object updateObject(@Valid @RequestBody IFHMBINNOCEANCDPP0037Payload.Request request, @RequestHeader MultiValueMap<String, String> headerMap) throws Exception {
+       request.setApiKey(String.valueOf(headerMap.getFirst("apikey"))); 
        UUID IF_TR_ID = UUID.randomUUID();
 
        IFHMBINNOCEANCDPP0037Payload.Response response = new IFHMBINNOCEANCDPP0037Payload.Response();
@@ -61,6 +64,7 @@ public class IFHMBINNOCEANCDPP0037Controller {
             
             ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
 
+            result.put("newAccount", dto);
 
             service.insertDPObject(result);
             

@@ -42,6 +42,7 @@ public class IFHMBINNOCEANCDPP0037Dto {
     private String suppressAllVideoCall;
     private String suppressAllSMS;
     private String hmbPrintedCard;
+    private String apiKey;
 
     private String processAccountRowId;
     private String processContactRowId;
