@@ -87,7 +87,7 @@
             , pc.firstname||' '||pc.lastname as nomeResponsavel
             , sr.status as status
             , 'high' as prioridade
-            , 'Y' as identificacaoPCD
+            , pc.pcd__c as identificacaoPCD
             , pc.type as tipoContato
             , 'Y' as clienteHyundai
             , sr.usedcar_as_down_payment__c::varchar as usadoNaTroca
