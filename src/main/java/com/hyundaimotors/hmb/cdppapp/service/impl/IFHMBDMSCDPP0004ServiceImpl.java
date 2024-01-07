@@ -44,7 +44,7 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
 
         if(0 < getLeadInfoList.size()){
             for(int i=0; i < getLeadInfoList.size(); i++){
-                
+                getLeadInfoList.get(i).setApiKey(dto.getApiKey());
                 protocalList.add(getLeadInfoList.get(i).getProtocol());
                 GetLeadDto getLeadDto = new GetLeadDto();
                 GetLeadContactDto contato = new GetLeadContactDto();
