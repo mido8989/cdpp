@@ -24,12 +24,19 @@ public class IFHMBCSUCDPP0086ServiceImpl implements IFHMBCSUCDPP0086Service{
             if("1".equals(resulDto.getQtdProtocol())){
                 resulDto.setErrorSpcCode("0");
                 resulDto.setErrorSpcMessage("OK");
+                
+                return resulDto;
+
             }else{
                 emptyResulDto = mapper.getOnlyAccount(dto);
+                return emptyResulDto;
             }
             
+        }else{
+            emptyResulDto = mapper.getOnlyAccount(dto);
+            return emptyResulDto;
         }
 
-        return resulDto;
+        
     }
 }
