@@ -83,7 +83,7 @@
             , sr.business_row_id as codigoConcessionaria
             , sr.origin as origem
             , sr.method as metodo
-            , sr.legacy_created as dataAbertura
+            , to_char(timezone('UTC', sr.legacy_created),'YYYY-MM-DD HH24:MI:SS') as dataAbertura
             , pc.firstname||' '||pc.lastname as nomeResponsavel
             , sr.status as status
             , 'high' as prioridade
