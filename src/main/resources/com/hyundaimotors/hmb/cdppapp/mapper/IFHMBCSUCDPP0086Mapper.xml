@@ -31,6 +31,8 @@
             , pac.cpf__c as personCPF
             , pac.row_id as contactId
             , pac.personmobilephone as personCell
+        from
+            process.account pac
         where
             case when char_length(#{phoneNumber}) <![CDATA[<=]]> 14 then (pac.personhomephone = #{phoneNumber} or pac.companyphone__pc = #{phoneNumber} or pac.personmobilephone = #{phoneNumber})
                 when char_length(#{phoneNumber}) <![CDATA[>=]]> 14 then pac.personmobilephone = #{phoneNumber}
