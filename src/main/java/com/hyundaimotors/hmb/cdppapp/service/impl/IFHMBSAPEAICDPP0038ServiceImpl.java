@@ -25,9 +25,13 @@ public class IFHMBSAPEAICDPP0038ServiceImpl implements IFHMBSAPEAICDPP0038Servic
 
         mapper.insertLead(dto);
 
-        mapper.insertTemperature(dto);
+        if (dto.getListOfTemperature() != null && !dto.getListOfTemperature().isEmpty()) {
+            mapper.insertTemperature(dto);
+        }
 
-        mapper.insertInteraction(dto);
+        if (dto.getListOfInteraction() != null && !dto.getListOfInteraction().isEmpty()) {
+            mapper.insertInteraction(dto);
+        }
 
         HashMap<String, String> map = new HashMap<>();
 
