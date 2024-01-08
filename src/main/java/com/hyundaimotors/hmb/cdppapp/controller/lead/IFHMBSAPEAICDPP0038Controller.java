@@ -81,7 +81,7 @@ public class IFHMBSAPEAICDPP0038Controller {
 
         String pcd = dto.getPcd();
         if (pcd != null && pcd.contains("null")) {
-            dto.setVisitdate(null);
+            dto.setPcd(null);
         }
 
         return dto;
