@@ -78,6 +78,12 @@ public class IFHMBSAPEAICDPP0038Controller {
             strDateTime = strDateTime.replace("null:", "00:00:");
             dto.setVisitdate(strDateTime);
         }
+
+        String pcd = dto.getPcd();
+        if (pcd != null && pcd.contains("null")) {
+            dto.setVisitdate(null);
+        }
+
         return dto;
     }
 }
