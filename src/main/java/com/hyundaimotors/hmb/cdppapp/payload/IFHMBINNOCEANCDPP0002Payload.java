@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,7 +49,8 @@ public class IFHMBINNOCEANCDPP0002Payload {
         private String workPhone;
         @Schema(description = "Contact cell phone.", example = "11941319501")
         @JsonProperty("CellPhone")
-        private String cellPhone;        
+        private String cellPhone;
+        @Pattern(regexp="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])+[.][a-zA-Z]{2,3}$", message="Please Pattern Email")       
         @Schema(description = "Contact email address.", example = "kilosolution2s@gmail.com")
         @JsonProperty("EmailAddress")
         private String emailAddress;
