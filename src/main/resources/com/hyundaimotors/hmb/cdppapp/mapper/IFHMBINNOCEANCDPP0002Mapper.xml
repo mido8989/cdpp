@@ -17,16 +17,16 @@
               a.row_id as foundAccountIdbyNameAndPhoneAndEmail
         from
             process.account a
-        where a.firstname                                      = #{firstName}
-          and a.lastname                                       = #{lastName}
-          <if test="cellPhone != null and cellPhone !=''">
+        where 
+            a.firstname  = #{firstName}
+        and 
+            a.lastname  = #{lastName}
+        <if test="cellPhone != null and cellPhone !=''">
             and a.personmobilephone = #{cellPhone}
-          </if>
-          <if test="emailAddress != null and emailAddress !=''">
+        </if>
+        <if test="emailAddress != null and emailAddress !=''">
             and a.personemail = #{emailAddress}
-          </if>
-          <!-- and coalesce(nullif(a.personmobilephone,''),'PHONE') = coalesce(nullif(#{cellPhone},''),'PHONE')
-          and coalesce(nullif(a.personemail,''),'EMAIL')       = coalesce(nullif(#{emailAddress},''),'EMAIL') -->
+        </if>
     </select>
     
     <select id="foundContactId" parameterType="IFHMBINNOCEANCDPP0002Dto" resultType="String">
@@ -34,18 +34,19 @@
             row_id as foundContactId
         from
             process.account a
-       where (a.cpf__c                                                 = #{cpf}
-	          or (a.firstname                                          = #{firstName}
-	              and a.lastname                                       = #{lastName}
-                  <if test="cellPhone != null and cellPhone !=''">
-                    and a.personmobilephone = #{cellPhone}
-                  </if>
-                  <if test="emailAddress != null and emailAddress !=''">
-                    and a.personemail = #{emailAddress}
-                  </if>
-	              <!-- and coalesce(nullif(a.personmobilephone,''),'PHONE') = coalesce(nullif(#{cellPhone},''),'PHONE')
-	              and coalesce(nullif(a.personemail,''),'EMAIL')       = coalesce(nullif(#{emailAddress},''),'EMAIL') -->
-                  ))
+        where 
+            (a.cpf__c  = #{cpf}
+        or 
+            (a.firstname  = #{firstName}
+        and 
+            a.lastname  = #{lastName}
+        <if test="cellPhone != null and cellPhone !=''">
+            and a.personmobilephone = #{cellPhone}
+        </if>
+        <if test="emailAddress != null and emailAddress !=''">
+            and a.personemail = #{emailAddress}
+        </if>
+            ))
     </select>
     
     <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0002Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
