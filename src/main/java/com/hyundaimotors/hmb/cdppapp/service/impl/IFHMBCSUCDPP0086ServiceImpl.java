@@ -34,6 +34,11 @@ public class IFHMBCSUCDPP0086ServiceImpl implements IFHMBCSUCDPP0086Service{
             
         }else{
             emptyResulDto = mapper.getOnlyAccount(dto);
+            if (emptyResulDto == null) {
+                emptyResulDto = new IFHMBCSUCDPP0086Dto();
+                emptyResulDto.setErrorSpcCode("1");
+                emptyResulDto.setErrorSpcMessage("No Data");
+            }
             return emptyResulDto;
         }
 
