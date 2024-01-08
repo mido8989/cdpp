@@ -35,8 +35,8 @@
         from
             process.account a
         where 
-            (a.cpf__c  = #{cpf}
-        or 
+            1=1
+        and 
             (a.firstname  = #{firstName}
         and 
             a.lastname  = #{lastName}
@@ -46,7 +46,10 @@
         <if test="emailAddress != null and emailAddress !=''">
             and a.personemail = #{emailAddress}
         </if>
-            ))
+            )
+        <if test="cpf != null and cpf !=''">
+            or a.cpf__c  = #{cpf}
+        </if>
     </select>
     
     <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0002Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
