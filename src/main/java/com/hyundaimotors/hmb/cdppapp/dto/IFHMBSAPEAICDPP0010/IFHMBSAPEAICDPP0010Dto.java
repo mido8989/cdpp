@@ -45,6 +45,7 @@ public class IFHMBSAPEAICDPP0010Dto {
         private String tdatHome;
         private String ccs_flg;
         private String contactId;
+        private String accountId;
         private String errorSpcCode;
         private String errorSpcMessage;
 
