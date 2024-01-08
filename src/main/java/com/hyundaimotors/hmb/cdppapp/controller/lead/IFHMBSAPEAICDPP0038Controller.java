@@ -46,6 +46,8 @@ public class IFHMBSAPEAICDPP0038Controller {
         ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
         try {
             IFHMBSAPEAICDPP0038Dto dto = defaultMapper.map(request, IFHMBSAPEAICDPP0038Dto.class);
+            //Modify DateTime string if there're "null" string.
+            dto = this.validateDateTime(dto);
             
             IFHMBSAPEAICDPP0038Dto resultDto = new IFHMBSAPEAICDPP0038Dto();
     
@@ -63,5 +65,19 @@ public class IFHMBSAPEAICDPP0038Controller {
              ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
         }
         return response;
+    }
+
+    private IFHMBSAPEAICDPP0038Dto validateDateTime(IFHMBSAPEAICDPP0038Dto dto) {
+        String strDateTime = dto.getSchedvisit();
+        if (strDateTime != null && strDateTime.contains("null:")) {
+            strDateTime = strDateTime.replace("null:", "00:00:");
+            dto.setSchedvisit(strDateTime);
+        }
+        strDateTime = dto.getVisitdate();
+        if (strDateTime != null && strDateTime.contains("null:")) {
+            strDateTime = strDateTime.replace("null:", "00:00:");
+            dto.setVisitdate(strDateTime);
+        }
+        return dto;
     }
 }
