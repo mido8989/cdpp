@@ -11,9 +11,13 @@ public interface IFHMBSAPEAICDPP0010Mapper {
     
     public String getProcAssetId(IFHMBSAPEAICDPP0010Dto dto) throws Exception;
     
-    public String getProcInvoiceId(IFHMBSAPEAICDPP0010Dto dto) throws Exception;
+    public String getProcInvoiceIdCon(IFHMBSAPEAICDPP0010Dto dto) throws Exception;
 
-    public List<String> getProcCustVehicleId(IFHMBSAPEAICDPP0010Dto dto) throws Exception;
+    public String getProcInvoiceIdAcc(IFHMBSAPEAICDPP0010Dto dto) throws Exception;
+
+    public List<String> getProcCustVehicleIdCon(IFHMBSAPEAICDPP0010Dto dto) throws Exception;
+
+    public List<String> getProcCustVehicleIdAcc(IFHMBSAPEAICDPP0010Dto dto) throws Exception;
         
     public void insertAutoVehicle(IFHMBSAPEAICDPP0010Dto dto) throws Exception;
 

@@ -10,7 +10,7 @@
             serialnumber = #{serialNumber}
     </select>
 
-    <select id="getProcInvoiceId" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="String">
+    <select id="getProcInvoiceIdCon" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="String">
         select 
             row_id as getProcInvoiceId
         from
@@ -25,7 +25,22 @@
             lower(status) not in ('inactive')   
     </select>
 
-    <select id="getProcCustVehicleId" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="String">
+    <select id="getProcInvoiceIdAcc" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="String">
+        select 
+            row_id as getProcInvoiceId
+        from
+            process.invoiceinfo
+        where            
+            name = #{serialNumber}
+        <if test="contactId != null">
+        and 
+            person_account_id = #{contactId}
+        </if>
+        and
+            lower(status) not in ('inactive')   
+    </select>
+
+    <select id="getProcCustVehicleIdCon" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="String">
         select 
             pv.row_id
         from
@@ -36,11 +51,35 @@
             pv.asset_id = pa.row_id
         where  
             pa.serialnumber = #{serialNumber}
+        and
+            pv.cv_type = 'Person'
             <if test="contact != null">
                 and 
                 pv.account_id in 
                 <foreach collection="contact" item="item" index="idx" open="(" close=")" separator=","> 
                     #{item.connexContactId}
+                </foreach>
+            </if>    
+    </select>
+
+    <select id="getProcCustVehicleIdAcc" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="String">
+        select 
+            pv.row_id
+        from
+            process.customer_vehicle pv
+        join
+            process.asset pa
+        on
+            pv.asset_id = pa.row_id
+        where  
+            pa.serialnumber = #{serialNumber}
+        and
+            pv.cv_type = 'Business'
+            <if test="account != null">
+                and 
+                pv.account_id in 
+                <foreach collection="account" item="item" index="idx" open="(" close=")" separator=","> 
+                    #{item.connexAccountId}
                 </foreach>
             </if>    
     </select>
