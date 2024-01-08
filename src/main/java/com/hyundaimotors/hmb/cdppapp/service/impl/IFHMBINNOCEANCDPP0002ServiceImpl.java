@@ -64,13 +64,13 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
        
        String foundContactIdbyCpf = null;
        if(dto.getCpf() != null && !"".equals(dto.getCpf())) { //update
+            foundContactIdbyCpf = mapper.foundContactId(dto);            
             isValidation = true;
-            foundContactIdbyCpf = mapper.foundContactIdbyCpf(dto);
        }else {
-           if(!isNull(dto.getFirstName()) && !isNull(dto.getLastName()) && !isNull(dto.getCellPhone()) && !isNull(dto.getEmailAddress())) {
-               isValidation = true;
-               foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
-           }
+        //    if(!isNull(dto.getFirstName()) && !isNull(dto.getLastName()) && !isNull(dto.getCellPhone()) && !isNull(dto.getEmailAddress())) {
+            foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
+            isValidation = true;
+        //    }
        }
        
        String foundContactId = mapper.foundContactId(dto);
