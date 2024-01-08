@@ -63,14 +63,12 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
        boolean isValidation = false;
        
        String foundContactIdbyCpf = null;
-       if(dto.getCpf() != null && !"".equals(dto.getCpf())) { //update
+       if(dto.getCpf() != null && !dto.getCpf().equals("")) { //update
             foundContactIdbyCpf = mapper.foundContactId(dto);            
             isValidation = true;
        }else {
-        //    if(!isNull(dto.getFirstName()) && !isNull(dto.getLastName()) && !isNull(dto.getCellPhone()) && !isNull(dto.getEmailAddress())) {
             foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
             isValidation = true;
-        //    }
        }
        
        String foundContactId = mapper.foundContactId(dto);
