@@ -113,7 +113,9 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
     }
 
     public void UpdateOppt(HashMap<String, String[]> map)throws Exception{
-        mapper.transferProcess(map);
-        mapper.transferReplica(map);
+        if (map != null && !map.isEmpty()) {
+            mapper.transferProcess(map);
+            mapper.transferReplica(map);
+        }
     } 
 }
