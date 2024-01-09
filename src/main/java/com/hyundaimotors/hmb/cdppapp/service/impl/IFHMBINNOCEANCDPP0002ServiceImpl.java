@@ -34,6 +34,14 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }else{
                 dto.setLastName(dtoFirstName);
             }
+        }else if( dtoFirstName == null || dtoFirstName.isEmpty() || dtoFirstName == ""){
+            String[] splLastName = dtoLastName.split(" ",2);
+            if( splLastName.length > 1 ){
+                dto.setFirstName(splLastName[0]);
+                dto.setLastName(splLastName[1]);
+            }else {
+                dto.setFirstName(dtoLastName);
+            }
         }
 
         mapper.insertObject(dto);
