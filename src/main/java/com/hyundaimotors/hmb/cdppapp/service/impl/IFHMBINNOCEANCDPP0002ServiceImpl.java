@@ -89,7 +89,9 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
              if(!isNull(foundContactIdbyCpf)) {
                  resultDto.setContactId(update(dto,foundContactIdbyCpf));
                  resultDto.setCheckUpsert("update");
-                 oldAccount.setCheckUpsert("update");
+                 if(oldAccount != null){
+                     oldAccount.setCheckUpsert("update");
+                 }
              }else {
                  resultDto.setContactId(insert(dto,foundContactId));
                  resultDto.setCheckUpsert("insert");
