@@ -27,6 +27,9 @@
         <if test="emailAddress != null and emailAddress !=''">
             and a.personemail = #{emailAddress}
         </if>
+        <if test="cpf != null and cpf !=''">
+            and a.cpf__c = #{cpf}
+        </if>
     </select>
     
     <select id="foundContactId" parameterType="IFHMBINNOCEANCDPP0002Dto" resultType="String">
@@ -37,19 +40,7 @@
         where 
             1=1
         and 
-            (a.firstname  = #{firstName}
-        and 
-            a.lastname  = #{lastName}
-        <if test="cellPhone != null and cellPhone !=''">
-            and a.personmobilephone = #{cellPhone}
-        </if>
-        <if test="emailAddress != null and emailAddress !=''">
-            and a.personemail = #{emailAddress}
-        </if>
-            )
-        <if test="cpf != null and cpf !=''">
-            or a.cpf__c  = #{cpf}
-        </if>
+            a.cpf__c = #{cpf}
     </select>
     
     <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0002Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
