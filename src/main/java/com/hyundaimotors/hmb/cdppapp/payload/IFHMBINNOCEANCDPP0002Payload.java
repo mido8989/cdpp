@@ -50,7 +50,7 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @Schema(description = "Contact cell phone.", example = "11941319501")
         @JsonProperty("CellPhone")
         private String cellPhone;
-        @Pattern(regexp="^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])+[.][a-zA-Z]{2,3}$", message="Please Pattern Email")       
+        @Pattern(regexp="^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$", message="Please Pattern Email")       
         @Schema(description = "Contact email address.", example = "kilosolution2s@gmail.com")
         @JsonProperty("EmailAddress")
         private String emailAddress;
