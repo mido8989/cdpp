@@ -1,13 +1,10 @@
 package com.hyundaimotors.hmb.cdppapp.service.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0005.AccountWebserviceAuditDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0005.IFHMBSAPCDPP0005Dto;
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0005Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPCDPP0005Service;
@@ -36,13 +33,11 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
        
        String foundAccountIdbyCnpj = null;
        if(!isNull(dto.getCnpjNumber())) { //update
+            foundAccountIdbyCnpj = mapper.foundAccountIdbyCnpj(dto);
             isValidation = true;
-           foundAccountIdbyCnpj = mapper.foundAccountIdbyCnpj(dto);
        }else {
-           if(!isNull(dto.getName()) && !isNull(dto.getMainPhoneNumber()) && !isNull(dto.getMainEmailAddress())) {
-               isValidation = true;
-               foundAccountIdbyCnpj = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
-           }
+           foundAccountIdbyCnpj = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
+            isValidation = true;
        }
 
        String foundAccountId = mapper.foundAccountId(dto);
@@ -98,7 +93,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
          
          mapper.insertProcessAccount(map);  
          
-         String foundAccountId = mapper.foundAccountId(dto);
+         String foundAccountId = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
          
          map.put("PROC_ACC_ID", foundAccountId);
          mapper.insertReplicaAccount(map);
@@ -131,7 +126,7 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
      * @return
      */
     private boolean isNull(String value) {
-        return !(value != null && !"".equals(value.trim())) && true;
+        return !(value != null && !value.trim().equals("")) && true;
     }
 
 
