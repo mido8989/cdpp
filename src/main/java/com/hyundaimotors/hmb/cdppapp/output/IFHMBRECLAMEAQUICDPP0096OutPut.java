@@ -54,7 +54,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
         HttpClient client = HttpClient.newHttpClient();
         
         // REST API 엔드포인트 URL 설정
-        String apiUrl = "https://apitest.hyundai-brasil.com:8065/integration/reclame-aqui/v1.0/api/ticket/v1/tickets";
+        String apiUrl = "https://api.hyundai-brasil.com:8065/integration/reclame-aqui/v1.0/api/ticket/v1/tickets";
 
         // HTTP 요청 초기화
         HttpRequest request = HttpRequest.newBuilder()
@@ -390,8 +390,8 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
 
     public String getToken() throws ParseException{
         HttpClient client = HttpClient.newHttpClient();
-        String endPoint = "https://apitest.hyundai-brasil.com:8065/integration/v1/oauth/token";
-        String params =  "client_id=4217742c-7607-4663-a8eb-c02a8d4dff19&client_secret=78bf43ae-e3f0-4cda-8cb3-326a4766443f&grant_type=client_credentials";
+        String endPoint = "https://api.hyundai-brasil.com:8065/integration/v1/oauth/token";
+        String params =  "client_id=b51a5b65-1363-4bf1-8015-0707d7f9b8e2&client_secret=4cf4514e-663e-478a-b4eb-ecedccc82aaa&grant_type=client_credentials";
         HttpResponse<String> response;
         String responseBody = "";
         String accessToken = "";
