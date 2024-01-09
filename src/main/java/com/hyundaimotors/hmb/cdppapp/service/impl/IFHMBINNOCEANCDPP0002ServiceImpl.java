@@ -79,11 +79,15 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             isValidation = true;
        }
        
-       String foundContactId = mapper.foundContactId(dto);
+    //    String foundContactId = mapper.foundContactId(dto);
        
        IFHMBINNOCEANCDPP0002Dto oldAccount = new IFHMBINNOCEANCDPP0002Dto();
        
-       oldAccount = mapper.getOldAccount(foundContactId);
+       if (foundContactIdbyCpf != null){
+           oldAccount = mapper.getOldAccount(foundContactIdbyCpf);
+       }
+
+       
 
        if(isValidation) {
              if(!isNull(foundContactIdbyCpf)) {
@@ -93,18 +97,18 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                      oldAccount.setCheckUpsert("update");
                  }
              }else {
-                 resultDto.setContactId(insert(dto,foundContactId));
+                 resultDto.setContactId(insert(dto));
                  resultDto.setCheckUpsert("insert");
              }
              
              resultDto.setError_spcCode("0"); 
              resultDto.setError_spcMessage("OK");
        }else {
-           if(!isNull(foundContactId)) {//저장 조건중 row_id를 가져올수 있다면..
-               resultDto.setContactId(update(dto,foundContactId));
+           if(!isNull(foundContactIdbyCpf)) {//저장 조건중 row_id를 가져올수 있다면..
+               resultDto.setContactId(update(dto,foundContactIdbyCpf));
                resultDto.setCheckUpsert("update");
            }else {
-               resultDto.setContactId(insert(dto,foundContactId));
+               resultDto.setContactId(insert(dto));
                resultDto.setCheckUpsert("insert");
            }
            
@@ -126,15 +130,14 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
      * @return
      * @throws Exception
      */
-    private String insert(IFHMBINNOCEANCDPP0002Dto dto,String foundContactId) throws Exception {
+    private String insert(IFHMBINNOCEANCDPP0002Dto dto) throws Exception {
         HashMap<String, String> map = new HashMap<>();
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
         map.put("checkcu", "insert");
         
         mapper.transferProcess(map);
         
-        String param_foundContactId = foundContactId;
-        param_foundContactId = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
+        String param_foundContactId = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
         map.put("CONTACT_ID", param_foundContactId);
         mapper.transferReplica(map);
          

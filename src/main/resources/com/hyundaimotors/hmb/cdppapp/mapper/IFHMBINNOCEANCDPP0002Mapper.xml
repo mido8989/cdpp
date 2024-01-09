@@ -27,9 +27,6 @@
         <if test="emailAddress != null and emailAddress !=''">
             and a.personemail = #{emailAddress}
         </if>
-        <if test="cpf != null and cpf !=''">
-            and a.cpf__c = #{cpf}
-        </if>
     </select>
     
     <select id="foundContactId" parameterType="IFHMBINNOCEANCDPP0002Dto" resultType="String">
