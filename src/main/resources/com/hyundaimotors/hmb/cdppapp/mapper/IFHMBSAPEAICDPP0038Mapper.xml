@@ -35,15 +35,15 @@
             , #{salesStatus}
             , #{saleCPF}
             , #{status}
-            , nullif(#{firstInteractionDate},'')::timestamp
+            , to_timestamp(#{firstInteractionDate}, 'DD/MM/YYYY HH24:mi:SS')
             , #{saleReason}
-            , nullif(#{endDate},'')::timestamp
-            , nullif(#{dlrReceiveDate},'')::timestamp
+            , to_timestamp(#{endDate}, 'DD/MM/YYYY HH24:mi:SS')
+            , to_timestamp(#{dlrReceiveDate}, 'DD/MM/YYYY HH24:mi:SS')
             , #{dlrResponseTime}
             , #{pcd}
             , #{source}
-            , nullif(#{schedvisit},'')::timestamp
-            , nullif(#{visitdate},'')::timestamp
+            , to_timestamp(#{schedvisit}, 'DD/MM/YYYY HH24:mi:SS')
+            , to_timestamp(#{visitdate}, 'DD/MM/YYYY HH24:mi:SS')
             , #{visitstat}
         )
     </insert>
@@ -92,7 +92,7 @@
                 , 'interface'
                 , #{item.interactionNum}
                 , #{item.description}
-                , nullif(#{item.date},'')::timestamp
+                , to_timestamp(#{item.date}, 'DD/MM/YYYY HH24:mi:SS')
                 , #{item.contactCustomer}
             )
         </foreach>
