@@ -23,8 +23,8 @@
                 po."type" != 'Test Drive'
             and
             	po."type" != 'Showroom'
-            and
-                po.transferredopportunity__c != true
+            <!--and
+                po.transferredopportunity__c != true-->
             <if test="statusLead != null and statusLead != ''">
                 and
                     sr.status = #{statusLead}
