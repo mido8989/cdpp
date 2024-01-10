@@ -36,7 +36,7 @@ public class GetLeadBatch {
 
     
     @Scheduled(cron = "0 */5 * * * *")
-    public void getQuExpert() throws ParseException, JsonProcessingException {
+    public void getQuExpert() throws ParseException{
         System.out.println("Start =========================================> ");
         String accessToken = getToken();
 
@@ -44,31 +44,33 @@ public class GetLeadBatch {
         List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
 
         quexpertList = service.getQuexpertList();
+        try {
+            if(0 < quexpertList.size()){
+                System.out.println("quexpertList =========================================> " + quexpertList.size());
+                for(int i=0; i < quexpertList.size(); i++){
+                    ObjectMapper mapper = new ObjectMapper(); 
+                    String jsonString = mapper.writeValueAsString(quexpertList.get(i));
+                    
+                    System.out.println("result =========================================> " + jsonString);
+                    
+                    // REST API 호출 및 데이터 처리 로직
+                    /*HttpClient client = HttpClient.newHttpClient();
+                    
+                    // REST API 엔드포인트 URL 설정
+                    String apiUrl = "https://api.hyundai-brasil.com:8065/integration/q-expert/leadscore/v1.0/score-lead";
 
-        if(0 < quexpertList.size()){
-            System.out.println("quexpertList =========================================> " + quexpertList.size());
-            for(int i=0; i < quexpertList.size(); i++){
-                ObjectMapper mapper = new ObjectMapper(); 
-                String jsonString = mapper.writeValueAsString(quexpertList.get(i));
-                
-                System.out.println("result =========================================> " + jsonString);
-                
-                // REST API 호출 및 데이터 처리 로직
-                /*HttpClient client = HttpClient.newHttpClient();
-                
-                // REST API 엔드포인트 URL 설정
-                String apiUrl = "https://api.hyundai-brasil.com:8065/integration/q-expert/leadscore/v1.0/score-lead";
-
-                // HTTP 요청 초기화
-                HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create(apiUrl))
-                        .setHeader("Authorization", "Bearer " + accessToken)
-                        .header("Content-Type", "text/plain")
-                        .POST(BodyPublishers.ofString(jsonString))
-                        .build();*/
+                    // HTTP 요청 초기화
+                    HttpRequest request = HttpRequest.newBuilder()
+                            .uri(URI.create(apiUrl))
+                            .setHeader("Authorization", "Bearer " + accessToken)
+                            .header("Content-Type", "text/plain")
+                            .POST(BodyPublishers.ofString(jsonString))
+                            .build();*/
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
       
                 
     //GetLeadQuExpertDto
