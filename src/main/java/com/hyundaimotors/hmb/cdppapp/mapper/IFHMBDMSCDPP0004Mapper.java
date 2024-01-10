@@ -3,12 +3,15 @@ package com.hyundaimotors.hmb.cdppapp.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import org.json.simple.parser.ParseException;
+
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeaDveiculoEntradaOPVDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadAgendamentoDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadContactDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadFinanciamentoOPVDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadInteractionDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadOpvDto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadQuExpertDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadResultDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadTemperatureDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.IFHMBDMSCDPP0004Dto;
@@ -39,4 +42,6 @@ public interface IFHMBDMSCDPP0004Mapper {
     public void transferProcess(HashMap<String, String[]> parMap)throws Exception;
 
     public void transferReplica(HashMap<String, String[]> parMap)throws Exception;
+
+    public List<GetLeadQuExpertDto> getQuexpertList() throws ParseException;
 }
