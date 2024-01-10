@@ -46,7 +46,8 @@ public class GetLeadBatch {
             for(int i=0; i < quexpertList.size(); i++){
                 String result = JSONArray.toJSONString(quexpertList);
 
-                System.err.println("result ========================================= > " + result);
+                System.out.println("quexpertList ========================================= > " + quexpertList.size());
+                System.out.println("result ========================================= > " + result);
                 
                 // REST API 호출 및 데이터 처리 로직
                 HttpClient client = HttpClient.newHttpClient();
