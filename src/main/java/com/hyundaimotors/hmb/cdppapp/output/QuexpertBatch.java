@@ -50,7 +50,7 @@ public class QuexpertBatch {
     ModelMapper modelMapper = new ModelMapper();
 
     
-    @Scheduled(cron = "0 */5 * * * *")
+    //@Scheduled(cron = "0 */5 * * * *")
     public void getQuExpert() throws ParseException{
         UUID IF_TR_ID = UUID.randomUUID();
 
