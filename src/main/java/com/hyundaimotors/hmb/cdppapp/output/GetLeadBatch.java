@@ -85,7 +85,7 @@ public class GetLeadBatch {
                     System.out.println("statusCode =========================================> " + statusCode);
                     System.out.println("responseBody =========================================> " + responseBody);
 
-                    service.updateTransQu(dto);
+                    //service.updateTransQu(dto);
                 }
             }
         } catch (Exception e) {
