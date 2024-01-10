@@ -50,7 +50,7 @@ public class QuexpertBatch {
     ModelMapper modelMapper = new ModelMapper();
 
     
-    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */1 * * * *")
     public void getQuExpert() throws ParseException{
         UUID IF_TR_ID = UUID.randomUUID();
 
@@ -58,7 +58,7 @@ public class QuexpertBatch {
         
         List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
         
-        int limit = 100;
+        int limit = 1;
 
         quexpertList = service.getQuexpertList(limit);
         try {
