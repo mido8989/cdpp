@@ -58,7 +58,7 @@ public class QuexpertBatch {
         
         List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
         
-        int limit = 1;
+        int limit = 100;
 
         quexpertList = service.getQuexpertList(limit);
         try {
