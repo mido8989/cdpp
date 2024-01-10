@@ -45,5 +45,7 @@ public interface IFHMBDMSCDPP0004Mapper {
 
     public List<GetLeadQuExpertDto> getQuexpertList() throws ParseException;
 
-    public void UpdateTransQu(GetLeadQuExpertDto dto)throws ParseException;
+    public void updateTransQuProcess(HashMap<String, String> quexpertMap)throws ParseException;
+
+    public void updateTransQuReplica(HashMap<String, String> quexpertMap)throws ParseException;
 }
