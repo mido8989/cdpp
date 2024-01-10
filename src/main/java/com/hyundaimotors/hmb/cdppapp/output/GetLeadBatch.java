@@ -76,7 +76,7 @@ public class GetLeadBatch {
                             .POST(BodyPublishers.ofString(jsonString))
                             .build();
 
-                    service.updateTransQu(dto);
+                    
 
                     HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
                     int statusCode = response.statusCode();
@@ -84,6 +84,8 @@ public class GetLeadBatch {
 
                     System.out.println("statusCode =========================================> " + statusCode);
                     System.out.println("responseBody =========================================> " + responseBody);
+
+                    service.updateTransQu(dto);
                 }
             }
         } catch (Exception e) {
