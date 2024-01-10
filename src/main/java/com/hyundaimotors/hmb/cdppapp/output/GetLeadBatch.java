@@ -41,16 +41,15 @@ public class GetLeadBatch {
 
         List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
 
-        //quexpertList = service.getQuexpertList();
+        quexpertList = service.getQuexpertList();
 
         if(0 < quexpertList.size()){
-            // 현재 날짜 구하기(Paris)
             for(int i=0; i < quexpertList.size(); i++){
                 ObjectMapper mapper = new ObjectMapper(); 
                 String jsonString = mapper.writeValueAsString(quexpertList.get(i));
 
-                System.out.println("quexpertList ========================================= > " + quexpertList.size());
-                System.out.println("result ========================================= > " + jsonString);
+                System.out.println("quexpertList =========================================> " + quexpertList.size());
+                System.out.println("result =========================================> " + jsonString);
                 
                 // REST API 호출 및 데이터 처리 로직
                 /*HttpClient client = HttpClient.newHttpClient();
