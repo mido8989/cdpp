@@ -44,6 +44,11 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
         }
 
+
+
+        System.out.println("@#@#@#@#@#@# dto.getFirstName #@#@#@##@" + dto.getFirstName());
+        System.out.println("@#@#@#@#@#@# dto.getLastName #@#@#@##@" + dto.getLastName());
+
         mapper.insertObject(dto);
         if(  dto.getListOfCurrentCars() != null){
             mapper.insertCar(dto);
@@ -183,6 +188,9 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         mapper.transferDPProcess(map);
 
         IFHMBINNOCEANCDPP0002Dto newAccount = new IFHMBINNOCEANCDPP0002Dto();
+
+
+        System.out.println(":::::::: dto.getContactId() :::::::" + dto.getContactId());
 
         newAccount = mapper.getOldAccount(dto.getContactId());
 
