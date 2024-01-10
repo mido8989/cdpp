@@ -212,47 +212,47 @@
 
     <select id="getQuexpertList" parameterType="integer" resultType="GetLeadQuExpertDto">
         select
-            pa.personemail as contact_email
+            pa.personemail as contactEmail
             , po.protocol__c as protocol
             , po.statussales__c as stagename
-            , po.legacycreateddate__c as asgn_dt
-            , pa.personbirthdate as birth_dt
-            , pa.billingcity as city_cust
-            , po.closedate as close_dt
+            , po.legacycreateddate__c as asgnDt
+            , pa.personbirthdate as birthDt
+            , pa.billingcity as cityCust
+            , po.closedate as closeDt
             , pa.row_id
-            , pa."type" as contact_type
-            , pd.dealercode__c as sales_dlr_code
-            , pd.corporaterepresentativename__c as sales_dlr_nick
+            , pa."type" as contactType
+            , pd.dealercode__c as salesDlrCode
+            , pd.corporaterepresentativename__c as salesDlrNick
             , pd.situationstatusreason__c
             , po.description as description
-            , pd.billingcity as dlr_city
-            , pd.billingstate as status_dealer
+            , pd.billingcity as dlrCity
+            , pd.billingstate as statusDealer
             , po.form__c as form
             , pa.gender__pc as gender
             , po.level1__c as level1
             , po.level2__c as level2
             , po.level3__c as level3
             , po.level4__c as level4
-            , po.medium_tag__c as medium_tag
+            , po.medium_tag__c as mediumTag
             , po.origin as origin
-            , sr.quote_color__c as quote_color
-            , sr.quote_color_price__c as quote_color_price
-            , sr.usedcar_max_price__c as quote_final_price
-            , sr.quotetransmission__c as quote_transmission
-            , sr.quote_version_price__c as quote_version_price
-            , sr.version__c as quote_version
+            , sr.quote_color__c as quoteColor
+            , sr.quote_color_price__c as quoteColorPrice
+            , sr.usedcar_max_price__c as quoteFinalPrice
+            , sr.quotetransmission__c as quoteTransmission
+            , sr.quote_version_price__c as quoteVersionPrice
+            , sr.version__c as quoteVersion
             , po.status as stagename
-            , po.dealercode__c as quote_dealer
+            , po.dealercode__c as quoteDealer
             , po.reason__c as reason
-            , sr.relatedmodel__c as related_model
-            , po.source_tag__c as source_tag
-            , pa.billingstate as state_cust
-            , (case when pa.blockedmobile__c = true then 'y' else 'n' end) as sup_celph
-            , (case when pa.blockedemails__c = true then 'y' else 'n' end) as sup_email
-            , (case when pa.blockedsms__c = true then 'y' else 'n' end) as sup_sms
-            , (case when pa.blockedvideocall__c = true then 'y' else 'n' end) as sup_videocall
-            , (case when pa.blockedwhatsapp__c = true then 'y' else 'n' end) as sup_whatsapp
-            , po.campaign_tag__c as campaign_tag
+            , sr.relatedmodel__c as relatedModel
+            , po.source_tag__c as sourceTag
+            , pa.billingstate as stateCust
+            , (case when pa.blockedmobile__c = true then 'Y' else 'N' end) as supCelph
+            , (case when pa.blockedemails__c = true then 'Y' else 'N' end) as supEmail
+            , (case when pa.blockedsms__c = true then 'Y' else 'N' end) as supSms
+            , (case when pa.blockedvideocall__c = true then 'Y' else 'N' end) as supVideocall
+            , (case when pa.blockedwhatsapp__c = true then 'Y' else 'N' end) as supWhatsapp
+            , po.campaign_tag__c as campaignTag
             , po.row_id as rowid
         from
             process.opportunity po
@@ -276,8 +276,8 @@
             po.predictive_temp__c isnull
         and
             po.transferredopportunity__c != true
-        and
-            po.qexperttransferreddate__c isnull
+        <!--and
+            po.qexperttransferreddate__c isnull-->
         and
             po.legacycreateddate__c <![CDATA[ >= ]]> to_timestamp((now()::date)::varchar||' 00:00:00','YYYY-MM-DD HH24:mi:SS') - '3 days'::interval
         and

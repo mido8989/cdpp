@@ -9,45 +9,45 @@ import lombok.Setter;
 @Setter
 public class GetLeadQuExpert {
     @JsonProperty("SALES_DLR_CODE")
-    private String sales_dlr_code;
+    private String salesDlrCode;
     @JsonProperty("SALES_DLR_NICK")
-    private String sales_dlr_nick;
+    private String salesDlrNick;
     @JsonProperty("SUP_CELPH")
-    private String sup_celph;
+    private String supCelph;
     @JsonProperty("CITY_CUST")
-    private String city_cust;
+    private String cityCust;
     @JsonProperty("QUOTE_DEALER")
-    private String quote_dealer;
+    private String quoteDealer;
     @JsonProperty("MEDIUM_TAG")
-    private String medium_tag;
+    private String mediumTag;
     @JsonProperty("STATUS_DEALER")
     private String status_dealer;
     @JsonProperty("QUOTE_VERSION")
-    private String quote_version;
+    private String quoteVersion;
     @JsonProperty("ORIGIN")
     private String origin;
     @JsonProperty("ASGN_DT")
-    private String asgn_dt;
+    private String asgnDt;
     @JsonProperty("BIRTH_DT")
-    private String birth_dt;
+    private String birthDt;
     @JsonProperty("CONTACT_TYPE")
-    private String contact_type;
+    private String contactType;
     @JsonProperty("DESCRIPTION")
     private String description;
     @JsonProperty("SUP_EMAIL")
-    private String sup_email;
+    private String supEmail;
     @JsonProperty("SALES_DT")
     private String sales_dt;
     @JsonProperty("GENDER")
     private String gender;
     @JsonProperty("SUP_WHATSAPP")
-    private String sup_whatsapp;
+    private String supWhatsapp;
     @JsonProperty("REASON")
     private String reason;
     @JsonProperty("CLOSE_DT")
-    private String close_dt;
+    private String closeDt;
     @JsonProperty("QUOTE_COLOR")
-    private String quote_color;
+    private String quoteColor;
     @JsonProperty("QUOTE_DEALER_NICK")
     private String quote_dealer_nick;
     @JsonProperty("OPEN_DT")
@@ -55,21 +55,21 @@ public class GetLeadQuExpert {
     @JsonProperty("FORM")
     private String form;
     @JsonProperty("QUOTE_VERSION_PRICE")
-    private String quote_version_price;
+    private String quoteVersionPrice;
     @JsonProperty("RELATED_MODEL")
-    private String related_model;
+    private String relatedModel;
     @JsonProperty("DLR_STATE")
     private String dlr_state;
     @JsonProperty("SOURCE_TAG")
-    private String source_tag;
+    private String sourceTag;
     @JsonProperty("QUOTE_COLOR_PRICE")
-    private String quote_color_price;
+    private String quoteColorPrice;
     @JsonProperty("QUOTE_TRANSMISSION")
-    private String quote_transmission;
+    private String quoteTransmission;
     @JsonProperty("PROTOCOL")
     private String protocol;
     @JsonProperty("SUP_VIDEOCALL")
-    private String sup_videocall;
+    private String supVideocall;
     @JsonProperty("LEVEL1")
     private String level1;
     @JsonProperty("LEVEL2")
@@ -77,21 +77,21 @@ public class GetLeadQuExpert {
     @JsonProperty("LEVEL3")
     private String level3;
     @JsonProperty("SUP_SMS")
-    private String sup_sms;
+    private String supSms;
     @JsonProperty("STATUS_QUOTE")
     private String status_quote;
     @JsonProperty("DLR_CITY")
-    private String dlr_city;
+    private String dlrCity;
     @JsonProperty("LEVEL4")
     private String level4;
     @JsonProperty("STATE_CUST")
-    private String state_cust;
+    private String stateCust;
     @JsonProperty("CONTACT_EMAIL")
-    private String contact_email;
+    private String contactEmail;
     @JsonProperty("QUOTE_FINAL_PRICE")
-    private String quote_final_price;
+    private String quoteFinalPrice;
     @JsonProperty("CAMPAIGN_TAG")
-    private String campaign_tag;
+    private String campaignTag;
     @JsonProperty("METHOD")
     private String method;
     @JsonProperty("STAGENAME")
