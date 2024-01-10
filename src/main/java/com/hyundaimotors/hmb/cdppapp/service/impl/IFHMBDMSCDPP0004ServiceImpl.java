@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,7 +41,7 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
 
         List<String> protocalList = new ArrayList<>();
 
-        if(0 < getLeadInfoList.size()){
+        if(!getLeadInfoList.isEmpty()){
             for(int i=0; i < getLeadInfoList.size(); i++){
                 getLeadInfoList.get(i).setApiKey(dto.getApiKey());
                 protocalList.add(getLeadInfoList.get(i).getProtocol());
@@ -54,7 +53,7 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
                 }
                 List<GetLeadVeiculo> veiculoInfoList = new ArrayList<>();
                 veiculoInfoList = mapper.getVeiculoInfoList(getLeadInfoList.get(i));
-                if(0 < veiculoInfoList.size()){
+                if(!veiculoInfoList.isEmpty()){
                     getLeadDto.setVeiculo(veiculoInfoList);
                 }
                 GetLeadOpvDto opv = new GetLeadOpvDto();
@@ -69,12 +68,12 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
                 }
                 List<GetLeadTemperatureDto> temperatureList = new ArrayList<>();
                 temperatureList = mapper.getTemperatureList(getLeadInfoList.get(i));
-                if(0 < temperatureList.size()){
+                if(!temperatureList.isEmpty()){
                     getLeadDto.setTemperature(temperatureList);
                 }
                 List<GetLeadAgendamentoDto> agendamentoList = new ArrayList<>();
                 agendamentoList = mapper.getAgendamentoList(getLeadInfoList.get(i));
-                if(0 < agendamentoList.size()){
+                if(!agendamentoList.isEmpty()){
                     getLeadDto.setAgendamento(agendamentoList);
                 }
                 GetLeadResultDto result = new GetLeadResultDto();
@@ -84,7 +83,7 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
                 }
                 List<GetLeadInteractionDto> interactionList = new ArrayList<>();
                 interactionList = mapper.getInteractionList(getLeadInfoList.get(i));
-                if(0 < interactionList.size()){
+                if(!interactionList.isEmpty()){
                     getLeadDto.setInteraction(interactionList);
                 }
                 GetLeaDveiculoEntradaOPVDto veiculoEntradaOPV = new GetLeaDveiculoEntradaOPVDto();
