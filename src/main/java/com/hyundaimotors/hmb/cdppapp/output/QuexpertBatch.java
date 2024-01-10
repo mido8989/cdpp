@@ -97,7 +97,7 @@ public class QuexpertBatch {
                     } catch (Exception e) {
                          ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, e.getMessage(), e);
                     }
-                    
+                     
                 }
             }
         } catch (Exception e) {
