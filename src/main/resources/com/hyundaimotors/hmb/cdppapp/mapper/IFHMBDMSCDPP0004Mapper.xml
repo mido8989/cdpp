@@ -212,49 +212,48 @@
 
     <select id="getQuexpertList" resultType="GetLeadQuExpertDto">
         select
-            pa.personemail as CONTACT_EMAIL
-            , po.protocol__c as PROTOCOL
-            , po.statussales__c as STAGENAME
-            , po.legacycreateddate__c as ASGN_DT
-            , pa.personbirthdate as BIRTH_DT
-            , pa.billingcity as CITY_CUST
-            , po.closedate as CLOSE_DT
+            pa.personemail as contact_email
+            , po.protocol__c as protocol
+            , po.statussales__c as stagename
+            , po.legacycreateddate__c as asgn_dt
+            , pa.personbirthdate as birth_dt
+            , pa.billingcity as city_cust
+            , po.closedate as close_dt
             , pa.row_id
-            , pa."type" as CONTACT_TYPE
-            , pd.dealercode__c as SALES_DLR_CODE
-            , pd.corporaterepresentativename__c as SALES_DLR_NICK
+            , pa."type" as contact_type
+            , pd.dealercode__c as sales_dlr_code
+            , pd.corporaterepresentativename__c as sales_dlr_nick
             , pd.situationstatusreason__c
-            , po.description as DESCRIPTION
-            , pd.billingcity as DLR_CITY
-            , pd.billingstate as STATUS_DEALER
-            , po.form__c as FORM
-            , pa.gender__pc as GENDER
-            , po.level1__c as LEVEL1
-            , po.level2__c as LEVEL2
-            , po.level3__c as LEVEL3
-            , po.level4__c as LEVEL4
-            , po.medium_tag__c as MEDIUM_TAG
-            , po.origin as ORIGIN
-            , sr.quote_color__c as QUOTE_COLOR
-            , sr.quote_color_price__c as QUOTE_COLOR_PRICE
-            , sr.usedcar_max_price__c as QUOTE_FINAL_PRICE
-            , sr.quotetransmission__c as QUOTE_TRANSMISSION
-            , sr.quote_version_price__c as QUOTE_VERSION_PRICE
-            , sr.version__c as QUOTE_VERSION
-            , po.status as STAGENAME
-            , po.dealercode__c as QUOTE_DEALER
-            , po.reason__c as REASON
-            , sr.relatedmodel__c as RELATED_MODEL
-            , po.source_tag__c as SOURCE_TAG
-            , pa.billingstate as STATE_CUST
-            , (case when pa.blockedmobile__c = true then 'Y' else 'N' end) as SUP_CELPH
-            , (case when pa.blockedemails__c = true then 'Y' else 'N' end) as SUP_EMAIL
-            , (case when pa.blockedsms__c = true then 'Y' else 'N' end) as SUP_SMS
-            , (case when pa.blockedvideocall__c = true then 'Y' else 'N' end) as SUP_VIDEOCALL
-            , (case when pa.blockedwhatsapp__c = true then 'Y' else 'N' end) as SUP_WHATSAPP
-            , po.campaign_tag__c as CAMPAIGN_TAG
-            , po.row_id as rowId
-            , po.legacycreateddate__c
+            , po.description as description
+            , pd.billingcity as dlr_city
+            , pd.billingstate as status_dealer
+            , po.form__c as form
+            , pa.gender__pc as gender
+            , po.level1__c as level1
+            , po.level2__c as level2
+            , po.level3__c as level3
+            , po.level4__c as level4
+            , po.medium_tag__c as medium_tag
+            , po.origin as origin
+            , sr.quote_color__c as quote_color
+            , sr.quote_color_price__c as quote_color_price
+            , sr.usedcar_max_price__c as quote_final_price
+            , sr.quotetransmission__c as quote_transmission
+            , sr.quote_version_price__c as quote_version_price
+            , sr.version__c as quote_version
+            , po.status as stagename
+            , po.dealercode__c as quote_dealer
+            , po.reason__c as reason
+            , sr.relatedmodel__c as related_model
+            , po.source_tag__c as source_tag
+            , pa.billingstate as state_cust
+            , (case when pa.blockedmobile__c = true then 'y' else 'n' end) as sup_celph
+            , (case when pa.blockedemails__c = true then 'y' else 'n' end) as sup_email
+            , (case when pa.blockedsms__c = true then 'y' else 'n' end) as sup_sms
+            , (case when pa.blockedvideocall__c = true then 'y' else 'n' end) as sup_videocall
+            , (case when pa.blockedwhatsapp__c = true then 'y' else 'n' end) as sup_whatsapp
+            , po.campaign_tag__c as campaign_tag
+            , po.row_id as rowid
         from
             process.opportunity po
         join

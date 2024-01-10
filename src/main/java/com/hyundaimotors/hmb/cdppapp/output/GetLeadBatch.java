@@ -16,6 +16,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -24,6 +25,8 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadQuExpertDto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBRECLAMEAQUICDPP0096.IFHMBRECLAMEAQUICDPP0096Dto;
+import com.hyundaimotors.hmb.cdppapp.payload.IFHMBDMSCDPP0004.GetLeadQuExpert;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBDMSCDPP0004Service;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBRECLAMEAQUICDPP0096Service;
 
@@ -34,13 +37,15 @@ public class GetLeadBatch {
     @Autowired
     private IFHMBDMSCDPP0004Service service;
 
+    ModelMapper modelMapper = new ModelMapper();
+
     
     @Scheduled(cron = "0 */5 * * * *")
     public void getQuExpert() throws ParseException{
         System.out.println("Start =========================================> ");
         String accessToken = getToken();
 
-        System.out.println("accessToken =========================================> ");
+        System.out.println("accessToken =========================================> " + accessToken);
         List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
 
         quexpertList = service.getQuexpertList();
@@ -48,8 +53,12 @@ public class GetLeadBatch {
             if(0 < quexpertList.size()){
                 System.out.println("quexpertList =========================================> " + quexpertList.size());
                 for(int i=0; i < quexpertList.size(); i++){
+                    GetLeadQuExpertDto dto = new GetLeadQuExpertDto();
+                    dto = quexpertList.get(i);
                     ObjectMapper mapper = new ObjectMapper(); 
-                    String jsonString = mapper.writeValueAsString(quexpertList.get(i));
+                    GetLeadQuExpert payload = new GetLeadQuExpert();
+                    payload = modelMapper.map(dto, GetLeadQuExpert.class);
+                    String jsonString = mapper.writeValueAsString(payload);
                     
                     System.out.println("result =========================================> " + jsonString);
                     
