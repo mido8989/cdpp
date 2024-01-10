@@ -43,25 +43,25 @@ public class GetLeadBatch {
 
         if(0 < quexpertList.size()){
             // 현재 날짜 구하기(Paris)
-            LocalDate brazilNow = LocalDate.now(ZoneId.of("America/Sao_Paulo"));
+            for(int i=0; i < quexpertList.size(); i++){
+                String result = JSONArray.toJSONString(quexpertList);
 
-            String result = JSONArray.toJSONString(quexpertList);
+                System.err.println("result ========================================= > " + result);
+                
+                // REST API 호출 및 데이터 처리 로직
+                HttpClient client = HttpClient.newHttpClient();
+                
+                // REST API 엔드포인트 URL 설정
+                String apiUrl = "https://api.hyundai-brasil.com:8065/integration/q-expert/leadscore/v1.0/score-lead";
 
-            System.err.println("result ========================================= > " + result);
-            
-            // REST API 호출 및 데이터 처리 로직
-            HttpClient client = HttpClient.newHttpClient();
-            
-            // REST API 엔드포인트 URL 설정
-            String apiUrl = "https://api.hyundai-brasil.com:8065/integration/q-expert/leadscore/v1.0/score-lead";
-
-            // HTTP 요청 초기화
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(apiUrl))
-                    .setHeader("Authorization", "Bearer " + accessToken)
-                    .header("Content-Type", "text/plain")
-                    .POST(BodyPublishers.ofString(result))
-                    .build();
+                // HTTP 요청 초기화
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(apiUrl))
+                        .setHeader("Authorization", "Bearer " + accessToken)
+                        .header("Content-Type", "text/plain")
+                        .POST(BodyPublishers.ofString(result))
+                        .build();
+            }
         }
         
       
