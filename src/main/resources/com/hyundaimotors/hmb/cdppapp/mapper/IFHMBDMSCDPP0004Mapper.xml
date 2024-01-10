@@ -112,6 +112,7 @@
             and
                 pc.apikey__c = #{apiKey}
         </if>
+        limi 1
     </select>
 
     <select id="getfinanciamentoOpv" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadFinanciamentoOPVDto">
@@ -124,6 +125,7 @@
             process.service_request sr
         where 
             sr.protocol__c = #{protocol}
+        limit 1
     </select>
 
     <select id="getTemperatureList" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadTemperatureDto">
@@ -205,6 +207,7 @@
             process.service_request
         where 
             protocol__c = #{protocol}
+        limit 1
     </select>
 
     <select id="getQuexpertList" resultType="GetLeadQuExpertDto">
