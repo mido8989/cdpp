@@ -44,6 +44,11 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
         }
 
+
+
+        System.out.println("@#@#@#@#@#@# dto.getFirstName #@#@#@##@" + dto.getFirstName());
+        System.out.println("@#@#@#@#@#@# dto.getLastName #@#@#@##@" + dto.getLastName());
+
         mapper.insertObject(dto);
         if(  dto.getListOfCurrentCars() != null){
             mapper.insertCar(dto);
