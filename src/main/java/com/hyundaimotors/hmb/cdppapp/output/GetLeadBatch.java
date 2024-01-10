@@ -37,18 +37,20 @@ public class GetLeadBatch {
     
     @Scheduled(cron = "0 */5 * * * *")
     public void getQuExpert() throws ParseException, JsonProcessingException {
+        System.out.println("Start =========================================> ");
         String accessToken = getToken();
 
+        System.out.println("accessToken =========================================> ");
         List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
 
         quexpertList = service.getQuexpertList();
 
         if(0 < quexpertList.size()){
+            System.out.println("quexpertList =========================================> " + quexpertList.size());
             for(int i=0; i < quexpertList.size(); i++){
                 ObjectMapper mapper = new ObjectMapper(); 
                 String jsonString = mapper.writeValueAsString(quexpertList.get(i));
-
-                System.out.println("quexpertList =========================================> " + quexpertList.size());
+                
                 System.out.println("result =========================================> " + jsonString);
                 
                 // REST API 호출 및 데이터 처리 로직
