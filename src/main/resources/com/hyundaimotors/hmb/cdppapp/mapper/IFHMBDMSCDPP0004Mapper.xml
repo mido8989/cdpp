@@ -207,6 +207,10 @@
             protocol__c = #{protocol}
     </select>
 
+    <select id="getQuexpertList" resultType="GetLeadQuExpertDto">
+        
+    </select>
+
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
         call process.if_getlead_ws(#{param_id});
     </insert>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadFinanciamentoOPVDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadInteractionDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadOpvDto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadQuExpertDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadResultDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadTemperatureDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.IFHMBDMSCDPP0004Dto;
@@ -117,4 +119,13 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
             mapper.transferReplica(map);
         }
     } 
+
+    public List<GetLeadQuExpertDto> getQuexpertList() throws ParseException{
+        
+        List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
+
+        quexpertList = mapper.getQuexpertList();
+
+        return quexpertList;
+    }
 }
