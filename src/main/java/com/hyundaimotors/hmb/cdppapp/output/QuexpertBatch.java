@@ -86,7 +86,7 @@ public class QuexpertBatch {
                             .POST(BodyPublishers.ofString(jsonString))
                             .build();
 
-                    ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, jsonString);
+                    ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, mapper.writeValueAsString(payload));
                     String responseBody;
                     try {
                         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
