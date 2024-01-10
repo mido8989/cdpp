@@ -32,7 +32,7 @@ import com.hyundaimotors.hmb.cdppapp.service.IFHMBRECLAMEAQUICDPP0096Service;
 
 @EnableScheduling
 @Component
-public class GetLeadBatch {
+public class QuexpertBatch {
     
     @Autowired
     private IFHMBDMSCDPP0004Service service;
@@ -71,8 +71,8 @@ public class GetLeadBatch {
                     // HTTP 요청 초기화
                     HttpRequest request = HttpRequest.newBuilder()
                             .uri(URI.create(apiUrl))
-                            .setHeader("Authorization", "Bearer " + accessToken)
-                            .header("Content-Type", "application/json")
+                            .headers("Authorization", "Bearer " + accessToken)
+                            .headers("Content-Type", "application/json")
                             .POST(BodyPublishers.ofString(jsonString))
                             .build();
 
@@ -109,8 +109,8 @@ public class GetLeadBatch {
 
 
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(endPoint))
-                .setHeader("Content-Type", "application/x-www-form-urlencoded")
-                .header("Accept", "application/json")
+                .headers("Content-Type", "application/x-www-form-urlencoded")
+                .headers("Accept", "application/json")
                 .POST(body)
                 .build();
         
