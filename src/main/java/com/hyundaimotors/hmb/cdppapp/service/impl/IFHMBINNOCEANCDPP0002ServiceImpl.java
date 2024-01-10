@@ -69,57 +69,78 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
          *       또는 name,phone,email 값이 있고 foundAccountIdbyNameAndPhoneAndEmail조회 값이 있으면 update
          * 나머지 insert
          */
-       boolean isValidation = false;
+    //    boolean isValidation = false;
        
        String foundContactIdbyCpf = null;
        if(dto.getCpf() != null && !dto.getCpf().equals("")) { //update
-            foundContactIdbyCpf = mapper.foundContactId(dto);            
-            isValidation = true;
-       }else {
-            foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
-            isValidation = true;
+            foundContactIdbyCpf = mapper.foundContactId(dto); 
+            
+            if(foundContactIdbyCpf != null){
+                resultDto.setContactId(update(dto,foundContactIdbyCpf));
+                resultDto.setCheckUpsert("update");
+
+                System.out.println(":::::::::::: update with cpf contactId ::::::::::" +  resultDto.getContactId());
+
+            }else {
+                foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
+                if(foundContactIdbyCpf != null){
+                    resultDto.setContactId(update(dto,foundContactIdbyCpf));
+                    resultDto.setCheckUpsert("update");
+
+                    System.out.println(":::::::::::: update without cpf contactId ::::::::::" +  resultDto.getContactId());
+
+                }else{
+
+                    resultDto.setContactId(insert(dto));
+                    resultDto.setCheckUpsert("insert");
+                    
+                    System.out.println(":::::::::::: insert contactId ::::::::::" +  resultDto.getContactId());
+                }
+            }
+
+            resultDto.setError_spcCode("0"); 
+            resultDto.setError_spcMessage("OK");           
+
        }
        
-    //    String foundContactId = mapper.foundContactId(dto);
        
        IFHMBINNOCEANCDPP0002Dto oldAccount = new IFHMBINNOCEANCDPP0002Dto();
        
        if (foundContactIdbyCpf != null){
-           oldAccount = mapper.getOldAccount(foundContactIdbyCpf);
-           
+           oldAccount = mapper.getOldAccount(foundContactIdbyCpf);           
        }
 
        
 
-       if(isValidation) {
-             if(foundContactIdbyCpf != null) {
-                 resultDto.setContactId(update(dto,foundContactIdbyCpf));
-                System.out.println(":::::::::::: update contactId ::::::::::" +  resultDto.getContactId());
+    //    if(isValidation) {
+    //          if(foundContactIdbyCpf != null) {
+    //              resultDto.setContactId(update(dto,foundContactIdbyCpf));
+    //             System.out.println(":::::::::::: update contactId ::::::::::" +  resultDto.getContactId());
 
-                 resultDto.setCheckUpsert("update");
-                 if(oldAccount != null){
-                     oldAccount.setCheckUpsert("update");
-                 }
-             }else {
-                 resultDto.setContactId(insert(dto));
-                System.out.println(":::::::::::: insert contactId ::::::::::" +  resultDto.getContactId());
-                 resultDto.setCheckUpsert("insert");
-             }
+    //              resultDto.setCheckUpsert("update");
+    //              if(oldAccount != null){
+    //                  oldAccount.setCheckUpsert("update");
+    //              }
+    //          }else {
+    //              resultDto.setContactId(insert(dto));
+    //             System.out.println(":::::::::::: insert contactId ::::::::::" +  resultDto.getContactId());
+    //              resultDto.setCheckUpsert("insert");
+    //          }
              
-             resultDto.setError_spcCode("0"); 
-             resultDto.setError_spcMessage("OK");
-       }else {
-           if(foundContactIdbyCpf != null) {//저장 조건중 row_id를 가져올수 있다면..
-               resultDto.setContactId(update(dto,foundContactIdbyCpf));
-               resultDto.setCheckUpsert("update");
-           }else {
-               resultDto.setContactId(insert(dto));
-               resultDto.setCheckUpsert("insert");
-           }
+    //          resultDto.setError_spcCode("0"); 
+    //          resultDto.setError_spcMessage("OK");
+    //    }else {
+    //        if(foundContactIdbyCpf != null) {//저장 조건중 row_id를 가져올수 있다면..
+    //            resultDto.setContactId(update(dto,foundContactIdbyCpf));
+    //            resultDto.setCheckUpsert("update");
+    //        }else {
+    //            resultDto.setContactId(insert(dto));
+    //            resultDto.setCheckUpsert("insert");
+    //        }
            
-           resultDto.setError_spcCode("0"); 
-           resultDto.setError_spcMessage("OK");
-       }
+    //        resultDto.setError_spcCode("0"); 
+    //        resultDto.setError_spcMessage("OK");
+    //    }
         
         HashMap<String, IFHMBINNOCEANCDPP0002Dto> resultMap = new HashMap<>();
 
