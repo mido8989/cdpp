@@ -15,7 +15,7 @@ public interface IFHMBDMSCDPP0004Service {
 
     public List<GetLeadQuExpertDto> getQuexpertList()throws ParseException;
 
-    public void UpdateTransQu(GetLeadQuExpertDto dto)throws ParseException;
+    public void updateTransQu(GetLeadQuExpertDto dto)throws ParseException;
     @Async
     public void UpdateOppt(HashMap<String, String[]> map)throws Exception;
     

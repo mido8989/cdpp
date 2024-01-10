@@ -129,7 +129,13 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
         return quexpertList;
     }
 
-    public void UpdateTransQu(GetLeadQuExpertDto dto)throws ParseException{
-        mapper.UpdateTransQu(dto);
+    public void updateTransQu(GetLeadQuExpertDto dto)throws ParseException{
+
+        HashMap<String, String> quexpertMap = new HashMap<>();
+        quexpertMap.put("param_id", dto.getRowId());
+        
+        mapper.updateTransQuProcess(quexpertMap);
+
+        mapper.updateTransQuReplica(quexpertMap);
     }
 }

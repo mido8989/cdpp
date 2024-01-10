@@ -287,4 +287,12 @@
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call replica.if_getlead_ws(#{param_id});
     </insert>
+
+    <insert id="updateTransQuProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.trans_quexpert(#{param_id});
+    </insert>
+
+    <insert id="updateTransQuReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.trans_quexpert(#{param_id});
+    </insert>
 </mapper>

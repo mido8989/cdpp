@@ -63,7 +63,7 @@ public class GetLeadBatch {
                     System.out.println("result =========================================> " + jsonString);
                     
                     // REST API 호출 및 데이터 처리 로직
-                    /*HttpClient client = HttpClient.newHttpClient();
+                    HttpClient client = HttpClient.newHttpClient();
                     
                     // REST API 엔드포인트 URL 설정
                     String apiUrl = "https://api.hyundai-brasil.com:8065/integration/q-expert/leadscore/v1.0/score-lead";
@@ -74,9 +74,16 @@ public class GetLeadBatch {
                             .setHeader("Authorization", "Bearer " + accessToken)
                             .header("Content-Type", "text/plain")
                             .POST(BodyPublishers.ofString(jsonString))
-                            .build();*/
+                            .build();
 
-                    service.UpdateTransQu(dto);
+                    service.updateTransQu(dto);
+
+                    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                    int statusCode = response.statusCode();
+                    String responseBody = response.body();
+
+                    System.out.println("statusCode =========================================> " + statusCode);
+                    System.out.println("responseBody =========================================> " + responseBody);
                 }
             }
         } catch (Exception e) {
