@@ -128,4 +128,8 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
 
         return quexpertList;
     }
+
+    public void UpdateTransQu(GetLeadQuExpertDto dto)throws ParseException{
+        mapper.UpdateTransQu(dto);
+    }
 }

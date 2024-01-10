@@ -75,6 +75,8 @@ public class GetLeadBatch {
                             .header("Content-Type", "text/plain")
                             .POST(BodyPublishers.ofString(jsonString))
                             .build();*/
+
+                    service.UpdateTransQu(dto);
                 }
             }
         } catch (Exception e) {
