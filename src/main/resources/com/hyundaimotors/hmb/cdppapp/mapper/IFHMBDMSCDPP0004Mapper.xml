@@ -112,7 +112,7 @@
             and
                 pc.apikey__c = #{apiKey}
         </if>
-        limi 1
+        limit 1
     </select>
 
     <select id="getfinanciamentoOpv" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadFinanciamentoOPVDto">
