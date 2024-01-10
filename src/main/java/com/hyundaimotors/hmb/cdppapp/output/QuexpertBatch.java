@@ -50,7 +50,7 @@ public class QuexpertBatch {
     ModelMapper modelMapper = new ModelMapper();
 
     
-    //@Scheduled(cron = "0 */5 * * * *")
+    @Scheduled(cron = "0 */5 * * * *")
     public void getQuExpert() throws ParseException{
         UUID IF_TR_ID = UUID.randomUUID();
 
@@ -58,7 +58,7 @@ public class QuexpertBatch {
         
         List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
         
-        int limit = 1;
+        int limit = 100;
 
         quexpertList = service.getQuexpertList(limit);
         try {
@@ -70,7 +70,7 @@ public class QuexpertBatch {
                     GetLeadQuExpert payload = new GetLeadQuExpert();
                     payload = modelMapper.map(dto, GetLeadQuExpert.class);
                     String jsonString = mapper.writeValueAsString(payload);
-                    
+                    System.out.println("jsonString ============================================>" + jsonString);
                     
                     // REST API 호출 및 데이터 처리 로직
                     HttpClient client = HttpClient.newHttpClient();
