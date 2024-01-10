@@ -77,6 +77,13 @@ public class GetLeadBatch {
                             .build();
 
                     service.updateTransQu(dto);
+
+                    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                    int statusCode = response.statusCode();
+                    String responseBody = response.body();
+
+                    System.out.println("statusCode =========================================> " + statusCode);
+                    System.out.println("responseBody =========================================> " + responseBody);
                 }
             }
         } catch (Exception e) {
