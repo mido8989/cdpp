@@ -43,7 +43,7 @@ public interface IFHMBDMSCDPP0004Mapper {
 
     public void transferReplica(HashMap<String, String[]> parMap)throws Exception;
 
-    public List<GetLeadQuExpertDto> getQuexpertList() throws ParseException;
+    public List<GetLeadQuExpertDto> getQuexpertList(int param) throws ParseException;
 
     public void updateTransQuProcess(HashMap<String, String> quexpertMap)throws ParseException;
 

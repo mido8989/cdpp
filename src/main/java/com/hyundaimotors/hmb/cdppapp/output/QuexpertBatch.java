@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -27,13 +28,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadQuExpertDto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBRECLAMEAQUICDPP0096.IFHMBRECLAMEAQUICDPP0096Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBDMSCDPP0004.GetLeadQuExpert;
+import com.hyundaimotors.hmb.cdppapp.service.ApiLogService;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBDMSCDPP0004Service;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBRECLAMEAQUICDPP0096Service;
+import com.hyundaimotors.hmb.cdppapp.util.ApiLog;
+import com.hyundaimotors.hmb.cdppapp.util.ApiLogStep;
+import com.hyundaimotors.hmb.cdppapp.util.JsonUtils;
 
 @EnableScheduling
 @Component
 public class QuexpertBatch {
     
+    private static final String IF_ID = "IF054";
+    
+    @Autowired
+    private ApiLogService logService;
+
     @Autowired
     private IFHMBDMSCDPP0004Service service;
 
@@ -42,16 +52,17 @@ public class QuexpertBatch {
     
     @Scheduled(cron = "0 */5 * * * *")
     public void getQuExpert() throws ParseException{
-        System.out.println("Start =========================================> ");
+        UUID IF_TR_ID = UUID.randomUUID();
+
         String accessToken = getToken();
-
-        System.out.println("accessToken =========================================> " + accessToken);
+        
         List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
+        
+        int limit = 1;
 
-        quexpertList = service.getQuexpertList();
+        quexpertList = service.getQuexpertList(limit);
         try {
             if(0 < quexpertList.size()){
-                System.out.println("quexpertList =========================================> " + quexpertList.size());
                 for(int i=0; i < quexpertList.size(); i++){
                     GetLeadQuExpertDto dto = new GetLeadQuExpertDto();
                     dto = quexpertList.get(i);
@@ -60,7 +71,6 @@ public class QuexpertBatch {
                     payload = modelMapper.map(dto, GetLeadQuExpert.class);
                     String jsonString = mapper.writeValueAsString(payload);
                     
-                    System.out.println("result =========================================> " + jsonString);
                     
                     // REST API 호출 및 데이터 처리 로직
                     HttpClient client = HttpClient.newHttpClient();
@@ -76,16 +86,18 @@ public class QuexpertBatch {
                             .POST(BodyPublishers.ofString(jsonString))
                             .build();
 
+                    ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, jsonString);
+                    String responseBody;
+                    try {
+                        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                        int statusCode = response.statusCode();
+                        responseBody = response.body();
+                        ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, responseBody);
+                        service.updateTransQu(dto);
+                    } catch (Exception e) {
+                         ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, e.getMessage(), e);
+                    }
                     
-
-                    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-                    int statusCode = response.statusCode();
-                    String responseBody = response.body();
-
-                    System.out.println("statusCode =========================================> " + statusCode);
-                    System.out.println("responseBody =========================================> " + responseBody);
-
-                    //service.updateTransQu(dto);
                 }
             }
         } catch (Exception e) {
