@@ -39,7 +39,7 @@ public class GetLeadBatch {
 
         List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
 
-        //quexpertList = service.getQuexpertList();
+        quexpertList = service.getQuexpertList();
 
         if(0 < quexpertList.size()){
             // 현재 날짜 구하기(Paris)
