@@ -72,7 +72,7 @@ public class GetLeadBatch {
                     HttpRequest request = HttpRequest.newBuilder()
                             .uri(URI.create(apiUrl))
                             .setHeader("Authorization", "Bearer " + accessToken)
-                            .header("Content-Type", "text/plain")
+                            .header("Content-Type", "application/json")
                             .POST(BodyPublishers.ofString(jsonString))
                             .build();
 
