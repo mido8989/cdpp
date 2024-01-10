@@ -21,6 +21,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadQuExpertDto;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBDMSCDPP0004Service;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBRECLAMEAQUICDPP0096Service;
@@ -34,7 +36,7 @@ public class GetLeadBatch {
 
     
     @Scheduled(cron = "0 */5 * * * *")
-    public void getQuExpert() throws ParseException {
+    public void getQuExpert() throws ParseException, JsonProcessingException {
         String accessToken = getToken();
 
         List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
@@ -44,13 +46,14 @@ public class GetLeadBatch {
         if(0 < quexpertList.size()){
             // 현재 날짜 구하기(Paris)
             for(int i=0; i < quexpertList.size(); i++){
-                String result = JSONArray.toJSONString(quexpertList);
+                ObjectMapper mapper = new ObjectMapper(); 
+                String jsonString = mapper.writeValueAsString(quexpertList.get(i));
 
                 System.out.println("quexpertList ========================================= > " + quexpertList.size());
-                System.out.println("result ========================================= > " + result);
+                System.out.println("result ========================================= > " + jsonString);
                 
                 // REST API 호출 및 데이터 처리 로직
-                HttpClient client = HttpClient.newHttpClient();
+                /*HttpClient client = HttpClient.newHttpClient();
                 
                 // REST API 엔드포인트 URL 설정
                 String apiUrl = "https://api.hyundai-brasil.com:8065/integration/q-expert/leadscore/v1.0/score-lead";
@@ -60,8 +63,8 @@ public class GetLeadBatch {
                         .uri(URI.create(apiUrl))
                         .setHeader("Authorization", "Bearer " + accessToken)
                         .header("Content-Type", "text/plain")
-                        .POST(BodyPublishers.ofString(result))
-                        .build();
+                        .POST(BodyPublishers.ofString(jsonString))
+                        .build();*/
             }
         }
         
