@@ -210,7 +210,7 @@
         limit 1
     </select>
 
-    <select id="getQuexpertList" resultType="GetLeadQuExpertDto">
+    <select id="getQuexpertList" parameterType="integer" resultType="GetLeadQuExpertDto">
         select
             pa.personemail as contact_email
             , po.protocol__c as protocol
@@ -256,7 +256,7 @@
             , po.row_id as rowid
         from
             process.opportunity po
-        join
+        left join
             process.account pa
         on
             po.contact_row_id__c = pa.row_id
@@ -264,7 +264,7 @@
             process.account pd
         on
             po.dealer__c = pd.row_id
-        join
+        left join
             process.service_request sr
         on
             po.protocol__c = sr.protocol__c
@@ -275,9 +275,14 @@
         and
             po.predictive_temp__c isnull
         and
-            po.legacycreateddate__c <![CDATA[ >= ]]> to_timestamp((now()::date)::varchar||' 00:00:00','YYYY-MM-DD HH24:mi:SS') - '1 days'::interval
+            po.transferredopportunity__c != true
+        and
+            po.qexperttransferreddate__c isnull
+        and
+            po.legacycreateddate__c <![CDATA[ >= ]]> to_timestamp((now()::date)::varchar||' 00:00:00','YYYY-MM-DD HH24:mi:SS') - '3 days'::interval
         and
             po.legacycreateddate__c <![CDATA[ <= ]]> to_timestamp((now()::date)::varchar||' 23:59:59', 'YYYY-MM-DD HH24:mi:SS')
+        limit #{param}
     </select>
 
     <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">

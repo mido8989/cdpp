@@ -57,8 +57,10 @@ public class QuexpertBatch {
         String accessToken = getToken();
         
         List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
+        
+        int limit = 1;
 
-        quexpertList = service.getQuexpertList();
+        quexpertList = service.getQuexpertList(limit);
         try {
             if(0 < quexpertList.size()){
                 for(int i=0; i < quexpertList.size(); i++){

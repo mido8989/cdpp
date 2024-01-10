@@ -120,11 +120,11 @@ public class IFHMBDMSCDPP0004ServiceImpl implements IFHMBDMSCDPP0004Service{
         }
     } 
 
-    public List<GetLeadQuExpertDto> getQuexpertList() throws ParseException{
+    public List<GetLeadQuExpertDto> getQuexpertList(int param) throws ParseException{
         
         List<GetLeadQuExpertDto> quexpertList = new ArrayList<>();
-
-        quexpertList = mapper.getQuexpertList();
+        
+        quexpertList = mapper.getQuexpertList(param);
 
         return quexpertList;
     }
