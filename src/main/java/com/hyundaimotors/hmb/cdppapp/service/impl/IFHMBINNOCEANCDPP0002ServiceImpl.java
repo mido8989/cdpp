@@ -86,13 +86,16 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
        
        if (foundContactIdbyCpf != null){
            oldAccount = mapper.getOldAccount(foundContactIdbyCpf);
+           
        }
 
        
 
        if(isValidation) {
-             if(!isNull(foundContactIdbyCpf)) {
+             if(foundContactIdbyCpf != null) {
                  resultDto.setContactId(update(dto,foundContactIdbyCpf));
+                System.out.println(":::::::::::: update contactId ::::::::::" +  resultDto.getContactId());
+
                  resultDto.setCheckUpsert("update");
                  if(oldAccount != null){
                      oldAccount.setCheckUpsert("update");
@@ -106,7 +109,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
              resultDto.setError_spcCode("0"); 
              resultDto.setError_spcMessage("OK");
        }else {
-           if(!isNull(foundContactIdbyCpf)) {//저장 조건중 row_id를 가져올수 있다면..
+           if(foundContactIdbyCpf != null) {//저장 조건중 row_id를 가져올수 있다면..
                resultDto.setContactId(update(dto,foundContactIdbyCpf));
                resultDto.setCheckUpsert("update");
            }else {
