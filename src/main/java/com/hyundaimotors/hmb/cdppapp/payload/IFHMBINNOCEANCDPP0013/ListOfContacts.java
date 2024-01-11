@@ -1,5 +1,7 @@
 package com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0013;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -29,6 +31,9 @@ public class ListOfContacts {
     @Schema(description = "Dealer Contact work phone. HMBDealerContactWorkPhone", example = "3456789")
     private String workPhone;
     @Schema(description = "Dealer Contact job Title, HMBDealerContactJobTitle", example = "Sales Consultant")
+    @JsonProperty("CellPhone")
+    private String cellPhone;
+    @Schema(description = "Dealer Contact cell phone. HMBDealerContactWorkPhone", example = "Sales Consultant")
     private String jobTitle;
     @Schema(description = "Dealer Contact Note,  HMBDealerContactNotesonDealer", example = "30694501808")
     private String notes;

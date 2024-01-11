@@ -79,7 +79,6 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 resultDto.setContactId(update(dto,foundContactIdbyCpf));
                 resultDto.setCheckUpsert("update");
 
-                System.out.println(":::::::::::: update with cpf contactId ::::::::::" +  resultDto.getContactId());
 
             }else {
                 foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
@@ -87,14 +86,12 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     resultDto.setContactId(update(dto,foundContactIdbyCpf));
                     resultDto.setCheckUpsert("update");
 
-                    System.out.println(":::::::::::: update without cpf contactId ::::::::::" +  resultDto.getContactId());
 
                 }else{
 
                     resultDto.setContactId(insert(dto));
                     resultDto.setCheckUpsert("insert");
                     
-                    System.out.println(":::::::::::: insert contactId ::::::::::" +  resultDto.getContactId());
                 }
             }
 
