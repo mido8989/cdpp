@@ -29,11 +29,11 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
          *       또는 name,mainPhoneNumber,mainEmailAddress 값이 있고 foundAccountIdbyCnpj조회 값이 있으면 update
          * 나머지 insert
          */
-       boolean isValidation = false;
+    //    boolean isValidation = false;
        IFHMBSAPCDPP0005Dto oldAccount = new IFHMBSAPCDPP0005Dto();
        String foundAccountIdbyCnpj = null;
-       if(!isNull(dto.getCnpjNumber())) { //update
-            foundAccountIdbyCnpj = mapper.foundAccountIdbyCnpj(dto);
+       if(dto.getCnpjNumber() != null && !dto.getCnpjNumber().equals("")) { //update
+            foundAccountIdbyCnpj = mapper.foundAccountId(dto);
             if ( foundAccountIdbyCnpj != null ){
                 resulDto.setContactId(update(dto,foundAccountIdbyCnpj));
                 resulDto.setCheckUpsert("update");
