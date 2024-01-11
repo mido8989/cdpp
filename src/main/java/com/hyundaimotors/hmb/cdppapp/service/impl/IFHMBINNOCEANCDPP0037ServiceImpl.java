@@ -160,6 +160,7 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
 
         if(oldAccount.getCnheXpirationDate() != null && newAccount.getCnheXpirationDate() != null){
             if(!oldAccount.getCnheXpirationDate().equals(newAccount.getCnheXpirationDate())){
+                System.out.print("Update Contact======================================>" + oldAccount.getContactId());
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("cnhexpirationdate__c");
                 auditDto.setOperation("Modify");
