@@ -30,10 +30,10 @@ public class ListOfContacts {
     private String homePhone;
     @Schema(description = "Dealer Contact work phone. HMBDealerContactWorkPhone", example = "3456789")
     private String workPhone;
-    @Schema(description = "Dealer Contact job Title, HMBDealerContactJobTitle", example = "Sales Consultant")
+    @Schema(description = "Dealer Contact cell phone. HMBDealerContactWorkPhone", example = "Sales Consultant")
     @JsonProperty("CellPhone")
     private String cellPhone;
-    @Schema(description = "Dealer Contact cell phone. HMBDealerContactWorkPhone", example = "Sales Consultant")
+    @Schema(description = "Dealer Contact job Title, HMBDealerContactJobTitle", example = "Sales Consultant")
     private String jobTitle;
     @Schema(description = "Dealer Contact Note,  HMBDealerContactNotesonDealer", example = "30694501808")
     private String notes;
