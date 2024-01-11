@@ -169,7 +169,10 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getFirstName() != null && newAccount.getFirstName() != null){
+            
             if(!oldAccount.getFirstName().equals(newAccount.getFirstName())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("firstname");
@@ -180,6 +183,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
+            
+        if(oldAccount.getLastName() != null && newAccount.getLastName() != null){
 
             if(!oldAccount.getLastName().equals(newAccount.getLastName())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
@@ -191,7 +197,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+            
+        if(oldAccount.getBirthDate() != null && newAccount.getBirthDate() != null){
             if(!oldAccount.getBirthDate().equals(newAccount.getBirthDate())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("personbirthdate");
@@ -202,7 +210,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+            
+        if(oldAccount.getGenre() != null && newAccount.getGenre() != null){
             if(!oldAccount.getGenre().equals(newAccount.getGenre())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("gender__pc");
@@ -213,7 +223,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+        
+        if(oldAccount.getHkmeRetailDate() != null && newAccount.getHkmeRetailDate() != null){
             if(!oldAccount.getHkmeRetailDate().equals(newAccount.getHkmeRetailDate())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("hkmeretaildate");
@@ -224,6 +236,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
+
+        if(oldAccount.getHomePhone() != null && newAccount.getHomePhone() != null){
 
             if(!oldAccount.getHomePhone().equals(newAccount.getHomePhone())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
@@ -235,7 +250,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+        
+        if(oldAccount.getWorkPhone() != null && newAccount.getWorkPhone() != null){
             if(!oldAccount.getWorkPhone().equals(newAccount.getWorkPhone())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("workphone__c");
@@ -246,7 +263,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getCellularPhone() != null && newAccount.getCellularPhone() != null){
             if(!oldAccount.getCellularPhone().equals(newAccount.getCellularPhone())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("personmobilephone");
@@ -257,7 +276,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+        
+        if(oldAccount.getEmailAddress() != null && newAccount.getEmailAddress() != null){
             if(!oldAccount.getEmailAddress().equals(newAccount.getEmailAddress())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("personemail");
@@ -268,7 +289,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+        
+        if(oldAccount.getLoyaltyOPTINFlag() != null && newAccount.getLoyaltyOPTINFlag() != null){
             if(!oldAccount.getLoyaltyOPTINFlag().equals(newAccount.getLoyaltyOPTINFlag())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("optinflag__c");
@@ -279,7 +302,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getStreetAddress() != null && newAccount.getStreetAddress() != null){
             if(!oldAccount.getStreetAddress().equals(newAccount.getStreetAddress())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("billingstreet");
@@ -290,7 +315,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+    
+        if(oldAccount.getAddressNumber() != null && newAccount.getAddressNumber() != null){
             if(!oldAccount.getAddressNumber().equals(newAccount.getAddressNumber())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("billingstreet_2__c");
@@ -301,7 +328,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getAddressComplement() != null && newAccount.getAddressComplement() != null){
             if(!oldAccount.getAddressComplement().equals(newAccount.getAddressComplement())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("billingstreet_3__c");
@@ -312,7 +341,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getAddressCountry() != null && newAccount.getAddressCountry() != null){
             if(!oldAccount.getAddressCountry().equals(newAccount.getAddressCountry())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("billingcountry");
@@ -323,7 +354,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+        
+        if(oldAccount.getAddressCounty() != null && newAccount.getAddressCounty() != null){
             if(!oldAccount.getAddressCounty().equals(newAccount.getAddressCounty())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("neighborhood");
@@ -334,7 +367,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+    
+        if(oldAccount.getAddressCity() != null && newAccount.getAddressCity() != null){
             if(!oldAccount.getAddressCity().equals(newAccount.getAddressCity())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("billingcity");
@@ -345,7 +380,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getAddressState() != null && newAccount.getAddressState() != null){
             if(!oldAccount.getAddressState().equals(newAccount.getAddressState())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("billingstate");
@@ -356,7 +393,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getAddressPostalCode() != null && newAccount.getAddressPostalCode() != null){
             if(!oldAccount.getAddressPostalCode().equals(newAccount.getAddressPostalCode())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("billingpostalcode");
@@ -367,7 +406,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getSuppressAllCalls() != null && newAccount.getSuppressAllCalls() != null){
             if(!oldAccount.getSuppressAllCalls().equals(newAccount.getSuppressAllCalls())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("persondonotcall");
@@ -378,7 +419,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getSuppressAllCalls() != null && newAccount.getSuppressAllCalls() != null){
             if(!oldAccount.getSuppressAllCalls().equals(newAccount.getSuppressAllCalls())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("calloptyn__pc");
@@ -389,7 +432,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getSuppressAllEmails() != null && newAccount.getSuppressAllEmails() != null){
             if(!oldAccount.getSuppressAllEmails().equals(newAccount.getSuppressAllEmails())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("blockedemails__pc");
@@ -400,7 +445,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getSuppressAllMailings() != null && newAccount.getSuppressAllMailings() != null){
             if(!oldAccount.getSuppressAllMailings().equals(newAccount.getSuppressAllMailings())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("blockedletters__c");
@@ -411,7 +458,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getSuppressAllMailings() != null && newAccount.getSuppressAllMailings() != null){
             if(!oldAccount.getSuppressAllMailings().equals(newAccount.getSuppressAllMailings())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("blockedletters__pc");
@@ -422,7 +471,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+        
+        if(oldAccount.getSuppressAllMobile() != null && newAccount.getSuppressAllMobile() != null){
             if(!oldAccount.getSuppressAllMobile().equals(newAccount.getSuppressAllMobile())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("blockedmobile__c");
@@ -433,7 +484,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getSuppressAllMobile() != null && newAccount.getSuppressAllMobile() != null){
             if(!oldAccount.getSuppressAllMobile().equals(newAccount.getSuppressAllMobile())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("blockedmobile__pc");
@@ -444,7 +497,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+         
+        if(oldAccount.getSuppressAllSMS() != null && newAccount.getSuppressAllSMS() != null){
             if(!oldAccount.getSuppressAllSMS().equals(newAccount.getSuppressAllSMS())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("blockedsms__c");
@@ -455,7 +510,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getSuppressAllSMS() != null && newAccount.getSuppressAllSMS() != null){
             if(!oldAccount.getSuppressAllSMS().equals(newAccount.getSuppressAllSMS())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("blockedsms__pc");
@@ -466,7 +523,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+         
+        if(oldAccount.getSuppressAllVideoCall() != null && newAccount.getSuppressAllVideoCall() != null){
             if(!oldAccount.getSuppressAllVideoCall().equals(newAccount.getSuppressAllVideoCall())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("blockedvideocall__c");
@@ -477,7 +536,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
-
+        }
+        
+        if(oldAccount.getSuppressAllVideoCall() != null && newAccount.getSuppressAllVideoCall() != null){
             if(!oldAccount.getSuppressAllVideoCall().equals(newAccount.getSuppressAllVideoCall())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("blockedvideocall__pc");
@@ -488,7 +549,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getSuppressAllWhatsapp() != null && newAccount.getSuppressAllWhatsapp() != null){
             if(!oldAccount.getSuppressAllWhatsapp().equals(newAccount.getSuppressAllWhatsapp())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("blockedwhatsapp__c");
@@ -499,7 +562,9 @@ public class IFHMBINNOCEANCDPP0037ServiceImpl implements IFHMBINNOCEANCDPP0037Se
                 auditDto.setApiKey(newAccount.getApiKey());
                 auditList.add(auditDto);
             }
+        }
 
+        if(oldAccount.getSuppressAllWhatsapp() != null && newAccount.getSuppressAllWhatsapp() != null){
             if(!oldAccount.getSuppressAllWhatsapp().equals(newAccount.getSuppressAllWhatsapp())){
                 InboundContactAuditDto auditDto = new InboundContactAuditDto();
                 auditDto.setFieldName("blockedwhatsapp__pc");
