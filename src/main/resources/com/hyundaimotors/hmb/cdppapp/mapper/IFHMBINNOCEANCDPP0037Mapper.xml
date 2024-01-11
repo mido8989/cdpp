@@ -251,6 +251,7 @@
             , blockedvideocall__pc as suppressallvideocall
             , blockedwhatsapp__c as suppressallwhatsapp
             , blockedwhatsapp__pc as suppressallwhatsapp
+            , row_id as contactId
         from
             process.account
         where 
