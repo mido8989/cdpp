@@ -17,7 +17,7 @@
         from
             process.account
         where 
-            "name"  = #{name}
+            lower(trim(name))  = lower(trim(#{name}))
         <if test="mainPhoneNumber != null and mainPhoneNumber !=''">
         and 
             phone = #{mainPhoneNumber}
