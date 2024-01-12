@@ -16,7 +16,7 @@
             join
                 process.account pa
             on
-                po.dealercode__c = pa.dealercode__c
+                po.dealercode__c = pa.dealercode__c and pa.process_account_type = 'Dealer'
             where
                 po.qexperttransferreddate__c <![CDATA[ <= ]]> (now() - '5 minutes'::interval)
             and
