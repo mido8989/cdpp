@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.OppertunityMapper">
 
-    <insert id="insertObject" parameterType="OppertunityDto">
+    <insert id="insertObject" parameterType="OppertunityDto"  useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into process.opportunity(
             contact_row_id__c
             , contenttag__c
@@ -94,7 +94,7 @@
             , #{dcxtOpportunityKey}
             , #{mediumTag}
             , #{budGet}
-            , #{budgetConfirmed}
+            , #{budgetConfirmed}::bool
             , #{reason}
             , #{sfid}
             , #{sourceTag}
@@ -149,7 +149,7 @@
             , dcxtopportunitykey__c = #{dcxtOpportunityKey}
             , mediumtag__c = #{mediumTag}
             , budget__c = #{budGet}
-            , budget_confirmed__c = #{budgetConfirmed}
+            , budget_confirmed__c = #{budgetConfirmed}::bool
             , reason__c = #{reason}
             , sfid = #{sfid}
             , source_tag__c = #{sourceTag}

@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OppertunityDto {
+    private String rowId;
     private String accountExternalId;
     private String contentTag;
     private String lossReason;

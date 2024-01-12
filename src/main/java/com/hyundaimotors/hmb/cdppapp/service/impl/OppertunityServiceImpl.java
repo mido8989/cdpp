@@ -28,6 +28,7 @@ public class OppertunityServiceImpl implements OppertunityService{
             mapper.insertObject(dto);
             System.out.println("Check Insert =============================================================================================>");
         }
+        resultDto.setRowId(dto.getRowId());
         resultDto.setErrorSpcCode("0");
         resultDto.setErrorSpcMessage("OK");
 
