@@ -15,14 +15,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OppertunityServiceImpl implements OppertunityService{
     
-
     private final OppertunityMapper mapper;
 
     public OppertunityDto insertObject(OppertunityDto dto)throws Exception{
         
         OppertunityDto resultDto = new OppertunityDto();
 
-        if(resultDto.getExternalId() != null){
+        if(dto.getExternalId() != null){
             mapper.updateObject(dto);
         }else{
             mapper.insertObject(dto);
