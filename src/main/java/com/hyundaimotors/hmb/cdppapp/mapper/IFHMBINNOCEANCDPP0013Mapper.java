@@ -12,6 +12,8 @@ public interface IFHMBINNOCEANCDPP0013Mapper {
 	public String getRowId(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
     
     public String getContactId(ListOfContactsDto dto)throws Exception;
+    
+    public String getContactIdWithoutCpf(ListOfContactsDto dto)throws Exception;
 
     public void insertBusinessAccount(IFHMBINNOCEANCDPP0013Dto dto)throws Exception;
 
