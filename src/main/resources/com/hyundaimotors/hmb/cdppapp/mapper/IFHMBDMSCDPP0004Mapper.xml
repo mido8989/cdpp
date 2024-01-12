@@ -90,7 +90,7 @@
             , pc.pcd__c as identificacaoPCD
             , pc.type as tipoContato
             , 'Y' as clienteHyundai
-            , sr.usedcar_as_down_payment__c::varchar as usadoNaTroca
+            , sr.usedcar_as_down_payment__c as usadoNaTroca
             , pc.corporaterepresentativename__c as nomeConcessionaria
             , pc.cust_stat_cd__c as statusConcessionaria
             , sr.method as metodoContato
@@ -190,7 +190,7 @@
 
     <select id="getVeiculoEntradaOPV" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeaDveiculoEntradaOPVDto">
         select 
-            usedcar_as_down_payment__c as usadoNaTroca
+            usedcar_as_down_payment__c::varchar as usadoNaTroca
             , usedcar_brand__c as usadoMarca
             , usedcar_model__c as usadoModelo
             , usedcar_year__c as usadoAno
