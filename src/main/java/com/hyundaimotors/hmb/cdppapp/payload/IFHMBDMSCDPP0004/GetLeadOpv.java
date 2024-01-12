@@ -44,7 +44,7 @@ public class GetLeadOpv {
     private String clienteHyundai;
     @Schema(description = "UsadoNaTroca", example = "Y")
     @JsonProperty("UsadoNaTroca")
-    private String usadoNaTroca;
+    private boolean usadoNaTroca;
     @Schema(description = "OptInCotacao", example = "N")
     @JsonProperty("OptInCotacao")
     private String optInCotacao;

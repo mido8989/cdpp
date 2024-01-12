@@ -17,7 +17,7 @@ public class GetLeadOpvDto {
     private String identificacaoPCD;
     private String tipoContato;
     private String clienteHyundai;
-    private String usadoNaTroca;
+    private boolean usadoNaTroca;
     private String optInCotacao;
     private String optInContato;
     private String nomeConcessionaria;
