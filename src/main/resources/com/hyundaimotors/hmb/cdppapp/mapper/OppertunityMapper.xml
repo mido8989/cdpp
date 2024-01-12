@@ -4,8 +4,7 @@
 
     <insert id="insertObject" parameterType="OppertunityDto">
         insert into process.opportunity(
-            row_id
-            , contact_row_id__c
+            contact_row_id__c
             , contenttag__c
             , loss_reason__c
             , salesqualifieddate__c
@@ -56,8 +55,7 @@
             , qexpertreceiveddate__c
             , additionalnote__c
         )values(
-            process.get_proc_id('opportunity'::character varying)
-            , #{accountExternalId}
+            #{accountExternalId}
             , #{contentTag}
             , #{lossReason}
             , #{saleSqualifiedDate}
