@@ -60,7 +60,7 @@
         </if>
         <if test="cellPhone != null and cellPhone != ''">
         and 
-            cellphone = #{cellPhone}   
+            mobilephone = #{cellPhone}   
         </if>
         <if test="emailAddress != null and emailAddress != ''">
         and 
