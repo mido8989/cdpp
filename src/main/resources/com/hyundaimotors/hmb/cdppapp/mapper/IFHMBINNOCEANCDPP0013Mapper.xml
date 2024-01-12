@@ -9,7 +9,23 @@
             process.account a 
 		where 
             1=1
-        <choose>
+        <if test="cnpj != null and cnpj != ''">
+        and 
+            corporateregistrationnumber__c = #{cnpj}
+        </if>
+        <if test="name != null and name != ''">
+        and 
+            lower(trim(name)) = lower(trim(#{name}))
+        </if>
+        <if test="mainPhone != null and mainPhone != ''">
+        and 
+            phone = #{mainPhone}
+        </if>
+        <if test="mainEmailAddress != null and mainEmailAddress != ''">
+        and 
+            emailaddress__c = #{mainEmailAddress}
+        </if>
+        <!-- <choose>
             <when test="cnpj != null and cnpj != ''">
                 and corporateregistrationnumber__c = #{cnpj}
             </when>
@@ -18,7 +34,7 @@
                 and phone = #{mainPhone}
                 and emailaddress__c = #{mainEmailAddress}
             </otherwise>
-        </choose>
+        </choose> -->
         limit 1
         <!-- <if test="cnpj != null or cnpj != ''">and corporateregistrationnumber__c = #{cnpj}</if>
         <if test="name != null or name != ''">and lower(trim(name)) = lower(trim(#{name}))</if>
@@ -34,20 +50,36 @@
             process.contact
         where 
             1=1
-        <choose>
+        and 
+            lower(trim(firstname)) = lower(trim(#{firstName}))
+        and 
+            lower(trim(lastname))  = lower(trim(#{lastName}))
+        <if test="cpf !=null and cpf !=''">
+        and 
+            cpf__c = #{cpf}
+        </if>
+        <if test="cellPhone != null and cellPhone != ''">
+        and 
+            cellphone = #{cellPhone}   
+        </if>
+        <if test="emailAddress != null and emailAddress != ''">
+        and 
+            email = #{emailAddress}        
+        </if>
+        <!-- <choose>
             <when test=" cpf !=null and cpf !='' ">
                 and cpf__c = #{cpf}
             </when>
             <otherwise>
                 and lower(trim(firstname)) = lower(trim(#{firstName}))
                 and lower(trim(lastname))  = lower(trim(#{lastName}))
-                and companyphone__c = #{workPhone}
+                and cellphone = #{cellPhone}
                 and email      = #{emailAddress}
             </otherwise>
-        </choose>   
+        </choose>    -->
         <!-- <if test="workPhone != null or  workPhone != ''">and companyphone__c = #{workPhone}</if>
             <if test="emailAddress != null or emailAddress != ''">and email      = #{emailAddress}</if> -->
-            limit 1               
+        limit 1               
         </select>
 
 

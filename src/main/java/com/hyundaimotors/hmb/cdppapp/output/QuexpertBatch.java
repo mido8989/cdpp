@@ -70,7 +70,6 @@ public class QuexpertBatch {
                     GetLeadQuExpert payload = new GetLeadQuExpert();
                     payload = modelMapper.map(dto, GetLeadQuExpert.class);
                     String jsonString = mapper.writeValueAsString(payload);
-                    System.out.println("jsonString ============================================>" + jsonString);
                     
                     // REST API 호출 및 데이터 처리 로직
                     HttpClient client = HttpClient.newHttpClient();
