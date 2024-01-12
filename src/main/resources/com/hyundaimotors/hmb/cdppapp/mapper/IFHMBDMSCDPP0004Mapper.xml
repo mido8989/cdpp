@@ -273,9 +273,9 @@
         and
             po.qexpertreceiveddate__c isnull
         and
-            po.predictive_temp__c isnull
+            (po.predictive_temp__c isnull or po.predictive_temp__c = '')
         and
-            po.transferredopportunity__c != true
+            (po.transferredopportunity__c = false or po.transferredopportunity__c isnull)
         and
             po.qexperttransferreddate__c isnull
         and
