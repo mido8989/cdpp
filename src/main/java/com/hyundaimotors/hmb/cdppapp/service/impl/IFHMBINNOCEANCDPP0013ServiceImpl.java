@@ -86,8 +86,14 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                 for(int i = 0; i < listOfcontacts.size(); i++){
                     ListOfContactsDto contact = new ListOfContactsDto();
                     contact = listOfcontacts.get(i);
-                    
-                    String getContactId = mapper.getContactId(contact);                        
+                    String getContactId = null;
+                    if( contact.getCpf() != null ){
+                        getContactId = mapper.getContactId(contact);                        
+                        listProcConId.add(getContactId); 
+                    }else {
+                        getContactId = mapper.getContactIdWithoutCpf(contact);
+                        listProcConId.add(getContactId); 
+                    }
                     listProcConId.add(getContactId);                      
                     
                 }
