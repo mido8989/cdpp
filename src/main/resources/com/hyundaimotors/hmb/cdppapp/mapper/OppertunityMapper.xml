@@ -60,7 +60,7 @@
             , #{lossReason}
             , #{saleSqualifiedDate}
             , #{salesStatus}
-            , #{closeDate}
+            , #{closeDate}::timestamp
             , #{consultendDate}
             , #{autonumberForName}
             , #{bodyType}
@@ -81,7 +81,7 @@
             , #{level1}
             , #{createdDate}::timestamp
             , #{consultNo}
-            , #{transferredOpportunity}
+            , #{transferredOpportunity}::bool
             , #{companionSalesName}
             , #{testDriveProtocolid}
             , #{closeStatus}
@@ -115,7 +115,7 @@
             , loss_reason__c = #{lossReason}
             , salesqualifieddate__c = #{saleSqualifiedDate}
             , salesstatus__c = #{salesStatus}
-            , closedate = #{closeDate}
+            , closedate = #{closeDate}::timestamp
             , consultenddate__c = #{consultendDate}
             , autonumberforname__c = #{autonumberForName}
             , bodytype__c = #{bodyType}
@@ -136,7 +136,7 @@
             , level1__c = #{level1}
             , createddate = #{createdDate}::timestamp
             , consultno__c = #{consultNo}
-            , transferredopportunity__c = #{transferredOpportunity}
+            , transferredopportunity__c = #{transferredOpportunity}::bool
             , companionsalesname__c = #{companionSalesName}
             , protocol__c = #{testDriveProtocolid}
             , closestatus__c = #{closeStatus}
