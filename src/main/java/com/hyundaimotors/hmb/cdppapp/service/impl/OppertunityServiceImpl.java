@@ -23,8 +23,10 @@ public class OppertunityServiceImpl implements OppertunityService{
 
         if(dto.getExternalId() != null){
             mapper.updateObject(dto);
+            System.out.println("Check Update =============================================================================================>");
         }else{
             mapper.insertObject(dto);
+            System.out.println("Check Insert =============================================================================================>");
         }
         resultDto.setErrorSpcCode("0");
         resultDto.setErrorSpcMessage("OK");
