@@ -52,7 +52,6 @@ public class QuexpertBatch {
     
     @Scheduled(cron = "0 */5 * * * *")
     public void getQuExpert() throws ParseException{
-        UUID IF_TR_ID = UUID.randomUUID();
 
         String accessToken = getToken();
         
@@ -64,6 +63,7 @@ public class QuexpertBatch {
         try {
             if(0 < quexpertList.size()){
                 for(int i=0; i < quexpertList.size(); i++){
+                    UUID IF_TR_ID = UUID.randomUUID();
                     GetLeadQuExpertDto dto = new GetLeadQuExpertDto();
                     dto = quexpertList.get(i);
                     ObjectMapper mapper = new ObjectMapper(); 
