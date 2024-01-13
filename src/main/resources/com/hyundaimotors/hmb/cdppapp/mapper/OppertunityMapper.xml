@@ -89,7 +89,7 @@
             , #{campaignTag}
             , #{companionSalesnumber}
             , #{lostReason}
-            , #{completeDate}
+            , #{completeDate}::timestamp
             , #{description}
             , #{dcxtOpportunityKey}
             , #{mediumTag}

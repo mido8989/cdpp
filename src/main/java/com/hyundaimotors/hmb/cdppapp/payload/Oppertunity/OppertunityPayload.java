@@ -81,6 +81,7 @@ public class OppertunityPayload {
     @Getter
     @Setter
     public static class Response{
+        private String rowId;
         @JsonProperty("Error_spcCode")
         private String errorSpcCode;
         @Schema(description = "errorSpcMessage", example = "OK")
