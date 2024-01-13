@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.OppertunityMapper">
 
-    <insert id="insertObject" parameterType="OppertunityDto"  useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+    <insert id="insertObject" parameterType="OppertunityDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into process.opportunity(
             contact_row_id__c
             , contenttag__c
@@ -109,7 +109,7 @@
     </insert>
 
 
-    <update id="updateObject" parameterType="OppertunityDto">
+    <update id="updateObject" parameterType="OppertunityDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         update process.opportunity set
             contenttag__c = #{contentTag}
             , loss_reason__c = #{lossReason}
