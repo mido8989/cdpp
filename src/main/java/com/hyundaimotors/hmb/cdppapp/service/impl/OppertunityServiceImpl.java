@@ -20,13 +20,13 @@ public class OppertunityServiceImpl implements OppertunityService{
     public OppertunityDto insertObject(OppertunityDto dto)throws Exception{
         
         OppertunityDto resultDto = new OppertunityDto();
-        System.out.println("Check Fir =============================================================================================>");
-        if(dto.getExternalId() != null){
-            mapper.updateObject(dto);
-            System.out.println("Check Update =============================================================================================>");
-        }else{
+        int countRowId = mapper.getRowId(dto);
+
+        if(countRowId == 0){
             mapper.insertObject(dto);
-            System.out.println("Check Insert =============================================================================================>");
+            
+        }else{
+            //mapper.updateObject(dto);
         }
         resultDto.setRowId(dto.getRowId());
         resultDto.setErrorSpcCode("0");
