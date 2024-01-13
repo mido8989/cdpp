@@ -1,11 +1,11 @@
-package com.hyundaimotors.hmb.cdppapp.dto.Oppertunity;
+package com.hyundaimotors.hmb.cdppapp.dto.OpportunityReverse;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class OppertunityDto {
+public class OpportunityDto {
     private String rowId;
     private String accountExternalId;
     private String contentTag;

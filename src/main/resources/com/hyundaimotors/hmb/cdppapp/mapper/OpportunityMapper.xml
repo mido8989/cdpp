@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.OppertunityMapper">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.OpportunityMapper">
 
-    <select id="getRowId" parameterType="OppertunityDto" resultType="integer">
+    <select id="getRowId" parameterType="OpportunityDto" resultType="integer">
         select 
             count(*) as countRowId
         from
@@ -11,7 +11,7 @@
             sfid = #{sfid}
     </select>
 
-    <insert id="insertObject" parameterType="OppertunityDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+    <insert id="insertObject" parameterType="OpportunityDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into process.opportunity(
             contact_row_id__c
             , contenttag__c
@@ -122,7 +122,7 @@
     </insert>
 
 
-    <update id="updateObject" parameterType="OppertunityDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+    <update id="updateObject" parameterType="OpportunityDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         update process.opportunity set
             contenttag__c = #{contentTag}
             , loss_reason__c = #{lossReason}
