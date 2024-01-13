@@ -64,6 +64,7 @@
             , qexperttransferreddate__c
             , qexpertreceiveddate__c
             , additionalnote__c
+            , status
         )values(
             #{accountExternalId}
             , #{contentTag}
@@ -116,6 +117,7 @@
             , #{qexpertTransferredDate}::timestamp
             , #{qexperTreceivedDate}::timestamp
             , #{additionalNote}
+            , #{stageName}
         )
     </insert>
 
