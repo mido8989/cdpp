@@ -37,7 +37,8 @@
             , level2__c
             , contactdate__c
             , level1__c
-            , createddate
+            , legacycreateddate__c
+            , legacy_last_update__c
             , consultno__c
             , transferredopportunity__c
             , companionsalesname__c
@@ -88,6 +89,7 @@
             , #{level2}
             , #{contactDate}::timestamp
             , #{level1}
+            , #{createdDate}::timestamp
             , #{createdDate}::timestamp
             , #{consultNo}
             , #{transferredOpportunity}::bool
@@ -143,7 +145,7 @@
             , level2__c = #{level2}
             , contactdate__c = #{contactDate}::timestamp
             , level1__c = #{level1}
-            , createddate = #{createdDate}::timestamp
+            , legacy_last_update__c = now()
             , consultno__c = #{consultNo}
             , transferredopportunity__c = #{transferredOpportunity}::bool
             , companionsalesname__c = #{companionSalesName}
