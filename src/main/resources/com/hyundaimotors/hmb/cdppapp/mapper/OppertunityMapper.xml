@@ -144,7 +144,7 @@
             , campaigntag__c = #{campaignTag}
             , companionsalesnumber__c = #{companionSalesnumber}
             , lostreason__c = #{lostReason}
-            , completedate__c = #{completeDate}
+            , completedate__c = #{completeDate}::timestamp
             , description = #{description}
             , dcxtopportunitykey__c = #{dcxtOpportunityKey}
             , mediumtag__c = #{mediumTag}
