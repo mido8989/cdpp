@@ -35,6 +35,7 @@
             , ordernum
             , dpuser
             , estoque
+            , tdConfirmed
         )values(    
             now()
             , 'interface'
@@ -67,6 +68,7 @@
             , #{orderNum}
             , #{dpUser}
             , #{estoque}
+            , #{tdConfirmed}
         )
     </insert>
 

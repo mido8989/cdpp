@@ -74,6 +74,8 @@ public class IFHMBSAPEAICDPP0006Payload {
         private String dpUser;
         @Schema(description = "stock", example = "stock")
         private String estoque;
+        @Schema(description = "tdConfirmed", example = "Y")
+        private String tdConfirmed;
 
         @JsonProperty("actionNote")
         List<ActionNote> actionNote;
