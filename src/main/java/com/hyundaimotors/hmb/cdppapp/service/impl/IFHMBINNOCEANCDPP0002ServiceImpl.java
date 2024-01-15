@@ -114,6 +114,9 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     resultDto.setCheckUpsert("insert");
                     
                 }
+                
+            resultDto.setError_spcCode("0"); 
+            resultDto.setError_spcMessage("OK");
        }
        
        
