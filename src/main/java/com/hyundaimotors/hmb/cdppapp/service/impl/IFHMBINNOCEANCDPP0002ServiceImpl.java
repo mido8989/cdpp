@@ -73,6 +73,9 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
        
        String foundContactIdbyCpf = null;
        if(dto.getCpf() != null && !dto.getCpf().equals("")) { //update
+            // 숫자로만
+            dto.setCpf(dto.getCpf().replaceAll("[^0-9]", ""));
+
             foundContactIdbyCpf = mapper.foundContactId(dto); 
             
             if(foundContactIdbyCpf != null){
