@@ -18,7 +18,7 @@
             on
                 po.dealercode__c = pa.dealercode__c and pa.process_account_type = 'Dealer'
             where
-                po.qexperttransferreddate__c <![CDATA[ <= ]]> (now() - '5 minutes'::interval)
+                po.legacycreateddate__c <![CDATA[ <= ]]> (now() - '5 minutes'::interval)
             and
                 po."type" != 'Test Drive'
             and
@@ -38,9 +38,9 @@
                     pa.apikey__c = #{apiKey}
             </if>
             and
-                po.qexperttransferreddate__c <![CDATA[ >= ]]> to_timestamp(#{date}||' 00:00:00','YYYY-MM-DD HH24:mi:SS')
+                po.legacycreateddate__c <![CDATA[ >= ]]> to_timestamp(#{date}||' 00:00:00','YYYY-MM-DD HH24:mi:SS')
             and
-                po.qexperttransferreddate__c <![CDATA[ <= ]]> to_timestamp(#{date}||' 23:59:59', 'YYYY-MM-DD HH24:mi:SS')
+                po.legacycreateddate__c <![CDATA[ <= ]]> to_timestamp(#{date}||' 23:59:59', 'YYYY-MM-DD HH24:mi:SS')
     </select>
 
     <select id="getContactInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadContactDto">
