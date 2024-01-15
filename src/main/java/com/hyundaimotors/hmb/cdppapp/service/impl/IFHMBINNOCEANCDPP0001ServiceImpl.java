@@ -19,6 +19,10 @@ public class IFHMBINNOCEANCDPP0001ServiceImpl implements IFHMBINNOCEANCDPP0001Se
 
     public IFHMBINNOCEANCDPP0001Dto getObject(IFHMBINNOCEANCDPP0001Dto dto)throws Exception{
         IFHMBINNOCEANCDPP0001Dto resulDto = new IFHMBINNOCEANCDPP0001Dto();
+
+        // 숫자만 추출
+        dto.setPhoneNumber(dto.getPhoneNumber().replaceAll("[^0-9]", ""));
+        
         resulDto = mapper.getObject(dto);
         
         if(resulDto != null){
