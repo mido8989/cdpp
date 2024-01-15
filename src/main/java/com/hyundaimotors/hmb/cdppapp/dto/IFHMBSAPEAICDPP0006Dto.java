@@ -40,6 +40,7 @@ public class IFHMBSAPEAICDPP0006Dto {
     private String orderNum;
     private String dpUser;
     private String estoque;
+    private String tdConfirmed;
 
     List<ActionNote> actionNote;
     List<ActionProducts> actionProducts;
