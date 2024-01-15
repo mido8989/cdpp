@@ -44,6 +44,19 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }
         }
 
+        // mobile 번호 형식 변경
+        // String dtoCellPhone = dto.getCellPhone();
+        // if( (dtoCellPhone != null && !dtoCellPhone.equals("")) && (dtoCellPhone.length() == 9 || dtoCellPhone.length() == 11)){
+        //     dtoCellPhone = dtoCellPhone.replaceAll("[^0-9]", "");           
+        //     if(dtoCellPhone.length() == 9){     // 9자리일 경우
+        //         dtoCellPhone = "+55 00 " + dtoCellPhone.substring(0, 5) + " " + dtoCellPhone.substring(5, 9);
+        //     }else{      // 11자리일 경우
+        //         dtoCellPhone = "+55 " + dtoCellPhone.substring(0, 2) + " " + dtoCellPhone.substring(2, 7) + " " + dtoCellPhone.substring(7, 11);
+        //     }
+        //     dto.setCellPhone(dtoCellPhone);
+        // }
+        
+
        
         mapper.insertObject(dto);
         if(  dto.getListOfCurrentCars() != null){
@@ -114,7 +127,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                     resultDto.setCheckUpsert("insert");
                     
                 }
-                
+
             resultDto.setError_spcCode("0"); 
             resultDto.setError_spcMessage("OK");
        }
@@ -126,37 +139,6 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
            oldAccount = mapper.getOldAccount(foundContactIdbyCpf);           
        }
 
-       
-
-    //    if(isValidation) {
-    //          if(foundContactIdbyCpf != null) {
-    //              resultDto.setContactId(update(dto,foundContactIdbyCpf));
-    //             System.out.println(":::::::::::: update contactId ::::::::::" +  resultDto.getContactId());
-
-    //              resultDto.setCheckUpsert("update");
-    //              if(oldAccount != null){
-    //                  oldAccount.setCheckUpsert("update");
-    //              }
-    //          }else {
-    //              resultDto.setContactId(insert(dto));
-    //             System.out.println(":::::::::::: insert contactId ::::::::::" +  resultDto.getContactId());
-    //              resultDto.setCheckUpsert("insert");
-    //          }
-             
-    //          resultDto.setError_spcCode("0"); 
-    //          resultDto.setError_spcMessage("OK");
-    //    }else {
-    //        if(foundContactIdbyCpf != null) {//저장 조건중 row_id를 가져올수 있다면..
-    //            resultDto.setContactId(update(dto,foundContactIdbyCpf));
-    //            resultDto.setCheckUpsert("update");
-    //        }else {
-    //            resultDto.setContactId(insert(dto));
-    //            resultDto.setCheckUpsert("insert");
-    //        }
-           
-    //        resultDto.setError_spcCode("0"); 
-    //        resultDto.setError_spcMessage("OK");
-    //    }
         
         HashMap<String, IFHMBINNOCEANCDPP0002Dto> resultMap = new HashMap<>();
 
@@ -210,15 +192,6 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
           
         return foundContactId;
     }
-    
-    /**
-     * 공백이나 null체크
-     * @param value
-     * @return
-     */
-    private boolean isNull(String value) {
-        return !(value != null && !"".equals(value.trim())) && true;
-    }
 
 
     public void insertDPObject(IFHMBINNOCEANCDPP0002Dto dto)throws Exception{
@@ -231,8 +204,6 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         mapper.transferDPProcess(map);
 
         IFHMBINNOCEANCDPP0002Dto newAccount = new IFHMBINNOCEANCDPP0002Dto();
-
-        System.out.println(":::::::::::: newAccount contactId ::::::::::" +  dto.getContactId());
 
         newAccount = mapper.getOldAccount(dto.getContactId());
 

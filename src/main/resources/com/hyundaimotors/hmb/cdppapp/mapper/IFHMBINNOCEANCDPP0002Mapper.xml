@@ -27,6 +27,7 @@
         <if test="emailAddress != null and emailAddress !=''">
             and a.personemail = #{emailAddress}
         </if>
+        limit 1
     </select>
     
     <select id="foundContactId" parameterType="IFHMBINNOCEANCDPP0002Dto" resultType="String">
