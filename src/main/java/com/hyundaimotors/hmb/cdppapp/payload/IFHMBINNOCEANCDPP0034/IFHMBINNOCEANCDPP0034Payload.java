@@ -51,8 +51,8 @@ public class IFHMBINNOCEANCDPP0034Payload {
         private String serialNumber;
         @Schema(description = "Flag indicating that the protocol does not have a customer associated. Valid values: Y , N", example = "Y")
         private String anonymousFlag;
+        //@NotNull @NotBlank @NotEmpty @Pattern(regexp="^[a-zA-Z0-9]-.*$")
         @Schema(description = "Connex contact Id.", example = "1-1GTF")
-        @NotNull @NotBlank @NotEmpty @Pattern(regexp="^[a-zA-Z0-9]-.*$")
         private String contactId;
         @Schema(description = "Connex account Id.", example = "1-1GSL")
         private String accountId;
