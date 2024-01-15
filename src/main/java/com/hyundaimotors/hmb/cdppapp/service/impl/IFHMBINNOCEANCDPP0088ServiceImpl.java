@@ -21,7 +21,9 @@ public class IFHMBINNOCEANCDPP0088ServiceImpl implements IFHMBINNOCEANCDPP0088Se
         IFHMBINNOCEANCDPP0088Dto resulDto = new IFHMBINNOCEANCDPP0088Dto();
         
         mapper.insertAmaroCSISurvey(dto);
-        mapper.insertAmaroCSISurveyAnswer(dto);
+        if(dto.getListOfAmaroCSISurveyAnswer() != null){
+            mapper.insertAmaroCSISurveyAnswer(dto);
+        }
         String getProcId = mapper.getProcId(dto);
         
         if( getProcId != null){
