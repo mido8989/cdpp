@@ -1,4 +1,4 @@
-package com.hyundaimotors.hmb.cdppapp.payload.Oppertunity;
+package com.hyundaimotors.hmb.cdppapp.payload.OpportunityReverse;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -6,9 +6,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
-public class OppertunityPayload {
+public class OpportunityPayload {
     
-    @Schema(name = "OppertunityPayload.Request")
+    @Schema(name = "OpportunityPayload.Request")
     @Getter
     @Setter
     public static class Request{
@@ -77,7 +77,7 @@ public class OppertunityPayload {
         private String additionalNote;
     }
 
-    @Schema(name = "OppertunityPayload.Response")
+    @Schema(name = "OpportunityPayload.Response")
     @Getter
     @Setter
     public static class Response{
