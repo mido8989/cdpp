@@ -7,8 +7,11 @@
             row_id as parRowId
         from             
             process.account 
-      where 
+        where 
             dealercode__c = #{dealerCode}
+        and 
+            process_account_type = 'Dealer'
+        limit 1
     </select>
 
     <delete id="deleteList" parameterType="IFHMBINNOCEANCDPP0046Dto">
