@@ -22,6 +22,7 @@ public class IFHMBINNOCEANCDPP0001ServiceImpl implements IFHMBINNOCEANCDPP0001Se
 
         // 숫자만 추출
         dto.setPhoneNumber(dto.getPhoneNumber().replaceAll("[^0-9]", ""));
+        dto.setCpf(dto.getCpf().replaceAll("[^0-9]", ""));
         
         resulDto = mapper.getObject(dto);
         
