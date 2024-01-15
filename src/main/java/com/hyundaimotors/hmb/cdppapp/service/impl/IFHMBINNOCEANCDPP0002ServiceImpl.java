@@ -98,6 +98,19 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             resultDto.setError_spcCode("0"); 
             resultDto.setError_spcMessage("OK");           
 
+       }else{
+            foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
+                if(foundContactIdbyCpf != null){
+                    resultDto.setContactId(update(dto,foundContactIdbyCpf));
+                    resultDto.setCheckUpsert("update");
+
+
+                }else{
+
+                    resultDto.setContactId(insert(dto));
+                    resultDto.setCheckUpsert("insert");
+                    
+                }
        }
        
        
