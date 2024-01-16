@@ -55,6 +55,9 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                     ListOfContactsDto contact = new ListOfContactsDto();
                     contact = listOfcontacts.get(i);
                     contact.setParRowId(String.valueOf(dto.getRowId()));
+                    if( contact.getCpf() != null && !contact.getCpf().equals("")){
+                        contact.setCpf(contact.getCpf().replaceAll("[^0-9]", ""));
+                    }
                     contact.setAccntRowId(getProcAccntRowId);
     
                     mapper.insertPersonAccount(contact);
@@ -87,7 +90,8 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                     ListOfContactsDto contact = new ListOfContactsDto();
                     contact = listOfcontacts.get(i);
                     String getContactId = null;
-                    if( contact.getCpf() != null ){
+                    if( contact.getCpf() != null && !contact.getCpf().equals("")){
+                        contact.setCpf(contact.getCpf().replaceAll("[^0-9]", ""));
                         getContactId = mapper.getContactId(contact);                        
                         listProcConId.add(getContactId); 
                     }else {
@@ -153,10 +157,15 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                 for(int i = 0; i < listOfcontacts.size(); i++){
                     ListOfContactsDto contact = new ListOfContactsDto();
                     contact = listOfcontacts.get(i);
-                    contact.setAccntRowId(getProcAccntRowId);
-                    
-                    String getContactId = mapper.getContactId(contact);
-                    
+                    String getContactId = null;
+                    if( contact.getCpf() != null && !contact.getCpf().equals("")){
+                        contact.setCpf(contact.getCpf().replaceAll("[^0-9]", ""));
+                        getContactId = mapper.getContactId(contact);                        
+                        listProcConId.add(getContactId); 
+                    }else {
+                        getContactId = mapper.getContactIdWithoutCpf(contact);
+                        listProcConId.add(getContactId); 
+                    }
                     listProcConId.add(getContactId);                      
                     
                 }
