@@ -166,7 +166,7 @@
         select 
             '0' as name
             , predictive_temp__c as temperature 
-            , createddate as created
+            , qexpertreceiveddate__c as created
         from
             process.opportunity
         where 
