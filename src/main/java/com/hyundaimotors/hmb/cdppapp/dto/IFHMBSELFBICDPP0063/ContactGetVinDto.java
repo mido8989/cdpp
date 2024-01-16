@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class ContactGetVinDto {
     private String idSiebel;
+    private String birthDate;
+    private String gender;
     private String relatedType;
     private String relatedStatus;
     private String suppressAllCalls;
