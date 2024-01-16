@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0005Mapper">
-
-    <select id="foundAccountIdbyCnpj" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
-        select
-            row_id as foundAccountIdbyCnpj
-        from
-            process.account
-        where
-            corporateregistrationnumber__c = #{cnpjNumber}
-    </select>
     
     <select id="foundAccountIdbyNameAndPhoneAndEmail" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
         select
@@ -26,6 +17,7 @@
         and 
             emailaddress__c = #{mainEmailAddress}
         </if>
+        limit 1
     </select>
 
     <select id="foundAccountId" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
@@ -44,7 +36,8 @@
         <if test="mainEmailAddress != null and mainEmailAddress != ''">
         and 
             emailaddress__c = #{mainEmailAddress}
-        </if>            
+        </if>  
+        limit 1          
     </select>
     
     <insert id="insertObject" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
