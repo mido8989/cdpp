@@ -4,18 +4,18 @@
     
     <select id="getLead" parameterType="IFHMBSELFBICDPP0062Dto" resultType="TotalLeadDto">
         select 
-            psr.protocol__c as protocol
-            , psr.reason__c as reason
-            , psr.origin as origin
+            po.protocol__c as protocol
+            , po.reason__c as reason
+            , po.origin as origin
             , psr.method as method
-            , psr.legacycreateddate__c as openDate
-            , psr.close_date__c as closeDate
-            , psr.status as status
-            , psr.voctype__c as level1
-            , psr.voc_class as level2
-            , psr.voc_level_2__c as level3
-            , psr.voc_level_3__c as level4
-            , psr.predictive_temp__c as predictiveTemp
+            , po.legacycreateddate__c as openDate
+            , po.close_date__c as closeDate
+            , po.status as status
+            , po.voctype__c as level1
+            , po.voc_class as level2
+            , po.voc_level_2__c as level3
+            , po.voc_level_3__c as level4
+            , po.predictive_temp__c as predictiveTemp
             , bpac.dealercode__c as dealerCode
             , bpac.corporaterepresentativename__c as dealerNick
             , psr.relatedmodel__c as relatedModel
@@ -56,18 +56,18 @@
             , psr.row_id as strId
         from
             process.service_request psr 
-        left join
-            process.account bpac
-        on
-            psr.account_row_id__c = bpac.row_id 
-        left join 
-            process.asset pas
-        on
-            psr.serialnumber = pas.serialnumber 
         join
             process.opportunity po
         on
             psr.protocol__c = po.protocol__c
+        left join
+            process.account bpac
+        on
+            po.dealercode__c = bpac.dealercode__c and bpac.process_account_type = 'Dealer'
+        left join 
+            process.asset pas
+        on
+            psr.serialnumber = pas.serialnumber 
         where
             1=1
         and
