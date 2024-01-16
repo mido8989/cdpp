@@ -16,7 +16,7 @@
             , po.voc_level_2__c as level3
             , po.voc_level_3__c as level4
             , po.predictive_temp__c as predictiveTemp
-            , bpac.dealercode__c as dealerCode
+            , po.dealercode__c as dealerCode
             , bpac.corporaterepresentativename__c as dealerNick
             , psr.relatedmodel__c as relatedModel
             , psr.quotetransmission__c as quoteTransmission
