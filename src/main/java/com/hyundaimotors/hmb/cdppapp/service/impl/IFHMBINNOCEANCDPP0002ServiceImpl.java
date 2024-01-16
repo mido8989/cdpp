@@ -56,7 +56,10 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         //     dto.setCellPhone(dtoCellPhone);
         // }
         
-
+        // cpf 숫자로만
+        if(dto.getCpf() != null && !dto.getCpf().equals("")) { 
+            dto.setCpf(dto.getCpf().replaceAll("[^0-9]", ""));
+        }
        
         mapper.insertObject(dto);
         if(  dto.getListOfCurrentCars() != null){
@@ -85,9 +88,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
     //    boolean isValidation = false;
        
        String foundContactIdbyCpf = null;
-       if(dto.getCpf() != null && !dto.getCpf().equals("")) { //update
-            // 숫자로만
-            dto.setCpf(dto.getCpf().replaceAll("[^0-9]", ""));
+       if(dto.getCpf() != null && !dto.getCpf().equals("")) { //update            
 
             foundContactIdbyCpf = mapper.foundContactId(dto); 
             
