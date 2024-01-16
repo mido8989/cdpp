@@ -36,6 +36,8 @@
             process.contact
         where 
             cpf__c = #{cpf}
+        and 
+            con_cd__c = 'Dealer'
         limit 1               
     </select>
 
@@ -48,6 +50,8 @@
             firstname = #{firstName}
         and 
             lastname = #{lastName}
+        and 
+            con_cd__c = 'Dealer'
         order by 
             created desc limit 1               
     </select>
