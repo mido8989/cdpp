@@ -59,6 +59,8 @@
     <select id="getContact"  parameterType="String" resultType="ContactGetVinDto">
         select
             pa.row_id as idSiebel
+            , pc.personbirthdate as birthDate
+            , pc.gender__pc as gender
             , ac.relation_type_cd as relatedType
             , ac.status_cd as relatedStatus
             , ( case when pa.calloptyn__pc = true then 'Y' when pa.calloptyn__pc = false then 'N' else null end ) as suppressAllCalls

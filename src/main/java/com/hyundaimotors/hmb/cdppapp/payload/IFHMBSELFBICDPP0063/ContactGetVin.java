@@ -12,6 +12,10 @@ import lombok.Setter;
 public class ContactGetVin {
     @JsonProperty("IdSiebel")
     private String idSiebel;
+    @JsonProperty("BirthDate")
+    private String birthDate;
+    @JsonProperty("Gender")
+    private String gender;
     @JsonProperty("RelatedType")
     private String relatedType;
     @JsonProperty("RelatedStatus")
