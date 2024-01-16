@@ -20,7 +20,7 @@
             , pa.x_td_home__c as tdHome
             , pa.x_sales_cancel_dt__c as salesCancelled
             , pa.row_id as assetId
-            , pa.account_row_id__c as bAccountId
+            , pa.contact_row_id__c as bAccountId
             , pa.contact_row_id__c as cAccountId
         from
             process.asset pa
@@ -78,6 +78,8 @@
             pa.row_id  = ac.account_id
         where 
             ac.account_id = #{cAccountId}
+        and 
+            ac.cv_type = 'Person'
         limit 1
     </select>
 
@@ -94,5 +96,8 @@
             pa.row_id  = aa.account_id
         where
             aa.account_id = #{bAccountId}
+        and 
+            aa.cv_type = 'Business'
+        limit 1
     </select>
 </mapper>
