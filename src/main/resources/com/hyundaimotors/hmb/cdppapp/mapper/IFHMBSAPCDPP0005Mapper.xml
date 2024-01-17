@@ -17,6 +17,8 @@
         and 
             emailaddress__c = #{mainEmailAddress}
         </if>
+        and 
+            process_account_type = 'Business'
         limit 1
     </select>
 
@@ -37,6 +39,8 @@
         and 
             emailaddress__c = #{mainEmailAddress}
         </if>  
+        and 
+            process_account_type = 'Business'
         limit 1          
     </select>
     
