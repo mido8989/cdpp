@@ -30,11 +30,11 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
         List<String> listConRowId = new ArrayList<>();
         List<String> listProcConId = new ArrayList<>();
         
-        String getProcAccntRowId = mapper.getRowId(dto);
         // cnpj 숫자만 추출
         if(dto.getCnpj() != null && !dto.getCnpj().equals("")){
             dto.setCnpj(dto.getCnpj().replaceAll("[^0-9]", ""));
         }
+        String getProcAccntRowId = mapper.getRowId(dto);
 
         mapper.insertBusinessAccount(dto);
 
