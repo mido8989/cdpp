@@ -34,6 +34,19 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
         if(dto.getCnpj() != null && !dto.getCnpj().equals("")){
             dto.setCnpj(dto.getCnpj().replaceAll("[^0-9]", ""));
         }
+
+        // mobile 번호 형식 변경
+        // String dtoMainPhone = dto.getMainPhone();
+        // if( (dtoMainPhone != null && !dtoMainPhone.equals("")) && (dtoMainPhone.length() == 9 || dtoMainPhone.length() == 11)){
+        //     dtoMainPhone = dtoMainPhone.replaceAll("[^0-9]", "");           
+        //     if(dtoMainPhone.length() == 9){     // 9자리일 경우
+        //         dtoMainPhone = "+55 00 " + dtoMainPhone.substring(0, 5) + " " + dtoMainPhone.substring(5, 9);
+        //     }else{      // 11자리일 경우
+        //         dtoMainPhone = "+55 " + dtoMainPhone.substring(0, 2) + " " + dtoMainPhone.substring(2, 7) + " " + dtoMainPhone.substring(7, 11);
+        //     }
+        //     dto.setMainPhone(dtoMainPhone);
+        // }
+
         String getProcAccntRowId = mapper.getRowId(dto);
 
         mapper.insertBusinessAccount(dto);
