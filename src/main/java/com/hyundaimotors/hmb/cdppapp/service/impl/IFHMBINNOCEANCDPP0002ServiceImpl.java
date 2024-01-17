@@ -169,6 +169,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             param_foundContactId = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
         }
             
+        System.out.println(":::::::: insert 할때 replica로 넘기는 row_id ::::::" + param_foundContactId);
         map.put("CONTACT_ID", param_foundContactId);
         mapper.transferReplica(map);
          
@@ -187,6 +188,9 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
         map.put("CONTACT_ID", foundContactId);
         map.put("checkcu", "update");
+
+        System.out.println(":::::::: update 할때 replica로 넘기는 row_id ::::::" + foundContactId);
+
         
         mapper.transferProcess(map);
         mapper.transferReplica(map);
