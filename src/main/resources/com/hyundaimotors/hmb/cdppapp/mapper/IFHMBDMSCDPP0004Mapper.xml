@@ -279,7 +279,7 @@
         and
             po.qexperttransferreddate__c isnull
         and
-            po.legacycreateddate__c <![CDATA[ >= ]]> to_timestamp((now()::date)::varchar||' 00:00:00','YYYY-MM-DD HH24:mi:SS') - '5 days'::interval
+            po.legacycreateddate__c <![CDATA[ >= ]]> to_timestamp(('2024-01-01'::date)::varchar||' 00:00:00','YYYY-MM-DD HH24:mi:SS') - '5 days'::interval
         and
             po.legacycreateddate__c <![CDATA[ <= ]]> to_timestamp((now()::date)::varchar||' 23:59:59', 'YYYY-MM-DD HH24:mi:SS')
         limit #{param}
