@@ -11,10 +11,10 @@
             , po.legacycreateddate__c as openDate
             , po.close_date__c as closeDate
             , po.status as status
-            , po.voctype__c as level1
-            , po.voc_class as level2
-            , po.voc_level_2__c as level3
-            , po.voc_level_3__c as level4
+            , po.level1__c as level1
+            , po.level2__c as level2
+            , po.level3__c as level3
+            , po.level4__c as level4
             , po.predictive_temp__c as predictiveTemp
             , po.dealercode__c as dealerCode
             , bpac.corporaterepresentativename__c as dealerNick
