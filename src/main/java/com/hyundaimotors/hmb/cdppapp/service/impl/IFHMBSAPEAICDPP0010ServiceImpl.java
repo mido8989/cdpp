@@ -69,11 +69,15 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
                 accnt = listOfAccount.get(i);
                 accnt.setSerialNumber(dto.getSerialNumber());
                 accnt.setParRowId(dto.getRowId());
-                dto.setAccountId(accnt.connexAccountId);
+                dto.setAccountId(accnt.getConnexAccountId());
+                
                 mapper.insertAccountList(accnt);
+
                 listAccontId.add(String.valueOf(accnt.getAccntRowId()));
             }
             accountId = listAccontId.toArray(new String[listAccontId.size()]);
+            System.out.println("listAccontId Size ===========================>" + listAccontId.size());
+            System.out.println("accountId ===========================>" + accountId);
         }     
         
         String getAssetId = mapper.getProcAssetId(dto);
