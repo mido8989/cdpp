@@ -35,6 +35,13 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
             dto.setCnpj(dto.getCnpj().replaceAll("[^0-9]", ""));
         }
 
+        // dealercode 숫자만 들어올 경우 'B05AM' 붙여주기
+        if(dto.getDealerCode() != null && !dto.getDealerCode().equals("")){
+            if(dto.getDealerCode().length() <= 5 ){
+                dto.setDealerCode("B05AM" + dto.getDealerCode());
+            }
+        }
+
         // mobile 번호 형식 변경
         // String dtoMainPhone = dto.getMainPhone();
         // if( (dtoMainPhone != null && !dtoMainPhone.equals("")) && (dtoMainPhone.length() == 9 || dtoMainPhone.length() == 11)){
