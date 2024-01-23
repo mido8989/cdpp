@@ -15,6 +15,8 @@
         where    
             a.dealercode__c = #{dealerCode}
         and
+            a.process_account_type = 'Dealer'
+        and
             d.holiday_date__c = to_date(#{holidayDate},'YYYY-MM-DD')
         and
             d.type__c = 'Dealer Local Holiday'
