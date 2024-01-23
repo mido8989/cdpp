@@ -65,10 +65,10 @@ public class IFHMBINNOCEANCDPP0046ServiceImpl implements IFHMBINNOCEANCDPP0046Se
         
         if( dto.getParRowId() != null ){
             
-            map.put("PARAM_ID", dto.getParRowId());
+            map.put("PARROW_ID", dto.getParRowId());
 
             mapper.transferDPProcess(map);
-            
+
         }
 
     }
