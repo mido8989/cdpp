@@ -125,7 +125,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
-            mapper.transferReplica(processMap);
+            //mapper.transferReplica(processMap);
 
             map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
@@ -152,7 +152,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             processMap.put("PROC_ASSET_ID", procAssetId);
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
-            mapper.transferReplica(processMap);
+            //mapper.transferReplica(processMap);
 
             map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
@@ -187,7 +187,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             processMap.put("PROC_INVOICE_ID", procInvoiceId);
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
-            mapper.transferReplica(processMap);
+            //mapper.transferReplica(processMap);
 
             map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
@@ -225,7 +225,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             processMap.put("PROC_ASSET_ID", procAssetId);
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
-            mapper.transferReplica(processMap);
+            //mapper.transferReplica(processMap);
 
             map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
