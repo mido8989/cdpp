@@ -74,12 +74,8 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
                 mapper.insertAccountList(accnt);
 
                 listAccontId.add(String.valueOf(accnt.getAccntRowId()));
-                System.out.println("accnt ===========================>" + accnt.getAccntRowId());
             }
             accountId = listAccontId.toArray(new String[listAccontId.size()]);
-            System.out.println("listAccontId Size ===========================>" + listAccontId.size());
-            
-            System.out.println("accountId ===========================>" + accountId);
         }     
         
         String getAssetId = mapper.getProcAssetId(dto);
@@ -127,7 +123,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
-            //mapper.transferReplica(processMap);
+            mapper.transferReplica(processMap);
 
             map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
@@ -154,7 +150,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             processMap.put("PROC_ASSET_ID", procAssetId);
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
-            //mapper.transferReplica(processMap);
+            mapper.transferReplica(processMap);
 
             map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
@@ -189,7 +185,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             processMap.put("PROC_INVOICE_ID", procInvoiceId);
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
-            //mapper.transferReplica(processMap);
+            mapper.transferReplica(processMap);
 
             map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
@@ -227,7 +223,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             processMap.put("PROC_ASSET_ID", procAssetId);
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
-            //mapper.transferReplica(processMap);
+            mapper.transferReplica(processMap);
 
             map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
