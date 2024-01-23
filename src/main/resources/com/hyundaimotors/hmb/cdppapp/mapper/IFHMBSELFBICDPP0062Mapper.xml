@@ -146,19 +146,24 @@
 
     <select id="getAction" parameterType="String" resultType="TotalActionDto">
         select 
-            psea.interactionstartdate__c as fstInteraction
-            , psea.get_lead_date as getLead
-            , psea.status__c as Status
-            , psea.plannedenddt__c as dtEnvio
-            , psea.completeddatetime as dt_fechamento
-            , psea.visitdate__c as visitconducted
-            , psea.visitscheduled__c as visitsched
-            , psea.visitstatus__c as visitstat
+            sch.first_interaction_date__c as fstInteraction
+            , po.transferredopportunitydate__c as getLead
+            , po.status as Status
+            , sch.dmsreceivedate__c as dtEnvio
+            , po.completedate__c as dt_fechamento
+            , sch.visitdate__c as visitconducted
+            , sch.scheduledvisitdate__c as visitsched
+            , sch.visitstatus__c as visitstat
         from
-            process.service_event_act psea
-        where 
-            psea.sra_sr_id = #{strId}
-        order by legacy_created desc
+            process.opportunity po
+        join
+            process.sales_consult_history sch
+        on
+            po.protocol__c = sch.protocol__c 
+        where
+            po.protocol__c = #{protocol}
+        order by 
+            sch.interactionnumber__c::int desc
         limit 1
     </select>
 
