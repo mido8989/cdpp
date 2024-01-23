@@ -41,6 +41,7 @@ public class IFHMBINNOCEANCDPP0046ServiceImpl implements IFHMBINNOCEANCDPP0046Se
             ManageDealerServiceOutDto ManageDealerServiceOut = new ManageDealerServiceOutDto();
             ManageDealerServiceOut.setDealerCode(dto.getDealerCode());
 
+            resultDto.setParRowId(parRowId);
             resultDto.setManageDealerServiceOut(ManageDealerServiceOut);    
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");      
@@ -55,5 +56,20 @@ public class IFHMBINNOCEANCDPP0046ServiceImpl implements IFHMBINNOCEANCDPP0046Se
         }
 
         return resultDto;
+    }
+
+    public void insertDPObject(IFHMBINNOCEANCDPP0046Dto dto)throws Exception{
+
+        HashMap<String, String> map = new HashMap<>();
+
+        
+        if( dto.getParRowId() != null ){
+            
+            map.put("PARAM_ID", dto.getParRowId());
+
+            mapper.transferDPProcess(map);
+            
+        }
+
     }
 }
