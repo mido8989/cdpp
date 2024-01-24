@@ -52,6 +52,7 @@ public class TotalLeadDto {
     private String quoteColor;
     private String quoteColorPrice;
     private String quoteVersionPrice;
+    private String quoteVersion;
     private String quotePrice;
     private String quoteReplaceIntention;
     private String contactRowId;
