@@ -29,7 +29,7 @@
                 (
                     phone = #{mainPhoneNumber}
                 or
-                    emailaddress__c = #{mainEmailAddress}
+                    lower(emailaddress__c)= lower(#{mainEmailAddress})
                 )
             </when>
             <when test="flgEmailAndPhone == 'Email'">
