@@ -31,12 +31,12 @@
                 ( 
                     a.personmobilephone = #{cellPhone} 
                 or
-                    a.personemail = #{emailAddress}
+                    lower(a.personemail) = lower(#{emailAddress})
                 )
             </when>
             <when test="flgEmailAndPhone == 'Email'">
                 and 
-                    a.personemail = #{emailAddress}
+                    lower(a.personemail) = lower(#{emailAddress})
             </when>
             <when test="flgEmailAndPhone == 'Phone'">
                 and 

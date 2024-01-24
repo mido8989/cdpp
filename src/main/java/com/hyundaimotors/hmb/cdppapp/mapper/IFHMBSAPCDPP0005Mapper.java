@@ -8,9 +8,9 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPCDPP0005.IFHMBSAPCDPP0005Dto;
 
 public interface IFHMBSAPCDPP0005Mapper {
     
-    public String foundAccountIdbyNameAndPhoneAndEmail(IFHMBSAPCDPP0005Dto dto)throws Exception;
-    
     public String foundAccountId(IFHMBSAPCDPP0005Dto dto)throws Exception;
+    
+    public String foundAccountIdbyNameAndPhoneAndEmail(IFHMBSAPCDPP0005Dto dto)throws Exception;
 
     public int insertObject(IFHMBSAPCDPP0005Dto dto)throws Exception;  
 

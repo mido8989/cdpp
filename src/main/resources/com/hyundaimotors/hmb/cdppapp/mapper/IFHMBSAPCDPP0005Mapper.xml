@@ -2,47 +2,49 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0005Mapper">
     
+    <select id="foundAccountId" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
+        select
+           row_id 
+       from
+           process.account
+       where  
+           corporateregistrationnumber__c = #{cnpjNumber}
+       and 
+           lower(trim(name)) = lower(trim(#{name}))        
+       and 
+           process_account_type = 'Business'
+       limit 1          
+   </select>
+
     <select id="foundAccountIdbyNameAndPhoneAndEmail" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
         select
-            row_id as foundAccountIdbyNameAndPhoneAndEmail
+            row_id 
         from
             process.account
         where 
             lower(trim(name))  = lower(trim(#{name}))
-        <if test="mainPhoneNumber != null and mainPhoneNumber !=''">
-        and 
-            phone = #{mainPhoneNumber}
-        </if>
-        <if test="mainEmailAddress != null and mainEmailAddress !=''">
-        and 
-            emailaddress__c = #{mainEmailAddress}
-        </if>
+        <choose>
+            <when test="flgEmailAndPhone == 'Both'">
+                and 
+                (
+                    phone = #{mainPhoneNumber}
+                or
+                    emailaddress__c = #{mainEmailAddress}
+                )
+            </when>
+            <when test="flgEmailAndPhone == 'Email'">
+                and 
+                    lower(emailaddress__c) = lower(#{mainEmailAddress})
+            </when>
+            <when test="flgEmailAndPhone == 'Phone'">
+                and 
+                    phone = #{mainPhoneNumber}
+            </when>
+        </choose>       
         and 
             process_account_type = 'Business'
         limit 1
-    </select>
-
-    <select id="foundAccountId" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
-         select
-            row_id as foundAccountId
-        from
-            process.account
-        where  
-            corporateregistrationnumber__c = #{cnpjNumber}
-        and 
-            lower(trim(name)) = lower(trim(#{name}))
-        <if test="mainPhoneNumber != null and mainPhoneNumber != ''">
-        and 
-            phone = #{mainPhoneNumber}
-        </if>
-        <if test="mainEmailAddress != null and mainEmailAddress != ''">
-        and 
-            emailaddress__c = #{mainEmailAddress}
-        </if>  
-        and 
-            process_account_type = 'Business'
-        limit 1          
-    </select>
+    </select>   
     
     <insert id="insertObject" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_account_ws_wf
