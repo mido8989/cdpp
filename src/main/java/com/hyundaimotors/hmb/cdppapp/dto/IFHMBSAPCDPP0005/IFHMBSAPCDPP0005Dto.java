@@ -40,4 +40,5 @@ public class IFHMBSAPCDPP0005Dto {
     private String errorSpcMessage;
     private String checkUpsert;
     private String apiKey;
+    private String flgEmailAndPhone;
 }

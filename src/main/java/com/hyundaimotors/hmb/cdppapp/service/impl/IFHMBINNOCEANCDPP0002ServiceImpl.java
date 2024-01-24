@@ -94,34 +94,6 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }else {    
                 resultDto.setContactId(insert(dto));
                 resultDto.setCheckUpsert("insert");            
-                // if( dto.getEmailAddress() != null && dto.getEmailAddress() != "" && dto.getCellPhone() != null && dto.getCellPhone() != "" ){   // Name, Email, Phone 모두 들어왔을 때
-                //     foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
-                //     if(foundContactIdbyCpf != null){
-                //         resultDto.setContactId(update(dto,foundContactIdbyCpf));
-                //         resultDto.setCheckUpsert("update");
-                //     }else{    
-                //         resultDto.setContactId(insert(dto));
-                //         resultDto.setCheckUpsert("insert");                        
-                //     }
-                // }else if( dto.getEmailAddress() != null && dto.getEmailAddress() != "" && dto.getCellPhone() == null && dto.getCellPhone() == "" ){  // Name, Email 들어왔을 때
-                //     foundContactIdbyCpf = mapper.foundAccountIdbyNameAndEmail(dto);
-                //     if(foundContactIdbyCpf != null){
-                //         resultDto.setContactId(update(dto,foundContactIdbyCpf));
-                //         resultDto.setCheckUpsert("update");       
-                //     }else{    
-                //         resultDto.setContactId(insert(dto));
-                //         resultDto.setCheckUpsert("insert");                        
-                //     }
-                // }else if( dto.getEmailAddress() == null && dto.getEmailAddress() == "" && dto.getCellPhone() != null && dto.getCellPhone() != "" ){  // Name, Phone 들어왔을 때
-                //     foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhone(dto);
-                //     if(foundContactIdbyCpf != null){
-                //         resultDto.setContactId(update(dto,foundContactIdbyCpf));
-                //         resultDto.setCheckUpsert("update");   
-                //     }else{    
-                //         resultDto.setContactId(insert(dto));
-                //         resultDto.setCheckUpsert("insert");                        
-                //     }
-                // }
             }
             resultDto.setError_spcCode("0"); 
             resultDto.setError_spcMessage("OK");    

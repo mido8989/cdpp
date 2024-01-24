@@ -54,6 +54,12 @@ public class IFHMBSAPCDPP0005Controller {
         
         try {
             IFHMBSAPCDPP0005Dto dto = defaultMapper.map(request, IFHMBSAPCDPP0005Dto.class);
+
+            // Dto Validation
+            String msg = this.isValidRequest(dto);
+            if( !"OK".equals(msg)){
+                throw new IllegalArgumentException(msg);
+            }
     
             ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
             HashMap<String, IFHMBSAPCDPP0005Dto> resultMap = service.insertObject(dto);
@@ -82,5 +88,17 @@ public class IFHMBSAPCDPP0005Controller {
         }
         
         return response;
+    }
+
+    private String isValidRequest(IFHMBSAPCDPP0005Dto dto) {
+        String errMsg = "OK";
+
+        if( (dto.getMainEmailAddress() == null || dto.getMainEmailAddress() == "") && (dto.getMainPhoneNumber() == null || dto.getMainPhoneNumber() == "") ){
+            errMsg = "Either EmailAddress or MainPhone must be entered.";
+        }else{
+            errMsg = "OK";
+        }
+
+        return errMsg;
     }
 }

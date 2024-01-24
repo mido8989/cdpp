@@ -21,25 +21,31 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
     public HashMap<String, IFHMBSAPCDPP0005Dto> insertObject(IFHMBSAPCDPP0005Dto dto)throws Exception{
         IFHMBSAPCDPP0005Dto resulDto = new IFHMBSAPCDPP0005Dto();
 
+        if(dto.getCnpjNumber() != null && dto.getCheckUpsert() != ""){
+            dto.setCnpjNumber(dto.getCnpjNumber().replaceAll("[^0-9]", ""));
+        }
+
         mapper.insertObject(dto);
         
-        /**
-         * 20231122
-         * 조건 : cnpjNumber 값이 있고 foundAccountIdbyCnpj조회 값이 있으면 update
-         *       또는 name,mainPhoneNumber,mainEmailAddress 값이 있고 foundAccountIdbyCnpj조회 값이 있으면 update
-         * 나머지 insert
-         */
-    //    boolean isValidation = false;
        IFHMBSAPCDPP0005Dto oldAccount = new IFHMBSAPCDPP0005Dto();
        String foundAccountIdbyCnpj = null;
-       if(dto.getCnpjNumber() != null && !dto.getCnpjNumber().equals("")) { //update
+
+       if(dto.getCnpjNumber() != null && !dto.getCnpjNumber().equals("")) { // cnpjNumber가 들어 왔을 때
             foundAccountIdbyCnpj = mapper.foundAccountId(dto);
             if ( foundAccountIdbyCnpj != null ){
                 resulDto.setContactId(update(dto,foundAccountIdbyCnpj));
                 resulDto.setCheckUpsert("update");
                 oldAccount = mapper.getOldAccount(foundAccountIdbyCnpj);
                 oldAccount.setCheckUpsert("update");
-            }else{
+            }else{                  
+                resulDto.setContactId(insert(dto));
+                resulDto.setCheckUpsert("insert"); 
+            }              
+            resulDto.setErrorSpcCode("0"); 
+            resulDto.setErrorSpcMessage("OK");
+        }else{  // cnpjNumber가 안들어 왔을 때
+            if(dto.getMainEmailAddress() != null && dto.getMainEmailAddress() != "" && dto.getMainPhoneNumber() != null && dto.getMainPhoneNumber() != ""){ // Email, Phone 둘 다 들어왔을 때
+                dto.setFlgEmailAndPhone("Both");
                 foundAccountIdbyCnpj = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
                 if( foundAccountIdbyCnpj != null ){
                     resulDto.setContactId(update(dto,foundAccountIdbyCnpj));
@@ -50,50 +56,36 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
                     resulDto.setContactId(insert(dto));
                     resulDto.setCheckUpsert("insert"); 
                 }
-            }  
-            
-            resulDto.setErrorSpcCode("0"); 
-            resulDto.setErrorSpcMessage("OK");
-        }else{
-            foundAccountIdbyCnpj = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
-            if( foundAccountIdbyCnpj != null ){
-                resulDto.setContactId(update(dto,foundAccountIdbyCnpj));
-                resulDto.setCheckUpsert("update");
-                oldAccount = mapper.getOldAccount(foundAccountIdbyCnpj);
-                oldAccount.setCheckUpsert("update");
-            }else{
-                resulDto.setContactId(insert(dto));
-                resulDto.setCheckUpsert("insert"); 
+            }else if(dto.getMainEmailAddress() != null && dto.getMainEmailAddress() != "" && (dto.getMainPhoneNumber() == null || dto.getMainPhoneNumber() == "")){ // Email만 들어왔을 때
+                dto.setFlgEmailAndPhone("Email");
+                foundAccountIdbyCnpj = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
+                if( foundAccountIdbyCnpj != null ){
+                    resulDto.setContactId(update(dto,foundAccountIdbyCnpj));
+                    resulDto.setCheckUpsert("update");
+                    oldAccount = mapper.getOldAccount(foundAccountIdbyCnpj);
+                    oldAccount.setCheckUpsert("update");
+                }else{
+                    resulDto.setContactId(insert(dto));
+                    resulDto.setCheckUpsert("insert"); 
+                }
+            }else if((dto.getMainEmailAddress() == null || dto.getMainEmailAddress() == "" )&& dto.getMainPhoneNumber() != null && dto.getMainPhoneNumber() != ""){ // Phone만 들어왔을 때 
+                dto.setFlgEmailAndPhone("Phone");
+                foundAccountIdbyCnpj = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
+                if( foundAccountIdbyCnpj != null ){
+                    resulDto.setContactId(update(dto,foundAccountIdbyCnpj));
+                    resulDto.setCheckUpsert("update");
+                    oldAccount = mapper.getOldAccount(foundAccountIdbyCnpj);
+                    oldAccount.setCheckUpsert("update");
+                }else{
+                    resulDto.setContactId(insert(dto));
+                    resulDto.setCheckUpsert("insert"); 
+                }
             }
 
             resulDto.setErrorSpcCode("0"); 
             resulDto.setErrorSpcMessage("OK");
         }
-       
-    //    if(isValidation) {
-    //          if(!isNull(foundAccountIdbyCnpj)) {
-    //              resulDto.setContactId(update(dto,foundAccountIdbyCnpj));
-    //              resulDto.setCheckUpsert("update");
-    //              oldAccount.setCheckUpsert("update");
-    //          }else {
-    //              resulDto.setContactId(insert(dto));
-    //              resulDto.setCheckUpsert("insert");
-    //          }
-             
-    //          resulDto.setErrorSpcCode("0"); 
-    //          resulDto.setErrorSpcMessage("OK");
-    //    }else {
-    //        if(!isNull(foundAccountId)) {//저장 조건중 row_id를 가져올수 있다면..
-    //             resulDto.setContactId(update(dto,foundAccountId));
-    //             resulDto.setCheckUpsert("update");
-    //        }else {
-    //            resulDto.setContactId(insert(dto));
-    //            resulDto.setCheckUpsert("insert");
-    //        }
-           
-    //        resulDto.setErrorSpcCode("0"); 
-    //        resulDto.setErrorSpcMessage("OK");
-    //    }
+
 
        HashMap<String, IFHMBSAPCDPP0005Dto> resultMap = new HashMap<>();
 
@@ -116,9 +108,20 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
          
          mapper.insertProcessAccount(map);  
          
-         String foundAccountId = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
-         
-         map.put("PROC_ACC_ID", foundAccountId);
+         String foundAccountId = null;
+         if( dto.getCnpjNumber() != null && dto.getCnpjNumber() != ""){
+            foundAccountId = mapper.foundAccountId(dto);
+         }else{
+            if(dto.getMainEmailAddress() != null && dto.getMainEmailAddress() != "" && dto.getMainPhoneNumber() != null && dto.getMainPhoneNumber() != ""){ // Email, Phone 둘 다 들어왔을 때
+                foundAccountId = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);               
+            }else if(dto.getMainEmailAddress() != null && dto.getMainEmailAddress() != "" && (dto.getMainPhoneNumber() == null || dto.getMainPhoneNumber() == "")){ // Email만 들어왔을 때
+                foundAccountId = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);               
+            }else if((dto.getMainEmailAddress() == null || dto.getMainEmailAddress() == "" )&& dto.getMainPhoneNumber() != null && dto.getMainPhoneNumber() != ""){ // Phone만 들어왔을 때 
+                foundAccountId = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);               
+            }
+         }
+                  
+         map.put("PROC_ACC_ID", foundAccountId);         
          mapper.insertReplicaAccount(map);
          
          return foundAccountId;
@@ -141,15 +144,6 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
           mapper.insertReplicaAccount(map);
           
           return foundAccountIdbyCnpj;
-    }
-    
-    /**
-     * 공백이나 null체크
-     * @param value
-     * @return
-     */
-    private boolean isNull(String value) {
-        return !(value != null && !value.trim().equals("")) && true;
     }
 
 

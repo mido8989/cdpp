@@ -89,10 +89,9 @@ public class IFHMBINNOCEANCDPP0002Controller {
 
     private String isValidRequest(IFHMBINNOCEANCDPP0002Dto dto) {
         String errMsg = "OK";
-        //dto 안에 firstname, lastname, email 또는 mobile 값이 있는지 검사
-        //firstname 만 있고 lastname이 없는 경우 firstname --> lastname으로 복사
+
         //4가지 항목 중 firstname, lastname 은 필수, email 또는 mobile 둘 중 하나라도 없으면 false
-        if( dto.getEmailAddress() == null && dto.getEmailAddress() == "" && dto.getCellPhone() == null && dto.getCellPhone() == ""){
+        if( (dto.getEmailAddress() == null || dto.getEmailAddress() == "") && (dto.getCellPhone() == null || dto.getCellPhone() == "")){
             errMsg = "Either EmailAddress or PersonMobilePhone must be entered.";
         }else{
             errMsg = "OK";
