@@ -51,6 +51,12 @@ public class IFHMBINNOCEANCDPP0002Controller {
         try {
             IFHMBINNOCEANCDPP0002Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0002Dto.class);
 
+            // Dto Validation
+            String msg = this.isValidRequest(dto);
+            if (!"OK".equals(msg)) {
+                throw new IllegalArgumentException(msg);
+            }
+
             ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
             HashMap<String, IFHMBINNOCEANCDPP0002Dto> resultMap = service.insertObject(dto);
 
@@ -80,5 +86,17 @@ public class IFHMBINNOCEANCDPP0002Controller {
 
         return response;
     }
-   
+
+    private String isValidRequest(IFHMBINNOCEANCDPP0002Dto dto) {
+        String errMsg = "OK";
+        //dto 안에 firstname, lastname, email 또는 mobile 값이 있는지 검사
+        //firstname 만 있고 lastname이 없는 경우 firstname --> lastname으로 복사
+        //4가지 항목 중 firstname, lastname 은 필수, email 또는 mobile 둘 중 하나라도 없으면 false
+        if( dto.getEmailAddress() == null && dto.getEmailAddress() == "" && dto.getCellPhone() == null && dto.getCellPhone() == ""){
+            errMsg = "Either EmailAddress or PersonMobilePhone must be entered.";
+        }else{
+            errMsg = "OK";
+        }
+        return errMsg;
+    }
 }

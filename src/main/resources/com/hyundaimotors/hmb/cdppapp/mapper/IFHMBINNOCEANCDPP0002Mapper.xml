@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0002Mapper">
-
-    
-    <select id="foundAccountIdbyNameAndPhoneAndEmail" parameterType="IFHMBINNOCEANCDPP0002Dto" resultType="String">
-        select
-              a.row_id as foundAccountIdbyNameAndPhoneAndEmail
-        from
-            process.account a
-        where 
-            a.firstname  = #{firstName}
-        and 
-            a.lastname  = #{lastName}
-        and 
-            process_account_type = 'Person'
-        <if test="cellPhone != null and cellPhone !=''">
-            and a.personmobilephone = #{cellPhone}
-        </if>
-        <if test="emailAddress != null and emailAddress !=''">
-            and a.personemail = #{emailAddress}
-        </if>
-        limit 1
-    </select>
     
     <select id="foundContactId" parameterType="IFHMBINNOCEANCDPP0002Dto" resultType="String">
         select
@@ -36,6 +15,39 @@
             process_account_type = 'Person'
         limit 1
     </select>
+    
+    <select id="foundAccountIdbyNameAndPhoneAndEmail" parameterType="IFHMBINNOCEANCDPP0002Dto" resultType="String">
+        select
+              a.row_id
+        from
+            process.account a
+        where 
+            a.firstname  = #{firstName}
+        and 
+            a.lastname  = #{lastName}
+        <choose>
+            <when test="flgEmailAndPhone == 'Both'">
+                and 
+                ( 
+                    a.personmobilephone = #{cellPhone} 
+                or
+                    a.personemail = #{emailAddress}
+                )
+            </when>
+            <when test="flgEmailAndPhone == 'Email'">
+                and 
+                    a.personemail = #{emailAddress}
+            </when>
+            <when test="flgEmailAndPhone == 'Phone'">
+                and 
+                    a.personmobilephone = #{cellPhone}
+            </when>
+        </choose>   
+        and 
+            process_account_type = 'Person'
+        limit 1
+    </select>
+    
     
     <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0002Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into landing.if_in_contact_inf_wf

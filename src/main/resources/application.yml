@@ -7,13 +7,13 @@ spring:
         jwt:
           issuer-uri: ${RESOURCESERVER_URL}
 ---
-spring.security.oauth2.resourceserver.jwt.jwk-set-uri=${RESOURCESERVER_URL}
 ---
 
 spring:
-  redis:
-    host: ${REDIS_URL}
-    port: ${REDIS_PORT}
+  data:
+    redis:
+      host: ${REDIS_URL}
+      port: ${REDIS_PORT}
   cache:
     type: redis
 

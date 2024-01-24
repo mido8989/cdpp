@@ -8,9 +8,9 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002.InboundContactAud
 
 
 public interface IFHMBINNOCEANCDPP0002Mapper {
-	public String foundAccountIdbyNameAndPhoneAndEmail(IFHMBINNOCEANCDPP0002Dto dto)throws Exception;
-	
     public String foundContactIdbyCpf(IFHMBINNOCEANCDPP0002Dto dto)throws Exception;
+
+	public String foundAccountIdbyNameAndPhoneAndEmail(IFHMBINNOCEANCDPP0002Dto dto)throws Exception;
 
     public String foundContactId(IFHMBINNOCEANCDPP0002Dto dto)throws Exception;
     
