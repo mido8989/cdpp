@@ -80,7 +80,7 @@ public class IFHMBINNOCEANCDPP0034Controller {
 
     private String isValidRequest(IFHMBINNOCEANCDPP0034Dto dto) {
         String errMsg = "OK";
-        if(dto.getLevel2() != null || dto.getLevel2().equals("")){
+        if(dto.getLevel2() != null || !dto.getLevel2().equals("")){
             // reason, level1, level2 가 Quote 이면서 ContactId가 없을때 Exception을 발생 시킨다.
             if((dto.getReason().equalsIgnoreCase("Sales Opportunity") && dto.getLevel1().equalsIgnoreCase("Sales") && "Request a quote".equalsIgnoreCase(dto.getLevel2()) && dto.getContactId() == null)){
                 errMsg = "Missing Contact ID";
