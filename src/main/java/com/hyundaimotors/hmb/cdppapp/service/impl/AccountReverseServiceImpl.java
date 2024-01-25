@@ -20,7 +20,13 @@ public class AccountReverseServiceImpl implements AccountReverseService{
     public AccountReverseDto insertObject(AccountReverseDto dto)throws Exception{
         AccountReverseDto resultDto = new AccountReverseDto();
 
-        mapper.insertObject(dto);
+        if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){
+            mapper.insertPerson(dto);    
+        }else{
+            mapper.insertDealerOrBusiness(dto);
+        }
+
+        
 
         return resultDto;
     }
