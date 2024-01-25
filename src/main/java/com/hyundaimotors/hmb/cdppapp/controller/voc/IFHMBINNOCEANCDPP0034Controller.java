@@ -82,9 +82,9 @@ public class IFHMBINNOCEANCDPP0034Controller {
         String errMsg = "OK";
 
         //4가지 항목 중 firstname, lastname 은 필수, email 또는 mobile 둘 중 하나라도 없으면 false
-        if((dto.getReason().equals("Sales Opportunity") && dto.getLevel1().equals("Sales") && "Request a quote".equals(dto.getLevel2()) && dto.getContactId() == null)){
+        if((dto.getReason().equalsIgnoreCase("Sales Opportunity") && dto.getLevel1().equalsIgnoreCase("Sales") && "Request a quote".equalsIgnoreCase(dto.getLevel2()) && dto.getContactId() == null)){
             errMsg = "Missing Contact ID";
-        }else if(dto.getReason().equals("Salesopportunity") || dto.getLevel2().equals("Requestaquote")){
+        }else if(dto.getReason().equalsIgnoreCase("Salesopportunity") || dto.getLevel2().equalsIgnoreCase("Requestaquote")){
             errMsg = "Please check the value of Reson or Level 2.";
         }else{
             errMsg = "OK";
