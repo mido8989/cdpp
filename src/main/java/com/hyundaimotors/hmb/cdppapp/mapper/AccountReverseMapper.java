@@ -4,7 +4,9 @@ import com.hyundaimotors.hmb.cdppapp.dto.AccountReverse.AccountReverseDto;
 
 public interface AccountReverseMapper {
     
-    public void insertPerson(AccountReverseDto dto)throws Exception;
+    public void insertAccount(AccountReverseDto dto)throws Exception;
 
-    public void insertDealerOrBusiness(AccountReverseDto dto)throws Exception;
+    public void insertDpContact(AccountReverseDto dto)throws Exception;
+
+    public void insertDpContactSub(AccountReverseDto dto)throws Exception;
 }
