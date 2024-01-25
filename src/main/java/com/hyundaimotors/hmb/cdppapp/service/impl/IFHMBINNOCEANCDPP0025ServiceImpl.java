@@ -23,6 +23,18 @@ public class IFHMBINNOCEANCDPP0025ServiceImpl implements IFHMBINNOCEANCDPP0025Se
         IFHMBINNOCEANCDPP0025Dto resultDto = new IFHMBINNOCEANCDPP0025Dto();
         HashMap<String, String> map = new HashMap<>();
 
+        // if(dto.getScheduleMaintenanceIN() != null ){
+        //     if(dto.getScheduleMaintenanceIN().getCustomerCPF() != null && dto.getScheduleMaintenanceIN().getCustomerCPF() != ""){
+        //         dto.getScheduleMaintenanceIN().setCustomerCPF(dto.getScheduleMaintenanceIN().getCustomerCPF().replaceAll("[^0-9]", ""));
+        //     }
+        //     if(dto.getScheduleMaintenanceIN().getConsultantCPF() != null && dto.getScheduleMaintenanceIN().getConsultantCPF() != ""){
+        //         dto.getScheduleMaintenanceIN().setConsultantCPF(dto.getScheduleMaintenanceIN().getConsultantCPF().replaceAll("[^0-9]", ""));
+        //     }
+        //     if(dto.getScheduleMaintenanceIN().getCustomerCPF() != null && dto.getScheduleMaintenanceIN().getCustomerCPF() != ""){
+        //         dto.getScheduleMaintenanceIN().setCustomerCPF(dto.getScheduleMaintenanceIN().getCustomerCPF().replaceAll("[^0-9]", ""));
+        //     }
+        // }
+
         mapper.insertObject(dto.getScheduleMaintenanceIN());
 
         map.put("PARAM_ID", String.valueOf(dto.getScheduleMaintenanceIN().getRowId()));
