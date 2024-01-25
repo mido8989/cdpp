@@ -15,4 +15,5 @@ public class IFHMBZICARDCDPP0007Dto {
     private String errorSpcCode;
     private String errorSpcMessage;
     private String numAffRow;    
+    private String procCustVehicleId;
 }

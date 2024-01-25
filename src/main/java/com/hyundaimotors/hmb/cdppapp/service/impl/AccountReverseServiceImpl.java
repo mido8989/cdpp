@@ -21,12 +21,23 @@ public class AccountReverseServiceImpl implements AccountReverseService{
         AccountReverseDto resultDto = new AccountReverseDto();
 
         if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){
-            mapper.insertPerson(dto);    
+            dto.setProcessAccountType("Person");
+            mapper.insertAccount(dto);
+            mapper.insertDpContact(dto);
+            mapper.insertDpContactSub(dto);
         }else{
-            mapper.insertDealerOrBusiness(dto);
+            dto.setProcessAccountType("Person");
+            if(dto.getSfId().equals("012Hs0000008kTRIAY")){
+                dto.setProcessAccountType("Business");
+            }else{
+                dto.setProcessAccountType("Dealer");
+            }
+            mapper.insertAccount(dto);
         }
 
-        
+        resultDto.setRowId(dto.getRowId());
+        resultDto.setErrorSpcCode("0");
+        resultDto.setErrorSpcMessage("OK");
 
         return resultDto;
     }

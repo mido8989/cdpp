@@ -104,4 +104,7 @@ public class AccountReverseDto {
     private String integratedId;
     private String recordTypeId;
     private String sfId;
+    private String processAccountType;
+    private String errorSpcCode;
+    private String errorSpcMessage;
 }

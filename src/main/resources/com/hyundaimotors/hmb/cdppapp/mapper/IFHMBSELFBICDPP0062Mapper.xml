@@ -108,15 +108,15 @@
         <choose>
             <when test='created == "Y"'>
                 and
-                    po.legacycreateddate__c::date = to_date(#{date},'YYYY-MM-DD')
+                    po.legacycreateddate__c <![CDATA[ <= ]]> (#{date}||' 23:59:59.999')::timestamp
                 and
-                    (po.legacycreateddate__c::date + interval '90 days') <![CDATA[ >= ]]> to_date(#{date},'YYYY-MM-DD')
+                    po.legacycreateddate__c <![CDATA[ >= ]]> (to_timestamp(#{date}||' 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.MS') - interval '90 days')::timestamp
             </when>
             <when test='created == "N"'>
                 and
-                    po.legacy_last_update__c::date = to_date(#{date},'YYYY-MM-DD')
+                    po.legacy_last_update__c <![CDATA[ <= ]]> (#{date}||' 23:59:59.999')::timestamp
                 and
-                    (po.legacy_last_update__c::date + interval '90 days') <![CDATA[ >= ]]> to_date(#{date},'YYYY-MM-DD')
+                    po.legacy_last_update__c <![CDATA[ >= ]]> (to_timestamp(#{date}||' 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.MS') - interval '90 days')::timestamp
             </when>
             <otherwise>
 
