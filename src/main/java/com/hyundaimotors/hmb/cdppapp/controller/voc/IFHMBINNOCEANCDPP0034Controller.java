@@ -80,14 +80,16 @@ public class IFHMBINNOCEANCDPP0034Controller {
 
     private String isValidRequest(IFHMBINNOCEANCDPP0034Dto dto) {
         String errMsg = "OK";
-
-        //4가지 항목 중 firstname, lastname 은 필수, email 또는 mobile 둘 중 하나라도 없으면 false
-        if((dto.getReason().equalsIgnoreCase("Sales Opportunity") && dto.getLevel1().equalsIgnoreCase("Sales") && "Request a quote".equalsIgnoreCase(dto.getLevel2()) && dto.getContactId() == null)){
-            errMsg = "Missing Contact ID";
-        }else if(dto.getReason().equalsIgnoreCase("Salesopportunity") || dto.getLevel2().equalsIgnoreCase("Requestaquote")){
-            errMsg = "Please check the value of Reson or Level 2.";
-        }else{
-            errMsg = "OK";
+        if(dto.getLevel2() != null || dto.getLevel2().equals("")){
+            // reason, level1, level2 가 Quote 이면서 ContactId가 없을때 Exception을 발생 시킨다.
+            if((dto.getReason().equalsIgnoreCase("Sales Opportunity") && dto.getLevel1().equalsIgnoreCase("Sales") && "Request a quote".equalsIgnoreCase(dto.getLevel2()) && dto.getContactId() == null)){
+                errMsg = "Missing Contact ID";
+            // reason가 Salesopportunity level2가 Requestaquote 일때  Exception을 발생 시킨다.
+            }else if(dto.getReason().equalsIgnoreCase("Salesopportunity") || dto.getLevel2().equalsIgnoreCase("Requestaquote")){
+                errMsg = "Please check the value of Reson or Level 2.";
+            }else{
+                errMsg = "OK";
+            }
         }
         return errMsg;
     }
