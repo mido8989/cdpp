@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0034Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002.IFHMBINNOCEANCDPP0002Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0034.IFHMBINNOCEANCDPP0034Payload;
 import com.hyundaimotors.hmb.cdppapp.service.ApiLogService;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0034Service;
@@ -49,6 +50,12 @@ public class IFHMBINNOCEANCDPP0034Controller {
         
         try {
             IFHMBINNOCEANCDPP0034Dto resultDto = new IFHMBINNOCEANCDPP0034Dto();
+
+            // Dto Validation
+            String msg = this.isValidRequest(dto);
+            if (!"OK".equals(msg)) {
+                throw new IllegalArgumentException(msg);
+            }
     
             ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
             resultDto = service.insertObject(dto);
@@ -69,5 +76,19 @@ public class IFHMBINNOCEANCDPP0034Controller {
              ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
         }
         return response;
+    }
+
+    private String isValidRequest(IFHMBINNOCEANCDPP0034Dto dto) {
+        String errMsg = "OK";
+
+        //4가지 항목 중 firstname, lastname 은 필수, email 또는 mobile 둘 중 하나라도 없으면 false
+        if( ("Sales Opportunity".equals(dto.getReason()) && "Sales".equals(dto.getLevel1()) && "Request a quote".equals(dto.getLevel2()) && dto.getContactId() != null)){
+            errMsg = "Missing Contact ID";
+        }else if("Salesopportunity".equals(dto.getReason()) || "Requestaquote".equals(dto.getLevel2())){
+            errMsg = "Please check the value of Reson or Level 2.";
+        }else{
+            errMsg = "OK";
+        }
+        return errMsg;
     }
 }
