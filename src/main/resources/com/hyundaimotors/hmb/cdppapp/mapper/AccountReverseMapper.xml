@@ -3,7 +3,11 @@
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.AccountReverseMapper">
 
 
-    <insert id="insertObject" parameterType="AccountReverseDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+    <insert id="insertPerson" parameterType="AccountReverseDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        
+    </insert>
+
+    <insert id="insertDealerOrBusiness" parameterType="AccountReverseDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         
     </insert>
 </mapper>

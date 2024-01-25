@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AccountReverseDto {
-    
+    private String recordTypeId;
 }
