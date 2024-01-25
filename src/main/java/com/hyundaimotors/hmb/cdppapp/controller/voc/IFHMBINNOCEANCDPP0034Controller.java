@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0034Dto;
+import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002.IFHMBINNOCEANCDPP0002Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0034.IFHMBINNOCEANCDPP0034Payload;
 import com.hyundaimotors.hmb.cdppapp.service.ApiLogService;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0034Service;
@@ -49,6 +50,12 @@ public class IFHMBINNOCEANCDPP0034Controller {
         
         try {
             IFHMBINNOCEANCDPP0034Dto resultDto = new IFHMBINNOCEANCDPP0034Dto();
+
+            // Dto Validation
+            String msg = this.isValidRequest(dto);
+            if (!"OK".equals(msg)) {
+                throw new IllegalArgumentException(msg);
+            }
     
             ApiLog.logApi(logService, IF_ID,ApiLogStep.STEP1, IF_TR_ID, null);
             resultDto = service.insertObject(dto);
@@ -69,5 +76,23 @@ public class IFHMBINNOCEANCDPP0034Controller {
              ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
         }
         return response;
+    }
+
+    private String isValidRequest(IFHMBINNOCEANCDPP0034Dto dto) {
+        String errMsg = "OK";
+        if(dto.getLevel2() != null && !dto.getLevel2().equals("")){
+            // reason, level1, level2 가 Quote 이면서 ContactId가 없을때 Exception을 발생 시킨다.
+            if((dto.getReason().equalsIgnoreCase("Sales Opportunity") && dto.getLevel1().equalsIgnoreCase("Sales") && "Request a quote".equalsIgnoreCase(dto.getLevel2()) && dto.getContactId() == null)){
+                errMsg = "Missing Contact ID";
+            // reason가 Salesopportunity level2가 Requestaquote 일때  Exception을 발생 시킨다.
+            }else if(dto.getReason().equalsIgnoreCase("Salesopportunity") || dto.getLevel2().equalsIgnoreCase("Requestaquote")){
+                errMsg = "Please check the value of Reson or Level 2.";
+            }else{
+                errMsg = "OK";
+            }
+        }else{
+            
+        }
+        return errMsg;
     }
 }

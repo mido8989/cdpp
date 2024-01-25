@@ -8,6 +8,7 @@
             process.asset
         where            
             serialnumber = #{serialNumber}
+        limit 1
     </select>
 
     <select id="getProcInvoiceIdCon" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="String">
@@ -23,6 +24,7 @@
         </if>
         and
             lower(status) not in ('inactive')   
+        limit 1
     </select>
 
     <select id="getProcInvoiceIdAcc" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="String">
@@ -32,12 +34,13 @@
             process.invoiceinfo
         where            
             name = #{serialNumber}
-        <if test="contactId != null">
+        <if test="accountId != null">
         and 
-            person_account_id = #{contactId}
+            person_account_id = #{accountId}
         </if>
         and
             lower(status) not in ('inactive')   
+        limit 1
     </select>
 
     <select id="getProcCustVehicleIdCon" parameterType="IFHMBSAPEAICDPP0010Dto" resultType="String">

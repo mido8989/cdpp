@@ -29,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AccountController {
     
-    private static final String IF_ID = "IF098";
+    private static final String IF_ID = "IF099";
     
     private final ApiLogService logService;
 
@@ -67,6 +67,6 @@ public class AccountController {
             response.setErrorSpcMessage(e.getLocalizedMessage());
             ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response), e);
        }
-        return "";
+       return response;
     }
 }

@@ -12,6 +12,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 public class IFHMBINNOCEANCDPP0034Payload {
     

@@ -85,7 +85,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
          *       또는 name,phone,email 값이 있고 foundAccountIdbyNameAndPhoneAndEmail조회 값이 있으면 update
          * 나머지 insert
          */               
-       String foundContactIdbyCpf = null;
+       String foundContactIdbyCpf = null; // cpf or email All check values
        if(dto.getCpf() != null && !dto.getCpf().equals("")) {   // cpf값이 들어왔을 때
             foundContactIdbyCpf = mapper.foundContactId(dto); 
             if(foundContactIdbyCpf != null){
