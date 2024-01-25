@@ -36,6 +36,7 @@ public class IFHMBZICARDCDPP0007ServiceImpl implements IFHMBZICARDCDPP0007Servic
             mapper.transferProcess(map);
             mapper.transferReplica(map);
 
+            resultDto.setProcCustVehicleId(procId);
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");
             resultDto.setNumAffRow("1");
@@ -53,11 +54,21 @@ public class IFHMBZICARDCDPP0007ServiceImpl implements IFHMBZICARDCDPP0007Servic
             map.put("PROC_ID", procId);
             mapper.transferReplica(map);
 
+            resultDto.setProcCustVehicleId(procId);
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");
             resultDto.setNumAffRow("1");
         }
           
         return resultDto;
+    }
+
+    public void insertDPObject(IFHMBZICARDCDPP0007Dto dto)throws Exception{
+
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("PROC_ID", dto.getProcCustVehicleId());
+
+        mapper.transferDPProcess(map);
     }
 }

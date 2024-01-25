@@ -42,6 +42,10 @@
         call process.if_asset_contact_upsert_ws(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{PROC_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>
 
+    <insert id="transferDPProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_dp_asset_contact_upsert_ws( #{PROC_ID,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
     <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
         call replica.if_asset_contact_upsert_ws(#{PROC_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
     </insert>

@@ -55,6 +55,9 @@ public class IFHMBZICARDCDPP0007Controller {
     
             response = modelMapper.map(resultDto, IFHMBZICARDCDPP0007Payload.Response.class);
             ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
+
+            service.insertDPObject(resultDto);
+            
         }catch(Exception e) {
             response.setErrorSpcCode("500");
             response.setErrorSpcMessage(e.getLocalizedMessage());
