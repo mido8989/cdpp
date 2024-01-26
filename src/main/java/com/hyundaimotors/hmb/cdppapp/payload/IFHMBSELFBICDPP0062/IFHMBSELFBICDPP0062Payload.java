@@ -29,6 +29,14 @@ public class IFHMBSELFBICDPP0062Payload {
         @Schema(description = "protocal", example = "HMB20740368284")
         private String lead;
         
+        public void setCreated(String created) {
+            
+            if(created != null && !created.trim().isEmpty() && created.trim().toUpperCase().startsWith("Y")){
+                this.created = "Y";
+            }else{
+                this.created = "N";
+            }
+        }
     }
 
     @Schema(name = "IFHMBSELFBICDPP0062Payload.Response")
