@@ -32,14 +32,20 @@ public class ScheduleMaintenanceINDto {
     private String serviceDeliverydate;
 
     public void setCustomerCPF(String customerCPF) {
-        this.customerCPF = customerCPF.replaceAll("[^0-9]", "");
+        if ( customerCPF != null && customerCPF != ""){
+            this.customerCPF = customerCPF.replaceAll("[^0-9]", "");
+        }
     }
 
     public void setConsultantCPF(String consultantCPF){
-        this.consultantCPF = consultantCPF.replaceAll("[^0-9]", "");
+        if ( consultantCPF != null && consultantCPF != ""){
+            this.consultantCPF = consultantCPF.replaceAll("[^0-9]", "");
+        }
     }
 
     public void setTechnicianCPF(String technicianCPF){
-        this.technicianCPF = technicianCPF.replaceAll("[^0-9]", "");
+        if(technicianCPF != null && technicianCPF != "" ){
+            this.technicianCPF = technicianCPF.replaceAll("[^0-9]", "");
+        }
     }
 }
