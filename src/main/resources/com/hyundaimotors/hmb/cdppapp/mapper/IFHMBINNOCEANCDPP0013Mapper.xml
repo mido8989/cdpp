@@ -19,6 +19,14 @@
         </if>
         and 
             process_account_type = 'Dealer'
+        <!-- <if test="mainPhone != null and mainPhone != ''">
+        and 
+            phone = #{mainPhone}
+        </if>
+        <if test="mainEmailAddress != null and mainEmailAddress != ''">
+        and 
+            emailaddress__c = #{mainEmailAddress}
+        </if> -->
         order by 
             legacy_created asc
         limit 1
