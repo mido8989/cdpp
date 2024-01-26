@@ -144,12 +144,12 @@
             , #{loyaltyActivationDate}::timestamp
             , #{loyaltyStatus}
             , #{cpf}
-            , #{receiveProductNewsFlag}
-            , #{receiveRetailOffersFlag}
-            , #{receiveServiceOffersFlag}
-            , #{receiveNewsLetterFlag}
-            , #{receiveEventsFlag}
-            , #{receiveResearchFlag}
+            , #{receiveProductNewsFlag}::bool
+            , #{receiveRetailOffersFlag}::bool
+            , #{receiveServiceOffersFlag}::bool
+            , #{receiveNewsLetterFlag}::bool
+            , #{receiveEventsFlag}::bool
+            , #{receiveResearchFlag}::bool
             , #{blockedMobile}
             , #{blockedVideoCall}
             , #{blockedCalls}

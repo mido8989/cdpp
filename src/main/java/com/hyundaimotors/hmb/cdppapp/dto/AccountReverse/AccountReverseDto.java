@@ -103,6 +103,7 @@ public class AccountReverseDto {
     private String legacyCreatedDate;
     private String integratedId;
     private String recordTypeId;
+    private String genderPC;
     private String sfId;
     private String processAccountType;
     private String errorSpcCode;

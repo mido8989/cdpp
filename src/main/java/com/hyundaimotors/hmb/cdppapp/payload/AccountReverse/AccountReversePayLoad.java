@@ -106,6 +106,7 @@ public class AccountReversePayLoad {
         private String customerSap;
         private String legacyCreatedDate;
         private String integratedId;
+        private String genderPC;
         private String recordTypeId;
         private String sfId;
     }

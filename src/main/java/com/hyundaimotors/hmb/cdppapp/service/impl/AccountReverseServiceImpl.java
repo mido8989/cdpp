@@ -23,8 +23,8 @@ public class AccountReverseServiceImpl implements AccountReverseService{
         if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){
             dto.setProcessAccountType("Person");
             mapper.insertAccount(dto);
-            mapper.insertDpContact(dto);
-            mapper.insertDpContactSub(dto);
+            //mapper.insertDpContact(dto);
+            //mapper.insertDpContactSub(dto);
         }else{
             dto.setProcessAccountType("Person");
             if(dto.getSfId().equals("012Hs0000008kTRIAY")){
