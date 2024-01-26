@@ -69,8 +69,6 @@
         on
             psr.serialnumber = pas.serialnumber 
         where
-            1=1
-        and
         	psr.status != 'Canceled'
        <if test="lead != null and lead != ''"> 
             and 
@@ -108,15 +106,21 @@
         <choose>
             <when test='created == "Y"'>
                 and
-                    po.legacycreateddate__c <![CDATA[ <= ]]> (#{date}||' 23:59:59.999')::timestamp
+                (
+                    po.legacycreateddate__c <![CDATA[ <= ]]> to_timestamp(#{date}||' 23:59:59.999', 'YYYY-MM-DD HH24:MI:SS.MS')
                 and
-                    po.legacycreateddate__c <![CDATA[ >= ]]> (to_timestamp(#{date}||' 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.MS') - interval '90 days')::timestamp
+                    po.legacycreateddate__c <![CDATA[ >= ]]> to_timestamp(#{date}||' 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.MS'))
+                and
+                    po.legacycreateddate__c::date + interval '90 days' <![CDATA[ >= ]]> to_date(#{date}, 'YYYY-MM-DD')
             </when>
             <when test='created == "N"'>
                 and
-                    po.legacy_last_update__c <![CDATA[ <= ]]> (#{date}||' 23:59:59.999')::timestamp
+                (
+                    po.legacy_last_update__c <![CDATA[ <= ]]> to_timestamp(#{date}||' 23:59:59.999', 'YYYY-MM-DD HH24:MI:SS.MS')
                 and
-                    po.legacy_last_update__c <![CDATA[ >= ]]> (to_timestamp(#{date}||' 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.MS') - interval '90 days')::timestamp
+                    po.legacy_last_update__c <![CDATA[ >= ]]> to_timestamp(#{date}||' 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.MS'))
+                and
+                    po.legacy_last_update__c::date + interval '90 days' <![CDATA[ >= ]]> to_date(#{date}, 'YYYY-MM-DD')
             </when>
             <otherwise>
 
