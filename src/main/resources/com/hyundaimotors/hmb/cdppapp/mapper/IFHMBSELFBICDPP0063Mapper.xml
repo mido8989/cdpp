@@ -80,6 +80,8 @@
             ac.account_id = #{cAccountId}
         and 
             ac.cv_type = 'Person'
+        and 
+            ac.status_cd = 'Active'
         limit 1
     </select>
 
@@ -98,6 +100,8 @@
             aa.account_id = #{bAccountId}
         and 
             aa.cv_type = 'Business'
+        and 
+            ac.status_cd = 'Active'
         limit 1
     </select>
 </mapper>
