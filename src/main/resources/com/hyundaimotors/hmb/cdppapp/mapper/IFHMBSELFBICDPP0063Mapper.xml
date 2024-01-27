@@ -101,7 +101,7 @@
         and 
             aa.cv_type = 'Business'
         and 
-            ac.status_cd = 'Active'
+            aa.status_cd = 'Active'
         limit 1
     </select>
 </mapper>
