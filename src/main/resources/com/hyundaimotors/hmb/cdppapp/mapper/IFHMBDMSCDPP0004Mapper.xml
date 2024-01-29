@@ -4,43 +4,45 @@
     
     <select id="getLeadInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
         select 
-                sr.contact_row_id__c as rowid
-                , sr.protocol__c as protocol
-                , sr.status as status
-            from 
-                process.service_request sr
-            join
-                process.opportunity po
-            on
-                sr.protocol__c = po.protocol__c
-            join
-                process.account pa
-            on
-                po.dealercode__c = pa.dealercode__c and pa.process_account_type = 'Dealer'
-            where
-                po.legacycreateddate__c <![CDATA[ <= ]]> (now() - '5 minutes'::interval)
-            and
-                po."type" != 'Test Drive'
-            and
-            	po."type" != 'Showroom'
-            <!--and
-                po.transferredopportunity__c != true-->
-            <if test="statusLead != null and statusLead != ''">
+            po.contact_row_id__c as rowid
+            , po.protocol__c as protocol
+            , po.status as status
+        from 
+            process.opportunity po
+        join
+            process.account pa
+        on
+            po.dealercode__c = pa.dealercode__c and pa.process_account_type = 'Dealer'
+        where
+            po.legacycreateddate__c <![CDATA[ <= ]]> (now() - '5 minutes'::interval)
+        and
+            po."type" != 'Test Drive'
+        and
+            po."type" != 'Showroom'
+        <!--and
+            po.transferredopportunity__c != true-->
+        <choose>
+            <when test='statusLead == "Open"'>
                 and
-                    sr.status = #{statusLead}
-            </if>
-            <if test="dealerCode != null and dealerCode != ''">
+                    po.status = 'Distributed'
+            </when>
+            <otherwise>
                 and
-                    pa.dealercode__c = #{dealerCode}
-            </if>
-            <if test="apiKey != null and apiKey != ''">
-                and
-                    pa.apikey__c = #{apiKey}
-            </if>
+                    po.status = ' '
+            </otherwise>
+        </choose>
+        <if test="dealerCode != null and dealerCode != ''">
             and
-                po.legacycreateddate__c <![CDATA[ >= ]]> to_timestamp(#{date}||' 00:00:00','YYYY-MM-DD HH24:mi:SS')
+                pa.dealercode__c = #{dealerCode}
+        </if>
+        <if test="apiKey != null and apiKey != ''">
             and
-                po.legacycreateddate__c <![CDATA[ <= ]]> to_timestamp(#{date}||' 23:59:59', 'YYYY-MM-DD HH24:mi:SS')
+                pa.apikey__c = #{apiKey}
+        </if>
+        and
+            po.legacycreateddate__c <![CDATA[ >= ]]> to_timestamp(#{date}||' 00:00:00','YYYY-MM-DD HH24:mi:SS')
+        and
+            po.legacycreateddate__c <![CDATA[ <= ]]> to_timestamp(#{date}||' 23:59:59', 'YYYY-MM-DD HH24:mi:SS')
     </select>
 
     <select id="getContactInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadContactDto">

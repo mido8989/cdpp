@@ -27,6 +27,13 @@ public class IFHMBDMSCDPP0004Payload {
         @Schema(description = "Open or Done", example = "Open")
         @NotNull @NotBlank @NotEmpty
         private String statusLead;
+
+        public void setStatusLead(String statusLead) {
+            
+            if(statusLead != null && !statusLead.trim().isEmpty() && statusLead.trim().toUpperCase().startsWith("OPEN")){
+                this.statusLead = "Open";
+            }
+        }
     }
 
     @Schema(name = "IFHMBDMSCDPP0004Payload.Response")
