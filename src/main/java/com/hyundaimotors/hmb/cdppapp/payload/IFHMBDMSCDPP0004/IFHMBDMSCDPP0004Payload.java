@@ -28,9 +28,9 @@ public class IFHMBDMSCDPP0004Payload {
         @NotNull @NotBlank @NotEmpty
         private String statusLead;
 
-        public void setCreated(String statusLead) {
+        public void setStatusLead(String statusLead) {
             
-            if(statusLead != null && !statusLead.trim().isEmpty() && statusLead.trim().toUpperCase().startsWith("open")){
+            if(statusLead != null && !statusLead.trim().isEmpty() && statusLead.trim().toUpperCase().startsWith("Open")){
                 this.statusLead = "Open";
             }else{
                 this.statusLead = " ";
