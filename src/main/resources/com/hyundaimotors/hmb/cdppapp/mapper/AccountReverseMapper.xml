@@ -391,9 +391,9 @@
                 , #{situationStatus}
                 , #{fleetAdministrator}
                 , #{description}
-                #{legacyCreatedDate}::timestamp
+                , #{legacyCreatedDate}::timestamp
                 , 'SFDC'
-                #{legacyCreatedDate}::timestamp
+                , #{legacyCreatedDate}::timestamp
                 , 'SFDC'
             )
     </insert>
