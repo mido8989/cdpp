@@ -109,6 +109,7 @@ public class AccountReversePayLoad {
         private String genderPC;
         private String recordTypeId;
         private String sfId;
+        private String externalId;
     }
 
     @Schema(name = "AccountPayLoad.Response")
