@@ -142,7 +142,7 @@
             , #{productOfInterest}
             , #{literacy}
             , #{calledBy}
-            , #{employee}
+            , case when #{employee} = 'Y' then true else false end
             , #{dealerCode}
             , #{dealerCode}
             , #{crmIndex}
@@ -153,12 +153,12 @@
             , #{loyaltyActivationDate}::timestamp
             , #{loyaltyStatus}
             , #{cpf}
-            , #{receiveProductNewsFlag}::bool
-            , #{receiveRetailOffersFlag}::bool
-            , #{receiveServiceOffersFlag}::bool
-            , #{receiveNewsLetterFlag}::bool
-            , #{receiveEventsFlag}::bool
-            , #{receiveResearchFlag}::bool
+            , case when #{receiveProductNewsFlag} = 'Y' then true else false end
+            , case when #{receiveRetailOffersFlag} = 'Y' then true else false end
+            , case when #{receiveServiceOffersFlag} = 'Y' then true else false end
+            , case when #{receiveNewsLetterFlag} = 'Y' then true else false end
+            , case when #{receiveEventsFlag} = 'Y' then true else false end
+            , case when #{receiveResearchFlag} = 'Y' then true else false end
             , #{blockedMobile}
             , #{blockedVideoCall}
             , #{blockedVideoCall}
@@ -275,9 +275,9 @@
             , #{blockedVideoCall}
             , #{preferredContactChannel}
             , #{maritalStatus}
-            , case when #{blockedCalls} = 'true' then 'Y' else 'N' end
-            , case when #{blockedletters} = 'true' then 'Y' else 'N' end
-            , case when #{blockedEmails} = 'true' then 'Y' else 'N' end
+            , #{blockedCalls}
+            , #{blockedletters}
+            , #{blockedEmails}
             , #{blockedWhatsapp}
             , #{salutation}
             , #{personBirthdate}::timestamp
