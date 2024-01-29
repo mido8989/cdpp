@@ -147,7 +147,7 @@
             , #{dealerCode}
             , #{crmIndex}
             , #{engagementIndex}
-            , #{optInFlag}
+            , case when #{optInFlag} = 'Y' then true else false end
             , #{satisficationLevel}
             , #{cnhexpirationDate}::timestamp
             , #{loyaltyActivationDate}::timestamp
@@ -159,17 +159,17 @@
             , case when #{receiveNewsLetterFlag} = 'Y' then true else false end
             , case when #{receiveEventsFlag} = 'Y' then true else false end
             , case when #{receiveResearchFlag} = 'Y' then true else false end
-            , #{blockedMobile}
-            , #{blockedVideoCall}
-            , #{blockedVideoCall}
+            , case when #{blockedMobile} = 'Y' then true else false end
+            , case when #{blockedVideoCall} = 'Y' then true else false end
+            , case when #{blockedVideoCall} = 'Y' then true else false end
             , #{preferredContactChannel}
-            , #{blockedCalls}
-            , #{blockedletters}
-            , #{blockedletters}
-            , #{blockedEmails}
-            , #{blockedEmails}
-            , #{blockedSms}
-            , #{blockedWhatsapp}
+            , case when #{blockedCalls} = 'Y' then true else false end
+            , case when #{blockedletters} = 'Y' then true else false end
+            , case when #{blockedletters} = 'Y' then true else false end
+            , case when #{blockedEmails} = 'Y' then true else false end
+            , case when #{blockedEmails} = 'Y' then true else false end
+            , case when #{blockedSms} = 'Y' then true else false end
+            , case when #{blockedWhatsapp} = 'Y' then true else false end
             , #{engagementIndex}
             , #{lifeCycle}
             , #{salutation}
@@ -194,8 +194,8 @@
             , #{fleetSize}
             , #{organizationType}
             , #{dealershopType}
-            , #{salesFlag}
-            , #{serviceFlag}
+            , case when #{salesFlag} = 'Y' then true else false end
+            , case when #{serviceFlag} = 'Y' then true else false end
             , #{businessHours}
             , #{facebook}
             , #{fleetAdministrator}
