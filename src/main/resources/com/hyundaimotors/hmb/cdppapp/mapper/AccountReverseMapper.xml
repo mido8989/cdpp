@@ -261,9 +261,9 @@
             , #{blockedVideoCall}
             , #{preferredContactChannel}
             , #{maritalStatus}
-            , #{blockedCalls}
-            , #{blockedletters}
-            , #{blockedEmails}
+            , case when #{blockedCalls} = 'true' then 'Y' else 'N' end
+            , case when #{blockedletters} = 'true' then 'Y' else 'N' end
+            , case when #{blockedEmails} = 'true' then 'Y' else 'N' end
             , #{blockedWhatsapp}
             , #{salutation}
             , #{personBirthdate}::timestamp
@@ -315,7 +315,7 @@
             , #{optInFlag}
             , #{satisficationLevel}
             , #{cnhexpirationDate}
-            , #{loyaltyActivationDate}
+            , #{loyaltyActivationDate}::timestamp
             , #{loyaltyStatus}
             , #{lifeCycle}
             , #{influentialPerson}
