@@ -30,7 +30,7 @@ public class IFHMBDMSCDPP0004Payload {
 
         public void setStatusLead(String statusLead) {
             
-            if(statusLead != null && !statusLead.trim().isEmpty() && statusLead.trim().toUpperCase().startsWith("Open")){
+            if(statusLead != null && !statusLead.trim().isEmpty() && statusLead.trim().toUpperCase().startsWith("OPEN")){
                 this.statusLead = "Open";
             }else{
                 this.statusLead = " ";
