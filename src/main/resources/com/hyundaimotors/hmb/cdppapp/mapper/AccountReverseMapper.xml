@@ -51,7 +51,6 @@
             , x_printed_card__c
             , blockedvideocall__c
             , preferredcontactchannel__c
-            , maritalstatus__pc
             , calloptyn__pc
             , directmailoptyn__pc
             , blockedletters__c
@@ -105,27 +104,22 @@
             , sfid
             , process_account_type
 		)values(
-            #{personMailingStreet}
-            , #{billingStreet}
+            COALESCE(#{personMailingStreet}, #{billingStreet}) 
             , #{houseBuildingNo}
             , #{complement}
             , #{neighborhood}
-            , #{personMailingCity}
             , #{billingCountry}
-            , #{billingCity}
-            , #{personMailingState}
-            , #{billingState}
-            , #{personMailingPostalCode}
-            , #{billingPostalCode}
-            , #{personMailingLatitude}::float8
-            , #{billingLatitude}::float8
-            , #{personMailingLongitude}::float8
-            , #{billingLongitude}::float8
+            , COALESCE(#{personMailingCity}, #{BillingCity})
+            , COALESCE(#{personMailingState}, #{billingState})
+            , COALESCE(#{personMailingPostalCode}, #{billingPostalCode})
+            , COALESCE(#{personMailingLatitude}::float8, #{billingLatitude}::float8)
+            , COALESCE(#{personMailingLongitude}::float8, #{billingLongitude}::float8)
             , #{type}
             , #{firstName}
             , #{lastName}
             , #{personEmail}
             , #{personHomePhone}
+            , #{workPhone}
             , #{workPhone}
             , #{personMobilePhone}
             , #{genderPC}
@@ -135,6 +129,7 @@
             , #{literacy}
             , #{calledBy}
             , #{employee}
+            , #{dealerCode}
             , #{dealerCode}
             , #{crmIndex}
             , #{engagementIndex}
@@ -152,13 +147,16 @@
             , #{receiveResearchFlag}::bool
             , #{blockedMobile}
             , #{blockedVideoCall}
+            , #{blockedVideoCall}
+            , #{preferredContactChannel}
             , #{blockedCalls}
             , #{blockedletters}
+            , #{blockedletters}
+            , #{blockedEmails}
             , #{blockedEmails}
             , #{blockedSms}
             , #{blockedWhatsapp}
-            , #{preferredContactChannel}
-            , #{maritalStatus}
+            , #{engagementIndex}
             , #{lifeCycle}
             , #{salutation}
             , #{personBirthdate}
