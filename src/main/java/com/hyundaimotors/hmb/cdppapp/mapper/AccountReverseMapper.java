@@ -9,4 +9,12 @@ public interface AccountReverseMapper {
     public void insertDpContact(AccountReverseDto dto)throws Exception;
 
     public void insertDpContactSub(AccountReverseDto dto)throws Exception;
+
+    public String getAccount(AccountReverseDto dto)throws Exception;
+
+    public void updateSflId(AccountReverseDto dto)throws Exception;
+
+    public void insertDpOrgExt(AccountReverseDto dto)throws Exception;
+
+    public void insertDpOrgExtSub(AccountReverseDto dto)throws Exception;
 }

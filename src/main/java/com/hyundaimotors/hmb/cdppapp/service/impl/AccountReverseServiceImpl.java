@@ -19,10 +19,19 @@ public class AccountReverseServiceImpl implements AccountReverseService{
 
     public AccountReverseDto insertObject(AccountReverseDto dto)throws Exception{
         AccountReverseDto resultDto = new AccountReverseDto();
+        
+        String rowId = mapper.getAccount(dto);
 
         if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){
             if(dto.getExternalId() != null){
-                
+                if(rowId != null){
+                    mapper.updateSflId(dto);
+                }else{
+                    dto.setProcessAccountType("Person");
+                    mapper.insertAccount(dto);
+                    mapper.insertDpContact(dto);
+                    mapper.insertDpContactSub(dto);
+                }
             }else{
                 dto.setProcessAccountType("Person");
                 mapper.insertAccount(dto);
@@ -32,9 +41,33 @@ public class AccountReverseServiceImpl implements AccountReverseService{
             
         }else{
             if(dto.getSfId().equals("012Hs0000008kTRIAY")){
-                dto.setProcessAccountType("Business");
+                if(dto.getExternalId() != null){
+                    if(rowId != null){
+                        mapper.updateSflId(dto);
+                    }else{
+                        dto.setProcessAccountType("Business");
+                        mapper.insertAccount(dto);
+                        mapper.insertDpOrgExt(dto);
+                    }
+                }else{
+                    dto.setProcessAccountType("Business");
+                    mapper.insertAccount(dto);
+                }
+                
             }else{
-                dto.setProcessAccountType("Dealer");
+                if(dto.getExternalId() != null){
+                    if(rowId != null){
+                        mapper.updateSflId(dto);
+                    }else{
+                        dto.setProcessAccountType("Dealer");
+                        mapper.insertAccount(dto);
+                        mapper.insertDpOrgExt(dto);
+                    }
+                }else{
+                    dto.setProcessAccountType("Dealer");
+                    mapper.insertAccount(dto);
+                    mapper.insertDpOrgExt(dto);
+                }
             }
             mapper.insertAccount(dto);
         }

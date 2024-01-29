@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.AccountReverseMapper">
+    <select id="getAccount" parameterType="AccountReverseDto" resultType="string">
+        select 
+            row_id as rowId
+        from
+            process.account a
+        where
+            row_id = #{externalId}
+    </select>
 
+    <update id="updateSflId" parameterType="AccountReverseDto">
+        update process.account set
+            sfid = #{sfId}
+        where
+            row_id = #{externalId}
+    </update>
 
     <insert id="insertAccount" parameterType="AccountReverseDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into process.account
@@ -267,9 +281,9 @@
             , #{blockedWhatsapp}
             , #{salutation}
             , #{personBirthdate}::timestamp
-            , now()
+            , #{legacyCreatedDate}::timestamp
             , 'SFDC'
-            , now()
+            , #{legacyCreatedDate}::timestamp
             , 'SFDC' 
         )
     </insert>
@@ -322,10 +336,65 @@
             , #{registrySource}
             , #{loyaltyValue}
             , #{occupation}
-            , now()
+            , #{legacyCreatedDate}::timestamp
             , 'SFDC'
-            , now()
+            , #{legacyCreatedDate}::timestamp
             , 'SFDC'
         )
+    </insert>
+
+    <insert id="insertDpOrgExt" parameterType="AccountReverseDto">
+        insert into process."S_ORG_EXT"
+			(
+				row_id
+				, x_cnpj
+				, Name
+				, X_NICKNAME
+				, ORI_CD
+				, X_CONTRACTED_SINCE
+				, SOURCE_CD
+				, MAIN_PH_NUM
+				, MAIN_FAX_PH_NUM
+				, MAIN_EMAIL_ADDR
+				, URL
+				, X_REASON_STATUS
+				, OU_NUM
+				, REGION
+				, ACCNT_TYPE_CD
+				, PRTNRSHP_START_DT
+				, X_WHATSAPP_PH_NUM
+				, CUST_STAT_CD
+				, X_SALES_REP
+				, DESC_TEXT
+				, created
+				, created_by
+				, last_upd
+				, last_upd_by
+			)values(
+                #{rowId}
+                , #{cnpj}
+                , #{name}
+                , #{nickname}
+                , #{accountCategory}
+                , #{contractRenewalDate}::timestamp
+                , #{registrySource}
+                , #{phone}
+                , #{fax}
+                , #{emailAddress}
+                , #{website}
+                , #{situationStatusReason}
+                , #{dealerCode}
+                , #{region}
+                , #{type}
+                , #{operationDate}::timestamp
+                , #{whatsappPhone}
+                , #{situationStatus}
+                , #{fleetAdministrator}
+                , #{description}
+                #{legacyCreatedDate}::timestamp
+                , 'SFDC'
+                #{legacyCreatedDate}::timestamp
+                , 'SFDC'
+            )
     </insert>
 </mapper>
