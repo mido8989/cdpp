@@ -32,8 +32,6 @@ public class IFHMBDMSCDPP0004Payload {
             
             if(statusLead != null && !statusLead.trim().isEmpty() && statusLead.trim().toUpperCase().startsWith("OPEN")){
                 this.statusLead = "Open";
-            }else{
-                this.statusLead = " ";
             }
         }
     }
