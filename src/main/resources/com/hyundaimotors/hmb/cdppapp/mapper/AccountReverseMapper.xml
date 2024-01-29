@@ -314,7 +314,7 @@
             , #{engagementIndex}
             , #{optInFlag}
             , #{satisficationLevel}
-            , #{cnhexpirationDate}
+            , #{cnhexpirationDate}::timestamp
             , #{loyaltyActivationDate}::timestamp
             , #{loyaltyStatus}
             , #{lifeCycle}
