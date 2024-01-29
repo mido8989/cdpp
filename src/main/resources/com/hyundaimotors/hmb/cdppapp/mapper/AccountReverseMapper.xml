@@ -266,7 +266,7 @@
             , #{blockedEmails}
             , #{blockedWhatsapp}
             , #{salutation}
-            , #{personBirthdate}
+            , #{personBirthdate}::timestamp
             , now()
             , 'SFDC'
             , now()
