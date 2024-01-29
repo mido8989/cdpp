@@ -159,7 +159,7 @@
             , #{engagementIndex}
             , #{lifeCycle}
             , #{salutation}
-            , #{personBirthdate}
+            , #{personBirthdate}::date
             , #{influentialPerson}
             , #{registrySource}
             , #{loyaltyValue}
