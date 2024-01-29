@@ -109,7 +109,7 @@
             , #{complement}
             , #{neighborhood}
             , #{billingCountry}
-            , COALESCE(#{personMailingCity}, #{BillingCity})
+            , COALESCE(#{personMailingCity}, #{billingCity})
             , COALESCE(#{personMailingState}, #{billingState})
             , COALESCE(#{personMailingPostalCode}, #{billingPostalCode})
             , COALESCE(#{personMailingLatitude}::float8, #{billingLatitude}::float8)
