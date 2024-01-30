@@ -13,6 +13,7 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0010.IFHMBSAPEAICDPP0010
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0010Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBSAPEAICDPP0010Service;
 
+import io.swagger.v3.core.util.Json;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -83,6 +84,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
         if( dto.getContactId() != null ){
             getProcInvoiceId = mapper.getProcInvoiceIdCon(dto);
+            System.out.println("::::::: getProcInvoiceId :::::::" + getProcInvoiceId);
         }else if(dto.getAccountId() != null ) {
             getProcInvoiceId = mapper.getProcInvoiceIdAcc(dto);
         }
@@ -92,6 +94,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
         if(getProcInvoiceId != null)
             listProcInvoiceId.add(getProcInvoiceId);
         
+        System.out.println(":::::::::listProcInvoiceId:::::::" + Json.pretty(listProcInvoiceId));
         String[] paramId = listParamId.toArray(new String[listParamId.size()]);  
         String[] procAssetId = listProcAssetId.toArray(new String[listProcAssetId.size()]);
         String[] procInvoiceId = listProcInvoiceId.toArray(new String[listProcInvoiceId.size()]);
@@ -194,6 +197,8 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             
         } else {
 
+            System.out.println(":::::::: INSERT !!!!! :::::::");
+
             mapper.transferProcess(processMap);
 
             
@@ -205,7 +210,9 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
                 getProcInvoiceId = mapper.getProcInvoiceIdAcc(dto);
             }
             getAssetId = mapper.getProcAssetId(dto);
-            listProcInvoiceId.add(getProcInvoiceId);
+            if(getProcInvoiceId != null){
+                listProcInvoiceId.add(getProcInvoiceId);
+            }
             listProcAssetId.add(getAssetId);
             procInvoiceId = listProcInvoiceId.toArray(new String[listProcInvoiceId.size()]);
             procAssetId = listProcAssetId.toArray(new String[listProcAssetId.size()]);
