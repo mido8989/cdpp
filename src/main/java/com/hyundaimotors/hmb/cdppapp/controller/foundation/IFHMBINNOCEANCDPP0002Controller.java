@@ -3,6 +3,7 @@ package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,7 +54,8 @@ public class IFHMBINNOCEANCDPP0002Controller {
         try {
             IFHMBINNOCEANCDPP0002Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0002Dto.class);
 
-            if (dto.equals(prevReqObj.get())) {
+            // if (dto.equals(prevReqObj.get())) {
+            if (!ObjectUtils.notEqual(dto, prevReqObj.get())) {
                 throw new IllegalArgumentException("Duplicate Request");
             }
             prevReqObj.set(dto);
