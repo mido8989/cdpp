@@ -31,6 +31,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IFHMBINNOCEANCDPP0002Controller {
 
+    private ThreadLocal<Object> prevReqObj = new ThreadLocal<>();
+
     private static final String IF_ID = "IF003";
 
     private final ApiLogService logService;
@@ -50,6 +52,11 @@ public class IFHMBINNOCEANCDPP0002Controller {
         IFHMBINNOCEANCDPP0002Payload.Response response = new IFHMBINNOCEANCDPP0002Payload.Response();
         try {
             IFHMBINNOCEANCDPP0002Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0002Dto.class);
+
+            if (dto.equals(prevReqObj.get())) {
+                throw new IllegalArgumentException("Duplicate Request");
+            }
+            prevReqObj.set(dto);
 
             // Dto Validation
             String msg = this.isValidRequest(dto);
