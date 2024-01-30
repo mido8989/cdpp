@@ -55,7 +55,7 @@ public class IFHMBINNOCEANCDPP0002Controller {
             IFHMBINNOCEANCDPP0002Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0002Dto.class);
 
             // if (dto.equals(prevReqObj.get())) {
-            if (!ObjectUtils.notEqual(dto, prevReqObj.get())) {
+            if (!ObjectUtils.notEqual(JsonUtils.toJson(dto), JsonUtils.toJson(prevReqObj.get()))) {
                 throw new IllegalArgumentException("Duplicate Request");
             }
             prevReqObj.set(dto);

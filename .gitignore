@@ -29,6 +29,9 @@ target/**/*
 
 #launch.json
 launch.json
-src/main/java/com/hyundaimotors/hmb/cdppapp/util/TestUtils.java
 package-lock.json
 .vscode/settings.json
+
+#test classes
+src/main/java/com/hyundaimotors/hmb/cdppapp/util/TestUtils.java
+src/main/java/com/hyundaimotors/hmb/cdppapp/util/CloneTest.java
