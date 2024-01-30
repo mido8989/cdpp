@@ -12,7 +12,8 @@ public class DuplicateRequestFilter implements Filter {
     private ThreadLocal<String> previousRequestUuid = new ThreadLocal<>();
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String currentRequestUuid = UUID.randomUUID().toString();
 
