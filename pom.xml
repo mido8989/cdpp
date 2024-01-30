@@ -132,7 +132,13 @@
 			<artifactId>spring-batch-core</artifactId>
 			<version>5.0.0</version>
 		</dependency>
-	</dependencies>
+	
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>8.0.1</version>
+        </dependency>
+ </dependencies>
 	<build>
 		<plugins>
 			<plugin>
