@@ -84,7 +84,6 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
         if( dto.getContactId() != null ){
             getProcInvoiceId = mapper.getProcInvoiceIdCon(dto);
-            System.out.println("::::::: getProcInvoiceId :::::::" + getProcInvoiceId);
         }else if(dto.getAccountId() != null ) {
             getProcInvoiceId = mapper.getProcInvoiceIdAcc(dto);
         }
@@ -94,10 +93,10 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
         if(getProcInvoiceId != null)
             listProcInvoiceId.add(getProcInvoiceId);
         
-        System.out.println(":::::::::listProcInvoiceId:::::::" + Json.pretty(listProcInvoiceId));
         String[] paramId = listParamId.toArray(new String[listParamId.size()]);  
         String[] procAssetId = listProcAssetId.toArray(new String[listProcAssetId.size()]);
         String[] procInvoiceId = listProcInvoiceId.toArray(new String[listProcInvoiceId.size()]);
+
 
 
         
@@ -126,7 +125,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
 
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
-            // mapper.transferReplica(processMap);
+            mapper.transferReplica(processMap);
 
             map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
@@ -153,7 +152,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             processMap.put("PROC_ASSET_ID", procAssetId);
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
-            // mapper.transferReplica(processMap);
+            mapper.transferReplica(processMap);
 
             map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
@@ -173,7 +172,9 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             }else if(dto.getAccountId() != null ) {
                 getProcInvoiceId = mapper.getProcInvoiceIdAcc(dto);
             }
-            listProcInvoiceId.add(getProcInvoiceId);
+            if(listProcInvoiceId != null){
+                listProcInvoiceId.add(getProcInvoiceId);
+            }
             procInvoiceId = listProcInvoiceId.toArray(new String[listProcInvoiceId.size()]);
             String[] procCustVehicleId = null;
 
@@ -188,7 +189,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             processMap.put("PROC_INVOICE_ID", procInvoiceId);
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
-            //mapper.transferReplica(processMap);
+            mapper.transferReplica(processMap);
 
             map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
@@ -197,7 +198,6 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             
         } else {
 
-            System.out.println(":::::::: INSERT !!!!! :::::::");
 
             mapper.transferProcess(processMap);
 
@@ -230,7 +230,7 @@ public class IFHMBSAPEAICDPP0010ServiceImpl implements IFHMBSAPEAICDPP0010Servic
             processMap.put("PROC_ASSET_ID", procAssetId);
             processMap.put("PROC_CUSTVEHICLE_ID", procCustVehicleId);
 
-            // mapper.transferReplica(processMap);
+            mapper.transferReplica(processMap);
 
             map.put("PARAM_ID", dto.getRowId());
             map.put("proc_asset_id", getAssetId);
