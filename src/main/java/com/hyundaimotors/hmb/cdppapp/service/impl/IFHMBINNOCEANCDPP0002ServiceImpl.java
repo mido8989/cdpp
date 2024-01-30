@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002.IFHMBINNOCEANCDPP0002Dto;
@@ -14,7 +15,7 @@ import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0002Service;
 
 import lombok.RequiredArgsConstructor;
 @Service
-@Transactional
+@Transactional(isolation = Isolation.READ_UNCOMMITTED)
 @RequiredArgsConstructor
 public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Service{
     
