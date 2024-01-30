@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.AccountReverseMapper">
+    <select id="getAccount" parameterType="AccountReverseDto" resultType="string">
+        select 
+            row_id as rowId
+        from
+            process.account a
+        where
+            row_id = #{externalId}
+    </select>
 
+    <update id="updateSflId" parameterType="AccountReverseDto">
+        update process.account set
+            sfid = #{sfId}
+        where
+            row_id = #{externalId}
+    </update>
 
     <insert id="insertAccount" parameterType="AccountReverseDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
         insert into process.account
@@ -51,7 +65,6 @@
             , x_printed_card__c
             , blockedvideocall__c
             , preferredcontactchannel__c
-            , maritalstatus__pc
             , calloptyn__pc
             , directmailoptyn__pc
             , blockedletters__c
@@ -105,27 +118,22 @@
             , sfid
             , process_account_type
 		)values(
-            #{personMailingStreet}
-            , #{billingStreet}
+            COALESCE(#{personMailingStreet}, #{billingStreet}) 
             , #{houseBuildingNo}
             , #{complement}
             , #{neighborhood}
-            , #{personMailingCity}
             , #{billingCountry}
-            , #{billingCity}
-            , #{personMailingState}
-            , #{billingState}
-            , #{personMailingPostalCode}
-            , #{billingPostalCode}
-            , #{personMailingLatitude}::float8
-            , #{billingLatitude}::float8
-            , #{personMailingLongitude}::float8
-            , #{billingLongitude}::float8
+            , COALESCE(#{personMailingCity}, #{billingCity})
+            , COALESCE(#{personMailingState}, #{billingState})
+            , COALESCE(#{personMailingPostalCode}, #{billingPostalCode})
+            , COALESCE(#{personMailingLatitude}::float8, #{billingLatitude}::float8)
+            , COALESCE(#{personMailingLongitude}::float8, #{billingLongitude}::float8)
             , #{type}
             , #{firstName}
             , #{lastName}
             , #{personEmail}
             , #{personHomePhone}
+            , #{workPhone}
             , #{workPhone}
             , #{personMobilePhone}
             , #{genderPC}
@@ -134,34 +142,38 @@
             , #{productOfInterest}
             , #{literacy}
             , #{calledBy}
-            , #{employee}
+            , case when #{employee} = 'Y' then true else false end
+            , #{dealerCode}
             , #{dealerCode}
             , #{crmIndex}
             , #{engagementIndex}
-            , #{optInFlag}
+            , case when #{optInFlag} = 'Y' then true else false end
             , #{satisficationLevel}
             , #{cnhexpirationDate}::timestamp
             , #{loyaltyActivationDate}::timestamp
             , #{loyaltyStatus}
             , #{cpf}
-            , #{receiveProductNewsFlag}::bool
-            , #{receiveRetailOffersFlag}::bool
-            , #{receiveServiceOffersFlag}::bool
-            , #{receiveNewsLetterFlag}::bool
-            , #{receiveEventsFlag}::bool
-            , #{receiveResearchFlag}::bool
-            , #{blockedMobile}
-            , #{blockedVideoCall}
-            , #{blockedCalls}
-            , #{blockedletters}
-            , #{blockedEmails}
-            , #{blockedSms}
-            , #{blockedWhatsapp}
+            , case when #{receiveProductNewsFlag} = 'Y' then true else false end
+            , case when #{receiveRetailOffersFlag} = 'Y' then true else false end
+            , case when #{receiveServiceOffersFlag} = 'Y' then true else false end
+            , case when #{receiveNewsLetterFlag} = 'Y' then true else false end
+            , case when #{receiveEventsFlag} = 'Y' then true else false end
+            , case when #{receiveResearchFlag} = 'Y' then true else false end
+            , case when #{blockedMobile} = 'Y' then true else false end
+            , case when #{blockedVideoCall} = 'Y' then true else false end
+            , case when #{blockedVideoCall} = 'Y' then true else false end
             , #{preferredContactChannel}
-            , #{maritalStatus}
+            , case when #{blockedCalls} = 'Y' then true else false end
+            , case when #{blockedletters} = 'Y' then true else false end
+            , case when #{blockedletters} = 'Y' then true else false end
+            , case when #{blockedEmails} = 'Y' then true else false end
+            , case when #{blockedEmails} = 'Y' then true else false end
+            , case when #{blockedSms} = 'Y' then true else false end
+            , case when #{blockedWhatsapp} = 'Y' then true else false end
+            , #{engagementIndex}
             , #{lifeCycle}
             , #{salutation}
-            , #{personBirthdate}
+            , #{personBirthdate}::date
             , #{influentialPerson}
             , #{registrySource}
             , #{loyaltyValue}
@@ -182,8 +194,8 @@
             , #{fleetSize}
             , #{organizationType}
             , #{dealershopType}
-            , #{salesFlag}
-            , #{serviceFlag}
+            , case when #{salesFlag} = 'Y' then true else false end
+            , case when #{serviceFlag} = 'Y' then true else false end
             , #{businessHours}
             , #{facebook}
             , #{fleetAdministrator}
@@ -268,10 +280,10 @@
             , #{blockedEmails}
             , #{blockedWhatsapp}
             , #{salutation}
-            , #{personBirthdate}
-            , now()
+            , #{personBirthdate}::timestamp
+            , #{legacyCreatedDate}::timestamp
             , 'SFDC'
-            , now()
+            , #{legacyCreatedDate}::timestamp
             , 'SFDC' 
         )
     </insert>
@@ -316,18 +328,73 @@
             , #{engagementIndex}
             , #{optInFlag}
             , #{satisficationLevel}
-            , #{cnhexpirationDate}
-            , #{loyaltyActivationDate}
+            , #{cnhexpirationDate}::timestamp
+            , #{loyaltyActivationDate}::timestamp
             , #{loyaltyStatus}
             , #{lifeCycle}
             , #{influentialPerson}
             , #{registrySource}
             , #{loyaltyValue}
             , #{occupation}
-            , now()
+            , #{legacyCreatedDate}::timestamp
             , 'SFDC'
-            , now()
+            , #{legacyCreatedDate}::timestamp
             , 'SFDC'
         )
+    </insert>
+
+    <insert id="insertDpOrgExt" parameterType="AccountReverseDto">
+        insert into process."S_ORG_EXT"
+			(
+				row_id
+				, x_cnpj
+				, Name
+				, X_NICKNAME
+				, ORI_CD
+				, X_CONTRACTED_SINCE
+				, SOURCE_CD
+				, MAIN_PH_NUM
+				, MAIN_FAX_PH_NUM
+				, MAIN_EMAIL_ADDR
+				, URL
+				, X_REASON_STATUS
+				, OU_NUM
+				, REGION
+				, ACCNT_TYPE_CD
+				, PRTNRSHP_START_DT
+				, X_WHATSAPP_PH_NUM
+				, CUST_STAT_CD
+				, X_SALES_REP
+				, DESC_TEXT
+				, created
+				, created_by
+				, last_upd
+				, last_upd_by
+			)values(
+                #{rowId}
+                , #{cnpj}
+                , #{name}
+                , #{nickname}
+                , #{accountCategory}
+                , #{contractRenewalDate}::timestamp
+                , #{registrySource}
+                , #{phone}
+                , #{fax}
+                , #{emailAddress}
+                , #{website}
+                , #{situationStatusReason}
+                , #{dealerCode}
+                , #{region}
+                , #{type}
+                , #{operationDate}::timestamp
+                , #{whatsappPhone}
+                , #{situationStatus}
+                , #{fleetAdministrator}
+                , #{description}
+                , #{legacyCreatedDate}::timestamp
+                , 'SFDC'
+                , #{legacyCreatedDate}::timestamp
+                , 'SFDC'
+            )
     </insert>
 </mapper>

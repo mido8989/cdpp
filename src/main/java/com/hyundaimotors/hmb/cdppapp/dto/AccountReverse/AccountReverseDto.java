@@ -106,6 +106,7 @@ public class AccountReverseDto {
     private String genderPC;
     private String sfId;
     private String processAccountType;
+    private String externalId;
     private String errorSpcCode;
     private String errorSpcMessage;
 }
