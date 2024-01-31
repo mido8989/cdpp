@@ -26,24 +26,18 @@ public class AccountReverseServiceImpl implements AccountReverseService{
         //if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){//Pro
             if(dto.getExternalId() != null){
                 if(rowId != null){
-                    System.out.print("dto row_id 01::::::::::::::::::::::" + dto.getRowId());
                     mapper.updateSflId(dto);
-                    System.out.print("dto row_id 02::::::::::::::::::::::" + dto.getRowId());
                 }else{
                     dto.setProcessAccountType("Person");
-                    System.out.print("dto row_id 03::::::::::::::::::::::" + dto.getRowId());
                     mapper.insertAccount(dto);
-                    System.out.print("dto row_id 04::::::::::::::::::::::" + dto.getRowId());
                     mapper.insertDpContact(dto);
                     mapper.insertDpContactSub(dto);
-                    mapper.insertReplicaAcc(dto);
+                    //mapper.insertReplicaAcc(dto);
                 }
             }else{
                 dto.setProcessAccountType("Person");
                 mapper.insertAccount(dto);
-                System.out.print("dto row_id 05::::::::::::::::::::::" + dto.getRowId());
                 mapper.insertDpContact(dto);
-                System.out.print("dto row_id 06::::::::::::::::::::::" + dto.getRowId());
                 mapper.insertDpContactSub(dto);
             }
             
