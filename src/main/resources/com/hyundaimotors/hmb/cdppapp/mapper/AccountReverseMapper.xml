@@ -442,7 +442,6 @@
             , receiveresearchflag__c
             , blockedmobile__c
             , blockedvideocall__c
-            , blockedvideocall__c
             , preferredcontactchannel__c
             , blockedcalls__c
             , blockedletters__c
@@ -535,7 +534,6 @@
             , case when #{receiveEventsFlag} = 'Y' then true else false end
             , case when #{receiveResearchFlag} = 'Y' then true else false end
             , case when #{blockedMobile} = 'Y' then true else false end
-            , case when #{blockedVideoCall} = 'Y' then true else false end
             , case when #{blockedVideoCall} = 'Y' then true else false end
             , #{preferredContactChannel}
             , case when #{blockedCalls} = 'Y' then true else false end
