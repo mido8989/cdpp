@@ -448,7 +448,6 @@
             , blockedemails__c
             , blockedsms__c
             , blockedwhatsapp__c
-            , engagementindex__c
             , lifecycle__c
             , salutation
             , personbirthdate
@@ -541,7 +540,6 @@
             , case when #{blockedEmails} = 'Y' then true else false end
             , case when #{blockedSms} = 'Y' then true else false end
             , case when #{blockedWhatsapp} = 'Y' then true else false end
-            , #{engagementIndex}
             , #{lifeCycle}
             , #{salutation}
             , #{personBirthdate}::date
