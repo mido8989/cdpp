@@ -56,6 +56,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                 }else{
                     dto.setProcessAccountType("Business");
                     mapper.insertAccount(dto);
+                    mapper.insertDpOrgExt(dto);
                 }
             // Dealer 일 경우    
             }else{
