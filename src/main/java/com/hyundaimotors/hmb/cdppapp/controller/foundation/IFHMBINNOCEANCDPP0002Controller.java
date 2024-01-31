@@ -100,8 +100,8 @@ public class IFHMBINNOCEANCDPP0002Controller {
         String errMsg = "OK";
 
         //4가지 항목 중 firstname, lastname 은 필수, email 또는 mobile 둘 중 하나라도 없으면 false
-        if( (dto.getEmailAddress() == null || dto.getEmailAddress() == "") && (dto.getCellPhone() == null || dto.getCellPhone() == "")){
-            errMsg = "Either EmailAddress or PersonMobilePhone must be entered.";
+        if( (dto.getCpf() == null || dto.getCpf() == "" ) && (dto.getEmailAddress() == null || dto.getEmailAddress() == "") && (dto.getCellPhone() == null || dto.getCellPhone() == "")){
+            errMsg = "Either CPF or EmailAddress or PersonMobilePhone must be entered.";
         }else{
             errMsg = "OK";
         }
