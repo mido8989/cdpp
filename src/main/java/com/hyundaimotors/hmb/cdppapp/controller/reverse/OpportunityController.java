@@ -40,7 +40,7 @@ public class OpportunityController {
     private final ModelMapper defaultMapper;
 
     @Operation(summary = "Opportunity Reverse I/F", description = "Opportunity Reverse I/F")
-    @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBZICARDCDPP0007Payload.Response.class)))
+    @ApiResponse(content = @Content(schema = @Schema(implementation = OpportunityPayload.Response.class)))
     @PostMapping(value = "/api/v1/OpportunityReverseIF")
     public Object getObject(@Valid @RequestBody OpportunityPayload.Request request) throws Exception {
         UUID IF_TR_ID = UUID.randomUUID();
