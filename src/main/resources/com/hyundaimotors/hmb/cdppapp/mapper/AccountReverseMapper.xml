@@ -592,4 +592,107 @@
             , #{rowId}
         )
     </insert>
+
+    <update id="updateAccount" parameterType="AccountReverseDto">
+        update process.account as pa set
+            billingstreet = case when #{billingStreet} isnull then pa.billingstreet else #{billingStreet} end
+            , billingstreet_2__c = case when #{houseBuildingNo} isnull then pa.billingstreet_2__c else #{houseBuildingNo} end
+            , billingstreet_3__c = case when #{complement} isnull then pa.billingstreet_3__c else #{complement} end
+            , neighborhood = case when #{neighborhood} isnull then pa.neighborhood else #{neighborhood} end
+            , billingcountry = case when #{billingCountry} isnull then pa.billingcountry else #{billingCountry} end
+            , billingcity = case when #{billingCity} isnull then pa.billingcity else #{billingCity} end
+            , billingstate = case when #{billingState} isnull then pa.billingstate else #{billingState} end
+            , billingpostalcode = case when #{billingPostalCode} isnull then pa.billingpostalcode else  #{billingPostalCode} end
+            , billinglatitude = case when #{billingLatitude} isnull then pa.billinglatitude else #{billingLatitude} end
+            , billinglongitude = case when #{billingLongitude} isnull then pa.billinglongitude else #{billingLongitude} end
+            , "type" = case when #{type} isnull then pa."type" else #{type} end
+            , firstname = case when #{firstName} isnull then pa.firstname else #{firstName} end
+            , lastname = case when #{lastName} isnull then pa.lastname else #{lastName} end
+            , personemail = case when #{personEmail} isnull then pa.personemail else #{personEmail} end
+            , personhomephone = case when #{personHomePhone} isnull then pa.personhomephone else #{personHomePhone} end
+            , companyphone__pc = case when  #{workPhone} isnull then pa.companyphone__pc else  #{workPhone} end
+            , workphone__c = case when #{workPhone} isnull then pa.workphone__c else #{workPhone} end
+            , personmobilephone = case when #{personMobilePhone} isnull then pa.personmobilephone else #{personMobilePhone} end
+            , gender__pc = case when #{genderPC} isnull then pa.gender__pc else #{genderPC} end
+            , pcd__c = case when #{pcd} isnull then pa.pcd__c else #{pcd} end
+            , income__c = case when #{income} isnull then pa.income__c else #{income} end
+            , productofinterest__c = case when #{productOfInterest} isnull then pa.productofinterest__c else #{productOfInterest} end
+            , literacy__c = case when #{literacy} isnull then pa.literacy__c else #{literacy} end
+            , calledby__c = case when #{calledBy} isnull then pa.calledby__c else #{calledBy} end
+            , employee__c = case when #{employee} isnull then pa.employee__c else (case when #{employee} = 'Y' then true else false end) end
+            , favoritedealer__c = case when #{dealerCode} isnull then pa.favoritedealer__c else #{dealerCode} end
+            , dealercode__c = case when #{dealerCode} isnull then pa.dealercode__c else #{dealerCode} end
+            , crmindex__c = case when #{crmIndex} isnull then pa.crmindex__c else #{crmIndex} end
+            , engagement__c = case when #{engagementIndex} isnull then pa.engagement__c else #{engagementIndex} end
+            , optinflag__c = case when #{optInFlag} isnull then pa.optinflag__c else (case when #{optInFlag} = 'Y' then true else false end) end
+            , satificationlevel__c = case when #{satisficationLevel} isnull then pa.satificationlevel__c else #{satisficationLevel} end
+            , loyaltyexpirationdate__c = case when #{cnhexpirationDate} isnull then pa.loyaltyexpirationdate__c else #{cnhexpirationDate}::timestamp end
+            , loyaltyactivationdate__c = case when #{loyaltyActivationDate} isnull then pa.loyaltyactivationdate__c else #{loyaltyActivationDate}::timestamp end
+            , loyaltystatus__c = case when #{loyaltyStatus} isnull then pa.loyaltystatus__c else #{loyaltyStatus} end
+            , cpf__c = case when #{cpf} isnull then pa.cpf__c else #{cpf} end
+            , receiveproductnewsflag__c = case when #{receiveProductNewsFlag} isnull then pa.receiveproductnewsflag__c else (case when #{receiveProductNewsFlag} = 'Y' then true else false end) end
+            , receiveretailoffersflag__c = case when #{receiveRetailOffersFlag} isnull then pa.receiveretailoffersflag__c else (case when #{receiveRetailOffersFlag} = 'Y' then true else false end) end
+            , receiveserviceoffersflag__c = case when #{receiveServiceOffersFlag} isnull then pa.receiveserviceoffersflag__c else (case when #{receiveServiceOffersFlag} = 'Y' then true else false end) end
+            , receivenewsletterflag__c = case when  #{receiveNewsLetterFlag} isnull then pa.receivenewsletterflag__c else (case when #{receiveNewsLetterFlag} = 'Y' then true else false end) end
+            , receiveeventsflag__c = case when #{receiveEventsFlag} isnull then pa.receiveeventsflag__c else (case when #{receiveEventsFlag} = 'Y' then true else false end) end
+            , receiveresearchflag__c = case when #{receiveResearchFlag} isnull then pa.receiveresearchflag__c else (case when #{receiveResearchFlag} = 'Y' then true else false end) end
+            , blockedmobile__c = case when #{blockedMobile} isnull then pa.blockedmobile__c else (case when #{blockedMobile} = 'Y' then true else false end) end
+            , x_printed_card__c = case when #{blockedVideoCall} isnull then pa.x_printed_card__c else (case when #{blockedVideoCall} = 'Y' then true else false end) end
+            , blockedvideocall__c = case when #{blockedVideoCall} isnull then pa.blockedvideocall__c else (case when #{blockedVideoCall} = 'Y' then true else false end) end
+            , preferredcontactchannel__c = case when #{preferredContactChannel} isnull then pa.preferredcontactchannel__c else #{preferredContactChannel} end
+            , calloptyn__pc = case when #{blockedCalls} isnull then pa.calloptyn__pc else (case when #{blockedCalls} = 'Y' then true else false end) end
+            , directmailoptyn__pc = case when #{blockedletters} isnull then pa.directmailoptyn__pc else (case when #{blockedletters} = 'Y' then true else false end) end
+            , blockedletters__c = case when #{blockedletters} isnull then pa.blockedletters__c else (case when #{blockedletters} = 'Y' then true else false end) end
+            , emailoptyn__pc = case when #{blockedEmails} isnull then pa.emailoptyn__pc else (case when #{blockedEmails} = 'Y' then true else false end) end
+            , blockedemails__pc = case when #{blockedEmails} isnull then pa.blockedemails__pc else (case when #{blockedEmails} = 'Y' then true else false end) end
+            , blockedsms__c = case when #{blockedSms} isnull then pa.blockedsms__c else (case when #{blockedSms} = 'Y' then true else false end) end
+            , blockedwhatsapp__c = case when  #{blockedWhatsapp} isnull then pa.blockedwhatsapp__c else (case when #{blockedWhatsapp} = 'Y' then true else false end) end
+            , loyaltyengagementindex__c = case when  #{engagementIndex} isnull then pa.loyaltyengagementindex__c else #{engagementIndex} end
+            , loyaltylifecycle__c = case when #{lifeCycle} isnull then pa.loyaltylifecycle__c else #{lifeCycle} end
+            , salutation = case when #{salutation} isnull then pa.salutation else #{salutation} end
+            , personbirthdate = case when #{personBirthdate} isnull then pa.personbirthdate else #{personBirthdate}::date end 	
+            , influentialperson__c = case when #{influentialPerson} isnull then pa.influentialperson__c else #{influentialPerson} end
+            , registrysource__c = case when #{registrySource} isnull then pa.registrysource__c else #{registrySource} end
+            , loyaltyvalue__c = case when #{loyaltyValue} isnull then pa.loyaltyvalue__c else #{loyaltyValue} end
+            , occupation__pc = case when #{occupation} isnull then pa.occupation__pc else #{occupation} end
+            , corporateregistrationnumber__c = case when #{cnpj} isnull then pa.corporateregistrationnumber__c else #{cnpj} end
+            , "name" = case when #{name} isnull then pa."name" else #{name} end
+            , corporaterepresentativename__c = case when #{nickname} isnull then pa.corporaterepresentativename__c else #{nickname} end
+            , ori_cd__c = case when #{accountCategory} isnull then pa.ori_cd__c else #{accountCategory} end
+            , x_contracted_since__c = case when #{contractRenewalDate} isnull then pa.x_contracted_since__c else #{contractRenewalDate} end
+            , phone = case when #{phone} isnull then pa.phone else #{phone} end
+            , fax = case when #{fax} isnull then pa.fax else #{fax} end
+            , emailaddress__c = case when #{emailAddress} isnull then pa.emailaddress__c else #{emailAddress} end
+            , website = case when #{website} isnull then pa.website else #{website} end
+            , situationstatusreason__c = case when #{situationStatusReason} isnull then pa.situationstatusreason__c else #{situationStatusReason} end
+            , region__c = case when #{region} isnull then pa.region__c else #{region} end
+            , businesstype__c = case when #{businessType} isnull then pa.businesstype__c else #{businessType} end
+            , industry = case when #{industry} isnull then pa.industry else #{industry} end
+            , x_tot_flt_size__c = case when #{fleetSize} isnull then pa.x_tot_flt_size__c else #{fleetSize} end
+            , fleettype__c = case when #{organizationType} isnull then pa.fleettype__c else #{organizationType} end
+            , dealershoptype__c = case when  #{dealershopType} isnull then pa.dealershoptype__c else  #{dealershopType} end
+            , salesflag__c = case when #{salesFlag} isnull then pa.salesflag__c else (case when #{salesFlag} = 'Y' then true else false end) end
+            , serviceflag__c = case when #{serviceFlag} isnull then pa.serviceflag__c else (case when #{serviceFlag} = 'Y' then true else false end) end
+            , businesshours__c = case when #{businessHours} isnull then pa.businesshours__c else #{businessHours} end
+            , facebook__c = case when #{facebook} isnull then pa.facebook__c else #{facebook} end
+            , x_sales_rep__c = case when #{fleetAdministrator} isnull then pa.x_sales_rep__c else #{fleetAdministrator} end
+            , description = case when #{description} isnull then pa.description else #{description} end
+            , leadmanager__c = case when #{leadManager} isnull then pa.leadmanager__c else #{leadManager} end
+            , dms__c = case when #{dms} isnull then pa.dms__c else #{dms} end
+            , apikey__c = case when #{apikey} isnull then pa.apikey__c else #{apikey} end
+            , whatsappphone__c = case when #{whatsappPhone} isnull then pa.whatsappphone__c else #{whatsappPhone} end
+            , cust_stat_cd__c = case when #{situationStatus} isnull then pa.cust_stat_cd__c else #{situationStatus} end
+            , partnertype__c = case when #{partnerType} isnull then pa.partnertype__c else #{partnerType} end
+            , numberofemployees = case when #{numberOfEmployees} isnull then pa.numberofemployees else #{numberOfEmployees} end
+            , prtnrshp_start_dt__c = case when #{operationDate} isnull then pa.prtnrshp_start_dt__c else #{operationDate}::date end
+            , prtnrshp_end_dt__c = case when #{terminationDate} isnull then pa.prtnrshp_end_dt__c else #{terminationDate}::date end
+            , customersap__c = case when #{customerSap} isnull then pa.customersap__c else #{customerSap} end
+            , legacy_created = case when #{legacyCreatedDate} isnull then pa.legacy_created else #{legacyCreatedDate}::timestamp end
+            , integrationid = case when #{integratedId} isnull then pa.integrationid else #{integratedId} end
+            , recordtypeid = case when #{recordTypeId} isnull then pa.recordtypeid else #{recordTypeId} end
+            , sfid = case when #{sfId} isnull then pa.sfid else #{sfId} end
+            , process_account_type = case when #{processAccountType} isnull then pa.process_account_type else #{processAccountType} end
+        where
+            pa.external_id__c = #{row_id}
+    </update>
 </mapper>

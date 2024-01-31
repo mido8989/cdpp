@@ -28,7 +28,9 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                 }else{
                     dto.setProcessAccountType("Person");
                     mapper.insertAccount(dto);
+                    System.out.print("dto row_id 01::::::::::::::::::::::" + dto.getRowId());
                     mapper.insertDpContact(dto);
+                    System.out.print("dto row_id 02::::::::::::::::::::::" + dto.getRowId());
                     mapper.insertDpContactSub(dto);
                     mapper.insertReplicaAcc(dto);
                 }
