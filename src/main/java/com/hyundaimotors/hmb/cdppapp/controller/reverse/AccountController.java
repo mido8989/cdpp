@@ -28,7 +28,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class AccountController {
-    
     private static final String IF_ID = "IF099";
     
     private final ApiLogService logService;

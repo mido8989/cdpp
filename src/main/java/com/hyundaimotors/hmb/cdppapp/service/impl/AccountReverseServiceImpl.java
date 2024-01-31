@@ -20,7 +20,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
         AccountReverseDto resultDto = new AccountReverseDto();
         
         String rowId = mapper.getAccount(dto);
-
+        // Person 일 경우
         if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){
             if(dto.getExternalId() != null){
                 if(rowId != null){
@@ -30,6 +30,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                     mapper.insertAccount(dto);
                     mapper.insertDpContact(dto);
                     mapper.insertDpContactSub(dto);
+                    mapper.insertReplicaAcc(dto);
                 }
             }else{
                 dto.setProcessAccountType("Person");
@@ -39,6 +40,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
             }
             
         }else{
+            // Business 일 경우
             if(dto.getSfId().equals("012Hs0000008kTRIAY")){
                 if(dto.getExternalId() != null){
                     if(rowId != null){
@@ -52,7 +54,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                     dto.setProcessAccountType("Business");
                     mapper.insertAccount(dto);
                 }
-                
+            // Dealer 일 경우    
             }else{
                 if(dto.getExternalId() != null){
                     if(rowId != null){

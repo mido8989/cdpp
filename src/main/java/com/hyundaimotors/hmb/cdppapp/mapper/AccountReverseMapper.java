@@ -17,4 +17,6 @@ public interface AccountReverseMapper {
     public void insertDpOrgExt(AccountReverseDto dto)throws Exception;
 
     public void insertDpOrgExtSub(AccountReverseDto dto)throws Exception;
+
+    public void insertReplicaAcc(AccountReverseDto dto)throws Exception;
 }
