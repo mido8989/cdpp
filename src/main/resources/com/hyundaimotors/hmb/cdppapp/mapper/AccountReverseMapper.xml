@@ -137,7 +137,7 @@
             , #{workPhone}
             , #{personMobilePhone}
             , #{genderPC}
-            , case when #{pcd} = 'Y' then true else false end
+            , #{pcd}
             , #{income}
             , #{productOfInterest}
             , #{literacy}
@@ -511,7 +511,7 @@
             , #{workPhone}
             , #{personMobilePhone}
             , #{genderPC}
-            , #{pcd}
+            , case when #{pcd} = 'Y' then true else false end
             , #{income}
             , #{productOfInterest}
             , #{literacy}
