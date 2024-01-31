@@ -137,7 +137,7 @@
             , #{workPhone}
             , #{personMobilePhone}
             , #{genderPC}
-            , #{pcd}
+            , #{pcd}::bool
             , #{income}
             , #{productOfInterest}
             , #{literacy}
