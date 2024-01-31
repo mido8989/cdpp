@@ -426,7 +426,6 @@
             , calledby__c
             , employee__c
             , dealercode__c
-            , dealercode__c
             , crmindex__c
             , engagementindex__c
             , optinflag__c
@@ -520,7 +519,6 @@
             , #{literacy}
             , #{calledBy}
             , case when #{employee} = 'Y' then true else false end
-            , #{dealerCode}
             , #{dealerCode}
             , #{crmIndex}
             , #{engagementIndex}
