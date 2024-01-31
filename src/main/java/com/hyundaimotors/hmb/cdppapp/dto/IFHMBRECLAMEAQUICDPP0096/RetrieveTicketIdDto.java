@@ -1,7 +1,5 @@
 package com.hyundaimotors.hmb.cdppapp.dto.IFHMBRECLAMEAQUICDPP0096;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.Getter;
 import lombok.Setter;
 

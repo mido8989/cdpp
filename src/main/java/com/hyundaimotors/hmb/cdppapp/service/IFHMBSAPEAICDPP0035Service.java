@@ -2,7 +2,6 @@ package com.hyundaimotors.hmb.cdppapp.service;
 
 import org.springframework.scheduling.annotation.Async;
 
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0034Dto;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0035Dto;
 
 public interface IFHMBSAPEAICDPP0035Service {

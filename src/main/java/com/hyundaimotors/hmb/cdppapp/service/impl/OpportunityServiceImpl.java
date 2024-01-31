@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundaimotors.hmb.cdppapp.dto.OpportunityReverse.OpportunityDto;
-import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBZICARDCDPP0007Mapper;
 import com.hyundaimotors.hmb.cdppapp.mapper.OpportunityMapper;
 import com.hyundaimotors.hmb.cdppapp.service.OpportunityService;
 

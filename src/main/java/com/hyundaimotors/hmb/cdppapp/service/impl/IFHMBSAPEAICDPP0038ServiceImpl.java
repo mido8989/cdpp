@@ -67,10 +67,7 @@ public class IFHMBSAPEAICDPP0038ServiceImpl implements IFHMBSAPEAICDPP0038Servic
         HashMap<String, String[]>  map = new HashMap<>();
 
         String[] param = actionIdArray.toArray(new String[actionIdArray.size()]);
-
-        System.out.println("actionIdArray ::::::::::::::::::::::::::::::>" + actionIdArray);
-        System.out.println("actionIdArray ::::::::::::::::::::::::::::::>" + actionIdArray.size());
-        System.out.println("param ::::::::::::::::::::::::::::::>" + param);
+        
         map.put("param_id", param);
         
         mapper.transferDPProcess(map);

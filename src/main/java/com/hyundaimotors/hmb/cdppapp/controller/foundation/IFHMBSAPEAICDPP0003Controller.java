@@ -3,7 +3,6 @@ package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 import java.util.UUID;
 
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
