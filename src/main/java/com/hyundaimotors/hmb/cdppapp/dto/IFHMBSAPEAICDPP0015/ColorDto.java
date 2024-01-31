@@ -1,8 +1,5 @@
 package com.hyundaimotors.hmb.cdppapp.dto.IFHMBSAPEAICDPP0015;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 

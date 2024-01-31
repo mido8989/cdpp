@@ -7,13 +7,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublisher;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -23,17 +20,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyundaimotors.hmb.cdppapp.dto.IFHMBDMSCDPP0004.GetLeadQuExpertDto;
-import com.hyundaimotors.hmb.cdppapp.dto.IFHMBRECLAMEAQUICDPP0096.IFHMBRECLAMEAQUICDPP0096Dto;
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBDMSCDPP0004.GetLeadQuExpert;
 import com.hyundaimotors.hmb.cdppapp.service.ApiLogService;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBDMSCDPP0004Service;
-import com.hyundaimotors.hmb.cdppapp.service.IFHMBRECLAMEAQUICDPP0096Service;
 import com.hyundaimotors.hmb.cdppapp.util.ApiLog;
 import com.hyundaimotors.hmb.cdppapp.util.ApiLogStep;
-import com.hyundaimotors.hmb.cdppapp.util.JsonUtils;
 
 @EnableScheduling
 @Component

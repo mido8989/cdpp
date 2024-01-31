@@ -72,8 +72,6 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
             
             JSONObject jsonObj = (JSONObject) new JSONParser().parse(responseBody);
 
-            System.out.println("aaaaaaaaaaaaaaaaaaaa" + jsonObj);
-
             JSONArray jsonArr = (JSONArray) jsonObj.get("data");
 
             List<RetrieveTicketId> ticketList = new ArrayList<RetrieveTicketId>();
