@@ -93,8 +93,8 @@ public class IFHMBSAPCDPP0005Controller {
     private String isValidRequest(IFHMBSAPCDPP0005Dto dto) {
         String errMsg = "OK";
 
-        if( (dto.getMainEmailAddress() == null || dto.getMainEmailAddress() == "") && (dto.getMainPhoneNumber() == null || dto.getMainPhoneNumber() == "") ){
-            errMsg = "Either EmailAddress or MainPhone must be entered.";
+        if( (dto.getCnpjNumber() == null || dto.getCnpjNumber() == "") && (dto.getMainEmailAddress() == null || dto.getMainEmailAddress() == "") && (dto.getMainPhoneNumber() == null || dto.getMainPhoneNumber() == "") ){
+            errMsg = "Either CNPJ or EmailAddress or MainPhone must be entered.";
         }else{
             errMsg = "OK";
         }
