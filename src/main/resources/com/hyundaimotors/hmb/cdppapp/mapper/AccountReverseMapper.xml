@@ -589,8 +589,10 @@
 
     <update id="updateAccount" parameterType="AccountReverseDto">
         update process.account as pa set
+            billingstreet = COALESCE(#{street}, billingstreet)
+            <!--
             billingstreet = case when #{street} isnull then pa.billingstreet else #{street} end
-            <!--, billingstreet_2__c = case when #{houseBuildingNo} isnull then pa.billingstreet_2__c else #{houseBuildingNo} end
+            , billingstreet_2__c = case when #{houseBuildingNo} isnull then pa.billingstreet_2__c else #{houseBuildingNo} end
             , billingstreet_3__c = case when #{complement} isnull then pa.billingstreet_3__c else #{complement} end
             , neighborhood = case when #{neighborhood} isnull then pa.neighborhood else #{neighborhood} end
             , billingcountry = case when #{country} isnull then pa.billingcountry else #{country} end
