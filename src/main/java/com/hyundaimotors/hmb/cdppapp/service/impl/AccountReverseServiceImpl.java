@@ -26,14 +26,11 @@ public class AccountReverseServiceImpl implements AccountReverseService{
         //if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){//Pro
             if(dto.getExternalId() != null){
                 if(rowId != null){
-                    if("Y".equalsIgnoreCase(dto.getMergeChecked())){
-                        mapper.insertMergeAccount(dto);
-                        mapper.deleteChildAccount(dto);
-                    }else{
-                        mapper.updateAccount(dto);
-                    }
-                    resultDto.setRowId("merged");
+                    //Update Account
+                    mapper.updateAccount(dto);
+                    resultDto.setRowId(dto.getExternalId());
                 }else{
+                    //Insert Account
                     dto.setProcessAccountType("Person");
                     mapper.insertAccount(dto);
                     mapper.insertDpContact(dto);
@@ -41,7 +38,13 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                     resultDto.setRowId(dto.getRowId());
                     //mapper.insertReplicaAcc(dto);
                 }
+            }else if("Y".equalsIgnoreCase(dto.getMergeChecked())){
+                //merge Account
+                mapper.insertMergeAccount(dto);
+                mapper.deleteChildAccount(dto);
+                resultDto.setRowId("merged");
             }else{
+                //Insert Account
                 dto.setProcessAccountType("Person");
                 mapper.insertAccount(dto);
                 mapper.insertDpContact(dto);
@@ -55,20 +58,24 @@ public class AccountReverseServiceImpl implements AccountReverseService{
             //if(dto.getSfId().equals("012Hs0000008kTRIAY")){//Pro
                 if(dto.getExternalId() != null){
                     if(rowId != null){
-                        if("Y".equalsIgnoreCase(dto.getMergeChecked())){
-                            mapper.insertMergeAccount(dto);
-                            mapper.deleteChildAccount(dto);
-                        }else{
-                            mapper.updateAccount(dto);
-                        }
-                        resultDto.setRowId("merged");;
+                        //Update Account
+                        mapper.updateAccount(dto);
+                        resultDto.setRowId(dto.getExternalId());
                     }else{
+                        //Insert Account
                         dto.setProcessAccountType("Business");
                         mapper.insertAccount(dto);
                         mapper.insertDpOrgExt(dto);
                         resultDto.setRowId(dto.getRowId());
                     }
+                }else if("Y".equalsIgnoreCase(dto.getMergeChecked())){
+                    //merge Account
+                    mapper.insertMergeAccount(dto);
+                    mapper.deleteChildAccount(dto);
+                    resultDto.setRowId("merged");
+
                 }else{
+                    //Insert Account
                     dto.setProcessAccountType("Business");
                     mapper.insertAccount(dto);
                     mapper.insertDpOrgExt(dto);
@@ -78,15 +85,18 @@ public class AccountReverseServiceImpl implements AccountReverseService{
             }else{
                 if(dto.getExternalId() != null){
                     if(rowId != null){
+                        //Update Account
                         mapper.updateAccount(dto);
-                        resultDto.setRowId("merged");
+                        resultDto.setRowId(dto.getExternalId());
                     }else{
+                        //Insert Account
                         dto.setProcessAccountType("Dealer");
                         mapper.insertAccount(dto);
                         mapper.insertDpOrgExt(dto);
                         resultDto.setRowId(dto.getRowId());
                     }
                 }else{
+                    //Insert Account
                     dto.setProcessAccountType("Dealer");
                     mapper.insertAccount(dto);
                     mapper.insertDpOrgExt(dto);
