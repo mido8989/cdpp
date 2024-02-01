@@ -42,6 +42,10 @@ public class JsonUtils {
         return writer.toString();
     }
 
+    public static ObjectMapper gObjectMapper() {
+        return objectMapper;
+    }
+
     public static <T> T toObject(Class<T> clazz, String requestJson,
                                  String callingMethod) throws IOException {
         T t = null;

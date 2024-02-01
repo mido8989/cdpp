@@ -1,5 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -35,6 +36,8 @@ public class IFHMBINNOCEANCDPP0002Controller {
 
     private ThreadLocal<String> prevReqObj = new ThreadLocal<>();
 
+    private AccountRequestCaches cache = AccountRequestCaches.getInstance();
+
     private static final String IF_ID = "IF003";
 
     private final ApiLogService logService;
@@ -59,10 +62,15 @@ public class IFHMBINNOCEANCDPP0002Controller {
         try {
             IFHMBINNOCEANCDPP0002Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0002Dto.class);
             
-            if (JsonUtils.toJson(dto).equalsIgnoreCase(prevReqObj.get())) {
+            // if (JsonUtils.toJson(dto).equalsIgnoreCase(prevReqObj.get())) {
+            //     throw new IllegalArgumentException("Duplicate Request");
+            // }
+            // prevReqObj.set(JsonUtils.toJson(dto));
+
+            LocalDateTime cachedAt = cache.getMapObject(JsonUtils.toJson(dto));
+            if (cachedAt != null && cachedAt.plusMinutes(2).isBefore(LocalDateTime.now())) {
                 throw new IllegalArgumentException("Duplicate Request");
             }
-            prevReqObj.set(JsonUtils.toJson(dto));
 
             // Dto Validation
             String msg = this.isValidRequest(dto);
