@@ -612,7 +612,7 @@
             , productofinterest__c = COALESCE(#{productOfInterest}, productofinterest__c)
             , literacy__c = COALESCE(#{literacy}, literacy__c)
             , calledby__c = COALESCE(#{calledBy}, calledby__c)
-            , employee__c = COALESCE(#{employee}, employee__c)
+            , employee__c = COALESCE((case when #{employee} = 'Y' then true else false end), employee__c)
             , favoritedealer__c = COALESCE(#{dealerCode}, favoritedealer__c)
             , dealercode__c = COALESCE(#{dealerCode}, dealercode__c)
             , crmindex__c = COALESCE(#{crmIndex}, crmindex__c)
