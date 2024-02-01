@@ -118,16 +118,16 @@
             , sfid
             , process_account_type
 		)values(
-            COALESCE(#{personMailingStreet}, #{billingStreet}) 
+            #{street}
             , #{houseBuildingNo}
             , #{complement}
             , #{neighborhood}
-            , #{billingCountry}
-            , COALESCE(#{personMailingCity}, #{billingCity})
-            , COALESCE(#{personMailingState}, #{billingState})
-            , COALESCE(#{personMailingPostalCode}, #{billingPostalCode})
-            , COALESCE(#{personMailingLatitude}::float8, #{billingLatitude}::float8)
-            , COALESCE(#{personMailingLongitude}::float8, #{billingLongitude}::float8)
+            , #{country}
+            , #{city}
+            , #{state}
+            , #{postalCode}
+            , #{latitude}::float8
+            , #{longitude}::float8
             , #{type}
             , #{firstName}
             , #{lastName}
@@ -493,16 +493,16 @@
             , sfid
             , external_id__c
         )values(
-            #{billingStreet}
+            #{street}
             , #{houseBuildingNo}
             , #{complement}
             , #{neighborhood}
-            , #{billingCountry}
-            , #{billingCity}
-            , #{billingState}
-            , #{billingPostalCode}
-            , #{billingLatitude}::float8
-            , #{billingLongitude}::float8
+            , #{country}
+            , #{city}
+            , #{state}
+            , #{postalCode}
+            , #{latitude}::float8
+            , #{longitude}::float8
             , #{type}
             , #{firstName}
             , #{lastName}
@@ -589,16 +589,16 @@
 
     <update id="updateAccount" parameterType="AccountReverseDto">
         update process.account as pa set
-            billingstreet = case when #{billingStreet} isnull then pa.billingstreet else #{billingStreet} end
+            billingstreet = case when #{street} isnull then pa.billingstreet else #{street} end
             , billingstreet_2__c = case when #{houseBuildingNo} isnull then pa.billingstreet_2__c else #{houseBuildingNo} end
             , billingstreet_3__c = case when #{complement} isnull then pa.billingstreet_3__c else #{complement} end
             , neighborhood = case when #{neighborhood} isnull then pa.neighborhood else #{neighborhood} end
-            , billingcountry = case when #{billingCountry} isnull then pa.billingcountry else #{billingCountry} end
-            , billingcity = case when #{billingCity} isnull then pa.billingcity else #{billingCity} end
-            , billingstate = case when #{billingState} isnull then pa.billingstate else #{billingState} end
-            , billingpostalcode = case when #{billingPostalCode} isnull then pa.billingpostalcode else  #{billingPostalCode} end
-            , billinglatitude = case when #{billingLatitude} isnull then pa.billinglatitude else #{billingLatitude} end
-            , billinglongitude = case when #{billingLongitude} isnull then pa.billinglongitude else #{billingLongitude} end
+            , billingcountry = case when #{country} isnull then pa.billingcountry else #{country} end
+            , billingcity = case when #{city} isnull then pa.billingcity else #{city} end
+            , billingstate = case when #{state} isnull then pa.billingstate else #{state} end
+            , billingpostalcode = case when #{postalCode} isnull then pa.billingpostalcode else  #{postalCode} end
+            , billinglatitude = case when #{latitude} isnull then pa.billinglatitude else #{latitude} end
+            , billinglongitude = case when #{longitude} isnull then pa.billinglongitude else #{longitude} end
             , "type" = case when #{type} isnull then pa."type" else #{type} end
             , firstname = case when #{firstName} isnull then pa.firstname else #{firstName} end
             , lastname = case when #{lastName} isnull then pa.lastname else #{lastName} end

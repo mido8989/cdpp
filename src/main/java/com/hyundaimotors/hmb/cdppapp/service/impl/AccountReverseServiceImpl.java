@@ -27,6 +27,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
             if(dto.getExternalId() != null){
                 if(rowId != null){
                     mapper.updateSflId(dto);
+                    mapper.updateAccount(dto);
                 }else{
                     dto.setProcessAccountType("Person");
                     mapper.insertAccount(dto);
@@ -63,6 +64,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                 if(dto.getExternalId() != null){
                     if(rowId != null){
                         mapper.updateSflId(dto);
+                        mapper.updateAccount(dto);
                     }else{
                         dto.setProcessAccountType("Dealer");
                         mapper.insertAccount(dto);
