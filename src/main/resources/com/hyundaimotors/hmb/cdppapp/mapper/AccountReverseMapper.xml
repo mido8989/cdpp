@@ -589,7 +589,7 @@
 
     <update id="updateAccount" parameterType="AccountReverseDto">
         update process.account as pa set
-            billingstreet = case when #{street} isnull then pa.billingstreet else #{street} end
+            <!--billingstreet = case when #{street} isnull then pa.billingstreet else #{street} end
             , billingstreet_2__c = case when #{houseBuildingNo} isnull then pa.billingstreet_2__c else #{houseBuildingNo} end
             , billingstreet_3__c = case when #{complement} isnull then pa.billingstreet_3__c else #{complement} end
             , neighborhood = case when #{neighborhood} isnull then pa.neighborhood else #{neighborhood} end
@@ -620,8 +620,8 @@
             , optinflag__c = case when #{optInFlag} isnull then pa.optinflag__c else (case when #{optInFlag} = 'Y' then true else false end) end
             where
             pa.row_id = #{externalId}
-            <!--
-            , type = case when #{type} isnull then pa.type else #{type} end
+            
+            , -->type = case when #{type} isnull then pa.type else #{type} end
             , satificationlevel__c = case when #{satisficationLevel} isnull then pa.satificationlevel__c else #{satisficationLevel} end
             , loyaltyexpirationdate__c = case when #{cnhexpirationDate} isnull then pa.loyaltyexpirationdate__c else #{cnhexpirationDate}::timestamp end
             , loyaltyactivationdate__c = case when #{loyaltyActivationDate} isnull then pa.loyaltyactivationdate__c else #{loyaltyActivationDate}::timestamp end
@@ -685,6 +685,6 @@
             , customersap__c = case when #{customerSap} isnull then pa.customersap__c else #{customerSap} end
             , integrationid = case when #{integratedId} isnull then pa.integrationid else #{integratedId} end
         where
-            pa.row_id = #{externalId}-->
+            pa.row_id = #{externalId}
     </update>
 </mapper>
