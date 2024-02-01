@@ -99,9 +99,11 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             resultDto.setError_spcCode("0"); 
             resultDto.setError_spcMessage("OK");    
        }else{   // cpf값이 안들어왔을 때
+
             if( dto.getEmailAddress() != null && dto.getEmailAddress() != "" && dto.getCellPhone() != null && dto.getCellPhone() != "" ){   // Name, Email, Phone 모두 들어왔을 때
                 dto.setFlgEmailAndPhone("Both");
                 foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
+                System.out.println("foundContactIdbyCpf" + foundContactIdbyCpf);
                 if(foundContactIdbyCpf != null){
                     resultDto.setContactId(update(dto,foundContactIdbyCpf));
                     resultDto.setCheckUpsert("update");

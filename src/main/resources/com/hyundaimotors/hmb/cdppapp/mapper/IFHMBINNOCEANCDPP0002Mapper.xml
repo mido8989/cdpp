@@ -50,7 +50,7 @@
     
     
     <insert id="insertObject" parameterType="IFHMBINNOCEANCDPP0002Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
-        insert into landing.if_in_contact_inf_wf2
+        insert into landing.if_in_contact_inf_wf
         (
             created
             , created_by
@@ -98,7 +98,6 @@
             , printedcard
             , already_customer
             , favorite_dealer
-            , api_key
         )values(
             now()
             , 'interface'
@@ -146,7 +145,6 @@
             , #{printedCard}
             , #{alreadyCustomer}
             , #{favorite_dealer}
-            , #{apiKey}
         )
     </insert>
     <insert id="insertCar" parameterType="IFHMBINNOCEANCDPP0002Dto">

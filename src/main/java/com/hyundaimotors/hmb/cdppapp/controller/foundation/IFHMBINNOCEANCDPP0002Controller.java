@@ -15,6 +15,7 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002.IFHMBINNOCEANCDPP
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0002Payload;
 import com.hyundaimotors.hmb.cdppapp.service.ApiLogService;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0002Service;
+import com.hyundaimotors.hmb.cdppapp.util.AccountRequestCaches;
 import com.hyundaimotors.hmb.cdppapp.util.ApiLog;
 import com.hyundaimotors.hmb.cdppapp.util.ApiLogStep;
 import com.hyundaimotors.hmb.cdppapp.util.JsonUtils;
@@ -57,12 +58,8 @@ public class IFHMBINNOCEANCDPP0002Controller {
         IFHMBINNOCEANCDPP0002Payload.Response response = new IFHMBINNOCEANCDPP0002Payload.Response();
         try {
             IFHMBINNOCEANCDPP0002Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0002Dto.class);
-
-            System.out.println("::::::::: JsonUtils.toJson(dto) :::::::::" + JsonUtils.toJson(dto));
-            System.out.println("::::::::: JsonUtils.toJson(prevReqObj.get()) :::::::::" + JsonUtils.toJson(prevReqObj.get()));
-            System.out.println("JsonUtils.toJson(dto).equalsIgnoreCase(JsonUtils.toJson(prevReqObj.get()))" + JsonUtils.toJson(dto).equalsIgnoreCase(JsonUtils.toJson(prevReqObj.get())));
-            if (JsonUtils.toJson(dto).equalsIgnoreCase(JsonUtils.toJson(prevReqObj.get()))) {
-            // if (!ObjectUtils.notEqual(JsonUtils.toJson(dto), JsonUtils.toJson(prevReqObj.get()))) {
+            
+            if (JsonUtils.toJson(dto).equalsIgnoreCase(prevReqObj.get())) {
                 throw new IllegalArgumentException("Duplicate Request");
             }
             prevReqObj.set(JsonUtils.toJson(dto));
