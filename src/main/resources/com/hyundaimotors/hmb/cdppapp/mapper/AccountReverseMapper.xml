@@ -590,7 +590,7 @@
     <update id="updateAccount" parameterType="AccountReverseDto">
         update process.account as pa set
             billingstreet = COALESCE(#{street}, billingstreet)
-            optinflag__c = COALESCE((case when #{optInFlag} = 'Y' then true else false end), optinflag__c)
+            , optinflag__c = COALESCE((case when #{optInFlag} = 'Y' then true else false end), optinflag__c)
             <!--
             , billingstreet_2__c = case when #{houseBuildingNo} isnull then pa.billingstreet_2__c else #{houseBuildingNo} end
             , billingstreet_3__c = case when #{complement} isnull then pa.billingstreet_3__c else #{complement} end
