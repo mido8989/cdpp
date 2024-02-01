@@ -1,7 +1,6 @@
 package com.hyundaimotors.hmb.cdppapp.util;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,7 +13,7 @@ public class AccountRequestCaches {
 
     private static AccountRequestCaches instance;
     private static ObjectMapper mapper;
-    private static long cacheMinutes = 2;
+    private static long cacheMinutes = 1;
 
     private java.util.Map<JsonNode, LocalDateTime> cacheMap = null;
 
