@@ -597,8 +597,8 @@
             , billingcity = case when #{city} isnull then pa.billingcity else #{city} end
             , billingstate = case when #{state} isnull then pa.billingstate else #{state} end
             , billingpostalcode = case when #{postalCode} isnull then pa.billingpostalcode else  #{postalCode} end
-            , billinglatitude = case when #{latitude} isnull then pa.billinglatitude else #{latitude} end
-            , billinglongitude = case when #{longitude} isnull then pa.billinglongitude else #{longitude} end
+            , billinglatitude = case when #{latitude} isnull then pa.billinglatitude else #{latitude}::float8 end
+            , billinglongitude = case when #{longitude} isnull then pa.billinglongitude else #{longitude}::float8 end
             , firstname = case when #{firstName} isnull then pa.firstname else #{firstName} end
             , lastname = case when #{lastName} isnull then pa.lastname else #{lastName} end
             , personemail = case when #{personEmail} isnull then pa.personemail else #{personEmail} end
