@@ -38,11 +38,15 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                     resultDto.setRowId(dto.getRowId());
                     //mapper.insertReplicaAcc(dto);
                 }
-            }else if("Y".equalsIgnoreCase(dto.getMergeChecked())){
-                //merge Account
-                mapper.insertMergeAccount(dto);
-                mapper.deleteChildAccount(dto);
-                resultDto.setRowId("merged");
+            }else if(dto.getMergeChecked() != null){
+                
+                if("Y".equalsIgnoreCase(dto.getMergeChecked())){
+                    //merge Account
+                    mapper.insertMergeAccount(dto);
+                    mapper.deleteChildAccount(dto);
+                    resultDto.setRowId("merged");
+                }
+                
             }else{
                 //Insert Account
                 dto.setProcessAccountType("Person");
@@ -68,12 +72,15 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                         mapper.insertDpOrgExt(dto);
                         resultDto.setRowId(dto.getRowId());
                     }
-                }else if("Y".equalsIgnoreCase(dto.getMergeChecked())){
-                    //merge Account
-                    mapper.insertMergeAccount(dto);
-                    mapper.deleteChildAccount(dto);
-                    resultDto.setRowId("merged");
+                }else if(dto.getMergeChecked() != null){
 
+                    if("Y".equalsIgnoreCase(dto.getMergeChecked())){
+                        //merge Account
+                        mapper.insertMergeAccount(dto);
+                        mapper.deleteChildAccount(dto);
+                        resultDto.setRowId("merged");
+                    }
+                    
                 }else{
                     //Insert Account
                     dto.setProcessAccountType("Business");
