@@ -12,6 +12,7 @@ public class AccountRequestCaches {
 
     private static AccountRequestCaches instance;
     private static ObjectMapper mapper;
+    private static long cacheMinutes = 2;
 
     private java.util.Map<JsonNode, LocalDateTime> cacheMap = null;
 
@@ -43,8 +44,8 @@ public class AccountRequestCaches {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime cachedAt = this.cacheMap.get(key);
 
-        if (cachedAt == null || cachedAt.plusMinutes(3).isBefore(now)) {
-            //캐시되었으나 캐시 시간이 3분 지난 경우
+        if (cachedAt == null || cachedAt.plusMinutes(cacheMinutes).isBefore(now)) {
+            //캐시되었으나 캐시만료 시간이 지난 경우
             setMapObject(key);
             return null;
         } else {

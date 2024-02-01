@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.UUID;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,8 +33,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IFHMBINNOCEANCDPP0002Controller {
 
-    private ThreadLocal<String> prevReqObj = new ThreadLocal<>();
-
     private AccountRequestCaches cache = AccountRequestCaches.getInstance();
 
     private static final String IF_ID = "IF003";
@@ -61,14 +58,10 @@ public class IFHMBINNOCEANCDPP0002Controller {
         IFHMBINNOCEANCDPP0002Payload.Response response = new IFHMBINNOCEANCDPP0002Payload.Response();
         try {
             IFHMBINNOCEANCDPP0002Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0002Dto.class);
-            
-            // if (JsonUtils.toJson(dto).equalsIgnoreCase(prevReqObj.get())) {
-            //     throw new IllegalArgumentException("Duplicate Request");
-            // }
-            // prevReqObj.set(JsonUtils.toJson(dto));
 
             LocalDateTime cachedAt = cache.getMapObject(JsonUtils.toJson(dto));
-            if (cachedAt != null && cachedAt.plusMinutes(2).isBefore(LocalDateTime.now())) {
+            // if (cachedAt != null && !cachedAt.plusMinutes(3).isBefore(LocalDateTime.now())) {
+            if (cachedAt != null) {
                 throw new IllegalArgumentException("Duplicate Request");
             }
 
@@ -87,7 +80,7 @@ public class IFHMBINNOCEANCDPP0002Controller {
 
             response = defaultMapper.map(resultDto, IFHMBINNOCEANCDPP0002Payload.Response.class);
             ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
-
+            
             IFHMBINNOCEANCDPP0002Dto oldAccount = resultMap.get("oldAccount");
 
             if(oldAccount != null){

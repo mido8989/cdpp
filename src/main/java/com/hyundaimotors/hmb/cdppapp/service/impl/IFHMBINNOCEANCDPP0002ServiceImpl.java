@@ -103,7 +103,6 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             if( dto.getEmailAddress() != null && dto.getEmailAddress() != "" && dto.getCellPhone() != null && dto.getCellPhone() != "" ){   // Name, Email, Phone 모두 들어왔을 때
                 dto.setFlgEmailAndPhone("Both");
                 foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
-                System.out.println("foundContactIdbyCpf" + foundContactIdbyCpf);
                 if(foundContactIdbyCpf != null){
                     resultDto.setContactId(update(dto,foundContactIdbyCpf));
                     resultDto.setCheckUpsert("update");
@@ -216,10 +215,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         IFHMBINNOCEANCDPP0002Dto newAccount = new IFHMBINNOCEANCDPP0002Dto();
 
         newAccount = mapper.getOldAccount(dto.getContactId());
-
-        //String[] insertColumnValue = {"row_id" , "cpf__c" , "integrationid" , "firstname" , "lastname" , "personemail" , "personhomephone" , "workphone__c" , "personmobilephone" , "gender__pc" , "maritalstatus__pc" , "personbirthdate" , "occupation__pc" , "income__c" , "productofinterest__c" , "calledby__c" , "literacy__c" , "preferredcontactchannel__c" , "persondonotcall" , "calloptyn__pc" , "blockedemails__c" , "blockedemails__pc" , "blockedletters__c" , "blockedletters__pc" , "blockedmobile__c" , "blockedmobile__pc" , "blockedsms__c" , "blockedsms__pc" , "blockedvideocall__c" , "blockedvideocall__pc" , "blockedwhatsapp__c" , "blockedwhatsapp__pc" , "dealercode__c" , "registrysource__c" , "facebook__c" , "receiveproductnewsflag__c" , "receiveretailoffersflag__c" , "receiveserviceoffersflag__c" , "receivenewsletterflag__c" , "receiveeventsflag__c" , "receiveresearchflag__c" , "neighborhood"};
-        //String[] updateColumnValue = {"cpf__c" , "integrationid" , "firstname" , "lastname" , "personemail" , "personhomephone" , "workphone__c" , "personmobilephone" , "gender__pc" , "maritalstatus__pc" , "personbirthdate" , "occupation__pc" , "income__c" , "productofinterest__c" , "calledby__c" , "literacy__c" , "preferredcontactchannel__c" , "persondonotcall" , "calloptyn__pc" , "blockedemails__c" , "blockedemails__pc" , "blockedletters__c" , "blockedletters__pc" , "blockedmobile__c" , "blockedmobile__pc" , "blockedsms__c" , "blockedsms__pc" , "blockedvideocall__c" , "blockedvideocall__pc" , "blockedwhatsapp__c" , "blockedwhatsapp__pc" , "dealercode__c" , "registrysource__c" , "facebook__c" , "receiveproductnewsflag__c" , "receiveretailoffersflag__c" , "receiveserviceoffersflag__c" , "receivenewsletterflag__c" , "receiveeventsflag__c" , "receiveresearchflag__c" , "neighborhood"};
-        
+      
         List<InboundContactAuditDto> auditList = new ArrayList<>();
 
         if("update".equals(dto.getCheckUpsert())){
