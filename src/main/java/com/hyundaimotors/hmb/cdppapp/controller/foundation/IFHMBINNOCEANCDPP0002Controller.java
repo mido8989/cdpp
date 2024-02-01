@@ -58,7 +58,7 @@ public class IFHMBINNOCEANCDPP0002Controller {
             if (!ObjectUtils.notEqual(JsonUtils.toJson(dto), JsonUtils.toJson(prevReqObj.get()))) {
                 throw new IllegalArgumentException("Duplicate Request");
             }
-            prevReqObj.set(dto);
+            prevReqObj.set(JsonUtils.toJson(dto));
 
             // Dto Validation
             String msg = this.isValidRequest(dto);

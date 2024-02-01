@@ -161,6 +161,21 @@ public class IFHMBINNOCEANCDPP0002Payload {
         List<InboundContactWorkflowHobbyPayLoad> listOfHobby;
         @JsonProperty("ListOfSoccerTeam")
         List<InboundContactWorkflowSoccerTeamPayLoad> listOfSoccerTeam;
+
+
+        private void setFirstName(String firstname){
+            if(firstname != null){
+                firstname = firstname.trim().replaceAll("\\s+", " ");
+            }
+            this.firstName = firstname;
+        }
+
+        private void setLastName(String lastname){
+            if(lastname != null){
+                lastname = lastname.trim().replaceAll("\\s+", " ");
+            }
+            this.lastName = lastname;
+        }
     }
 
     @Schema(name = "IFHMBINNOCEANCDPP0002Payload.Response")

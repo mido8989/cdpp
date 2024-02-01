@@ -27,7 +27,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         String dtoLastName = dto.getLastName();
         String dtoFirstName = dto.getFirstName();
         // lastname 비어서 들어올 때 lastname 처리 
-        if( dtoLastName == null || dtoLastName.isEmpty() || dtoLastName == ""){
+        if( dtoLastName == null || dtoLastName.isEmpty() ){
             String[] splFirstName = dtoFirstName.split(" ",2);
             if ( splFirstName.length > 1){
                 dto.setFirstName(splFirstName[0]);
@@ -35,7 +35,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }else{
                 dto.setLastName(dtoFirstName);
             }
-        }else if( dtoFirstName == null || dtoFirstName.isEmpty() || dtoFirstName == ""){
+        }else if( dtoFirstName == null || dtoFirstName.isEmpty() ){
             String[] splLastName = dtoLastName.split(" ",2);
             if( splLastName.length > 1 ){
                 dto.setFirstName(splLastName[0]);
