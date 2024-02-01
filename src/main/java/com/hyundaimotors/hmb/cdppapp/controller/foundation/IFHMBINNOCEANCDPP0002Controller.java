@@ -1,9 +1,9 @@
 package com.hyundaimotors.hmb.cdppapp.controller.foundation;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.UUID;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +15,7 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0002.IFHMBINNOCEANCDPP
 import com.hyundaimotors.hmb.cdppapp.payload.IFHMBINNOCEANCDPP0002Payload;
 import com.hyundaimotors.hmb.cdppapp.service.ApiLogService;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0002Service;
+import com.hyundaimotors.hmb.cdppapp.util.AccountRequestCaches;
 import com.hyundaimotors.hmb.cdppapp.util.ApiLog;
 import com.hyundaimotors.hmb.cdppapp.util.ApiLogStep;
 import com.hyundaimotors.hmb.cdppapp.util.JsonUtils;
@@ -32,7 +33,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IFHMBINNOCEANCDPP0002Controller {
 
-    private ThreadLocal<Object> prevReqObj = new ThreadLocal<>();
+    private AccountRequestCaches cache = AccountRequestCaches.getInstance();
 
     private static final String IF_ID = "IF003";
 
@@ -46,7 +47,11 @@ public class IFHMBINNOCEANCDPP0002Controller {
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0002Payload.Request.class)))
     @PostMapping(value = "/api/v1/HMBInboundContactInterfaceWorkflow")
     public Object insertInboundContactWorkflow(@Valid @RequestBody IFHMBINNOCEANCDPP0002Payload.Request request, @RequestHeader MultiValueMap<String, String> headerMap) throws Exception {
-        request.setApiKey(String.valueOf(headerMap.getFirst("apikey")));
+        
+        if( headerMap.getFirst("apikey") != null ){
+            request.setApiKey(String.valueOf(headerMap.getFirst("apikey")));
+        }
+
         UUID IF_TR_ID = UUID.randomUUID();
 
         ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
@@ -54,11 +59,10 @@ public class IFHMBINNOCEANCDPP0002Controller {
         try {
             IFHMBINNOCEANCDPP0002Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0002Dto.class);
 
-            // if (dto.equals(prevReqObj.get())) {
-            if (!ObjectUtils.notEqual(JsonUtils.toJson(dto), JsonUtils.toJson(prevReqObj.get()))) {
+            LocalDateTime cachedAt = cache.getMapObject(JsonUtils.toJson(dto));
+            if (cachedAt != null) {
                 throw new IllegalArgumentException("Duplicate Request");
             }
-            prevReqObj.set(dto);
 
             // Dto Validation
             String msg = this.isValidRequest(dto);
@@ -75,7 +79,7 @@ public class IFHMBINNOCEANCDPP0002Controller {
 
             response = defaultMapper.map(resultDto, IFHMBINNOCEANCDPP0002Payload.Response.class);
             ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
-
+            
             IFHMBINNOCEANCDPP0002Dto oldAccount = resultMap.get("oldAccount");
 
             if(oldAccount != null){

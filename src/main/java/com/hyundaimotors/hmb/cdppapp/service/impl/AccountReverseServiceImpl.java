@@ -20,16 +20,20 @@ public class AccountReverseServiceImpl implements AccountReverseService{
         AccountReverseDto resultDto = new AccountReverseDto();
         
         String rowId = mapper.getAccount(dto);
-
-        if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){
+        // Person 일 경우
+        
+        if("012Dd00000006AUIAY".equals(dto.getRecordTypeId())){//Dev
+        //if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){//Pro
             if(dto.getExternalId() != null){
                 if(rowId != null){
                     mapper.updateSflId(dto);
+                    mapper.updateAccount(dto);
                 }else{
                     dto.setProcessAccountType("Person");
                     mapper.insertAccount(dto);
                     mapper.insertDpContact(dto);
                     mapper.insertDpContactSub(dto);
+                    //mapper.insertReplicaAcc(dto);
                 }
             }else{
                 dto.setProcessAccountType("Person");
@@ -39,7 +43,9 @@ public class AccountReverseServiceImpl implements AccountReverseService{
             }
             
         }else{
-            if(dto.getSfId().equals("012Hs0000008kTRIAY")){
+            // Business 일 경우
+            if(dto.getSfId().equals("012Dd000000068OIAQ")){//Dev
+            //if(dto.getSfId().equals("012Hs0000008kTRIAY")){//Pro
                 if(dto.getExternalId() != null){
                     if(rowId != null){
                         mapper.updateSflId(dto);
@@ -51,12 +57,14 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                 }else{
                     dto.setProcessAccountType("Business");
                     mapper.insertAccount(dto);
+                    mapper.insertDpOrgExt(dto);
                 }
-                
+            // Dealer 일 경우    
             }else{
                 if(dto.getExternalId() != null){
                     if(rowId != null){
                         mapper.updateSflId(dto);
+                        mapper.updateAccount(dto);
                     }else{
                         dto.setProcessAccountType("Dealer");
                         mapper.insertAccount(dto);
@@ -68,7 +76,6 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                     mapper.insertDpOrgExt(dto);
                 }
             }
-            mapper.insertAccount(dto);
         }
 
         resultDto.setRowId(dto.getRowId());
