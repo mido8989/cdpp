@@ -20,6 +20,12 @@ public interface AccountReverseMapper {
 
     public void updateAccount(AccountReverseDto dto)throws Exception;
 
+    public void updateDpContact(AccountReverseDto dto)throws Exception;
+
+    public void updateDpContactSub(AccountReverseDto dto)throws Exception;
+
+    public void updateDpOrgExt(AccountReverseDto dto)throws Exception;
+
     public void insertMergeAccount(AccountReverseDto dto)throws Exception;
 
     public void deleteChildAccount(AccountReverseDto dto)throws Exception;

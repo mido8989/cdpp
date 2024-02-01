@@ -28,6 +28,8 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                 if(rowId != null){
                     //Update Account
                     mapper.updateAccount(dto);
+                    mapper.updateDpContact(dto);
+                    mapper.updateDpContactSub(dto);
                     resultDto.setRowId(dto.getExternalId());
                 }else{
                     //Insert Account
@@ -38,15 +40,15 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                     resultDto.setRowId(dto.getRowId());
                     //mapper.insertReplicaAcc(dto);
                 }
-            }else if(dto.getMergeChecked() != null){
-                
+            /*}else if(dto.getMergeChecked() != null){
+
                 if("Y".equalsIgnoreCase(dto.getMergeChecked())){
                     //merge Account
                     mapper.insertMergeAccount(dto);
                     mapper.deleteChildAccount(dto);
                     resultDto.setRowId("merged");
                 }
-                
+             */    
             }else{
                 //Insert Account
                 dto.setProcessAccountType("Person");
@@ -64,6 +66,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                     if(rowId != null){
                         //Update Account
                         mapper.updateAccount(dto);
+                        mapper.updateDpOrgExt(dto);
                         resultDto.setRowId(dto.getExternalId());
                     }else{
                         //Insert Account
@@ -72,7 +75,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                         mapper.insertDpOrgExt(dto);
                         resultDto.setRowId(dto.getRowId());
                     }
-                }else if(dto.getMergeChecked() != null){
+                /*}else if(dto.getMergeChecked() != null){
 
                     if("Y".equalsIgnoreCase(dto.getMergeChecked())){
                         //merge Account
@@ -80,7 +83,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                         mapper.deleteChildAccount(dto);
                         resultDto.setRowId("merged");
                     }
-                    
+                */    
                 }else{
                     //Insert Account
                     dto.setProcessAccountType("Business");
