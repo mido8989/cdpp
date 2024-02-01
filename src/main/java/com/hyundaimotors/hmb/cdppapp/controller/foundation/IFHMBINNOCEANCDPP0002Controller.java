@@ -46,7 +46,11 @@ public class IFHMBINNOCEANCDPP0002Controller {
     @ApiResponse(content = @Content(schema = @Schema(implementation = IFHMBINNOCEANCDPP0002Payload.Request.class)))
     @PostMapping(value = "/api/v1/HMBInboundContactInterfaceWorkflow")
     public Object insertInboundContactWorkflow(@Valid @RequestBody IFHMBINNOCEANCDPP0002Payload.Request request, @RequestHeader MultiValueMap<String, String> headerMap) throws Exception {
-        request.setApiKey(String.valueOf(headerMap.getFirst("apikey")));
+        
+        if( headerMap.getFirst("apikey") != null ){
+            request.setApiKey(String.valueOf(headerMap.getFirst("apikey")));
+        }
+
         UUID IF_TR_ID = UUID.randomUUID();
 
         ApiLog.logApi(logService, IF_ID, ApiLogStep.START, IF_TR_ID, JsonUtils.toJson(request));
@@ -54,6 +58,9 @@ public class IFHMBINNOCEANCDPP0002Controller {
         try {
             IFHMBINNOCEANCDPP0002Dto dto = defaultMapper.map(request, IFHMBINNOCEANCDPP0002Dto.class);
 
+            System.out.println("::::::::: JsonUtils.toJson(dto) :::::::::" + JsonUtils.toJson(dto));
+            System.out.println("::::::::: JsonUtils.toJson(prevReqObj.get()) :::::::::" + JsonUtils.toJson(prevReqObj.get()));
+            
             // if (dto.equals(prevReqObj.get())) {
             if (!ObjectUtils.notEqual(JsonUtils.toJson(dto), JsonUtils.toJson(prevReqObj.get()))) {
                 throw new IllegalArgumentException("Duplicate Request");
