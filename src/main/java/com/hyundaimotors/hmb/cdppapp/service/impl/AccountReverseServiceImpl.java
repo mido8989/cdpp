@@ -74,7 +74,6 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                     mapper.insertDpOrgExt(dto);
                 }
             }
-            mapper.insertAccount(dto);
         }
 
         resultDto.setRowId(dto.getRowId());
