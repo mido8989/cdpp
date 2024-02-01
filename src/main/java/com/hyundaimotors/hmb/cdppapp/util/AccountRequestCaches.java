@@ -1,16 +1,26 @@
 package com.hyundaimotors.hmb.cdppapp.util;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class AccountRequestCaches {
 
     private static AccountRequestCaches instance;
+    private static ObjectMapper mapper;
 
-    private java.util.Map<String, Object> cacheMap = null;
+    private java.util.Map<JsonNode, LocalDateTime> cacheMap = null;
 
     private AccountRequestCaches() {
         if (this.cacheMap == null) {
             this.cacheMap = new HashMap<>();
+        }
+        if (mapper == null) {
+            mapper = new ObjectMapper();
         }
     }
 
@@ -21,11 +31,44 @@ public class AccountRequestCaches {
         return instance;
     }
 
-    public Object getMapObject(String key) {
-        return this.cacheMap.get(key);
+    public LocalDateTime getMapObject(String keyString) throws JsonMappingException, JsonProcessingException {
+        return getMapObject(mapper.readTree(keyString));
     }
 
-    public void setMapObject(String key, Object value) {
-        this.cacheMap.put(key, value);
+    public LocalDateTime getMapObject(JsonNode key) {
+        return getMapObjectInTime(key);
+    }
+
+    public LocalDateTime getMapObjectInTime(JsonNode key) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime cachedAt = this.cacheMap.get(key);
+
+        if (cachedAt == null || cachedAt.plusMinutes(3).isBefore(now)) {
+            //캐시되었으나 캐시 시간이 3분 지난 경우
+            setMapObject(key);
+            return null;
+        } else {
+            return cachedAt;
+        }
+    }
+
+    public void setMapObject(String key) throws JsonMappingException, JsonProcessingException {
+        setMapObject(mapper.readTree(key));
+    }
+
+    public void setMapObject(JsonNode key) {
+        this.cacheMap.put(key, LocalDateTime.now());
+    }
+
+    public void setMapObject(String key, LocalDateTime value) throws JsonMappingException, JsonProcessingException {
+        setMapObject(mapper.readTree(key), value);
+    }
+
+    public void setMapObject(JsonNode key, LocalDateTime value) {
+        if (value == null) {
+            setMapObject(key);
+        } else {
+            this.cacheMap.put(key, value);
+        }
     }
 }
