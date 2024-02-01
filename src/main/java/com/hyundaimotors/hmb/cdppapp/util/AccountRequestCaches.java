@@ -1,6 +1,8 @@
 package com.hyundaimotors.hmb.cdppapp.util;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -70,6 +72,23 @@ public class AccountRequestCaches {
             setMapObject(key);
         } else {
             this.cacheMap.put(key, value);
+        }
+    }
+
+    public void clearExpiredCache() {
+        java.util.List<JsonNode> removeTargetList = new ArrayList<>();
+        for (JsonNode key : this.cacheMap.keySet()) {
+            // System.out.println("Clear Search Key ==> " + key);
+            LocalDateTime val = this.cacheMap.get(key);
+            if (val != null && val.plusMinutes(cacheMinutes).isBefore(LocalDateTime.now())) {
+                // System.out.println("Clear Target Val ==> " + val.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
+                removeTargetList.add(key);
+            }
+        }
+        if (!removeTargetList.isEmpty()) {
+            for (JsonNode key : removeTargetList) {
+                this.cacheMap.remove(key);
+            }
         }
     }
 }
