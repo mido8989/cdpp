@@ -623,7 +623,6 @@
             , loyaltyexpirationdate__c = case when #{cnhexpirationDate} isnull then pa.loyaltyexpirationdate__c else #{cnhexpirationDate}::timestamp end
             , loyaltyactivationdate__c = case when #{loyaltyActivationDate} isnull then pa.loyaltyactivationdate__c else #{loyaltyActivationDate}::timestamp end
             , loyaltystatus__c = case when #{loyaltyStatus} isnull then pa.loyaltystatus__c else #{loyaltyStatus} end
-            , cpf__c = case when #{cpf} isnull then pa.cpf__c else #{cpf} end
             , receiveproductnewsflag__c = case when #{receiveProductNewsFlag} isnull then pa.receiveproductnewsflag__c else (case when #{receiveProductNewsFlag} = 'Y' then true else false end) end
             , receiveretailoffersflag__c = case when #{receiveRetailOffersFlag} isnull then pa.receiveretailoffersflag__c else (case when #{receiveRetailOffersFlag} = 'Y' then true else false end) end
             , receiveserviceoffersflag__c = case when #{receiveServiceOffersFlag} isnull then pa.receiveserviceoffersflag__c else (case when #{receiveServiceOffersFlag} = 'Y' then true else false end) end
@@ -681,12 +680,8 @@
             , prtnrshp_start_dt__c = case when #{operationDate} isnull then pa.prtnrshp_start_dt__c else #{operationDate}::date end
             , prtnrshp_end_dt__c = case when #{terminationDate} isnull then pa.prtnrshp_end_dt__c else #{terminationDate}::date end
             , customersap__c = case when #{customerSap} isnull then pa.customersap__c else #{customerSap} end
-            , legacy_created = case when #{legacyCreatedDate} isnull then pa.legacy_created else #{legacyCreatedDate}::timestamp end
             , integrationid = case when #{integratedId} isnull then pa.integrationid else #{integratedId} end
-            , recordtypeid = case when #{recordTypeId} isnull then pa.recordtypeid else #{recordTypeId} end
-            , sfid = case when #{sfId} isnull then pa.sfid else #{sfId} end
-            , process_account_type = case when #{processAccountType} isnull then pa.process_account_type else #{processAccountType} end
         where
-            pa.external_id__c = #{row_id}
+            pa.row_id = #{externalId}
     </update>
 </mapper>
