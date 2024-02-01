@@ -32,7 +32,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class IFHMBINNOCEANCDPP0002Controller {
 
-    private ThreadLocal<Object> prevReqObj = new ThreadLocal<>();
+    private ThreadLocal<String> prevReqObj = new ThreadLocal<>();
 
     private static final String IF_ID = "IF003";
 
@@ -60,9 +60,9 @@ public class IFHMBINNOCEANCDPP0002Controller {
 
             System.out.println("::::::::: JsonUtils.toJson(dto) :::::::::" + JsonUtils.toJson(dto));
             System.out.println("::::::::: JsonUtils.toJson(prevReqObj.get()) :::::::::" + JsonUtils.toJson(prevReqObj.get()));
-            
-            // if (dto.equals(prevReqObj.get())) {
-            if (!ObjectUtils.notEqual(JsonUtils.toJson(dto), JsonUtils.toJson(prevReqObj.get()))) {
+            System.out.println("JsonUtils.toJson(dto).equalsIgnoreCase(JsonUtils.toJson(prevReqObj.get()))" + JsonUtils.toJson(dto).equalsIgnoreCase(JsonUtils.toJson(prevReqObj.get())));
+            if (JsonUtils.toJson(dto).equalsIgnoreCase(JsonUtils.toJson(prevReqObj.get()))) {
+            // if (!ObjectUtils.notEqual(JsonUtils.toJson(dto), JsonUtils.toJson(prevReqObj.get()))) {
                 throw new IllegalArgumentException("Duplicate Request");
             }
             prevReqObj.set(JsonUtils.toJson(dto));
