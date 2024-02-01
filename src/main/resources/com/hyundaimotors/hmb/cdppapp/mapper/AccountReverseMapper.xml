@@ -621,66 +621,66 @@
             , type = COALESCE(#{type}, type)
             , satificationlevel__c = COALESCE(#{satisficationLevel}, satificationlevel__c)
             , loyaltyexpirationdate__c = COALESCE(#{cnhexpirationDate}::timestamp, loyaltyexpirationdate__c)
-            <!--, loyaltyactivationdate__c = case when #{loyaltyActivationDate} isnull then pa.loyaltyactivationdate__c else #{loyaltyActivationDate}::timestamp end
-            , loyaltystatus__c = case when #{loyaltyStatus} isnull then pa.loyaltystatus__c else #{loyaltyStatus} end
-            , receiveproductnewsflag__c = case when #{receiveProductNewsFlag} isnull then pa.receiveproductnewsflag__c else (case when #{receiveProductNewsFlag} = 'Y' then true else false end) end
-            , receiveretailoffersflag__c = case when #{receiveRetailOffersFlag} isnull then pa.receiveretailoffersflag__c else (case when #{receiveRetailOffersFlag} = 'Y' then true else false end) end
-            , receiveserviceoffersflag__c = case when #{receiveServiceOffersFlag} isnull then pa.receiveserviceoffersflag__c else (case when #{receiveServiceOffersFlag} = 'Y' then true else false end) end
-            , receivenewsletterflag__c = case when  #{receiveNewsLetterFlag} isnull then pa.receivenewsletterflag__c else (case when #{receiveNewsLetterFlag} = 'Y' then true else false end) end
-            , receiveeventsflag__c = case when #{receiveEventsFlag} isnull then pa.receiveeventsflag__c else (case when #{receiveEventsFlag} = 'Y' then true else false end) end
-            , receiveresearchflag__c = case when #{receiveResearchFlag} isnull then pa.receiveresearchflag__c else (case when #{receiveResearchFlag} = 'Y' then true else false end) end
-            , blockedmobile__c = case when #{blockedMobile} isnull then pa.blockedmobile__c else (case when #{blockedMobile} = 'Y' then true else false end) end
-            , x_printed_card__c = case when #{blockedVideoCall} isnull then pa.x_printed_card__c else (case when #{blockedVideoCall} = 'Y' then true else false end) end
-            , blockedvideocall__c = case when #{blockedVideoCall} isnull then pa.blockedvideocall__c else (case when #{blockedVideoCall} = 'Y' then true else false end) end
-            , preferredcontactchannel__c = case when #{preferredContactChannel} isnull then pa.preferredcontactchannel__c else #{preferredContactChannel} end
-            , calloptyn__pc = case when #{blockedCalls} isnull then pa.calloptyn__pc else (case when #{blockedCalls} = 'Y' then true else false end) end
-            , directmailoptyn__pc = case when #{blockedletters} isnull then pa.directmailoptyn__pc else (case when #{blockedletters} = 'Y' then true else false end) end
-            , blockedletters__c = case when #{blockedletters} isnull then pa.blockedletters__c else (case when #{blockedletters} = 'Y' then true else false end) end
-            , emailoptyn__pc = case when #{blockedEmails} isnull then pa.emailoptyn__pc else (case when #{blockedEmails} = 'Y' then true else false end) end
-            , blockedemails__pc = case when #{blockedEmails} isnull then pa.blockedemails__pc else (case when #{blockedEmails} = 'Y' then true else false end) end
-            , blockedsms__c = case when #{blockedSms} isnull then pa.blockedsms__c else (case when #{blockedSms} = 'Y' then true else false end) end
-            , blockedwhatsapp__c = case when  #{blockedWhatsapp} isnull then pa.blockedwhatsapp__c else (case when #{blockedWhatsapp} = 'Y' then true else false end) end
-            , loyaltyengagementindex__c = case when  #{engagementIndex} isnull then pa.loyaltyengagementindex__c else #{engagementIndex} end
-            , loyaltylifecycle__c = case when #{lifeCycle} isnull then pa.loyaltylifecycle__c else #{lifeCycle} end
-            , salutation = case when #{salutation} isnull then pa.salutation else #{salutation} end
-            , personbirthdate = case when #{personBirthdate} isnull then pa.personbirthdate else #{personBirthdate}::date end 	
-            , influentialperson__c = case when #{influentialPerson} isnull then pa.influentialperson__c else #{influentialPerson} end
-            , registrysource__c = case when #{registrySource} isnull then pa.registrysource__c else #{registrySource} end
-            , loyaltyvalue__c = case when #{loyaltyValue} isnull then pa.loyaltyvalue__c else #{loyaltyValue} end
-            , occupation__pc = case when #{occupation} isnull then pa.occupation__pc else #{occupation} end
-            , corporateregistrationnumber__c = case when #{cnpj} isnull then pa.corporateregistrationnumber__c else #{cnpj} end
-            , "name" = case when #{name} isnull then pa."name" else #{name} end
-            , corporaterepresentativename__c = case when #{nickname} isnull then pa.corporaterepresentativename__c else #{nickname} end
-            , ori_cd__c = case when #{accountCategory} isnull then pa.ori_cd__c else #{accountCategory} end
-            , x_contracted_since__c = case when #{contractRenewalDate} isnull then pa.x_contracted_since__c else #{contractRenewalDate}::date end
-            , phone = case when #{phone} isnull then pa.phone else #{phone} end
-            , fax = case when #{fax} isnull then pa.fax else #{fax} end
-            , emailaddress__c = case when #{emailAddress} isnull then pa.emailaddress__c else #{emailAddress} end
-            , website = case when #{website} isnull then pa.website else #{website} end
-            , situationstatusreason__c = case when #{situationStatusReason} isnull then pa.situationstatusreason__c else #{situationStatusReason} end
-            , region__c = case when #{region} isnull then pa.region__c else #{region} end
-            , businesstype__c = case when #{businessType} isnull then pa.businesstype__c else #{businessType} end
-            , industry = case when #{industry} isnull then pa.industry else #{industry} end
-            , x_tot_flt_size__c = case when #{fleetSize} isnull then pa.x_tot_flt_size__c else #{fleetSize} end
-            , fleettype__c = case when #{organizationType} isnull then pa.fleettype__c else #{organizationType} end
-            , dealershoptype__c = case when  #{dealershopType} isnull then pa.dealershoptype__c else  #{dealershopType} end
-            , salesflag__c = case when #{salesFlag} isnull then pa.salesflag__c else (case when #{salesFlag} = 'Y' then true else false end) end
-            , serviceflag__c = case when #{serviceFlag} isnull then pa.serviceflag__c else (case when #{serviceFlag} = 'Y' then true else false end) end
-            , businesshours__c = case when #{businessHours} isnull then pa.businesshours__c else #{businessHours} end
-            , facebook__c = case when #{facebook} isnull then pa.facebook__c else #{facebook} end
-            , x_sales_rep__c = case when #{fleetAdministrator} isnull then pa.x_sales_rep__c else #{fleetAdministrator} end
-            , description = case when #{description} isnull then pa.description else #{description} end
-            , leadmanager__c = case when #{leadManager} isnull then pa.leadmanager__c else (case when #{leadManager} = 'Y' then true else false end) end
-            , dms__c = case when #{dms} isnull then pa.dms__c else #{dms} end
-            , apikey__c = case when #{apikey} isnull then pa.apikey__c else #{apikey} end
-            , whatsappphone__c = case when #{whatsappPhone} isnull then pa.whatsappphone__c else #{whatsappPhone} end
-            , cust_stat_cd__c = case when #{situationStatus} isnull then pa.cust_stat_cd__c else #{situationStatus} end
-            , partnertype__c = case when #{partnerType} isnull then pa.partnertype__c else #{partnerType} end
-            , numberofemployees = case when #{numberOfEmployees} isnull then pa.numberofemployees else #{numberOfEmployees} end
-            , prtnrshp_start_dt__c = case when #{operationDate} isnull then pa.prtnrshp_start_dt__c else #{operationDate}::date end
-            , prtnrshp_end_dt__c = case when #{terminationDate} isnull then pa.prtnrshp_end_dt__c else #{terminationDate}::date end
-            , customersap__c = case when #{customerSap} isnull then pa.customersap__c else #{customerSap} end
-            , integrationid = case when #{integratedId} isnull then pa.integrationid else #{integratedId} end-->
+            , loyaltyactivationdate__c = COALESCE(#{loyaltyActivationDate}::timestamp, loyaltyactivationdate__c)
+            , loyaltystatus__c = COALESCE(#{loyaltyStatus}, loyaltystatus__c)
+            , receiveproductnewsflag__c = COALESCE((case when #{receiveProductNewsFlag} = 'Y' then true else false end), receiveproductnewsflag__c)
+            , receiveretailoffersflag__c = COALESCE((case when #{receiveRetailOffersFlag} = 'Y' then true else false end), receiveretailoffersflag__c)
+            , receiveserviceoffersflag__c = COALESCE((case when #{receiveServiceOffersFlag} = 'Y' then true else false end), receiveserviceoffersflag__c)
+            , receivenewsletterflag__c = COALESCE((case when #{receiveNewsLetterFlag} = 'Y' then true else false end), receivenewsletterflag__c)
+            , receiveeventsflag__c = COALESCE((case when #{receiveEventsFlag} = 'Y' then true else false end), receiveeventsflag__c)
+            , receiveresearchflag__c = COALESCE((case when #{receiveResearchFlag} = 'Y' then true else false end), receiveresearchflag__c)
+            , blockedmobile__c = COALESCE((case when #{blockedMobile} = 'Y' then true else false end), blockedmobile__c)
+            , x_printed_card__c = COALESCE((case when #{blockedVideoCall} = 'Y' then true else false end), x_printed_card__c)
+            , blockedvideocall__c = COALESCE((case when #{blockedVideoCall} = 'Y' then true else false end), blockedvideocall__c)
+            , preferredcontactchannel__c = COALESCE(#{preferredContactChannel}, preferredcontactchannel__c)
+            , calloptyn__pc = COALESCE((case when #{blockedCalls} = 'Y' then true else false end), calloptyn__pc)
+            , directmailoptyn__pc = COALESCE((case when #{blockedletters} = 'Y' then true else false end), directmailoptyn__pc)
+            , blockedletters__c = COALESCE((case when #{blockedletters} = 'Y' then true else false end), blockedletters__c)
+            , emailoptyn__pc = COALESCE((case when #{blockedEmails} = 'Y' then true else false end), emailoptyn__pc)
+            , blockedemails__pc = COALESCE((case when #{blockedEmails} = 'Y' then true else false end), blockedemails__pc)
+            , blockedsms__c = COALESCE((case when #{blockedSms} = 'Y' then true else false end), blockedsms__c)
+            , blockedwhatsapp__c = COALESCE((case when #{blockedWhatsapp} = 'Y' then true else false end), blockedwhatsapp__c)
+            , loyaltyengagementindex__c = COALESCE(#{engagementIndex}, loyaltyengagementindex__c)
+            , loyaltylifecycle__c = COALESCE(#{lifeCycle}, loyaltylifecycle__c)
+            , salutation = COALESCE(#{salutation}, salutation)
+            , personbirthdate = COALESCE(#{personBirthdate}::date, personbirthdate)
+            , influentialperson__c = COALESCE(#{influentialPerson}, influentialperson__c)
+            , registrysource__c = COALESCE(#{registrySource}, registrysource__c)
+            , loyaltyvalue__c = COALESCE(#{loyaltyValue}, loyaltyvalue__c)
+            , occupation__pc = COALESCE(#{occupation}, occupation__pc)
+            , corporateregistrationnumber__c = COALESCE(#{cnpj}, corporateregistrationnumber__c)
+            , "name" = COALESCE(#{name}, "name")
+            , corporaterepresentativename__c = COALESCE(#{nickname}, corporaterepresentativename__c)
+            , ori_cd__c = COALESCE(#{accountCategory}, ori_cd__c)
+            , x_contracted_since__c = COALESCE(#{contractRenewalDate}::date, x_contracted_since__c)
+            , phone = COALESCE(#{phone}, phone)
+            , fax = COALESCE(#{fax}, fax)
+            , emailaddress__c = COALESCE(#{emailAddress}, emailaddress__c)
+            , website = COALESCE(#{website}, website)
+            , situationstatusreason__c = COALESCE(#{situationStatusReason}, situationstatusreason__c)
+            , region__c = COALESCE(#{region}, region__c)
+            , businesstype__c = COALESCE(#{businessType}, businesstype__c)
+            , industry = COALESCE(#{industry}, industry)
+            , x_tot_flt_size__c = COALESCE(#{fleetSize}, x_tot_flt_size__c)
+            , fleettype__c = COALESCE(#{organizationType}, fleettype__c)
+            , dealershoptype__c = COALESCE(#{dealershopType}, dealershoptype__c)
+            , salesflag__c = COALESCE(#{salesFlag}, salesflag__c)
+            , serviceflag__c = COALESCE(#{serviceFlag}, serviceflag__c)
+            , businesshours__c = COALESCE(#{businessHours}, businesshours__c)
+            , facebook__c = COALESCE(#{facebook}, facebook__c)
+            , x_sales_rep__c = COALESCE(#{fleetAdministrator}, x_sales_rep__c)
+            , description = COALESCE(#{description}, description)
+            , leadmanager__c = COALESCE((case when #{leadManager} = 'Y' then true else false end), leadmanager__c)
+            , dms__c = COALESCE(#{dms}, dms__c)
+            , apikey__c = COALESCE(#{apikey}, apikey__c)
+            , whatsappphone__c = COALESCE(#{whatsappPhone}, whatsappphone__c)
+            , cust_stat_cd__c = COALESCE(#{situationStatus}, cust_stat_cd__c)
+            , partnertype__c = COALESCE(#{partnerType}, partnertype__c)
+            , numberofemployees = COALESCE(#{numberOfEmployees}, numberofemployees)
+            , prtnrshp_start_dt__c = COALESCE(#{operationDate}::date, prtnrshp_start_dt__c)
+            , prtnrshp_end_dt__c = COALESCE(#{terminationDate}::date, prtnrshp_end_dt__c)
+            , customersap__c = COALESCE(#{customerSap}, customersap__c)
+            , integrationid = COALESCE(#{integratedId}, integrationid)
         where
             pa.row_id = #{externalId}
     </update>
