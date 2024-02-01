@@ -162,6 +162,12 @@ public class IFHMBINNOCEANCDPP0002Payload {
         @JsonProperty("ListOfSoccerTeam")
         List<InboundContactWorkflowSoccerTeamPayLoad> listOfSoccerTeam;
 
+        private void setCpf(String cpf){
+            if(cpf != null && cpf.trim().isEmpty()){
+                cpf = null;
+            }
+            this.cpf = cpf;
+        }
 
         private void setFirstName(String firstname){
             if(firstname != null){

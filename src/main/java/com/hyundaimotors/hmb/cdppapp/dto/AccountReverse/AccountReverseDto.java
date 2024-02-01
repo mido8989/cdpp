@@ -105,4 +105,7 @@ public class AccountReverseDto {
     private String externalId;
     private String errorSpcCode;
     private String errorSpcMessage;
+    private String childExternalId;
+    private String mstExternalId;
+    private String mergeChecked;
 }

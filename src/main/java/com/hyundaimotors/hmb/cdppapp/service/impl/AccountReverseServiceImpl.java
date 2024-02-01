@@ -26,20 +26,34 @@ public class AccountReverseServiceImpl implements AccountReverseService{
         //if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){//Pro
             if(dto.getExternalId() != null){
                 if(rowId != null){
-                    mapper.updateSflId(dto);
+                    //Update Account
                     mapper.updateAccount(dto);
+                    resultDto.setRowId(dto.getExternalId());
                 }else{
+                    //Insert Account
                     dto.setProcessAccountType("Person");
                     mapper.insertAccount(dto);
                     mapper.insertDpContact(dto);
                     mapper.insertDpContactSub(dto);
+                    resultDto.setRowId(dto.getRowId());
                     //mapper.insertReplicaAcc(dto);
                 }
+            }else if(dto.getMergeChecked() != null){
+                
+                if("Y".equalsIgnoreCase(dto.getMergeChecked())){
+                    //merge Account
+                    mapper.insertMergeAccount(dto);
+                    mapper.deleteChildAccount(dto);
+                    resultDto.setRowId("merged");
+                }
+                
             }else{
+                //Insert Account
                 dto.setProcessAccountType("Person");
                 mapper.insertAccount(dto);
                 mapper.insertDpContact(dto);
                 mapper.insertDpContactSub(dto);
+                resultDto.setRowId(dto.getRowId());
             }
             
         }else{
@@ -48,37 +62,55 @@ public class AccountReverseServiceImpl implements AccountReverseService{
             //if(dto.getSfId().equals("012Hs0000008kTRIAY")){//Pro
                 if(dto.getExternalId() != null){
                     if(rowId != null){
-                        mapper.updateSflId(dto);
+                        //Update Account
+                        mapper.updateAccount(dto);
+                        resultDto.setRowId(dto.getExternalId());
                     }else{
+                        //Insert Account
                         dto.setProcessAccountType("Business");
                         mapper.insertAccount(dto);
                         mapper.insertDpOrgExt(dto);
+                        resultDto.setRowId(dto.getRowId());
                     }
+                }else if(dto.getMergeChecked() != null){
+
+                    if("Y".equalsIgnoreCase(dto.getMergeChecked())){
+                        //merge Account
+                        mapper.insertMergeAccount(dto);
+                        mapper.deleteChildAccount(dto);
+                        resultDto.setRowId("merged");
+                    }
+                    
                 }else{
+                    //Insert Account
                     dto.setProcessAccountType("Business");
                     mapper.insertAccount(dto);
                     mapper.insertDpOrgExt(dto);
+                    resultDto.setRowId(dto.getRowId());
                 }
             // Dealer 일 경우    
             }else{
                 if(dto.getExternalId() != null){
                     if(rowId != null){
-                        mapper.updateSflId(dto);
+                        //Update Account
                         mapper.updateAccount(dto);
+                        resultDto.setRowId(dto.getExternalId());
                     }else{
+                        //Insert Account
                         dto.setProcessAccountType("Dealer");
                         mapper.insertAccount(dto);
                         mapper.insertDpOrgExt(dto);
+                        resultDto.setRowId(dto.getRowId());
                     }
                 }else{
+                    //Insert Account
                     dto.setProcessAccountType("Dealer");
                     mapper.insertAccount(dto);
                     mapper.insertDpOrgExt(dto);
+                    resultDto.setRowId(dto.getRowId());
                 }
             }
         }
-
-        resultDto.setRowId(dto.getRowId());
         resultDto.setErrorSpcCode("0");
         resultDto.setErrorSpcMessage("OK");
 

@@ -21,9 +21,10 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
     
     private final IFHMBINNOCEANCDPP0002Mapper mapper;
     public HashMap<String, IFHMBINNOCEANCDPP0002Dto> insertObject(IFHMBINNOCEANCDPP0002Dto dto)throws Exception{
-        //To_Do : Return ContactId를 Process Id로 변경, Exception Runtime 으로 변경
     
         IFHMBINNOCEANCDPP0002Dto resultDto = new IFHMBINNOCEANCDPP0002Dto();
+        IFHMBINNOCEANCDPP0002Dto oldAccount = new IFHMBINNOCEANCDPP0002Dto();
+
         String dtoLastName = dto.getLastName();
         String dtoFirstName = dto.getFirstName();
         // lastname 비어서 들어올 때 lastname 처리 
@@ -89,9 +90,11 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
        String foundContactIdbyCpf = null; // cpf or email All check values
        if(dto.getCpf() != null && !dto.getCpf().equals("")) {   // cpf값이 들어왔을 때
             foundContactIdbyCpf = mapper.foundContactId(dto); 
+            oldAccount = mapper.getOldAccount(foundContactIdbyCpf);
             if(foundContactIdbyCpf != null){
                 resultDto.setContactId(update(dto,foundContactIdbyCpf));
                 resultDto.setCheckUpsert("update");
+                oldAccount.setCheckUpsert("update");
             }else {    
                 resultDto.setContactId(insert(dto));
                 resultDto.setCheckUpsert("insert");            
@@ -103,9 +106,11 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             if( dto.getEmailAddress() != null && dto.getEmailAddress() != "" && dto.getCellPhone() != null && dto.getCellPhone() != "" ){   // Name, Email, Phone 모두 들어왔을 때
                 dto.setFlgEmailAndPhone("Both");
                 foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
+                oldAccount = mapper.getOldAccount(foundContactIdbyCpf);
                 if(foundContactIdbyCpf != null){
                     resultDto.setContactId(update(dto,foundContactIdbyCpf));
                     resultDto.setCheckUpsert("update");
+                    oldAccount.setCheckUpsert("update");
                 }else{    
                     resultDto.setContactId(insert(dto));
                     resultDto.setCheckUpsert("insert");                        
@@ -113,35 +118,31 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
             }else if( (dto.getEmailAddress() != null && dto.getEmailAddress() != "") && (dto.getCellPhone() == null || dto.getCellPhone() == "") ){  // Name, Email 들어왔을 때
                 dto.setFlgEmailAndPhone("Email");
                 foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
+                oldAccount = mapper.getOldAccount(foundContactIdbyCpf);
                 if(foundContactIdbyCpf != null){
                     resultDto.setContactId(update(dto,foundContactIdbyCpf));
-                    resultDto.setCheckUpsert("update");       
+                    resultDto.setCheckUpsert("update");
+                    oldAccount.setCheckUpsert("update");       
                 }else{    
                     resultDto.setContactId(insert(dto));
-                    resultDto.setCheckUpsert("insert");                        
+                    resultDto.setCheckUpsert("insert");  
                 }
             }else if((dto.getEmailAddress() == null || dto.getEmailAddress() == "" ) && (dto.getCellPhone() != null && dto.getCellPhone() != "") ){  // Name, Phone 들어왔을 때
                 dto.setFlgEmailAndPhone("Phone");
                 foundContactIdbyCpf = mapper.foundAccountIdbyNameAndPhoneAndEmail(dto);
+                oldAccount = mapper.getOldAccount(foundContactIdbyCpf);
                 if(foundContactIdbyCpf != null){
                     resultDto.setContactId(update(dto,foundContactIdbyCpf));
-                    resultDto.setCheckUpsert("update");   
+                    resultDto.setCheckUpsert("update");
+                    oldAccount.setCheckUpsert("update");   
                 }else{    
                     resultDto.setContactId(insert(dto));
-                    resultDto.setCheckUpsert("insert");                        
+                    resultDto.setCheckUpsert("insert");  
                 }
             }
             resultDto.setError_spcCode("0"); 
             resultDto.setError_spcMessage("OK");
        }
-       
-       
-       IFHMBINNOCEANCDPP0002Dto oldAccount = new IFHMBINNOCEANCDPP0002Dto();
-       
-       if (foundContactIdbyCpf != null){
-           oldAccount = mapper.getOldAccount(foundContactIdbyCpf);           
-       }
-
         
         HashMap<String, IFHMBINNOCEANCDPP0002Dto> resultMap = new HashMap<>();
 
@@ -186,20 +187,21 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
     /**
      * 
      * @param dto
-     * @param foundAccountIdbyCnpj
+     * @param foundContactId
      * @return
      * @throws Exception
      */
     private String update(IFHMBINNOCEANCDPP0002Dto dto,String foundContactId) throws Exception {
         HashMap<String, String> map = new HashMap<>();
+        String procAccountId = foundContactId;
         map.put("PARAM_ID", String.valueOf(dto.getRowId()));
-        map.put("CONTACT_ID", foundContactId);
+        map.put("CONTACT_ID", procAccountId);
         map.put("checkcu", "update");
         
         mapper.transferProcess(map);
         mapper.transferReplica(map);
           
-        return foundContactId;
+        return procAccountId;
     }
 
 
@@ -215,6 +217,7 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
         IFHMBINNOCEANCDPP0002Dto newAccount = new IFHMBINNOCEANCDPP0002Dto();
 
         newAccount = mapper.getOldAccount(dto.getContactId());
+
       
         List<InboundContactAuditDto> auditList = new ArrayList<>();
 

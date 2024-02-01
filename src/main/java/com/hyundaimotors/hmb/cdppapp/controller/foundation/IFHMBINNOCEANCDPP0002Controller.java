@@ -82,7 +82,7 @@ public class IFHMBINNOCEANCDPP0002Controller {
             
             IFHMBINNOCEANCDPP0002Dto oldAccount = resultMap.get("oldAccount");
 
-            if(oldAccount != null){
+            if(oldAccount != null ){
                 oldAccount.setApiKey(request.getApiKey());
                 service.insertDPObject(oldAccount);
             }else{
