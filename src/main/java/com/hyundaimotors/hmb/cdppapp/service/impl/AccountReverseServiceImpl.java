@@ -26,13 +26,19 @@ public class AccountReverseServiceImpl implements AccountReverseService{
         //if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){//Pro
             if(dto.getExternalId() != null){
                 if(rowId != null){
-                    mapper.updateSflId(dto);
-                    mapper.updateAccount(dto);
+                    if("Y".equalsIgnoreCase(dto.getMergeChecked())){
+                        mapper.insertMergeAccount(dto);
+                        mapper.deleteChildAccount(dto);
+                    }else{
+                        mapper.updateAccount(dto);
+                    }
+                    resultDto.setRowId("merged");
                 }else{
                     dto.setProcessAccountType("Person");
                     mapper.insertAccount(dto);
                     mapper.insertDpContact(dto);
                     mapper.insertDpContactSub(dto);
+                    resultDto.setRowId(dto.getRowId());
                     //mapper.insertReplicaAcc(dto);
                 }
             }else{
@@ -40,6 +46,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                 mapper.insertAccount(dto);
                 mapper.insertDpContact(dto);
                 mapper.insertDpContactSub(dto);
+                resultDto.setRowId(dto.getRowId());
             }
             
         }else{
@@ -48,37 +55,45 @@ public class AccountReverseServiceImpl implements AccountReverseService{
             //if(dto.getSfId().equals("012Hs0000008kTRIAY")){//Pro
                 if(dto.getExternalId() != null){
                     if(rowId != null){
-                        mapper.updateSflId(dto);
+                        if("Y".equalsIgnoreCase(dto.getMergeChecked())){
+                            mapper.insertMergeAccount(dto);
+                            mapper.deleteChildAccount(dto);
+                        }else{
+                            mapper.updateAccount(dto);
+                        }
+                        resultDto.setRowId("merged");;
                     }else{
                         dto.setProcessAccountType("Business");
                         mapper.insertAccount(dto);
                         mapper.insertDpOrgExt(dto);
+                        resultDto.setRowId(dto.getRowId());
                     }
                 }else{
                     dto.setProcessAccountType("Business");
                     mapper.insertAccount(dto);
                     mapper.insertDpOrgExt(dto);
+                    resultDto.setRowId(dto.getRowId());
                 }
             // Dealer 일 경우    
             }else{
                 if(dto.getExternalId() != null){
                     if(rowId != null){
-                        mapper.updateSflId(dto);
                         mapper.updateAccount(dto);
+                        resultDto.setRowId("merged");
                     }else{
                         dto.setProcessAccountType("Dealer");
                         mapper.insertAccount(dto);
                         mapper.insertDpOrgExt(dto);
+                        resultDto.setRowId(dto.getRowId());
                     }
                 }else{
                     dto.setProcessAccountType("Dealer");
                     mapper.insertAccount(dto);
                     mapper.insertDpOrgExt(dto);
+                    resultDto.setRowId(dto.getRowId());
                 }
             }
         }
-
-        resultDto.setRowId(dto.getRowId());
         resultDto.setErrorSpcCode("0");
         resultDto.setErrorSpcMessage("OK");
 

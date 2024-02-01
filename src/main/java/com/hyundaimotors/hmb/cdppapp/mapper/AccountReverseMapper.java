@@ -12,8 +12,6 @@ public interface AccountReverseMapper {
 
     public String getAccount(AccountReverseDto dto)throws Exception;
 
-    public void updateSflId(AccountReverseDto dto)throws Exception;
-
     public void insertDpOrgExt(AccountReverseDto dto)throws Exception;
 
     public void insertDpOrgExtSub(AccountReverseDto dto)throws Exception;
@@ -21,4 +19,8 @@ public interface AccountReverseMapper {
     public void insertReplicaAcc(AccountReverseDto dto)throws Exception;
 
     public void updateAccount(AccountReverseDto dto)throws Exception;
+
+    public void insertMergeAccount(AccountReverseDto dto)throws Exception;
+
+    public void deleteChildAccount(AccountReverseDto dto)throws Exception;
 }

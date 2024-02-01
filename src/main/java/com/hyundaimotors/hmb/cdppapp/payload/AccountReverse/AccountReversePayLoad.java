@@ -106,6 +106,9 @@ public class AccountReversePayLoad {
         private String recordTypeId;
         private String sfId;
         private String externalId;
+        private String childExternalId;
+        private String mstExternalId;
+        private String mergeChecked;
     }
 
     @Schema(name = "AccountPayLoad.Response")
