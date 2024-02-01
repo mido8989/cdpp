@@ -590,40 +590,38 @@
     <update id="updateAccount" parameterType="AccountReverseDto">
         update process.account as pa set
             billingstreet = COALESCE(#{street}, billingstreet)
+            , billingstreet_2__c = COALESCE(#{houseBuildingNo}, billingstreet_2__c)
+            , billingstreet_3__c = COALESCE(#{complement}, billingstreet_3__c)
+            , neighborhood = COALESCE(#{neighborhood}, neighborhood)
+            , billingcountry = COALESCE(#{country}, billingcountry)
+            , billingcity = COALESCE(#{city}, billingcity)
+            , billingstate = COALESCE(#{state}, billingstate)
+            , billingpostalcode = COALESCE(#{postalCode}, billingpostalcode)
+            , billinglatitude = COALESCE(#{latitude}::float8, billinglatitude)
+            , billinglongitude = COALESCE(#{longitude}::float8, billinglongitude)
+            , firstname = COALESCE(#{firstName}, firstname)
+            , lastname = COALESCE(#{lastName}, lastname)
+            , personemail = COALESCE(#{personEmail}, personemail)
+            , personhomephone = COALESCE(#{personHomePhone}, personhomephone)
+            , companyphone__pc = COALESCE(#{workPhone}, companyphone__pc)
+            , workphone__c = COALESCE(#{workPhone}, workphone__c)
+            , personmobilephone = COALESCE(#{personMobilePhone}, personmobilephone)
+            , gender__pc = COALESCE(#{genderPC}, gender__pc)
+            , pcd__c = COALESCE(#{pcd}, pcd__c)
+            , income__c = COALESCE(#{income}, income__c)
+            , productofinterest__c = COALESCE(#{productOfInterest}, productofinterest__c)
+            , literacy__c = COALESCE(#{literacy}, literacy__c)
+            , calledby__c = COALESCE(#{calledBy}, calledby__c)
+            , employee__c = COALESCE(#{employee}, employee__c)
+            , favoritedealer__c = COALESCE(#{dealerCode}, favoritedealer__c)
+            , dealercode__c = COALESCE(#{dealerCode}, dealercode__c)
+            , crmindex__c = COALESCE(#{crmIndex}, crmindex__c)
+            , engagement__c = COALESCE(#{engagementIndex}, engagement__c)
             , optinflag__c = COALESCE((case when #{optInFlag} = 'Y' then true else false end), optinflag__c)
-            <!--
-            , billingstreet_2__c = case when #{houseBuildingNo} isnull then pa.billingstreet_2__c else #{houseBuildingNo} end
-            , billingstreet_3__c = case when #{complement} isnull then pa.billingstreet_3__c else #{complement} end
-            , neighborhood = case when #{neighborhood} isnull then pa.neighborhood else #{neighborhood} end
-            , billingcountry = case when #{country} isnull then pa.billingcountry else #{country} end
-            , billingcity = case when #{city} isnull then pa.billingcity else #{city} end
-            , billingstate = case when #{state} isnull then pa.billingstate else #{state} end
-            , billingpostalcode = case when #{postalCode} isnull then pa.billingpostalcode else  #{postalCode} end
-            , billinglatitude = case when #{latitude} isnull then pa.billinglatitude else #{latitude}::float8 end
-            , billinglongitude = case when #{longitude} isnull then pa.billinglongitude else #{longitude}::float8 end
-            , firstname = case when #{firstName} isnull then pa.firstname else #{firstName} end
-            , lastname = case when #{lastName} isnull then pa.lastname else #{lastName} end
-            , personemail = case when #{personEmail} isnull then pa.personemail else #{personEmail} end
-            , personhomephone = case when #{personHomePhone} isnull then pa.personhomephone else #{personHomePhone} end
-            , companyphone__pc = case when  #{workPhone} isnull then pa.companyphone__pc else  #{workPhone} end
-            , workphone__c = case when #{workPhone} isnull then pa.workphone__c else #{workPhone} end
-            , personmobilephone = case when #{personMobilePhone} isnull then pa.personmobilephone else #{personMobilePhone} end
-            , gender__pc = case when #{genderPC} isnull then pa.gender__pc else #{genderPC} end
-            , pcd__c = case when #{pcd} isnull then pa.pcd__c else #{pcd} end
-            , income__c = case when #{income} isnull then pa.income__c else #{income} end
-            , productofinterest__c = case when #{productOfInterest} isnull then pa.productofinterest__c else #{productOfInterest} end
-            , literacy__c = case when #{literacy} isnull then pa.literacy__c else #{literacy} end
-            , calledby__c = case when #{calledBy} isnull then pa.calledby__c else #{calledBy} end
-            , employee__c = case when #{employee} isnull then pa.employee__c else (case when #{employee} = 'Y' then true else false end) end
-            , favoritedealer__c = case when #{dealerCode} isnull then pa.favoritedealer__c else #{dealerCode} end
-            , dealercode__c = case when #{dealerCode} isnull then pa.dealercode__c else #{dealerCode} end
-            , crmindex__c = case when #{crmIndex} isnull then pa.crmindex__c else #{crmIndex} end
-            , engagement__c = case when #{engagementIndex} isnull then pa.engagement__c else #{engagementIndex} end
-            , optinflag__c = case when #{optInFlag} isnull then pa.optinflag__c else (case when #{optInFlag} = 'Y' then true else false end) end
-            , type = case when #{type} isnull then pa.type else #{type} end
-            , satificationlevel__c = case when #{satisficationLevel} isnull then pa.satificationlevel__c else #{satisficationLevel} end
-            , loyaltyexpirationdate__c = case when #{cnhexpirationDate} isnull then pa.loyaltyexpirationdate__c else #{cnhexpirationDate}::timestamp end
-            , loyaltyactivationdate__c = case when #{loyaltyActivationDate} isnull then pa.loyaltyactivationdate__c else #{loyaltyActivationDate}::timestamp end
+            , type = COALESCE(#{type}, type)
+            , satificationlevel__c = COALESCE(#{satisficationLevel}, satificationlevel__c)
+            , loyaltyexpirationdate__c = COALESCE(#{cnhexpirationDate}::timestamp, loyaltyexpirationdate__c)
+            <!--, loyaltyactivationdate__c = case when #{loyaltyActivationDate} isnull then pa.loyaltyactivationdate__c else #{loyaltyActivationDate}::timestamp end
             , loyaltystatus__c = case when #{loyaltyStatus} isnull then pa.loyaltystatus__c else #{loyaltyStatus} end
             , receiveproductnewsflag__c = case when #{receiveProductNewsFlag} isnull then pa.receiveproductnewsflag__c else (case when #{receiveProductNewsFlag} = 'Y' then true else false end) end
             , receiveretailoffersflag__c = case when #{receiveRetailOffersFlag} isnull then pa.receiveretailoffersflag__c else (case when #{receiveRetailOffersFlag} = 'Y' then true else false end) end
