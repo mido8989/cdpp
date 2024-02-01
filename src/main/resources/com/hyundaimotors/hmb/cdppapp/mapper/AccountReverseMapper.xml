@@ -182,7 +182,7 @@
             , #{name}
             , #{nickname}
             , #{accountCategory}
-            , #{contractRenewalDate}
+            , #{contractRenewalDate}::date
             , #{phone}
             , #{fax}
             , #{emailAddress}
@@ -619,7 +619,9 @@
             , crmindex__c = case when #{crmIndex} isnull then pa.crmindex__c else #{crmIndex} end
             , engagement__c = case when #{engagementIndex} isnull then pa.engagement__c else #{engagementIndex} end
             , optinflag__c = case when #{optInFlag} isnull then pa.optinflag__c else (case when #{optInFlag} = 'Y' then true else false end) end
-            , satificationlevel__c = case when #{satisficationLevel} isnull then pa.satificationlevel__c else #{satisficationLevel} end
+            where
+            pa.row_id = #{externalId}
+            <!--, satificationlevel__c = case when #{satisficationLevel} isnull then pa.satificationlevel__c else #{satisficationLevel} end
             , loyaltyexpirationdate__c = case when #{cnhexpirationDate} isnull then pa.loyaltyexpirationdate__c else #{cnhexpirationDate}::timestamp end
             , loyaltyactivationdate__c = case when #{loyaltyActivationDate} isnull then pa.loyaltyactivationdate__c else #{loyaltyActivationDate}::timestamp end
             , loyaltystatus__c = case when #{loyaltyStatus} isnull then pa.loyaltystatus__c else #{loyaltyStatus} end
@@ -652,7 +654,7 @@
             , "name" = case when #{name} isnull then pa."name" else #{name} end
             , corporaterepresentativename__c = case when #{nickname} isnull then pa.corporaterepresentativename__c else #{nickname} end
             , ori_cd__c = case when #{accountCategory} isnull then pa.ori_cd__c else #{accountCategory} end
-            , x_contracted_since__c = case when #{contractRenewalDate} isnull then pa.x_contracted_since__c else #{contractRenewalDate} end
+            , x_contracted_since__c = case when #{contractRenewalDate} isnull then pa.x_contracted_since__c else #{contractRenewalDate}::date end
             , phone = case when #{phone} isnull then pa.phone else #{phone} end
             , fax = case when #{fax} isnull then pa.fax else #{fax} end
             , emailaddress__c = case when #{emailAddress} isnull then pa.emailaddress__c else #{emailAddress} end
@@ -682,6 +684,6 @@
             , customersap__c = case when #{customerSap} isnull then pa.customersap__c else #{customerSap} end
             , integrationid = case when #{integratedId} isnull then pa.integrationid else #{integratedId} end
         where
-            pa.row_id = #{externalId}
+            pa.row_id = #{externalId}-->
     </update>
 </mapper>
