@@ -731,8 +731,8 @@
             , ATTRIB_45 = COALESCE(#{registrySource}, ATTRIB_45) 
             , X_SEG_VALUE = COALESCE(#{loyaltyValue}, X_SEG_VALUE) 
             , ATTRIB_34 =  COALESCE(#{occupation}, ATTRIB_34) 
-            , last_upd = 'SFDC'
-            , last_upd_by = now()
+            , last_upd = now()
+            , last_upd_by = 'SFDC'
         where
             row_id = #{externalId}
     </update>
@@ -756,8 +756,8 @@
             , CUST_STAT_CD = COALESCE(#{situationStatus}, CUST_STAT_CD) 
             , X_SALES_REP = COALESCE(#{fleetAdministrator}, X_SALES_REP) 
             , DESC_TEXT = COALESCE(#{description}, DESC_TEXT) 
-            , last_upd = 'SFDC'
-            , last_upd_by = now()
+            , last_upd = now()
+            , last_upd_by = 'SFDC'
         where
             row_id = #{externalId}
     </update>
