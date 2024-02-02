@@ -723,7 +723,7 @@
             , x_loyalty_engagement = COALESCE(#{engagementIndex}, x_loyalty_engagement) 
             , x_loyalty_optin_flg = COALESCE(#{optInFlag}, x_loyalty_optin_flg) 
             , x_loyalty_satisfaction = COALESCE(#{satisficationLevel}, x_loyalty_satisfaction) 
-            , X_CNH_EXP_DATE = COALESCE(#{cnhexpirationDate}, X_CNH_EXP_DATE) case when #{cnhexpirationDate} isnull then cx.X_CNH_EXP_DATE else #{cnhexpirationDate}::timestamp end 
+            , X_CNH_EXP_DATE = COALESCE(#{cnhexpirationDate}::timestamp, X_CNH_EXP_DATE)
             , X_LOYALTY_ACT_DT = COALESCE(#{loyaltyActivationDate}::timestamp, X_LOYALTY_ACT_DT) 
             , X_LOYALTY_STATUS = COALESCE(#{loyaltyStatus}, X_LOYALTY_STATUS) 
             , X_SEG_LIFE_CYCLE = COALESCE(#{lifeCycle}, X_SEG_LIFE_CYCLE) 
