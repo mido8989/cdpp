@@ -679,6 +679,89 @@
             pa.row_id = #{externalId}
     </update>
 
+    <update id="updateDpContact" parameterType="AccountReverseDto">
+        update process."S_CONTACT" set
+            con_cd = COALESCE(#{type}, con_cd)
+            , fst_name = COALESCE(#{firstName}, fst_name)
+            , last_name = COALESCE(#{lastName}, last_name)
+            , email_addr = COALESCE(#{personEmail}, email_addr)
+            , home_ph_num = COALESCE(#{personHomePhone}, home_ph_num)
+            , work_ph_num = COALESCE(#{workPhone}, work_ph_num)
+            , cell_ph_num = COALESCE(#{personMobilePhone}, cell_ph_num)
+            , sex_mf = COALESCE(#{genderPC}, sex_mf)
+            , x_pne_flg = COALESCE(#{pcd}, x_pne_flg)
+            , X_OPTIN_PRODUCT_FLG = COALESCE(#{receiveProductNewsFlag}, X_OPTIN_PRODUCT_FLG)
+            , X_OPTIN_RETAIL_FLG = COALESCE(#{receiveRetailOffersFlag}, X_OPTIN_RETAIL_FLG)
+            , X_OPTIN_OFFER_FLG = COALESCE(#{receiveServiceOffersFlag}, X_OPTIN_OFFER_FLG)
+            , X_OPTIN_NEWS_FLG = COALESCE(#{receiveNewsLetterFlag}, X_OPTIN_NEWS_FLG)
+            , X_OPTIN_EVENTS_FLG = COALESCE(#{receiveEventsFlag}, X_OPTIN_EVENTS_FLG)
+            , X_OPTIN_RESEARCH_FLG = COALESCE(#{receiveResearchFlag}, X_OPTIN_RESEARCH_FLG)
+            , X_OPTIN_PHONE = COALESCE(#{blockedMobile}, X_OPTIN_PHONE)
+            , X_SUP_GONE_AWAY = COALESCE(#{blockedVideoCall}, X_SUP_GONE_AWAY)
+            , PREF_COMM_METH_CD = COALESCE(#{preferredContactChannel}, PREF_COMM_METH_CD)
+            , MARITAL_STAT_CD = COALESCE(#{maritalStatus}, MARITAL_STAT_CD)
+            , SUPPRESS_CALL_FLG = COALESCE(#{blockedCalls}, SUPPRESS_CALL_FLG)
+            , SUPPRESS_MAIL_FLG = COALESCE(#{blockedletters}, SUPPRESS_MAIL_FLG)
+            , SUPPRESS_EMAIL_FLG = COALESCE(#{blockedEmails}, SUPPRESS_EMAIL_FLG)
+            , X_PRINTED_CARD = COALESCE(#{blockedWhatsapp}, X_PRINTED_CARD)
+            , PER_TITLE = COALESCE(#{salutation}, PER_TITLE)
+            , BIRTH_DT = COALESCE(#{personBirthdate}::timestamp, BIRTH_DT)
+            , last_upd = now()
+        where
+            row_id = #{externalId} 
+    </update>
+
+    <update id="updateDpContactSub" parameterType="AccountReverseDto">
+        update process."S_CONTACT_X" as cx set 
+            ATTRIB_36 = COALESCE(#{income}, ATTRIB_36) 
+            , ATTRIB_49 = COALESCE(#{productOfInterest}, ATTRIB_49) 
+            , X_LITERACY = COALESCE(#{literacy}, X_LITERACY) 
+            , X_CALLED_BY = COALESCE(#{calledBy}, X_CALLED_BY) 
+            , X_EMPLOYEE_FLG = COALESCE(#{employee}, X_EMPLOYEE_FLG) 
+            , X_FAVORITE_DEALER = COALESCE(#{dealerCode}, X_FAVORITE_DEALER) 
+            , x_loyalty_crm_index = COALESCE(#{crmIndex}, x_loyalty_crm_index) 
+            , x_loyalty_engagement = COALESCE(#{engagementIndex}, x_loyalty_engagement) 
+            , x_loyalty_optin_flg = COALESCE(#{optInFlag}, x_loyalty_optin_flg) 
+            , x_loyalty_satisfaction = COALESCE(#{satisficationLevel}, x_loyalty_satisfaction) 
+            , X_CNH_EXP_DATE = COALESCE(#{cnhexpirationDate}::timestamp, X_CNH_EXP_DATE)
+            , X_LOYALTY_ACT_DT = COALESCE(#{loyaltyActivationDate}::timestamp, X_LOYALTY_ACT_DT) 
+            , X_LOYALTY_STATUS = COALESCE(#{loyaltyStatus}, X_LOYALTY_STATUS) 
+            , X_SEG_LIFE_CYCLE = COALESCE(#{lifeCycle}, X_SEG_LIFE_CYCLE) 
+            , attrib_50 = COALESCE(#{influentialPerson}, attrib_50) 
+            , ATTRIB_45 = COALESCE(#{registrySource}, ATTRIB_45) 
+            , X_SEG_VALUE = COALESCE(#{loyaltyValue}, X_SEG_VALUE) 
+            , ATTRIB_34 =  COALESCE(#{occupation}, ATTRIB_34) 
+            , last_upd = now()
+            , last_upd_by = 'SFDC'
+        where
+            row_id = #{externalId}
+    </update>
+
+    <update id="updateDpOrgExt" parameterType="AccountReverseDto">
+        update process."S_ORG_EXT" set 
+            X_NICKNAME = COALESCE(#{nickname}, X_NICKNAME) 
+            , ORI_CD = COALESCE(#{accountCategory}, ORI_CD) 
+            , X_CONTRACTED_SINCE = COALESCE(#{contractRenewalDate}::timestamp, X_CONTRACTED_SINCE) 
+            , SOURCE_CD = COALESCE(#{registrySource}, SOURCE_CD) 
+            , MAIN_PH_NUM = COALESCE(#{phone}, MAIN_PH_NUM) 
+            , MAIN_FAX_PH_NUM = COALESCE(#{fax}, MAIN_FAX_PH_NUM) 
+            , MAIN_EMAIL_ADDR = COALESCE(#{emailAddress}, MAIN_EMAIL_ADDR) 
+            , URL = COALESCE(#{website}, URL) 
+            , X_REASON_STATUS = COALESCE(#{situationStatusReason}, X_REASON_STATUS) 
+            , OU_NUM = COALESCE(#{dealerCode}, OU_NUM) 
+            , REGION = COALESCE(#{region}, REGION) 
+            , ACCNT_TYPE_CD = COALESCE(#{type}, ACCNT_TYPE_CD) 
+            , PRTNRSHP_START_DT = COALESCE(#{operationDate}, PRTNRSHP_START_DT) 
+            , X_WHATSAPP_PH_NUM = COALESCE(#{whatsappPhone}, X_WHATSAPP_PH_NUM) 
+            , CUST_STAT_CD = COALESCE(#{situationStatus}, CUST_STAT_CD) 
+            , X_SALES_REP = COALESCE(#{fleetAdministrator}, X_SALES_REP) 
+            , DESC_TEXT = COALESCE(#{description}, DESC_TEXT) 
+            , last_upd = now()
+            , last_upd_by = 'SFDC'
+        where
+            row_id = #{externalId}
+    </update>
+
     <insert id="insertMergeAccount" parameterType="AccountReverseDto">
         insert into process.account_merged(
             row_id

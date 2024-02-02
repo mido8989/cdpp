@@ -1166,7 +1166,12 @@ public class IFHMBINNOCEANCDPP0002ServiceImpl implements IFHMBINNOCEANCDPP0002Se
                 auditList.add(auditDto);
             }
         }
-        mapper.insertAuditList(auditList);
+
+        if( !auditList.isEmpty() ){
+            mapper.insertAuditList(auditList);
+        }else{
+            System.out.println("There is No Changed Attribute.");
+        }
 
     }
 }
