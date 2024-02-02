@@ -30,7 +30,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                     mapper.updateAccount(dto);
                     mapper.updateDpContact(dto);
                     mapper.updateDpContactSub(dto);
-                    resultDto.setRowId(dto.getExternalId());
+                    resultDto.setRowId("update");
                 }else{
                     //Insert Account
                     dto.setProcessAccountType("Person");
@@ -67,7 +67,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                         //Update Account
                         mapper.updateAccount(dto);
                         mapper.updateDpOrgExt(dto);
-                        resultDto.setRowId(dto.getExternalId());
+                        resultDto.setRowId("update");
                     }else{
                         //Insert Account
                         dto.setProcessAccountType("Business");
@@ -97,7 +97,7 @@ public class AccountReverseServiceImpl implements AccountReverseService{
                     if(rowId != null){
                         //Update Account
                         mapper.updateAccount(dto);
-                        resultDto.setRowId(dto.getExternalId());
+                        resultDto.setRowId("update");
                     }else{
                         //Insert Account
                         dto.setProcessAccountType("Dealer");
