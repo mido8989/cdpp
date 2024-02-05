@@ -137,6 +137,7 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
 
             resultDto.setProcRowId(getProcAccntRowId);
             resultDto.setListOfProcContactRowId(listProcConId);
+            oldAccount.setListOfProcContactRowId(listProcConId);
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");
 
