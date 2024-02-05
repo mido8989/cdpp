@@ -68,10 +68,7 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
         if(getProcAccntRowId != null){
             listProcAccntId.add(getProcAccntRowId);
         }
-        listOfcontacts = dto.getContactList();    
-        
-        System.out.println(":::::: first listOfcontacts :::::: " + Json.pretty(listOfcontacts));
-    
+        listOfcontacts = dto.getContactList();        
         
         
         if( getProcAccntRowId != null ){ // 딜러 어카운트 존재할 때
@@ -129,6 +126,8 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                     
                 }
                 procConId = listProcConId.toArray(new String[listProcConId.size()]);
+                System.out.println(":::::::: 검색해서 나온 listProcConId :::::::: "+ Json.pretty(listProcConId));
+                System.out.println(":::::::: 검색해서 나온 procConId :::::::: "+ Json.pretty(procConId));
             }
 
 
