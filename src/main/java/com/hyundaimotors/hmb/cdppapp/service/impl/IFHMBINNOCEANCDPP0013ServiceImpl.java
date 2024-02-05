@@ -67,8 +67,7 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
         if(getProcAccntRowId != null){
             listProcAccntId.add(getProcAccntRowId);
         }
-        listOfcontacts = dto.getContactList();              
-    
+        listOfcontacts = dto.getContactList();        
         
         
         if( getProcAccntRowId != null ){ // 딜러 어카운트 존재할 때
@@ -135,6 +134,7 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
 
             resultDto.setProcRowId(getProcAccntRowId);
             resultDto.setListOfProcContactRowId(listProcConId);
+            oldAccount.setListOfProcContactRowId(listProcConId);
             resultDto.setErrorSpcCode("0");
             resultDto.setErrorSpcMessage("OK");
 
@@ -219,12 +219,17 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
         HashMap<String, String[]> map = new HashMap<>();
         List<String> listProcAccntId = new ArrayList<>();
         List<String> listProcConId = new ArrayList<>();
+        String[] procAccntId = null;
+        String[] procContId = null;
 
         listProcAccntId.add(dto.getProcRowId());
         listProcConId = dto.getListOfProcContactRowId();
 
-        String[] procAccntId = listProcAccntId.toArray(new String[listProcAccntId.size()]);
-        String[] procContId = listProcConId.toArray(new String[listProcConId.size()]);
+        procAccntId = listProcAccntId.toArray(new String[listProcAccntId.size()]);
+        
+        if( !listProcConId.isEmpty() ){
+            procContId = listProcConId.toArray(new String[listProcConId.size()]);
+        }
 
         map.put("PROC_ACC_ID", procAccntId);
         map.put("PROC_CON_ID_LIST", procContId);
