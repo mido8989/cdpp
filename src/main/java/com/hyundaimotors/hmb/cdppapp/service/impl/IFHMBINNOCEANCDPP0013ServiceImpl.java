@@ -13,6 +13,7 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013.ListOfContactsDto
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0013Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0013Service;
 
+import io.swagger.v3.core.util.Json;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -67,7 +68,9 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
         if(getProcAccntRowId != null){
             listProcAccntId.add(getProcAccntRowId);
         }
-        listOfcontacts = dto.getContactList();              
+        listOfcontacts = dto.getContactList();    
+        
+        System.out.println(":::::: first listOfcontacts :::::: " + Json.pretty(listOfcontacts));
     
         
         
@@ -219,12 +222,18 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
         HashMap<String, String[]> map = new HashMap<>();
         List<String> listProcAccntId = new ArrayList<>();
         List<String> listProcConId = new ArrayList<>();
+        String[] procAccntId = null;
+        String[] procContId = null;
 
         listProcAccntId.add(dto.getProcRowId());
         listProcConId = dto.getListOfProcContactRowId();
+        System.out.println(":::::: listProcConId :::::: " + Json.pretty(listProcConId));
 
-        String[] procAccntId = listProcAccntId.toArray(new String[listProcAccntId.size()]);
-        String[] procContId = listProcConId.toArray(new String[listProcConId.size()]);
+        procAccntId = listProcAccntId.toArray(new String[listProcAccntId.size()]);
+        
+        if( !listProcConId.isEmpty() ){
+            procContId = listProcConId.toArray(new String[listProcConId.size()]);
+        }
 
         map.put("PROC_ACC_ID", procAccntId);
         map.put("PROC_CON_ID_LIST", procContId);
