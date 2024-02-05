@@ -13,7 +13,6 @@ import com.hyundaimotors.hmb.cdppapp.dto.IFHMBINNOCEANCDPP0013.ListOfContactsDto
 import com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0013Mapper;
 import com.hyundaimotors.hmb.cdppapp.service.IFHMBINNOCEANCDPP0013Service;
 
-import io.swagger.v3.core.util.Json;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -126,8 +125,6 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
                     
                 }
                 procConId = listProcConId.toArray(new String[listProcConId.size()]);
-                System.out.println(":::::::: 검색해서 나온 listProcConId :::::::: "+ Json.pretty(listProcConId));
-                System.out.println(":::::::: 검색해서 나온 procConId :::::::: "+ Json.pretty(procConId));
             }
 
 
@@ -227,7 +224,6 @@ public class IFHMBINNOCEANCDPP0013ServiceImpl implements IFHMBINNOCEANCDPP0013Se
 
         listProcAccntId.add(dto.getProcRowId());
         listProcConId = dto.getListOfProcContactRowId();
-        System.out.println(":::::: listProcConId :::::: " + Json.pretty(listProcConId));
 
         procAccntId = listProcAccntId.toArray(new String[listProcAccntId.size()]);
         
