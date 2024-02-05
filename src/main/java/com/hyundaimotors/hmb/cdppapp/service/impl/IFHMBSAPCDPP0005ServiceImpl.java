@@ -743,7 +743,11 @@ public class IFHMBSAPCDPP0005ServiceImpl implements IFHMBSAPCDPP0005Service{
                 auditList.add(auditDto);
             }
         }
-        mapper.insertAuditList(auditList);
+        if( !auditList.isEmpty() ){
+            mapper.insertAuditList(auditList);
+        }else{
+            System.out.println("There is No Changed Attribute.");
+        }
 
     }
 
