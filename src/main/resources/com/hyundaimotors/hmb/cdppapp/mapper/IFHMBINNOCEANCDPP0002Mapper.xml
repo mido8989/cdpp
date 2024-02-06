@@ -142,7 +142,7 @@
             , #{suppressAllVideoCall}
             , #{suppressAllWhatsapp}
             , #{suppressAllMobile}
-            , #{printedCard}
+            , case when lower(#{printedCard}) = 'true' then 'Y' when lower(#{printedCard}) = 'false' then 'N' else #{printedCard} end
             , #{alreadyCustomer}
             , #{favorite_dealer}
         )
