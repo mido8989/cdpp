@@ -129,7 +129,7 @@
             , #{workPhone}
             , #{workPhone}
             , #{personMobilePhone}
-            , #{genderPC}
+            , #{gender}
             , #{pcd}
             , #{income}
             , #{productOfInterest}
@@ -255,7 +255,7 @@
             , #{personHomePhone}
             , #{workPhone}
             , #{personMobilePhone}
-            , #{genderPC}
+            , #{gender}
             , #{pcd}
             , #{cpf}
             , #{receiveProductNewsFlag}
@@ -503,7 +503,7 @@
             , #{personHomePhone}
             , #{workPhone}
             , #{personMobilePhone}
-            , #{genderPC}
+            , #{gender}
             , case when #{pcd} = 'Y' then true else false end
             , #{income}
             , #{productOfInterest}
@@ -599,7 +599,7 @@
             , companyphone__pc = COALESCE(#{workPhone}, companyphone__pc)
             , workphone__c = COALESCE(#{workPhone}, workphone__c)
             , personmobilephone = COALESCE(#{personMobilePhone}, personmobilephone)
-            , gender__pc = COALESCE(#{genderPC}, gender__pc)
+            , gender__pc = COALESCE(#{gender}, gender__pc)
             , pcd__c = COALESCE(#{pcd}, pcd__c)
             , income__c = COALESCE(#{income}, income__c)
             , productofinterest__c = COALESCE(#{productOfInterest}, productofinterest__c)
@@ -688,7 +688,7 @@
             , home_ph_num = COALESCE(#{personHomePhone}, home_ph_num)
             , work_ph_num = COALESCE(#{workPhone}, work_ph_num)
             , cell_ph_num = COALESCE(#{personMobilePhone}, cell_ph_num)
-            , sex_mf = COALESCE(#{genderPC}, sex_mf)
+            , sex_mf = COALESCE(#{gender}, sex_mf)
             , x_pne_flg = COALESCE(#{pcd}, x_pne_flg)
             , X_OPTIN_PRODUCT_FLG = COALESCE(#{receiveProductNewsFlag}, X_OPTIN_PRODUCT_FLG)
             , X_OPTIN_RETAIL_FLG = COALESCE(#{receiveRetailOffersFlag}, X_OPTIN_RETAIL_FLG)
