@@ -22,8 +22,8 @@ public class AccountReverseServiceImpl implements AccountReverseService{
         String rowId = mapper.getAccount(dto);
         // Person 일 경우
         
-        if("012Dd00000006AUIAY".equals(dto.getRecordTypeId())){//Dev
-        //if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){//Pro
+        //if("012Dd00000006AUIAY".equals(dto.getRecordTypeId())){//Dev
+        if("012Hs0000008kU4IAI".equals(dto.getRecordTypeId())){//Pro
             if(dto.getExternalId() != null){
                 if(rowId != null){
                     //Update Account
@@ -60,8 +60,8 @@ public class AccountReverseServiceImpl implements AccountReverseService{
             
         }else{
             // Business 일 경우
-            if(dto.getSfId().equals("012Dd000000068OIAQ")){//Dev
-            //if(dto.getSfId().equals("012Hs0000008kTRIAY")){//Pro
+            //if(dto.getSfId().equals("012Dd000000068OIAQ")){//Dev
+            if(dto.getSfId().equals("012Hs0000008kTRIAY")){//Pro
                 if(dto.getExternalId() != null){
                     if(rowId != null){
                         //Update Account
