@@ -48,7 +48,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
         // 현재 날짜 구하기(Paris)
         LocalDate brazilNow = LocalDate.now(ZoneId.of("America/Sao_Paulo"));
 
-        String brazilDate = "?date=\'"+brazilNow+"\'";
+        String brazilDate = "?last_modification_date[gte]=\'"+brazilNow+"\'&sort[creation_date]=DESC";
         
         // REST API 호출 및 데이터 처리 로직
         HttpClient client = HttpClient.newHttpClient();
