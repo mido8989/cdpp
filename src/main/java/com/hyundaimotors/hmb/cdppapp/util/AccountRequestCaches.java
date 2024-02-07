@@ -13,7 +13,8 @@ public class AccountRequestCaches {
 
     private static AccountRequestCaches instance;
     private static ObjectMapper mapper;
-    private static long cacheMinutes = 1;
+    // private static long cacheMinutes = 1;
+    private static long cacheSeconds = 30;
 
     private java.util.Map<JsonNode, LocalDateTime> cacheMap = null;
 
@@ -45,7 +46,8 @@ public class AccountRequestCaches {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime cachedAt = this.cacheMap.get(key);
 
-        if (cachedAt == null || cachedAt.plusMinutes(cacheMinutes).isBefore(now)) {
+        // if (cachedAt == null || cachedAt.plusMinutes(cacheMinutes).isBefore(now)) {
+        if (cachedAt == null || cachedAt.plusSeconds(cacheSeconds).isBefore(now)) {
             //캐시되었으나 캐시만료 시간이 지난 경우
             setMapObject(key);
             return null;
@@ -79,7 +81,7 @@ public class AccountRequestCaches {
         for (JsonNode key : this.cacheMap.keySet()) {
             // System.out.println("Clear Search Key ==> " + key);
             LocalDateTime val = this.cacheMap.get(key);
-            if (val != null && val.plusMinutes(cacheMinutes).isBefore(LocalDateTime.now())) {
+            if (val != null && val.plusSeconds(cacheSeconds).isBefore(LocalDateTime.now())) {
                 // System.out.println("Clear Target Val ==> " + val.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
                 removeTargetList.add(key);
             }
