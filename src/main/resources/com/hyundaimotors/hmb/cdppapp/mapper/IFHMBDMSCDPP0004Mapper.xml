@@ -111,7 +111,7 @@
         join
             process.account pc
         on
-            sr.business_row_id = pc.dealercode__c
+            po.dealercode__c  = pc.dealercode__c
         and
             pc.process_account_type = 'Dealer'
         where 
