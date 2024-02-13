@@ -81,13 +81,14 @@
 
     <select id="getOpvInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadOpvDto">
         select 
-            sr.protocol__c as protocolo
-            , sr.business_row_id as codigoConcessionaria
-            , sr.origin as origem
+            po.protocol__c as protocolo
+            , po.dealercode__c as codigoConcessionaria
+            , po.origin as origem
             , sr.method as metodo
-            , (sr.legacy_created - interval '3 hours') as dataAbertura
+            , (po.legacycreateddate__c - interval '3 hours') as dataAbertura
             , pc.firstname||' '||pc.lastname as nomeResponsavel
             , sr.status as status
+            , po.status
             , 'high' as prioridade
             , pc.pcd__c as identificacaoPCD
             , pc.type as tipoContato
@@ -96,18 +97,24 @@
             , pc.corporaterepresentativename__c as nomeConcessionaria
             , pc.cust_stat_cd__c as statusConcessionaria
             , sr.method as metodoContato
-            , sr.description as observacoesContato
-            , sr.x_camp_id__c as dadosCampanha
-            , sr.source_tag__c as sourceTag
-            , sr.medium_tag__c as mediumTag
-            , sr.content_tag__c as contentTag
-            , sr.form__c as form
+            , po.description as observacoesContato
+            , po.campaign_tag__c as dadosCampanha
+            , po.source_tag__c as sourceTag
+            , po.medium_tag__c as mediumTag
+            , po.content_tag__c as contentTag
+            , po.form__c as form
         from
             process.service_request sr
+        JOIN
+            process.opportunity po
+            ON
+                po.protocol__c = sr.protocol__c
         join
             process.account pc
         on
             sr.business_row_id = pc.dealercode__c
+        and
+            pc.process_account_type = 'Dealer'
         where 
             sr.protocol__c = #{protocol}
         <if test="apiKey != null and apiKey != ''">
