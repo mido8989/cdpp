@@ -37,7 +37,7 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식) 
-    @Scheduled(cron = "0 0 8,15 * * *")
+    @Scheduled(cron = "0 59 7,14,23 * * *")
     //@Scheduled(cron = "0 */5 * * * *")
     public void getAllTicket() throws ParseException {
         
@@ -45,10 +45,11 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
 
         String accessToken = getToken();
         
-        // 현재 날짜 구하기(Paris)
-        LocalDate brazilNow = LocalDate.now(ZoneId.of("America/Sao_Paulo"));
+        // 어제 날짜 구하기(Paris)
+        // LocalDate brazilNow = LocalDate.now(ZoneId.of("America/Sao_Paulo"));
+        LocalDate brazilYesterday = LocalDate.now(ZoneId.of("America/Sao_Paulo")).minusDays(1);
 
-        String brazilDate = "?last_modification_date[gte]=\'"+brazilNow+"\'&sort[creation_date]=DESC&page[size]=50";
+        String brazilDate = "?last_modification_date[gte]=\'"+brazilYesterday+"\'&sort[creation_date]=DESC&page[size]=50";
         
         // REST API 호출 및 데이터 처리 로직
         HttpClient client = HttpClient.newHttpClient();
