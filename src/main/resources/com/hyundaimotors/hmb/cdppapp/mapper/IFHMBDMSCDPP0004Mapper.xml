@@ -88,7 +88,6 @@
             , (po.legacycreateddate__c - interval '3 hours') as dataAbertura
             , pc.firstname||' '||pc.lastname as nomeResponsavel
             , sr.status as status
-            , po.status
             , 'high' as prioridade
             , pc.pcd__c as identificacaoPCD
             , pc.type as tipoContato
