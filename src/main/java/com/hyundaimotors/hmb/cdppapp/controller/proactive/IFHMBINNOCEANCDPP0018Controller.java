@@ -63,7 +63,7 @@ public class IFHMBINNOCEANCDPP0018Controller {
             response = IFHMBINNOCEANCDPP0018Payload.Response.builder()
                     .errorSpcCode("0")
                     .errorSpcMessage("OK")
-                    .listOfServices(resultList.size() > 0 ? defaultMapper.map(resultList, new TypeToken<List<IFHMBINNOCEANCDPP0018Payload.ListOfServices>>() {}.getType()) : null)
+                    .listOfServices((resultList != null && resultList.size() > 0) ? defaultMapper.map(resultList, new TypeToken<List<IFHMBINNOCEANCDPP0018Payload.ListOfServices>>() {}.getType()) : null)
                     .build();
             ApiLog.logApi(logService, IF_ID,ApiLogStep.FINISH, IF_TR_ID, JsonUtils.toJson(response));
         }catch(Exception e) {

@@ -3,7 +3,7 @@
 <mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0018Mapper">
     
     <select id="getList" parameterType="IFHMBINNOCEANCDPP0018Dto" resultType="IFHMBINNOCEANCDPP0018Dto">
-        select 
+        SELECT 
             pd.protocol__c as protocolNum
             , sr.status as protocolStatus
             , pd.srvc_type as serviceType
@@ -22,26 +22,40 @@
             , pas.serialnumber as vehicleChassi
             , (select concat(a2.firstname || ' ' || a2.lastname ) from process.contact pc where row_id = pd.srvc_consultant_id) as consultantName
             , (select concat(pc.firstname || ' ' || pc.lastname ) from process.contact pc where row_id = pd.srvc_technician_id) as technicianName
-        from 
+        FROM 
             process.dealer_appointment_history pd
-        join
+        JOIN 
             process.service_request sr 
-        on
+        ON 
             pd.protocol__c = sr.protocol__c 
-        join 
+        JOIN 
             process.account a1
-        on
+        ON 
             a1.row_id = sr.contact_row_id__c
-        join 
-            process.account a2
-        on
-            a2.row_id = sr.account_row_id__c 
-        join 
+        AND
+            a1.process_account_type = 'Person'
+        JOIN
+            process.customer_vehicle cv
+        ON 
+            cv.account_id = a1.row_id
+        AND
+            cv.status_cd = 'Active'
+        JOIN 
             process.asset pas
-        on
-            pas.contact_row_id__c = a1.row_id
-        where 
+        ON 
+            pas.row_id = cv.asset_id
+        AND 
+            pas.serialnumber  = sr.serialnumber 
+        LEFT JOIN 
+            process.account a2
+        ON 
+            a2.row_id = sr.account_row_id__c 
+        AND
+            a2.process_account_type = 'Dealer'
+        WHERE 
             a1.cpf__c = #{cpf}
+        ORDER BY 
+            a2.row_id, pd.srvc_type, pd.srvc_arrival_date 
     </select>
     
 </mapper>
