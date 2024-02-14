@@ -37,8 +37,8 @@ public class IFHMBRECLAMEAQUICDPP0096OutPut {
     private ModelMapper defaultMapper;
 
     // 매 시간 실행 (크론 표현식) 
-    @Scheduled(cron = "0 59 7,14,23 * * *")
-    //@Scheduled(cron = "0 */5 * * * *")
+    // @Scheduled(cron = "0 59 10,17,23 * * *")
+    @Scheduled(cron = "0 0/15 09-23 * * *")
     public void getAllTicket() throws ParseException {
         
         ModelMapper modelMapper = new ModelMapper();
