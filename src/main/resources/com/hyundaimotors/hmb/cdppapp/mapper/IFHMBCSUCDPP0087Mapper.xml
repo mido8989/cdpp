@@ -71,7 +71,7 @@
             , pas.latestmileage__c as currenMileage
             , pas.carregistrationnumber__c as vehicleLicenseNumber
             , pas.serialnumber as serialNumber
-            , pas.name as fscOcn
+            , pas.fsc__c as fscOcn
             , pas.manufacturedate as manufactureYear
             , pas.modelname__c as model
             , pas.modelyear__c as modelYear
