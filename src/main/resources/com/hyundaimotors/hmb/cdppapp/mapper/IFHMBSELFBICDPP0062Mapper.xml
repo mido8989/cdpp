@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSELFBICDPP0062Mapper">
+    
+    <select id="getLead" parameterType="IFHMBSELFBICDPP0062Dto" resultType="TotalLeadDto">
+        select 
+            po.protocol__c as protocol
+            , po.reason__c as reason
+            , po.origin as origin
+            , psr.method as method
+            , po.legacycreateddate__c as openDate
+            , po.close_date__c as closeDate
+            , po.status as status
+            , po.level1__c as level1
+            , po.level2__c as level2
+            , po.level3__c as level3
+            , po.level4__c as level4
+            , po.predictive_temp__c as predictiveTemp
+            , po.dealercode__c as dealerCode
+            , bpac.corporaterepresentativename__c as dealerNick
+            , psr.relatedmodel__c as relatedModel
+            , psr.quotetransmission__c as quoteTransmission
+            , psr.version__c as quoteVersion
+            , psr.source_tag__c as sourceTag
+            , psr.medium_tag__c as mediumTag
+            , psr.content_tag__c as contentTag
+            , psr.campaignid__c as campaignTag
+            , psr.form__c as form
+            , (case when psr.testdrive_confirmed__c = true then 'Y' when psr.testdrive_confirmed__c = false then 'N' else null end ) as tdConfirmed
+            , (case when psr.status = 'Closed' and psr.testdrive_confirmed__c = 'Y' then 'Y' else 'N' end) as tdCompleted
+            , po.legacy_last_update__c as updated
+            , psr.relatedmodel__c as tdModel
+            , psr.reserve_amount__c as reserveAmount
+            , psr.payment_date__c as paymentDate
+            , psr.payment_method__c as paymentMethod
+            , psr.payment_status__c as paymentStatus
+            , pas.description as tdVersion
+            , psr.description as description
+            , psr.usedcar_brand__c as usadoMarca
+            , psr.usedcar_model__c as usadoModelo
+            , psr.usedcar_chassi__c as usadoChassi
+            , psr.usedcar_color__c as usadocor
+            , psr.usedcar_km__c as usadoQuilometragem
+            , psr.usedcar_max_price__c as usadoprecoMaximo
+            , psr.usedcar_mid_price__c as usadoprecoMedio
+            , psr.usedcar_min_price__c as usadoprecoMinimo
+            , psr.usedcar_plate__c as usadoPlaca
+            , psr.usedcar_version__c as usadoVersao
+            , psr.usedcar_year__c as usadoAno
+            , psr.quote_color__c as quoteColor
+            , psr.quote_color_price__c as quoteColorPrice
+            , psr.quote_version_price__c as quoteVersionPrice
+            , psr.quote_price__c as quotePrice
+            , psr.quote_replace_intention__c as quoteReplaceIntention
+            , psr.contact_row_id__c as contactRowId
+            , psr.row_id as strId
+        from
+            process.service_request psr 
+        join
+            process.opportunity po
+        on
+            psr.protocol__c = po.protocol__c
+        left join
+            process.account bpac
+        on
+            po.dealercode__c = bpac.dealercode__c and bpac.process_account_type = 'Dealer'
+        left join 
+            process.asset pas
+        on
+            psr.serialnumber = pas.serialnumber 
+        where
+        	psr.status != 'Canceled'
+       <if test="lead != null and lead != ''"> 
+            and 
+                psr.protocol__c = #{lead}
+        </if>
+        <choose>
+            <when test='voc == "TestDrive"'>
+                and
+                    po."type" = 'Test Drive'
+            </when>
+            <when test='voc == "RequestaQuote"'>
+                and
+                    po."type" = 'Quotation'
+            </when>
+            <when test='voc == "Showroom"'>
+                and
+                    po."type" = 'Showroom'
+            </when>
+            <when test='voc == "HyundaiBank"'>
+                and
+                    po."type" = 'Hyundai Bank'
+            </when>
+            <when test='voc == "LoyaltyProgram"'>
+                and
+                    po."type" = ' '
+            </when>
+            <when test='voc == "All"'>
+            </when>
+            <otherwise>
+                and
+                    po."type" = ' '
+            </otherwise>
+        </choose>
+
+        <choose>
+            <when test='created == "Y"'>
+                and
+                (
+                    po.legacycreateddate__c <![CDATA[ <= ]]> to_timestamp(#{date}||' 23:59:59.999', 'YYYY-MM-DD HH24:MI:SS.MS')
+                and
+                    po.legacycreateddate__c <![CDATA[ >= ]]> to_timestamp(#{date}||' 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.MS'))
+                and
+                    po.legacycreateddate__c::date + interval '90 days' <![CDATA[ >= ]]> to_date(#{date}, 'YYYY-MM-DD')
+            </when>
+            <when test='created == "N"'>
+                and
+                (
+                    po.legacy_last_update__c <![CDATA[ <= ]]> to_timestamp(#{date}||' 23:59:59.999', 'YYYY-MM-DD HH24:MI:SS.MS')
+                and
+                    po.legacy_last_update__c <![CDATA[ >= ]]> to_timestamp(#{date}||' 00:00:00.000', 'YYYY-MM-DD HH24:MI:SS.MS'))
+                and
+                    po.legacy_last_update__c::date + interval '90 days' <![CDATA[ >= ]]> to_date(#{date}, 'YYYY-MM-DD')
+            </when>
+            <otherwise>
+
+            </otherwise>
+        </choose>
+
+    </select>
+    
+    <select id="getContact" parameterType="String" resultType="TotalContactDto">
+        select 
+            pc.personbirthdate as birthDate
+            , pc.gender__pc as gender
+            , pc.pcd__c as pcd
+            , pc.row_id as idSiebel
+            , ( case when pc.calloptyn__pc = true then 'Y' when pc.calloptyn__pc = false then 'N' else null end ) as suppressAllCalls
+            , ( case when pc.emailoptyn__pc = true then 'Y' when pc.emailoptyn__pc = false then 'N' else null end ) as suppressAllEmails
+            , ( case when pc.directmailoptyn__pc = true then 'Y' when pc.directmailoptyn__pc = false then 'N' else null end ) as suppressAllMailings
+            , ( case when pc.blockedmobile__c = true then 'Y' when pc.blockedmobile__c = false then 'N' else null end ) as suppressAllMobilePhone
+            , ( case when pc.blockedsms__c = true then 'Y' when pc.blockedsms__c = false then 'N' else null end ) as suppressAllSMS
+            , ( case when pc.x_printed_card__c = true then 'Y' when pc.x_printed_card__c = false then 'N' else null end ) as suppressAllVideoCall
+            , ( case when pc.blockedwhatsapp__c = true then 'Y' when pc.blockedwhatsapp__c = false then 'N' else null end ) as suppressAllWhatsapp
+        from
+            process.account pc 
+        where
+            pc.row_id = #{contactRowId}
+    </select>
+
+    <select id="getAction" parameterType="String" resultType="TotalActionDto">
+        select 
+            sch.first_interaction_date__c as fstInteraction
+            , po.transferredopportunitydate__c as getLead
+            , po.status as Status
+            , sch.dmsreceivedate__c as dtEnvio
+            , po.completedate__c as dt_fechamento
+            , sch.visitdate__c as visitconducted
+            , sch.scheduledvisitdate__c as visitsched
+            , sch.visitstatus__c as visitstat
+        from
+            process.opportunity po
+        join
+            process.sales_consult_history sch
+        on
+            po.protocol__c = sch.protocol__c 
+        where
+            po.protocol__c = #{protocol}
+        order by 
+            sch.interactionnumber__c::int desc
+        limit 1
+    </select>
+
+    <select id="getTemperature" parameterType="String" resultType="TotalTemperatureDto">
+        select 
+            '0' as name
+            , predictive_temp__c as temperature 
+            , qexpertreceiveddate__c as created
+        from
+            process.opportunity
+        where 
+            protocol__c = #{protocol}
+        union all
+        select 
+            temperaturenumber__c as name 
+            ,predictivetemp__c as temperature
+            , createddate as created
+        FROM
+            process.sales_consult_history
+        where
+            protocol__c = #{protocol}
+        order by name asc
+    </select>
+</mapper>

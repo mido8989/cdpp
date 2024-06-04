@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPCDPP0005Mapper">
+    
+    <select id="foundAccountId" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
+        select
+           row_id 
+       from
+           process.account
+       where  
+           corporateregistrationnumber__c = #{cnpjNumber}
+       and 
+           lower(trim(name)) = lower(trim(#{name}))        
+       and 
+           process_account_type = 'Business'
+       limit 1          
+   </select>
+
+    <select id="foundAccountIdbyNameAndPhoneAndEmail" parameterType="IFHMBSAPCDPP0005Dto" resultType="String">
+        select
+            row_id 
+        from
+            process.account
+        where 
+            lower(trim(name))  = lower(trim(#{name}))
+        <choose>
+            <when test="flgEmailAndPhone == 'Both'">
+                and 
+                (
+                    phone = #{mainPhoneNumber}
+                or
+                    lower(emailaddress__c)= lower(#{mainEmailAddress})
+                )
+            </when>
+            <when test="flgEmailAndPhone == 'Email'">
+                and 
+                    lower(emailaddress__c) = lower(#{mainEmailAddress})
+            </when>
+            <when test="flgEmailAndPhone == 'Phone'">
+                and 
+                    phone = #{mainPhoneNumber}
+            </when>
+        </choose>       
+        and 
+            process_account_type = 'Business'
+        limit 1
+    </select>   
+    
+    <insert id="insertObject" parameterType="IFHMBSAPCDPP0005Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into landing.if_account_ws_wf
+            (
+                created
+                , created_by
+                , last_upd
+                , last_upd_by
+                , integrationid
+                , cnpjnumber
+                , name
+                , nickname
+                , parentaccountname
+                , agencycode
+                , fleetacconttype
+                , industrytrend
+                , numberofemployee
+                , totalfleetsize
+                , contractedsince
+                , source
+                , organizationtype
+                , mainphonenumber
+                , mainfaxnumber
+                , mainemailaddress
+                , homepage
+                , streetaddress
+                , streetaddress2
+                , Streetaddress3
+                , country
+                , city
+                , state
+                , postalcode
+                , description
+            )
+        values
+            (
+                now()
+                , 'interface'
+                , now()
+                , 'interface'
+                , #{integrationId}
+                , #{cnpjNumber}
+                , #{name}
+                , #{nickname}
+                , #{parentAccountName}
+                , #{agencyCode}
+                , #{fleetAccontType}
+                , #{industryTrend}
+                , #{numberOfEmployee}
+                , #{totalFleetSize}
+                , to_date(nullif(#{contractedSince},''), 'YYYY-MM-DD')
+                , #{source}
+                , #{organizationType}
+                , #{mainPhoneNumber}
+                , #{mainFaxNumber}
+                , #{mainEmailAddress}
+                , #{homepage}
+                , #{streetAddress}
+                , #{streetAddress2}
+                , #{streetAddress3}
+                , #{county}
+                , #{city}
+                , #{state}
+                , #{postalCode}
+                , #{description}
+                
+            );
+    </insert>   
+
+    <select id="getOldAccount" parameterType="string" resultType="IFHMBSAPCDPP0005Dto">
+        select 
+            row_id as contactId
+            , integrationid as integrationId
+            , corporateregistrationnumber__c as cnpjNumber
+            , "name" as name
+            , corporaterepresentativename__c as nickname
+            , ori_cd__c as agencyCode
+            , businesstype__c asv
+            , industry as industryTrend             
+            , numberofemployees as numberOfEmployee
+            , x_tot_flt_size__c as totalFleetSize
+            , x_contracted_since__c as contractedSince
+            , registrysource__c as source
+            , fleettype__c as organizationType
+            , phone as mainPhoneNumber
+            , fax as mainFaxNumber
+            , emailaddress__c as mainEmailAddress
+            , website as homepage
+            , billingstreet as streetAddress
+            , billingstreet_2__c as streetAddress2
+            , billingstreet_3__c as streetAddress3
+            , neighborhood as county
+            , billingcity as city
+            , billingstate as state
+            , billingpostalcode as postalCode
+            , description as description
+            , parentid as parentId
+        from 
+            process.account pa
+        where
+            pa.row_id = #{foundAccountId}
+    </select>
+
+    <insert id="insertAuditList" parameterType="list">
+        insert into process.s_audit_item(
+            created_by
+            , last_upd_by
+            , buscomp_name
+            , operation_cd
+            , record_id
+            , user_id
+            , tbl_name
+            , old_val
+            , new_val
+            , tbl_record_id
+            , field_name
+            , header_apikey
+        )
+        values
+        <foreach collection="auditList" item="item" separator=",">
+            (
+                'interface'
+                , 'interface'
+                , 'account'
+                , #{item.operation}
+                , #{item.rowId}
+                , 'interface'
+                , 'account'
+                , #{item.oldValue}
+                , #{item.newValue}
+                , #{item.rowId}
+                , #{item.fieldName}
+                , #{item.apiKey}
+            )
+        </foreach>
+    </insert>
+    
+    <insert id="insertProcessAccount" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_account_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN},#{PROC_ACC_ID,jdbcType=VARCHAR,mode=IN},#{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
+    <insert id="transferDPProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_dp_account_ws_wf(#{PARAM_ID,jdbcType=VARCHAR,mode=IN}, #{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
+
+    <insert id="insertReplicaAccount" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_account_ws_wf(#{PROC_ACC_ID,jdbcType=VARCHAR,mode=IN},#{checkcu,jdbcType=VARCHAR,mode=IN});
+    </insert>
+
+</mapper>

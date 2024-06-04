@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0013Mapper">
+
+    <select id="getRowId" parameterType="IFHMBINNOCEANCDPP0013Dto" resultType="String">
+        select 
+            a.row_id
+		from 
+            process.account a 
+		where 
+            1=1
+        <if test="cnpj != null and cnpj != ''">
+        and 
+            corporateregistrationnumber__c = #{cnpj}
+        </if>
+        <if test="name != null and name != ''">
+        and 
+            lower(trim(name)) = lower(trim(#{name}))
+        </if>
+        and 
+            process_account_type = 'Dealer'
+        <!-- <if test="mainPhone != null and mainPhone != ''">
+        and 
+            phone = #{mainPhone}
+        </if>
+        <if test="mainEmailAddress != null and mainEmailAddress != ''">
+        and 
+            emailaddress__c = #{mainEmailAddress}
+        </if> -->
+        order by 
+            legacy_created asc
+        limit 1
+    </select>
+
+    
+    <select id="getContactId" parameterType="ListOfContactsDto" resultType="String">
+        select 
+            row_id
+        from 
+            process.contact
+        where 
+            cpf__c = #{cpf}
+        and 
+            con_cd__c = 'Dealer'
+        limit 1               
+    </select>
+
+    <select id="getContactIdWithoutCpf" parameterType="ListOfContactsDto" resultType="String">
+        select 
+            row_id
+        from 
+            process.contact
+        where 
+            firstname = #{firstName}
+        and 
+            lastname = #{lastName}
+        and 
+            con_cd__c = 'Dealer'
+        order by 
+            created desc limit 1               
+    </select>
+
+
+    <insert id="insertBusinessAccount" parameterType="IFHMBINNOCEANCDPP0013Dto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into 
+            landing.if_in_channel_partner_inf_wf
+                (
+                    integrationid
+                    , cnpj
+                    , "name"
+                    , nickname
+                    , accountstatus
+                    , reasonstatus
+                    , dealertype
+                    , dealercode
+                    , mainphone
+                    , fax
+                    , mainemailaddress
+                    , workemailaddress
+                    , salesdealerflag
+                    , servicedealerflag
+                    , partnerstartdate
+                    , partnerenddate
+                    , region
+                    , workinghours
+                    , facebookpage
+                    , homepage
+                    , streetaddress
+                    , streetaddress2
+                    , streetaddress3
+                    , county
+                    , city
+                    , state
+                    , latitude
+                    , longitude
+                    , postalcode
+                    , dealergroup
+                    , salesgroup
+                    , salesmanager
+                    , servicemanager
+                    , servicewhatsappnumber
+                    , saleswhatsappnumber
+                    , salesdistrict
+                    , salesoffice
+                    , division
+                    , created
+                    , created_by
+                    , last_upd
+                    , last_upd_by
+        )values(
+                    #{integrationId}
+                    , #{cnpj}
+                    , #{name}
+                    , #{nickname}
+                    , #{accountStatus}
+                    , #{reasonStatus}
+                    , #{dealerType}
+                    , #{dealerCode}
+                    , #{mainPhone}
+                    , #{fax}
+                    , #{mainEmailAddress}
+                    , #{workEmailAddress}
+                    , #{salesDealerFlag}
+                    , #{serviceDealerFlag}
+                    , to_date(#{partnerStartDate},'YYYY-MM-DD')
+                    , to_date(#{partnerEndDate},'YYYY-MM-DD')
+                    , #{region}
+                    , #{workingHours}
+                    , #{facebookPage}
+                    , #{homepage}
+                    , #{streetAddress}
+                    , #{streetAddress2}
+                    , #{streetAddress3}
+                    , #{county}
+                    , #{city}
+                    , #{state}
+                    , #{latitude}
+                    , #{longitude}
+                    , #{postalCode}
+                    , #{dealerGroup}
+                    , #{salesGroup}
+                    , #{salesManager}
+                    , #{serviceManager}
+                    , #{serviceWhatsAppNumber}
+                    , #{salesWhatsAppNumber}
+                    , #{salesDistrict}
+                    , #{salesOffice}
+                    , #{division}
+                    , now()
+                    , 'interface'
+                    , now()
+                    , 'interface'
+                )
+    </insert>
+
+    <insert id="insertPersonAccount" parameterType="ListOfContactsDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into 
+            landing.if_in_channel_partner_inf_wf_dlrcontact
+            (
+                integrationid
+                , cpf
+                , firstname
+                , lastname
+                , email
+                , homephone
+                , workphone
+                , cellphone
+                , jobtitle
+                , notes
+                , status
+                , par_row_id
+                , account_row_id
+                , created
+                , created_by
+                , last_upd
+                , last_upd_by
+        )values        
+            (    
+                #{integrationId}
+                , #{cpf}
+                , #{firstName}
+                , #{lastName}
+                , #{emailAddress}
+                , #{homePhone}
+                , #{workPhone}
+                , #{cellPhone}
+                , #{jobTitle}
+                , #{notes}
+                , #{status}
+                , Cast(#{parRowId} as Integer)
+                , #{accntRowId}
+                , now()
+                , 'interface'
+                , now()
+                , 'interface'
+            )  
+    </insert>
+
+    <select id="getOldAccount" parameterType="string" resultType="IFHMBINNOCEANCDPP0013Dto">
+        select
+            row_id as procRowId
+            , integrationid as integrationId
+            , corporateregistrationnumber__c as cnpj
+            , "name" as name
+            , corporaterepresentativename__c as nickname
+            , cust_stat_cd__c as accountStatus
+            , situationstatusreason__c as reasonStatus
+            , dealershoptype__c as dealerType
+            , dealercode__c as dealerCode
+            , phone as mainPhone
+            , fax as fax
+            , emailaddress__c as mainEmailAddress
+            , sapworkaddress__c as workEmailAddress
+            , salesflag__c as salesDealerFlag
+            , serviceflag__c as serviceDealerFlag
+            , prtnrshp_start_dt__c as partnerStartDate
+            , prtnrshp_end_dt__c as partnerEndDate
+            , region__c as region
+            , businesshours__c as workingHours
+            , facebook__c as facebookPage
+            , website as homepage
+            , billingstreet as streetAddress
+            , billingstreet_2__c as streetAddress2
+            , billingstreet_3__c as streetAddress3
+            , billingcounty as county
+            , billingcity as city
+            , billingstate as state
+            , billinglatitude as latitude
+            , billinglongitude as longitude
+            , billingpostalcode as postalCode
+            , dealergroupcode__c as dealerGroup
+            , salesgroup__c as salesGroup
+            , salesmanager__c as salesManager
+            , servicemanager__c as serviceManager
+            , servicewhatsappnumber__c as serviceWhatsAppNumber
+            , saleswhatsappnumber__c as salesWhatsAppNumber
+            , salesdistrict__c as salesDistrict
+            , salesoffice__c as salesOffice
+            , division__c as division
+        from
+            process.account pa
+        where
+            pa.row_id = #{getProcAccntRowId}
+    </select>
+
+    <insert id="insertAuditList" parameterType="list">
+        insert into process.s_audit_item(
+            created_by
+            , last_upd_by
+            , buscomp_name
+            , operation_cd
+            , record_id
+            , user_id
+            , tbl_name
+            , old_val
+            , new_val
+            , tbl_record_id
+            , field_name
+            , header_apikey
+        )
+        values
+        <foreach collection="auditList" item="item" separator=",">
+            (
+                'interface'
+                , 'interface'
+                , 'account'
+                , #{item.operation}
+                , #{item.rowId}
+                , 'interface'
+                , 'account'
+                , #{item.oldValue}
+                , #{item.newValue}
+                , #{item.rowId}
+                , #{item.fieldName}
+                , #{item.apiKey}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_in_channel_partner_inf_wf(#{PARAM_ID}, #{PROC_ACC_ID}, #{CON_ROWID}, #{checkcu});
+    </insert>
+
+    <insert id="transferDPProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_dp_in_channel_partner_inf_wf(#{PROC_ACC_ID}, #{PROC_CON_ID_LIST});
+    </insert>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_in_channel_partner_inf_wf(#{PROC_ACC_ID}, #{PROC_CON_ID}, #{checkcu});
+    </insert>
+</mapper>

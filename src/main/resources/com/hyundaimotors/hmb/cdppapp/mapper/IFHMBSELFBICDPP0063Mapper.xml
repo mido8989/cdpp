@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSELFBICDPP0063Mapper">
+    
+    <select id="getAsset" parameterType="IFHMBSELFBICDPP0063Dto" resultType="VehicleDto">
+        select 
+            pa.serialnumber as chassi
+            , pa.billing_date__c::timestamp as salesDate
+            , pa.dealercode__c as salesDealerCode
+            , (select corporaterepresentativename__c from process.account where row_id  = pa.account_row_id__c) as salesDealerNick
+            , pa.oper_status_cd__c as salesCode
+            , version__c as salesVersion
+            , pa.fsc__c as salesFscocn
+            , (select pp.engine_desc__c from process.product pp where pp.row_id = pa.product2id) as salesMotor
+            , pa.friendly_model__c  as vinModel
+            , (select ci.val from process.color_information ci where ci.lang_id__c = 'ENU' and ci."type" = 'AUTO_EXTERIOR' and ci.name_code = pa.vehiclecolor__c) as vinColor
+            , pa.legacy_last_upd::timestamp as updated
+            , pa.x_del_home__c as delHome
+            , pa.x_dig_sales__c as digitalSales
+            , pa.x_td_home__c as tdHome
+            , pa.x_sales_cancel_dt__c as salesCancelled
+            , pa.row_id as assetId
+            , pa.contact_row_id__c as bAccountId
+            , pa.contact_row_id__c as cAccountId
+        from
+            process.asset pa
+        where
+            <choose>
+                <when test='createdOption == "Y"'>
+                    pa.legacy_created <![CDATA[ >= ]]> to_timestamp(#{dateInput} || ' 00:00:00', 'YYYY-MM-DD HH24:mi:SS')
+                and 
+                    pa.legacy_created <![CDATA[ <= ]]> to_timestamp(#{dateInput} || ' 23:59:59', 'YYYY-MM-DD HH24:mi:SS')
+                </when>
+                <otherwise>
+                    pa.billing_date__c <![CDATA[ >= ]]> to_timestamp(#{dateInput} || ' 00:00:00', 'YYYY-MM-DD HH24:mi:SS')
+                and
+                    pa.billing_date__c <![CDATA[ <= ]]> to_timestamp(#{dateInput} || ' 23:59:59', 'YYYY-MM-DD HH24:mi:SS')
+                </otherwise>
+            </choose>
+            <choose>
+                <when test='seq == "2"'>
+                and    
+                    pa.oper_status_cd__c != 'ZV02'
+                </when>
+                <when test='seq == "3"'>
+                and
+                    pa.oper_status_cd__c = 'ZV02'
+                </when>
+                <otherwise>
+
+                </otherwise>
+            </choose>
+        <if test="vin != null and vin != ''">
+            and
+                pa.serialnumber = #{vin}
+        </if>    
+    </select>
+
+    <select id="getContact"  parameterType="String" resultType="ContactGetVinDto">
+        select
+            pa.row_id as idSiebel
+            , pa.personbirthdate as birthDate
+            , pa.gender__pc as gender
+            , ac.relation_type_cd as relatedType
+            , ac.status_cd as relatedStatus
+            , ( case when pa.calloptyn__pc = true then 'Y' when pa.calloptyn__pc = false then 'N' else null end ) as suppressAllCalls
+            , ( case when pa.emailoptyn__pc = true then 'Y' when pa.emailoptyn__pc = false then 'N' else null end ) as suppressAllEmails
+            , ( case when pa.directmailoptyn__pc = true then 'Y' when pa.directmailoptyn__pc = false then 'N' else null end ) as suppressAllMailings
+            , ( case when pa.blockedmobile__c = true then 'Y' when pa.blockedmobile__c = false then 'N' else null end ) as suppressAllMobilePhone
+            , ( case when pa.blockedsms__c = true then 'Y' when pa.blockedsms__c = false then 'N' else null end ) as suppressAllSMS
+            , ( case when pa.x_printed_card__c = true then 'Y' when pa.x_printed_card__c = false then 'N' else null end ) as suppressAllVideoCall
+            , ( case when pa.blockedwhatsapp__c = true then 'Y' when pa.blockedwhatsapp__c = false then 'N' else null end ) as suppressAllWhatsapp
+        from
+            process.account pa
+        join
+            process.customer_vehicle ac  
+        on
+            pa.row_id  = ac.account_id
+        where 
+            ac.account_id = #{cAccountId}
+        and 
+            ac.cv_type = 'Person'
+        and 
+            ac.status_cd = 'Active'
+        limit 1
+    </select>
+
+    <select id="getAccount"  parameterType="String" resultType="AccountGetVinDto">
+        select
+            pa.row_id as idSiebel
+            , aa.relation_type_cd as relatedType
+            , aa.status_cd as relatedStatus
+        from
+            process.account pa
+        join
+            process.customer_vehicle aa 
+        on
+            pa.row_id  = aa.account_id
+        where
+            aa.account_id = #{bAccountId}
+        and 
+            aa.cv_type = 'Business'
+        and 
+            aa.status_cd = 'Active'
+        limit 1
+    </select>
+</mapper>

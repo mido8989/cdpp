@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBDMSCDPP0004Mapper">
+    
+    <select id="getLeadInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="IFHMBDMSCDPP0004Dto">
+        select 
+            po.contact_row_id__c as rowid
+            , po.protocol__c as protocol
+            , po.status as status
+        from 
+            process.opportunity po
+        join
+            process.account pa
+        on
+            po.dealercode__c = pa.dealercode__c and pa.process_account_type = 'Dealer'
+        where
+            po.legacycreateddate__c <![CDATA[ <= ]]> (now() - '5 minutes'::interval)
+        and
+            po."type" != 'Test Drive'
+        and
+            po."type" != 'Showroom'
+        <!--and
+            po.transferredopportunity__c != true-->
+        <choose>
+            <when test='statusLead == "Open"'>
+                and
+                    po.status = 'Distributed'
+            </when>
+            <otherwise>
+                and
+                    po.status = ' '
+            </otherwise>
+        </choose>
+        <if test="dealerCode != null and dealerCode != ''">
+            and
+                pa.dealercode__c = #{dealerCode}
+        </if>
+        <if test="apiKey != null and apiKey != ''">
+            and
+                pa.apikey__c = #{apiKey}
+        </if>
+        and
+            po.legacycreateddate__c <![CDATA[ >= ]]> to_timestamp(#{date}||' 00:00:00','YYYY-MM-DD HH24:mi:SS')
+        and
+            po.legacycreateddate__c <![CDATA[ <= ]]> to_timestamp(#{date}||' 23:59:59', 'YYYY-MM-DD HH24:mi:SS')
+    </select>
+
+    <select id="getContactInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadContactDto">
+        select 
+            pac.firstname as nome
+            , pac.lastname as sobrenome
+            , pac.gender__pc as genero
+            , pac.personbirthdate as dataNascimento
+            , pac.age__c as idade
+            , pac.personmobilephone as telefone
+            , pac.personemail as email
+            , pac.cpf__c as cpf
+            , pac.billingpostalcode as cep
+            , pac.billingstreet as endereco
+            , pac.row_id as idconnex
+            <!--, psr.quote_replace_intention__c as dataPrevistaCarroNovo-->
+        from 
+            process.account pac
+        where
+            pac.row_id = #{rowId}
+    </select>
+    
+    <select id="getVeiculoInfoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadVeiculo">
+        select
+            sr.relatedmodel__c as modelo
+            , sr.quotetransmission__c as motor
+            , sr.quotetransmission__c as transmissao
+            , sr.version__c as versao
+            , sr.quote_color__c as cor
+            , sr.quote_price__c as preco
+        from 
+            process.service_request sr 
+        where 
+            sr.protocol__c = #{protocol}
+    </select>
+
+    <select id="getOpvInfo" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadOpvDto">
+        select 
+            po.protocol__c as protocolo
+            , po.dealercode__c as codigoConcessionaria
+            , po.origin as origem
+            , sr.method as metodo
+            , (po.legacycreateddate__c - interval '3 hours') as dataAbertura
+            , pc.firstname||' '||pc.lastname as nomeResponsavel
+            , sr.status as status
+            , 'high' as prioridade
+            , pc.pcd__c as identificacaoPCD
+            , pc.type as tipoContato
+            , 'Y' as clienteHyundai
+            , sr.usedcar_as_down_payment__c as usadoNaTroca
+            , pc.corporaterepresentativename__c as nomeConcessionaria
+            , pc.cust_stat_cd__c as statusConcessionaria
+            , sr.method as metodoContato
+            , po.description as observacoesContato
+            , po.campaign_tag__c as dadosCampanha
+            , po.source_tag__c as sourceTag
+            , po.medium_tag__c as mediumTag
+            , po.content_tag__c as contentTag
+            , po.form__c as form
+        from
+            process.service_request sr
+        JOIN
+            process.opportunity po
+            ON
+                po.protocol__c = sr.protocol__c
+        join
+            process.account pc
+        on
+            po.dealercode__c  = pc.dealercode__c
+        and
+            pc.process_account_type = 'Dealer'
+        where 
+            sr.protocol__c = #{protocol}
+        <if test="apiKey != null and apiKey != ''">
+            and
+                pc.apikey__c = #{apiKey}
+        </if>
+        limit 1
+    </select>
+
+    <select id="getfinanciamentoOpv" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadFinanciamentoOPVDto">
+        select 
+            (case when wants_loan__c = true then 'Sim' when wants_loan__c = false then 'Não' when wants_loan__c isnull then 'Não Informado' end) as querFinanciar
+            , loan_type__c as tipoFinanciamento
+            , down_payment__c as valorEntradaFinanciamento
+            , installments_amt__c as qtdParcelaFinanciamento
+        from
+            process.service_request sr
+        where 
+            sr.protocol__c = #{protocol}
+        limit 1
+    </select>
+
+    <select id="getTemperatureList" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadTemperatureDto">
+        select 
+			'0' as temperatureNum
+			, (case when predictive_temp__c = 'Q' then 'Hot' when predictive_temp__c = 'M' then 'Warm' when predictive_temp__c = 'Z' then 'Not Classified' when predictive_temp__c = 'X' then 'Not Available' when predictive_temp__c = 'F' then 'Cold' end) as temperature
+		from
+			process.opportunity
+		where 
+            protocol__c = #{protocol}
+		union all
+		select 
+			temperaturenumber__c as temperatureNum 
+			, (case when predictivetemp__c = 'Q' then 'Hot' when predictivetemp__c = 'M' then 'Warm' when predictivetemp__c = 'Z' then 'Not Classified' when predictivetemp__c = 'X' then 'Not Available' when predictivetemp__c = 'F' then 'Cold' end) as temperature
+		FROM
+			process.sales_consult_history
+		where
+            protocol__c = #{protocol}
+		order by temperatureNum asc
+    </select>
+    
+    <select id="getAgendamentoList" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadAgendamentoDto">
+        select 
+            sch.temperaturenumber__c as tipoAgendamento
+            , sch.description_interaction__c as dataAgendamento
+        from
+            process.sales_consult_history sch 
+        where
+            protocol__c = #{protocol}
+    </select>
+
+    <select id="getResult" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadResultDto">
+        select 
+            interactionstartdate__c as firstInteractionDate
+            , statussales__c as saleStatus
+            , reason__c as reason
+            , result__c as result
+            , salespersoncode__c as saleCPF
+            , dmsenddate__c as endDate
+            , dmsreceivedate__c as dlrReceiveDate
+            , dealerrespondetime__c as dlrResponseTime
+        from 
+            process.sales_consult_history
+        where 
+            protocol__c = #{protocol}
+        order by interactionnumber__c desc
+        limit 1
+    </select>
+
+    <select id="getInteractionList" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeadInteractionDto">
+        select 
+            interactionnumber__c as interactionNum
+            , first_interaction_date__c as date
+            , description_interaction__c as description
+            , case when contact_flag__c = true then 'Y' else 'N' end as contactCustomer
+        from
+            process.sales_consult_history
+        where
+            protocol__c = #{protocol}
+        order by interactionnumber__c asc
+    </select>
+
+    <select id="getVeiculoEntradaOPV" parameterType="IFHMBDMSCDPP0004Dto" resultType="GetLeaDveiculoEntradaOPVDto">
+        select 
+            usedcar_as_down_payment__c::varchar as usadoNaTroca
+            , usedcar_brand__c as usadoMarca
+            , usedcar_model__c as usadoModelo
+            , usedcar_year__c as usadoAno
+            , usedcar_km__c as usadoKM
+            , usedcar_plate__c as usadoExpectativaValor
+            , usedcar_color__c as usadoCor
+            , payment_status__c as usadoPlaca
+            , usedcar_chassi__c as usadoChassi
+            , usedcar_version__c as usadoVersao
+            , usedcar_min_price__c as usadoPrecoMin
+            , usedcar_max_price__c as usadoPrecoMax
+            , usedcar_mid_price__c as usadoPrecoMed
+        from
+            process.service_request
+        where 
+            protocol__c = #{protocol}
+        limit 1
+    </select>
+
+    <select id="getQuexpertList" parameterType="integer" resultType="GetLeadQuExpertDto">
+        select
+            pa.personemail as contactEmail
+            , po.protocol__c as protocol
+            , po.statussales__c as stagename
+            , po.legacycreateddate__c as asgnDt
+            , pa.personbirthdate as birthDt
+            , pa.billingcity as cityCust
+            , po.closedate as closeDt
+            , pa.row_id
+            , pa."type" as contactType
+            , pd.dealercode__c as salesDlrCode
+            , pd.corporaterepresentativename__c as salesDlrNick
+            , pd.situationstatusreason__c
+            , po.description as description
+            , pd.billingcity as dlrCity
+            , pd.billingstate as statusDealer
+            , po.form__c as form
+            , pa.gender__pc as gender
+            , po.level1__c as level1
+            , po.level2__c as level2
+            , po.level3__c as level3
+            , po.level4__c as level4
+            , po.medium_tag__c as mediumTag
+            , po.origin as origin
+            , sr.quote_color__c as quoteColor
+            , sr.quote_color_price__c as quoteColorPrice
+            , sr.usedcar_max_price__c as quoteFinalPrice
+            , sr.quotetransmission__c as quoteTransmission
+            , sr.quote_version_price__c as quoteVersionPrice
+            , sr.version__c as quoteVersion
+            , po.status as stagename
+            , po.dealercode__c as quoteDealer
+            , po.reason__c as reason
+            , sr.relatedmodel__c as relatedModel
+            , po.source_tag__c as sourceTag
+            , pa.billingstate as stateCust
+            , (case when pa.blockedmobile__c = true then 'Y' else 'N' end) as supCelph
+            , (case when pa.blockedemails__c = true then 'Y' else 'N' end) as supEmail
+            , (case when pa.blockedsms__c = true then 'Y' else 'N' end) as supSms
+            , (case when pa.blockedvideocall__c = true then 'Y' else 'N' end) as supVideocall
+            , (case when pa.blockedwhatsapp__c = true then 'Y' else 'N' end) as supWhatsapp
+            , po.campaign_tag__c as campaignTag
+            , po.row_id as rowid
+        from
+            process.opportunity po
+        left join
+            process.account pa
+        on
+            po.contact_row_id__c = pa.row_id
+        left join
+            process.account pd
+        on
+            po.dealer__c = pd.row_id
+        left join
+            process.service_request sr
+        on
+            po.protocol__c = sr.protocol__c
+        where
+            po.status = 'Distributed'
+        and
+            po.qexpertreceiveddate__c isnull
+        and
+            (po.predictive_temp__c isnull or po.predictive_temp__c = '')
+        and
+            (po.transferredopportunity__c = false or po.transferredopportunity__c isnull)
+        and
+            po.qexperttransferreddate__c isnull
+        and
+            po.legacycreateddate__c <![CDATA[ >= ]]> to_timestamp(('2024-01-01'::date)::varchar||' 00:00:00','YYYY-MM-DD HH24:mi:SS') - '5 days'::interval
+        and
+            po.legacycreateddate__c <![CDATA[ <= ]]> to_timestamp((now()::date)::varchar||' 23:59:59', 'YYYY-MM-DD HH24:mi:SS')
+        limit #{param}
+    </select>
+
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_getlead_ws(#{param_id});
+    </insert>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_getlead_ws(#{param_id});
+    </insert>
+
+    <insert id="updateTransQuProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.trans_quexpert(#{param_id});
+    </insert>
+
+    <insert id="updateTransQuReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.trans_quexpert(#{param_id});
+    </insert>
+</mapper>

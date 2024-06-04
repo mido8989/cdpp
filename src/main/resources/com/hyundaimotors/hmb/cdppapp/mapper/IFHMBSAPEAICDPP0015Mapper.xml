@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBSAPEAICDPP0015Mapper">
+
+    <insert id="insertObject" parameterType="ColorDto"  useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into landing.if_in_color_ws_color
+        (
+            created
+            , created_by
+            , last_upd
+            , last_upd_by
+            , type
+            , code            
+            , description_em            
+            , description_pt            
+            , color_type            
+            , color_description            
+        )values
+        (
+            now()
+            , 'interface'
+            , now()
+            , 'interface'
+            , #{type}
+            , #{code}            
+            , #{descriptionEM}            
+            , #{descriptionPT}            
+            , #{colorType}            
+            , #{colorDescription}            
+        )
+    </insert>
+
+    <select id="getProcessRowIds" parameterType="list" resultType="string">
+        select 
+            ci.row_id
+        from
+            process.color_information ci 
+        join 
+            landing.if_in_color_ws_color iicwc
+        on
+            ci.external_id__c = iicwc.row_id::text
+        where
+            iicwc.row_id in
+            <foreach collection="paramList" item="item" index="index" open="(" close=")" separator=",">
+                CAST(#{item} AS INTEGER)
+            </foreach>
+    </select>
+
+    <insert id="transferProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_in_color(#{param_id});
+    </insert>
+
+    <insert id="transferReplica" statementType="CALLABLE" parameterType="hashMap">
+        call replica.if_in_color(#{param_id});
+    </insert>
+
+    <insert id="transferDPProcess" statementType="CALLABLE" parameterType="hashMap">
+        call process.if_dp_in_color(#{param_id});
+    </insert>
+    
+</mapper>

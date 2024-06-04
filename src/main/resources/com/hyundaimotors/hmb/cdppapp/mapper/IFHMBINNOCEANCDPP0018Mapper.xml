@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.IFHMBINNOCEANCDPP0018Mapper">
+    
+    <select id="getList" parameterType="IFHMBINNOCEANCDPP0018Dto" resultType="IFHMBINNOCEANCDPP0018Dto">
+        SELECT 
+            pd.protocol__c as protocolNum
+            , sr.status as protocolStatus
+            , pd.srvc_type as serviceType
+            , TO_CHAR(pd.srvc_arrival_date::timestamp,'YYYY-MM-DD"T"HH24:MI:SS-0300') as serviceArrivaldate
+            , TO_CHAR(pd.srvc_start_date::timestamp,'YYYY-MM-DD"T"HH24:MI:SS-0300') as serviceStartdate
+            , pd.srvc_duration as serviceDuration
+            , TO_CHAR(pd.srvc_delivery_date::timestamp,'YYYY-MM-DD"T"HH24:MI:SS-0300') as serviceDeliverydate
+            , pd.srvc_status_cd as serviceStatus
+            , a2.dealercode__c as dealerCode
+            , a2.corporaterepresentativename__c as dealerName
+            , pas.carregistrationnumber__c as vehiclePlate
+            , pas.friendly_model__c  as vehicleModel
+            , pas.modelyear__c as vehicleModelyear
+            , pas.manufacturedate  as vehicleManufacyear
+            , (select ci.val from process.color_information ci where ci.lang_id__c = 'ENU' and ci."type" = 'AUTO_EXTERIOR' and ci.name_code = pas.vehiclecolor__c) as vehicleExtcolor
+            , pas.serialnumber as vehicleChassi
+            , (select concat(a2.firstname || ' ' || a2.lastname ) from process.contact pc where row_id = pd.srvc_consultant_id) as consultantName
+            , (select concat(pc.firstname || ' ' || pc.lastname ) from process.contact pc where row_id = pd.srvc_technician_id) as technicianName
+        FROM 
+            process.dealer_appointment_history pd
+        JOIN 
+            process.service_request sr 
+        ON 
+            pd.protocol__c = sr.protocol__c 
+        JOIN 
+            process.account a1
+        ON 
+            a1.row_id = sr.contact_row_id__c
+        AND
+            a1.process_account_type = 'Person'
+        JOIN
+            process.customer_vehicle cv
+        ON 
+            cv.account_id = a1.row_id
+        AND
+            cv.status_cd = 'Active'
+        JOIN 
+            process.asset pas
+        ON 
+            pas.row_id = cv.asset_id
+        AND 
+            pas.serialnumber  = sr.serialnumber 
+        LEFT JOIN 
+            process.account a2
+        ON 
+            a2.row_id = sr.account_row_id__c 
+        AND
+            a2.process_account_type = 'Dealer'
+        WHERE 
+            a1.cpf__c = #{cpf}
+        ORDER BY 
+            a2.row_id, pd.srvc_type, pd.srvc_arrival_date 
+    </select>
+    
+</mapper>

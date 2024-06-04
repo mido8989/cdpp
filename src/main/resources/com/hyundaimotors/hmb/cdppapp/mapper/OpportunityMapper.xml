@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundaimotors.hmb.cdppapp.mapper.OpportunityMapper">
+
+    <select id="getRowId" parameterType="OpportunityDto" resultType="integer">
+        select 
+            count(*) as countRowId
+        from
+            process.opportunity
+        where
+            sfid = #{sfid}
+    </select>
+
+    <insert id="insertObject" parameterType="OpportunityDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        insert into process.opportunity(
+            contact_row_id__c
+            , contenttag__c
+            , loss_reason__c
+            , salesqualifieddate__c
+            , salesstatus__c
+            , closedate
+            , consultenddate__c
+            , autonumberforname__c
+            , bodytype__c
+            , accountid
+            , transferredopportunitydate__c
+            , dealer__c
+            , name
+            , consultfixeddate__c
+            , accepteddate__c
+            , predictive_temp__c
+            , dealeraccount__c
+            , dmsopportunityname__c
+            , salesopportunitycode__c
+            , level4__c
+            , level3__c
+            , level2__c
+            , contactdate__c
+            , level1__c
+            , legacycreateddate__c
+            , legacy_last_update__c
+            , consultno__c
+            , transferredopportunity__c
+            , companionsalesname__c
+            , protocol__c
+            , closestatus__c
+            , campaign_tag__c
+            , campaigntag__c
+            , companionsalesnumber__c
+            , lostreason__c
+            , completedate__c
+            , description
+            , dcxtopportunitykey__c
+            , mediumtag__c
+            , budget__c
+            , budget_confirmed__c
+            , reason__c
+            , sfid
+            , source_tag__c
+            , type
+            , dealercode__c
+            , origin
+            , form__c
+            , qexperttransferreddate__c
+            , qexpertreceiveddate__c
+            , additionalnote__c
+            , status
+        )values(
+            #{accountExternalId}
+            , #{contentTag}
+            , #{lossReason}
+            , #{saleSqualifiedDate}
+            , #{salesStatus}
+            , #{closeDate}::timestamp
+            , #{consultendDate}
+            , #{autonumberForName}
+            , #{bodyType}
+            , #{accountId}
+            , #{transferredOpportunityDate}::timestamp
+            , #{dealerId}
+            , #{name}
+            , #{consultFixedDate}::timestamp
+            , #{acceptedDate}::timestamp
+            , #{predictiveTemp}
+            , #{dealerAccount}
+            , #{dmsOpportunityName}
+            , #{salesOpportunityCode}
+            , #{level4}
+            , #{level3}
+            , #{level2}
+            , #{contactDate}::timestamp
+            , #{level1}
+            , #{createdDate}::timestamp
+            , #{createdDate}::timestamp
+            , #{consultNo}
+            , #{transferredOpportunity}::bool
+            , #{companionSalesName}
+            , #{testDriveProtocolid}
+            , #{closeStatus}
+            , #{campaignTag}
+            , #{campaignTag}
+            , #{companionSalesnumber}
+            , #{lostReason}
+            , #{completeDate}::timestamp
+            , #{description}
+            , #{dcxtOpportunityKey}
+            , #{mediumTag}
+            , #{budGet}
+            , #{budgetConfirmed}::bool
+            , #{reason}
+            , #{sfid}
+            , #{sourceTag}
+            , #{opportunityType}
+            , #{dealerCode}
+            , #{origin}
+            , #{form}
+            , #{qexpertTransferredDate}::timestamp
+            , #{qexperTreceivedDate}::timestamp
+            , #{additionalNote}
+            , #{stageName}
+        )
+    </insert>
+
+
+    <update id="updateObject" parameterType="OpportunityDto" useGeneratedKeys="true" keyProperty="rowId" keyColumn="row_id">
+        update process.opportunity set
+            contenttag__c = #{contentTag}
+            , loss_reason__c = #{lossReason}
+            , salesqualifieddate__c = #{saleSqualifiedDate}
+            , salesstatus__c = #{salesStatus}
+            , closedate = #{closeDate}::timestamp
+            , consultenddate__c = #{consultendDate}
+            , autonumberforname__c = #{autonumberForName}
+            , bodytype__c = #{bodyType}
+            , accountid = #{accountId}
+            , transferredopportunitydate__c = #{transferredOpportunityDate}::timestamp
+            , dealer__c = #{dealerId}
+            , name = #{name}
+            , consultfixeddate__c = #{consultFixedDate}::timestamp
+            , accepteddate__c = #{acceptedDate}::timestamp
+            , predictive_temp__c = #{predictiveTemp}
+            , dealeraccount__c = #{dealerAccount}
+            , dmsopportunityname__c = #{dmsOpportunityName}
+            , salesopportunitycode__c = #{salesOpportunityCode}
+            , level4__c = #{level4}
+            , level3__c = #{level3}
+            , level2__c = #{level2}
+            , contactdate__c = #{contactDate}::timestamp
+            , level1__c = #{level1}
+            , legacy_last_update__c = now()
+            , consultno__c = #{consultNo}
+            , transferredopportunity__c = #{transferredOpportunity}::bool
+            , companionsalesname__c = #{companionSalesName}
+            , protocol__c = #{testDriveProtocolid}
+            , closestatus__c = #{closeStatus}
+            , campaign_tag__c = #{campaignTag}
+            , campaigntag__c = #{campaignTag}
+            , companionsalesnumber__c = #{companionSalesnumber}
+            , lostreason__c = #{lostReason}
+            , completedate__c = #{completeDate}::timestamp
+            , description = #{description}
+            , dcxtopportunitykey__c = #{dcxtOpportunityKey}
+            , mediumtag__c = #{mediumTag}
+            , budget__c = #{budGet}
+            , budget_confirmed__c = #{budgetConfirmed}::bool
+            , reason__c = #{reason}
+            , source_tag__c = #{sourceTag}
+            , type = #{opportunityType}
+            , dealercode__c = #{dealerCode}
+            , origin = #{origin}
+            , form__c = #{form}
+            , qexperttransferreddate__c = #{qexpertTransferredDate}::timestamp
+            , qexpertreceiveddate__c = #{qexperTreceivedDate}::timestamp
+            , additionalnote__c = #{additionalNote}
+        where
+            sfid = #{sfid}
+    </update>
+</mapper>
