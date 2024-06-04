@@ -108,4 +108,5 @@ public class AccountReverseDto {
     private String childExternalId;
     private String mstExternalId;
     private String mergeChecked;
+    private String newComming;
 }
